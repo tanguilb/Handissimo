@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('HandissimoBundle:Default:index.html.twig');
+        return $this->render('front/index.html.twig');
     }
 }
