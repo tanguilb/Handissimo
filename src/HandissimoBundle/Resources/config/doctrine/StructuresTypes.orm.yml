@@ -31,15 +31,9 @@ HandissimoBundle\Entity\StructuresTypes:
             options:
                 fixed: false
             column: 'logo mdph'
-    oneToOne:
+    oneToMany:
         structures:
             targetEntity: Organizations
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                structures_id:
-                    referencedColumnName: id
-            orphanRemoval: false
+            mappedBy: organizations
+
     lifecycleCallbacks: {  }

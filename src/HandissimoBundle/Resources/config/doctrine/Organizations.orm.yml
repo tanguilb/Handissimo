@@ -178,12 +178,17 @@ HandissimoBundle\Entity\Organizations:
             options:
                 fixed: false
             column: profil_picture
-    oneToOne:
+    manyToOne:
+        organizations:
+            targetEntity: StructuresTypes
+            inversedBy: strucures
+            joinColumn:
+                name: structurestypes_id
+                referencedColumnName: id
+
         pictures:
             targetEntity: Pictures
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
+            inversedBy:
             inversedBy: null
             joinColumns:
                 pictures_id:
