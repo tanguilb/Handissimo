@@ -1,0 +1,3 @@
+handissimo_homepage:
+    path:     /
+    defaults: { _controller: HandissimoBundle:Default:index }
