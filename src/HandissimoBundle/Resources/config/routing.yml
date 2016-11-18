@@ -5,3 +5,7 @@ handissimo_opinion:
 handissimo_homepage:
     path:     /
     defaults: { _controller: HandissimoBundle:Default:index }
+
+handissimo_search:
+    path:     /search
+    defaults: { _controller: HandissimoBundle:Default:search }

@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('front/index.html.twig');
     }
+
+    public function searchAction()
+    {
+        return $this->render('front/search.html.twig');
+    }
 }
