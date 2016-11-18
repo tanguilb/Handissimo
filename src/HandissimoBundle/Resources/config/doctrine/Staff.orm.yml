@@ -23,6 +23,15 @@ HandissimoBundle\Entity\Staff:
             length: 255
             options:
                 fixed: false
+
+    manyToOne:
+        staff:
+            targetEntity: StaffTypes
+            inversedBy: stafftypes
+            joinColumn:
+                name: stafftypes_id
+                referencedColumnName: id
+
     manyToMany:
         structures:
             targetEntity: Organizations

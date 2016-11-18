@@ -19,15 +19,9 @@ HandissimoBundle\Entity\StaffTypes:
             length: 255
             options:
                 fixed: false
-    oneToOne:
-        staff:
+    oneToMany:
+        stafftypes:
             targetEntity: Staff
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                staff_id:
-                    referencedColumnName: id
-            orphanRemoval: false
+            mappedBy: staff
+
     lifecycleCallbacks: {  }
