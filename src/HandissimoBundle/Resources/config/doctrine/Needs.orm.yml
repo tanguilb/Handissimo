@@ -1,0 +1,39 @@
+HandissimoBundle\Entity\Needs:
+    type: entity
+    table: needs
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        needName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: need-name
+    manyToMany:
+        structures:
+            targetEntity: Organizations
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: needs
+            joinTable:
+                name: needs_has_structures
+                joinColumns:
+                    -
+                        name: needs_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: structures_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

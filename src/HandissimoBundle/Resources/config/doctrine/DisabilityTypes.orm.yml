@@ -1,0 +1,39 @@
+HandissimoBundle\Entity\DisabilityTypes:
+    type: entity
+    table: disability_types
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        disabilityName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: disability_name
+    manyToMany:
+        structures:
+            targetEntity: Organizations
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: disabilityTypes
+            joinTable:
+                name: disability_types_has_structures
+                joinColumns:
+                    -
+                        name: disability_types_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: structures_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

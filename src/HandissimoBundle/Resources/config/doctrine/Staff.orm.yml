@@ -1,0 +1,35 @@
+HandissimoBundle\Entity\Staff:
+    type: entity
+    table: staff
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        jobs:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        others:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    manyToMany:
+        structures:
+            targetEntity: Organizations
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: staff
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

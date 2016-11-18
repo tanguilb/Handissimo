@@ -1,0 +1,33 @@
+HandissimoBundle\Entity\StaffTypes:
+    type: entity
+    table: staff_types
+    indexes:
+        fk_Staff_types_staff1_idx:
+            columns:
+                - staff_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+    fields:
+        secteur:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    oneToOne:
+        staff:
+            targetEntity: Staff
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                staff_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

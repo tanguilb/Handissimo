@@ -1,0 +1,45 @@
+HandissimoBundle\Entity\StructuresTypes:
+    type: entity
+    table: structures_types
+    indexes:
+        fk_structures_types_structures1_idx:
+            columns:
+                - structures_id
+    uniqueConstraints:
+        id_UNIQUE:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+    fields:
+        structuresType:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: Structures_type
+        logoMdph:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: 'logo mdph'
+    oneToOne:
+        structures:
+            targetEntity: Organizations
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                structures_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

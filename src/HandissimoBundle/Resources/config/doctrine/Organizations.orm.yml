@@ -1,0 +1,226 @@
+HandissimoBundle\Entity\Organizations:
+    type: entity
+    table: organizations
+    indexes:
+        fk_organizations_pictures1_idx:
+            columns:
+                - pictures_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+    fields:
+        organizationName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: organization_name
+        adress:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        postal:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        organizationPhoneNumber:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: organization_phone_number
+        organizationMail:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: organization_mail
+        organizationWebsite:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_website
+        organizationBlog:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_blog
+        organizationFacebook:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_facebook
+        organizationTwitter:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_twitter
+        agegroup:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        freeplace:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        organizationDescription:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: organization_description
+        serveDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: serve_description
+        openhours:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        opendays:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        teamMembersNumber:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: team_members_number
+        teamDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: team_description
+        updateDatetime:
+            type: datetime
+            nullable: true
+            column: update_datetime
+        workingDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: working_description
+        school:
+            type: boolean
+            nullable: true
+        schoolDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: school_description
+        activities:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        placeDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: place_description
+        doc:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        profilPicture:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: profil_picture
+    oneToOne:
+        pictures:
+            targetEntity: Pictures
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pictures_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        disabilityTypes:
+            targetEntity: DisabilityTypes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: structures
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        needs:
+            targetEntity: Needs
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: structures
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        staff:
+            targetEntity: Staff
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: structures
+            joinTable:
+                name: structures_has_staff
+                joinColumns:
+                    -
+                        name: structures_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: staff_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }
