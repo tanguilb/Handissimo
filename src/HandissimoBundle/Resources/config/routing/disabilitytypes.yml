@@ -1,0 +1,24 @@
+disabilitytypes_index:
+    path:     /
+    defaults: { _controller: "HandissimoBundle:DisabilityTypes:index" }
+    methods:  GET
+
+disabilitytypes_show:
+    path:     /{id}/show
+    defaults: { _controller: "HandissimoBundle:DisabilityTypes:show" }
+    methods:  GET
+
+disabilitytypes_new:
+    path:     /new
+    defaults: { _controller: "HandissimoBundle:DisabilityTypes:new" }
+    methods:  [GET, POST]
+
+disabilitytypes_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HandissimoBundle:DisabilityTypes:edit" }
+    methods:  [GET, POST]
+
+disabilitytypes_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HandissimoBundle:DisabilityTypes:delete" }
+    methods:  DELETE

@@ -1,0 +1,412 @@
+<?php
+
+namespace HandissimoBundle\Entity;
+
+/**
+ * Society
+ */
+class Society
+{
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->societyName;
+    }
+
+    // GENERATE CODE
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $societyName;
+
+    /**
+     * @var string
+     */
+    private $logo;
+
+    /**
+     * @var string
+     */
+    private $address;
+
+    /**
+     * @var string
+     */
+    private $postal;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+    /**
+     * @var string
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     */
+    private $mail;
+
+    /**
+     * @var string
+     */
+    private $societyTwitter;
+
+    /**
+     * @var string
+     */
+    private $societyFacebook;
+
+    /**
+     * @var string
+     */
+    private $website;
+
+    /**
+     * @var \HandissimoBundle\Entity\Organizations
+     */
+    private $structures;
+
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Society
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set societyName
+     *
+     * @param string $societyName
+     *
+     * @return Society
+     */
+    public function setSocietyName($societyName)
+    {
+        $this->societyName = $societyName;
+
+        return $this;
+    }
+
+    /**
+     * Get societyName
+     *
+     * @return string
+     */
+    public function getSocietyName()
+    {
+        return $this->societyName;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Society
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Society
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set postal
+     *
+     * @param string $postal
+     *
+     * @return Society
+     */
+    public function setPostal($postal)
+    {
+        $this->postal = $postal;
+
+        return $this;
+    }
+
+    /**
+     * Get postal
+     *
+     * @return string
+     */
+    public function getPostal()
+    {
+        return $this->postal;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Society
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     *
+     * @return Society
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     *
+     * @return Society
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Set societyTwitter
+     *
+     * @param string $societyTwitter
+     *
+     * @return Society
+     */
+    public function setSocietyTwitter($societyTwitter)
+    {
+        $this->societyTwitter = $societyTwitter;
+
+        return $this;
+    }
+
+    /**
+     * Get societyTwitter
+     *
+     * @return string
+     */
+    public function getSocietyTwitter()
+    {
+        return $this->societyTwitter;
+    }
+
+    /**
+     * Set societyFacebook
+     *
+     * @param string $societyFacebook
+     *
+     * @return Society
+     */
+    public function setSocietyFacebook($societyFacebook)
+    {
+        $this->societyFacebook = $societyFacebook;
+
+        return $this;
+    }
+
+    /**
+     * Get societyFacebook
+     *
+     * @return string
+     */
+    public function getSocietyFacebook()
+    {
+        return $this->societyFacebook;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     *
+     * @return Society
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set structures
+     *
+     * @param \HandissimoBundle\Entity\Organizations $structures
+     *
+     * @return Society
+     */
+    public function setStructures(\HandissimoBundle\Entity\Organizations $structures = null)
+    {
+        $this->structures = $structures;
+
+        return $this;
+    }
+
+    /**
+     * Get structures
+     *
+     * @return \HandissimoBundle\Entity\Organizations
+     */
+    public function getStructures()
+    {
+        return $this->structures;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $organization;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->organization = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add organization
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organization
+     *
+     * @return Society
+     */
+    public function addOrganization(\HandissimoBundle\Entity\Organizations $organization)
+    {
+        $this->organization[] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Remove organization
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organization
+     */
+    public function removeOrganization(\HandissimoBundle\Entity\Organizations $organization)
+    {
+        $this->organization->removeElement($organization);
+    }
+
+    /**
+     * Get organization
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+}
