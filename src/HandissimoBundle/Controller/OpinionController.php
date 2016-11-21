@@ -66,29 +66,6 @@ class OpinionController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing opinion entity.
-     *
-     */
-    public function editAction(Request $request, Opinion $opinion)
-    {
-        $deleteForm = $this->createDeleteForm($opinion);
-        $editForm = $this->createForm('HandissimoBundle\Form\OpinionType', $opinion);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('opinion_edit', array('id' => $opinion->getId()));
-        }
-
-        return $this->render('opinion/edit.html.twig', array(
-            'opinion' => $opinion,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Deletes a opinion entity.
      *
      */

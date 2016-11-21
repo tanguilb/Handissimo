@@ -13,11 +13,6 @@ opinion_new:
     defaults: { _controller: "HandissimoBundle:Opinion:new" }
     methods:  [GET, POST]
 
-opinion_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "HandissimoBundle:Opinion:edit" }
-    methods:  [GET, POST]
-
 opinion_delete:
     path:     /{id}/delete
     defaults: { _controller: "HandissimoBundle:Opinion:delete" }
