@@ -4,10 +4,9 @@ HandissimoBundle\Entity\Society:
     id:
         id:
             type: integer
-            nullable: false
-            options:
-                unsigned: false
             id: true
+            generator:
+                strategy: AUTO
     fields:
         societyName:
             type: string

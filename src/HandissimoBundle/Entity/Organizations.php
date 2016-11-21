@@ -7,6 +7,14 @@ namespace HandissimoBundle\Entity;
  */
 class Organizations
 {
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->organizationName;
+    }
+
+    // GENERATE CODE
     /**
      * @var integer
      */

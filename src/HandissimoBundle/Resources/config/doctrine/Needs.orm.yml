@@ -4,12 +4,9 @@ HandissimoBundle\Entity\Needs:
     id:
         id:
             type: integer
-            nullable: false
-            options:
-                unsigned: false
             id: true
             generator:
-                strategy: IDENTITY
+                strategy: AUTO
     fields:
         needName:
             type: string

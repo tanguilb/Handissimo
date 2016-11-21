@@ -4,12 +4,9 @@ HandissimoBundle\Entity\Pictures:
     id:
         id:
             type: integer
-            nullable: false
-            options:
-                unsigned: false
             id: true
             generator:
-                strategy: IDENTITY
+                strategy: AUTO
     fields:
         pictureName:
             type: string

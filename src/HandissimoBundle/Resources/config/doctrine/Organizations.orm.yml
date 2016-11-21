@@ -4,10 +4,9 @@ HandissimoBundle\Entity\Organizations:
     id:
         id:
             type: integer
-            nullable: false
-            options:
-                unsigned: false
             id: true
+            generator:
+                strategy: AUTO
     fields:
         organizationName:
             type: string
