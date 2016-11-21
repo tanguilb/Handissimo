@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pictures list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picturename</th>
+                <th>Update</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for picture in pictures %}
+            <tr>
+                <td><a href="{{ path('pictures_show', { 'id': picture.id }) }}">{{ picture.id }}</a></td>
+                <td>{{ picture.pictureName }}</td>
+                <td>{% if picture.update %}{{ picture.update|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pictures_show', { 'id': picture.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pictures_edit', { 'id': picture.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pictures_new') }}">Create a new picture</a>
+        </li>
+    </ul>
+{% endblock %}

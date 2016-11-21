@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Disabilitytypes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Disabilityname</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for disabilityType in disabilityTypes %}
+            <tr>
+                <td><a href="{{ path('disabilitytypes_show', { 'id': disabilityType.id }) }}">{{ disabilityType.id }}</a></td>
+                <td>{{ disabilityType.disabilityName }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('disabilitytypes_show', { 'id': disabilityType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('disabilitytypes_edit', { 'id': disabilityType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('disabilitytypes_new') }}">Create a new disabilityType</a>
+        </li>
+    </ul>
+{% endblock %}

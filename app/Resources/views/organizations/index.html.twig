@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Organizations list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Organizationname</th>
+                <th>Adress</th>
+                <th>Postal</th>
+                <th>City</th>
+                <th>Organizationphonenumber</th>
+                <th>Organizationmail</th>
+                <th>Organizationwebsite</th>
+                <th>Organizationblog</th>
+                <th>Organizationfacebook</th>
+                <th>Organizationtwitter</th>
+                <th>Agegroup</th>
+                <th>Freeplace</th>
+                <th>Organizationdescription</th>
+                <th>Servedescription</th>
+                <th>Openhours</th>
+                <th>Opendays</th>
+                <th>Teammembersnumber</th>
+                <th>Teamdescription</th>
+                <th>Updatedatetime</th>
+                <th>Workingdescription</th>
+                <th>School</th>
+                <th>Schooldescription</th>
+                <th>Activities</th>
+                <th>Placedescription</th>
+                <th>Doc</th>
+                <th>Profilpicture</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for organization in organizations %}
+            <tr>
+                <td><a href="{{ path('organizations_show', { 'id': organization.id }) }}">{{ organization.id }}</a></td>
+                <td>{{ organization.organizationName }}</td>
+                <td>{{ organization.adress }}</td>
+                <td>{{ organization.postal }}</td>
+                <td>{{ organization.city }}</td>
+                <td>{{ organization.organizationPhoneNumber }}</td>
+                <td>{{ organization.organizationMail }}</td>
+                <td>{{ organization.organizationWebsite }}</td>
+                <td>{{ organization.organizationBlog }}</td>
+                <td>{{ organization.organizationFacebook }}</td>
+                <td>{{ organization.organizationTwitter }}</td>
+                <td>{{ organization.agegroup }}</td>
+                <td>{{ organization.freeplace }}</td>
+                <td>{{ organization.organizationDescription }}</td>
+                <td>{{ organization.serveDescription }}</td>
+                <td>{{ organization.openhours }}</td>
+                <td>{{ organization.opendays }}</td>
+                <td>{{ organization.teamMembersNumber }}</td>
+                <td>{{ organization.teamDescription }}</td>
+                <td>{% if organization.updateDatetime %}{{ organization.updateDatetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ organization.workingDescription }}</td>
+                <td>{% if organization.school %}Yes{% else %}No{% endif %}</td>
+                <td>{{ organization.schoolDescription }}</td>
+                <td>{{ organization.activities }}</td>
+                <td>{{ organization.placeDescription }}</td>
+                <td>{{ organization.doc }}</td>
+                <td>{{ organization.profilPicture }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('organizations_show', { 'id': organization.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('organizations_edit', { 'id': organization.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('organizations_new') }}">Create a new organization</a>
+        </li>
+    </ul>
+{% endblock %}

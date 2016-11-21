@@ -1,0 +1,26 @@
+HandissimoBundle\Entity\Pictures:
+    type: entity
+    table: pictures
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        pictureName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: picture_name
+        update:
+            type: datetime
+            nullable: true
+
+    oneToMany:
+        organizationpicture:
+            targetEntity: Organizations
+            mappedBy: picture
+    lifecycleCallbacks: {  }
