@@ -1,10 +1,6 @@
 HandissimoBundle\Entity\Organizations:
     type: entity
     table: organizations
-    indexes:
-        fk_organizations_pictures1_idx:
-            columns:
-                - pictures_id
     id:
         id:
             type: integer
@@ -179,53 +175,60 @@ HandissimoBundle\Entity\Organizations:
                 fixed: false
             column: profil_picture
     manyToOne:
-        organizations:
+        structuretype:
             targetEntity: StructuresTypes
-            inversedBy: strucures
+            inversedBy: organizationtype
             joinColumn:
                 name: structurestypes_id
                 referencedColumnName: id
 
-        pictures:
+        picture:
             targetEntity: Pictures
-            inversedBy:
-            inversedBy: null
-            joinColumns:
-                pictures_id:
-                    referencedColumnName: id
+            inversedBy: organizationpicture
+            joinColumn:
+                name: pictures_id
+                referencedColumnName: id
             orphanRemoval: false
+
+        societies:
+            targetEntity: Society
+            inversedBy: organization
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
     manyToMany:
         disabilityTypes:
             targetEntity: DisabilityTypes
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: structures
-            inversedBy: null
-            joinTable: null
-            orderBy: null
-        needs:
-            targetEntity: Needs
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: structures
-            inversedBy: null
-            joinTable: null
-            orderBy: null
-        staff:
-            targetEntity: Staff
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: structures
+            inversedBy: organizations
             joinTable:
-                name: structures_has_staff
+                name: disability_types_has_organizations
                 joinColumns:
-                    -
-                        name: structures_id
+                    disability_types_id:
                         referencedColumnName: id
                 inverseJoinColumns:
-                    -
-                        name: staff_id
+                    organizations_id:
                         referencedColumnName: id
-            orderBy: null
+        needs:
+            targetEntity: Needs
+            inversedBy: organizations
+            joinTable:
+                name: needs_has_organizations
+                joinColumns:
+                    needs_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+        stafforganizations:
+            targetEntity: Staff
+            inversedBy: organizations
+            joinTable:
+                name: organizations_has_staff
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    staff_id:
+                        referencedColumnName: id
+
     lifecycleCallbacks: {  }

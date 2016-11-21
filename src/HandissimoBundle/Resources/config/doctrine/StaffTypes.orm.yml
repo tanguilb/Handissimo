@@ -1,10 +1,6 @@
 HandissimoBundle\Entity\StaffTypes:
     type: entity
     table: staff_types
-    indexes:
-        fk_Staff_types_staff1_idx:
-            columns:
-                - staff_id
     id:
         id:
             type: integer
@@ -20,7 +16,7 @@ HandissimoBundle\Entity\StaffTypes:
             options:
                 fixed: false
     oneToMany:
-        stafftypes:
+        typesstaff:
             targetEntity: Staff
             mappedBy: staff
 

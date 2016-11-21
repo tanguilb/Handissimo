@@ -1,14 +1,6 @@
 HandissimoBundle\Entity\StructuresTypes:
     type: entity
     table: structures_types
-    indexes:
-        fk_structures_types_structures1_idx:
-            columns:
-                - structures_id
-    uniqueConstraints:
-        id_UNIQUE:
-            columns:
-                - id
     id:
         id:
             type: integer
@@ -30,10 +22,10 @@ HandissimoBundle\Entity\StructuresTypes:
             length: 255
             options:
                 fixed: false
-            column: 'logo mdph'
+            column: logo_mdph
     oneToMany:
-        structures:
+        organizationtype:
             targetEntity: Organizations
-            mappedBy: organizations
+            mappedBy: structuretype
 
     lifecycleCallbacks: {  }

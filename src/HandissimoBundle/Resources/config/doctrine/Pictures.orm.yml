@@ -17,8 +17,13 @@ HandissimoBundle\Entity\Pictures:
             length: 255
             options:
                 fixed: false
-            column: picture-name
+            column: picture_name
         update:
             type: datetime
             nullable: true
+
+    oneToMany:
+        organizationpicture:
+            targetEntity: Organizations
+            mappedBy: picture
     lifecycleCallbacks: {  }

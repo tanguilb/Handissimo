@@ -27,18 +27,14 @@ HandissimoBundle\Entity\Staff:
     manyToOne:
         staff:
             targetEntity: StaffTypes
-            inversedBy: stafftypes
+            inversedBy: typesstaff
             joinColumn:
                 name: stafftypes_id
                 referencedColumnName: id
 
     manyToMany:
-        structures:
+        organizations:
             targetEntity: Organizations
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: staff
-            inversedBy: null
-            joinTable: null
-            orderBy: null
+            mappedBy: stafforganizations
+
     lifecycleCallbacks: {  }

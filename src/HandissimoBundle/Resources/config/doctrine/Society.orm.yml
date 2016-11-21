@@ -1,10 +1,6 @@
 HandissimoBundle\Entity\Society:
     type: entity
     table: society
-    indexes:
-        fk_managers_structures1_idx:
-            columns:
-                - structures_id
     id:
         id:
             type: integer
@@ -77,15 +73,9 @@ HandissimoBundle\Entity\Society:
             length: 45
             options:
                 fixed: false
-    oneToOne:
-        structures:
+    oneToMany:
+        organization:
             targetEntity: Organizations
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                structures_id:
-                    referencedColumnName: id
-            orphanRemoval: false
+            mappedBy: societies
+
     lifecycleCallbacks: {  }
