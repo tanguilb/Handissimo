@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Stafftypes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Secteur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for staffType in staffTypes %}
+            <tr>
+                <td><a href="{{ path('stafftypes_show', { 'id': staffType.id }) }}">{{ staffType.id }}</a></td>
+                <td>{{ staffType.secteur }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('stafftypes_show', { 'id': staffType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stafftypes_edit', { 'id': staffType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('stafftypes_new') }}">Create a new staffType</a>
+        </li>
+    </ul>
+{% endblock %}
