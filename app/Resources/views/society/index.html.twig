@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Societies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Societyname</th>
+                <th>Logo</th>
+                <th>Address</th>
+                <th>Postal</th>
+                <th>City</th>
+                <th>Phonenumber</th>
+                <th>Mail</th>
+                <th>Societytwitter</th>
+                <th>Societyfacebook</th>
+                <th>Website</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for society in societies %}
+            <tr>
+                <td><a href="{{ path('society_show', { 'id': society.id }) }}">{{ society.id }}</a></td>
+                <td>{{ society.societyName }}</td>
+                <td>{{ society.logo }}</td>
+                <td>{{ society.address }}</td>
+                <td>{{ society.postal }}</td>
+                <td>{{ society.city }}</td>
+                <td>{{ society.phoneNumber }}</td>
+                <td>{{ society.mail }}</td>
+                <td>{{ society.societyTwitter }}</td>
+                <td>{{ society.societyFacebook }}</td>
+                <td>{{ society.website }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('society_show', { 'id': society.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('society_edit', { 'id': society.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('society_new') }}">Create a new society</a>
+        </li>
+    </ul>
+{% endblock %}

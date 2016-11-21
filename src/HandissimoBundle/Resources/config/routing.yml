@@ -2,6 +2,10 @@ handissimo_opinion:
     resource: "@HandissimoBundle/Resources/config/routing/opinion.yml"
     prefix:   /opinion
 
+handissimo_disabilitytypes:
+    resource: "@HandissimoBundle/Resources/config/routing/disabilitytypes.yml"
+    prefix:   /disabilitytypes
+
 handissimo_homepage:
     path:     /
     defaults: { _controller: HandissimoBundle:Default:index }
@@ -9,3 +13,31 @@ handissimo_homepage:
 handissimo_search:
     path:     /search
     defaults: { _controller: HandissimoBundle:Default:search }
+
+handissimo_needs:
+    resource: "@HandissimoBundle/Resources/config/routing/needs.yml"
+    prefix:   /needs
+
+handissimo_organizations:
+    resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
+    prefix:   /organizations
+
+handissimo_pictures:
+    resource: "@HandissimoBundle/Resources/config/routing/pictures.yml"
+    prefix:   /pictures
+
+handissimo_society:
+    resource: "@HandissimoBundle/Resources/config/routing/society.yml"
+    prefix:   /society
+
+handissimo_staff:
+    resource: "@HandissimoBundle/Resources/config/routing/staff.yml"
+    prefix:   /staff
+
+handissimo_stafftypes:
+    resource: "@HandissimoBundle/Resources/config/routing/stafftypes.yml"
+    prefix:   /stafftypes
+
+handissimo_structurestypes:
+    resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
+    prefix:   /structurestypes

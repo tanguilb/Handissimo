@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Structurestypes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Structurestype</th>
+                <th>Logomdph</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for structuresType in structuresTypes %}
+            <tr>
+                <td><a href="{{ path('structurestypes_show', { 'id': structuresType.id }) }}">{{ structuresType.id }}</a></td>
+                <td>{{ structuresType.structuresType }}</td>
+                <td>{{ structuresType.logoMdph }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('structurestypes_show', { 'id': structuresType.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('structurestypes_edit', { 'id': structuresType.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('structurestypes_new') }}">Create a new structuresType</a>
+        </li>
+    </ul>
+{% endblock %}

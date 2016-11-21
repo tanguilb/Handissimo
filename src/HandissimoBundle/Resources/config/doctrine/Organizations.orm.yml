@@ -1,0 +1,233 @@
+HandissimoBundle\Entity\Organizations:
+    type: entity
+    table: organizations
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        organizationName:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: organization_name
+        adress:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        postal:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        organizationPhoneNumber:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: organization_phone_number
+        organizationMail:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: organization_mail
+        organizationWebsite:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_website
+        organizationBlog:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_blog
+        organizationFacebook:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_facebook
+        organizationTwitter:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: organization_twitter
+        agegroup:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        freeplace:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        organizationDescription:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: organization_description
+        serveDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: serve_description
+        openhours:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        opendays:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        teamMembersNumber:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: team_members_number
+        teamDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: team_description
+        updateDatetime:
+            type: datetime
+            nullable: true
+            column: update_datetime
+        workingDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: working_description
+        school:
+            type: boolean
+            nullable: true
+        schoolDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: school_description
+        activities:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        placeDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: place_description
+        doc:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        profilPicture:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: profil_picture
+    manyToOne:
+        structuretype:
+            targetEntity: StructuresTypes
+            inversedBy: organizationtype
+            joinColumn:
+                name: structurestypes_id
+                referencedColumnName: id
+
+        picture:
+            targetEntity: Pictures
+            inversedBy: organizationpicture
+            joinColumn:
+                name: pictures_id
+                referencedColumnName: id
+            orphanRemoval: false
+
+        societies:
+            targetEntity: Society
+            inversedBy: organization
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
+    manyToMany:
+        disabilityTypes:
+            targetEntity: DisabilityTypes
+            inversedBy: organizations
+            joinTable:
+                name: disability_types_has_organizations
+                joinColumns:
+                    disability_types_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+        needs:
+            targetEntity: Needs
+            inversedBy: organizations
+            joinTable:
+                name: needs_has_organizations
+                joinColumns:
+                    needs_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+        stafforganizations:
+            targetEntity: Staff
+            inversedBy: organizations
+            joinTable:
+                name: organizations_has_staff
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    staff_id:
+                        referencedColumnName: id
+
+    lifecycleCallbacks: {  }
