@@ -27,8 +27,9 @@ class NewOpinionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            var_dump($opinion);
             $em->persist($opinion);
-            $em->flush($opinion);
+            $em->flush();
         }
 
         return $this->render('front/opinion-button.html.twig', array(

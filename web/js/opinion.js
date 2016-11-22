@@ -11,4 +11,4 @@ $.post('send.php',
         alert(data);
     });
 
-}
+});
