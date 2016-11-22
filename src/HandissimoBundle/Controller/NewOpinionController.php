@@ -11,7 +11,6 @@ namespace HandissimoBundle\Controller;
 use HandissimoBundle\Entity\Opinion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 
 class NewOpinionController extends Controller
@@ -37,5 +36,4 @@ class NewOpinionController extends Controller
             'form' => $form->createView(),
         ));
     }
-
 }

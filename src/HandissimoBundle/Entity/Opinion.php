@@ -32,7 +32,6 @@ class Opinion
      */
     private $message;
 
-
     /**
      * Get id
      *

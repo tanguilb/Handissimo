@@ -28,30 +28,6 @@ class OpinionController extends Controller
     }
 
     /**
-     * Creates a new opinion entity.
-     *
-     */
-    public function newAction(Request $request)
-    {
-        $opinion = new Opinion();
-        $form = $this->createForm('HandissimoBundle\Form\OpinionType', $opinion);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($opinion);
-            $em->flush($opinion);
-
-            return $this->redirectToRoute('opinion_show', array('id' => $opinion->getId()));
-        }
-
-        return $this->render('opinion/new.html.twig', array(
-            'opinion' => $opinion,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a opinion entity.
      *
      */

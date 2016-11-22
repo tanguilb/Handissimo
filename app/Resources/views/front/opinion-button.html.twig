@@ -17,13 +17,11 @@
 
                 {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <input type="submit" value="Create" />
+                    <div class="modal-footer">
+                        <input type="submit" value="Envoyer" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    </div>
                 {{ form_end(form) }}
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary">Envoyer</button>
             </div>
         </div>
     </div>
