@@ -12,6 +12,13 @@ use Doctrine\Common\Persistence\ObjectManager;
 use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Entity\Needs;
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\Pictures;
+use HandissimoBundle\Entity\Society;
+use HandissimoBundle\Entity\Staff;
+use HandissimoBundle\Entity\StaffTypes;
+use HandissimoBundle\Entity\StructuresTypes;
+use HandissimoBundle\Form\StaffType;
+
 
 class LoadData implements FixtureInterface
 {
@@ -132,17 +139,109 @@ class LoadData implements FixtureInterface
         $manager->persist($need1);
 
         $need2 = new Needs();
-        $need2->setNeedName('Need name 1');
+        $need2->setNeedName('Need name 2');
         $manager->persist($need2);
 
         $need3 = new Needs();
-        $need3->setNeedName('Need name 1');
+        $need3->setNeedName('Need name 3');
         $manager->persist($need3);
 
         $need4 = new Needs();
-        $need4->setNeedName('Need name 1');
+        $need4->setNeedName('Need name 4');
         $manager->persist($need4);
 
+
+        $society = new Society();
+        $society->setSocietyName('nom de la societé');
+        $society->setLogo('logo');
+        $society->setAddress('45 av charles de gaules');
+        $society->setPostal('69003');
+        $society->setCity('lyon');
+        $society->setPhoneNumber('02.01.09.56.54');
+        $society->setMail('contact@society.com');
+        $society->setSocietyTwitter('www.twitter.com');
+        $society->setSocietyFacebook('www.facebook.com');
+        $society->setWebsite('www.monsite.fr');
+        $manager->persist($society);
+
+        $society = new Society();
+        $society->setSocietyName('nom de la societé');
+        $society->setLogo('logo');
+        $society->setAddress('45 av charles de gaules');
+        $society->setPostal('69003');
+        $society->setCity('lyon');
+        $society->setPhoneNumber('02.01.09.56.54');
+        $society->setMail('contact@society.com');
+        $society->setSocietyTwitter('www.twitter.com');
+        $society->setSocietyFacebook('www.facebook.com');
+        $society->setWebsite('www.monsite.fr');
+        $manager->persist($society);
+
+        $society = new Society();
+        $society->setSocietyName('nom de la societé');
+        $society->setLogo('logo');
+        $society->setAddress('45 av charles de gaules');
+        $society->setPostal('69003');
+        $society->setCity('lyon');
+        $society->setPhoneNumber('02.01.09.56.54');
+        $society->setMail('contact@society.com');
+        $society->setSocietyTwitter('www.twitter.com');
+        $society->setSocietyFacebook('www.facebook.com');
+        $society->setWebsite('www.monsite.fr');
+        $manager->persist($society);
+
+        $society = new Society();
+        $society->setSocietyName('nom de la societé');
+        $society->setLogo('logo');
+        $society->setAddress('45 av charles de gaules');
+        $society->setPostal('69003');
+        $society->setCity('lyon');
+        $society->setPhoneNumber('02.01.09.56.54');
+        $society->setMail('contact@society.com');
+        $society->setSocietyTwitter('www.twitter.com');
+        $society->setSocietyFacebook('www.facebook.com');
+        $society->setWebsite('www.monsite.fr');
+        $manager->persist($society);
+
+
+
+        $staffType1 = new StaffTypes();
+        $staffType1->setSecteur('staff type 1');
+        $manager->persist($staffType1);
+
+        $staffType2 = new StaffTypes();
+        $staffType2->setSecteur('staff type 2');
+        $manager->persist($staffType2);
+
+        $staffType3 = new StaffTypes();
+        $staffType3->setSecteur('staff type 3');
+        $manager->persist($staffType3);
+
+        $staffType4 = new StaffTypes();
+        $staffType4->setSecteur('staff type 4');
+        $manager->persist($staffType4);
+
+        $structuretype1 = new StructuresTypes();
+        $structuretype1->setStructuresType('structure type 1');
+        $structuretype1->setLogoMdph('logo 1');
+        $manager->persist($structuretype1);
+
+        $structuretype2 = new StructuresTypes();
+        $structuretype2->setStructuresType('structure type 2');
+        $structuretype2->setLogoMdph('logo 2');
+        $manager->persist($structuretype2);
+
+        $structuretype3 = new StructuresTypes();
+        $structuretype3->setStructuresType('structure type 3');
+        $structuretype3->setLogoMdph('logo 3');
+        $manager->persist($structuretype3);
+
+        $structureType4 = new StructuresTypes();
+        $structureType4->setStructuresType('structure type 4');
+        $structureType4->setLogoMdph('logo 4');
+        $manager->persist($structureType4);
+        
+        
         $manager->flush();
     }
 }
