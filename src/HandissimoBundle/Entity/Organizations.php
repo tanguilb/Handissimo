@@ -28,7 +28,7 @@ class Organizations
     /**
      * @var string
      */
-    private $adress;
+    private $address;
 
     /**
      * @var string
@@ -229,27 +229,27 @@ class Organizations
     }
 
     /**
-     * Set adress
+     * Set address
      *
-     * @param string $adress
+     * @param string $address
      *
      * @return Organizations
      */
-    public function setAdress($adress)
+    public function setAddress($address)
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
 
     /**
-     * Get adress
+     * Get address
      *
      * @return string
      */
-    public function getAdress()
+    public function getAddress()
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**

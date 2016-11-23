@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+
+             <trans-unit id="breadcrumb.link_organizations_list">
+                            <source>breadcrumb.link_organizations_list</source>
+                            <target>Liste des structures</target>
+             </trans-unit>
+
+        </body>
+    <file>
+<xliff>
