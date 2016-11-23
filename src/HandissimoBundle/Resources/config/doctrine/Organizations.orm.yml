@@ -8,13 +8,13 @@ HandissimoBundle\Entity\Organizations:
             generator:
                 strategy: AUTO
     fields:
-        organizationName:
+        name:
             type: string
             nullable: false
             length: 255
             options:
                 fixed: false
-            column: organization_name
+            column: name
         adress:
             type: string
             nullable: false
@@ -33,48 +33,48 @@ HandissimoBundle\Entity\Organizations:
             length: 255
             options:
                 fixed: false
-        organizationPhoneNumber:
+        phoneNumber:
             type: string
             nullable: false
             length: 255
             options:
                 fixed: false
-            column: organization_phone_number
-        organizationMail:
+            column: phone_number
+        mail:
             type: string
             nullable: false
             length: 255
             options:
                 fixed: false
-            column: organization_mail
-        organizationWebsite:
+            column: mail
+        website:
             type: string
             nullable: true
             length: 255
             options:
                 fixed: false
-            column: organization_website
-        organizationBlog:
+            column: website
+        blog:
             type: string
             nullable: true
             length: 255
             options:
                 fixed: false
-            column: organization_blog
-        organizationFacebook:
+            column: blog
+        facebook:
             type: string
             nullable: true
             length: 255
             options:
                 fixed: false
-            column: organization_facebook
-        organizationTwitter:
+            column: facebook
+        twitter:
             type: string
             nullable: true
             length: 255
             options:
                 fixed: false
-            column: organization_twitter
+            column: twitter
         agegroup:
             type: string
             nullable: true

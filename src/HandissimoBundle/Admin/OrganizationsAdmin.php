@@ -12,7 +12,7 @@ class OrganizationsAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-                    ->add('organization_name', 'text', array(
+                    ->add('name', 'text', array(
                         'label' => 'Nom de l\'organisation',
                         'required' => true
                     ))
@@ -28,23 +28,23 @@ class OrganizationsAdmin extends Admin
                         'label' => 'Ville',
                         'required' => true
                     ))
-                    ->add('organization_phone_number', 'text', array(
+                    ->add('phone_number', 'text', array(
                         'label' => 'Telephone',
                         'required' => true
                     ))
-                    ->add('organization_mail', 'text', array(
+                    ->add('mail', 'text', array(
                         'label' => 'Adresse e-mail',
                         'required' => false
                     ))
-                    ->add('organization_website', 'text', array(
+                    ->add('website', 'text', array(
                         'label' => 'Site internet',
                         'required' => false
                     ))
-                    ->add('organization_blog', 'text', array(
+                    ->add('blog', 'text', array(
                         'label' => 'Blog',
                         'required' => false
                     ))
-                    ->add('organization_facebook', 'text', array(
+                    ->add('facebook', 'text', array(
                         'label' => 'Page facebook',
                         'required' => false
                     ))
@@ -88,25 +88,10 @@ class OrganizationsAdmin extends Admin
                         'label' => 'Description du travail effectué',
                         'required' => true
                     ))
-                    ->add('school', 'integer', array(
+                    ->add('school', 'text', array(
                         'label' => 'Ecole',
                         'required' => true
-                    ))
-                    ->add('working_description', 'textarea', array(
-                        'label' => 'Description du travail effectué',
-                        'required' => true
-                    ))
-                    ->add('working_description', 'textarea', array(
-                        'label' => 'Description du travail effectué',
-                        'required' => true
-                    ))
-                    ->add('working_description', 'textarea', array(
-                        'label' => 'Description du travail effectué',
-                        'required' => true
-                    ))
-                    ->add('working_description', 'textarea', array(
-                        'label' => 'Description du travail effectué',
-                        'required' => true
+
 
             ));
     }
@@ -114,14 +99,13 @@ class OrganizationsAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-
-                    ->add('postal')
-                    ->add('adress');
+                    ->add('name')
+                    ->add('postal');
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper ->addIdentifier( 'organization_name' , null, array ( 'label' => 'Nom de l\'organisation') )
+        $listMapper ->addIdentifier( 'name' , null, array ( 'label' => 'Nom de l\'organisation') )
                     ->add( 'adress' , null, array ( 'label' => 'Adresse') )
                     ->add( 'postal' , null, array ( 'label' => 'Code postale') );
     }
