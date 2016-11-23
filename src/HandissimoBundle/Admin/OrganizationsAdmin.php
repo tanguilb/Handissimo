@@ -48,7 +48,7 @@ class OrganizationsAdmin extends Admin
                         'label' => 'Page facebook',
                         'required' => false
                     ))
-                    ->add('organization_twitter', 'text', array(
+                    ->add('twitter', 'text', array(
                         'label' => 'Page twitter',
                         'required' => false
                     ))
@@ -90,7 +90,11 @@ class OrganizationsAdmin extends Admin
                     ))
                     ->add('school', 'text', array(
                         'label' => 'Ecole',
-                        'required' => true
+                        'required' => false
+                    ))
+                    ->add('school_description', 'textarea', array(
+                        'label' => 'Description de l\'école',
+                        'required' => false
 
 
             ));

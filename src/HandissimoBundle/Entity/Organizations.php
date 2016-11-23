@@ -11,7 +11,7 @@ class Organizations
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        return $this->organizationName;
+        return $this->name;
     }
 
     // GENERATE CODE
@@ -23,7 +23,7 @@ class Organizations
     /**
      * @var string
      */
-    private $organizationName;
+    private $name;
 
     /**
      * @var string
@@ -43,32 +43,32 @@ class Organizations
     /**
      * @var string
      */
-    private $organizationPhoneNumber;
+    private $phoneNumber;
 
     /**
      * @var string
      */
-    private $organizationMail;
+    private $mail;
 
     /**
      * @var string
      */
-    private $organizationWebsite;
+    private $website;
 
     /**
      * @var string
      */
-    private $organizationBlog;
+    private $blog;
 
     /**
      * @var string
      */
-    private $organizationFacebook;
+    private $facebook;
 
     /**
      * @var string
      */
-    private $organizationTwitter;
+    private $twitter;
 
     /**
      * @var string
@@ -205,27 +205,27 @@ class Organizations
     }
 
     /**
-     * Set organizationName
+     * Set name
      *
-     * @param string $organizationName
+     * @param string $name
      *
      * @return Organizations
      */
-    public function setOrganizationName($organizationName)
+    public function setName($name)
     {
-        $this->organizationName = $organizationName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get organizationName
+     * Get name
      *
      * @return string
      */
-    public function getOrganizationName()
+    public function getName()
     {
-        return $this->organizationName;
+        return $this->name;
     }
 
     /**
@@ -301,147 +301,147 @@ class Organizations
     }
 
     /**
-     * Set organizationPhoneNumber
+     * Set PhoneNumber
      *
-     * @param string $organizationPhoneNumber
+     * @param string $PhoneNumber
      *
      * @return Organizations
      */
-    public function setOrganizationPhoneNumber($organizationPhoneNumber)
+    public function setPhoneNumber($phoneNumber)
     {
-        $this->organizationPhoneNumber = $organizationPhoneNumber;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
 
     /**
-     * Get organizationPhoneNumber
+     * Get PhoneNumber
      *
      * @return string
      */
-    public function getOrganizationPhoneNumber()
+    public function getPhoneNumber()
     {
-        return $this->organizationPhoneNumber;
+        return $this->phoneNumber;
     }
 
     /**
-     * Set organizationMail
+     * Set mail
      *
-     * @param string $organizationMail
+     * @param string $mail
      *
      * @return Organizations
      */
-    public function setOrganizationMail($organizationMail)
+    public function setMail($mail)
     {
-        $this->organizationMail = $organizationMail;
+        $this->mail = $mail;
 
         return $this;
     }
 
     /**
-     * Get organizationMail
+     * Get mail
      *
      * @return string
      */
-    public function getOrganizationMail()
+    public function getMail()
     {
-        return $this->organizationMail;
+        return $this->mail;
     }
 
     /**
-     * Set organizationWebsite
+     * Set website
      *
-     * @param string $organizationWebsite
+     * @param string $website
      *
      * @return Organizations
      */
-    public function setOrganizationWebsite($organizationWebsite)
+    public function setWebsite($website)
     {
-        $this->organizationWebsite = $organizationWebsite;
+        $this->website = $website;
 
         return $this;
     }
 
     /**
-     * Get organizationWebsite
+     * Get website
      *
      * @return string
      */
-    public function getOrganizationWebsite()
+    public function getWebsite()
     {
-        return $this->organizationWebsite;
+        return $this->website;
     }
 
     /**
-     * Set organizationBlog
+     * Set blog
      *
-     * @param string $organizationBlog
+     * @param string $blog
      *
      * @return Organizations
      */
-    public function setOrganizationBlog($organizationBlog)
+    public function setBlog($blog)
     {
-        $this->organizationBlog = $organizationBlog;
+        $this->blog = $blog;
 
         return $this;
     }
 
     /**
-     * Get organizationBlog
+     * Get blog
      *
      * @return string
      */
-    public function getOrganizationBlog()
+    public function getBlog()
     {
-        return $this->organizationBlog;
+        return $this->blog;
     }
 
     /**
-     * Set organizationFacebook
+     * Set facebook
      *
-     * @param string $organizationFacebook
+     * @param string $facebook
      *
      * @return Organizations
      */
-    public function setOrganizationFacebook($organizationFacebook)
+    public function setFacebook($facebook)
     {
-        $this->organizationFacebook = $organizationFacebook;
+        $this->facebook = $facebook;
 
         return $this;
     }
 
     /**
-     * Get organizationFacebook
+     * Get facebook
      *
      * @return string
      */
-    public function getOrganizationFacebook()
+    public function getFacebook()
     {
-        return $this->organizationFacebook;
+        return $this->facebook;
     }
 
     /**
-     * Set organizationTwitter
+     * Set twitter
      *
-     * @param string $organizationTwitter
+     * @param string $twitter
      *
      * @return Organizations
      */
-    public function setOrganizationTwitter($organizationTwitter)
+    public function setTwitter($twitter)
     {
-        $this->organizationTwitter = $organizationTwitter;
+        $this->twitter = $twitter;
 
         return $this;
     }
 
     /**
-     * Get organizationTwitter
+     * Get twitter
      *
      * @return string
      */
-    public function getOrganizationTwitter()
+    public function getTwitter()
     {
-        return $this->organizationTwitter;
+        return $this->twitter;
     }
 
     /**
@@ -953,6 +953,7 @@ class Organizations
     {
         return $this->staff;
     }
+
     /**
      * @var \HandissimoBundle\Entity\StructuresTypes
      */
@@ -1040,6 +1041,7 @@ class Organizations
     {
         return $this->societies;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -1078,208 +1080,5 @@ class Organizations
     public function getStafforganizations()
     {
         return $this->stafforganizations;
-    }
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $phoneNumber;
-
-    /**
-     * @var string
-     */
-    private $mail;
-
-    /**
-     * @var string
-     */
-    private $website;
-
-    /**
-     * @var string
-     */
-    private $blog;
-
-    /**
-     * @var string
-     */
-    private $facebook;
-
-    /**
-     * @var string
-     */
-    private $twitter;
-
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Organizations
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set phoneNumber
-     *
-     * @param string $phoneNumber
-     *
-     * @return Organizations
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get phoneNumber
-     *
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return Organizations
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * Set website
-     *
-     * @param string $website
-     *
-     * @return Organizations
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-
-        return $this;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Set blog
-     *
-     * @param string $blog
-     *
-     * @return Organizations
-     */
-    public function setBlog($blog)
-    {
-        $this->blog = $blog;
-
-        return $this;
-    }
-
-    /**
-     * Get blog
-     *
-     * @return string
-     */
-    public function getBlog()
-    {
-        return $this->blog;
-    }
-
-    /**
-     * Set facebook
-     *
-     * @param string $facebook
-     *
-     * @return Organizations
-     */
-    public function setFacebook($facebook)
-    {
-        $this->facebook = $facebook;
-
-        return $this;
-    }
-
-    /**
-     * Get facebook
-     *
-     * @return string
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
-     * Set twitter
-     *
-     * @param string $twitter
-     *
-     * @return Organizations
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-
-        return $this;
-    }
-
-    /**
-     * Get twitter
-     *
-     * @return string
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
     }
 }
