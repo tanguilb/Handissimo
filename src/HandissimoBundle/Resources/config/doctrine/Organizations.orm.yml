@@ -33,6 +33,12 @@ HandissimoBundle\Entity\Organizations:
             length: 255
             options:
                 fixed: false
+        latitude:
+            type: float
+            nullable: false
+        longitude:
+            type: float
+            nullable: false
         organizationPhoneNumber:
             type: string
             nullable: false
