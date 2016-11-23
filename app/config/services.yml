@@ -7,3 +7,9 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    admin.organizations:
+        class: HandissimoBundle\Admin\OrganizationsAdmin
+        arguments: [~, HandissimoBundle\Entity\Organizations, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "dossier", label: Structure }
