@@ -152,7 +152,7 @@ class LoadData implements FixtureInterface
 
 
         $society = new Society();
-        $society->setSocietyname('nom de la societé');
+        $society->setSocietyname('nom de la societé 1');
         $society->setLogo('logo');
         $society->setAddress('45 av charles de gaules');
         $society->setPostal('69003');
@@ -165,7 +165,7 @@ class LoadData implements FixtureInterface
         $manager->persist($society);
 
         $society1 = new Society();
-        $society1->setSocietyname('nom de la societé');
+        $society1->setSocietyname('nom de la societé 2');
         $society1->setLogo('logo');
         $society1->setAddress('45 av charles de gaules');
         $society1->setPostal('69003');
@@ -178,7 +178,7 @@ class LoadData implements FixtureInterface
         $manager->persist($society1);
 
         $society2 = new Society();
-        $society2->setSocietyname('nom de la societé');
+        $society2->setSocietyname('nom de la societé 3');
         $society2->setLogo('logo');
         $society2->setAddress('45 av charles de gaules');
         $society2->setPostal('69003');
@@ -191,7 +191,7 @@ class LoadData implements FixtureInterface
         $manager->persist($society2);
 
         $society3 = new Society();
-        $society3->setSocietyname('nom de la societé');
+        $society3->setSocietyname('nom de la societé 4');
         $society3->setLogo('logo');
         $society3->setAddress('45 av charles de gaules');
         $society3->setPostal('69003');

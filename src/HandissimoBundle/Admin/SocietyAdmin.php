@@ -48,7 +48,7 @@ class SocietyAdmin extends Admin
                         'label' => 'Site internet',
                         'required' => false
                     ))
-                    ->add('logo', 'file', array(
+                    ->add('logo', 'text', array(
                         'label' => 'Logo de profile',
                         'required' => false
     ));
