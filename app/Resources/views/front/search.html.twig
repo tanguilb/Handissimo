@@ -4,10 +4,15 @@
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 {% endblock %}
 {% block body %}
-    <div id="map">
-
-
+    <!--
+    <div id="floating-panel">
+        <input id="address" type="textbox" value="Sydney, NSW">
+        <input id="submit" type="button" value="Geocode">
     </div>
+    -->
+
+    <div id="map"></div>
+
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
