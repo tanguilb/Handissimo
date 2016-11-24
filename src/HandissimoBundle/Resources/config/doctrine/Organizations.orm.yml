@@ -12,7 +12,7 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: false
             length: 255
-        adress:
+        address:
             type: string
             nullable: false
             length: 255

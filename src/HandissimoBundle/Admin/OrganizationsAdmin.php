@@ -17,7 +17,8 @@ class OrganizationsAdmin extends Admin
                         'label' => 'Nom de l\'organisation',
                         'required' => true
                     ))
-                    ->add('adress', 'text', array(
+
+                    ->add('address', 'text', array(
                         'label' => 'Adresse',
                         'required' => false
                     ))
@@ -100,10 +101,12 @@ class OrganizationsAdmin extends Admin
                         'expanded' => true,
                         'multiple' => true,
                         'by_reference' => true,
+                    ))
+                    /*->add('organizations', EntityType::class, array(
+                        'class' => 'HandissimoBundle:StructuresTypes',
+                        'choice_label' => 'structurestype'
+                    ))*/;
 
-
-
-            ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

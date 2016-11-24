@@ -4,6 +4,7 @@ namespace HandissimoBundle\Admin;
 
 
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -26,11 +27,14 @@ class DisabilityTypesAdmin extends Admin
             ));
     }
 
-    /*protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->
-    }*/
+            ->addIdentifier('disabilityName', null,
+                array(
+                    'label' => 'Type de handicaps'
+                ));
+    }
 
     /*public function postUpdate( $object){
 
