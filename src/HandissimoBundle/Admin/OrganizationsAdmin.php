@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Admin;
 
+use Addressable\Bundle\Form\Type\AddressMapType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -48,7 +49,7 @@ class OrganizationsAdmin extends Admin
                         'label' => 'Page facebook',
                         'required' => false
                     ))
-                    ->add('organization_twitter', 'text', array(
+                    ->add('twitter', 'text', array(
                         'label' => 'Page twitter',
                         'required' => false
                     ))

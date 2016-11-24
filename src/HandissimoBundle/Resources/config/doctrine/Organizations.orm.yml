@@ -12,137 +12,86 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
-            column: name
         adress:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
         postal:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
         city:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
         latitude:
             type: float
-            nullable: false
+            nullable: true
         longitude:
             type: float
-            nullable: false
-        organizationPhoneNumber:
+            nullable: true
+        phoneNumber:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
-            column: phone_number
         mail:
             type: string
             nullable: false
             length: 255
-            options:
-                fixed: false
-            column: mail
         website:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
-            column: website
         blog:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
-            column: blog
         facebook:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
-            column: facebook
         twitter:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
-            column: twitter
         agegroup:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
         freeplace:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
         organizationDescription:
             type: text
             nullable: false
             length: 65535
-            options:
-                fixed: false
-            column: organization_description
         serveDescription:
             type: text
             nullable: true
             length: 65535
-            options:
-                fixed: false
-            column: serve_description
         openhours:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
         opendays:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
         teamMembersNumber:
             type: integer
             nullable: true
-            options:
-                unsigned: false
-            column: team_members_number
         teamDescription:
             type: text
             nullable: true
             length: 65535
-            options:
-                fixed: false
-            column: team_description
         updateDatetime:
             type: datetime
             nullable: true
-            column: update_datetime
         workingDescription:
             type: text
             nullable: true
             length: 65535
-            options:
-                fixed: false
-            column: working_description
         school:
             type: boolean
             nullable: true
@@ -150,35 +99,22 @@ HandissimoBundle\Entity\Organizations:
             type: text
             nullable: true
             length: 65535
-            options:
-                fixed: false
-            column: school_description
         activities:
             type: text
             nullable: true
             length: 65535
-            options:
-                fixed: false
         placeDescription:
             type: text
             nullable: true
             length: 65535
-            options:
-                fixed: false
-            column: place_description
         doc:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
         profilPicture:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
-            column: profil_picture
     manyToOne:
         structuretype:
             targetEntity: StructuresTypes

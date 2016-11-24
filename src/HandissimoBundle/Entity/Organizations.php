@@ -7,11 +7,10 @@ namespace HandissimoBundle\Entity;
  */
 class Organizations
 {
-
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        return $this->organizationName;
+        return $this->name;
     }
 
     // GENERATE CODE
@@ -23,7 +22,7 @@ class Organizations
     /**
      * @var string
      */
-    private $organizationName;
+    private $name;
 
     /**
      * @var string
@@ -43,32 +42,32 @@ class Organizations
     /**
      * @var string
      */
-    private $PhoneNumber;
+    private $phoneNumber;
 
     /**
      * @var string
      */
-    private $organizationMail;
+    private $mail;
 
     /**
      * @var string
      */
-    private $organizationWebsite;
+    private $website;
 
     /**
      * @var string
      */
-    private $organizationBlog;
+    private $blog;
 
     /**
      * @var string
      */
-    private $organizationFacebook;
+    private $facebook;
 
     /**
      * @var string
      */
-    private $organizationTwitter;
+    private $twitter;
 
     /**
      * @var string
@@ -205,30 +204,6 @@ class Organizations
     }
 
     /**
-     * Set organizationName
-     *
-     * @param string $organizationName
-     *
-     * @return Organizations
-     */
-    public function setOrganizationName($organizationName)
-    {
-        $this->organizationName = $organizationName;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationName
-     *
-     * @return string
-     */
-    public function getOrganizationName()
-    {
-        return $this->organizationName;
-    }
-
-    /**
      * Set adress
      *
      * @param string $adress
@@ -298,150 +273,6 @@ class Organizations
     public function getCity()
     {
         return $this->city;
-    }
-
-    /**
-     * Set organizationPhoneNumber
-     *
-     * @param string $organizationPhoneNumber
-     *
-     * @return Organizations
-     */
-    public function setOrganizationPhoneNumber($organizationPhoneNumber)
-    {
-        $this->organizationPhoneNumber = $organizationPhoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationPhoneNumber
-     *
-     * @return string
-     */
-    public function getOrganizationPhoneNumber()
-    {
-        return $this->organizationPhoneNumber;
-    }
-
-    /**
-     * Set organizationMail
-     *
-     * @param string $organizationMail
-     *
-     * @return Organizations
-     */
-    public function setOrganizationMail($organizationMail)
-    {
-        $this->organizationMail = $organizationMail;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationMail
-     *
-     * @return string
-     */
-    public function getOrganizationMail()
-    {
-        return $this->organizationMail;
-    }
-
-    /**
-     * Set organizationWebsite
-     *
-     * @param string $organizationWebsite
-     *
-     * @return Organizations
-     */
-    public function setOrganizationWebsite($organizationWebsite)
-    {
-        $this->organizationWebsite = $organizationWebsite;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationWebsite
-     *
-     * @return string
-     */
-    public function getOrganizationWebsite()
-    {
-        return $this->organizationWebsite;
-    }
-
-    /**
-     * Set organizationBlog
-     *
-     * @param string $organizationBlog
-     *
-     * @return Organizations
-     */
-    public function setOrganizationBlog($organizationBlog)
-    {
-        $this->organizationBlog = $organizationBlog;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationBlog
-     *
-     * @return string
-     */
-    public function getOrganizationBlog()
-    {
-        return $this->organizationBlog;
-    }
-
-    /**
-     * Set organizationFacebook
-     *
-     * @param string $organizationFacebook
-     *
-     * @return Organizations
-     */
-    public function setOrganizationFacebook($organizationFacebook)
-    {
-        $this->organizationFacebook = $organizationFacebook;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationFacebook
-     *
-     * @return string
-     */
-    public function getOrganizationFacebook()
-    {
-        return $this->organizationFacebook;
-    }
-
-    /**
-     * Set organizationTwitter
-     *
-     * @param string $organizationTwitter
-     *
-     * @return Organizations
-     */
-    public function setOrganizationTwitter($organizationTwitter)
-    {
-        $this->organizationTwitter = $organizationTwitter;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationTwitter
-     *
-     * @return string
-     */
-    public function getOrganizationTwitter()
-    {
-        return $this->organizationTwitter;
     }
 
     /**
@@ -953,6 +784,7 @@ class Organizations
     {
         return $this->staff;
     }
+
     /**
      * @var \HandissimoBundle\Entity\StructuresTypes
      */
@@ -1040,6 +872,7 @@ class Organizations
     {
         return $this->societies;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -1137,36 +970,6 @@ class Organizations
     {
         return $this->longitude;
     }
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $mail;
-
-    /**
-     * @var string
-     */
-    private $website;
-
-    /**
-     * @var string
-     */
-    private $blog;
-
-    /**
-     * @var string
-     */
-    private $facebook;
-
-    /**
-     * @var string
-     */
-    private $twitter;
-
 
     /**
      * Set name
@@ -1310,5 +1113,29 @@ class Organizations
     public function getTwitter()
     {
         return $this->twitter;
+    }
+
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     *
+     * @return Organizations
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
     }
 }

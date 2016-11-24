@@ -1,49 +1,37 @@
-/* Déclaration des variables  */
-
-var map;
-
 function initMap() {
-
-    var latlng = new google.maps.LatLng(43.295309, 5.374457);
-    var mapOptions = {
-        zoom: 14,
-        center: latlng
-    };
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
-}
-
-/*function getAddress() {
-    $.ajax({
-        type: 'GET',
-        url: "{{path('handissimo_ajax')}}",
-        async: "true",
-        dataType: "json",
-        contentType: 'application/json',
-        success: geocodeAddress()
+    var uluru = {lat: 45.764043, lng: 4.835658999999964};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: uluru
     });
-}*/
 
-
-    var contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<h6 id="firstHeading" class="firstHeading">{{organizations.name}}</h6>' +
-                '<div id="bodyContent">' +
-                '<p>{{ organizations.adress }}</p>' +
-                '<p>{{ organizations.postal }}</p>' +
-                '<p>c</p>' +
-                '<p>{{organizations.organizationPhoneNumber}}</p>' +
-                '<p>{{organizations.openhours}}</p>' +
-                '</div>' +
-                '</div>';
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">TestTitre</h1>'+
+        '<div id="bodyContent">'+
+        '<p>TestAdresse<br>'+
+        'TestCodePostal<br>'+
+        'TestVille<br>'+
+        'TestTelephone<br>'+
+        'TestMail<br>'+
+        '</p>'+
+        '</div>'+
+        '</div>';
 
     var infowindow = new google.maps.InfoWindow({
-        content: contentString
+        content: contentString,
+        maxWidth: 200
     });
 
-    marker.addListener('click', function () {
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+        title: 'Uluru (Ayers Rock)'
+    });
+    marker.addListener('click', function() {
         infowindow.open(map, marker);
-    })
+    });
 }
 
 
