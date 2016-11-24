@@ -7,10 +7,12 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
+
 class OrganizationsAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper
                     ->add('name', 'text', array(
                         'label' => 'Nom de l\'organisation',

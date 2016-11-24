@@ -15,7 +15,7 @@ class StructuresTypes
     /**
      * @var string
      */
-    private $structuresType;
+    private $structurestype;
 
     /**
      * @var string
@@ -53,27 +53,27 @@ class StructuresTypes
     }
 
     /**
-     * Set structuresType
+     * Set structurestype
      *
-     * @param string $structuresType
+     * @param string $structurestype
      *
-     * @return StructuresTypes
+     * @return structurestypes
      */
-    public function setStructuresType($structuresType)
+    public function setStructurestype($structurestype)
     {
-        $this->structuresType = $structuresType;
+        $this->structurestype = $structurestype;
 
         return $this;
     }
 
     /**
-     * Get structuresType
+     * Get structurestype
      *
      * @return string
      */
-    public function getStructuresType()
+    public function getStructurestype()
     {
-        return $this->structuresType;
+        return $this->structurestype;
     }
 
     /**

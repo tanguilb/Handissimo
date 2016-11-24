@@ -222,22 +222,22 @@ class LoadData implements FixtureInterface
         $manager->persist($staffType4);
 
         $structuretype1 = new StructuresTypes();
-        $structuretype1->setStructuresType('structure type 1');
+        $structuretype1->setStructurestype('structure type 1');
         $structuretype1->setLogoMdph('logo 1');
         $manager->persist($structuretype1);
 
         $structuretype2 = new StructuresTypes();
-        $structuretype2->setStructuresType('structure type 2');
+        $structuretype2->setStructurestype('structure type 2');
         $structuretype2->setLogoMdph('logo 2');
         $manager->persist($structuretype2);
 
         $structuretype3 = new StructuresTypes();
-        $structuretype3->setStructuresType('structure type 3');
+        $structuretype3->setStructurestype('structure type 3');
         $structuretype3->setLogoMdph('logo 3');
         $manager->persist($structuretype3);
 
         $structureType4 = new StructuresTypes();
-        $structureType4->setStructuresType('structure type 4');
+        $structureType4->setStructurestype('structure type 4');
         $structureType4->setLogoMdph('logo 4');
         $manager->persist($structureType4);
         
