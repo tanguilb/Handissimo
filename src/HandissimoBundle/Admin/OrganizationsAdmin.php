@@ -2,11 +2,11 @@
 
 namespace HandissimoBundle\Admin;
 
-use Addressable\Bundle\Form\Type\AddressMapType;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class OrganizationsAdmin extends Admin
 {
@@ -92,6 +92,15 @@ class OrganizationsAdmin extends Admin
                     ->add('school', 'text', array(
                         'label' => 'Ecole',
                         'required' => true
+                    ))
+                    ->add('disabilitytypes',EntityType::class,array (
+                        'class' => 'HandissimoBundle:DisabilityTypes',
+                        'choice_label' => 'disabilityName',
+                        'label' => 'Type de handicaps',
+                        'expanded' => true,
+                        'multiple' => true,
+                        'by_reference' => true,
+
 
 
             ));
