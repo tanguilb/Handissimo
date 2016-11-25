@@ -21,8 +21,9 @@ class StaffAdmin extends Admin
             ->add('staff', EntityType::class, array(
                 'class' => 'HandissimoBundle:StaffTypes',
                 'choice_label' => 'secteur',
-                'label' => 'Type de personnels'
-                ));
+                'label' => 'Métier'
+
+            ));
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -32,7 +33,7 @@ class StaffAdmin extends Admin
                 array(
                     'label' => 'Métiers'
                 ))
-            ->addIdentifier('organizations', EntityType::class, array(
+            ->add('staff', EntityType::class, array(
                 'class' => 'HandissimoBundle:StaffTypes',
                 'choice_label' => 'secteur',
                 'label' => 'Secteur'

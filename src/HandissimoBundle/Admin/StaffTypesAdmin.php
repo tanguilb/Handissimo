@@ -6,6 +6,7 @@ namespace HandissimoBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class StaffTypesAdmin extends Admin
 {
@@ -15,13 +16,18 @@ class StaffTypesAdmin extends Admin
             ->add('secteur', 'text',
                 array(
                     'label' => 'Secteur'
-                ));
+                ))
+            ->add('staff', EntityType::class, array(
+                'class' => 'HandissimoBundle:StaffTypes',
+                'choice_label' => 'secteur',
+                'label' => 'Type de personnels'
+            ));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('secteur', null,
+            ->add('secteur', null,
                 array(
                     'label' => 'Secteur'
                 ));
