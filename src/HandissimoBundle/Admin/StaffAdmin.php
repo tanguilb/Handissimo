@@ -20,7 +20,8 @@ class StaffAdmin extends Admin
                 ))
             ->add('staff', EntityType::class, array(
                 'class' => 'HandissimoBundle:StaffTypes',
-                'choice_label' => 'secteur'
+                'choice_label' => 'secteur',
+                'label' => 'Type de personnels'
                 ));
     }
 
@@ -31,7 +32,7 @@ class StaffAdmin extends Admin
                 array(
                     'label' => 'Métiers'
                 ))
-            ->addIdentifier('staff', EntityType::class, array(
+            ->addIdentifier('organizations', EntityType::class, array(
                 'class' => 'HandissimoBundle:StaffTypes',
                 'choice_label' => 'secteur',
                 'label' => 'Secteur'

@@ -102,10 +102,23 @@ class OrganizationsAdmin extends Admin
                         'multiple' => true,
                         'by_reference' => true,
                     ))
-                    /*->add('organizations', EntityType::class, array(
+                    ->add('stafforganizations', EntityType::class, array(
+                        'class' => 'HandissimoBundle:StaffTypes',
+                        'choice_label' => 'secteur'
+                    ))
+                    ->add('needs', EntityType::class, array(
+                        'class' => 'HandissimoBundle:Needs',
+                        'choice_label' => 'needName',
+                        'expanded' => true,
+                        'multiple' => true,
+                        'by_reference' => true,
+                        'label' => 'Type de services'
+                    ))
+                    ->add('structuretype', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresTypes',
                         'choice_label' => 'structurestype'
-                    ))*/;
+                    ))
+        ;
 
     }
 
