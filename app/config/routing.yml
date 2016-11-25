@@ -5,3 +5,9 @@ handissimo:
 admin_area:
     resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
     prefix: /admin
+
+opinion:
+    resource: "@HandissimoBundle/Controller/"
+    type:     annotation
+    prefix:   /ajax
+

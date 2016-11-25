@@ -74,3 +74,11 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+sensio_framework_extra:
+    router:      { annotations: true }
+    request:     { converters: true, auto_convert: true }
+    view:        { annotations: true }
+    cache:       { annotations: true }
+    security:    { annotations: true }
+    psr_message: { enabled: false } # Defaults to true if the PSR-7 bridge is installed

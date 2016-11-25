@@ -10,7 +10,7 @@ opinion_show:
 
 opinion_new:
     path:     /new
-    defaults: { _controller: "HandissimoBundle:NewOpinion:new" }
+    defaults: { _controller: "HandissimoBundle:NewOpinion:create" }
     methods:  [GET, POST]
 
 opinion_delete:

@@ -15,15 +15,23 @@
                 <p>Nous sommes heureux de vous compter parmi les utilisateurs de notre site. Quoi de mieux pour améliorer votre expérience que de vous demander ce que vous en pensez !</p>
                 <p>Vous pouvez ici nous faire part de vos remarques concernant <strong>la navigation</strong> et <strong>la maniabilité</strong> du site Handissimo.</p>
 
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <div class="modal-footer">
-                        <input type="submit" value="Envoyer" />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    </div>
-                {{ form_end(form) }}
-
+                <div class="form_error"></div>
+                <form method="POST" class="ajaxForm" action="{{path('opinion_create')}}" id="form_body">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <div class="modal-footer">
+                            <input type="submit" value="Envoyer" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        </div>
+                    {{ form_end(form) }}
+                </form>
             </div>
         </div>
     </div>
 </div><!-- Modal End -->
+
+{% block javascripts %}
+    <script>
+        initAjaxForm();
+    </script>
+{% endblock %}
