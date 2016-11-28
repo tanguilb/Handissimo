@@ -2,14 +2,11 @@
 
 namespace HandissimoBundle\Entity;
 
-use Addressable\Bundle\Model\AddressableInterface;
-use Addressable\Bundle\Model\Traits\ORM\AddressableTrait;
 /**
  * Organizations
  */
-class Organizations implements AddressableInterface
+class Organizations
 {
-    use AddressableTrait;
     public function __toString()
     {
         // TODO: Implement __toString() method.
@@ -40,7 +37,7 @@ class Organizations implements AddressableInterface
     /**
      * @var string
      */
-    //private $city;
+    private $city;
 
     /**
      * @var string
@@ -261,7 +258,7 @@ class Organizations implements AddressableInterface
      *
      * @return Organizations
      */
-    /*public function setCity($city)
+    public function setCity($city)
     {
         $this->city = $city;
 
@@ -273,7 +270,7 @@ class Organizations implements AddressableInterface
      *
      * @return string
      */
-    /*public function getCity()
+    public function getCity()
     {
         return $this->city;
     }
@@ -787,6 +784,7 @@ class Organizations implements AddressableInterface
     {
         return $this->staff;
     }
+
     /**
      * @var \HandissimoBundle\Entity\StructuresTypes
      */
@@ -874,6 +872,7 @@ class Organizations implements AddressableInterface
     {
         return $this->societies;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -916,12 +915,12 @@ class Organizations implements AddressableInterface
     /**
      * @var float
      */
-    //private $latitude;
+    private $latitude;
 
     /**
      * @var float
      */
-    //private $longitude;
+    private $longitude;
 
 
     /**
@@ -931,7 +930,7 @@ class Organizations implements AddressableInterface
      *
      * @return Organizations
      */
-    /*public function setLatitude($latitude)
+    public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
 
@@ -943,7 +942,7 @@ class Organizations implements AddressableInterface
      *
      * @return float
      */
-    /*public function getLatitude()
+    public function getLatitude()
     {
         return $this->latitude;
     }
@@ -955,7 +954,7 @@ class Organizations implements AddressableInterface
      *
      * @return Organizations
      */
-    /*public function setLongitude($longitude)
+    public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
 
@@ -967,7 +966,7 @@ class Organizations implements AddressableInterface
      *
      * @return float
      */
-    /*public function getLongitude()
+    public function getLongitude()
     {
         return $this->longitude;
     }
@@ -1138,31 +1137,5 @@ class Organizations implements AddressableInterface
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
-    }
-
-    /**
-     * Returns all address fields in an array(
-     *       'country' => $this->getCountry(),
-     *       'zipCode' => $this->getZipCode(),
-     *       'streetNumber' => $this->getStreetNumber(),
-     *       'streetName' => $this->getStreetName(),
-     *       'city' => $this->getCity(),
-     *       'latitude' => $this->getLatitude(),
-     *       'longitude' => $this->getLongitude()
-     *  )
-     *
-     * @return array
-     */
-    public function getAddress()
-    {
-        return array(
-            'country' => $this->getCountry(),
-            'zipCode' => $this->getZipCode(),
-            'streetNumber' => $this->getStreetNumber(),
-            'streetName' => $this->getStreetName(),
-            'city' => $this->getCity(),
-            'latitude' => $this->getLatitude(),
-            'longitude' => $this->getLongitude(),
-        );
     }
 }
