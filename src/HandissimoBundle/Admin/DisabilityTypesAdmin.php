@@ -6,6 +6,7 @@ namespace HandissimoBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DisabilityTypesAdmin extends Admin
@@ -15,43 +16,31 @@ class DisabilityTypesAdmin extends Admin
         $formMapper
             ->add('disabilityName', 'text',
                 array(
-                    'label' => 'Type de handicaps'
+                    'label' => 'Type de handicaps',
+                    'required' => false
                 ))
             ->add('organizations',EntityType::class,array (
                 'class' => 'HandissimoBundle:DisabilityTypes',
                 'choice_label' => 'disabilityName',
-                'label' => 'Type de handicaps',
+                'label' => false,
                 'expanded' => true,
-                'multiple' => true,
                 'by_reference' => true,
+                'disabled' => true
             ));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('disabilityName', null,
+            ->add('disabilityName', null,
                 array(
                     'label' => 'Type de handicaps'
                 ));
     }
 
-    /*public function postUpdate( $object){
-
-        $this->preRemove($object);
-        $this->postPersist($object);
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+            ->remove('');
     }
-
-    public function postPersist($object){
-
-        $em = $this->modelManager->getEntityManager($object);
-        $em->getRepository('HandissimoBundle:DisabilityTypes')->addLink($object);
-    }
-
-    public function preRemove ($object) {
-
-        $em = $this->modelManager->getEntityManager($object);
-        $em->getRepository('HandissimoBundle:DisabilityTypes')->deleteLink($object);
-
-    }*/
 }

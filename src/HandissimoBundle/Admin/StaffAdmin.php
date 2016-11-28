@@ -6,6 +6,7 @@ namespace HandissimoBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use HandissimoBundle\HandissimoBundle;
 
@@ -16,12 +17,14 @@ class StaffAdmin extends Admin
         $formMapper
             ->add('jobs', 'text',
                 array(
-                    'label' => 'Métiers'
+                    'label' => 'Métiers',
+                    'required' => false
                 ))
             ->add('staff', EntityType::class, array(
                 'class' => 'HandissimoBundle:StaffTypes',
                 'choice_label' => 'secteur',
-                'label' => 'Métier'
+                'label' => 'Type de personnels',
+                'required' => false
 
             ));
     }
@@ -32,11 +35,6 @@ class StaffAdmin extends Admin
             ->addIdentifier('jobs', null,
                 array(
                     'label' => 'Métiers'
-                ))
-            ->add('staff', EntityType::class, array(
-                'class' => 'HandissimoBundle:StaffTypes',
-                'choice_label' => 'secteur',
-                'label' => 'Secteur'
-            ));
+                ));
     }
 }

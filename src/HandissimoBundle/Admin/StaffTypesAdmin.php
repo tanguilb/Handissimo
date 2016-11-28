@@ -15,12 +15,16 @@ class StaffTypesAdmin extends Admin
         $formMapper
             ->add('secteur', 'text',
                 array(
-                    'label' => 'Secteur'
+                    'label' => 'Secteur',
+                    'required' => false
                 ))
-            ->add('staff', EntityType::class, array(
+            ->add('typesstaff',EntityType::class,array (
                 'class' => 'HandissimoBundle:StaffTypes',
                 'choice_label' => 'secteur',
-                'label' => 'Type de personnels'
+                'label' => false,
+                'expanded' => true,
+                'by_reference' => true,
+                'disabled' => true
             ));
     }
 

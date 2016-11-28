@@ -29,7 +29,7 @@ class SocietyAdmin extends Admin
                         'required' => true
                     ))
                     ->add('phone_number', 'text', array(
-                        'label' => 'téléphone',
+                        'label' => 'Téléphone',
                         'required' => true
                     ))
                     ->add('mail', 'text', array(
@@ -49,18 +49,27 @@ class SocietyAdmin extends Admin
                         'required' => false
                     ))
                     ->add('logo', 'text', array(
-                        'label' => 'Logo de profile',
+                        'label' => 'Logo de profil',
                         'required' => false
     ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('societyname');
+        $datagridMapper->add('societyname', null,
+            array(
+                'label' => 'Nom de la société'
+            ));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('societyname');
+        $listMapper
+            ->addIdentifier('societyname', null, array('label' => 'Nom de la société'))
+            ->add('address', null, array('label' => 'Adresse'))
+            ->add('postal', null, array('label' => 'Code postal'))
+            ->add('city', null, array('label' => 'Ville'))
+            ->add('phone_number', null, array('label' => 'Numéro de téléphone'))
+            ->add('mail', null, array('label' => 'Adresse mail'));
     }
 }
