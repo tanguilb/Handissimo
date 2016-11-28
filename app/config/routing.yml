@@ -10,4 +10,3 @@ opinion:
     resource: "@HandissimoBundle/Controller/"
     type:     annotation
     prefix:   /ajax
-
