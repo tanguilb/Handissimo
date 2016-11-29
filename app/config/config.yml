@@ -58,15 +58,6 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
-
-
 # Sonata Configuration
 sonata_block:
     default_contexts: [cms]
@@ -75,8 +66,39 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts: [admin]
 
-# app/config/config.yml
+# Swiftmailer Configuration
+swiftmailer:
+    auth_mode: login
+    encryption: ssl
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+# FosUserBundle Configuration
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: HandissimoBundle\Entity\User
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+    from_email:
+        address: dev.wildcodeshool@gmail.com
+        sender_name: Test Dev WCS
+
+    registration:
+        confirmation:
+            enabled: true
+            template: FOSUserBundle:Registration:email.txt.twig
+
+    #resetting:
+        #email:
+            #template: email/password_resetting.email.twig
+        #form:
+            #type:               FOS\UserBundle\Form\Type\ResettingFormType
+            #name:               fos_user_resetting_form
+            #validation_groups:  [ResetPassword, Default]
+
