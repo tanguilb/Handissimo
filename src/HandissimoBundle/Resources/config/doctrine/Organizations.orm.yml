@@ -12,7 +12,7 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: false
             length: 255
-        adress:
+        address:
             type: string
             nullable: false
             length: 255
@@ -135,7 +135,7 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Society
             inversedBy: organization
             joinColumn:
-                name: organizations_id
+                name: societies_id
                 referencedColumnName: id
     manyToMany:
         disabilityTypes:
@@ -144,10 +144,10 @@ HandissimoBundle\Entity\Organizations:
             joinTable:
                 name: disability_types_has_organizations
                 joinColumns:
-                    disability_types_id:
+                    organizations_id:
                         referencedColumnName: id
                 inverseJoinColumns:
-                    organizations_id:
+                    disability_types_id:
                         referencedColumnName: id
         needs:
             targetEntity: Needs
@@ -155,11 +155,12 @@ HandissimoBundle\Entity\Organizations:
             joinTable:
                 name: needs_has_organizations
                 joinColumns:
-                    needs_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
                     organizations_id:
                         referencedColumnName: id
+                inverseJoinColumns:
+                    needs_id:
+                        referencedColumnName: id
+
         stafforganizations:
             targetEntity: Staff
             inversedBy: organizations

@@ -27,7 +27,7 @@ class Organizations
     /**
      * @var string
      */
-    private $adress;
+    private $address;
 
     /**
      * @var string
@@ -170,6 +170,17 @@ class Organizations
     private $staff;
 
     /**
+     * @var float
+     */
+    private $latitude;
+
+    /**
+     * @var float
+     */
+    private $longitude;
+
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -204,27 +215,51 @@ class Organizations
     }
 
     /**
-     * Set adress
+     * Set name
      *
-     * @param string $adress
+     * @param string $name
      *
      * @return Organizations
      */
-    public function setAdress($adress)
+    public function setName($name)
     {
-        $this->adress = $adress;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get adress
+     * Get name
      *
      * @return string
      */
-    public function getAdress()
+    public function getName()
     {
-        return $this->adress;
+        return $this->name;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return Organizations
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 
     /**
@@ -273,6 +308,150 @@ class Organizations
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set PhoneNumber
+     *
+     * @param string $PhoneNumber
+     *
+     * @return Organizations
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get PhoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     *
+     * @return Organizations
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     *
+     * @return Organizations
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Set blog
+     *
+     * @param string $blog
+     *
+     * @return Organizations
+     */
+    public function setBlog($blog)
+    {
+        $this->blog = $blog;
+
+        return $this;
+    }
+
+    /**
+     * Get blog
+     *
+     * @return string
+     */
+    public function getBlog()
+    {
+        return $this->blog;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return Organizations
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     *
+     * @return Organizations
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
     }
 
     /**
@@ -912,15 +1091,6 @@ class Organizations
     {
         return $this->stafforganizations;
     }
-    /**
-     * @var float
-     */
-    private $latitude;
-
-    /**
-     * @var float
-     */
-    private $longitude;
 
 
     /**
@@ -969,173 +1139,5 @@ class Organizations
     public function getLongitude()
     {
         return $this->longitude;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Organizations
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return Organizations
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * Set website
-     *
-     * @param string $website
-     *
-     * @return Organizations
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-
-        return $this;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Set blog
-     *
-     * @param string $blog
-     *
-     * @return Organizations
-     */
-    public function setBlog($blog)
-    {
-        $this->blog = $blog;
-
-        return $this;
-    }
-
-    /**
-     * Get blog
-     *
-     * @return string
-     */
-    public function getBlog()
-    {
-        return $this->blog;
-    }
-
-    /**
-     * Set facebook
-     *
-     * @param string $facebook
-     *
-     * @return Organizations
-     */
-    public function setFacebook($facebook)
-    {
-        $this->facebook = $facebook;
-
-        return $this;
-    }
-
-    /**
-     * Get facebook
-     *
-     * @return string
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
-     * Set twitter
-     *
-     * @param string $twitter
-     *
-     * @return Organizations
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-
-        return $this;
-    }
-
-    /**
-     * Get twitter
-     *
-     * @return string
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
-    }
-
-    /**
-     * Set phoneNumber
-     *
-     * @param string $phoneNumber
-     *
-     * @return Organizations
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get phoneNumber
-     *
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
     }
 }

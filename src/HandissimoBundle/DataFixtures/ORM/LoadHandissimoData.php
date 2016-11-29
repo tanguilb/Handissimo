@@ -29,7 +29,7 @@ class LoadData implements FixtureInterface
         //$organizationAdmin->setPictureId('');
         //$organizationAdmin->setOrganizationId('');
         $organizationAdmin->setName('college notre dame');
-        $organizationAdmin->setAdress('3 rue guy degraine');
+        $organizationAdmin->setAddress('3 rue guy degraine');
         $organizationAdmin->setPostal('69001');
         $organizationAdmin->setCity('lyon');
         $organizationAdmin->setPhoneNumber('04.74.86.26.99');
@@ -62,7 +62,7 @@ class LoadData implements FixtureInterface
         //$organizationAdmin1->setPictureId('');
         //$organizationAdmin1->setOrganizationId('');
         $organizationAdmin1->setName('hopital velpo');
-        $organizationAdmin1->setAdress('3 rue paul santi');
+        $organizationAdmin1->setAddress('3 rue paul santi');
         $organizationAdmin1->setPostal('69002');
         $organizationAdmin1->setCity('lyon');
         $organizationAdmin1->setPhoneNumber('04.78.45.26.41');
@@ -95,7 +95,7 @@ class LoadData implements FixtureInterface
         //$organizationAdmin2->setPictureId('');
         //$organizationAdmin2->setOrganizationId('');
         $organizationAdmin2->setName('mdph');
-        $organizationAdmin2->setAdress('3 rue paul santi');
+        $organizationAdmin2->setAddress('3 rue paul santi');
         $organizationAdmin2->setPostal('69100');
         $organizationAdmin2->setCity('villeurbanne');
         $organizationAdmin2->setPhoneNumber('04.78.45.26.41');
@@ -152,7 +152,7 @@ class LoadData implements FixtureInterface
 
 
         $society = new Society();
-        $society->setSocietyName('nom de la societé');
+        $society->setSocietyname('nom de la societé 1');
         $society->setLogo('logo');
         $society->setAddress('45 av charles de gaules');
         $society->setPostal('69003');
@@ -165,7 +165,7 @@ class LoadData implements FixtureInterface
         $manager->persist($society);
 
         $society1 = new Society();
-        $society1->setSocietyName('nom de la societé');
+        $society1->setSocietyname('nom de la societé 2');
         $society1->setLogo('logo');
         $society1->setAddress('45 av charles de gaules');
         $society1->setPostal('69003');
@@ -178,7 +178,7 @@ class LoadData implements FixtureInterface
         $manager->persist($society1);
 
         $society2 = new Society();
-        $society2->setSocietyName('nom de la societé');
+        $society2->setSocietyname('nom de la societé 3');
         $society2->setLogo('logo');
         $society2->setAddress('45 av charles de gaules');
         $society2->setPostal('69003');
@@ -191,7 +191,7 @@ class LoadData implements FixtureInterface
         $manager->persist($society2);
 
         $society3 = new Society();
-        $society3->setSocietyName('nom de la societé');
+        $society3->setSocietyname('nom de la societé 4');
         $society3->setLogo('logo');
         $society3->setAddress('45 av charles de gaules');
         $society3->setPostal('69003');
@@ -222,22 +222,22 @@ class LoadData implements FixtureInterface
         $manager->persist($staffType4);
 
         $structuretype1 = new StructuresTypes();
-        $structuretype1->setStructuresType('structure type 1');
+        $structuretype1->setStructurestype('structure type 1');
         $structuretype1->setLogoMdph('logo 1');
         $manager->persist($structuretype1);
 
         $structuretype2 = new StructuresTypes();
-        $structuretype2->setStructuresType('structure type 2');
+        $structuretype2->setStructurestype('structure type 2');
         $structuretype2->setLogoMdph('logo 2');
         $manager->persist($structuretype2);
 
         $structuretype3 = new StructuresTypes();
-        $structuretype3->setStructuresType('structure type 3');
+        $structuretype3->setStructurestype('structure type 3');
         $structuretype3->setLogoMdph('logo 3');
         $manager->persist($structuretype3);
 
         $structureType4 = new StructuresTypes();
-        $structureType4->setStructuresType('structure type 4');
+        $structureType4->setStructurestype('structure type 4');
         $structureType4->setLogoMdph('logo 4');
         $manager->persist($structureType4);
         

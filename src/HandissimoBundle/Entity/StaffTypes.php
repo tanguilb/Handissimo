@@ -7,6 +7,12 @@ namespace HandissimoBundle\Entity;
  */
 class StaffTypes
 {
+
+    public function __toString()
+    {
+        return $this->secteur;
+    }
+
     /**
      * @var integer
      */
