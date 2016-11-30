@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <h4 class="card-panel teal lighten-2 white-head">Signup</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+</div>
+{% endblock %}

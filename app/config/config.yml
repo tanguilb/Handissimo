@@ -87,18 +87,9 @@ fos_user:
 
     from_email:
         address: dev.wildcodeshool@gmail.com
-        sender_name: Test Dev WCS
+        sender_name: Handissimo
 
     registration:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
-
-    #resetting:
-        #email:
-            #template: email/password_resetting.email.twig
-        #form:
-            #type:               FOS\UserBundle\Form\Type\ResettingFormType
-            #name:               fos_user_resetting_form
-            #validation_groups:  [ResetPassword, Default]
-
