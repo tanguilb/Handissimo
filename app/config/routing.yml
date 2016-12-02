@@ -11,5 +11,7 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+#FosUser Routings
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

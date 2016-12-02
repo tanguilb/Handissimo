@@ -7,3 +7,4 @@ HandissimoBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
+
