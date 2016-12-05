@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\Organizations:
     type: entity
     table: organizations
+    repositoryClass: HandissimoBundle\Repository\OrganizationsRepository
     id:
         id:
             type: integer

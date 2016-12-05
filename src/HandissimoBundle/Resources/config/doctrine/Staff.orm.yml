@@ -1,8 +1,9 @@
 HandissimoBundle\Entity\Staff:
     type: entity
     table: staff
+    repositoryClass: HandissimoBundle\Repository\StaffRepository
     id:
-        id:
+        id
             type: integer
             id: true
             generator:

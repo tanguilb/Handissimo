@@ -1,0 +1,4 @@
+research_index:
+    path:     /index
+    defaults: { _controller: "HandissimoBundle:Ajax:research" }
+    methods:  POST

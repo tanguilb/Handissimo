@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form-errors(form) }}
+
+    {{ form_row(form.keyword) }}
+    <ul id="keywordautocomplete"></ul>
+    {{ form_row(form.age) }}
+    {{ form_row(form.town) }}
+    <ul id="townautocomplete"></ul>
+    {{ input type="submit" value="rechercher" }}
+{% endblock %}

@@ -2,9 +2,7 @@ handissimo_disabilitytypes:
     resource: "@HandissimoBundle/Resources/config/routing/disabilitytypes.yml"
     prefix:   /disabilitytypes
 
-handissimo_homepage:
-    path:     /
-    defaults: { _controller: HandissimoBundle:Default:index }
+
 
 handissimo_search:
     path:     /search
@@ -37,6 +35,10 @@ handissimo_stafftypes:
 handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
+
+handissimo_research:
+    ressource: "@HandissimoBundle/Ressources/config/routing/research.yml"
+    prefix:   /
 
 handissimo_ajax:
     path:   /ajax
