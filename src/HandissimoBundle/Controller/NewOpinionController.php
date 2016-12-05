@@ -22,15 +22,20 @@ class NewOpinionController extends Controller
     /**
      * Renders the "new" form
      *
-     * @Route("/", "opinion_new")
-     * @Method("GET")
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
         $opinion = new Opinion();
-        $form = $this->createCreateForm($opinion);
+        $form = $this->createForm('HandissimoBundle\Form\OpinionType', $opinion);
+        $form->handleRequest($request);
 
-        return $this->render('opinion:new.html.twig',
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($opinion);
+            $em->flush();
+        }
+
+        return $this->render('front/opinion-button.html.twig',
             array(
                 'opinion' => $opinion,
                 'form' => $form->createView()
