@@ -1,4 +1,9 @@
-research_index:
-    path:     /index
+research_home:
+    path:     /new
     defaults: { _controller: "HandissimoBundle:Ajax:research" }
+    methods:  [GET, POST]
+
+research_index:
+    path:     /ajax/{keyword}
+    defaults: { _controller: "HandissimoBundle:Ajax:autoComplete" }
     methods:  POST

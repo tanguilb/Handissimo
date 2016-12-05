@@ -11,6 +11,7 @@ namespace HandissimoBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ResearchType extends AbstractType
 {
@@ -18,11 +19,12 @@ class ResearchType extends AbstractType
     {
         $builder->add('keyword',
                       'text',
-                      array('attr' => array('autocomplete' => 'off')))
-                ->add('age')
-                ->add('town',
-                      'text',
                       array('attr' => array('autocomplete' => 'off')));
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array());
     }
 
     public function getBlockPrefix()
