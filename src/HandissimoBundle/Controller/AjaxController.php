@@ -13,7 +13,6 @@ use HandissimoBundle\Repository\OrganizationsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use HandissimoBundle\Entity\Organizations;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
@@ -41,7 +40,7 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $data = $repository->DisabilityGetByOrganizations($organizationData/*, $needsData, $disabilityData*/);
+            $data = $repository->DisabilityGetByOrganizations($organizationData, $needsData, $disabilityData);
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException("500", "Invalid Call");

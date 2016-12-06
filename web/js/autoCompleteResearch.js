@@ -12,9 +12,12 @@ $( document ).ready(function() {
                 timeout: 3000,
                 success: function(response){
                     var keywords = JSON.parse(response.data);
+                    console.log(keywords);
                     html = "";
-                    for ( i = 0; i < keywords.length; i++) {
-                        html += "<li>" + keywords[i].keyword + "</li>";
+                    for (i = 0; i < keywords.length; i++) {
+
+                        html += "<li>" + keywords[i].disabilityName + "</li>";
+                        console.log(html);
                     }
                     $('#keywordautocomplete').html(html);
                     $('#keywordautocomplete li').on('click', function() {

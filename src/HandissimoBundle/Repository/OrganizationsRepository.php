@@ -12,19 +12,20 @@ use Doctrine\ORM\EntityRepository;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function DisabilityGetByOrganizations($organizationData/*, $needsData, $disabilityData*/)
+    public function DisabilityGetByOrganizations($organizationData, $needsData, $disabilityData)
     {
+        $organizationData = "%" . $organizationData . "%";
         $query = $this->createQueryBuilder('o')
-           // ->innerJoin('o.needs', 'n')
-            //->innerJoin('o.disabilityTypes', 'dt')
-            ->select('o.name')
-            ->where('o.name LIKE :data')
-            //->orWhere('n.needName LIKE :dataneeds')
-            //->orWhere('dt.disabilityName Like :disabilityData')
+            ->innerJoin('o.needs', 'n')
+            ->innerJoin('o.disabilityTypes', 'dt')
+            ->addSelect('o.name', 'n.needName', 'dt.disabilityName')
+            ->where('o.name LIKE :organizationData')
+            ->orWhere('n.needName LIKE :dataneeds')
+            ->orWhere('dt.disabilityName Like :disabilityData')
             ->orderBy('o.name', 'ASC')
-            ->setParameter('data', '%' . $organizationData . '%')
-            //->setParameter('dataneeds', '%' .$needsData . '%' )
-            //->setParameter('disabilityData', '%' .$disabilityData . '%')
+            ->setParameter('organizationData', $organizationData)
+            ->setParameter('dataneeds', '%' .$needsData . '%' )
+            ->setParameter('disabilityData', '%' .$disabilityData . '%')
             ->getQuery();
         return $query->getResult();
 
