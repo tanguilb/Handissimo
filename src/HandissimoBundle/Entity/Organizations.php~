@@ -1140,4 +1140,62 @@ class Organizations
     {
         return $this->longitude;
     }
+    /**
+     * @var integer
+     */
+    private $agemini;
+
+    /**
+     * @var integer
+     */
+    private $agemaxi;
+
+
+    /**
+     * Set agemini
+     *
+     * @param integer $agemini
+     *
+     * @return Organizations
+     */
+    public function setAgemini($agemini)
+    {
+        $this->agemini = $agemini;
+
+        return $this;
+    }
+
+    /**
+     * Get agemini
+     *
+     * @return integer
+     */
+    public function getAgemini()
+    {
+        return $this->agemini;
+    }
+
+    /**
+     * Set agemaxi
+     *
+     * @param integer $agemaxi
+     *
+     * @return Organizations
+     */
+    public function setAgemaxi($agemaxi)
+    {
+        $this->agemaxi = $agemaxi;
+
+        return $this;
+    }
+
+    /**
+     * Get agemaxi
+     *
+     * @return integer
+     */
+    public function getAgemaxi()
+    {
+        return $this->agemaxi;
+    }
 }

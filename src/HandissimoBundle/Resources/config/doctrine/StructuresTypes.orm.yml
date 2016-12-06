@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\StructuresTypes:
     type: entity
     table: structures_types
+    repositoryClass: HandissimoBundle\Repository\StructuresTypesRepository
     id:
         id:
             type: integer

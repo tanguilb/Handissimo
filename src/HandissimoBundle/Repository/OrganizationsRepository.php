@@ -24,24 +24,14 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }*/
 
-    public function getByOrganizations($keyword/*, $dataneeds, $disabilityData*/)
+    public function getByOrganizations($keyword)
     {
         $query = $this->createQueryBuilder('o')
 
-            //->innerJoin('o.needs', 'n')
-            //->innerJoin('o.disabilityTypes', 'dt')
-            ->addselect('o.name')
-            //->addselect('n.needName')
-            //->addselect('dt.disabilityName')
+            ->select('o.name')
             ->where('o.name LIKE :data')
             ->setParameter('data', '%' . $keyword . '%')
-            //->orWhere('n.needName LIKE :dataneeds')
-            //->setParameter('dataneeds', '%' .$dataneeds . '%' )
-            //->orWhere('dt.disabilityName Like :disabilityData')
-            //->setParameter('disabilityData', '%' .$disabilityData . '%')
             ->orderBy('o.name', 'ASC')
-            //->orderBy('n.needName', 'ASC')
-            //->orderBy('dt.disabilityName')
             ->getQuery();
         return $query->getResult();
     }
