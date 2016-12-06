@@ -3,6 +3,11 @@ research_ajax:
     defaults: {_controller: "HandissimoBundle:AjaxAutocomplete:updateData"}
     methods:  POST
 
+city_ajax:
+    path:   /ajaxcity/{postalcode}
+    defaults: {_controller: "HandissimoBundle:AjaxAutocomplete:postal"}
+    methods:  POST
+
 research_action:
     path:     /
     defaults: { _controller: HandissimoBundle:Default:research }

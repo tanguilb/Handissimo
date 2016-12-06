@@ -24,4 +24,18 @@ class AjaxAutocompleteController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
+
+    public function postalAction(Request $request, $postalcode)
+    {
+        /**
+         * @var $repository OrganizationsRepository
+         */
+        if ($request->isXmlHttpRequest()) {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $data = $repository->getByCity($postalcode);
+            return new JsonResponse(array("data" => json_encode($data)));
+        }else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
 }
