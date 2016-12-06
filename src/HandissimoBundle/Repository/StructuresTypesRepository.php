@@ -13,5 +13,15 @@ use Doctrine\ORM\EntityRepository;
 
 class StructuresTypesRepository extends EntityRepository
 {
+    public function getByStructure($structureData)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->select('s.structurestype')
+            ->where('s.structurestype LIKE :structureData')
+            ->setParameter('structureData', '%' . $structureData . '%')
+            ->getQuery();
+        return $query->getResult();
+
+    }
 
 }
