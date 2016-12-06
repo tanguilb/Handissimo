@@ -1,0 +1,9 @@
+research_ajax:
+    path:   /ajax/{keyword}
+    defaults: {_controller: "HandissimoBundle:AjaxAutocomplete:updateData"}
+    methods:  POST
+
+research_action:
+    path:     /
+    defaults: { _controller: HandissimoBundle:Default:research }
+    methods:  [GET, POST]

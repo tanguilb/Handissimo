@@ -19,15 +19,15 @@ class NeedsAdmin extends admin
                     'required' => false
                 ))
             ->add('organizations',EntityType::class,array (
-            'class' => 'HandissimoBundle:Needs',
-            'choice_label' => 'needName',
-            'label' => false,
-            'expanded' => true,
-            'multiple' => true,
-            'by_reference' => true,
-            'disabled' => true
-                ));
-    }
+                'class' => 'HandissimoBundle:Needs',
+                'choice_label' => 'needName',
+                'label' => false,
+                'expanded' => true,
+                'multiple' => true,
+                'by_reference' => true,
+                'disabled' => true
+                    ));
+        }
 
     protected function configureListFields(ListMapper $listMapper)
     {

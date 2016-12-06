@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -31,7 +32,7 @@ class OrganizationsAdmin extends Admin
             ))
             ->add('postal', 'text', array(
                 'label' => 'Code postale',
-                'required' => true
+                'required' => true,
             ))
             ->add('city', 'text', array(
                 'label' => 'Ville',
@@ -61,8 +62,12 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Page twitter',
                 'required' => false
             ))
-            ->add('agegroup', 'text', array(
-                'label' => 'Tranche d\'âge',
+            ->add('agemini', 'integer', array(
+                'label' => 'Age minimum',
+                'required' => false
+            ))
+            ->add('agemaxi', 'integer', array(
+                'label' => 'Age maximum',
                 'required' => false
             ))
             ->add('freeplace', 'text', array(
@@ -111,7 +116,7 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Type de handicaps',
                 'multiple' => true
             ))
-            ->add('staff', EntityType::class, array(
+            ->add('Stafforganizations', EntityType::class, array(
                 'class' => 'HandissimoBundle:Staff',
                 'choice_label' => 'jobs',
                 'label' => 'Métier',
@@ -127,7 +132,9 @@ class OrganizationsAdmin extends Admin
                 'class' => 'HandissimoBundle:StructuresTypes',
                 'choice_label' => 'structurestype',
                 'label' => 'Type de structures',
-                'multiple' => true
+                'multiple' => false,
+                'by_reference' => true,
+                'expanded' => false
             ));
     }
 

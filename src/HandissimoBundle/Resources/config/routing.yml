@@ -38,6 +38,7 @@ handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
 
-handissimo_ajax:
-    path:   /ajax
-    defaults: { _controller: HandissimoBundle:Default:ajax }
+handissimo_research:
+    resource: "@HandissimoBundle/Resources/config/routing/research.yml"
+    prefix:   /research
+
