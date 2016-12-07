@@ -19,18 +19,17 @@ class OrganizationsRepository extends EntityRepository
             ->innerJoin('o.needs', 'n')
             ->innerJoin('o.disabilityTypes', 'dt')
             ->innerJoin('o.structuretype', 'st')
-            ->select('o.name', 'n.needName', 'dt.disabilityName','st.structurestype')
-            ->where('o.name like :data')
-            ->orWhere('n.needName like :data')
-            ->orWhere('dt.disabilityName like :data')
-            ->orWhere('st.structurestype like :data')
+            ->where('o.name = :data')
+            ->orWhere('n.needName = :data')
+            ->orWhere('dt.disabilityName = :data')
+            ->orWhere('st.structurestype = :data')
            // ->andwhere('o.postal = :postaldata')
             //->orderBy('o.name', 'ASC')
-            ->setParameter('data', $keyword)
+            ->setParameter('data', $keyword['keyword'])
            // ->setParameter('postaldata', $postaldata )
             ->getQuery();
 
-        dump($query->getSQL());die;
+        //dump($query->getSQL());die;
         return $query->getResult();
 
 

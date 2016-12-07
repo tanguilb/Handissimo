@@ -26,13 +26,21 @@ class AjaxController extends Controller
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $keyword = $form->getData();
+
+
+
+        var_dump($keyword);
         /**
          * @var $repository OrganizationsRepository
          */
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-        $result = $repository->getByOrganizationsName($keyword/*, $postaldata*/);
+       // $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword/*, $postaldata*/);
 
-        return $result->$this->redirectToRoute('result_home', array(
+        return $this->render('front/search.html.twig', array(
             'result' => $result,
         ));
     }

@@ -61,7 +61,7 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Page twitter',
                 'required' => false
             ))
-            ->add('agegroup', 'text', array(
+            ->add('agemini', 'text', array(
                 'label' => 'Tranche d\'âge',
                 'required' => false
             ))

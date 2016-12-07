@@ -10,6 +10,7 @@ namespace HandissimoBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,13 +20,15 @@ class ResearchType extends AbstractType
     {
         $builder->add('keyword',
                       'text',
-                      array('attr' => array('autocomplete' => 'off')))
-                ->add('age',
+                      array('required' => false, 'attr' => array('autocomplete' => 'off')))
+               ->add('age',
                       'text',
-                       array('attr' => array('autocomplete' => 'off')))
+                       array('required' => false, 'attr' => array('autocomplete' => 'off')))
                 ->add('postal',
                       'text',
-                       array('attr' => array('autocomplete' => 'off')));
+                       array('required' => false, 'attr' => array('autocomplete' => 'off')))
+                ->add('save', SubmitType::class,
+                        array('label' => 'appuie'));
     }
 
     public function configureOptions(OptionsResolver $resolver)

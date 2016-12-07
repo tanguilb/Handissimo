@@ -12,6 +12,15 @@
     -->
 
     <div id="map"></div>
+    <ul>
+        {% set newArray = [] %}
+        {% for resultat in result %}
+            {% if resultat not in newArray  %}
+                <li>{{ resultat.name }}</li>
+                {% set newArray = newArray|merge([resultat]) %}
+            {% endif %}
+        {% endfor %}
+    </ul>
 
 {% endblock %}
 {% block javascripts %}
