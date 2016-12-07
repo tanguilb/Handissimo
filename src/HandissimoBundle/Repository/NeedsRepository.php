@@ -14,12 +14,12 @@ use Doctrine\ORM\EntityRepository;
 class NeedsRepository extends EntityRepository
 {
 
-    public function getByNeeds($needsData)
+    public function getByNeeds($keyword)
     {
         $query = $this->createQueryBuilder('n')
             ->select('n.needName')
             ->where('n.needName LIKE :needsData')
-            ->setParameter('needsData', '%' . $needsData . '%')
+            ->setParameter('needsData', '%' . $keyword . '%')
             ->getQuery();
         return $query->getResult();
 

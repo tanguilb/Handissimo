@@ -35,7 +35,7 @@ class AjaxController extends Controller
 
     }
 
-    public function autoCompleteAction(Request $request, $organizationData, $needsData, $disabilityData, $structureData)
+    public function autoCompleteAction(Request $request, $keyword)
     {
         if ($request->isXmlHttpRequest())
         {
@@ -43,28 +43,37 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $organization = $repository->getByOrganizations($organizationData);
+            $organization = $repository->getByOrganizations($keyword);
 
             /**
              * @var $repository NeedsRepository
              */
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Needs');
-            $needs = $repository->getByNeeds($needsData);
+            $needs = $repository->getByNeeds($keyword);
 
             /**
              * @var $repository DisabilityTypesRepository
              */
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:DisabilityTypes');
-            $disability = $repository->getByDisability($disabilityData);
+            $disability = $repository->getByDisability($keyword);
 
             /**
              * @var $repository StructuresTypesRepository
              */
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresTypes');
-            $structure = $repository->getByStructure($structureData);
+            $structure = $repository->getByStructure($keyword);
 
             $data =  array_merge($organization,$needs, $disability, $structure);
 
+           /* $datas = "";
+            foreach ($results as $value) {
+                $datas .= $value . "-";
+                return $datas;
+
+            }
+
+            $data = explode("-", $datas);
+*/
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException("500", "Invalid Call");

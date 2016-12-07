@@ -12,12 +12,26 @@ $( document ).ready(function() {
                 timeout: 3000,
                 success: function(response){
                     var keywords = JSON.parse(response.data);
-                    console.log(keywords);
                     html = "";
                     for (i = 0; i < keywords.length; i++) {
+                        if (keyword = keywords[i].disabilityName)
+                        {
+                            html += "<li>" + keywords[i].disabilityName + "</li>";
 
-                        html += "<li>" + keywords[i].disabilityName + "</li>";
-                        console.log(html);
+                        } else if (keyword = keywords[i].name)
+                        {
+                            html += "<li>" + keywords[i].name + "</li>";
+
+                        } else if (keyword = keywords[i].needName)
+                        {
+                            html += "<li>" + keywords[i].needName + "</li>";
+
+                        } else if(keyword = keywords[i].structurestype)
+                        {
+                            html += "<li>" + keywords[i].structurestype + "</li>";
+                        }
+
+
                     }
                     $('#keywordautocomplete').html(html);
                     $('#keywordautocomplete li').on('click', function() {

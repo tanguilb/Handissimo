@@ -31,12 +31,12 @@ class OrganizationsRepository extends EntityRepository
 
     }*/
 
-    public function getByOrganizations($organizationData)
+    public function getByOrganizations($keyword)
     {
         $query = $this->createQueryBuilder('o')
                 ->select('o.name')
                 ->where('o.name LIKE :organizationData')
-                ->setParameter('organizationData', '%' . $organizationData . '%')
+                ->setParameter('organizationData', '%' . $keyword . '%')
                 ->getQuery();
         return $query->getResult();
     }

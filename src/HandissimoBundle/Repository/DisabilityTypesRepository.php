@@ -13,12 +13,12 @@ use Doctrine\ORM\EntityRepository;
 
 class DisabilityTypesRepository extends EntityRepository
 {
-    public function getByDisability($disabilityData)
+    public function getByDisability($keyword)
     {
         $query = $this->createQueryBuilder('dt')
             ->select('dt.disabilityName')
             ->where('dt.disabilityName LIKE :disabilityData')
-            ->setParameter('disabilityData', '%' . $disabilityData . '%')
+            ->setParameter('disabilityData', '%' . $keyword . '%')
             ->getQuery();
         return $query->getResult();
 
