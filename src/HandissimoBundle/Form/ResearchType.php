@@ -19,7 +19,13 @@ class ResearchType extends AbstractType
     {
         $builder->add('keyword',
                       'text',
-                      array('attr' => array('autocomplete' => 'off')));
+                      array('attr' => array('autocomplete' => 'off')))
+                ->add('age',
+                      'text',
+                       array('attr' => array('autocomplete' => 'off')))
+                ->add('postal',
+                      'text',
+                       array('attr' => array('autocomplete' => 'off')));
     }
 
     public function configureOptions(OptionsResolver $resolver)

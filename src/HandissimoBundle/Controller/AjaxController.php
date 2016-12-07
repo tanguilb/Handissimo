@@ -65,18 +65,22 @@ class AjaxController extends Controller
 
             $data =  array_merge($organization,$needs, $disability, $structure);
 
-           /* $datas = "";
-            foreach ($results as $value) {
-                $datas .= $value . "-";
-                return $datas;
-
-            }
-
-            $data = explode("-", $datas);
-*/
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException("500", "Invalid Call");
+        }
+    }
+    public function postalAction(Request $request, $postalcode)
+    {
+        /**
+         * @var $repository OrganizationsRepository
+         */
+        if ($request->isXmlHttpRequest()) {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $data = $repository->getByCity($postalcode);
+            return new JsonResponse(array("data" => json_encode($data)));
+        }else {
+            throw new HttpException('500', 'Invalid call');
         }
     }
 }

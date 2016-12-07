@@ -7,3 +7,8 @@ research_index:
     path:     /ajax/{keyword}
     defaults: { _controller: "HandissimoBundle:Ajax:autoComplete" }
     methods:  POST
+
+city_ajax:
+    path:   /ajaxcity/{postalcode}
+    defaults: { _controller: "HandissimoBundle:Ajax:postal"}
+    methods: POST
