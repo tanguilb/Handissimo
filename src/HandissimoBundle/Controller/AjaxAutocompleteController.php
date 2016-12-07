@@ -38,4 +38,13 @@ class AjaxAutocompleteController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
+
+    public function ageAction($agedata)
+    {
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+        $age = $repository->getByAge($agedata);
+        return $this->render(':front:research.html.twig', array(
+            'age' => $age
+        ));
+    }
 }

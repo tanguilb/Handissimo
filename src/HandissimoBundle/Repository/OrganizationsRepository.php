@@ -6,23 +6,21 @@ use Doctrine\ORM\EntityRepository;
 
 class OrganizationsRepository extends EntityRepository
 {
-    /*public function getByAge($data)
+    public function getByAge($agedata)
     {
-        $data = "%" . $data . "%";
         $qb = $this->createQueryBuilder('o')
-            //->select('o')
-            //->where("o.agemaxi > :data")
-            //->setParameter('data', '%' . $data . '%')
-           // ->andWhere("o.agemini < :data")
-            //->setParameter('data', '%' . $data . '%')
+            ->select('o.agemini', 'o.agemaxi')
+            ->where("o.agemaxi > :data")
+            ->andWhere("o.agemini < :data")
+            ->setParameter('data', '%' . $agedata . '%')
             //->andWhere('o.agemini < ?3 < o.agemaxi')
-            //->orderBy('o.name', 'ASC')
+            ->orderBy('o.name', 'ASC')
             //->setParameter(3, '%' . $data . '%')
-
             ->getQuery();
+        //dump($qb->getSQL());die;
 
         return $qb->getResult();
-    }*/
+    }
 
     public function getByOrganizations($keyword)
     {
