@@ -12,24 +12,29 @@ use Doctrine\ORM\EntityRepository;
 
 class OrganizationsRepository extends EntityRepository
 {
-  /*  public function getByOrganizations($organizationData)
+   public function getByOrganizationsName($keyword/*, $postaldata*/)
     {
-        $organizationData = "%" . $organizationData . "%";
         $query = $this->createQueryBuilder('o')
-            //->innerJoin('o.needs', 'n')
-            //->innerJoin('o.disabilityTypes', 'dt')
-            ->addSelect('o.name'/*, 'n.needName', 'dt.disabilityName')
-            ->where('o.name LIKE :organizationData')
-           // ->orWhere('n.needName LIKE :dataneeds')
-           // ->orWhere('dt.disabilityName Like :disabilityData')
-            ->orderBy('o.name', 'ASC')
-            ->setParameter('organizationData', $organizationData)
-            //->setParameter('dataneeds', '%' .$needsData . '%' )
-            //->setParameter('disabilityData', '%' .$disabilityData . '%')
+            ->innerJoin('o.needs', 'n')
+            ->innerJoin('o.disabilityTypes', 'dt')
+            ->innerJoin('o.structuretype', 'st')
+            ->addSelect('o.name', 'n.needName', 'dt.disabilityName','st.structurestype')
+            ->where('o.name = :data')
+            ->orWhere('n.needName = :data')
+            ->orWhere('dt.disabilityName = :data')
+            ->orwhere('st.structurestype = :data')
+           // ->andwhere('o.postal = :postaldata')
+            //->orderBy('o.name', 'ASC')
+            ->setParameter('data', $keyword)
+           // ->setParameter('postaldata', $postaldata )
             ->getQuery();
+
+        dump($query->getSQL());die;
         return $query->getResult();
 
-    }*/
+
+
+    }
 
     public function getByOrganizations($keyword)
     {

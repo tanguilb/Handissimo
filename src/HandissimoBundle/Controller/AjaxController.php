@@ -20,14 +20,22 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
 {
-    public function researchAction(Request $request)
+    public function researchAction(Request $request, $keyword/*, $postaldata*/)
     {
     $form = $this->createForm('HandissimoBundle\Form\ResearchType');
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()){
+        /**
+         * @var $repository OrganizationsRepository
+         */
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+        $result = $repository->getByOrganizationsName($keyword/*, $postaldata*/);
+        var_dump($result);
 
-        return $this->redirectToRoute('research_home');
+        return $result->$this->redirectToRoute('result_home', array(
+            'result' => $result,
+        ));
     }
     return $this->render('front/research.html.twig', array(
         'form' => $form->createView(),

@@ -12,3 +12,9 @@ city_ajax:
     path:   /ajaxcity/{postalcode}
     defaults: { _controller: "HandissimoBundle:Ajax:postal"}
     methods: POST
+
+
+result_home:
+    path:     /result
+    defaults: { _controller: "HandissimoBundle:Ajax:result" }
+    methods:  POST
