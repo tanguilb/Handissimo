@@ -41,17 +41,11 @@ class NewOpinionController extends Controller
         );
     }
 
-    /**
-     * Creates a new opinion entity.
-     *
-     * @Route("/ajax", name="opinion_create")
-     * @Method("POST")
-     *
-     */
+
     public function createAction(Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
-            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+            return new JsonResponse(array('message' => 'Désolé, vous ne pouvez pas accéder à ce service.'), 400);
         }
 
         $opinion = new Opinion();
@@ -64,7 +58,7 @@ class NewOpinionController extends Controller
             $em->persist($opinion);
             $em->flush();
 
-            return new JsonResponse(array('message' => 'Success!'), 200);
+            return new JsonResponse(array('message' => 'Message envoyé !'), 200);
         }
 
         $response = new JsonResponse(
@@ -77,11 +71,6 @@ class NewOpinionController extends Controller
                     ))), 400);
 
         return $response;
-
-        /*return $this->render('front/opinion-button.html.twig', array(
-            'opinion' => $opinion,
-            'form' => $form->createView(),
-        ));*/
     }
 
 

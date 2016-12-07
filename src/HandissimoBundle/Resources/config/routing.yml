@@ -41,7 +41,3 @@ handissimo_stafftypes:
 handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
-
-opinion:
-    path:     /ajax/opinion
-    defaults: { _controller: HandissimoBundle:NewOpinion:new }

@@ -8,8 +8,8 @@ opinion_show:
     defaults: { _controller: "HandissimoBundle:Opinion:show" }
     methods:  GET
 
-opinion_new:
-    path:     /new
+opinion_create:
+    path:     /newopinion
     defaults: { _controller: "HandissimoBundle:NewOpinion:create" }
     methods:  [GET, POST]
 
@@ -17,3 +17,4 @@ opinion_delete:
     path:     /{id}/delete
     defaults: { _controller: "HandissimoBundle:Opinion:delete" }
     methods:  DELETE
+
