@@ -31,7 +31,6 @@ class AjaxController extends Controller
          */
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
         $result = $repository->getByOrganizationsName($keyword/*, $postaldata*/);
-        var_dump($result);
 
         return $result->$this->redirectToRoute('result_home', array(
             'result' => $result,
