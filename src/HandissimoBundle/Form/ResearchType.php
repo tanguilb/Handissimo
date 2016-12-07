@@ -11,7 +11,7 @@ class ResearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('search', 'text',
+        $builder->add('keyword', 'text',
                     array('attr' => array('autocomplete' => 'off')))
                 ->add('age', 'text',
                     array('attr' => array('autocomplete' => 'off')))

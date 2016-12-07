@@ -18,11 +18,4 @@ class DefaultController extends Controller
     {
         return $this->render('front/search.html.twig');
     }
-
-    public function researchAction(Request $request)
-    {
-        $form = $this->createForm('HandissimoBundle\Form\ResearchType');
-        $form->handleRequest($request);
-        return $this->render('front/research.html.twig', array('form' => $form->createView()));
-    }
 }
