@@ -96,11 +96,11 @@ class Pictures
     /**
      * Add organizationpicture
      *
-     * @param \HandissimoBundle\Entity\Organisations $organizationpicture
+     * @param \HandissimoBundle\Entity\Organizations $organizationpicture
      *
      * @return Pictures
      */
-    public function addOrganizationpicture(\HandissimoBundle\Entity\Organisations $organizationpicture)
+    public function addOrganizationpicture(\HandissimoBundle\Entity\Organizations $organizationpicture)
     {
         $this->organizationpicture[] = $organizationpicture;
 
@@ -110,9 +110,9 @@ class Pictures
     /**
      * Remove organizationpicture
      *
-     * @param \HandissimoBundle\Entity\Organisations $organizationpicture
+     * @param \HandissimoBundle\Entity\Organizations $organizationpicture
      */
-    public function removeOrganizationpicture(\HandissimoBundle\Entity\Organisations $organizationpicture)
+    public function removeOrganizationpicture(\HandissimoBundle\Entity\Organizations $organizationpicture)
     {
         $this->organizationpicture->removeElement($organizationpicture);
     }
