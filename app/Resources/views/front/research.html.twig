@@ -2,12 +2,10 @@
 {% block body %}
     {{ form_start(form) }}
     {{ form_errors(form) }}
-
     {{ form_row(form.keyword) }}
     <ul id="keywordautocomplete"></ul>
     {{ form_row(form.age) }}
     {{ form_row(form.postal) }}
     <ul id="city"></ul>
-    <input type="submit" value="rechercher" />
     {{ form_end(form) }}
 {% endblock %}
