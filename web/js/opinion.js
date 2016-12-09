@@ -14,7 +14,8 @@
         })
         .done(function (data) {
             if (typeof data.message !== 'undefined') {
-                alert(data.message);
+                $('#giveOpinion').modal('hide');
+
             }
         })
         .fail(function (jqXHR, textStatus, errorThrown) {

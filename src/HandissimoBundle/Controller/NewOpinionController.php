@@ -54,16 +54,15 @@ class NewOpinionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            var_dump($opinion);
             $em->persist($opinion);
             $em->flush();
 
-            return new JsonResponse(array('message' => 'Message envoyé !'), 200);
+            return new JsonResponse(array('message' => 'Votre avis a bien été envoyé. Merci !'), 200);
         }
 
         $response = new JsonResponse(
             array(
-                'message' => 'Error',
+                'message' => 'Votre message n\'a pas été envoyé. Merci de réessayer ultérieurement.',
                 'form' => $this->renderView('front/opinion-button.html.twig',
                     array(
                         'opinion' => $opinion,
