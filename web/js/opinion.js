@@ -16,13 +16,13 @@
         .done(function (data) {
             $('#giveOpinion').modal('hide');
             if (typeof data.message !== 'undefined') {
-                $('div#alert-success').show().html(data.message).hide();
+                $('#alert-success').fadeIn().html(data.message).delay(6000).fadeOut(1000);
             }
         })
 
         .fail(function (data) {
             $('#giveOpinion').modal('hide');
-                $('div#alert-danger').show().html(data.message).hide();
+            $('#alert-danger').fadeIn().html(data.message).delay(8000).fadeOut(1000);
         })
     });
 

@@ -72,7 +72,6 @@ class NewOpinionController extends Controller
         return $response;
     }
 
-
     private function createCreateForm(Opinion $opinion)
     {
         $form = $this->createForm(new OpinionType(), $opinion,
