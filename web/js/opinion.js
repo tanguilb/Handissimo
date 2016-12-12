@@ -12,23 +12,17 @@
             url: $(this).attr('action'),
             data: $(this).serialize()
         })
-        .done(function (data) {
-            if (typeof data.message !== 'undefined') {
-                $('#giveOpinion').modal('hide');
 
+        .done(function (data) {
+            $('#giveOpinion').modal('hide');
+            if (typeof data.message !== 'undefined') {
+                $('div#alert-success').show().html(data.message).hide();
             }
         })
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            if (typeof jqXHR.responseJSON !== 'undefined') {
-                if (jqXHR.responseJSON.hasOwnProperty('form')) {
-                    $('#form_body').html(jqXHR.responseJSON.form);
-                }
 
-                $('.form_error').html(jqXHR.responseJSON.message);
-
-            } else {
-                alert(errorThrown);
-            }
-        });
+        .fail(function (data) {
+            $('#giveOpinion').modal('hide');
+                $('div#alert-danger').show().html(data.message).hide();
+        })
     });
 
