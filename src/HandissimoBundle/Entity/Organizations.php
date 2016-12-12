@@ -72,11 +72,6 @@ class Organizations
     /**
      * @var string
      */
-    private $agegroup;
-
-    /**
-     * @var string
-     */
     private $freeplace;
 
     /**
@@ -454,29 +449,6 @@ class Organizations
         return $this->twitter;
     }
 
-    /**
-     * Set agegroup
-     *
-     * @param string $agegroup
-     *
-     * @return Organizations
-     */
-    public function setAgegroup($agegroup)
-    {
-        $this->agegroup = $agegroup;
-
-        return $this;
-    }
-
-    /**
-     * Get agegroup
-     *
-     * @return string
-     */
-    public function getAgegroup()
-    {
-        return $this->agegroup;
-    }
 
     /**
      * Set freeplace

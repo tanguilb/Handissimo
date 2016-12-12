@@ -6,24 +6,65 @@ use Doctrine\ORM\EntityRepository;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function getByMulti($organizationData)
+    public function getByOrganizationsName($keyword/*, $postal*/)
     {
         $query = $this->createQueryBuilder('o')
-            ->Select('o.name', 'n.needName', 'dt.disabilityName', 'st.structurestype')
+            //->addselect('o.name', 'n.needName', 'dt.disabilityName','st.structurestype', 's.jobs', 'o.postal')
+            ->innerJoin('o.stafforganizations', 's')
             ->innerJoin('o.needs', 'n')
-            ->innerJoin('o.structuretype', 'st')
             ->innerJoin('o.disabilityTypes', 'dt')
+            ->innerJoin('o.structuretype', 'st')
             ->where('o.name = :data')
             ->orWhere('n.needName = :data')
             ->orWhere('dt.disabilityName = :data')
             ->orWhere('st.structurestype = :data')
-            ->orWhere('o.postal = :data')
-
-            ->setParameter('data', $organizationData)
+            ->orWhere('s.jobs = :data')
+            //->andWhere('o.postal = :postaldata')
+            //->orderBy('o.name', 'ASC')
+            ->setParameter('data', $keyword['keyword'])
+            //->setParameter('postaldata', $postal)
             ->getQuery();
-        return $query->getResult();
 
+        //dump($query->getSQL());die;
+        return $query->getResult();
     }
+
+    /*public function getByOrganizationsName($keyword, $age, $postal)
+    {
+        $query = $this->createQueryBuilder('o');
+        $query->innerJoin('o.stafforganizations', 's');
+        $query->innerJoin('o.needs', 'n');
+        $query->innerJoin('o.disabilityTypes', 'dt');
+        $query->innerJoin('o.structuretype', 'st');
+
+        $ormodule = $query->expr()->orX();
+        $ormodule->add($query->expr()->eq('o.name', ':data'));
+        $ormodule->add($query->expr()->eq('n.needName', ':data'));
+        $ormodule->add($query->expr()->eq('dt.disabilityName', ':data'));
+        $ormodule->add($query->expr()->eq('st.structurestype', ':data'));
+        $ormodule->add($query->expr()->eq('s.jobs', ':data'));
+
+        $andmodule = $query->expr()->andX();
+        $andmodule->add($query->expr()->lte('o.agemini', ':age'));
+        $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
+
+        $query->where($ormodule);
+        $query->andWhere($andmodule);
+        $query->andWhere('o.postal = :postaldata');
+        $query->setParameter('data', $keyword['keyword']);
+        $query->setParameter('age', $age['age']);
+        $query->setParameter('postaldata', $postal['postal']);
+        $query->getQuery()
+
+                ->getResult();
+                dump($query->getDQL());die;
+            //return $query->getResult();
+    }*/
+    /*public function getByOrganizationsName($keyword, $age, $postal)
+    {
+        $query = $this->createQueryBuilder("SELECT o FROM Organizations o INNER JOIN o.stafforganizations s INNER JOIN o.needs n INNER JOIN o.disabilityTypes dt INNER JOIN o.structuretype st WHERE (o.name = :data OR n.needName = :data OR dt.disabilityName = :data OR st.structurestype = :data OR s.jobs = :data) AND (o.agemini <= :age AND o.agemaxi >= :age) AND o.postal = :postaldata");
+        $result = $query->get
+    }*/
 
     public function getByOrganizations($keyword)
     {
@@ -46,16 +87,17 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getByAge($data){
-    $data = "%" . $data . "%";
-    $qb = $this->createQueryBuilder('o')
-        ->select('o')
-        ->where("o.agemaxi > :data")
-        ->andWhere("o.agemini < :data")
-        ->andWhere('o.agemini < :data < o.agemaxi')
-        ->setParameter('data', $data)
-        ->getQuery();
-    return $qb->getResult();
-}
+    public function getByAge($data)
+    {
+        $data = "%" . $data . "%";
+        $qb = $this->createQueryBuilder('o')
+            ->select('o')
+            ->where("o.agemaxi > :data")
+            ->andWhere("o.agemini < :data")
+            ->andWhere('o.agemini < :data < o.agemaxi')
+            ->setParameter('data', $data)
+            ->getQuery();
+        return $qb->getResult();
+    }
 
 }

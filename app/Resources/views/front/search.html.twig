@@ -12,6 +12,14 @@
     -->
 
     <div id="map"></div>
+    <ul>
+        {#}% for results in organizations %}
+        <li>{{ organizations.name }}</li>
+        {% endfor %#}
+        {% for results in result %}
+        <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
 {% block javascripts %}

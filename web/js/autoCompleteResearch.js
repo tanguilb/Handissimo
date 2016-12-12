@@ -23,11 +23,14 @@ $( document ).ready(function() {
                         {
                             html += "<li>" + keywords[i].needName + "</li>";
 
-                        } else if(keyword = keywords[i].structurestype)
+                        } else if (keyword = keywords[i].structurestype)
                         {
                             html += "<li>" + keywords[i].structurestype + "</li>";
-                        }
 
+                        }else if (keyword = keywords[i].jobs)
+                        {
+                            html += "<li>" + keywords[i].jobs + "</li>"
+                        }
 
                     }
                     $('#keywordautocomplete').html(html);

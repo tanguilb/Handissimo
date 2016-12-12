@@ -37,6 +37,4 @@ class ResearchType extends AbstractType
     {
         return 'research_action';
     }
-
-
 }

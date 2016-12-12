@@ -9,8 +9,13 @@ class Organizations
 {
     public function __toString()
     {
+<<<<<<< HEAD
         return $this->name;
 
+=======
+        // TODO: Implement __toString() method.
+        return $this->name;
+>>>>>>> f951c315f70e80bf23855099268bb06435f93f09
     }
 
     // GENERATE CODE
@@ -1140,6 +1145,7 @@ class Organizations
     {
         return $this->longitude;
     }
+<<<<<<< HEAD
     /**
      * @var integer
      */
@@ -1198,4 +1204,9 @@ class Organizations
     {
         return $this->agemaxi;
     }
+=======
+
+
+
+>>>>>>> f951c315f70e80bf23855099268bb06435f93f09
 }

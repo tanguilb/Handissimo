@@ -6,6 +6,7 @@ namespace HandissimoBundle\Controller;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
+use HandissimoBundle\Repository\StaffRepository;
 use HandissimoBundle\Repository\StructuresTypesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,19 +15,29 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
 {
-    public function researchAction(Request $request, $organizationData)
+    public function researchAction(Request $request/*, $keyword, $datapostal*/)
     {
     $form = $this->createForm('HandissimoBundle\Form\ResearchType');
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()){
 
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-        $organization = $repository->getByOrganizations($organizationData);
+        $em = $this->getDoctrine()->getManager();
 
-        return $this->redirectToRoute('handissimo_search',array(
-            'organization' => $organization
+        $keyword = $form->getData();
+        $postal = $form->getData();
+        $age = $form->getData();
 
+        var_dump($keyword);
+        /**
+         * @var $repository OrganizationsRepository
+         */
+        //$repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword/*, $postal, $age*/);
+
+        return $this->render('front/search.html.twig', array(
+            'result' => $result,
+            var_dump($result)
         ));
     }
     return $this->render('front/research.html.twig', array(
@@ -63,7 +74,13 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresTypes');
             $structure = $repository->getByStructure($keyword);
 
-            $data =  array_merge($organization,$needs, $disability, $structure);
+            /**
+             * @var $repository StaffRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Staff');
+            $staff = $repository->getByStaff($keyword);
+
+            $data =  array_merge($organization, $needs, $disability, $structure, $staff);
 
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
