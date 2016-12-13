@@ -25,7 +25,7 @@ class Opinion
     /**
      * @var string
      */
-    private $eMail;
+    protected $eMail;
 
     /**
      * @var string

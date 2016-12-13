@@ -25,4 +25,3 @@
             $('#alert-danger').fadeIn().html('Votre avis n\'a pas été envoyé. Réessayez ultérieurement ou <a class="alert-link" href="#"> contactez-nous.</a>').delay(8000).fadeOut(1000);
         })
     });
-
