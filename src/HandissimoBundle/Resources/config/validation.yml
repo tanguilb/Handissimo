@@ -1,6 +1,6 @@
 HandissimoBundle\Entity\Opinion:
     properties:
-        e_mail:
+        eMail:
             - Email:
                 message: L'email "{{ value }}" n'est pas valide.
                 checkMX: true
