@@ -10,14 +10,20 @@ security:
         connection: default
 
     role_hierarchy:
-        ROLE_BIDON:
-            - ROLE_USER
-            - ROLE_SONATA_ADMIN
-            - ROLE_ADMIN_ORANIZATIONS_LIST
-            - ROLE_ADMIN_ORANIZATIONS_VIEW
 
-        ROLE_BIDON: ROLE_BIDON
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_STAFF]
+        ROLE_EDITOR:
+            - ROLE_USER
+            - ROLE_ADMIN_ORGANIZATIONS_ALL
+            - ROLE_SONATA_ADMIN
+
+        ROLE_MANAGER:
+            - ROLE_EDITOR
+            - ROLE_
+
+
+
+
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 
@@ -36,7 +42,7 @@ security:
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_SONATA_ADMIN] }
+        - { path: ^/admin/, role: [ROLE_SONATA_ADMIN, ROLE_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     providers:

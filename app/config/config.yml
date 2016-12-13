@@ -72,12 +72,15 @@ sonata_block:
             contexts: [admin]
         sonata.admin.block.search_result:
             contexts: [admin]
-
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.role
 
 sonata_user:
     security_acl: true
     manager_type: orm
-
+    profile:
+            # Profile show page is a dashboard as in SonataAdminBundle
 
 
 # Swiftmailer Configuration
