@@ -14,8 +14,12 @@ class DefaultController extends Controller
         return $this->render('HandissimoBundle:Default:index.html.twig');
     }
 
-    public function searchAction()
+    public function searchAction(Request $request)
     {
-        return $this->render('front/search.html.twig');
+        $form = $this->createForm('HandissimoBundle\Form\SearchType');
+        $form->handleRequest($request);
+        return $this->render('front/search.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }

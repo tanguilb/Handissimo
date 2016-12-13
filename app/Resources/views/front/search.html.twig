@@ -4,21 +4,17 @@
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 {% endblock %}
 {% block body %}
-    <!--
-    <div id="floating-panel">
-        <input id="address" type="textbox" value="Sydney, NSW">
-        <input id="submit" type="button" value="Geocode">
-    </div>
-    -->
 
     <div id="map"></div>
     <ul>
-        {#}% for results in organizations %}
-        <li>{{ organizations.name }}</li>
-        {% endfor %#}
         {% for results in result %}
-        <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
+            <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
+            {#}{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.disabilitytype) }}
+            {{ form_end(form) }#}
         {% endfor %}
+
     </ul>
 
 {% endblock %}

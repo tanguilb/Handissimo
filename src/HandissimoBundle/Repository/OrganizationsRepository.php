@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function getByOrganizationsName($keyword/*, $postal*/)
+    /*public function getByOrganizationsName($keyword/*, $postal)
     {
         $query = $this->createQueryBuilder('o')
             //->addselect('o.name', 'n.needName', 'dt.disabilityName','st.structurestype', 's.jobs', 'o.postal')
@@ -27,9 +27,9 @@ class OrganizationsRepository extends EntityRepository
 
         //dump($query->getSQL());die;
         return $query->getResult();
-    }
+    }*/
 
-    /*public function getByOrganizationsName($keyword, $age, $postal)
+    public function getByOrganizationsName($keyword, $age, $postal)
     {
         $query = $this->createQueryBuilder('o');
         $query->innerJoin('o.stafforganizations', 's');
@@ -56,15 +56,10 @@ class OrganizationsRepository extends EntityRepository
         $query->setParameter('postaldata', $postal['postal']);
         $query->getQuery()
 
-                ->getResult();
-                dump($query->getDQL());die;
+            ->getResult();
+                //dump($query->getDQL());die;
             //return $query->getResult();
-    }*/
-    /*public function getByOrganizationsName($keyword, $age, $postal)
-    {
-        $query = $this->createQueryBuilder("SELECT o FROM Organizations o INNER JOIN o.stafforganizations s INNER JOIN o.needs n INNER JOIN o.disabilityTypes dt INNER JOIN o.structuretype st WHERE (o.name = :data OR n.needName = :data OR dt.disabilityName = :data OR st.structurestype = :data OR s.jobs = :data) AND (o.agemini <= :age AND o.agemaxi >= :age) AND o.postal = :postaldata");
-        $result = $query->get
-    }*/
+    }
 
     public function getByOrganizations($keyword)
     {
