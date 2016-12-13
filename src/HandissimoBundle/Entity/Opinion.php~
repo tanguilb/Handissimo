@@ -32,7 +32,6 @@ class Opinion
      */
     private $message;
 
-
     /**
      * Get id
      *
@@ -139,4 +138,3 @@ class Opinion
         return $this->message;
     }
 }
-

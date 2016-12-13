@@ -62,7 +62,6 @@ class NewOpinionController extends Controller
 
         $response = new JsonResponse(
             array(
-                'message' => 'Votre message n\'a pas été envoyé. Merci de réessayer ultérieurement.',
                 'form' => $this->renderView('front/opinion-button.html.twig',
                     array(
                         'opinion' => $opinion,
@@ -70,16 +69,5 @@ class NewOpinionController extends Controller
                     ))), 400);
 
         return $response;
-    }
-
-    private function createCreateForm(Opinion $opinion)
-    {
-        $form = $this->createForm(new OpinionType(), $opinion,
-            array(
-                'action' => $this->generateUrl('opinion_create'),
-                'method' => 'POST',
-            ));
-
-        return $form;
     }
 }
