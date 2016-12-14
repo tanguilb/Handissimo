@@ -6,32 +6,13 @@ use Doctrine\ORM\EntityRepository;
 
 class OrganizationsRepository extends EntityRepository
 {
-    /*public function getByOrganizationsName($keyword/*, $postal)
-    {
-        $query = $this->createQueryBuilder('o')
-            //->addselect('o.name', 'n.needName', 'dt.disabilityName','st.structurestype', 's.jobs', 'o.postal')
-            ->innerJoin('o.stafforganizations', 's')
-            ->innerJoin('o.needs', 'n')
-            ->innerJoin('o.disabilityTypes', 'dt')
-            ->innerJoin('o.structuretype', 'st')
-            ->where('o.name = :data')
-            ->orWhere('n.needName = :data')
-            ->orWhere('dt.disabilityName = :data')
-            ->orWhere('st.structurestype = :data')
-            ->orWhere('s.jobs = :data')
-            //->andWhere('o.postal = :postaldata')
-            //->orderBy('o.name', 'ASC')
-            ->setParameter('data', $keyword['keyword'])
-            //->setParameter('postaldata', $postal)
-            ->getQuery();
-
-        //dump($query->getSQL());die;
-        return $query->getResult();
-    }*/
 
     public function getByOrganizationsName($keyword, $age, $postal)
     {
-        $query = $this->createQueryBuilder('o');
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->addSelect('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.stafforganizations', 's');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
@@ -48,17 +29,40 @@ class OrganizationsRepository extends EntityRepository
         $andmodule->add($query->expr()->lte('o.agemini', ':age'));
         $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
 
-        $query->where($ormodule);
-        $query->andWhere($andmodule);
-        $query->andWhere('o.postal = :postaldata');
-        $query->setParameter('data', $keyword['keyword']);
-        $query->setParameter('age', $age['age']);
-        $query->setParameter('postaldata', $postal['postal']);
-        $query->getQuery()
+        if ($keyword !== null && $postal !== null && $age !== null) {
+            $query->where($ormodule);
+            $query->andWhere($andmodule);
+            $query->andWhere('o.postal = :postaldata');
+            $query->setParameter('data', $keyword);
+            $query->setParameter('age', $age);
+            $query->setParameter('postaldata', $postal);
+        }elseif ($keyword == null && $postal == null && $age !== null) {
+            $query->andWhere($andmodule);
+            $query->setParameter('age', $age);
+        }elseif ($keyword == null && $age == null && $postal !== null) {
+            $query->andWhere('o.postal = :postaldata');
+            $query->setParameter('postaldata', $postal);
+        }elseif ($keyword !== null && $age == null && $postal == null) {
+            $query->where($ormodule);
+            $query->setParameter('data', $keyword);
+        }elseif ($keyword !== null && $postal !== null && $age == null) {
+            $query->where($ormodule);
+            $query->andWhere('o.postal = :postaldata');
+            $query->setParameter('data', $keyword);
+            $query->setParameter('postaldata', $postal);
+        }elseif ($keyword == null && $postal !== null && $age !== null) {
+            $query->andWhere($andmodule);
+            $query->andWhere('o.postal = :postaldata');
+            $query->setParameter('age', $age);
+            $query->setParameter('postaldata', $postal);
+        }elseif ($keyword !== null && $postal == null && $age !== null) {
+            $query->where($ormodule);
+            $query->andWhere($andmodule);
+            $query->setParameter('data', $keyword);
+            $query->setParameter('age', $age);
+        }
+        return $query->getQuery()->getResult();
 
-            ->getResult();
-                //dump($query->getDQL());die;
-            //return $query->getResult();
     }
 
     public function getByOrganizations($keyword)

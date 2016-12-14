@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
 {
-    public function researchAction(Request $request, $keyword, $datapostal)
+    public function researchAction(Request $request)
     {
     $form = $this->createForm('HandissimoBundle\Form\ResearchType');
     $form->handleRequest($request);
@@ -23,21 +23,17 @@ class AjaxController extends Controller
     if ($form->isSubmitted() && $form->isValid()){
 
         $em = $this->getDoctrine()->getManager();
+        $keyword = $form->getData()['keyword'];
+        $age = $form->getData()['age'];
+        $postal = $form->getData()['postal'];
 
-        $keyword = $form->getData();
-        $postal = $form->getData();
-        $age = $form->getData();
-
-        var_dump($keyword);
         /**
          * @var $repository OrganizationsRepository
          */
-        //$repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $postal, $age);
-
+        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
         return $this->render('front/search.html.twig', array(
             'result' => $result,
-            var_dump($result)
+            //var_dump($result)
         ));
     }
     return $this->render('front/research.html.twig', array(

@@ -23,7 +23,7 @@ class ResearchType extends AbstractType
                     array('attr' => array('autocomplete' => 'off'),
                     'required' => false))
                 ->add('save', SubmitType::class,
-                    array('label' => 'hhhhhhhhh'));
+                    array('label' => 'Rechercher'));
 
     }
 

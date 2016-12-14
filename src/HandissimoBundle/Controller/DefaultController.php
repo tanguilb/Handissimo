@@ -3,9 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -18,6 +16,7 @@ class DefaultController extends Controller
     {
         $form = $this->createForm('HandissimoBundle\Form\SearchType');
         $form->handleRequest($request);
+
         return $this->render('front/search.html.twig', array(
             'form' => $form->createView()
         ));

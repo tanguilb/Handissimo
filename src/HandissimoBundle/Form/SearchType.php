@@ -19,11 +19,22 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('disabilitytypes', EntityType::class, array(
+            ->add('zzzzzz', 'text')
+            /*->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle:DisabilityTypes',
                 'choice_label' => 'disabilityName',
-                'label' => 'Type de handicaps',
-            ));
+                'label' => 'Type de handicaps'
+            ))
+            ->add('needs', EntityType::class, array(
+                'class' => 'HandissimoBundle\Entity\Needs',
+                'choice_label' => 'needName',
+                'label' => 'Type de besoins'
+            ))
+            ->add('structurestypes', EntityType::class, array(
+                'class' => 'HandissimoBundle\Entity\StructuresTypes',
+                'choice_label' => 'structurestype',
+                'label' => 'Type de Structures'
+            ))*/;
     }
 
     /**
