@@ -99,4 +99,12 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
+    public function getAdressElement()
+    {
+        $req = $this->createQueryBuilder('o')
+            ->select('o.id', 'o.address', 'o.postal', 'o.city', 'o.latitude', 'o.longitude')
+            ->getQuery();
+        return $req->getResult();
+    }
+
 }
