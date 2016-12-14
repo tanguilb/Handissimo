@@ -42,3 +42,6 @@ handissimo_research:
     resource: "@HandissimoBundle/Resources/config/routing/research.yml"
     prefix:   /research
 
+handissimo_transform:
+    path:     /transform
+    defaults: { _controller: HandissimoBundle:address:transform }
