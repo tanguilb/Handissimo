@@ -7,6 +7,11 @@ namespace HandissimoBundle\Entity;
  */
 class StructuresTypes
 {
+    public function __toString()
+    {
+        return $this->structurestype;
+    }
+
     /**
      * @var integer
      */
