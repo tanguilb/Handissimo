@@ -44,4 +44,4 @@ handissimo_research:
 
 handissimo_transform:
     path:     /transform
-    defaults: { _controller: HandissimoBundle:address:transform }
+    defaults: { _controller: HandissimoBundle:Address:transform }
