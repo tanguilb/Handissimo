@@ -9,8 +9,8 @@ class Organizations
 {
     public function __toString()
     {
-        // TODO: Implement __toString() method.
         return $this->name;
+
     }
 
     // GENERATE CODE
@@ -68,11 +68,6 @@ class Organizations
      * @var string
      */
     private $twitter;
-
-    /**
-     * @var string
-     */
-    private $agegroup;
 
     /**
      * @var string
@@ -454,29 +449,6 @@ class Organizations
         return $this->twitter;
     }
 
-    /**
-     * Set agegroup
-     *
-     * @param string $agegroup
-     *
-     * @return Organizations
-     */
-    public function setAgegroup($agegroup)
-    {
-        $this->agegroup = $agegroup;
-
-        return $this;
-    }
-
-    /**
-     * Get agegroup
-     *
-     * @return string
-     */
-    public function getAgegroup()
-    {
-        return $this->agegroup;
-    }
 
     /**
      * Set freeplace
@@ -1139,5 +1111,63 @@ class Organizations
     public function getLongitude()
     {
         return $this->longitude;
+    }
+    /**
+     * @var integer
+     */
+    private $agemini;
+
+    /**
+     * @var integer
+     */
+    private $agemaxi;
+
+
+    /**
+     * Set agemini
+     *
+     * @param integer $agemini
+     *
+     * @return Organizations
+     */
+    public function setAgemini($agemini)
+    {
+        $this->agemini = $agemini;
+
+        return $this;
+    }
+
+    /**
+     * Get agemini
+     *
+     * @return integer
+     */
+    public function getAgemini()
+    {
+        return $this->agemini;
+    }
+
+    /**
+     * Set agemaxi
+     *
+     * @param integer $agemaxi
+     *
+     * @return Organizations
+     */
+    public function setAgemaxi($agemaxi)
+    {
+        $this->agemaxi = $agemaxi;
+
+        return $this;
+    }
+
+    /**
+     * Get agemaxi
+     *
+     * @return integer
+     */
+    public function getAgemaxi()
+    {
+        return $this->agemaxi;
     }
 }

@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\DisabilityTypes:
     type: entity
     table: disability_types
+    repositoryClass: HandissimoBundle\Repository\DisabilityTypesRepository
     id:
         id:
             type: integer

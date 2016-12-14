@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\StaffTypes:
     type: entity
     table: staff_types
+    repositoryClass: HandissimoBundle\Repository\StaffTypesRepository
     id:
         id:
             type: integer
