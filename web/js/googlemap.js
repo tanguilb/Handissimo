@@ -5,6 +5,16 @@ function initMap() {
         center: uluru
     });
 
+    $.ajax({
+        type: "POST",
+        url: "{{ path(handissimo_search) }}",
+        dataType: 'json',
+        timeout: 3000,
+        success: function(response){
+            var coordonnate = JSON.parse(response.data)
+        }
+    })
+
     var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
