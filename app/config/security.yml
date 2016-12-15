@@ -18,10 +18,6 @@ security:
 
         ROLE_MANAGER:
             - ROLE_EDITOR
-            - ROLE_
-
-
-
 
         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
