@@ -9,7 +9,6 @@
 namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\Opinion;
-use HandissimoBundle\Form\OpinionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +18,8 @@ class NewOpinionController extends Controller
 {
     /**
      * Renders the "new" form
-     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {

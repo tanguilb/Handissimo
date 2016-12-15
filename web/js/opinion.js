@@ -15,6 +15,7 @@
 
         .done(function (data) {
             $('#giveOpinion').modal('hide');
+            $('form').resetForm();
             if (typeof data.message !== 'undefined') {
                 $('#alert-success').fadeIn().html(data.message).delay(6000).fadeOut(1000);
             }
