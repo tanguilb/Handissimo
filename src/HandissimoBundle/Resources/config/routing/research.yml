@@ -12,3 +12,8 @@ research_action:
     path:     /
     defaults: { _controller: "HandissimoBundle:Ajax:research" }
     methods:  [GET, POST]
+
+marker_action:
+    path:     /ajaxmarker/
+    defaults: { _controller: "HandissimoBundle:Ajax:marker" }
+    methods:  [GET, POST]

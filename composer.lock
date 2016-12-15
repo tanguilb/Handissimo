@@ -846,14 +846,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-
                 "reference": "113cc4e48fac19d20fc039cfecae9b41103be706"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/113cc4e48fac19d20fc039cfecae9b41103be706",
                 "reference": "113cc4e48fac19d20fc039cfecae9b41103be706",
-
                 "shasum": ""
             },
             "require": {
@@ -906,9 +904,7 @@
             "keywords": [
                 "User management"
             ],
-
             "time": "2016-08-12 09:53:32"
-
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1162,7 +1158,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -1515,16 +1511,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.10.0",
+            "version": "3.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "4549ad641c0734b6d6803104760b939a244c94ae"
+                "reference": "369cbdd03ad45e3608aafa8b725bb3796198e503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/4549ad641c0734b6d6803104760b939a244c94ae",
-                "reference": "4549ad641c0734b6d6803104760b939a244c94ae",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/369cbdd03ad45e3608aafa8b725bb3796198e503",
+                "reference": "369cbdd03ad45e3608aafa8b725bb3796198e503",
                 "shasum": ""
             },
             "require": {
@@ -1608,7 +1604,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2016-11-25 14:46:43"
+            "time": "2016-12-15 09:24:09"
         },
         {
             "name": "sonata-project/block-bundle",

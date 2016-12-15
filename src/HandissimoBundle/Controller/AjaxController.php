@@ -42,6 +42,33 @@ class AjaxController extends Controller
 
     }
 
+    public function markerAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+
+        $form = $this->createForm('HandissimoBundle\Form\ResearchType');
+        $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+
+                    $em = $this->getDoctrine()->getManager();
+                    $keyword = $form->getData()['keyword'];
+                    $age = $form->getData()['age'];
+                    $postal = $form->getData()['postal'];
+
+                    /**
+                     * @var $repository OrganizationsRepository
+                     */
+                    $data = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
+                    return new JsonResponse(array("data" => json_encode($data)));
+            }
+        } else {
+            throw new HttpException("500", "Invalid Call");
+        }
+    }
+
     public function autoCompleteAction(Request $request, $keyword)
     {
         if ($request->isXmlHttpRequest())

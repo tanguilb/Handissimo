@@ -5,45 +5,54 @@ function initMap() {
         center: uluru
     });
 
+
+
     $.ajax({
         type: "POST",
-        url: "{{ path(handissimo_search) }}",
+        url: "/research/ajaxmarker/",
         dataType: 'json',
         timeout: 3000,
-        success: function(response){
-            var coordonnate = JSON.parse(response.data)
+        success: function (response) {
+            var coordonnate = JSON.parse(response.result);
+            console.log(coordonnate);
+            for (var i = 0; i < coordonnate.length; i++) {
+
+
+                var contentString = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<h1 id="firstHeading" class="firstHeading">' + coordonnate[i].name + '</h1>' +
+                    '<div id="bodyContent">' +
+                    '<p>' + coordonnate[i].address + '<br>' +
+                    //coordonnate[i].postal + '<br>' +
+                    coordonnate[i].city + '<br>' +
+                    //coordonnate[i].phoneNumber + '<br>' +
+                    //coordonnate[i].mail + '<br>' +
+                    '</p>' +
+                    '</div>' +
+                    '</div>';
+
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    maxWidth: 200
+                });
+                var localisation = {lat: coordonnate[i].latitude, lng: coordonnate[i].longitude}
+                var marker = new google.maps.Marker({
+
+                    position: localisation,
+                    map: map,
+                    title: 'Uluru (Ayers Rock)'
+                });
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            }
         }
+
     })
 
-    var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">TestTitre</h1>'+
-        '<div id="bodyContent">'+
-        '<p>TestAdresse<br>'+
-        'TestCodePostal<br>'+
-        'TestVille<br>'+
-        'TestTelephone<br>'+
-        'TestMail<br>'+
-        '</p>'+
-        '</div>'+
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 200
-    });
-
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-        title: 'Uluru (Ayers Rock)'
-    });
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-    });
 }
-
 
 
 
