@@ -45,3 +45,9 @@ services:
         arguments: [~, HandissimoBundle\Entity\Needs, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de services }
+
+    admin.opinion:
+        class: HandissimoBundle\Admin\OpinionAdmin
+        arguments: [~, HandissimoBundle\Entity\Opinion, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions }
