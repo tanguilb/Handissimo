@@ -37,6 +37,4 @@ class OpinionType extends AbstractType
     {
         return 'handissimobundle_opinion';
     }
-
-
 }
