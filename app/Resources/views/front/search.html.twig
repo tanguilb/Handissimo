@@ -5,7 +5,11 @@
 {% endblock %}
 {% block body %}
 
-    <div id="map"></div>
+    <div id="map">
+        {% for results in result %}
+
+        {% endfor %}
+    </div>
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
