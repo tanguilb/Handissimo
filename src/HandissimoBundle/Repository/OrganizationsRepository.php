@@ -62,7 +62,6 @@ class OrganizationsRepository extends EntityRepository
             $query->setParameter('age', $age);
         }
         return $query->getQuery()->getResult();
-
     }
 
     public function getByOrganizations($keyword)

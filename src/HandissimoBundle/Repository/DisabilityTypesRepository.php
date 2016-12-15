@@ -24,4 +24,12 @@ class DisabilityTypesRepository extends EntityRepository
 
     }
 
+    public function getBySelectDisability()
+    {
+        $query = $this->createQueryBuilder('dt')
+            ->select('dt.disabilityName')
+            ->orderBy('dt.disabilityName');
+            return $query;
+    }
+
 }

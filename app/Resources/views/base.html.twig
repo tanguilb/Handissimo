@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Handissimo{% endblock %}</title>
@@ -13,7 +15,6 @@
 
 {% block body %}{% endblock %}
 
-{% block javascripts %}
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <!-- BOOTSTRAP JS -->
@@ -22,6 +23,6 @@
     <script src="{{ asset('js/opinion.js') }}"></script>
     <script src="{{ asset('js/autoCompleteResearch.js') }}"></script>
     <script src="{{ asset('js/searchcity.js') }}"></script>
-{% endblock %}
+{% block javascripts %}{% endblock %}
 </body>
 </html>

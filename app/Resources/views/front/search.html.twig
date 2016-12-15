@@ -9,12 +9,14 @@
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
-            {#}{ form_start(form) }}
+            {{ form_start(form) }}
             {{ form_errors(form) }}
-            {{ form_row(form.zzzzzz) }}
-            {{ form_end(form) }#}
-        {% endfor %}
+            {{ form_row(form.disabilitytypes) }}
 
+            {{ form_row(form.needs) }}
+            {{ form_row(form.structurestypes) }}
+            {{ form_end(form) }}
+        {% endfor %}
     </ul>
 
 {% endblock %}

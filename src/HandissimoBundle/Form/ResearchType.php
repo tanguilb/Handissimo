@@ -24,7 +24,6 @@ class ResearchType extends AbstractType
                     'required' => false))
                 ->add('save', SubmitType::class,
                     array('label' => 'Rechercher'));
-
     }
 
     /**

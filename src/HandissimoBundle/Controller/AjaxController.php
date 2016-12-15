@@ -27,13 +27,15 @@ class AjaxController extends Controller
         $age = $form->getData()['age'];
         $postal = $form->getData()['postal'];
 
+        $form = $this->createForm('HandissimoBundle\Form\SearchType');
+        $form->handleRequest($request);
         /**
          * @var $repository OrganizationsRepository
          */
         $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
         return $this->render('front/search.html.twig', array(
             'result' => $result,
-            //var_dump($result)
+            'form' => $form->createView()
         ));
     }
     return $this->render('front/research.html.twig', array(
