@@ -4,7 +4,44 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    admin.organizations:
+        class: HandissimoBundle\Admin\OrganizationsAdmin
+        arguments: [~, HandissimoBundle\Entity\Organizations, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Description de la structure }
 
+    admin.disabilitytypes:
+        class: HandissimoBundle\Admin\DisabilityTypesAdmin
+        arguments: [~, HandissimoBundle\Entity\DisabilityTypes, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Types de handicaps }
+
+    admin.society:
+        class: HandissimoBundle\Admin\SocietyAdmin
+        arguments: [~, HandissimoBundle\Entity\Society, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Gestionnaire }
+
+    admin.structures_types:
+        class: HandissimoBundle\Admin\StructuresTypesAdmin
+        arguments: [~, HandissimoBundle\Entity\StructuresTypes, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de structures }
+
+    admin.staff:
+        class: HandissimoBundle\Admin\StaffAdmin
+        arguments: [~, HandissimoBundle\Entity\Staff, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Métiers }
+
+    admin.stafftype:
+        class: HandissimoBundle\Admin\StaffTypesAdmin
+        arguments: [~, HandissimoBundle\Entity\StaffTypes, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Type de personnels }
+
+    admin.needs:
+        class: HandissimoBundle\Admin\NeedsAdmin
+        arguments: [~, HandissimoBundle\Entity\Needs, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de services }

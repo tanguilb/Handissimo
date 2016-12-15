@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\Pictures:
     type: entity
     table: pictures
+    repositoryClass: HandissimoBundle\Repository\PicturesRepository
     id:
         id:
             type: integer

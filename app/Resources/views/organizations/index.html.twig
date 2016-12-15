@@ -40,7 +40,7 @@
         {% for organization in organizations %}
             <tr>
                 <td><a href="{{ path('organizations_show', { 'id': organization.id }) }}">{{ organization.id }}</a></td>
-                <td>{{ organization.organizationName }}</td>
+                <td>{{ organization.name }}</td>
                 <td>{{ organization.adress }}</td>
                 <td>{{ organization.postal }}</td>
                 <td>{{ organization.city }}</td>

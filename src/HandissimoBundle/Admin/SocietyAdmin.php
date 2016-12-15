@@ -1,0 +1,75 @@
+<?php
+
+namespace HandissimoBundle\Admin;
+
+use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+
+class SocietyAdmin extends Admin
+{
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+                    ->add('societyname', 'text', array(
+                    'label' => 'Nom de la société',
+                    'required' => true
+                    ))
+                    ->add('address', 'text', array(
+                        'label' => 'Adresse',
+                        'required' => true
+                    ))
+                    ->add('postal', 'text', array(
+                        'label' => 'Code postale',
+                        'required' => true
+                    ))
+                    ->add('city', 'text', array(
+                        'label' => 'Ville',
+                        'required' => true
+                    ))
+                    ->add('phone_number', 'text', array(
+                        'label' => 'Téléphone',
+                        'required' => true
+                    ))
+                    ->add('mail', 'text', array(
+                        'label' => 'Adresse mail',
+                        'required' => false
+                    ))
+                    ->add('society_facebook', 'text', array(
+                        'label' => 'Page facebook',
+                        'required' => false
+                    ))
+                    ->add('society_twitter', 'text', array(
+                        'label' => 'Page twitter',
+                        'required' => false
+                    ))
+                    ->add('website', 'text', array(
+                        'label' => 'Site internet',
+                        'required' => false
+                    ))
+                    ->add('logo', 'text', array(
+                        'label' => 'Logo de profil',
+                        'required' => false
+    ));
+    }
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper->add('societyname', null,
+            array(
+                'label' => 'Nom de la société'
+            ));
+    }
+
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('societyname', null, array('label' => 'Nom de la société'))
+            ->add('address', null, array('label' => 'Adresse'))
+            ->add('postal', null, array('label' => 'Code postal'))
+            ->add('city', null, array('label' => 'Ville'))
+            ->add('phone_number', null, array('label' => 'Numéro de téléphone'))
+            ->add('mail', null, array('label' => 'Adresse mail'));
+    }
+}

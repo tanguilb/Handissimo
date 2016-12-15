@@ -41,3 +41,8 @@ handissimo_stafftypes:
 handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
+
+handissimo_research:
+    resource: "@HandissimoBundle/Resources/config/routing/research.yml"
+    prefix:   /research
+

@@ -4,10 +4,19 @@
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
 {% endblock %}
 {% block body %}
-    <div id="map">
 
+    <div id="map"></div>
+    <ul>
+        {% for results in result %}
+            <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
+            {#}{ form_start(form) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.zzzzzz) }}
+            {{ form_end(form) }#}
+        {% endfor %}
 
-    </div>
+    </ul>
+
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>

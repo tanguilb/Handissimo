@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -11,8 +12,13 @@ class DefaultController extends Controller
         return $this->render('front/index.html.twig');
     }
 
-    public function searchAction()
+    public function searchAction(Request $request)
     {
-        return $this->render('front/search.html.twig');
+        $form = $this->createForm('HandissimoBundle\Form\SearchType');
+        $form->handleRequest($request);
+
+        return $this->render('front/search.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }

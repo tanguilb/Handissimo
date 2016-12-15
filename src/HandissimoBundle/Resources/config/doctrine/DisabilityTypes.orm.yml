@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\DisabilityTypes:
     type: entity
     table: disability_types
+    repositoryClass: HandissimoBundle\Repository\DisabilityTypesRepository
     id:
         id:
             type: integer
@@ -12,9 +13,6 @@ HandissimoBundle\Entity\DisabilityTypes:
             type: string
             nullable: true
             length: 255
-            options:
-                fixed: false
-            column: disability_name
     manyToMany:
         organizations:
             targetEntity: Organizations

@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\StructuresTypes:
     type: entity
     table: structures_types
+    repositoryClass: HandissimoBundle\Repository\StructuresTypesRepository
     id:
         id:
             type: integer
@@ -8,13 +9,13 @@ HandissimoBundle\Entity\StructuresTypes:
             generator:
                 strategy: AUTO
     fields:
-        structuresType:
+        structurestype:
             type: string
             nullable: true
             length: 255
             options:
                 fixed: false
-            column: Structures_type
+            column: structurestype
         logoMdph:
             type: string
             nullable: true
