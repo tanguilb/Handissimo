@@ -80,7 +80,9 @@ sonata_user:
     security_acl: true
     manager_type: orm
     profile:
-            # Profile show page is a dashboard as in SonataAdminBundle
+    admin:
+        user:
+            class: HandissimoBundle\UserBundle\Admin\Model\UserAdmin
 
 
 # Swiftmailer Configuration
@@ -115,4 +117,3 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
-
