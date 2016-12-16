@@ -80,9 +80,7 @@ sonata_user:
     security_acl: true
     manager_type: orm
     profile:
-    admin:
-        user:
-            class: HandissimoBundle\UserBundle\Admin\Model\UserAdmin
+
 
 
 # Swiftmailer Configuration
