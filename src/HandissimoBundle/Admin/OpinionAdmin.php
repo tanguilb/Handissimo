@@ -18,7 +18,7 @@ class OpinionAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add( 'firstName' , null, array ( 'label' => 'Prénom', 'class' => 'col-md-12') )
+            ->add( 'firstName' , null, array ( 'label' => 'Prénom') )
             ->add( 'lastName' , null, array ( 'label' => 'Nom') )
             ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
             ->add( 'message' , null, array ( 'label' => 'Avis envoyé') )
