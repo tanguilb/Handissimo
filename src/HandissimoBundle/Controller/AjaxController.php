@@ -18,94 +18,31 @@ class AjaxController extends Controller
 {
     public function researchAction(Request $request)
     {
-    $form = $this->createForm('HandissimoBundle\Form\ResearchType');
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()){
-
-        $em = $this->getDoctrine()->getManager();
-        $keyword = $form->getData()['keyword'];
-        $age = $form->getData()['age'];
-        $postal = $form->getData()['postal'];
-
-        /**
-         * @var $repository OrganizationsRepository
-         */
-        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
-        //var_dump($result);
-       /* foreach ($result as $results){
-            $resultarray = array(
-                'name' => $results->getName(),
-                'address' => $results->getAddress()
-            );
-            var_dump($resultarray);
-            return $resultarray;
-
-
-
-        }*/
-        return $this->render('front/search.html.twig', array(
-            'result' => $result,
-
-
-
-
-        ));
-
-
-
-
-
-
-
-    }
-    return $this->render('front/research.html.twig', array(
-        'form' => $form->createView(),
-    ));
-
-    }
-
-    public function markerAction(Request $request)
-    {
-
-
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()){
 
+            $em = $this->getDoctrine()->getManager();
+            $keyword = $form->getData()['keyword'];
+            $age = $form->getData()['age'];
+            $postal = $form->getData()['postal'];
 
-                    $em = $this->getDoctrine()->getManager();
-                    $keyword = $form->getData()['keyword'];
-                    $age = $form->getData()['age'];
-                    $postal = $form->getData()['postal'];
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
 
-
-
-                if ($request->isXmlHttpRequest())
-                {
-                    /**
-                     * @var $repository OrganizationsRepository
-                     */
-                    $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
-                    $arrayjs = new JsonResponse(array("data" => json_encode($result)));
-                    return $this->render('front/search.html.twig', array(
-                        'data' => $result,
-                        'arrayjs' => $arrayjs
-
-
-                ));
-                } else {
-                    throw new HttpException("500", "Invalid Call");
-                }
-
-            }
+            return $this->render('front/search.html.twig', array(
+                'result' => $result,
+            ));
+        }
         return $this->render('front/research.html.twig', array(
             'form' => $form->createView(),
         ));
 
-
     }
+
 
     public function autoCompleteAction(Request $request, $keyword)
     {

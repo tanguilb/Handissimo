@@ -11,8 +11,6 @@
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
-        {#}{{ dump(results) }}{#}
-
 
             {% set array = {
                 'name': results.name,
