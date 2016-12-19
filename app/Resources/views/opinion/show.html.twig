@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Opinion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ opinion.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ opinion.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ opinion.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ opinion.eMail }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ opinion.message }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('opinion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

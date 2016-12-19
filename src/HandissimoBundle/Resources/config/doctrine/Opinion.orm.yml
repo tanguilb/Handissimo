@@ -1,0 +1,24 @@
+HandissimoBundle\Entity\Opinion:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\OpinionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstName:
+            type: string
+            length: '50'
+        lastName:
+            type: string
+            length: '50'
+        eMail:
+            type: string
+            length: '100'
+            unique: false
+        message:
+            type: text
+    lifecycleCallbacks: {  }

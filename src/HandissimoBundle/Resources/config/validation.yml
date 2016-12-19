@@ -1,0 +1,5 @@
+HandissimoBundle\Entity\Opinion:
+    properties:
+        eMail:
+            - Email:
+                checkMX: true

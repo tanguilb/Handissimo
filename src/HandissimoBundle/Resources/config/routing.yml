@@ -1,3 +1,7 @@
+handissimo_opinion:
+    resource: "@HandissimoBundle/Resources/config/routing/opinion.yml"
+    prefix:   /opinion
+
 handissimo_disabilitytypes:
     resource: "@HandissimoBundle/Resources/config/routing/disabilitytypes.yml"
     prefix:   /disabilitytypes
