@@ -81,9 +81,6 @@ sonata_user:
     manager_type: orm
     profile:
     admin:
-        user:
-            class: HandissimoBundle\UserBundle\Admin\Model\UserAdmin
-
 
 # Swiftmailer Configuration
 swiftmailer:
