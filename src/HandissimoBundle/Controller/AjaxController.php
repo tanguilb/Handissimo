@@ -35,7 +35,6 @@ class AjaxController extends Controller
         $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
         return $this->render('front/search.html.twig', array(
             'result' => $result,
-            'form' => $form->createView()
         ));
     }
     return $this->render('front/research.html.twig', array(

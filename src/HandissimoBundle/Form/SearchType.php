@@ -1,50 +1,38 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 12/12/16
- * Time: 21:39
- */
 
 namespace HandissimoBundle\Form;
 
 
-use HandissimoBundle\HandissimoBundle;
-use HandissimoBundle\Repository\DisabilityTypesRepository;
+use HandissimoBundle\Entity\DisabilityTypes;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /*public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            /**
-             * @var DisabilityTypesRepository
-             */
-            ->add('disabilitytypes', 'entity', array(
+        /*$builder
+            ->add('disabilitytypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de handicaps',
                 'class' => 'HandissimoBundle:DisabilityTypes',
-                'choice_label' => 'disabilityName',
+                'choice' => '',
                 'label' => 'Type de handicaps',
-                /*'query_builder' => function(\src\Handissimo\Repository\DisabilitypesRepository $r) {
-                    return $r->getBySelectDisability();
-                }*/
             ))
-            ->add('needs', 'entity', array(
+            ->add('needs', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de besoins',
                 'class' => 'HandissimoBundle\Entity\Needs',
-                'choice_label' => 'needName',
+                'choice' => '',
                 'label' => 'Type de besoins'
             ))
-            ->add('structurestypes', 'entity', array(
+            ->add('structurestypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de structures',
                 'class' => 'HandissimoBundle\Entity\StructuresTypes',
-                'choice_label' => 'structurestype',
+                'choice' => '',
                 'label' => 'Type de Structures'
             ));
-    }
+    }*/
 
     /**
      * @param OptionsResolver $resolver
