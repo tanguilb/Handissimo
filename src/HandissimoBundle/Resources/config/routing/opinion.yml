@@ -1,0 +1,20 @@
+opinion_index:
+    path:     /
+    defaults: { _controller: "HandissimoBundle:Opinion:index" }
+    methods:  GET
+
+opinion_show:
+    path:     /{id}/show
+    defaults: { _controller: "HandissimoBundle:Opinion:show" }
+    methods:  GET
+
+opinion_create:
+    path:     /newopinion
+    defaults: { _controller: "HandissimoBundle:NewOpinion:create" }
+    methods:  [GET, POST]
+
+opinion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HandissimoBundle:Opinion:delete" }
+    methods:  DELETE
+
