@@ -7,32 +7,30 @@
 
     <div id="map"></div>
 
-    <select name="1">
+    <select id="disabilitytypes">
         {% for results in result %}
-            <option>{{ results.name }}</option>
+            {% for disabilityType in results.disabilityTypes %}
+            <option id="disabilityselect">{{ disabilityType.disabilityName }}</option>
+            {% endfor %}
         {% endfor %}
     </select>
-    <select name="2">
+    <select id="structurestypes">
         {% for results in result %}
-            <option>{{ results.name }}</option>
+            <option id="structureselect">{{ results.structuretype }}</option>
         {% endfor %}
     </select>
-    <select name="3">
+    <select id="needs">
         {% for results in result %}
-            <option>{{ results.name }}</option>
+            {% for need in results.needs %}
+            <option id="needselect">{{ need.needName }}</option>
+            {% endfor %}
         {% endfor %}
     </select>
 
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
-            {{ dump(results) }}
-            {#{ form_start(form) }}
-                {{ form_errors(form) }}
-                {{ form_row(form.disabilitytypes) }}
-                {{ form_row(form.needs) }}
-                {{ form_row(form.structurestypes) }}
-            {{ form_end(form) }#}
+            {#{ dump(results) }#}
         {% endfor %}
     </ul>
 

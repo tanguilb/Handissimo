@@ -7,6 +7,11 @@ namespace HandissimoBundle\Entity;
  */
 class DisabilityTypes
 {
+    public function __toString()
+    {
+        return $this->disabilityName;
+    }
+
     /**
      * @var integer
      */

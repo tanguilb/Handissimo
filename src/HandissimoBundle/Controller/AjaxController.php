@@ -17,29 +17,29 @@ class AjaxController extends Controller
 {
     public function researchAction(Request $request)
     {
-    $form = $this->createForm('HandissimoBundle\Form\ResearchType');
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()){
-
-        $em = $this->getDoctrine()->getManager();
-        $keyword = $form->getData()['keyword'];
-        $age = $form->getData()['age'];
-        $postal = $form->getData()['postal'];
-
-        $form = $this->createForm('HandissimoBundle\Form\SearchType');
+        $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
-        /**
-         * @var $repository OrganizationsRepository
-         */
-        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
-        return $this->render('front/search.html.twig', array(
-            'result' => $result,
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $keyword = $form->getData()['keyword'];
+            $age = $form->getData()['age'];
+            $postal = $form->getData()['postal'];
+
+            $form = $this->createForm('HandissimoBundle\Form\SearchType');
+            $form->handleRequest($request);
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
+            return $this->render('front/search.html.twig', array(
+                'result' => $result,
+            ));
+        }
+        return $this->render('front/research.html.twig', array(
+            'form' => $form->createView(),
         ));
-    }
-    return $this->render('front/research.html.twig', array(
-        'form' => $form->createView(),
-    ));
 
     }
 
@@ -96,5 +96,26 @@ class AjaxController extends Controller
         }else {
             throw new HttpException('500', 'Invalid call');
         }
+    }
+
+    public function researchAdvancedAction(Request $request)
+    {
+        $form = $this->createForm('HandissimoBundle\Form\SearchType');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $disabilitytypes = $form->getData()['disabilitytypes'];
+            $structurestypes = $form->getData()['structurestypes'];
+            $needs = $form->getData()['needs'];
+            var_dump($disabilitytypes);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchAdvanced($disabilitytypes, $structurestypes, $needs);
+            return $this->render(':front:search.html.twig', array(
+                'result' => $result,
+            ));
+        }
+        return $this->render(':front:search.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }
