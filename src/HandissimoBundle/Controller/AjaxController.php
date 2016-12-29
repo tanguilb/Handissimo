@@ -17,32 +17,35 @@ class AjaxController extends Controller
 {
     public function researchAction(Request $request)
     {
-    $form = $this->createForm('HandissimoBundle\Form\ResearchType');
-    $form->handleRequest($request);
+        $form = $this->createForm('HandissimoBundle\Form\ResearchType');
+        $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()){
 
-        $em = $this->getDoctrine()->getManager();
-        $keyword = $form->getData()['keyword'];
-        $age = $form->getData()['age'];
-        $postal = $form->getData()['postal'];
+            $em = $this->getDoctrine()->getManager();
+            $keyword = $form->getData()['keyword'];
+            $age = $form->getData()['age'];
+            $postal = $form->getData()['postal'];
 
-        /**
-         * @var $repository OrganizationsRepository
-         */
-        $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
-        return $this->render('front/search.html.twig', array(
-            'result' => $result,
-            //var_dump($result)
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
+            return $this->render('front/search.html.twig', array(
+                'result' => $result,
+                'keyword' => $keyword,
+                'age' => $age,
+                'postal' => $postal,
+                'form' => $form->createView(),
+            ));
+        }
+        return $this->render('front/research.html.twig', array(
+            'form' => $form->createView(),
         ));
-    }
-    return $this->render('front/research.html.twig', array(
-        'form' => $form->createView(),
-    ));
 
     }
 
-    public function autoCompleteAction(Request $request, $keyword)
+        public function autoCompleteAction(Request $request, $keyword)
     {
         if ($request->isXmlHttpRequest())
         {
