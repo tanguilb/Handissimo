@@ -42,10 +42,9 @@ class AjaxController extends Controller
         return $this->render('front/research.html.twig', array(
             'form' => $form->createView(),
         ));
-
     }
 
-        public function autoCompleteAction(Request $request, $keyword)
+    public function autoCompleteAction(Request $request, $keyword)
     {
         if ($request->isXmlHttpRequest())
         {
@@ -95,7 +94,7 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $data = $repository->getByCity($postalcode);
             return new JsonResponse(array("data" => json_encode($data)));
-        }else {
+        } else {
             throw new HttpException('500', 'Invalid call');
         }
     }

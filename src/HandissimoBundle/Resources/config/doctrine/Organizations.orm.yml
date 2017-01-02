@@ -176,4 +176,5 @@ HandissimoBundle\Entity\Organizations:
                     staff_id:
                         referencedColumnName: id
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        prePersist: [ transformAddressGeocode ]

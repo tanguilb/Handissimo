@@ -9,8 +9,23 @@
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
-        {% endfor %}
 
+            {% set array = {
+                'name': results.name,
+                'address': results.address,
+                'postal': results.postal,
+                'city': results.city,
+                'number': results.phoneNumber,
+                'mail': results.mail,
+                'web': results.website,
+                'latitude': results.latitude,
+                'longitude': results.longitude,
+                }
+            %}
+
+            {% set arrayjson = array|json_encode %}
+            <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
+        {% endfor %}
     </ul>
 
     <div>
