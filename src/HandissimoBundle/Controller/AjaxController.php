@@ -27,14 +27,15 @@ class AjaxController extends Controller
             $age = $form->getData()['age'];
             $postal = $form->getData()['postal'];
 
-            $form = $this->createForm('HandissimoBundle\Form\SearchType');
-            $form->handleRequest($request);
+            //$form = $this->createForm('HandissimoBundle\Form\SearchType');
+            //$form->handleRequest($request);
             /**
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
+                //'form' => $form
             ));
         }
         return $this->render('front/research.html.twig', array(
@@ -108,13 +109,15 @@ class AjaxController extends Controller
             $disabilitytypes = $form->getData()['disabilitytypes'];
             $structurestypes = $form->getData()['structurestypes'];
             $needs = $form->getData()['needs'];
-            var_dump($disabilitytypes);
+            //var_dump($disabilitytypes);
+
+
             $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchAdvanced($disabilitytypes, $structurestypes, $needs);
             return $this->render(':front:search.html.twig', array(
                 'result' => $result,
             ));
         }
-        return $this->render(':front:search.html.twig', array(
+        return $this->render('front/research.html.twig', array(
             'form' => $form->createView()
         ));
     }

@@ -101,44 +101,45 @@ class OrganizationsRepository extends EntityRepository
     public function getBySearchAdvanced($disabilitytypes, $structurestypes, $needs)
     {
         $query = $this->createQueryBuilder('o');
-        $query->addSelect('o');
-        $query->from('HandissimoBundle:Organizations', 'o');
+        //$query->addSelect('o');
+        //$query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
         $query->innerJoin('o.structuretype', 'st');
 
             if ($disabilitytypes !== null && $structurestypes !== null && $needs !== null) {
-                $query->where('o.needs = :needsdata');
-                $query->andWhere('o.disabilityTypes = :disabilityTypesdata' );
-                $query->andWhere('o.structuretype = :structuretypedata');
+                $query->where('n.needName = :needsdata');
+                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
+                $query->andWhere('st.structurestype = :structuretypedata');
                 $query->setParameter('needsdata', $needs);
                 $query->setParameter('disabilityTypesdata', $disabilitytypes);
                 $query->setParameter('structuretypedata', $structurestypes);
             }elseif ($disabilitytypes !== null && $structurestypes !== null && $needs == null) {
-                $query->andWhere('o.disabilityTypes = :disabilityTypesdata' );
-                $query->andWhere('o.structuretype = :structuretypedata');
+                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
+                $query->andWhere('st.structurestype = :structuretypedata');
                 $query->setParameter('disabilityTypesdata', $disabilitytypes);
                 $query->setParameter('structuretypedata', $structurestypes);
             }elseif ($disabilitytypes !== null && $structurestypes == null && $needs !== null) {
-                $query->where('o.needs = :needsdata');
-                $query->andWhere('o.disabilityTypes = :disabilityTypesdata' );
+                $query->where('n.needName = :needsdata');
+                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
                 $query->setParameter('needsdata', $needs);
                 $query->setParameter('disabilityTypesdata', $disabilitytypes);
             }elseif ($disabilitytypes == null && $structurestypes !== null && $needs !== null) {
-                $query->where('o.needs = :needsdata');
-                $query->andWhere('o.structuretype = :structuretypedata');
+                $query->where('n.needName = :needsdata');
+                $query->andWhere('st.structurestype = :structuretypedata');
                 $query->setParameter('needsdata', $needs);
                 $query->setParameter('structuretypedata', $structurestypes);
             }elseif ($disabilitytypes !== null && $structurestypes == null && $needs == null) {
-                $query->andWhere('o.disabilityTypes = :disabilityTypesdata' );
+                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
                 $query->setParameter('disabilityTypesdata', $disabilitytypes);
             }elseif ($disabilitytypes == null && $structurestypes !== null && $needs == null) {
-                $query->andWhere('o.structuretype = :structuretypedata');
+                $query->andWhere('st.structurestype = :structuretypedata');
                 $query->setParameter('structuretypedata', $structurestypes);
             }elseif ($disabilitytypes == null && $structurestypes == null && $needs !== null) {
-                $query->where('o.needs = :needsdata');
+                $query->where('n.needName = :needsdata');
                 $query->setParameter('needsdata', $needs);
             }
+            //$query->getQuery()->getSQL();;die;
         return $query->getQuery()->getResult();
     }
 

@@ -7,33 +7,31 @@
 
     <div id="map"></div>
 
-    <select id="disabilitytypes">
-        {% for results in result %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.disabilitytypes) }}
+        {#}% for results in result %}
             {% for disabilityType in results.disabilityTypes %}
-            <option id="disabilityselect">{{ disabilityType.disabilityName }}</option>
+            <div id="disabilityselect">{{ disabilityType.disabilityName }}</div>
             {% endfor %}
-        {% endfor %}
-    </select>
-    <select id="structurestypes">
-        {% for results in result %}
-            <option id="structureselect">{{ results.structuretype }}</option>
-        {% endfor %}
-    </select>
-    <select id="needs">
-        {% for results in result %}
+        {% endfor %#}
+    {{ form_row(form.structurestypes) }}
+        {#% for results in result %}
+            <div id="structureselect">{{ results.structuretype }}</div>
+        {% endfor %#}
+    {{ form_row(form.needs) }}
+        {#% for results in result %}
             {% for need in results.needs %}
-            <option id="needselect">{{ need.needName }}</option>
+            <div id="needselect">{{ need.needName }}</div>
             {% endfor %}
-        {% endfor %}
-    </select>
-
+        {% endfor %#}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
-            {#{ dump(results) }#}
         {% endfor %}
     </ul>
-
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>

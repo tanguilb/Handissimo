@@ -20,21 +20,28 @@ class SearchType extends AbstractType
                 'class' => 'HandissimoBundle:DisabilityTypes',
                 'property' => 'disabilityName',
                 'label' => 'Type de handicaps',
+                'expanded' => true,
+                'multiple' => true
             ))
             ->add('needs', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de besoins',
                 'class' => 'HandissimoBundle\Entity\Needs',
                 'property' => 'needName',
-                'label' => 'Type de besoins'
+                'label' => 'Type de besoins',
+                'expanded' => false,
+                'multiple' => true
             ))
             ->add('structurestypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de structures',
                 'class' => 'HandissimoBundle\Entity\StructuresTypes',
-                'property' => 'structuretype',
-                'label' => 'Type de Structures'
+                'property' => 'structurestype',
+                'label' => 'Type de Structures',
+                'expanded' => true,
+                'multiple' => true
             ))
             ->add('save', SubmitType::class,
                 array('label' => 'Recherche Avancée'));
+
     }
 
     /**
@@ -47,6 +54,6 @@ class SearchType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'handissimo_search';
+        return 'search_advanced';
     }
 }
