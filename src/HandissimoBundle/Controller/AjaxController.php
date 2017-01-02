@@ -8,7 +8,6 @@ use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Repository\StaffRepository;
 use HandissimoBundle\Repository\StructuresTypesRepository;
-use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,17 +31,18 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
-
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
+                'keyword' => $keyword,
+                'age' => $age,
+                'postal' => $postal,
+                'form' => $form->createView(),
             ));
         }
         return $this->render('front/research.html.twig', array(
             'form' => $form->createView(),
         ));
-
     }
-
 
     public function autoCompleteAction(Request $request, $keyword)
     {
@@ -94,7 +94,7 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $data = $repository->getByCity($postalcode);
             return new JsonResponse(array("data" => json_encode($data)));
-        }else {
+        } else {
             throw new HttpException('500', 'Invalid call');
         }
     }
