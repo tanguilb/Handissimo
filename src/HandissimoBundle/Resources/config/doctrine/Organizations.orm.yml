@@ -178,3 +178,4 @@ HandissimoBundle\Entity\Organizations:
 
     lifecycleCallbacks:
         prePersist: [ transformAddressGeocode ]
+        preUpdate: [ transformAddressGeocode ]
