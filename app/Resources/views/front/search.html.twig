@@ -5,9 +5,7 @@
 {% endblock %}
 {% block body %}
 
-    <div id="map">
-
-    </div>
+    <div id="map"></div>
     <ul>
         {% for results in result %}
             <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
@@ -24,20 +22,22 @@
                 'longitude': results.longitude,
                 }
             %}
+
             {% set arrayjson = array|json_encode %}
             <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
-
-            {#}{ form_start(form) }}
-            {{ form_errors(form) }}
-            {{ form_row(form.zzzzzz) }}
-            {{ form_end(form) }#}
         {% endfor %}
-
-
-
-
-
     </ul>
+
+    <div>
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.keyword) }}
+        <ul id="keywordautocomplete"></ul>
+        {{ form_row(form.age) }}
+        {{ form_row(form.postal) }}
+        <ul id="city"></ul>
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}
 {% block javascripts %}
