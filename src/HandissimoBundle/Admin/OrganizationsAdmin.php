@@ -106,7 +106,8 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Ecole',
                 'required' => false
             ))
-            ->add('school_description', 'textarea', array(
+            ->add('school_description', 'sonata_simple_formatter_type', array(
+                'format' => 'markdown',
                 'label' => 'Description de l\'école',
                 'required' => false
                     ))
@@ -135,7 +136,8 @@ class OrganizationsAdmin extends Admin
                 'multiple' => false,
                 'by_reference' => true,
                 'expanded' => false
-            ));
+            ))
+        ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
