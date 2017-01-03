@@ -1,0 +1,53 @@
+p {
+    color:red;
+}
+.logo{
+    width: 15%;
+    margin:10px 0 0 40px;
+}
+.login{
+    border:solid 3px black;
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    margin:20px 20px 0 0;
+    padding: 10px;
+    border-radius: 50px;
+}
+.navbar{
+    height: 100px;
+    width: auto;
+    background-color: white;
+    border-radius: 0;
+    box-shadow: 0 5px 5px 0 #e0e0e0;
+}
+h1{
+    text-align: left;
+    margin-left: 50px;
+}
+.organization_logo, .title{
+
+    margin: 5px;
+}
+.title{
+    height: 40px;
+    width: 300px;
+    color:#65bfba;  /* #f7af49 orange*/
+
+}
+.organization_logo{
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    box-shadow: 5px 5px 5px 0 #e0e0e0;
+    border: solid 1px #dadada;
+}
+.title_bloc{
+    display: flex;
+    align-items: center;
+}
+.essential_bloc{
+    background-color: #d0e8dd;
+    width: 415px;
+    height: 400px;
+}

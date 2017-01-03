@@ -6,6 +6,7 @@ use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Organization controller.
@@ -121,5 +122,14 @@ class OrganizationsController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    /*
+     * display type page of organization.
+     */
+    public function typePageAction()
+    {
+
+        return $this->render('organizations/typePage.html.twig');{}
+
     }
 }

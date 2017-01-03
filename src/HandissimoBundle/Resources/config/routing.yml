@@ -46,3 +46,7 @@ handissimo_research:
     resource: "@HandissimoBundle/Resources/config/routing/research.yml"
     prefix:   /research
 
+handissimo_orga:
+    path: /structure
+    defaults: { _controller: HandissimoBundle:Organizations:typePage }
+
