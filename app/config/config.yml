@@ -151,3 +151,8 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+
+ivory_ck_editor:
+    default_config: default
+    configs:
+        default:

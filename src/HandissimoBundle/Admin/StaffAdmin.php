@@ -23,7 +23,7 @@ class StaffAdmin extends Admin
             ->add('staff', EntityType::class, array(
                 'class' => 'HandissimoBundle:StaffTypes',
                 'choice_label' => 'secteur',
-                'label' => 'Type de personnels',
+                'label' => 'Types de personnel',
                 'required' => false
 
             ));

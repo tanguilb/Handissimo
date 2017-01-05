@@ -47,7 +47,6 @@ class OrganizationsType extends AbstractType
             ->add('needs')
             ->add('stafforganizations')
         ;
-
     }
     
     /**

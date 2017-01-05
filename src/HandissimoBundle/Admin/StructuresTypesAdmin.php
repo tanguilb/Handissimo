@@ -14,7 +14,7 @@ class StructuresTypesAdmin extends Admin
     {
         $formMapper
             ->add('structurestype', 'text', array(
-                'label' => 'Type de structures',
+                'label' => 'Types de structures',
                 'required' => false
             ))
             ->add('structures',EntityType::class,array (
@@ -26,7 +26,7 @@ class StructuresTypesAdmin extends Admin
                 'disabled' => true
             ))
             ->add('logo_mdph', 'text', array(
-                'label' => 'Logo Mdph',
+                'label' => 'Logo MDPH',
                 'required' => false
             ));
     }
@@ -36,14 +36,14 @@ class StructuresTypesAdmin extends Admin
         $datagridMapper
             ->add('structurestype', null,
                 array(
-                    'label' => 'Type de structures'
+                    'label' => 'Types de structures'
                 ));
 
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper ->add( 'structurestype' , null, array ( 'label' => 'Type de structure') );
+        $listMapper ->add( 'structurestype' , null, array ( 'label' => 'Types de structures') );
 
     }
 }
