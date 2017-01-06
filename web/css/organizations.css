@@ -1,25 +1,53 @@
-p {
-    color:red;
-}
-.logo{
-    width: 15%;
-    margin:10px 0 0 40px;
-}
-.login{
-    border:solid 3px black;
-    position: absolute;
-    right: 0;
-    display: inline-block;
-    margin:20px 20px 0 0;
-    padding: 10px;
-    border-radius: 50px;
-}
+/*  ------------------------------------ nav bar  */
 .navbar{
     height: 100px;
     width: auto;
     background-color: white;
     border-radius: 0;
     box-shadow: 0 5px 5px 0 #e0e0e0;
+    display: flex;
+}
+.logo{
+    width: 15%;
+    margin:10px 0 0 40px;
+}
+
+.btn-nav{
+    border-radius: 50px;
+    padding: 10px;
+    margin-left:20px;
+}
+.nav-btn-bloc{
+    display: flex;
+    justify-content: flex-end;
+    width:70%;
+
+    margin: 40px 0 0 0 ;
+    color:white;
+}
+.about{
+    background-color: #f8af3e;
+}
+.account{
+    background-color: #db7199;
+}
+li {
+    display: inline;
+}
+/*-----------------------------------------container*/
+.container{
+    display: flex;
+}
+
+/*----------------------------------------------- all containers*/
+.container-gallery, .container-info{
+    padding: 5px;
+}
+
+/*   -----------------------------------container info bloc*/
+.container-info{
+    border:solid 1px black;
+    width:60%;
 }
 h1{
     text-align: left;
@@ -27,7 +55,6 @@ h1{
 }
 .organization_logo, .title{
 
-    margin: 5px;
 }
 .title{
     height: 40px;
@@ -38,16 +65,31 @@ h1{
 .organization_logo{
     height: 100px;
     width: 100px;
-    text-align: center;
     box-shadow: 5px 5px 5px 0 #e0e0e0;
     border: solid 1px #dadada;
+
 }
 .title_bloc{
     display: flex;
     align-items: center;
 }
-.essential_bloc{
+.img-bloc{
+    display: flex;
+
+    justify-content: flex-end;
+    width:70%;
+}
+.essential-bloc, .know-more-bloc{
     background-color: #d0e8dd;
-    width: 415px;
+    width: auto;
     height: 400px;
+    margin:10px 0 0 0 ;
+}
+/*-------------------------------- gallery block*/
+.container-gallery{
+    width: 40%;
+    border:solid 1px black;
+}
+.main-gallery-img img{
+    width: 100%;
 }

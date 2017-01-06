@@ -5,15 +5,30 @@
 
 {% block body %}
     <nav class="navbar">
-
         <img class="logo" src="https://s29.postimg.org/sf1uzrrxj/Handissimo_logo.png" alt="">
-        <div class="login">Mon compte</div>
+        <div class="nav-btn-bloc">
+            <ul>
+                <li class="btn-nav about">Qui sommes-nous ?</li>
+                <li class="btn-nav account">Mon compte</li>
+            </ul>
+        </div>
     </nav>
-    <div class="title_bloc">
-        <h2 class="title">Nom de la structure</h2>
-        <img class="organization_logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt="">
-    </div>
-    <div class="essential_bloc">
+  <div class="container">
 
+    <div class="container-info">
+        <div class="title_bloc">
+            <h2 class="title">Nom de la structure</h2>
+            <div class="img-bloc"><img class="organization_logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
+        </div>
+        <div class="essential-bloc">L'essentiel
+        </div>
+        <div class="know-more-bloc">En savoir plus
+          
+        </div>
     </div>
+    <div class="container-gallery">
+        <div class="main-gallery-img"><img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt=""></div>
+    </div>
+  </div>
+
 {% endblock %}
