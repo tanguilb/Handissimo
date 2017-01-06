@@ -9,14 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\UserBundle\Admin\Model;
+namespace Application\Sonata\UserBundle\Admin\Model;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class GroupAdmin extends AbstractAdmin
+class GroupAdmin extends \Sonata\UserBundle\Admin\Model\GroupAdmin
 {
     /**
      * {@inheritdoc}
