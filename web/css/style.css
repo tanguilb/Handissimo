@@ -1,3 +1,13 @@
+body {
+
+}
+
+.blue{
+    background-color: #60bfb9;
+    width: 1442px;
+    height: 245px;
+}
+
 #alert-success,
 #alert-danger {
     display: none;

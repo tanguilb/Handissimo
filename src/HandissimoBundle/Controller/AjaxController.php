@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
@@ -27,21 +28,21 @@ class AjaxController extends Controller
             $age = $form->getData()['age'];
             $postal = $form->getData()['postal'];
 
-            //$form = $this->createForm('HandissimoBundle\Form\SearchType');
-            //$form->handleRequest($request);
             /**
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
-                //'form' => $form
+                'keyword' => $keyword,
+                'age' => $age,
+                'postal' => $postal,
+                'form' => $form->createView(),
             ));
         }
         return $this->render('front/research.html.twig', array(
             'form' => $form->createView(),
         ));
-
     }
 
     public function autoCompleteAction(Request $request, $keyword)
@@ -94,7 +95,7 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $data = $repository->getByCity($postalcode);
             return new JsonResponse(array("data" => json_encode($data)));
-        }else {
+        } else {
             throw new HttpException('500', 'Invalid call');
         }
     }
@@ -111,13 +112,13 @@ class AjaxController extends Controller
             $needs = $form->getData()['needs'];
             //var_dump($disabilitytypes);
 
-
             $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchAdvanced($disabilitytypes, $structurestypes, $needs);
-            return $this->render(':front:search.html.twig', array(
+            return $this->render('/front/search.html.twig', array(
                 'result' => $result,
+                'form' => $form,
             ));
         }
-        return $this->render('front/research.html.twig', array(
+        return $this->render('front/search.html.twig', array(
             'form' => $form->createView()
         ));
     }

@@ -18,10 +18,11 @@ class SearchType extends AbstractType
             ->add('disabilitytypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de handicaps',
                 'class' => 'HandissimoBundle:DisabilityTypes',
-                'property' => 'disabilityName',
+                'choice_label' => 'disabilityName',
                 'label' => 'Type de handicaps',
-                'expanded' => true,
-                'multiple' => true
+                'expanded' => false,
+                'multiple' => true,
+                'required' => false
             ))
             ->add('needs', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de besoins',
@@ -29,15 +30,17 @@ class SearchType extends AbstractType
                 'property' => 'needName',
                 'label' => 'Type de besoins',
                 'expanded' => false,
-                'multiple' => true
+                'multiple' => true,
+                'required' => false
             ))
             ->add('structurestypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de structures',
                 'class' => 'HandissimoBundle\Entity\StructuresTypes',
                 'property' => 'structurestype',
                 'label' => 'Type de Structures',
-                'expanded' => true,
-                'multiple' => true
+                'expanded' => false,
+                'multiple' => true,
+                'required' => false
             ))
             ->add('save', SubmitType::class,
                 array('label' => 'Recherche Avancée'));

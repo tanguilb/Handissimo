@@ -25,7 +25,6 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Nom de l\'organisation',
                 'required' => true
             ))
-
             ->add('address', 'text', array(
                 'label' => 'Adresse',
                 'required' => true
