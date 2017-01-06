@@ -13,7 +13,18 @@ class SocietyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('societyName')->add('logo')->add('address')->add('postal')->add('city')->add('phoneNumber')->add('mail')->add('societyTwitter')->add('societyFacebook')->add('website')        ;
+        $builder
+            ->add('societyName')
+            ->add('logo')
+            ->add('address')
+            ->add('postal')
+            ->add('city')
+            ->add('phoneNumber')
+            ->add('mail')
+            ->add('societyTwitter')
+            ->add('societyFacebook')
+            ->add('website')
+        ;
     }
     
     /**
