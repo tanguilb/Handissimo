@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /*public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('disabilitytypes', EntityType::class, array(
@@ -45,8 +45,7 @@ class SearchType extends AbstractType
             ->add('save', SubmitType::class,
                 array('label' => 'Recherche Avancée'));
 
-    }
-
+    }*/
     /**
      * @param OptionsResolver $resolver
      */
