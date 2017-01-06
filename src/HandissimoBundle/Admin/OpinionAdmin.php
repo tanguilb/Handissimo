@@ -21,7 +21,7 @@ class OpinionAdmin extends Admin
             ->add( 'firstName' , null, array ( 'label' => 'Prénom') )
             ->add( 'lastName' , null, array ( 'label' => 'Nom') )
             ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add( 'message' , null, array ( 'label' => 'Avis envoyé') )
+            ->add( 'message' , null, array ( 'label' => 'Votre avis') )
         ;
     }
 
