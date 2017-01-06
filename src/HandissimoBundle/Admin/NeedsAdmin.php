@@ -15,7 +15,7 @@ class NeedsAdmin extends admin
         $formMapper
             ->add('needName', 'text',
                 array(
-                    'label' => 'Type de services',
+                    'label' => 'Types de services',
                     'required' => false
                 ))
             ->add('organizations',EntityType::class,array (
@@ -34,7 +34,7 @@ class NeedsAdmin extends admin
         $listMapper
             ->add('needName', null,
                 array(
-                    'label' => 'Type de services'
+                    'label' => 'Types de services'
                 ));
     }
 }
