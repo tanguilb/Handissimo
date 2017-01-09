@@ -1,11 +1,14 @@
+body {
+    background-color: #f1f5d5;
+}
 /*  ------------------------------------ nav bar  */
 .navbar{
     height: 100px;
     width: auto;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 0;
-    box-shadow: 0 5px 5px 0 #e0e0e0;
     display: flex;
+    margin-top:-150px;
 }
 .logo{
     width: 15%;
@@ -33,52 +36,68 @@
 }
 li {
     display: inline;
+    font-size:20px;
 }
-/*-----------------------------------------container*/
+/*----------------------------------------------------------- img head/ image d'entete arriere plan*/
+
+.head-img{
+    width: 100%;
+    height: 250px;
+    background-image: url("https://s29.postimg.org/9j87qm5ef/image.jpg");
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    margin-top: -20px;;
+}
+/*-----------------------------------------container / bloc de contunu generale*/
 .container{
     display: flex;
+    background-color: #ffffff;
+    margin-top:150px ;
+    padding:0;
 }
 
-/*----------------------------------------------- all containers*/
-.container-gallery, .container-info{
-    padding: 5px;
-}
-
-/*   -----------------------------------container info bloc*/
+/*   -----------------------------------container info bloc / contenu du bloc information*/
 .container-info{
     border:solid 1px black;
-    width:60%;
+    padding: 0;
 }
-h1{
-    text-align: left;
-    margin-left: 50px;
-}
-.organization_logo, .title{
 
+.update{
+    margin: 0;;
 }
-.title{
-    height: 40px;
-    width: 300px;
-    color:#65bfba;  /* #f7af49 orange*/
-
-}
-.organization_logo{
-    height: 100px;
-    width: 100px;
+.organization-logo{
+    height: 50px;
+    width: auto;
     box-shadow: 5px 5px 5px 0 #e0e0e0;
     border: solid 1px #dadada;
+}
+
+.like-img{
+    width: 10%;
+}
+.like{
+    float: right;
+}
+.img-bloc, .like {
+    padding:0;
+    margin:0;
+}
+.title{
+    padding:0;
+    margin:10px 0 0 0 ;
 
 }
-.title_bloc{
-    display: flex;
-    align-items: center;
+.head-bloc{
+    margin:20px 10px 5px 10px;
+    padding:20px;
 }
-.img-bloc{
+.img-bloc, .like{
     display: flex;
-
     justify-content: flex-end;
-    width:70%;
+
 }
+/*----------------------------------------essentieal bloc*/
 .essential-bloc, .know-more-bloc{
     background-color: #d0e8dd;
     width: auto;
@@ -87,9 +106,15 @@ h1{
 }
 /*-------------------------------- gallery block*/
 .container-gallery{
-    width: 40%;
+
     border:solid 1px black;
 }
 .main-gallery-img img{
     width: 100%;
+}
+.row1{
+    background-color: 9f191f;
+}
+.row2{
+    background-color: 219f20;
 }

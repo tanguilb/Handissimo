@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+    <!-- nav bar-------------------------------------------->
     <nav class="navbar">
         <img class="logo" src="https://s29.postimg.org/sf1uzrrxj/Handissimo_logo.png" alt="">
         <div class="nav-btn-bloc">
@@ -13,22 +14,68 @@
             </ul>
         </div>
     </nav>
-  <div class="container">
+    <!--  bloc container --------------------------------------->
+    <div class="head-img"></div>
 
-    <div class="container-info">
-        <div class="title_bloc">
-            <h2 class="title">Nom de la structure</h2>
-            <div class="img-bloc"><img class="organization_logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
+   <div class="container">
+
+        <div class="container-info col-md-12">
+            <!-- Bloc entete / titre----------------------------->
+            <div class="head-bloc">
+                <!-- date de mise a jour-->
+                <div class="row row1"><p class="update">Dernière mise à jour le 02/02/2017</p></div>
+                <!-- titre/logo/favoris---------------------------------- -->
+                <div class="row row2 title-head">
+                    <h2 class="title col-md-4">OVE - MAS Robert Ramel</h2>
+                    <div class="img-bloc col-md-1"><img class="organization-logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
+                    <div class="like">
+                        <img class="like-img" src="https://s29.postimg.org/z1isf29t3/favorite_heart_outline_button_318_76798.jpg" alt="">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <!-- bloc image----------------------------------->
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt="">
+                    </a>
+                </div>
+
+            </div>
+            <!-- bloc image----------------------------------->
+
+
+            <div class="essential-bloc">L'essentiel
+                <div class="address">
+
+                </div>
+            </div>
+            <div class="know-more-bloc">En savoir plus
+
+            </div>
         </div>
-        <div class="essential-bloc">L'essentiel
-        </div>
-        <div class="know-more-bloc">En savoir plus
-          
-        </div>
-    </div>
-    <div class="container-gallery">
-        <div class="main-gallery-img"><img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt=""></div>
-    </div>
-  </div>
+       <!--  <div class="container-gallery">
+           <div class="main-gallery-img"><img src="https://s29.postimg.org/9j87qm5ef/image.jpg" alt=""></div>
+       </div>   -->
+ </div>
 
 {% endblock %}
