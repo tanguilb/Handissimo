@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Application\Sonata\UserBundle\Admin\Model;
+namespace HandissimoBundle\UserBundle\Admin\Model;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -84,7 +84,7 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
     {
         $listMapper
             ->addIdentifier('username')
-            ->add('email')
+            //->add('email')
             ->add('groups')
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))

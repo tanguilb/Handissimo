@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Application\Sonata\UserBundle\Entity;
+namespace HandissimoBundle\UserBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 

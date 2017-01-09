@@ -53,13 +53,13 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions }
 
     admin.users:
-        class: Application\Sonata\UserBundle\Admin\Model\UserAdmin
-        arguments: [~, Application\Sonata\UserBundle\Entity\User, ~]
+        class: HandissimoBundle\UserBundle\Admin\Model\UserAdmin
+        arguments: [~, HandissimoBundle\UserBundle\Entity\User, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: User, label: Utilisateurs }
 
     admin.groups:
-        class: Application\Sonata\UserBundle\Admin\Model\GroupAdmin
-        arguments: [~, Application\Sonata\UserBundle\Entity\Group, ~]
+        class: HandissimoBundle\UserBundle\Admin\Model\GroupAdmin
+        arguments: [~, HandissimoBundle\UserBundle\Entity\Group, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: User, label: Groups }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Application\Sonata\UserBundle\Document;
+namespace HandissimoBundle\UserBundle\Document;
 
 use Sonata\UserBundle\Document\BaseUser as BaseUser;
 
