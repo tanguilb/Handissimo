@@ -29,7 +29,7 @@ body {
     color:white;
 }
 .about{
-    background-color: #f8af3e;
+    background-color: #f7af49;
 }
 .account{
     background-color: #db7199;
@@ -59,8 +59,8 @@ li {
 
 /*   -----------------------------------container info bloc / contenu du bloc information*/
 .container-info{
-    border:solid 1px black;
-    padding: 0;
+   padding: 0;
+
 }
 
 .update{
@@ -98,23 +98,82 @@ li {
 
 }
 /*----------------------------------------essentieal bloc*/
-.essential-bloc, .know-more-bloc{
-    background-color: #d0e8dd;
-    width: auto;
-    height: 400px;
-    margin:10px 0 0 0 ;
-}
-/*-------------------------------- gallery block*/
-.container-gallery{
 
-    border:solid 1px black;
+.essential-bloc, .know-more-bloc{
+      margin:10px 0 0 0 ;
 }
-.main-gallery-img img{
-    width: 100%;
+.fa {
+    font-size: 20px;
+    padding-top: 3px;
 }
-.row1{
-    background-color: 9f191f;
+.icon-bloc{
+    width: 8%;
+    display: flex;
+    justify-content: center;
 }
-.row2{
-    background-color: 219f20;
+.line {
+    display: flex;
 }
+.address-link{
+    color:#65bfba;
+}
+.address-link:hover{
+    text-decoration: none;
+    color: #f7af49;
+
+}
+.address{
+    border-top:solid #dadada 1px;
+}
+.address, .description, .map, .ressources{
+    padding:10px;
+    margin-top: 10px;
+}
+.description{
+
+    text-align: justify;
+}
+.address-line{
+    font-size: 20px;
+    margin: 0 0 5px 0;
+}
+/* map & ressources------------------------------*/
+.map{
+    height:400px;
+    background-color: #9e9e9e;
+}
+.print-line, .download-line{
+    border-top: solid 1px #dadada;
+    margin-top: 5px;
+    padding-top: 10px;
+}
+.print p, .download p{
+    font-size: 20px;
+}
+.print-line p, .download-line p {
+    margin-left: 10px;
+
+}
+.download,.print{
+    color:#65bfba;
+}
+.download:hover, .download-line p:hover, .print:hover, .print-line p:hover{
+    text-decoration: none;
+    color: #f7af49;
+}
+
+.fa-print, .fa-download {
+    padding: 3px 0 10px 5px;
+ }
+
+
+.download-line:hover, .print-line:hover {
+    box-shadow: 0 0 5px 1px #cfcfcf;
+
+}
+
+
+
+/*-------------------------------- */
+
+
