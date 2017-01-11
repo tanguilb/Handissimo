@@ -1,4 +1,60 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.btn {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 90px;
+}
+
+.btn a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/****************/
+/*****NAVBAR*****/
+/****************/
+
+.navbar {
+    height: 125px;
+}
+
+.logo-handissimo {
+    width:250px;
+}
+
+.orange {
+    background-color: #f7af49;
+}
+
+.orange:hover {
+    background-color: #FFB54B;
+}
+
+.pink {
+    background-color: #C37095;
+}
+
+.pink:hover {
+    background-color: #BB6B8F;
+}
+
+/****************/
+/*****FOOTER*****/
+/****************/
+
+/****************/
+/*OPINION BUTTON*/
+/****************/
 #alert-success,
 #alert-danger {
     display: none;
+}
+
+#giveOpinion {
+    z-index: 9999;
 }

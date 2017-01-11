@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="alert alert-success" role="alert" id="alert-success"></div>
+    <div class="alert alert-danger" role="alert" id="alert-danger"></div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">
+                <img alt="Handissimo vous simplifie le handicap" src="{{ asset('images/handissimo-logo.png') }}" class="logo-handissimo">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="nav navbar-nav navbar-right">
+                <button class="btn orange"><a href="#">Qui sommes-nous ?</a></button>
+                {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
+                <button class="btn pink"><a href="#">Votre compte</a></button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/opinion.js') }}"></script>
+{% endblock %}
