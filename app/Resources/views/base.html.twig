@@ -15,12 +15,11 @@
     </head>
     <body>
 
-        <div class="container">
+        {% include ':front:navbar.html.twig' %}
+        <div class="container" id="alert-box">
             <div class="alert alert-success" role="alert" id="alert-success"></div>
             <div class="alert alert-danger" role="alert" id="alert-danger"></div>
         </div>
-
-        {% include ':front:navbar.html.twig' %}
         {% block body %}{% endblock %}
 
         <!-- JQUERY -->
@@ -28,6 +27,7 @@
         <!-- BOOTSTRAP JS -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <!-- JS -->
+        <script src="{{ asset('js/opinion.js') }}"></script>
         <script src="{{ asset('js/autoCompleteResearch.js') }}"></script>
         <script src="{{ asset('js/searchcity.js') }}"></script>
         <script src="{{ asset('js/googlemap.js') }}"></script>
