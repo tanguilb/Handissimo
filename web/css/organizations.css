@@ -172,7 +172,7 @@ li {
 .address{
     border-top:solid #dadada 1px;
 }
-.address, .description, .map, .ressources{
+.address, .description, .ressources{
     padding:10px;
     margin-top: 10px;
 }
@@ -188,8 +188,9 @@ li {
 /* map & ressources------------------------------*/
 .map{
     height:400px;
-    background-color: #9e9e9e;
+    margin-top: 20px;
 }
+
 .print-line, .download-line{
     border-top: solid 1px #dadada;
     margin-top: 5px;
