@@ -16,16 +16,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="nav navbar-nav navbar-right">
-                <button class="btn orange"><a href="#">Qui sommes-nous ?</a></button>
+                <button class="btn orange-btn">
+                    <a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?</a>
+                </button>
                 {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
-                <button class="btn pink"><a href="#">Votre compte</a></button>
+                <button class="btn pink-btn">
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i>Votre compte</a>
+                </button>
             </div>
         </div>
     </div>
 </nav>
-
-
-
-{% block javascripts %}
-    <script src="{{ asset('js/opinion.js') }}"></script>
-{% endblock %}

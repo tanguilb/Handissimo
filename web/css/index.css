@@ -1,0 +1,28 @@
+#main-index {
+    background-image: url(../images/handissimo-accueil-moteur-recherche.jpg);
+    background-size: cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+#main-index h1 {
+    font-weight: 700;
+    font-size: 52px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top:220px;
+}
+
+#main-index h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#search-btn {
+    display: block;
+    margin: 20px auto;
+}

@@ -4,3 +4,21 @@
 .modal-backdrop.in {
     z-index: 1;
 }
+
+.modal-button {
+    background-color: #61bdb9;
+}
+
+.modal-button:hover {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+.modal-button:active {
+    color: #FFFFFF;
+}
+
+.modal-button i {
+    margin-right: 5px;
+    font-size: 18px;
+}
