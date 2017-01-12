@@ -41,7 +41,6 @@ class NewOpinionController extends Controller
         );
     }
 
-
     public function createAction(Request $request)
     {
         if (!$request->isXmlHttpRequest()) {

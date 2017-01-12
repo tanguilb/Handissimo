@@ -16,11 +16,20 @@ body {
 }
 
 /****************/
+/*****ALERTS*****/
+/****************/
+#alert-success,
+#alert-danger {
+    display: none;
+}
+
+/****************/
 /*****NAVBAR*****/
 /****************/
 
 .navbar {
     height: 120px;
+    z-index: 997;
 }
 
 .logo-handissimo {
@@ -46,15 +55,3 @@ body {
 /****************/
 /*****FOOTER*****/
 /****************/
-
-/****************/
-/*OPINION BUTTON*/
-/****************/
-#alert-success,
-#alert-danger {
-    display: none;
-}
-
-#giveOpinion {
-    z-index: 9999;
-}
