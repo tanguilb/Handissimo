@@ -51,7 +51,7 @@ li {
     z-index: -1;
     margin-top: -20px;;
 }
-/*-----------------------------------------container / bloc de contunu generale*/
+/*-----------------------------------------container / bloc de contenu generale*/
 .container{
     display: flex;
     background-color: #ffffff;
@@ -59,12 +59,14 @@ li {
     padding:0;
 }
 
+
+
 /*   -----------------------------------container info bloc / contenu du bloc information*/
 .container-info{
    padding: 0;
 
 }
-
+/**------------------- titre/entete*/
 .update{
     color:#8a8a8a;
     margin: 0;
@@ -102,6 +104,46 @@ li {
     justify-content: flex-end;
 
 }
+/*  ----------------------------------caroussel*/
+.carousel,.carousel ul,.carousel ul li, .line-img{
+    padding: 0;
+    margin: 0;
+}
+.main-carousel {
+    margin: 10px auto;
+    width: 100%;
+    height: 300px;
+}
+.carousel{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+
+
+}
+.carousel ul{
+    list-style: none;
+    width: 600px;
+    height: 300px;
+    display: flex;
+}
+.carousel ul li {
+
+    width: 600px;
+    height: 300px;
+}
+.line-img{
+    max-width: 600px;
+    max-height:300px;
+    margin:0 5px 0 5px;
+}
+.image{
+    width: auto;
+    height: 100%;
+    padding: 0 5px 0 5px;
+}
+
+
 /*----------------------------------------essentieal bloc*/
 
 .essential-bloc, .know-more-bloc{
