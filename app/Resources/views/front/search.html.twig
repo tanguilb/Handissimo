@@ -33,25 +33,28 @@
             <div class="col-md-4">
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Filtres &nbsp;+</button>
                 <div id="filters" class="collapse">
-                    {#{ form_start(form) }}
-                    {{ form_errors(form) }#}
                     {{ form_row(form.disabilitytypes ) }}
                     {% for results in result %}
                         {% for disabilityType in results.disabilityTypes %}
-                            <div id="disabilityselect">{{ disabilityType.disabilityName }}</div>
+                            {% if loop.first %}
+                                <div id="disabilityselect">{{ results.disabilityName }}</div>
+                            {% endif %}
                         {% endfor %}
                     {% endfor %}
                     {{ form_row(form.structurestypes) }}
                     {% for results in result %}
-                        <div id="structureselect">{{ results.structuretype }}</div>
+                        {% if loop.first %}
+                            <div id="structureselect">{{ results.structuretype }}</div>
+                        {% endif %}
                     {% endfor %}
                     {{ form_row(form.needs) }}
                     {% for results in result %}
                         {% for need in results.needs %}
-                            <div id="needselect">{{ need.needName }}</div>
+                            {% if loop.first %}
+                                <div id="needselect">{{ need.needName }}</div>
+                            {% endif %}
                         {% endfor %}
                     {% endfor %}
-                    {#}{ form_row(form.save) }#}
                     {{ form_end(form) }}
                 </div>
             </div>
