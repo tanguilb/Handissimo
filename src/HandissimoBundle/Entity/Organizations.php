@@ -1186,4 +1186,36 @@ class Organizations
         $this->longitude = (float) $json->geometry->location->lng;
     }
 
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $userorg;
+
+
+    /**
+     * Set userorg
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userorg
+     *
+     * @return Organizations
+     */
+    public function setUserorg(\Application\Sonata\UserBundle\Entity\User $userorg = null)
+    {
+        $this->userorg = $userorg;
+
+        return $this;
+    }
+
+    /**
+     * Get userorg
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUserorg()
+    {
+        return $this->userorg;
+    }
+
+
 }

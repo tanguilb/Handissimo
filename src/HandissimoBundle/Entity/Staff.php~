@@ -3,16 +3,10 @@
 namespace HandissimoBundle\Entity;
 
 /**
- * DisabilityTypes
+ * Staff
  */
-class DisabilityTypes
+class Staff
 {
-
-    public function __toString()
-    {
-        return $this->disabilityName;
-    }
-
     /**
      * @var integer
      */
@@ -21,7 +15,12 @@ class DisabilityTypes
     /**
      * @var string
      */
-    private $disabilityName;
+    private $jobs;
+
+    /**
+     * @var string
+     */
+    private $others;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -47,27 +46,51 @@ class DisabilityTypes
     }
 
     /**
-     * Set disabilityName
+     * Set jobs
      *
-     * @param string $disabilityName
+     * @param string $jobs
      *
-     * @return DisabilityTypes
+     * @return Staff
      */
-    public function setDisabilityName($disabilityName)
+    public function setJobs($jobs)
     {
-        $this->disabilityName = $disabilityName;
+        $this->jobs = $jobs;
 
         return $this;
     }
 
     /**
-     * Get disabilityName
+     * Get jobs
      *
      * @return string
      */
-    public function getDisabilityName()
+    public function getJobs()
     {
-        return $this->disabilityName;
+        return $this->jobs;
+    }
+
+    /**
+     * Set others
+     *
+     * @param string $others
+     *
+     * @return Staff
+     */
+    public function setOthers($others)
+    {
+        $this->others = $others;
+
+        return $this;
+    }
+
+    /**
+     * Get others
+     *
+     * @return string
+     */
+    public function getOthers()
+    {
+        return $this->others;
     }
 
     /**
@@ -75,7 +98,7 @@ class DisabilityTypes
      *
      * @param \HandissimoBundle\Entity\Organizations $structure
      *
-     * @return DisabilityTypes
+     * @return Staff
      */
     public function addStructure(\HandissimoBundle\Entity\Organizations $structure)
     {
@@ -104,17 +127,46 @@ class DisabilityTypes
         return $this->structures;
     }
     /**
+     * @var \HandissimoBundle\Entity\StaffTypes
+     */
+    private $staff;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $organizations;
 
 
     /**
+     * Set staff
+     *
+     * @param \HandissimoBundle\Entity\StaffTypes $staff
+     *
+     * @return Staff
+     */
+    public function setStaff(\HandissimoBundle\Entity\StaffTypes $staff = null)
+    {
+        $this->staff = $staff;
+
+        return $this;
+    }
+
+    /**
+     * Get staff
+     *
+     * @return \HandissimoBundle\Entity\StaffTypes
+     */
+    public function getStaff()
+    {
+        return $this->staff;
+    }
+
+    /**
      * Add organization
      *
      * @param \HandissimoBundle\Entity\Organizations $organization
      *
-     * @return DisabilityTypes
+     * @return Staff
      */
     public function addOrganization(\HandissimoBundle\Entity\Organizations $organization)
     {

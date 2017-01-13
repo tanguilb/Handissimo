@@ -11,7 +11,7 @@ class Society
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        return $this->societyName;
+        return $this->societyname;
     }
 
     // GENERATE CODE
@@ -23,7 +23,7 @@ class Society
     /**
      * @var string
      */
-    private $societyName;
+    private $societyname;
 
     /**
      * @var string
@@ -101,27 +101,27 @@ class Society
     }
 
     /**
-     * Set societyName
+     * Set societyname
      *
-     * @param string $societyName
+     * @param string $societyname
      *
      * @return Society
      */
-    public function setSocietyName($societyName)
+    public function setSocietyname($societyname)
     {
-        $this->societyName = $societyName;
+        $this->societyname = $societyname;
 
         return $this;
     }
 
     /**
-     * Get societyName
+     * Get societyname
      *
      * @return string
      */
-    public function getSocietyName()
+    public function getSocietyname()
     {
-        return $this->societyName;
+        return $this->societyname;
     }
 
     /**

@@ -8,7 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Organizationname</th>
-                <th>Adress</th>
+                <th>Address</th>
                 <th>Postal</th>
                 <th>City</th>
                 <th>Organizationphonenumber</th>
@@ -38,19 +38,22 @@
         </thead>
         <tbody>
         {% for organization in organizations %}
-            <tr>
+        {% if organization.userOrg.id == app.security.getToken().getUser().getId()  %}
+
+        <tr>
                 <td><a href="{{ path('organizations_show', { 'id': organization.id }) }}">{{ organization.id }}</a></td>
                 <td>{{ organization.name }}</td>
-                <td>{{ organization.adress }}</td>
+                <td>{{ organization.address }}</td>
                 <td>{{ organization.postal }}</td>
                 <td>{{ organization.city }}</td>
-                <td>{{ organization.organizationPhoneNumber }}</td>
-                <td>{{ organization.organizationMail }}</td>
-                <td>{{ organization.organizationWebsite }}</td>
-                <td>{{ organization.organizationBlog }}</td>
-                <td>{{ organization.organizationFacebook }}</td>
-                <td>{{ organization.organizationTwitter }}</td>
-                <td>{{ organization.agegroup }}</td>
+                <td>{{ organization.phoneNumber }}</td>
+                <td>{{ organization.mail }}</td>
+                <td>{{ organization.website }}</td>
+                <td>{{ organization.blog }}</td>
+                <td>{{ organization.facebook }}</td>
+                <td>{{ organization.twitter }}</td>
+                <td>{{ organization.agemini }}</td>
+                <td>{{ organization.agemaxi }}</td>
                 <td>{{ organization.freeplace }}</td>
                 <td>{{ organization.organizationDescription }}</td>
                 <td>{{ organization.serveDescription }}</td>
@@ -77,6 +80,7 @@
                     </ul>
                 </td>
             </tr>
+        {% endif %}
         {% endfor %}
         </tbody>
     </table>
@@ -86,4 +90,5 @@
             <a href="{{ path('organizations_new') }}">Create a new organization</a>
         </li>
     </ul>
+
 {% endblock %}

@@ -46,3 +46,5 @@ handissimo_research:
     resource: "@HandissimoBundle/Resources/config/routing/research.yml"
     prefix:   /research
 
+
+

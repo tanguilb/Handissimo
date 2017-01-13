@@ -6,6 +6,7 @@ use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Application\Sonata\UserBundle\Entity\User;
 
 /**
  * Organization controller.
@@ -40,6 +41,7 @@ class OrganizationsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $organization->setUserOrg($this->container->get('security.context')->getToken()->getUser());
             $em->persist($organization);
             $em->flush($organization);
 

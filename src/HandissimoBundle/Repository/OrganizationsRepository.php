@@ -2,7 +2,9 @@
 
 namespace HandissimoBundle\Repository;
 
+use Application\Sonata\UserBundle\ApplicationSonataUserBundle;
 use Doctrine\ORM\EntityRepository;
+use Application\Sonata\UserBundle\Entity\User;
 
 class OrganizationsRepository extends EntityRepository
 {
@@ -97,6 +99,18 @@ class OrganizationsRepository extends EntityRepository
             ->setParameter('data', $data)
             ->getQuery();
         return $qb->getResult();
+    }
+
+    public function getByUser(User $user)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->join('o.userOrg', 'u')
+            ->where('u.id = ?1')
+            ->setParameter(1, $user->getId());
+            //->getQuery()
+
+        $query->getQuery()->getSQL();;die();
+        return $query->getResult();
     }
 
 }

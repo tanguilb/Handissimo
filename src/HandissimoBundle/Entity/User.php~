@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Application\Sonata\UserBundle\Entity;
+namespace HandissimoBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,8 +31,6 @@ class User extends BaseUser
      */
     protected $id;
 
-    protected $organizationsuser;
-
     /**
      * Get id
      *
@@ -41,31 +39,5 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-
-
-    /**
-     * Set organizationsuser
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsuser
-     *
-     * @return User
-     */
-    public function setOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser = null)
-    {
-        $this->organizationsuser = $organizationsuser;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsuser
-     *
-     * @return \HandissimoBundle\Entity\Organizations
-     */
-    public function getOrganizationsuser()
-    {
-        return $this->organizationsuser;
     }
 }

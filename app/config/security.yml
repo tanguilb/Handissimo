@@ -66,6 +66,8 @@ security:
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
         - { path: ^/admin/, role: [ROLE_SONATA_ADMIN, ROLE_ADMIN] }
+        - { path: ^/organizations/, role: [ROLE_SONATA_ADMIN, ROLE_ADMIN] }
+        - { path: ^/society/, role: [ROLE_SOC, ROLE_SONATA_ADMIN] }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     role_hierarchy:
@@ -75,12 +77,23 @@ security:
             - ROLE_ADMIN_ORGANIZATIONS_ALL
             - ROLE_SONATA_ADMIN
 
+        ROLE_SOCIETY:
+            - ROLE_USER
+            - ROLE_ADMIN_SOCIETY_ALL
+            - ROLE_ADMIN_ORGANIZATIONS_ALL
+            - ROLE_SONATA_ADMIN
+
         ROLE_MANAGER:
             - ROLE_EDITOR
 
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
+        ROLE_SOC:         [ROLE_SOCIETY]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_EDITOR]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     acl:
         connection: default
 
+    access_decision_manager:
+
+        # strategy value can be: affirmative, unanimous or consensus
+        strategy: unanimous

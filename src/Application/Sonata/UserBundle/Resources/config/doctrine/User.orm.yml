@@ -6,3 +6,9 @@ Application\Sonata\UserBundle\Entity\User:
            type: integer
            generator:
                strategy: AUTO
+
+
+   oneToOne:
+       organizationsuser:
+           targetEntity: HandissimoBundle\Entity\Organizations
+           mappedBy: userorg

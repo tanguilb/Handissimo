@@ -6,9 +6,12 @@ parameters:
 services:
     admin.organizations:
         class: HandissimoBundle\Admin\OrganizationsAdmin
-        arguments: [~, HandissimoBundle\Entity\Organizations, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Description de la structure }
+        arguments:
+            - null
+            - HandissimoBundle\Entity\Organizations
+            - HandissimoBundle:CRUD
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
@@ -52,4 +55,3 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions }
 
-   
