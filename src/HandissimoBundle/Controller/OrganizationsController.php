@@ -61,7 +61,7 @@ class OrganizationsController extends Controller
     {
         $deleteForm = $this->createDeleteForm($organization);
 
-        return $this->render('organizations/show.html.twig', array(
+        return $this->render('organizations/typePage.html.twig', array(
             'organization' => $organization,
             'delete_form' => $deleteForm->createView(),
         ));
