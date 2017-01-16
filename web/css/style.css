@@ -46,7 +46,7 @@ body {
     background-color: #FFFFFF;
 }
 
-.logo-handissimo {
+.logo-handissimo-navbar {
     width:250px;
 }
 
@@ -74,14 +74,166 @@ body {
 .orange-btn a i,
 .pink-btn a i {
     margin-right: 5px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /*Hamburger menu*/
-.navbar-default .navbar-collapse {
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-toggle {
     border: none;
+}
+
+.navbar-default .navbar-toggle {
+    background-color: #61bdb9;
+    margin-top: 30px;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus{
+    background-color: #f7af49;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+
+.navbar-toggle .icon-bar {
+    width: 25px;
+    height: 3px;
+}
+
+/*Hamburger menu breakpoint*/
+@media (max-width: 1070px) {
+    .navbar-right button {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .navbar-right button {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .navbar-right button {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top:20px;
+        background-color: #FFFFFF;
+        padding-bottom: 10px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+    .navbar-right button {
+        display: block;
+        margin: 18px auto;
+    }
 }
 
 /****************/
 /*****FOOTER*****/
 /****************/
+
+#footer {
+    background-color: #FFFFFF;
+}
+
+.logo-handissimo-footer {
+    width: 160px;
+    margin: 20px 0 15px 0;
+}
+@media (max-width: 992px) {
+    .logo-handissimo-footer {
+        display: block;
+        margin: 20px auto 15px auto;
+    }
+}
+
+#footer-menu ul{
+    list-style: none;
+    margin-top: 13px;
+    font-size: 13px;
+    font-weight: 600;
+}
+@media (max-width: 992px) {
+    #footer-menu ul {
+        text-align: center;
+        padding-left: 0;
+    }
+}
+
+#footer-menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#footer-menu ul li a:hover {
+    color: #61bdb9;
+}
+
+#rights p {
+    font-size: 12px;
+    font-weight: 400;
+    padding-top: 22px;
+}
+@media (max-width: 992px) {
+    #rights p {
+        text-align: center;
+    }
+}
+
+#rights p a,
+#social-icons-footer a{
+    text-decoration: none;
+    color: #61bdb9;
+}
+
+#rights p a:hover,
+#social-icons-footer a:hover{
+    color: #f7af49;
+}
+
+#social-icons-footer {
+    margin-top: 22px;
+    margin-bottom: 15px;
+}
+@media (max-width: 992px) {
+    #social-icons-footer {
+        text-align: center;
+    }
+}
+
+#social-icons-footer a {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+#fb-icon {
+    margin-right: 30px;
+}

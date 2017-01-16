@@ -14,11 +14,11 @@
     color: #FFFFFF;
 }
 
-.modal-button:active {
+.modal-button:focus {
     color: #FFFFFF;
 }
 
 .modal-button i {
     margin-right: 5px;
-    font-size: 18px;
+    font-size: 20px;
 }
