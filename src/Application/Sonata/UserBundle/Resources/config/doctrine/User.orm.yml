@@ -12,3 +12,7 @@ Application\Sonata\UserBundle\Entity\User:
        organizationsuser:
            targetEntity: HandissimoBundle\Entity\Organizations
            mappedBy: userorg
+
+       societyUser:
+           targetEntity: HandissimoBundle\Entity\Society
+           mappedBy: userSociety

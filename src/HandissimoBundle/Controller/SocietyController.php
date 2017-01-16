@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\Society;
+use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,11 +22,15 @@ class SocietyController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $societies = $em->getRepository('HandissimoBundle:Society')->findAll();
+        $orgs = $em->getRepository('HandissimoBundle:Organizations')->findAll();
 
         return $this->render('society/index.html.twig', array(
             'societies' => $societies,
+            'orgs' => $orgs,
         ));
     }
+
+
 
     /**
      * Creates a new society entity.
@@ -39,6 +44,7 @@ class SocietyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $society->setUserSociety($this->container->get('security.context')->getToken()->getUser());
             $em->persist($society);
             $em->flush($society);
 

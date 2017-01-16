@@ -2,11 +2,9 @@
 
 namespace HandissimoBundle\Controller;
 
-use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Application\Sonata\UserBundle\Entity\User;
 
 /**
  * Organization controller.

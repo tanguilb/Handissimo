@@ -97,5 +97,7 @@ class AjaxController extends Controller
         } else {
             throw new HttpException('500', 'Invalid call');
         }
+
     }
+
 }

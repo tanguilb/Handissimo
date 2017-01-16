@@ -101,7 +101,7 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
-    public function getByUser(User $user)
+  /*  public function getByUser(User $user)
     {
         $query = $this->createQueryBuilder('o')
             ->join('o.userOrg', 'u')
@@ -111,6 +111,6 @@ class OrganizationsRepository extends EntityRepository
 
         $query->getQuery()->getSQL();;die();
         return $query->getResult();
-    }
+    }*/
 
 }

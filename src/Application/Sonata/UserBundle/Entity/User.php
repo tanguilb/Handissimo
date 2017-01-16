@@ -33,6 +33,8 @@ class User extends BaseUser
 
     protected $organizationsuser;
 
+    protected $societyUser;
+
     /**
      * Get id
      *
@@ -67,5 +69,29 @@ class User extends BaseUser
     public function getOrganizationsuser()
     {
         return $this->organizationsuser;
+    }
+
+    /**
+     * Set societyUser
+     *
+     * @param \HandissimoBundle\Entity\Society $societyUser
+     *
+     * @return User
+     */
+    public function setSocietyUser(\HandissimoBundle\Entity\Society $societyUser = null)
+    {
+        $this->societyUser = $societyUser;
+
+        return $this;
+    }
+
+    /**
+     * Get societyUser
+     *
+     * @return \HandissimoBundle\Entity\Society
+     */
+    public function getSocietyUser()
+    {
+        return $this->societyUser;
     }
 }

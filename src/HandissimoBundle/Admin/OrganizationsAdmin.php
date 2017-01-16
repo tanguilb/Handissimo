@@ -135,6 +135,12 @@ class OrganizationsAdmin extends Admin
                 'by_reference' => true,
                 'expanded' => false
             ))
+            ->add('userOrg', EntityType::class, array(
+                'class' => 'Application\Sonata\UserBundle\Entity\User',
+                'required' => false
+
+
+            ))
         ;
     }
 

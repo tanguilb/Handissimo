@@ -54,4 +54,3 @@ services:
         arguments: [~, HandissimoBundle\Entity\Opinion, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions }
-

@@ -5,6 +5,8 @@ namespace HandissimoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class OrganizationsType extends AbstractType
 {
@@ -14,6 +16,7 @@ class OrganizationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('societies')
             ->add('name')
             ->add('address')
             ->add('postal')
@@ -27,7 +30,9 @@ class OrganizationsType extends AbstractType
             ->add('agemini')
             ->add('agemaxi')
             ->add('freeplace')
-            ->add('organizationDescription')
+            ->add('organizationDescription', CKEditorType::class, array(
+            'config' => array(
+            'uiColor' => '#ffffff')))
             ->add('serveDescription')
             ->add('openhours')
             ->add('opendays')
@@ -43,10 +48,22 @@ class OrganizationsType extends AbstractType
             ->add('profilPicture')
             ->add('structuretype')
             ->add('picture')
-            ->add('societies')
             ->add('disabilityTypes')
-            ->add('needs')
-            ->add('stafforganizations')
+            ->add('needs', EntityType::class, array(
+            'class' => 'HandissimoBundle:Needs',
+            'choice_label' => 'needName',
+            'label' => 'besoin',
+            'multiple' => true,
+            'expanded' => true,
+            ))
+            ->add('stafforganizations', EntityType::class, array(
+            'class' => 'HandissimoBundle:Staff',
+            'placeholder' => 'choisissez',
+            'choice_label' => 'jobs',
+            'label' => 'Métier',
+            'multiple' => false,
+            ))
+
         ;
     }
     

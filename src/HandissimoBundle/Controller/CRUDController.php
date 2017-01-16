@@ -8,13 +8,35 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\Organizations;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class CRUDController extends Controller
 {
-    public function createAction()
+   /* public function createAction(Request $request)
+    {
+        $organization = new Organizations();
+        $form = $this->createForm('HandissimoBundle\Form\OrganizationsType', $organization);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $organization->setUserOrg($this->container->get('security.context')->getToken()->getUser());
+            $em->persist($organization);
+            $em->flush($organization);
+
+            return $this->redirectToRoute('organizations_show', array('id' => $organization->getId()));
+        }
+
+        return $this->render('organizations/new.html.twig', array(
+            'organization' => $organization,
+            'form' => $form->createView(),
+        ));
+    }*/
+   /* public function createAction()
     {
         $request = $this->getRequest();
         // the key used to lookup the template
@@ -47,7 +69,7 @@ class CRUDController extends Controller
         $this->admin->setSubject($object);
 
         /** @var $form \Symfony\Component\Form\Form */
-        $form = $this->admin->getForm();
+       /* $form = $this->admin->getForm();
         $form->setData($object);
         $form->handleRequest($request);
 
@@ -67,13 +89,15 @@ class CRUDController extends Controller
 
                 try {
                     $object = $this->admin->create($object);
-                    #$user = $this->container->get('security.context')->getToken()->getUser();
                     if ($this->isXmlHttpRequest()) {
+
                         return $this->renderJson(array(
                             'result' => 'ok',
                             'objectId' => $this->admin->getNormalizedIdentifier($object),
                         ), 200, array());
                     }
+                    $this->admin->setUserOrg($this->container->get('security.context')->getToken()->getUser());
+
                     $this->addFlash(
                         'sonata_flash_success',
                         $this->trans(
@@ -95,6 +119,7 @@ class CRUDController extends Controller
             // show an error message if the form failed validation
             if (!$isFormValid) {
                 if (!$this->isXmlHttpRequest()) {
+
                     $this->addFlash(
                         'sonata_flash_error',
                         $this->trans(
@@ -140,6 +165,6 @@ class CRUDController extends Controller
             'organization' => $organization,
             'form' => $form->createView(),
         ));
-    }
+    }*/
 
 }
