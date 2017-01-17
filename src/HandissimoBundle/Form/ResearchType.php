@@ -44,7 +44,8 @@ class ResearchType extends AbstractType
                         'property' => 'disabilityName',
                         'label' => 'Type de handicaps',
                         'expanded' => false,
-                        'required' => false
+                        'required' => false,
+                        //'query_builder' => ''
                     ))
                     ->add('needs', EntityType::class, array(
                         'empty_value' => 'Sélectionner un type de besoins',

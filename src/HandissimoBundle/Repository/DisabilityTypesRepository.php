@@ -21,7 +21,6 @@ class DisabilityTypesRepository extends EntityRepository
             ->setParameter('disabilityData', '%' . $keyword . '%')
             ->getQuery();
         return $query->getResult();
-
     }
 
     public function getBySelectDisability()

@@ -37,7 +37,7 @@
                     {% for results in result %}
                         {% for disabilityType in results.disabilityTypes %}
                             {% if loop.first %}
-                                <div id="disabilityselect">{{ results.disabilityName }}</div>
+                                <div id="disabilityselect">{{ disabilityType.disabilityName }}</div>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
