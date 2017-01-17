@@ -23,7 +23,6 @@ class OrganizationsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $organizations = $em->getRepository('HandissimoBundle:Organizations')->findAll();
-
         return $this->render('organizations/index.html.twig', array(
             'organizations' => $organizations,
         ));
@@ -60,7 +59,6 @@ class OrganizationsController extends Controller
     public function showAction(Organizations $organization)
     {
         $deleteForm = $this->createDeleteForm($organization);
-
         return $this->render('organizations/typePage.html.twig', array(
             'organization' => $organization,
             'delete_form' => $deleteForm->createView(),

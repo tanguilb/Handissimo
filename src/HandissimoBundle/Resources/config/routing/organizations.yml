@@ -6,7 +6,6 @@ organizations_index:
 organizations_show:
     path:     /{id}/show
     defaults: { _controller: "HandissimoBundle:Organizations:show" }
-    #defaults: { _controller: "HandissimoBundle:Organizations:typePage" }
     methods:  GET
 
 organizations_new:

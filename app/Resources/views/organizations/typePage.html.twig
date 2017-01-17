@@ -24,15 +24,14 @@
             <!-- Bloc entete / titre----------------------------->
             <div class="head-bloc">
                 <!-- date de mise a jour-->
-                <div class="row row1"><p class="update">Dernière mise à jour le {{ organization.updateDatetime }}</p></div>
+                <div class="row "><p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('Y-m-d') }}</p></div>
                 <!-- titre/logo/favoris---------------------------------- -->
-                <div class="row row2 title-head">
-                    <h2 class="title col-md-4">{{ organization.name }}</h2>
-                    <div class="img-bloc col-md-1"><img class="organization-logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
-                    <div class="like">
-                        <img class="like-img" src="https://s29.postimg.org/z1isf29t3/favorite_heart_outline_button_318_76798.jpg" alt="">
-                        <p></p>
+                <div class="row head">
+                    <div class="head-title col-md-11 col-sm-11">
+                        <h2 class="title"> {{ organization.societies.societyname }} - {{ organization.name }} </h2>
+                        <div class="img-bloc col-md-1 "><img class="organization-logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
                     </div>
+                    <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div>
                 </div>
             </div>
             <!-- caroussel----------------------------------------------------------->
@@ -57,10 +56,10 @@
                         <div class="line"><div class="icon-bloc"><i class="fa fa-phone" aria-hidden="true"></i></div><p class="address-line">{{ organization.phoneNumber }}</p></div>
                         <div class="line"><div class="icon-bloc"><i class="fa fa-user" aria-hidden="true"></i></div><p class="address-line">Mr Handissimo</p></div>
                         <div class="line"><div class="icon-bloc"><i class="fa fa-envelope" aria-hidden="true"></i></div><a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" href="https://{{ organization.website }}" target="_blank">Site web</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-commenting" aria-hidden="true"></i></div><a class="address-line address-link" href="https://{{ organization.blog }}" target="_blank">Blog</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-facebook" aria-hidden="true"></i></div><a class="address-line address-link" href="https://{{ organization.facebook }}" target="_blank">Facebook</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-twitter" aria-hidden="true"></i></div><a class="address-line address-link" href="https://{{ organization.twitter }}" target="_blank">Twitter</a></div>
+                        <div class="line"><div class="icon-bloc"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.website }}" target="_blank">Site web</a></div>
+                        <div class="line"><div class="icon-bloc"><i class="fa fa-commenting" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.blog }}" target="_blank">Blog</a></div>
+                        <div class="line"><div class="icon-bloc"><i class="fa fa-facebook" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.facebook }}" target="_blank">Facebook</a></div>
+                        <div class="line"><div class="icon-bloc"><i class="fa fa-twitter" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.twitter }}" target="_blank">Twitter</a></div>
 
                     </div>
                     <div class="description">{{ organization.organizationDescription|raw }}</div>
@@ -81,7 +80,7 @@
                     </div>
                 </a>
                 <!-- -----------print-------->
-                <a class="print" href="http://www.creativejuiz.fr/images/main.jpg" download="CreativeJuiz_Background">
+                <a class="print" href="javascript:window.print()" download="CreativeJuiz_Background">
                     <div class="line print-line">
                         <i class="fa fa-print" aria-hidden="true"></i>
                         <p>Imprimer</p>
