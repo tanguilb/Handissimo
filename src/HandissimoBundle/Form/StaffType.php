@@ -13,7 +13,12 @@ class StaffType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('jobs')->add('others')->add('staff')->add('organizations')        ;
+        $builder
+            ->add('jobs')
+            ->add('others')
+            ->add('staff')
+            ->add('organizations')
+        ;
     }
     
     /**
