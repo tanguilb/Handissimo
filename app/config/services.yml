@@ -7,7 +7,7 @@ services:
     admin.organizations:
         class: HandissimoBundle\Admin\OrganizationsAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Description de la structure }
+            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Description de la structure }
         arguments:
             - null
             - HandissimoBundle\Entity\Organizations
@@ -23,7 +23,7 @@ services:
         class: HandissimoBundle\Admin\SocietyAdmin
         arguments: [~, HandissimoBundle\Entity\Society, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Gestionnaire }
+            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Gestionnaire }
 
     admin.structures_types:
         class: HandissimoBundle\Admin\StructuresTypesAdmin

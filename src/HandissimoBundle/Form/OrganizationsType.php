@@ -23,7 +23,9 @@ class OrganizationsType extends AbstractType
             ->add('city')
             ->add('phoneNumber')
             ->add('mail')
-            ->add('website')
+            ->add('website', 'text', array(
+                'required' => false
+            ))
             ->add('blog')
             ->add('facebook')
             ->add('twitter')
@@ -33,17 +35,29 @@ class OrganizationsType extends AbstractType
             ->add('organizationDescription', CKEditorType::class, array(
             'config' => array(
             'uiColor' => '#ffffff')))
-            ->add('serveDescription')
+            ->add('serveDescription', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff')))
             ->add('openhours')
             ->add('opendays')
             ->add('teamMembersNumber')
-            ->add('teamDescription')
+            ->add('teamDescription', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff')))
             ->add('updateDatetime')
-            ->add('workingDescription')
+            ->add('workingDescription', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff')))
             ->add('school')
-            ->add('schoolDescription')
-            ->add('activities')
-            ->add('placeDescription')
+            ->add('schoolDescription', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff')))
+            ->add('activities', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff')))
+            ->add('placeDescription', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff')))
             ->add('doc')
             ->add('profilPicture')
             ->add('structuretype')
@@ -90,6 +104,7 @@ class OrganizationsType extends AbstractType
     {
         return 'handissimobundle_organizations';
     }
+
 
 
 }

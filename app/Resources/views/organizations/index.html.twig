@@ -6,34 +6,13 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Organizationname</th>
-                <th>Address</th>
-                <th>Postal</th>
-                <th>City</th>
-                <th>Organizationphonenumber</th>
-                <th>Organizationmail</th>
-                <th>Organizationwebsite</th>
-                <th>Organizationblog</th>
-                <th>Organizationfacebook</th>
-                <th>Organizationtwitter</th>
-                <th>Agegroup</th>
-                <th>Freeplace</th>
-                <th>Organizationdescription</th>
-                <th>Servedescription</th>
-                <th>Openhours</th>
-                <th>Opendays</th>
-                <th>Teammembersnumber</th>
-                <th>Teamdescription</th>
-                <th>Updatedatetime</th>
-                <th>Workingdescription</th>
-                <th>School</th>
-                <th>Schooldescription</th>
-                <th>Activities</th>
-                <th>Placedescription</th>
-                <th>Doc</th>
-                <th>Profilpicture</th>
-                <th>Actions</th>
+                <th>Nom</th>
+                <th>Addresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Telephone</th>
+                <th>Mail</th>
+
             </tr>
         </thead>
         <tbody>
@@ -41,34 +20,13 @@
         {% if organization.userOrg.id == app.security.getToken().getUser().getId()  %}
 
         <tr>
-                <td><a href="{{ path('organizations_show', { 'id': organization.id }) }}">{{ organization.id }}</a></td>
-                <td>{{ organization.name }}</td>
+                <td><a href="path('organizations_show', { 'id': organization.id}) }}">{{ organization.name }}</a></td>
                 <td>{{ organization.address }}</td>
                 <td>{{ organization.postal }}</td>
                 <td>{{ organization.city }}</td>
                 <td>{{ organization.phoneNumber }}</td>
                 <td>{{ organization.mail }}</td>
-                <td>{{ organization.website }}</td>
-                <td>{{ organization.blog }}</td>
-                <td>{{ organization.facebook }}</td>
-                <td>{{ organization.twitter }}</td>
-                <td>{{ organization.agemini }}</td>
-                <td>{{ organization.agemaxi }}</td>
-                <td>{{ organization.freeplace }}</td>
-                <td>{{ organization.organizationDescription }}</td>
-                <td>{{ organization.serveDescription }}</td>
-                <td>{{ organization.openhours }}</td>
-                <td>{{ organization.opendays }}</td>
-                <td>{{ organization.teamMembersNumber }}</td>
-                <td>{{ organization.teamDescription }}</td>
-                <td>{% if organization.updateDatetime %}{{ organization.updateDatetime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ organization.workingDescription }}</td>
-                <td>{% if organization.school %}Yes{% else %}No{% endif %}</td>
-                <td>{{ organization.schoolDescription }}</td>
-                <td>{{ organization.activities }}</td>
-                <td>{{ organization.placeDescription }}</td>
-                <td>{{ organization.doc }}</td>
-                <td>{{ organization.profilPicture }}</td>
+
                 <td>
                     <ul>
                         <li>
@@ -85,10 +43,11 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('organizations_new') }}">Create a new organization</a>
-        </li>
+                <li>
+                    <a href="{{ path('organizations_new') }}">Créer votre fiche</a>
+                </li>
+
     </ul>
+
 
 {% endblock %}

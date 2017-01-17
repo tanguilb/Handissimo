@@ -30,8 +30,6 @@ class SocietyController extends Controller
         ));
     }
 
-
-
     /**
      * Creates a new society entity.
      *
