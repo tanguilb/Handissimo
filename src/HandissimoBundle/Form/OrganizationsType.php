@@ -48,7 +48,12 @@ class OrganizationsType extends AbstractType
             ->add('profilPicture')
             ->add('structuretype')
             ->add('picture')
-            ->add('disabilityTypes')
+            ->add('disabilityTypes', EntityType::class, array(
+            'class' => 'HandissimoBundle:DisabilityTypes',
+            'choice_label' => 'disabilityName',
+            'label' => 'Handicap',
+            'multiple' => true,
+            'expanded' => true,))
             ->add('needs', EntityType::class, array(
             'class' => 'HandissimoBundle:Needs',
             'choice_label' => 'needName',
@@ -61,7 +66,8 @@ class OrganizationsType extends AbstractType
             'placeholder' => 'choisissez',
             'choice_label' => 'jobs',
             'label' => 'Métier',
-            'multiple' => false,
+            'multiple' => true,
+            'expanded' => true,
             ))
 
         ;
