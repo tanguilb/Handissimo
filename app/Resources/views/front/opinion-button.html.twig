@@ -1,6 +1,10 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+{% endblock %}
+
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#giveOpinion">
-    Donnez votre opinion !
+<button type="button" class="btn modal-button" data-toggle="modal" data-target="#giveOpinion">
+    <i class="fa fa-bullhorn" aria-hidden="true"></i> Votre avis nous intéresse
 </button>
 
 <!-- Modal -->
