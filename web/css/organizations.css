@@ -62,7 +62,7 @@ li {
 .container{
     display: flex;
     background-color: #ffffff;
-    margin-top:150px ;
+    margin:150px auto 50px auto ;
     padding:0;
 }
 
@@ -70,7 +70,8 @@ li {
 
 /*   -----------------------------------container info bloc / contenu du bloc information*/
 .container-info{
-   padding: 0 0 50px 0;
+    padding: 0 0 50px 0;
+
 
 }
 /**------------------- titre/entete*/
@@ -238,6 +239,28 @@ li {
 .download-line:hover, .print-line:hover {
     box-shadow: 0 0 5px 1px #cfcfcf;
 
+}
+/*--------search return button----*/
+.return{
+
+    display: inline;
+    border-radius: 50px;
+    padding:20px;
+    border:2px solid #65bfba;
+    color:#65bfba;
+    margin: 0 auto 0 auto;
+}
+.return:hover{
+    text-decoration: none;
+    color: #f7af49;
+    box-shadow: 0 0 5px 1px #cfcfcf;
+    border:2px solid  #f7af49;
+}
+.btn-return-link:hover{
+    text-decoration: none;
+}
+.btn-return{
+    margin-top: 50px;
 }
 
 
