@@ -10,18 +10,18 @@
     <!--  bloc container --------------------------------------->
     <div class="head-img"></div>
 
-   <div class="container">
+   <div class="container main-block">
 
-        <div class="container-info col-md-12 col-xs-12">
-            <!-- Bloc entete / titre----------------------------->
-            <div class="head-bloc">
+        <div class="container-info row">
+            <!-- Block entete / titre----------------------------->
+            <div class="head-block">
                 <!-- date de mise a jour-->
                 <div class="row "><p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('Y-m-d') }}</p></div>
                 <!-- titre/logo/favoris---------------------------------- -->
                 <div class="row head">
                     <div class="head-title col-md-11 col-sm-11">
-                        <h2 class="title"> {{ organization.societies.societyname }} - {{ organization.name }} </h2>
-                        <div class="img-bloc col-md-1 "><img class="organization-logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
+                        <h2 class="title"> {{ organization.societies.societyname }} de la pepete a zouzouille - {{ organization.name }} </h2>
+                        <div class="img-block col-md-1 "><img class="organization-logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
                     </div>
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div>
                 </div>
@@ -39,48 +39,49 @@
                 </div>
             </div>
 
-            <!-- bloc essentiel----------------------------------->
-            <div class="essential-bloc col-md-8">
+            <!-- block essentiel----------------------------------->
+            <div class="essential-block col-md-8">
                 <!-- block adresse---------------------->
                 <div class="info-block">
                     <div class="address">
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-home" aria-hidden="true"></i></div><p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-phone" aria-hidden="true"></i></div><p class="address-line">{{ organization.phoneNumber }}</p></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-user" aria-hidden="true"></i></div><p class="address-line">Mr Handissimo</p></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-envelope" aria-hidden="true"></i></div><a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.website }}" target="_blank">Site web</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-commenting" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.blog }}" target="_blank">Blog</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-facebook" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.facebook }}" target="_blank">Facebook</a></div>
-                        <div class="line"><div class="icon-bloc"><i class="fa fa-twitter" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.twitter }}" target="_blank">Twitter</a></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-home" aria-hidden="true"></i></div><p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-phone" aria-hidden="true"></i></div><p class="address-line">{{ organization.phoneNumber }}</p></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-user" aria-hidden="true"></i></div><p class="address-line">Mr Handissimo</p></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-envelope" aria-hidden="true"></i></div><a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.website }}" target="_blank">Site web</a></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-commenting" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.blog }}" target="_blank">Blog</a></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-facebook" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.facebook }}" target="_blank">Facebook</a></div>
+                        <div class="line"><div class="icon-block"><i class="fa fa-twitter" aria-hidden="true"></i></div><a class="address-line address-link" href="http://{{ organization.twitter }}" target="_blank">Twitter</a></div>
 
                     </div>
-                    <div class="description">{{ organization.organizationDescription|raw }}</div>
-                    <div class="description">{{ organization.serveDescription|raw }}</div>
+                   <div class="description col-md-12"><p>{{ organization.organizationDescription|raw }}</p></div>
+                    <div class="description col-md-12"><p>{{ organization.serveDescription|raw }}</p></div>
                 </div>
             </div>
             <!-- ------------------ map --------------------------->
-            <div class="map col-md-4 row1" id="map">
+            <div class="col-md-4 map-block">
+                <div class="map col-md-12" id="map">
 
-            </div>
-            <div class="ressources col-md-4">
-
-                <!-- ---------download button ---------->
-                <a class="download" href="http://www.creativejuiz.fr/images/main.jpg" download="CreativeJuiz_Background">
-                    <div class="line download-line">
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                        <p>Télécharger des documents</p>
-                    </div>
-                </a>
-                <!-- -----------print button -------->
-                <a class="print" href="javascript:window.print()" download="CreativeJuiz_Background">
-                    <div class="line print-line">
-                        <i class="fa fa-print" aria-hidden="true"></i>
-                        <p>Imprimer</p>
-                    </div>
-                </a>
+                </div>
+                <div class="ressources col-md-12">
+                    <!-- ---------download button ---------->
+                    <a class="download" href="http://www.creativejuiz.fr/images/main.jpg" download="CreativeJuiz_Background">
+                        <div class="line download-line">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            <p>Télécharger des documents</p>
+                        </div>
+                    </a>
+                    <!-- -----------print button -------->
+                    <a class="print" href="javascript:window.print()" download="CreativeJuiz_Background">
+                        <div class="line print-line">
+                            <i class="fa fa-print" aria-hidden="true"></i>
+                            <p>Imprimer</p>
+                        </div>
+                    </a>
+                </div>
             </div>
             <!-- return button-->
-            <div class="row col-md-12">
+            <div class="col-md-12">
                 <div class="text-center btn-return">
                     <a href="#" class="btn-return-link">
                     <p class="return">Retour à la recherche</p>
