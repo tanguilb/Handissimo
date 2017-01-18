@@ -87,7 +87,7 @@ body {
 }
 .main-carousel {
     margin: 10px auto;
-    width: 100%;
+    width: 50%;
     height: 300px;
 }
 .carousel{
@@ -229,10 +229,7 @@ body {
 /*media queries*/
 @media screen and (max-width: 768px) {
     .container-info{
-        padding-right:auto;
-        padding-left: auto;
-        margin-left:auto;
-        margin-right:auto;
+
     }
 
     .icon-bloc{
