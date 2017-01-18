@@ -1,5 +1,5 @@
 body {
-    background-color: #f1f5d5;
+    background-color: #f4f4f4;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -254,6 +254,16 @@ body {
     }
     .address-line{
         padding-left:30px;
+
+    }
+    .head-title{
+        align-items: flex-start;
+    }
+    .img-block{
+        padding-right: 0;
+    }
+    .description, .address-line{
+        font-size:1.3em;
     }
 
     
@@ -261,7 +271,9 @@ body {
 
 
 /*------------------test-------------- */
-
+.title, .organization-logo,.like{
+    /*border:1px solid black;*/
+}
 /*-------------------------------- */
 
 

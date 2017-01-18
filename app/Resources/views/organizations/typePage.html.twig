@@ -23,7 +23,7 @@
                         <h2 class="title"> {{ organization.societies.societyname }} de la pepete a zouzouille - {{ organization.name }} </h2>
                         <div class="img-block col-md-1 "><img class="organization-logo"  src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
                     </div>
-                    <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div>
+                    <!--<div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
                 </div>
             </div>
             <!-- caroussel----------------------------------------------------------->
@@ -62,7 +62,20 @@
             <div class="col-md-4 map-block">
                 <div class="map col-md-12" id="map">
 
+                    <!--{% set array = {
+
+                    'latitude': organization.latitude,
+                    'longitude': organization.longitude,
+                    } %}
+
+                    {% set arrayjson2 = array|json_encode %}
+
+
+                    <input type="hidden" class="arrayjson2" value="{{ arrayjson2 }}" />  -->
+
                 </div>
+
+
                 <div class="ressources col-md-12">
                     <!-- ---------download button ---------->
                     <a class="download" href="http://www.creativejuiz.fr/images/main.jpg" download="CreativeJuiz_Background">
