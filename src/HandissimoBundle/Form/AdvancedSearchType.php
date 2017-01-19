@@ -1,28 +1,53 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: david
+ * Date: 19/01/17
+ * Time: 14:06
+ */
 
 namespace HandissimoBundle\Form;
 
 
-use HandissimoBundle\Entity\DisabilityTypes;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchType extends AbstractType
+class AdvancedSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('keyword', 'text',
+                array('attr' => array('autocomplete' => 'off'),
+                    'required' => false,
+                    'label' => false,
+                ))
+            ->add('age', 'text',
+                array('attr' => array('autocomplete' => 'off'),
+                    'required' => false,
+                    'label' => false
+                ))
+            ->add('postal', 'text',
+                array('attr' => array('autocomplete' => 'off'),
+                    'required' => false,
+                    'label' => false))
+
             ->add('disabilitytypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de handicaps',
                 'class' => 'HandissimoBundle:DisabilityTypes',
-                'choice_label' => 'disabilityName',
+                'property' => 'disabilityName',
                 'label' => 'Type de handicaps',
                 'expanded' => false,
-                'multiple' => true,
-                'required' => false
+                'required' => false,
+                /*'query_builder' => function (EntityRepository $er) use {
+                    return $er->createQueryBuilder('dt')
+                        ->orderBy('dt.disabilityName', 'ASC');
+                }*/
             ))
             ->add('needs', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de besoins',
@@ -30,7 +55,6 @@ class SearchType extends AbstractType
                 'property' => 'needName',
                 'label' => 'Type de besoins',
                 'expanded' => false,
-                'multiple' => true,
                 'required' => false
             ))
             ->add('structurestypes', EntityType::class, array(
@@ -39,23 +63,24 @@ class SearchType extends AbstractType
                 'property' => 'structurestype',
                 'label' => 'Type de Structures',
                 'expanded' => false,
-                'multiple' => true,
                 'required' => false
             ))
-            ->add('save', SubmitType::class,
-                array('label' => 'Recherche Avancée'));
-
+            ->add('save', SubmitType::class, array(
+                'label' => 'Rechercher'));
     }
     /**
-     * @param OptionsResolver $resolver
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array());
+        $resolver->setDefaults(array(
+        ));
     }
-
+    /**
+     * {@inheritdoc}
+     */
     public function getBlockPrefix()
     {
-        return 'search_advanced';
+        return 'research_advanced';
     }
 }

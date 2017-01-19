@@ -98,49 +98,58 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
-    public function getBySearchAdvanced($disabilitytypes, $structurestypes, $needs)
+    public function getByMultipleCriterias($data)
     {
-        $query = $this->createQueryBuilder('o');
-        //$query->addSelect('o');
-        //$query->from('HandissimoBundle:Organizations', 'o');
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
         $query->innerJoin('o.structuretype', 'st');
+        $query->innerJoin('o.stafforganizations', 's');
 
-            if ($disabilitytypes !== null && $structurestypes !== null && $needs !== null) {
-                $query->where('n.needName = :needsdata');
-                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
-                $query->andWhere('st.structurestype = :structuretypedata');
-                $query->setParameter('needsdata', $needs);
-                $query->setParameter('disabilityTypesdata', $disabilitytypes);
-                $query->setParameter('structuretypedata', $structurestypes);
-            }elseif ($disabilitytypes !== null && $structurestypes !== null && $needs == null) {
-                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
-                $query->andWhere('st.structurestype = :structuretypedata');
-                $query->setParameter('disabilityTypesdata', $disabilitytypes);
-                $query->setParameter('structuretypedata', $structurestypes);
-            }elseif ($disabilitytypes !== null && $structurestypes == null && $needs !== null) {
-                $query->where('n.needName = :needsdata');
-                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
-                $query->setParameter('needsdata', $needs);
-                $query->setParameter('disabilityTypesdata', $disabilitytypes);
-            }elseif ($disabilitytypes == null && $structurestypes !== null && $needs !== null) {
-                $query->where('n.needName = :needsdata');
-                $query->andWhere('st.structurestype = :structuretypedata');
-                $query->setParameter('needsdata', $needs);
-                $query->setParameter('structuretypedata', $structurestypes);
-            }elseif ($disabilitytypes !== null && $structurestypes == null && $needs == null) {
-                $query->andWhere('dt.disabilityName = :disabilityTypesdata' );
-                $query->setParameter('disabilityTypesdata', $disabilitytypes);
-            }elseif ($disabilitytypes == null && $structurestypes !== null && $needs == null) {
-                $query->andWhere('st.structurestype = :structuretypedata');
-                $query->setParameter('structuretypedata', $structurestypes);
-            }elseif ($disabilitytypes == null && $structurestypes == null && $needs !== null) {
-                $query->where('n.needName = :needsdata');
-                $query->setParameter('needsdata', $needs);
+        // define data structure
+        $fields =array(
+            "keyword" => array(
+                'o'=>'name',
+                'dt'=>'disabilityName',
+                'st'=>'structurestype',
+                'n'=>'needName',
+                's'=>'jobs'),
+            /*"age" => array(
+                'o'=> 'agemini',
+                'o'=> 'agemaxi'
+            ),*/
+            "postal" => array(
+                'o' => 'postal'
+            ),
+            "disabilitytypes" => array(
+                'dt'=>'id',
+            ),
+            "structurestypes" => array(
+                'st'=>'id',
+            ),
+            "needs" => array(
+                'n'=>'id',
+            )
+        );
+
+        // search data from form
+        foreach($fields as $item => $value) {
+            if (!is_null($data[$item])) {
+                $ormodule = $query->expr()->orX();
+                foreach ($value as $key => $fieldName) {
+                    $ormodule->add($query->expr()->eq($key . '.' . $fieldName, ':' . $item));
+                    $ormodule->add($query->expr()->isNull($key . '.' . $fieldName));
+                }
+                $query->andWhere($ormodule);
+                $query->setParameter($item, $data[$item]);
             }
-            //$query->getQuery()->getSQL();;die;
+        }
+        //echo $query->getQuery()->getSQL();;die();
         return $query->getQuery()->getResult();
+
     }
 
 }

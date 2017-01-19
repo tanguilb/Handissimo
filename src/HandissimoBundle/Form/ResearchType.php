@@ -33,7 +33,7 @@ class ResearchType extends AbstractType
             ->add('save', SubmitType::class,
                 array('label' => 'Rechercher'));
 
-        $builder->addEventListener(
+        /*$builder->addEventListener(
             FormEvents::SUBMIT,
             function (FormEvent $event) {
                 $form = $event->getForm();
@@ -64,7 +64,7 @@ class ResearchType extends AbstractType
                         'required' => false
                     ));
             }
-        );
+        );*/
     }
 
     /**

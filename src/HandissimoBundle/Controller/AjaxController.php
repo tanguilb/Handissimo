@@ -21,6 +21,9 @@ class AjaxController extends Controller
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
+        $formAdvancedResearch = $this->createForm('HandissimoBundle\Form\AdvancedSearchType');
+        $formAdvancedResearch->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()){
 
             $em = $this->getDoctrine()->getManager();
@@ -37,7 +40,26 @@ class AjaxController extends Controller
                 'keyword' => $keyword,
                 'age' => $age,
                 'postal' => $postal,
-                'form' => $form->createView(),
+                'form' => $formAdvancedResearch->createView(),
+            ));
+
+        } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $data = $formAdvancedResearch->getData();
+            /*$age = $formAdvancedResearch->getData()['age'];
+            $postal = $formAdvancedResearch->getData()['postal'];
+            $disabilitytypes= $formAdvancedResearch->getData()['disabilitytypes'];
+            $needs = $formAdvancedResearch->getData()['needs'];
+            $structurestypes = $formAdvancedResearch->getData()['structurestypes'];*/
+            //var_dump($keyword);die();
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data);
+            return $this->render('front/search.html.twig', array(
+                'result' => $result,var_dump($result),
+                'keyword' => $data,
+                'form' => $formAdvancedResearch->createView(),
             ));
         }
         return $this->render('front/research.html.twig', array(
@@ -98,28 +120,5 @@ class AjaxController extends Controller
         } else {
             throw new HttpException('500', 'Invalid call');
         }
-    }
-
-    public function researchAdvancedAction(Request $request)
-    {
-        $form = $this->createForm('HandissimoBundle\Form\SearchType');
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $disabilitytypes = $form->getData()['disabilitytypes'];
-            $structurestypes = $form->getData()['structurestypes'];
-            $needs = $form->getData()['needs'];
-            //var_dump($disabilitytypes);
-
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchAdvanced($disabilitytypes, $structurestypes, $needs);
-            return $this->render('/front/search.html.twig', array(
-                'result' => $result,
-                'form' => $form,
-            ));
-        }
-        return $this->render('front/search.html.twig', array(
-            'form' => $form->createView()
-        ));
     }
 }

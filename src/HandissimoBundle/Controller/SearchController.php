@@ -9,19 +9,20 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class SearchController extends Controller
 {
-    public function researchAdvancedAction(Request $request, $keyword)
+    public function researchAdvancedAction(Request $request, $disability_types_id, $structurestypes_id, $needs_id)
     {
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:DisabilityTypes');
-        $disability = $repository;
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresTypes');
-        $structure = $repository;
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Needs');
-        $needs = $repository;
+        $search = New Search();
+        $em = $this->getDoctrine()->getManager();
+        $disability = $em->getRepository('HandissimoBundle:DisabilityTypes')->findBy($disability_types_id);
+        $structure = $em->getRepository('HandissimoBundle:StructuresTypes')->findBy($structurestypes_id);
+        $needs = $em->getRepository('HandissimoBundle:Needs')->findBy($needs_id);
+        $form = $this->createForm(SearchType::class, $search);
 
 
     }
