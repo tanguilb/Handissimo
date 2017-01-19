@@ -60,7 +60,10 @@ body {
 .like{
     float: right;
 }
-.img-block, .like {
+.img-block{
+    margin-left: 20px;
+}
+.like {
 
     margin:0;
 }
