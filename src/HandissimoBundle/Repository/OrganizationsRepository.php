@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 class OrganizationsRepository extends EntityRepository
 {
 
-    public function getByOrganizationsName($keyword, $age, $postal)
+    /*public function getByOrganizationsName($keyword, $age, $postal)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
@@ -62,6 +62,54 @@ class OrganizationsRepository extends EntityRepository
             $query->setParameter('age', $age);
         }
         return $query->getQuery()->getResult();
+    }*/
+
+    public function getByOrganizationName($data, $age)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->innerJoin('o.needs', 'n');
+        $query->innerJoin('o.disabilityTypes', 'dt');
+        $query->innerJoin('o.structuretype', 'st');
+        $query->innerJoin('o.stafforganizations', 's');
+
+        // define data structure
+        $fields =array(
+            "keyword" => array(
+                'o'=>'name',
+                'dt'=>'disabilityName',
+                'st'=>'structurestype',
+                'n'=>'needName',
+                's'=>'jobs'),
+            "postal" => array(
+                'o' => 'postal'
+            ),
+        );
+
+        if ($age !== null) {
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->lte('o.agemini', ':age'));
+            $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
+            $query->andWhere($andmodule);
+            $query->setParameter('age', $age);
+        }
+
+        // search data from form
+        foreach($fields as $item => $value) {
+            if (!is_null($data[$item])) {
+                $ormodule = $query->expr()->orX();
+                foreach ($value as $key => $fieldName) {
+                    $ormodule->add($query->expr()->eq($key . '.' . $fieldName, ':' . $item));
+                    $ormodule->add($query->expr()->isNull($key . '.' . $fieldName));
+                }
+                $query->andWhere($ormodule);
+                $query->setParameter($item, $data[$item]);
+            }
+        }
+        //echo $query->getQuery()->getSQL();;die();
+        return $query->getQuery()->getResult();
     }
 
     public function getByOrganizations($keyword)
@@ -98,7 +146,7 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
-    public function getByMultipleCriterias($data)
+    public function getByMultipleCriterias($data, $age)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
@@ -117,10 +165,6 @@ class OrganizationsRepository extends EntityRepository
                 'st'=>'structurestype',
                 'n'=>'needName',
                 's'=>'jobs'),
-            /*"age" => array(
-                'o'=> 'agemini',
-                'o'=> 'agemaxi'
-            ),*/
             "postal" => array(
                 'o' => 'postal'
             ),
@@ -134,6 +178,14 @@ class OrganizationsRepository extends EntityRepository
                 'n'=>'id',
             )
         );
+
+        if ($age !== null) {
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->lte('o.agemini', ':age'));
+            $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
+            $query->andWhere($andmodule);
+            $query->setParameter('age', $age);
+        }
 
         // search data from form
         foreach($fields as $item => $value) {
@@ -149,7 +201,5 @@ class OrganizationsRepository extends EntityRepository
         }
         //echo $query->getQuery()->getSQL();;die();
         return $query->getQuery()->getResult();
-
     }
-
 }

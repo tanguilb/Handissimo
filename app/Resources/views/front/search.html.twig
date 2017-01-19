@@ -12,20 +12,18 @@
                     {{ form_start(form) }}
                     {{ form_errors(form) }}
                     <div class="col-xs-12 col-md-1" id="imput-keyword">
-                        {{ form_row(form.keyword, {"value":keyword}) }}
+                        {{ form_row(form.keyword, {"value":keyword["keyword"]}) }}
                         <ul id="keywordautocomplete"></ul>
                     </div>
                     <div class="col-xs-12 col-md-1" id="imput-age">
                         {{ form_row(form.age, {"value":age}) }}
                     </div>
                     <div class="col-xs-12 col-md-1" id="imput-postal">
-                        {{ form_row(form.postal, {"value":postal}) }}
+                        {{ form_row(form.postal, {"value":keyword["postal"]}) }}
                         <ul id="city"></ul>
                     </div>
                     <div class="col-md-3">
-                        {#{ form_row(form.save) }#}
                     </div>
-                    {#}{ form_end(form) }#}
                 </div>
             </div>
         </div>
@@ -34,27 +32,8 @@
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Filtres &nbsp;+</button>
                 <div id="filters" class="collapse">
                     {{ form_row(form.disabilitytypes ) }}
-                    {#}% for results in result %}
-                        {% for disabilityType in results.disabilityTypes %}
-                            {% if loop.first %}
-                                <div id="disabilityselect">{{ disabilityType.disabilityName }}</div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %#}
                     {{ form_row(form.structurestypes) }}
-                    {#}% for results in result %}
-                        {% if loop.first %}
-                            <div id="structureselect">{{ results.structuretype }}</div>
-                        {% endif %}
-                    {% endfor %#}
                     {{ form_row(form.needs) }}
-                    {#% for results in result %}
-                        {% for need in results.needs %}
-                            {% if loop.first %}
-                                <div id="needselect">{{ need.needName }}</div>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %#}
                     {{ form_end(form) }}
                 </div>
             </div>

@@ -27,38 +27,33 @@ class AjaxController extends Controller
         if ($form->isSubmitted() && $form->isValid()){
 
             $em = $this->getDoctrine()->getManager();
-            $keyword = $form->getData()['keyword'];
+            $data = $form->getData();
             $age = $form->getData()['age'];
-            $postal = $form->getData()['postal'];
 
             /**
              * @var $repository OrganizationsRepository
              */
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationName($data, $age);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
-                'keyword' => $keyword,
+                'keyword' => $data,
                 'age' => $age,
-                'postal' => $postal,
                 'form' => $formAdvancedResearch->createView(),
             ));
 
         } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $data = $formAdvancedResearch->getData();
-            /*$age = $formAdvancedResearch->getData()['age'];
-            $postal = $formAdvancedResearch->getData()['postal'];
-            $disabilitytypes= $formAdvancedResearch->getData()['disabilitytypes'];
-            $needs = $formAdvancedResearch->getData()['needs'];
-            $structurestypes = $formAdvancedResearch->getData()['structurestypes'];*/
-            //var_dump($keyword);die();
+            $age = $form->getData()['age'];
+
             /**
              * @var $repository OrganizationsRepository
              */
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data, $age);
             return $this->render('front/search.html.twig', array(
-                'result' => $result,var_dump($result),
+                'result' => $result,
                 'keyword' => $data,
+                'age' => $age,
                 'form' => $formAdvancedResearch->createView(),
             ));
         }
