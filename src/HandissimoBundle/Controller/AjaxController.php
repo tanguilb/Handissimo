@@ -21,7 +21,7 @@ class AjaxController extends Controller
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
-        $formAdvancedResearch = $this->createForm('HandissimoBundle\Form\AdvancedSearchType');
+       // $formAdvancedResearch = $this->createForm('HandissimoBundle\FormAdvancedSearchType', new DisabilityTypes(), array('data' => $organizations->getDisabilityName()));
         $formAdvancedResearch->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){

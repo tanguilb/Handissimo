@@ -9,6 +9,7 @@
 namespace HandissimoBundle\Form;
 
 
+use HandissimoBundle\Repository\OrganizationsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,11 +39,14 @@ class AdvancedSearchType extends AbstractType
 
             ->add('disabilitytypes', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de handicaps',
-                'class' => 'HandissimoBundle:DisabilityTypes',
+                'class' => 'HandissimoBundle:Organizations',
                 'choice_label' => 'disabilityName',
                 'label' => 'Type de handicaps',
                 'expanded' => false,
                 'required' => false,
+                'query_builder' => function (OrganizationsRepository $or) use ($options)  {
+                    return $or->getByOrganizationName($options[]);
+                }
             ))
             ->add('needs', EntityType::class, array(
                 'empty_value' => 'Sélectionner un type de besoins',
