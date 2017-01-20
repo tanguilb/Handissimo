@@ -59,7 +59,7 @@ class OrganizationsController extends Controller
     public function showAction(Organizations $organization)
     {
         $deleteForm = $this->createDeleteForm($organization);
-        return $this->render('front/organizationPage.html.twig', array(
+        return $this->render('organizations/show.html.twig', array(
             'organization' => $organization,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -120,6 +120,14 @@ class OrganizationsController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    /* */
+    public function standardPageAction(Organizations $organization){
+        $organization = $this->get('templating')
+            ->render('front/organizationPage.html.twig', array('organization' => $organization));
+
+        return new Response($organization);
+
     }
 
 }

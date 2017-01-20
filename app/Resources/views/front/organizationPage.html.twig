@@ -23,7 +23,8 @@
                         <h2 class="title"> {{ organization.societies.societyname }} - {{ organization.name }} </h2>
                         <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
                     </div>
-                    <!--<div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
+                    <!-- this is the line to display like button
+                    <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
                 </div>
             </div>
             <!-- caroussel----------------------------------------------------------->
@@ -41,7 +42,7 @@
 
             <!-- block essentiel----------------------------------->
             <div class="essential-block col-md-8">
-                <!-- block adresse---------------------->
+                <!-- adress block---------------------->
                 <div class="info-block">
                     <div class="address">
                         <div class="line"><div class="icon-block"><i class="fa fa-home" aria-hidden="true"></i></div><p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p></div>
@@ -89,7 +90,7 @@
                     </a>
                 </div>
             </div>
-            <!-- return button-->
+            <!-- return button -->
             <div class="col-md-12">
                 <div class="text-center btn-return">
                     <a href="#" class="btn-return-link">
@@ -100,7 +101,7 @@
         </div>
 
    </div>
-
+    <script src="{{ asset('js/carousel.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">

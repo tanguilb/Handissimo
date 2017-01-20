@@ -2,41 +2,31 @@ body {
     background-color: #f4f4f4;
     font-family: 'Open Sans', sans-serif;
 }
-
-
-/*----------------------------------------------------------- img head/ image d'entete arriere plan*/
+/*----------------------------------------------------------- img head*/
 .head-title, .head{
     align-items: center;
     display: flex;
 }
-
 .head-img{
     width: 100%;
     height: 350px;
-    /*background-image: url("https://s29.postimg.org/9j87qm5ef/image.jpg");*/
     background-image: url("https://s27.postimg.org/j94xd9pzn/Mc_Kay_Dee_Pond_2005_LR2.jpg");
     background-size: cover;
     background-position: center center;
     position: absolute;
     z-index: -1;
-
 }
-/*-----------------------------------------container / bloc de contenu generale*/
+/*-----------------------------------------container*/
 .main-block{
-
     background-color: #ffffff;
     margin:205px auto 50px auto ;
-
 }
-
-
-
-/*   -----------------------------------container info bloc / contenu du bloc information*/
+/*   -----------------------------------container info block */
 .container-info{
     padding-top:10px;
 }
 
-/**------------------- titre/entete*/
+/**------------------- head title*/
 .update{
     color:#8a8a8a;
     margin-top:10px;
@@ -49,29 +39,22 @@ body {
     box-shadow: 5px 5px 5px 0 #e0e0e0;
     border: solid 1px #dadada;
 }
+/*------------------- this is for the favorite/like button --------------*/
 .fa-heart-o{
     font-size: 30px;
     height:30px;
 }
-
-.like-img{
-
-}
 .like{
     float: right;
+    margin:0;
 }
+/*-----------------------------*/
 .img-block{
     margin-left: 20px;
 }
-.like {
-
-    margin:0;
-}
 .title{
-
     margin: 0 ;
     font-size:30px;
-
 }
 .head-block{
     margin:0 10px 5px 10px;
@@ -80,25 +63,20 @@ body {
 .img-block, .like{
     display: flex;
     justify-content: flex-end;
-
 }
-/*  ----------------------------------caroussel*/
+/*  ----------------------------------carousel-----------*/
 .carousel,.carousel ul,.carousel ul li, .line-img{
-
     margin: 0;
 }
 .main-carousel {
     margin: 10px auto;
     width: 100%;
     height: 300px;
-
 }
 .carousel{
     width: 100%;
     height: 300px;
     overflow: hidden;
-
-
 }
 .carousel ul{
     list-style: none;
@@ -109,7 +87,6 @@ body {
     padding-right: 0;
 }
 .carousel ul li {
-
     width: 600px;
     height: 300px;
 }
@@ -124,17 +101,12 @@ body {
     padding-right:5px;
     padding-left:5px;
 }
-
-
-/*----------------------------------------essentieal bloc*/
-
+/*----------------------------------------essential block*/
 .essential-block{
       margin:10px 0 0 0 ;
-
 }
 .fa-twitter,.a-facebook, .fa-commenting, .fa-desktop, .fa-envelope, .fa-user, .fa-phone, .fa-home{
     font-size: 20px;
-
 }
 .icon-block{
     width: 8%;
@@ -163,20 +135,16 @@ body {
     margin-top: 10px;
 }
 .description{
-
     text-align: justify;
-
 }
 .description p{
-
     word-wrap: break-word;
 }
 .address-line{
-
     font-size: 14px;
     margin: 0 0 5px 0;
 }
-/* map & ressources------------------------------*/
+/* ----------map & ressources------------------------------*/
 .map-block{
     padding-left:0;
     padding-right:0;
@@ -185,7 +153,6 @@ body {
     height:400px;
     margin-top: 20px;
 }
-
 .print-line, .download-line{
     border-top: solid 1px #dadada;
     margin-top: 5px;
@@ -196,7 +163,6 @@ body {
 }
 .print-line p, .download-line p {
     margin-left: 10px;
-
 }
 .download,.print{
     color:#65bfba;
@@ -209,19 +175,14 @@ body {
     color:#65bfba;
     text-decoration: none;
 }
-
 .fa-print, .fa-download {
     padding: 3px 0 10px 5px;
  }
-
-
 .download-line:hover, .print-line:hover {
     box-shadow: 0 0 5px 1px #cfcfcf;
-
 }
 /*--------search return button----*/
 .return{
-
     display: inline;
     border-radius: 50px;
     padding:20px;
@@ -241,7 +202,7 @@ body {
 .btn-return{
     margin: 50px 0;
 }
-/*media queries*/
+/*----------------------media queries-------------------------------------------*/
 @media screen and (max-width: 768px) {
     .main-block{
         margin-top:90px;
@@ -249,15 +210,12 @@ body {
     .head-img{
         display: none;
     }
-
     .icon-block{
         width: 6%;
         padding-left:20px;
-
     }
     .address-line{
         padding-left:30px;
-
     }
     .head-title{
         align-items: flex-start;
@@ -268,15 +226,5 @@ body {
     .description, .address-line{
         font-size:1.3em;
     }
-
-    
 }
-
-
-/*------------------test-------------- */
-.title, .organization-logo,.like{
-    /*border:1px solid black;*/
-}
-/*-------------------------------- */
-
 
