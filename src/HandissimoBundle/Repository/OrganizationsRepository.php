@@ -125,8 +125,21 @@ class OrganizationsRepository extends EntityRepository
     public function getByCity($postalcode)
     {
         $query = $this->createQueryBuilder('o')
+            ->select('o.city')
+            ->orWhere('o.city LIKE :citydata')
+            ->groupBy('o.city')
+            ->setParameter('citydata',  '%' . $postalcode . '%')
+            ->orderBy('o.postal')
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function getByPostal($postalcode)
+    {
+        $query = $this->createQueryBuilder('o')
             ->select('o.postal')
             ->where('o.postal LIKE :postaldata')
+            ->groupBy('o.postal')
             ->setParameter('postaldata',  '%' . $postalcode . '%')
             ->orderBy('o.postal')
             ->getQuery();

@@ -21,7 +21,7 @@ class SocietyAdmin extends Admin
                         'required' => true
                     ))
                     ->add('postal', 'text', array(
-                        'label' => 'Code postale',
+                        'label' => 'Code postal',
                         'required' => true
                     ))
                     ->add('city', 'text', array(
@@ -33,15 +33,15 @@ class SocietyAdmin extends Admin
                         'required' => true
                     ))
                     ->add('mail', 'text', array(
-                        'label' => 'Adresse mail',
+                        'label' => 'Adresse e-mail',
                         'required' => false
                     ))
                     ->add('society_facebook', 'text', array(
-                        'label' => 'Page facebook',
+                        'label' => 'Page Facebook',
                         'required' => false
                     ))
                     ->add('society_twitter', 'text', array(
-                        'label' => 'Page twitter',
+                        'label' => 'Page Twitter',
                         'required' => false
                     ))
                     ->add('website', 'text', array(
@@ -69,7 +69,7 @@ class SocietyAdmin extends Admin
             ->add('address', null, array('label' => 'Adresse'))
             ->add('postal', null, array('label' => 'Code postal'))
             ->add('city', null, array('label' => 'Ville'))
-            ->add('phone_number', null, array('label' => 'Numéro de téléphone'))
-            ->add('mail', null, array('label' => 'Adresse mail'));
+            ->add('phone_number', null, array('label' => 'Téléphone'))
+            ->add('mail', null, array('label' => 'Adresse e-mail'));
     }
 }

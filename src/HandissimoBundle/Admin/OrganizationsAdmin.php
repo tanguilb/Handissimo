@@ -19,18 +19,18 @@ class OrganizationsAdmin extends Admin
             ->add('societies', EntityType::class, array(
                 'class' => 'HandissimoBundle:Society',
                 'choice_label' => 'society_name',
-                'label' => 'Organisme Gestionnaire'
+                'label' => 'Organisme gestionnaire'
             ))
             ->add('name', 'text', array(
                 'label' => 'Nom de l\'organisation',
                 'required' => true
             ))
             ->add('address', 'text', array(
-                'label' => 'Adresse',
+                'label' => 'Adresse postale',
                 'required' => true
             ))
             ->add('postal', 'text', array(
-                'label' => 'Code postale',
+                'label' => 'Code postal',
                 'required' => true,
             ))
             ->add('city', 'text', array(
@@ -38,11 +38,11 @@ class OrganizationsAdmin extends Admin
                 'required' => true
             ))
             ->add('phone_number', 'text', array(
-                'label' => 'Télephone',
+                'label' => 'Téléphone',
                 'required' => true
             ))
             ->add('mail', 'text', array(
-                'label' => 'Adresse e-mail',
+                'label' => 'E-mail de contact',
                 'required' => true
             ))
             ->add('website', 'text', array(
@@ -54,30 +54,30 @@ class OrganizationsAdmin extends Admin
                 'required' => false
             ))
             ->add('facebook', 'text', array(
-                'label' => 'Page facebook',
+                'label' => 'Facebook',
                 'required' => false
             ))
             ->add('twitter', 'text', array(
-                'label' => 'Page twitter',
+                'label' => 'Twitter',
                 'required' => false
             ))
             ->add('agemini', 'integer', array(
-                'label' => 'Age minimum',
+                'label' => 'Âge minimum',
                 'required' => false
             ))
             ->add('agemaxi', 'integer', array(
-                'label' => 'Age maximum',
+                'label' => 'Âge maximum',
                 'required' => false
             ))
             ->add('freeplace', 'text', array(
-                'label' => 'Place(s) disponible(s)',
+                'label' => 'Nombre de places disponibles',
                 'required' => false
             ))
-            ->add('organization_description', 'textarea', array(
+            ->add('organization_description', 'ckeditor', array(
                 'label' => 'Description de la structure',
                 'required' => false
             ))
-            ->add('serve_description', 'textarea', array(
+            ->add('serve_description', 'ckeditor', array(
                 'label' => 'Description des services',
                 'required' => false
             ))
@@ -85,34 +85,34 @@ class OrganizationsAdmin extends Admin
                 'label' => 'Heures d\'ouverture',
                 'required' => false
             ))
-            ->add('opendays', 'textarea', array(
+            ->add('opendays', 'ckeditor', array(
                 'label' => 'Jours d\'ouverture',
                 'required' => false
             ))
             ->add('team_members_number', 'text', array(
-                'label' => 'Nombre du personnel',
+                'label' => 'Nombre de membres du personnel',
                 'required' => false
             ))
-            ->add('team_description', 'textarea', array(
-                'label' => 'Description du ou des équipe(s)',
+            ->add('team_description', 'ckeditor', array(
+                'label' => 'Description de la ou des équipe(s)',
                 'required' => false
             ))
-            ->add('working_description', 'textarea', array(
+            ->add('working_description', 'ckeditor', array(
                 'label' => 'Description du travail effectué',
                 'required' => false
             ))
             ->add('school', CheckboxType::class, array(
-                'label' => 'Ecole',
+                'label' => 'Ètes-vous un établissement scolaire ?',
                 'required' => false
             ))
-            ->add('school_description', 'textarea', array(
-                'label' => 'Description de l\'école',
-                'required' => false
-                    ))
+            ->add('school_description', 'ckeditor', array(
+                'label' => 'Description de l\'établissement',
+                'required' => false,
+            ))
             ->add('disabilitytypes',EntityType::class,array (
                 'class' => 'HandissimoBundle:DisabilityTypes',
                 'choice_label' => 'disabilityName',
-                'label' => 'Type de handicaps',
+                'label' => 'Type de handicap',
                 'multiple' => true
             ))
             ->add('Stafforganizations', EntityType::class, array(
@@ -124,17 +124,18 @@ class OrganizationsAdmin extends Admin
             ->add('needs', EntityType::class, array(
                 'class' => 'HandissimoBundle:Needs',
                 'choice_label' => 'needName',
-                'label' => 'Type de services',
+                'label' => 'Type de service',
                 'multiple' => true
             ))
             ->add('structuretype', EntityType::class, array(
                 'class' => 'HandissimoBundle:StructuresTypes',
                 'choice_label' => 'structurestype',
-                'label' => 'Type de structures',
+                'label' => 'Type de structure',
                 'multiple' => false,
                 'by_reference' => true,
                 'expanded' => false
-            ));
+            ))
+        ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -150,7 +151,7 @@ class OrganizationsAdmin extends Admin
                     ->add( 'address' , null, array ( 'label' => 'Adresse') )
                     ->add( 'postal' , null, array ( 'label' => 'Code postale') )
                     ->add( 'city' , null, array ( 'label' => 'Ville') )
-                    ->add( 'phone_number' , null, array ( 'label' => 'Télephone') )
+                    ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
                     ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
         ;
     }

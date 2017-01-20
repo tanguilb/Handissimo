@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#handissimo-nav" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">
+                <img alt="Handissimo vous simplifie le handicap" src="{{ asset('images/handissimo-logo.png') }}" class="logo-handissimo-navbar">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="handissimo-nav">
+            <div class="nav navbar-nav navbar-right">
+                <button class="btn orange-btn">
+                    <a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?</a>
+                </button>
+                {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
+                <button class="btn pink-btn">
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i>Votre compte</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

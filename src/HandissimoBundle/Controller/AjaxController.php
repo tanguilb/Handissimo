@@ -109,8 +109,15 @@ class AjaxController extends Controller
          * @var $repository OrganizationsRepository
          */
         if ($request->isXmlHttpRequest()) {
+
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $data = $repository->getByCity($postalcode);
+            $postal = $repository->getByPostal($postalcode);
+
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $city = $repository->getByCity($postalcode);
+
+            $data =  array_merge($postal, $city);
+
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

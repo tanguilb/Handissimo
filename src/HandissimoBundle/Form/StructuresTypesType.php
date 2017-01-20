@@ -13,7 +13,7 @@ class StructuresTypesType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('structuresType')->add('logoMdph')        ;
+        $builder->add('structuresType')->add('logoMdph');
     }
     
     /**

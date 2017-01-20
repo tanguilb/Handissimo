@@ -36,6 +36,44 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+    #Sonata with Symfony >= 2.6
+    form_themes:
+        - 'SonataFormatterBundle:Form:formatter.html.twig'
+
+sonata_formatter:
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -114,3 +152,10 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+
+ivory_ck_editor:
+    default_config: my_custom_config
+    configs:
+        my_custom_config:
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Image','Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+            height: '200px'

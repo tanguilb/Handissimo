@@ -16,7 +16,7 @@ class DisabilityTypesAdmin extends Admin
         $formMapper
             ->add('disabilityName', 'text',
                 array(
-                    'label' => 'Type de handicaps',
+                    'label' => 'Types de handicaps',
                     'required' => false
                 ))
             ->add('organizations',EntityType::class,array (
@@ -34,7 +34,7 @@ class DisabilityTypesAdmin extends Admin
         $listMapper
             ->add('disabilityName', null,
                 array(
-                    'label' => 'Type de handicaps'
+                    'label' => 'Types de handicaps'
                 ));
     }
 
