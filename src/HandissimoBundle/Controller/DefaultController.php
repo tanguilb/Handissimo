@@ -21,7 +21,5 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ));
     }
-    public function aboutAction(){
-        return $this->render('front/about.html.twig');
-    }
+
 }
