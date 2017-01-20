@@ -10,6 +10,10 @@ handissimo_homepage:
     path:     /
     defaults: { _controller: HandissimoBundle:Default:index }
 
+handissimo_aboutPage:
+    path:     /about
+    defaults: { _controller: HandissimoBundle:Default:about }
+
 handissimo_search:
     path:     /search
     defaults: { _controller: HandissimoBundle:Default:search }
