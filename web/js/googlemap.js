@@ -6,7 +6,7 @@ function initMap() {
         center: uluru
     });
 
-    var coordinate =  document.getElementsByTagName('input');
+    var coordinate =  document.getElementsByClassName('arrayjson');
 
     for(var i = 0; i < coordinate.length; i++) {
         (function(index){
