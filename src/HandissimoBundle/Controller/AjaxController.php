@@ -3,7 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 
-use HandissimoBundle\Entity\DisabilityTypes;
+use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use HandissimoBundle\Form\AdvancedSearchType;
 
 class AjaxController extends Controller
 {
@@ -21,12 +22,14 @@ class AjaxController extends Controller
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
-       // $formAdvancedResearch = $this->createForm('HandissimoBundle\FormAdvancedSearchType', new DisabilityTypes(), array('data' => $organizations->getDisabilityName()));
+        $em = $this->getDoctrine()->getManager();
+
+        $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
         $formAdvancedResearch->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            $em = $this->getDoctrine()->getManager();
+
             $data = $form->getData();
             $age = $form->getData()['age'];
 
