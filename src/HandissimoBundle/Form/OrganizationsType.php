@@ -67,13 +67,14 @@ class OrganizationsType extends AbstractType
             'choice_label' => 'disabilityName',
             'label' => 'Handicap',
             'multiple' => true,
-            'expanded' => true,))
+            //'expanded' => true,
+                ))
             ->add('needs', EntityType::class, array(
             'class' => 'HandissimoBundle:Needs',
             'choice_label' => 'needName',
             'label' => 'besoin',
             'multiple' => true,
-            'expanded' => true,
+            //'expanded' => true,
             ))
             ->add('stafforganizations', EntityType::class, array(
             'class' => 'HandissimoBundle:Staff',
@@ -81,7 +82,7 @@ class OrganizationsType extends AbstractType
             'choice_label' => 'jobs',
             'label' => 'Métier',
             'multiple' => true,
-            'expanded' => true,
+           // 'expanded' => true,
             ))
 
         ;

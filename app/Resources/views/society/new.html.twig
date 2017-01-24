@@ -3,11 +3,12 @@
 {% block body %}
     <h1>Créer votre fiche société</h1>
     <div class="well">
-    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(form) }}
         <div class="form-group">
             {{ form_label(form.societyName, "Nom de votre société : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
             {{ form_errors(form.societyName) }}
+
             <div class="col-sm-4">
 
                 {# Génération de l'input. #}

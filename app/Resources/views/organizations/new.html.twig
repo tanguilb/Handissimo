@@ -1,10 +1,257 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Organization creation</h1>
+    <h1>Créer votre fiche</h1>
+    <div class="well">
+        {{ form_start(form, { 'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        <div class="essential">
+            <h2>L'essentiel</h2>
+            <div class="form-group">
+                {{ form_label(form.societies, "Nom de votre gestionnaire : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.societies) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form.societies, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
+                    <!-- section who? -->
+
+                    <div class="col-xs-12 col-md-6 shadow-block">
+                        <h3>Pour qui ?</h3>
+
+                        <!-- section age -->
+
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-md-6">
+                                {{ form_label(form.agemini, "age de : ", {'label_attr': {'class': 'col-xs-12 col-md-6 control-label'}}) }}
+                                {{ form_errors(form.agemini) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.agemini, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                {{ form_label(form.agemaxi, "à : ", {'label_attr': {'class': 'col-xs-12 col-md-6 control-label'}}) }}
+                                {{ form_errors(form.agemaxi) }}
+                                <div class="col-sm-4">
+                                    {{ form_widget(form.agemaxi, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- end section age -->
+
+                        <div class="form-group">
+                            {{ form_label(form.disabilityTypes, "Type de handicap : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.disabilityTypes) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.disabilityTypes, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.freeplace, "Nombre de place disponible : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.freeplace) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.freeplace, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.organizationDescription, "Faites une description de votre structure : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.organizationDescription) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.organizationDescription, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end section who? -->
+
+                    <!-- section we do what -->
+
+                    <div class="col-xs-12 col-md-6 shadow-block">
+                        <h3>On y fait quoi ?</h3>
+                        <div class="form-group">
+                            {{ form_label(form.needs, "Types de services/besoins : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.needs) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.needs, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.serveDescription, "Que propose votre structure aux handicapés : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.serveDescription) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.serveDescription, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end section we do what -->
+
+                </div>
+                <div class="row">
+
+                    <!-- section info -->
+
+                    <div class="col-xs-12 col-md-6 shadow-block">
+                        <h3>Infos pratiques</h3>
+                        <div class="form-group">
+                            {{ form_label(form.structuretype, "Type de structure : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.structuretype) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.structuretype, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.address, "Addresse : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.address) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.postal, "Code postal : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.postal) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.postal, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.city, "Ville : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.city) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.mail, "Mail : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.mail) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.phoneNumber, "Téléphone : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.phoneNumber) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.website, "Site web : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.website) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.website, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.facebook, "Compte facebook : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.facebook) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.facebook, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.twitter, "Compte twitter : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.twitter) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.twitter, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.openhours, "Horaire d'ouverture : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.openhours) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.openhours, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.opendays, "Jours d'ouverture : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.opendays) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.opendays, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end section info -->
+
+                    <!-- section team -->
+
+                    <div class="col-xs-12 col-md-6 shadow-block">
+                        <h3>Quelle équipe ?</h3>
+                        <div class="form-group">
+                            {{ form_label(form.teamMembersNumber, "Combien y-a-t-il de personnes dans votre équipe : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.teamMembersNumber) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.teamMembersNumber, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.stafforganizations, "Qui fait partie de votre équipe : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.stafforganizations) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.stafforganizations, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.teamDescription, "Autres informations: ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.teamDescription) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.teamDescription, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end section team -->
+                </div>
+            </div>
+        </div>
+
+        <!-- end section essential -->
+
+        <!-- section more -->
+
+        <div class="more">
+            <h2>En savoir plus</h2>
+            <div class="form-group">
+                {{ form_label(form.workingDescription, "Organisation de la structure : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                {{ form_errors(form.workingDescription) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form.workingDescription, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.school, "Scolarisation : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+            {{ form_errors(form.school) }}
+            <div class="col-sm-4">
+                {{ form_widget(form.school, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.schoolDescription, "Organization de la scolarité : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+            {{ form_errors(form.schoolDescription) }}
+            <div class="col-sm-4">
+                {{ form_widget(form.schoolDescription, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.activities, "Quelles activités sont proposées : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+            {{ form_errors(form.activities) }}
+            <div class="col-sm-4">
+                {{ form_widget(form.activities, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.placeDescription, "Description des locaux et des espaces extérieurs : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+            {{ form_errors(form.placeDescription) }}
+            <div class="col-sm-4">
+                {{ form_widget(form.placeDescription, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
