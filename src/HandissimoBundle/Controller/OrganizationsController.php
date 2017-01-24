@@ -5,6 +5,7 @@ namespace HandissimoBundle\Controller;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Organization controller.
@@ -21,7 +22,6 @@ class OrganizationsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $organizations = $em->getRepository('HandissimoBundle:Organizations')->findAll();
-
         return $this->render('organizations/index.html.twig', array(
             'organizations' => $organizations,
         ));
@@ -59,7 +59,6 @@ class OrganizationsController extends Controller
     public function showAction(Organizations $organization)
     {
         $deleteForm = $this->createDeleteForm($organization);
-
         return $this->render('organizations/show.html.twig', array(
             'organization' => $organization,
             'delete_form' => $deleteForm->createView(),
@@ -122,4 +121,13 @@ class OrganizationsController extends Controller
             ->getForm()
         ;
     }
+    /* */
+    public function standardPageAction(Organizations $organization){
+        $organization = $this->get('templating')
+            ->render('front/organizationPage.html.twig', array('organization' => $organization));
+
+        return new Response($organization);
+
+    }
+
 }

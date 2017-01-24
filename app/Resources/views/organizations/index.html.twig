@@ -20,12 +20,14 @@
         {% if organization.userOrg.id == app.security.getToken().getUser().getId()  %}
 
         <tr>
-                <td><a href="path('organizations_show', { 'id': organization.id}) }}">{{ organization.name }}</a></td>
+                <td><a href="{{ path('organizations_show', { 'id': organization.id}) }}">{{ organization.name }}</a></td>
+
                 <td>{{ organization.address }}</td>
                 <td>{{ organization.postal }}</td>
                 <td>{{ organization.city }}</td>
                 <td>{{ organization.phoneNumber }}</td>
                 <td>{{ organization.mail }}</td>
+
                 <td>
                     <ul>
                         <li>
