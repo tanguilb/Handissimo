@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="head-block"></div>
+    <div class="container main-block">
+        <h2 class="text-content">Qui sommes-nous ?</h2>
+        <div class="img-block col-md-12">
+            <div><img src="{{ asset('images/about.png') }}" alt="" class="img-responsive"></div>
+        </div>
+       <div class="text-content">
+            <h3>Handissimo c'est quoi ?</h3>
+            <p>Pas facile de s’y retrouver dans le champ du handicap ! Handissimo vous met en lien direct avec toutes les structures d’accueil, les services d’accompagnement spécialisé, les associations, les loisirs et activités adaptées en France.</p>
+            <p>Vous pourrez aussi partager votre expérience et votre avis avec des personnes et des familles faisant face aux mêmes difficultés que vous.</p>
+            <h3>Handissimo vous facilite le handicap !</h3>
+            <p>Comment ça marche ?</p>
+            <ul>
+                <li>Vous êtes une personne handicapée ou sa famille</li>
+                <li>Vous êtes un professionnel</li>
+                <li>Vous êtes le représentant d’une structure gestionnaire </li>
+                <li>Vous souhaitez être l’administrateur de votre fiche structure</li>
+            </ul>
+       </div>
+    </div>
+
+{% endblock body %}
