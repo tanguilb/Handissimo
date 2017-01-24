@@ -26,10 +26,6 @@ handissimo_organizations:
     resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
     prefix:   /organizations
 
-handissimo_pictures:
-    resource: "@HandissimoBundle/Resources/config/routing/pictures.yml"
-    prefix:   /pictures
-
 handissimo_society:
     resource: "@HandissimoBundle/Resources/config/routing/society.yml"
     prefix:   /society
