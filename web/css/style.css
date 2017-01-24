@@ -2,7 +2,8 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.btn {
+.btn,
+#research_action_save {
     color: #ffffff;
     text-transform: uppercase;
     font-size: 15px;
@@ -55,11 +56,13 @@ body {
     margin-top: 25px;
 }
 
-.orange-btn {
+.orange-btn,
+#research_action_save {
     background-color: #f7af49;
 }
 
-.orange-btn:hover {
+.orange-btn:hover,
+#research_action_save:hover {
     background-color: #FFBE49;
 }
 

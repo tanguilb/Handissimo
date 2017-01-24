@@ -3,7 +3,7 @@
     background-size: cover;
     background-attachment: scroll;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 100%;
 }
 
 #main-index h1 {
@@ -22,7 +22,14 @@
     margin-top: 30px;
     line-height: 42px;
 }
-
+@media (max-width: 360px) {
+    #main-index h1 {
+        font-size: 45px;
+    }
+    #main-index h2 {
+        font-size: 26px;
+    }
+}
 
 /*Search area*/
 #search-container{
@@ -33,13 +40,23 @@
     background-color: #FFFFFF;
     border: 2px solid #f7af49;
 }
+@media (max-width: 992px) {
+    .search-field {
+        margin: 10px 0;
+    }
+}
 .search-field p {
     font-size: 22px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-style: italic;
-    padding-top: 10px;
+    padding-top: 8px;
     color: #777777;
+}
+@media (max-width: 360px) {
+    .search-field p {
+        font-size: 20px;
+    }
 }
 
 .search-field i {
@@ -56,19 +73,25 @@
 .homeField {
     padding: 0 0 0 10px;
     border: none;
-    border-bottom: solid 2px #c9c9c9;
+    border-bottom: solid 1px #c9c9c9;
     transition: border 0.3s;
     width: 100%;
     font-size: 14px;
     font-style: italic;
+    color: #777777;
 }
 
 .homeField:focus,
 .homeField.focus {
-    border-bottom: solid 2px #969696;
+    border-bottom: solid 1px #777777;
 }
 
-#search-btn {
+#research_action_age {
+    margin-bottom: 10px;
+}
+
+#research_action_save {
+    border: none;
     display: block;
-    margin: 20px auto;
+    margin: 50px auto 90px auto;
 }
