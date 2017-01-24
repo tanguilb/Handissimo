@@ -12,6 +12,11 @@ body {
     letter-spacing: 1px;
     padding: 10px 14px;
 }
+@media (max-width: 320px) {
+    .btn {
+        font-size: 14px;
+    }
+}
 
 .btn a {
     text-decoration: none;
@@ -36,6 +41,10 @@ body {
     display: none;
 }
 
+#alert-danger {
+    background-color: red;
+}
+
 /****************/
 /*****NAVBAR*****/
 /****************/
@@ -44,11 +53,16 @@ body {
     height: 100px;
     z-index: 997;
     border: none;
-    background-color: #FFFFFF;
+    background-color: #f7f7f7;
 }
 
 .logo-handissimo-navbar {
     width:250px;
+}
+@media (max-width: 320px) {
+    .logo-handissimo-navbar {
+        width: 220px;
+    }
 }
 
 .navbar-right button {
@@ -62,8 +76,10 @@ body {
 }
 
 .orange-btn:hover,
-#research_action_save:hover {
+#research_action_save:hover,
+.orange-btn:focus {
     background-color: #FFBE49;
+    color: #FFFFFF;
 }
 
 .pink-btn {
@@ -78,6 +94,12 @@ body {
 .pink-btn a i {
     margin-right: 5px;
     font-size: 20px;
+}
+@media (max-width: 320px) {
+    .orange-btn a i,
+    .pink-btn a i {
+        font-size: 17px;
+    }
 }
 
 /*Hamburger menu*/
@@ -130,6 +152,7 @@ body {
     }
     .navbar-left,.navbar-right {
         float: none !important;
+        margin-left: -15px;
     }
     .navbar-toggle {
         display: block;
@@ -144,7 +167,7 @@ body {
     .navbar-nav {
         float: none!important;
         margin-top:20px;
-        background-color: #FFFFFF;
+        background-color: #f7f7f7;
         padding-bottom: 10px;
     }
     .navbar-nav>li {
@@ -164,7 +187,7 @@ body {
 /****************/
 
 #footer {
-    background-color: #FFFFFF;
+    background-color: #f7f7f7;
 }
 
 .logo-handissimo-footer {
