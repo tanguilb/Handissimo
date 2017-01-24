@@ -23,6 +23,51 @@
     line-height: 42px;
 }
 
+
+/*Search area*/
+#search-container{
+    margin-top: 50px;
+}
+
+.search-field {
+    background-color: #FFFFFF;
+    border: 2px solid #f7af49;
+}
+.search-field p {
+    font-size: 22px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    padding-top: 10px;
+    color: #777777;
+}
+
+.search-field i {
+    display: inline-block;
+    color: #f7af49;
+    float: right;
+    margin-top: 5px;
+}
+
+#marker {
+    font-size: 26px;
+}
+
+.homeField {
+    padding: 0 0 0 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.homeField:focus,
+.homeField.focus {
+    border-bottom: solid 2px #969696;
+}
+
 #search-btn {
     display: block;
     margin: 20px auto;
