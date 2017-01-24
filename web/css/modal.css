@@ -1,6 +1,8 @@
 /****************/
 /*OPINION BUTTON*/
 /****************/
+
+/*Button*/
 .modal-backdrop.in {
     z-index: 1;
 }
@@ -21,4 +23,82 @@
 .modal-button i {
     margin-right: 5px;
     font-size: 20px;
+}
+
+/*Modal window*/
+
+.modal-content {
+    border: none;
+    border-radius: 0px;
+}
+
+.modal-header {
+    background-color: #61bdb9;
+    padding: 20px;
+}
+
+.modal-title {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.modal-header .close {
+    margin-right: 5px;
+    font-size: 35px;
+    margin-top: -6px;
+}
+
+.modal-body {
+    padding: 15px 20px;
+}
+
+.modal-body p {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.modal-body #form_body label {
+    margin-right: 15px;
+}
+
+#handissimobundle_opinion_firstName,
+#handissimobundle_opinion_lastName,
+#handissimobundle_opinion_eMail,
+#handissimobundle_opinion_message {
+    margin: 5px 0;
+    width: 100%;
+}
+
+#handissimobundle_opinion_message {
+    width: 100%;
+    min-height: 100px;
+    margin-top: 5px;
+}
+
+.modal-footer {
+    border: none;
+}
+
+#send-message{
+    width: 120px;
+    background-color: #61bdb9;
+    border: none;
+    float: left;
+}
+
+#send-message:hover,
+#send-message:focus {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+#send-cancel {
+    width: 120px;
+    border: none;
+    margin: 0 0 0 10px;
+    float: left;
 }
