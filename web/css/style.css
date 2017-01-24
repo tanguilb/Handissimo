@@ -35,6 +35,10 @@ body {
     display: none;
 }
 
+#alert-danger {
+    background-color: red;
+}
+
 /****************/
 /*****NAVBAR*****/
 /****************/
@@ -59,8 +63,10 @@ body {
     background-color: #f7af49;
 }
 
-.orange-btn:hover {
+.orange-btn:hover,
+.orange-btn:focus{
     background-color: #FFBE49;
+    color: #FFFFFF;
 }
 
 .pink-btn {
@@ -143,6 +149,7 @@ body {
         margin-top:20px;
         background-color: #FFFFFF;
         padding-bottom: 10px;
+        width:100%;
     }
     .navbar-nav>li {
         float: none;
