@@ -1,13 +1,39 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+{% endblock %}
 {% block body %}
-    <h1>Society edit</h1>
+<div class="container_fluid">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+             <h1>Editer votre fiche</h1>
+        </div>
+    </div>
+</div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="container_fluid">
+        <div class="row">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <form method="POST" class="society" action="{{path('society_edit', {'id': society.id})}}" id="form_society">
 
+                    {{ form_start(edit_form) }}
+                        {{ form_row(edit_form.societyName, { 'label': 'Nom de la société : '}) }}
+                        {{ form_row(edit_form.logo, { 'label': 'Votre logo : '}) }}
+                        {{ form_row(edit_form.address, { 'label': 'Adresse : '}) }}
+                        {{ form_row(edit_form.postal, { 'label': 'Code postal : '}) }}
+                        {{ form_row(edit_form.city, { 'label': 'Ville : '}) }}
+                        {{ form_row(edit_form.phoneNumber, { 'label': 'Téléphone : '}) }}
+                        {{ form_row(edit_form.mail, { 'label': 'Mail : '}) }}
+                        {{ form_row(edit_form.societyTwitter, { 'label': 'Compte twitter : '}) }}
+                        {{ form_row(edit_form.societyFacebook, { 'label': 'Compte facebook : '}) }}
+                        {{ form_row(edit_form.website, { 'label': 'Site web : '}) }}
+                        <input type="submit" value="Edit" />
+                    {{ form_end(edit_form) }}
+                </form>
+            </div>
+        </div>
+    </div>
     <ul>
         <li>
             <a href="{{ path('society_index') }}">Back to the list</a>
@@ -18,4 +44,5 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
 {% endblock %}
