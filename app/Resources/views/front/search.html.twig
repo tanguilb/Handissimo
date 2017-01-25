@@ -2,49 +2,79 @@
 {% block title %}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 {% endblock %}
 {% block body %}
+    <section class="container-fluid blue" id="research">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="row">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="col-xs-12 col-md-1" id="imput-keyword">
+                        {{ form_row(form.keyword, {"value":keyword["keyword"]}) }}
+                        <ul id="keywordautocomplete"></ul>
+                    </div>
+                    <div class="col-xs-12 col-md-1" id="imput-age">
+                        {{ form_row(form.age, {"value":age}) }}
+                    </div>
+                    <div class="col-xs-12 col-md-1" id="imput-postal">
+                        {{ form_row(form.postal, {"value":keyword["postal"]}) }}
+                        <ul id="city"></ul>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#filters">Filtres &nbsp;+</button>
+                <div id="filters" class="collapse">
+                    {{ form_row(form.disabilitytypes ) }}
+                    {{ form_row(form.structurestypes) }}
+                    {{ form_row(form.needs) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div id="map"></div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <ul>
+                    {% for results in result %}
+                        <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
 
-    <div id="map"></div>
-    <ul>
-        {% for results in result %}
-            <li>{{ results.name }}<br>{{ results.address }}<br>{{ results.postal }}<br>{{ results.city }}</li>
+                        {% set array = {
+                            'name': results.name,
+                            'address': results.address,
+                            'postal': results.postal,
+                            'city': results.city,
+                            'number': results.phoneNumber,
+                            'mail': results.mail,
+                            'web': results.website,
+                            'latitude': results.latitude,
+                            'longitude': results.longitude,
+                            }
+                        %}
 
-            {% set array = {
-                'name': results.name,
-                'address': results.address,
-                'postal': results.postal,
-                'city': results.city,
-                'number': results.phoneNumber,
-                'mail': results.mail,
-                'web': results.website,
-                'latitude': results.latitude,
-                'longitude': results.longitude,
-                }
-            %}
-
-            {% set arrayjson = array|json_encode %}
-
-
-
-            <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
-        {% endfor %}
-    </ul>
-
-    <div>
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_row(form.keyword) }}
-        <ul id="keywordautocomplete"></ul>
-        {{ form_row(form.age) }}
-        {{ form_row(form.postal) }}
-        <ul id="city"></ul>
-        {{ form_end(form) }}
-    </div>
+                        {% set arrayjson = array|json_encode %}
+                        <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
+    <script type="text/javascript" src="{{ asset ('js/advancedSearchAutocomplete.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/advancedSearchCity.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>

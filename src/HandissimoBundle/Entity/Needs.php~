@@ -7,11 +7,14 @@ namespace HandissimoBundle\Entity;
  */
 class Needs
 {
+<<<<<<< HEAD
     public function __toString()
     {
        return $this->needName;
     }
 
+=======
+>>>>>>> search-advanced-plus
     /**
      * @var integer
      */

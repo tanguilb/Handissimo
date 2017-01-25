@@ -7,12 +7,15 @@ namespace HandissimoBundle\Entity;
  */
 class Staff
 {
+<<<<<<< HEAD
 
     public function __toString()
     {
         return $this->jobs;
     }
 
+=======
+>>>>>>> search-advanced-plus
     /**
      * @var integer
      */

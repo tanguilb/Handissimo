@@ -7,12 +7,15 @@ namespace HandissimoBundle\Entity;
  */
 class DisabilityTypes
 {
+<<<<<<< HEAD
 
     public function __toString()
     {
         return $this->disabilityName;
     }
 
+=======
+>>>>>>> search-advanced-plus
     /**
      * @var integer
      */

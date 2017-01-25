@@ -20,6 +20,9 @@ handissimo_front:
 #handissimo_search:
  #   path:     /search
   #  defaults: { _controller: HandissimoBundle:Default:search }
+handissimo_search:
+    resource: "@HandissimoBundle/Resources/config/routing/search.yml"
+    prefix:   /search
 
 handissimo_needs:
     resource: "@HandissimoBundle/Resources/config/routing/needs.yml"
