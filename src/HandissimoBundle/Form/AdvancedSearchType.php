@@ -44,6 +44,7 @@ class AdvancedSearchType extends AbstractType
                 'label' => false,
                 'expanded' => false,
                 'required' => false,
+                'attr' => array('class' => 'col-md-12')
             ))
             ->add('disabilitytypes', EntityType::class, array(
                 'empty_value' => 'Type de handicap',
@@ -52,6 +53,7 @@ class AdvancedSearchType extends AbstractType
                 'label' => false,
                 'expanded' => false,
                 'required' => false,
+                'attr' => array('class' => 'col-md-12')
             ))
             ->add('needs', EntityType::class, array(
                 'empty_value' => 'Type de besoin',
@@ -59,7 +61,8 @@ class AdvancedSearchType extends AbstractType
                 'choice_label' => 'needName',
                 'label' => false,
                 'expanded' => false,
-                'required' => false
+                'required' => false,
+                'attr' => array('class' => 'col-md-12')
             ));
     }
     /**

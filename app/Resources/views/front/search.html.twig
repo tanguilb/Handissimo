@@ -34,13 +34,13 @@
         </div>
         <div class="row form-group">
             <div id="filters" class="collapse">
-                <div class="col-md-offset-1 col-md-2" id="hhh">
+                <div class="col-md-offset-2 col-md-3" id="selectst">
                     {{ form_row(form.structurestypes) }}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3" id="selectd">
                     {{ form_row(form.disabilitytypes) }}
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3" id="selectn">
                     {{ form_row(form.needs) }}
                 </div>
                     {{ form_end(form) }}
@@ -56,7 +56,6 @@
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="col-xs-12">
-                    <h3>aaaaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</h3>
                 </div>
                 {% for results in result %}
                 <div class="row">
