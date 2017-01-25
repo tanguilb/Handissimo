@@ -2,10 +2,106 @@
     background-color: #ffffff;
     margin:-95px auto 50px auto ;
     box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
-    padding: 0 0 40px 0 ;
+    padding: 20px 0 40px 0 ;
 }
 .head-block{
     width: 100%;
     height: 350px;
     background-color: #f7af49 ;
+}
+.submit-btn{
+    border:2px solid black;
+    border-radius: 50px;
+    background-color: #ffffff;
+    padding:10px 15px 10px 15px ;
+
+}
+.title-block{
+    display: flex;
+    align-items: center;
+}
+.login-title{
+    text-align: center;
+    border-bottom:3px solid #f7af49;
+    margin:auto;
+    padding-bottom:5px;
+}
+.field{
+   width: 70%;
+    margin: auto;
+}
+.login-block{
+    border-right: 1px solid lightgrey;
+}
+.form-horizontal{
+    padding-top:30px;
+}
+
+.checkbox, .forget-link{
+    text-align: center;
+
+}
+.checkbox{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin:-4px 0 0 ;
+    color:#777777;
+}
+.forget-link{
+    padding: 7px 10px 20px 10px;
+}
+.forget-link a{
+    color:#65bfba;
+}
+.forget-link a:hover{
+    text-decoration: none;
+    color:#f7af49;
+}
+
+.submit-btn{
+    margin:40px auto 10px auto;
+}
+.submit-btn:hover{
+    border-color:#f7af49 ;
+    color:#f7af49;
+    box-shadow: 0 0 5px 1px #cfcfcf;
+}
+
+
+input::-webkit-input-placeholder {
+    font-size: 20px;
+    color: #777777!important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    font-size: 20px;
+    color: #777777!important;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 20px;
+    color: #777777!important;
+}
+
+input:-ms-input-placeholder {
+    font-size: 20px;
+    color: #777777!important;
+}
+@media screen and (max-width: 768px){
+
+    input::-webkit-input-placeholder {
+        font-size: 1.3em;
+    }
+
+    input:-moz-placeholder { /* Firefox 18- */
+        font-size: 1.3em;
+    }
+
+    input::-moz-placeholder {  /* Firefox 19+ */
+        font-size: 1.3em;
+    }
+
+    input:-ms-input-placeholder {
+        font-size: 1.3em;
+    }
 }

@@ -6,12 +6,14 @@
 
 {% block fos_user_content %}
     <div class="head-block"></div>
+    <!-- main container----------------------------->
     <div class="main-block container">
-            <div class="col-sm-6">
+        <!-- login block----------------------------->
+            <div class="col-sm-6 login-block">
                 {% block sonata_user_login %}
-                    <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+                    <div class="">
+                    <div class="title-block">
+                        <h2 class="login-title">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h2>
                     </div>
                     <div class="panel-body">
                         {% block sonata_user_login_error %}
@@ -26,37 +28,32 @@
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
                                 <div class="form-group">
-                                    <label for="username" class="col-sm-4 control-label">{{ 'security.login.username'|trans({}, 'SonataUserBundle') }}</label>
-                                    <div class="col-sm-8"><input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"/></div>
+                                    <label for="username" class="col-sm-4 control-label"></label>
+                                    <div class="field"><input placeholder="{{ 'security.login.username'|trans({}, 'SonataUserBundle') }}" type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"/></div>
                                 </div>
-
 
                                 <div class="form-group control-group">
-                                    <label for="password" class="col-sm-4 control-label">{{ 'security.login.password'|trans({}, 'SonataUserBundle') }}</label>
-                                    <div class="col-sm-8"><input type="password" class="form-control" id="password" name="_password" required="required"/></div>
+                                    <label for="password" class="col-sm-4 control-label"></label>
+                                    <div class="field"><input placeholder="{{ 'security.login.password'|trans({}, 'SonataUserBundle') }}" type="password" class="form-control" id="password" name="_password" required="required"/></div>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-offset-4 col-sm-8">
-                                        <div class="checkbox control-group">
+                                <div class="config">
+                                        <div class="checkbox col-md-6 col-xs-12">
                                             <label for="remember_me">
                                                 <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
                                                 {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
                                             </label>
                                         </div>
-                                    </div>
+
+                                        <div class="forget-link col-md-6 col-xs-12">
+                                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+                                        </div>
                                 </div>
 
-                                <div class="form-group control-group">
-                                    <div class="controls col-sm-offset-4 col-sm-8">
-                                        <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="col-sm-offset-4 col-sm-8">
-                                        <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
-                                    </div>
+                                <div class="text-center">
+
+                                        <input type="submit" id="_submit" name="_submit" class=" submit-btn" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
+
                                 </div>
                             </form>
                         {% endblock %}
@@ -64,10 +61,14 @@
                 </div>
                 {% endblock %}
             </div>
-            <div class="col-sm-6">
-                {% block sonata_user_registration %}
-                    {% render controller("SonataUserBundle:RegistrationFOSUser1:register") %}
-                {% endblock %}
-            </div>
+        <!-- registration block----------------------------->
+        <div class="col-sm-6">
+            <!--------------------  ------->
+            {% block sonata_user_registration %}
+
+                {% render controller("SonataUserBundle:RegistrationFOSUser1:register") %}
+            {% endblock %}
+
+        </div>
     </div>
 {% endblock fos_user_content %}
