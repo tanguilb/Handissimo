@@ -126,14 +126,6 @@ HandissimoBundle\Entity\Organizations:
                 name: structurestypes_id
                 referencedColumnName: id
 
-        picture:
-            targetEntity: Pictures
-            inversedBy: organizationpicture
-            joinColumn:
-                name: pictures_id
-                referencedColumnName: id
-            orphanRemoval: false
-
         societies:
             targetEntity: Society
             inversedBy: organization

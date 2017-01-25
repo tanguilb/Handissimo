@@ -22,3 +22,6 @@ organizations_delete:
     path:     /{id}/delete
     defaults: { _controller: "HandissimoBundle:Organizations:delete" }
     methods:  DELETE
+
+
+
