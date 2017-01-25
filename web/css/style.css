@@ -60,7 +60,7 @@ body {
 .logo-handissimo-navbar {
     width:250px;
 }
-@media (max-width: 320px) {
+@media (max-width: 340px) {
     .logo-handissimo-navbar {
         width: 220px;
     }

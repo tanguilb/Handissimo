@@ -4,6 +4,11 @@
     -webkit-background-size:cover;
     height: 100%;
 }
+@media (max-width: 360px) {
+    #main-index {
+    background-position: 74%;
+    }
+}
 
 #main-index h1 {
     font-weight: 700;
