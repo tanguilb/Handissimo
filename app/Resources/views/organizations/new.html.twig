@@ -98,6 +98,13 @@
                     <div class="col-xs-12 col-md-6 shadow-block">
                         <h3>Infos pratiques</h3>
                         <div class="form-group">
+                            {{ form_label(form.name, "Nom de la structure : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_errors(form.name) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             {{ form_label(form.structuretype, "Type de structure : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                             {{ form_errors(form.structuretype) }}
                             <div class="col-sm-4">
