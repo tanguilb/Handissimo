@@ -6,17 +6,20 @@ handissimo_disabilitytypes:
     resource: "@HandissimoBundle/Resources/config/routing/disabilitytypes.yml"
     prefix:   /disabilitytypes
 
-handissimo_homepage:
-    path:     /
-    defaults: { _controller: HandissimoBundle:Default:index }
+handissimo_front:
+    resource: "@HandissimoBundle/Resources/config/routing/front.yml"
+    prefix:   /
+#handissimo_homepage:
+#    path:     /
+ #   defaults: { _controller: HandissimoBundle:Default:index }
 
-handissimo_aboutpage:
-    path:     /about
-    defaults: { _controller: HandissimoBundle:Default:about }
+#handissimo_aboutpage:
+ #   path:     /about
+  #  defaults: { _controller: HandissimoBundle:Default:about }
 
-handissimo_search:
-    path:     /search
-    defaults: { _controller: HandissimoBundle:Default:search }
+#handissimo_search:
+ #   path:     /search
+  #  defaults: { _controller: HandissimoBundle:Default:search }
 
 handissimo_needs:
     resource: "@HandissimoBundle/Resources/config/routing/needs.yml"
