@@ -22,46 +22,45 @@ class AdvancedSearchType extends AbstractType
     {
         $builder
             ->add('keyword', TextType::class,
-                array('attr' => array('autocomplete' => 'off'),
+                array('attr' => array('autocomplete' => 'off', 'class' => 'col-md-12'),
                     'required' => false,
                     'label' => false,
                 ))
             ->add('age', TextType::class,
-                array('attr' => array('autocomplete' => 'off'),
+                array('attr' => array('autocomplete' => 'off', 'class' => 'col-md-12'),
                     'required' => false,
                     'label' => false
                 ))
             ->add('postal', TextType::class,
-                array('attr' => array('autocomplete' => 'off'),
+                array('attr' => array('autocomplete' => 'off', 'class' => 'col-md-12'),
                     'required' => false,
                     'label' => false))
-
+            ->add('save', SubmitType::class, array(
+                'label' => 'Trouver'))
+            ->add('structurestypes', EntityType::class, array(
+                'empty_value' => 'Type de structure',
+                'class' => 'HandissimoBundle\Entity\StructuresTypes',
+                'choice_label' => 'structurestype',
+                'label' => false,
+                'expanded' => false,
+                'required' => false,
+            ))
             ->add('disabilitytypes', EntityType::class, array(
-                'empty_value' => 'Sélectionner un type de handicaps',
+                'empty_value' => 'Type de handicap',
                 'class' => 'HandissimoBundle:DisabilityTypes',
                 'choice_label' => 'disabilityName',
-                'label' => 'Type de handicaps',
+                'label' => false,
                 'expanded' => false,
                 'required' => false,
             ))
             ->add('needs', EntityType::class, array(
-                'empty_value' => 'Sélectionner un type de besoins',
+                'empty_value' => 'Type de besoin',
                 'class' => 'HandissimoBundle\Entity\Needs',
                 'choice_label' => 'needName',
-                'label' => 'Type de besoins',
+                'label' => false,
                 'expanded' => false,
                 'required' => false
-            ))
-            ->add('structurestypes', EntityType::class, array(
-                'empty_value' => 'Sélectionner un type de structures',
-                'class' => 'HandissimoBundle\Entity\StructuresTypes',
-                'choice_label' => 'structurestype',
-                'label' => 'Type de Structures',
-                'expanded' => false,
-                'required' => false
-            ))
-            ->add('save', SubmitType::class, array(
-                'label' => 'Rechercher'));
+            ));
     }
     /**
      * {@inheritdoc}

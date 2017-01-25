@@ -6,6 +6,14 @@ function initMap() {
         center: uluru
     });
 
+    //Resize Function
+    google.maps.event.addDomListener(window, "resize", function() {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+    });
+
+
     var coordinate =  document.getElementsByClassName('arrayjson');
 
     for(var i = 0; i < coordinate.length; i++) {

@@ -7,63 +7,6 @@ use Doctrine\ORM\EntityRepository;
 class OrganizationsRepository extends EntityRepository
 {
 
-    /*public function getByOrganizationsName($keyword, $age, $postal)
-    {
-        $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder();
-        $query->addSelect('o');
-        $query->from('HandissimoBundle:Organizations', 'o');
-        $query->innerJoin('o.stafforganizations', 's');
-        $query->innerJoin('o.needs', 'n');
-        $query->innerJoin('o.disabilityTypes', 'dt');
-        $query->innerJoin('o.structuretype', 'st');
-
-        $ormodule = $query->expr()->orX();
-        $ormodule->add($query->expr()->eq('o.name', ':data'));
-        $ormodule->add($query->expr()->eq('n.needName', ':data'));
-        $ormodule->add($query->expr()->eq('dt.disabilityName', ':data'));
-        $ormodule->add($query->expr()->eq('st.structurestype', ':data'));
-        $ormodule->add($query->expr()->eq('s.jobs', ':data'));
-
-        $andmodule = $query->expr()->andX();
-        $andmodule->add($query->expr()->lte('o.agemini', ':age'));
-        $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
-
-        if ($keyword !== null && $postal !== null && $age !== null) {
-            $query->where($ormodule);
-            $query->andWhere($andmodule);
-            $query->andWhere('o.postal = :postaldata');
-            $query->setParameter('data', $keyword);
-            $query->setParameter('age', $age);
-            $query->setParameter('postaldata', $postal);
-        }elseif ($keyword == null && $postal == null && $age !== null) {
-            $query->andWhere($andmodule);
-            $query->setParameter('age', $age);
-        }elseif ($keyword == null && $age == null && $postal !== null) {
-            $query->andWhere('o.postal = :postaldata');
-            $query->setParameter('postaldata', $postal);
-        }elseif ($keyword !== null && $age == null && $postal == null) {
-            $query->where($ormodule);
-            $query->setParameter('data', $keyword);
-        }elseif ($keyword !== null && $postal !== null && $age == null) {
-            $query->where($ormodule);
-            $query->andWhere('o.postal = :postaldata');
-            $query->setParameter('data', $keyword);
-            $query->setParameter('postaldata', $postal);
-        }elseif ($keyword == null && $postal !== null && $age !== null) {
-            $query->andWhere($andmodule);
-            $query->andWhere('o.postal = :postaldata');
-            $query->setParameter('age', $age);
-            $query->setParameter('postaldata', $postal);
-        }elseif ($keyword !== null && $postal == null && $age !== null) {
-            $query->where($ormodule);
-            $query->andWhere($andmodule);
-            $query->setParameter('data', $keyword);
-            $query->setParameter('age', $age);
-        }
-        return $query->getQuery()->getResult();
-    }*/
-
     public function getByOrganizationName($data, $age)
     {
         $em = $this->getEntityManager();
@@ -84,7 +27,8 @@ class OrganizationsRepository extends EntityRepository
                 'n'=>'needName',
                 's'=>'jobs'),
             "postal" => array(
-                'o' => 'postal'
+                'o' => 'postal',
+                'o' => 'city'
             ),
         );
 
@@ -179,7 +123,8 @@ class OrganizationsRepository extends EntityRepository
                 'n'=>'needName',
                 's'=>'jobs'),
             "postal" => array(
-                'o' => 'postal'
+                'o' => 'postal',
+                'o' => 'city'
             ),
             "disabilitytypes" => array(
                 'dt'=>'id',
