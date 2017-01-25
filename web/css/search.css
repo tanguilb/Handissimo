@@ -1,27 +1,19 @@
+/*Result page of a research*/
 #research {
-    padding-top: 50px;
     background-color: #60bfb9;
-    height: 250px;
 }
 
-#imput-keyword {
-    margin-top: 66px;
-    padding: 0;
+#search-done {
+    margin-top: 150px;
 }
 
-#imput-age {
-    margin-top: 66px;
-    padding: 0;
-}
-
-#imput-postal {
-    padding: 0;
-    margin-top: 66px;
-}
-
-#searchbtn {
-    margin-top: 66px;
-    color: #0f0f0f;
+#research_advanced_keyword,
+#research_advanced_age,
+#research_advanced_postal {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-weight: ;
 }
 
 #map {

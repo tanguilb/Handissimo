@@ -7,22 +7,22 @@
 {% block body %}
     <section class="container-fluid blue" id="research">
         <div class="row">
-            <div class="form-control input-lg">
+            <div class="container" id="search-done">
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
-                <div class="col-xs-12 col-md-3 col-md-offset-2" id="imput-keyword">
+                <div class="col-xs-12 col-md-4">
                     {{ form_row(form.keyword, {"value":keyword["keyword"]}) }}
                     <ul id="keywordautocomplete"></ul>
                 </div>
-                <div class="col-xs-12 col-md-1" id="imput-age">
+                <div class="col-xs-12 col-md-2">
                     {{ form_row(form.age, {"value":age}) }}
                 </div>
-                <div class="col-xs-12 col-md-3" id="imput-postal">
+                <div class="col-xs-12 col-md-4">
                     {{ form_row(form.postal, {"value":keyword["postal"]}) }}
                     <ul id="city"></ul>
                 </div>
 
-                <div class="col-md-1 " id="searchbtn">
+                <div class="col-md-2" id="search-btn">
                     {{ form_row(form.save) }}
                 </div>
             </div>
