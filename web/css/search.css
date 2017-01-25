@@ -13,9 +13,56 @@
     border: none;
     padding: 10px 15px;
     border-radius: 3px;
-    font-weight: ;
+    font-weight: 600;
+    font-size: 15px;
 }
 
+.black-btn {
+    background-color: #3a3a3a;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.black-btn:hover {
+    background-color: #4f4f4f;
+    color: #FFFFFF;
+}
+
+#btn-filter {
+    padding: 0;
+    margin-top: 22px;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+#btn-filter:hover,
+#btn-filter:focus {
+    color: #FFFFFF;
+}
+#research_advanced_structurestypes,
+#research_advanced_disabilitytypes,
+#research_advanced_needs {
+    border: none;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    font-style: italic;
+    color: #777777;
+}
+
+#research_advanced_structurestypes option,
+#research_advanced_disabilitytypes option,
+#research_advanced_needs option {
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #777777;
+    font-weight: 400;
+}
+
+/*Map and results*/
 #map {
     height: 100vh;
     overflow: hidden;
@@ -30,18 +77,16 @@
 
 .searchtitre {
     color: #60bfb9;
+    font-size: 19px;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
-#btn-filter:hover,
-#btn-filter:focus {
-    color: #FFFFFF;
+.address {
+    font-weight: 600;
+    font-size: 15px;
 }
 
-#selectn select,
-#selectd select,
-#selectst select {
-    width:250px;
-}
 
 .pagination {
     padding-bottom: 150px;

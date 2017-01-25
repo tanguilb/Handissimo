@@ -11,36 +11,38 @@
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
                 <div class="col-xs-12 col-md-4">
-                    {{ form_row(form.keyword, {"value":keyword["keyword"]}) }}
+                    {{ form_row(form.keyword, { 'attr':{"value":keyword["keyword"], 'placeholder': 'mot-cle'}}) }}
                     <ul id="keywordautocomplete"></ul>
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {{ form_row(form.age, {"value":age}) }}
+                    {{ form_row(form.age, { 'attr':{"value":age}, 'placeholder': 'Âge'}) }}
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    {{ form_row(form.postal, {"value":keyword["postal"]}) }}
+                    {{ form_row(form.postal, { 'attr':{"value":keyword["postal"], 'placeholder': 'Où?'}}) }}
                     <ul id="city"></ul>
                 </div>
 
-                <div class="col-md-2" id="search-btn">
-                    {{ form_row(form.save) }}
+                <div class="col-md-2">
+                    {{ form_row(form.save, {'attr': {'class': 'btn black-btn'}}) }}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-offset-2 col-md-1">
+
+        <div class="container">
+            <div class="col-md-3">
                 <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#filters" id="btn-filter">Affinez votre recherche</button>
             </div>
         </div>
-        <div class="row form-group">
+
+        <div class="container">
             <div id="filters" class="collapse">
-                <div class="col-md-offset-2 col-md-3" id="selectst">
+                <div class="col-md-4">
                     {{ form_row(form.structurestypes) }}
                 </div>
-                <div class="col-md-3" id="selectd">
+                <div class="col-md-4">
                     {{ form_row(form.disabilitytypes) }}
                 </div>
-                <div class="col-md-3" id="selectn">
+                <div class="col-md-4">
                     {{ form_row(form.needs) }}
                 </div>
                     {{ form_end(form) }}
@@ -57,7 +59,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="col-xs-12">
                     <div class="count">
-                        <h4>{{ pagination.getTotalItemCount }} résultats</h4>
+                        <h4>{{ pagination.getTotalItemCount }} résultat(s)</h4>
                     </div>
                 </div>
                 {% for results in pagination %}
@@ -67,7 +69,7 @@
                     </div>
                     <div class="col-md-9">
                         <h4 class="searchtitre">{{ results.name }}</h4>
-                        <p>{{ results.address }}<br>
+                        <p class="address">{{ results.address }}<br>
                         {{ results.postal }} {{ results.city }}</p>
                         <p>{{ results.organizationDescription }}</p>
                     </div>
