@@ -10,6 +10,10 @@ handissimo_homepage:
     path:     /
     defaults: { _controller: HandissimoBundle:Default:index }
 
+handissimo_aboutpage:
+    path:     /about
+    defaults: { _controller: HandissimoBundle:Default:about }
+
 handissimo_search:
     path:     /search
     defaults: { _controller: HandissimoBundle:Default:search }
@@ -21,10 +25,6 @@ handissimo_needs:
 handissimo_organizations:
     resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
     prefix:   /organizations
-
-handissimo_pictures:
-    resource: "@HandissimoBundle/Resources/config/routing/pictures.yml"
-    prefix:   /pictures
 
 handissimo_society:
     resource: "@HandissimoBundle/Resources/config/routing/society.yml"
