@@ -1,5 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
+    background-color: #f4f4f4;
 }
 
 .btn,
@@ -90,14 +91,14 @@ body {
     background-color: #DC7095;
 }
 
-.orange-btn a i,
-.pink-btn a i {
+.orange-btn i,
+.pink-btn i {
     margin-right: 5px;
     font-size: 20px;
 }
 @media (max-width: 320px) {
-    .orange-btn a i,
-    .pink-btn a i {
+    .orange-btn i,
+    .pink-btn i {
         font-size: 17px;
     }
 }

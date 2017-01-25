@@ -1,8 +1,7 @@
 #main-index {
-    background-image: url(../images/handissimo-accueil-moteur-recherche.jpg);
+    background: url(../images/handissimo-accueil-moteur-recherche.jpg) no-repeat center fixed;
     background-size: cover;
-    background-attachment: scroll;
-    background-repeat: no-repeat;
+    -webkit-background-size:cover;
     height: 100%;
 }
 
@@ -39,12 +38,14 @@
 .search-field {
     background-color: #FFFFFF;
     border: 2px solid #f7af49;
+    border-radius: 3px;
 }
 @media (max-width: 992px) {
     .search-field {
         margin: 10px 0;
     }
 }
+
 .search-field p {
     font-size: 22px;
     font-family: 'Open Sans', sans-serif;
@@ -86,8 +87,44 @@
     border-bottom: solid 1px #777777;
 }
 
-#research_action_age {
+#research_action_keyword,
+#research_action_age,
+#research_action_postal {
     margin-bottom: 10px;
+}
+
+#keywordautocomplete,
+#city {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    margin: 0 0 0 -15px;
+    z-index: 997;
+    border-radius: 3px;
+}
+
+#keywordautocomplete li,
+#city li {
+    list-style: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    color: #777777;
+    font-style: italic;
+    display: block;
+    padding: 10px 15px;
+    border-bottom: 1px solid #c9c9c9;
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+#keywordautocomplete li:hover,
+#city li:hover{
+    background-color: #F4F3F2;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 #research_action_save {
