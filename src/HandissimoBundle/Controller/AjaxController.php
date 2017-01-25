@@ -34,10 +34,13 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationName($data, $age);
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1, 5));
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
+                'pagination' => $pagination,
                 'form' => $formAdvancedResearch->createView(),
             ));
 
@@ -50,10 +53,13 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data, $age);
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1, 5));
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
+                'pagination' => $pagination,
                 'form' => $formAdvancedResearch->createView(),
             ));
         }

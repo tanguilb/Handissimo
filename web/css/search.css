@@ -48,11 +48,9 @@
 #selectn select,
 #selectd select,
 #selectst select {
-    width:200px;
+    width:250px;
 }
 
-#selectn option,
-#selectd option,
-#selectst option {
-    overflow-wrap: inherit;
+.pagination {
+    padding-bottom: 150px;
 }
