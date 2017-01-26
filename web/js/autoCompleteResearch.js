@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     $("#research_action_keyword").keyup(function() {
         var keyword = $(this).val();
-        if ( keyword.length >= 2 ) {
+        if ( keyword.length >= 4 ) {
             $.ajax({
                 type: "POST",
                 url: "/research/ajax/" + keyword,

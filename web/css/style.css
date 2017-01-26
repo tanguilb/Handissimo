@@ -3,7 +3,8 @@ body {
     background-color: #f7f7f7;
 }
 
-.btn {
+.btn,
+#research_action_save {
     color: #ffffff;
     text-transform: uppercase;
     font-size: 15px;
@@ -59,7 +60,7 @@ body {
 .logo-handissimo-navbar {
     width:250px;
 }
-@media (max-width: 320px) {
+@media (max-width: 340px) {
     .logo-handissimo-navbar {
         width: 220px;
     }
@@ -70,12 +71,14 @@ body {
     margin-top: 25px;
 }
 
-.orange-btn {
+.orange-btn,
+#research_action_save {
     background-color: #f7af49;
 }
 
 .orange-btn:hover,
-.orange-btn:focus{
+#research_action_save:hover,
+.orange-btn:focus {
     background-color: #FFBE49;
     color: #FFFFFF;
 }
@@ -88,14 +91,14 @@ body {
     background-color: #DC7095;
 }
 
-.orange-btn a i,
-.pink-btn a i {
+.orange-btn i,
+.pink-btn i {
     margin-right: 5px;
     font-size: 20px;
 }
 @media (max-width: 320px) {
-    .orange-btn a i,
-    .pink-btn a i {
+    .orange-btn i,
+    .pink-btn i {
         font-size: 17px;
     }
 }
