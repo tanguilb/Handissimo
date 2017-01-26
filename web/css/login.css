@@ -4,6 +4,9 @@
     box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
     padding: 20px 0 40px 0 ;
 }
+.login-block, .register-block{
+    margin-top: 30px;
+}
 .head-block{
     width: 100%;
     height: 350px;
@@ -116,33 +119,17 @@ input:-ms-input-placeholder {
     input:-ms-input-placeholder {
         font-size: 1.3em;
     }
+    .register-block{
+        border-top: 1px solid lightgrey;
+        border-left:none;
+        margin-top:30px;
+    }
+    .register{
+        padding-top:50px;
+    }
+
 }
 
-/*-------------------*/
-.form-control2 {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    margin:20px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-.form2:focus , #sonata_user_registration_form_email:focus{
-    border-color: #65bfba;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);
-}
 
 #sonata_user_registration_form_email{
     display: block;
@@ -162,7 +149,7 @@ input:-ms-input-placeholder {
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-.form-control, .form-control2 {
+.form-control{
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
@@ -170,6 +157,12 @@ input:-ms-input-placeholder {
 .form2{
     margin-top:20px;
     margin-bottom:20px;
+}
+.form2:focus , #sonata_user_registration_form_email:focus{
+    border-color: #65bfba;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);
 }
 .form1:focus{
     border-color: #f7af49;
@@ -187,9 +180,12 @@ input:-ms-input-placeholder {
 }
 .social-block{
     margin-top:40px;
+    margin-right:auto;
+    margin-left:auto;
     padding-bottom:30px;
     border-top:1px solid lightgrey;
     border-bottom:1px solid lightgrey;
+    width: 75%;
 
 }
 .social-title{
@@ -208,7 +204,6 @@ input:-ms-input-placeholder {
     -webkit-border-radius:25px;
     -moz-border-radius:25px;
     border-radius:25px;
-
 }
 .google{
     padding: 15px 17px 15px 17px;
