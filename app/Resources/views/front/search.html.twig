@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}Handissimo | Voici les résultats de votre recherche.{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 {% endblock %}
 {% block body %}
-    <section class="container-fluid blue" id="research">
+    <section class="container-fluid blue" id="search-reminder">
         <div class="row">
             <div class="container" id="search-done">
                 {{ form_start(form) }}
@@ -16,7 +15,7 @@
                     <ul id="keywordautocomplete"></ul>
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    <p class="search-label">Âge</p>
+                    <p class="search-label">Âge :</p>
                     {{ form_row(form.age, { 'attr':{"value":age}}) }}
                 </div>
                 <div class="col-xs-12 col-md-4">
@@ -33,48 +32,56 @@
 
         <div class="container">
             <div class="col-md-3">
-                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#filters" id="btn-filter">Affinez votre recherche</button>
+                <p id="filter">Affinez votre recherche</p>
             </div>
         </div>
 
         <div class="container">
-            <div id="filters" class="collapse">
-                <div class="col-md-4">
-                    {{ form_row(form.structurestypes) }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(form.disabilitytypes) }}
-                </div>
-                <div class="col-md-4">
-                    {{ form_row(form.needs) }}
-                </div>
-                    {{ form_end(form) }}
+            <div class="col-md-4">
+                {{ form_row(form.structurestypes) }}
             </div>
+            <div class="col-md-4">
+                {{ form_row(form.disabilitytypes) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.needs) }}
+            </div>
+                {{ form_end(form) }}
         </div>
     </section>
+
     <section class="container-fluid">
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <div class="row">
-                    <div id="map"></div>
+                    <div id="map" class="img-responsive"></div>
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <div class="col-xs-12">
-                    <div class="count">
-                        <h4>{{ pagination.getTotalItemCount }} résultat(s)</h4>
-                    </div>
+                <div class="row">
+                    <h4 id="count-results">{{ pagination.getTotalItemCount }} résultat(s)</h4>
                 </div>
                 {% for results in pagination %}
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="" class="img-responsive" alt="Responsive image" id="img-search">
+                <div class="row" id="result-container">
+                    <div class="col-md-4">
+                        <img src="" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
                     </div>
-                    <div class="col-md-9">
-                        <h4 class="searchtitre">{{ results.name }}</h4>
-                        <p class="address">{{ results.address }}<br>
-                        {{ results.postal }} {{ results.city }}</p>
-                        <p>{{ results.organizationDescription }}</p>
+                    <div class="col-md-8">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <h4 class="searchtitre">{{ results.name }}</h4>
+                            </div>
+                        </div>
+                        <div class="col-xs-6" id="address-container">
+                            <p>{{ results.address }}<br>
+                            {{ results.postal }} {{ results.city }}</p>
+                            <p class="contact-phone">Tél : {{ results.phoneNumber }}</p>
+                        </div>
+                        <div class="col-xs-6" id="social-container">
+                            <p><a href="{{ results.website }}" target="_blank">{{ results.website }}</a></p>
+                            <a class="social-media" href="{{ results.facebook }}" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                            <a class="social-media" href="{{ results.twitter }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                        </div>
                     </div>
 
                     {% set array = {
@@ -95,15 +102,13 @@
                 </div>
                 {% else %}
                 <div class="container" id="searchnull">
-                    <br>
-                    <br>
-                    <br>
-                    <h1>Aucun Résultat<br>
-                        ne Correspond à la recherche</h1>
+                    <p>Aucun résultat ne correspond à votre recherche. Veuillez réessayer.</p>
                 </div>
                 {% endfor %}
-                <div class="navigation">
-                    {{ knp_pagination_render(pagination) }}
+                <div class="col-xs-12">
+                    <div class="row">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
                 </div>
             </div>
         </div>

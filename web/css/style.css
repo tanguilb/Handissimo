@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f7f7f7;
 }
 
 .btn,
@@ -91,6 +91,7 @@ body {
 .pink-btn:focus {
     background-color: #DC7095;
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 .orange-btn i,
