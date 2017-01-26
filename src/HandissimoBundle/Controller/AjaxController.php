@@ -17,16 +17,19 @@ use HandissimoBundle\Form\AdvancedSearchType;
 
 class AjaxController extends Controller
 {
+
     public function researchAction(Request $request)
     {
+
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
+        $arrayDisability = array();
+        $arrayNeeds = array();
 
         $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
         $formAdvancedResearch->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()){
 
 
@@ -37,6 +40,27 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationName($data, $age);
+
+           /* foreach($result as $results)
+            {
+                $disabilty = $results->getDisabilityTypes();
+                foreach($disabilty as $disabilities){
+
+                    $get = $disabilities->getDisabilityName();
+                    array_push($arrayDisability, $get);
+                    //var_dump($get);
+
+                }
+                $needs = $results->getNeeds();
+                foreach($needs as $need)
+                {
+                    $ne = $need->getNeedName();
+                    array_push($arrayNeeds, $ne);
+                }
+                $structures = $results->getStructuretype()->getStructurestype();
+                var_dump($structures);
+            }*/
+
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
                 'keyword' => $data,
@@ -44,7 +68,9 @@ class AjaxController extends Controller
                 'form' => $formAdvancedResearch->createView(),
             ));
 
-        } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
+        }
+
+        if ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $data = $formAdvancedResearch->getData();
             $age = $formAdvancedResearch->getData()['age'];
@@ -53,6 +79,27 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data, $age);
+           /* foreach($result as $results)
+            {
+                $disabilty = $results->getDisabilityTypes();
+                foreach($disabilty as $disabilities){
+
+                    $get = $disabilities->getDisabilityName();
+                    array_push($arrayDisability, $get);
+                    //var_dump($get);
+
+                }
+                $needs = $results->getNeeds();
+                foreach($needs as $need)
+                {
+                    $ne = $need->getNeedName();
+                    array_push($arrayNeeds, $ne);
+                    // var_dump($ne);
+                }
+                $structures = $results->getStructuretype()->getStructurestype();
+                var_dump($structures);
+            }
+          */
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
                 'keyword' => $data,
@@ -60,9 +107,11 @@ class AjaxController extends Controller
                 'form' => $formAdvancedResearch->createView(),
             ));
         }
+
         return $this->render('front/index.html.twig', array(
             'form' => $form->createView(),
         ));
+
     }
 
     public function advancedResearchAction(Request $request, $data, $age)

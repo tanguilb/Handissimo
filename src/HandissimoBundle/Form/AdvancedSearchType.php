@@ -24,7 +24,7 @@ use Doctrine\ORM\EntityRepository;
 
 class AdvancedSearchType extends AbstractType
 {
-  //  private $organizationsRepository;
+    //private $arraydisability;
 
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -51,6 +51,7 @@ class AdvancedSearchType extends AbstractType
                 'class' => 'HandissimoBundle:DisabilityTypes',
                 'choice_label' => 'disabilityName',
                 'label' => 'Type de handicaps',
+                //'choices' => $arrayDisability,
                 'expanded' => false,
                 'required' => false,
 
@@ -134,8 +135,9 @@ class AdvancedSearchType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-      //  $resolver->setRequired(['organizationsRepository']);
+        //$resolver->setRequired('$searchAdvanced');
         $resolver->setDefaults(array(
+            //'data_class' => Organizations::class,
         ));
     }
     /**
