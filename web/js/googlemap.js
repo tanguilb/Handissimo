@@ -7,7 +7,6 @@ function initMap() {
     });
 
     var coordinate =  document.getElementsByClassName('arrayjson');
-
     for(var i = 0; i < coordinate.length; i++) {
         (function(index){
             var elements = JSON.parse( coordinate[i].value );

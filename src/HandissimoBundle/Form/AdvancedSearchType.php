@@ -98,20 +98,29 @@ class AdvancedSearchType extends AbstractType
         $builder->add('save', SubmitType::class, array(
                 'label' => 'Rechercher'));
 
-          /*  $builder->addEventListener(
+       /* $formModifier = function (FormInterface $form, Organizations $organizations = null)
+        {
+            $disabilityTypes = null === $organizations ? array() : $organizations->getDisabilityTypes()->getValues();
+            $form->add('disabilitytypes', EntityType::class, array(
+                'empty_value' => 'Sélectionner un type de handicaps',
+                'class' => 'HandissimoBundle:DisabilityTypes',
+                'choice_label' => 'disabilityName',
+                'label' => 'Type de handicaps',
+                'expanded' => false,
+                'required' => false,
+                'choices'   => $disabilityTypes
+            ));
+        };
+            /*$builder->addEventListener(
                 FormEvents::PRE_SET_DATA,
                 function (FormEvent $event) use ($formModifier) {
                     $data = $event->getData();
-                    if (is_null($data)){
-                        $organizations = $event->getForm()->getData()->getOrganizations();
-                    } else {
-                        $organizations = $data->getDisabilityTypes();
-                    }
-                    $formModifier($event->getForm(), $organizations);
-                }
-            );
 
-            $builder->get('keyword')->addEventListener(
+                    $formModifier($event->getForm(), $data->getName());
+                }
+            );*/
+
+           /* $builder->get('keyword')->addEventListener(
                 FormEvents::POST_SUBMIT,
                 function (FormEvent $event) use ($formModifier) {
 

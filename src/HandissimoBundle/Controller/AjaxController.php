@@ -47,7 +47,7 @@ class AjaxController extends Controller
         } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $data = $formAdvancedResearch->getData();
-            $age = $form->getData()['age'];
+            $age = $formAdvancedResearch->getData()['age'];
 
             /**
              * @var $repository OrganizationsRepository
@@ -63,6 +63,23 @@ class AjaxController extends Controller
         return $this->render('front/research.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function advancedResearchAction(Request $request, $data, $age)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('handissimoBundle:Organization');
+            $results = $repository->getByOrganizationName($data, $age);
+
+            return new JsonResponse(array("results" => json_encode($results)));
+        } else {
+            throw new HttpException("500", "Invalid Call");
+        }
+
     }
 
     public function autoCompleteAction(Request $request, $keyword)
