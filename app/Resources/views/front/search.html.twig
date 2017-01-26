@@ -64,15 +64,6 @@
 
                         {% set arrayjson = array|json_encode %}
                         <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
-
-                        {% for disability in results.disabilityTypes %}
-                            {% set arraydisability = {
-                            'disability': disability.disabilityName,
-                            } %}
-                            {% set disabilityjson = arraydisability|json_encode %}
-                            <input type="hidden" class="disability" value="{{ disabilityjson }}" />
-                        {% endfor %}
-
                     {% endfor %}
                 </ul>
             </div>
@@ -84,7 +75,6 @@
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
     <script type="text/javascript" src="{{ asset ('js/advancedSearchAutocomplete.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/advancedSearchCity.js') }}"></script>
-    <script type="text/javascript" src="{{ asset ('js/researchAdvanced.js') }}"></script>
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">

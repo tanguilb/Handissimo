@@ -26,6 +26,7 @@
 
                         <div class="row">
                             <div class="form-group col-xs-12 col-md-6">
+
                                 {{ form_label(form.agemini, "age de : ", {'label_attr': {'class': 'col-xs-12 col-md-6 control-label'}}) }}
                                 {{ form_errors(form.agemini) }}
                                 <div class="col-sm-4">
@@ -44,17 +45,27 @@
                         <!-- end section age -->
 
                         <div class="form-group">
-                            {{ form_label(form.disabilityTypes, "Type de handicap : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                            {{ form_errors(form.disabilityTypes) }}
-                            <div class="col-sm-4">
-                                {{ form_widget(form.disabilityTypes, {'attr': {'class': 'form-control'}}) }}
-                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    {{ form_label(form.disabilityTypes, "Type de handicap : ", {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.disabilityTypes) }}
+                                </div>
+                                <div class="col-xs-12">
+
+                                    {{ form_widget(form.disabilityTypes, {'attr': {'class': 'form-control'}}) }}
+
+                                </div>
+                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-12">
                             {{ form_label(form.freeplace, "Nombre de place disponible : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                             {{ form_errors(form.freeplace) }}
-                            <div class="col-sm-4">
-                                {{ form_widget(form.freeplace, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="col-xs-12">
+
+                                {{ form_widget(form.freeplace, {'attr': {'class': 'col-sm-4form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
