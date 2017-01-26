@@ -36,7 +36,7 @@ class AdvancedSearchType extends AbstractType
                     'required' => false,
                     'label' => false))
             ->add('save', SubmitType::class, array(
-                'label' => 'Trouver'))
+                'label' => 'Rechercher'))
             ->add('structurestypes', EntityType::class, array(
                 'empty_value' => 'Type de structure',
                 'class' => 'HandissimoBundle\Entity\StructuresTypes',
