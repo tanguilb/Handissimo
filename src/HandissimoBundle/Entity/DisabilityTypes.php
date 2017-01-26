@@ -25,14 +25,14 @@ class DisabilityTypes
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $structures;
+    private $organizations;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->structures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->organizations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -70,45 +70,6 @@ class DisabilityTypes
     }
 
     /**
-     * Add structure
-     *
-     * @param \HandissimoBundle\Entity\Organizations $structure
-     *
-     * @return DisabilityTypes
-     */
-    public function addStructure(\HandissimoBundle\Entity\Organizations $structure)
-    {
-        $this->structures[] = $structure;
-
-        return $this;
-    }
-
-    /**
-     * Remove structure
-     *
-     * @param \HandissimoBundle\Entity\Organizations $structure
-     */
-    public function removeStructure(\HandissimoBundle\Entity\Organizations $structure)
-    {
-        $this->structures->removeElement($structure);
-    }
-
-    /**
-     * Get structures
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStructures()
-    {
-        return $this->structures;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $organizations;
-
-
-    /**
      * Add organization
      *
      * @param \HandissimoBundle\Entity\Organizations $organization
@@ -142,3 +103,4 @@ class DisabilityTypes
         return $this->organizations;
     }
 }
+

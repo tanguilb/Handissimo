@@ -8,7 +8,11 @@ handissimo_disabilitytypes:
 
 handissimo_homepage:
     path:     /
-    defaults: { _controller: HandissimoBundle:Default:index }
+    defaults: { _controller: HandissimoBundle:Ajax:research }
+
+handissimo_research:
+    resource: "@HandissimoBundle/Resources/config/routing/research.yml"
+    prefix:   /research
 
 handissimo_aboutpage:
     path:     /about
@@ -41,10 +45,6 @@ handissimo_stafftypes:
 handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
-
-handissimo_research:
-    resource: "@HandissimoBundle/Resources/config/routing/research.yml"
-    prefix:   /research
 
 handissimo_organizations_standard_page:
     path: /structure/{id}

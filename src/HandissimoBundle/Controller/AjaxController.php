@@ -63,7 +63,7 @@ class AjaxController extends Controller
                 'form' => $formAdvancedResearch->createView(),
             ));
         }
-        return $this->render('front/research.html.twig', array(
+        return $this->render('front/index.html.twig', array(
             'form' => $form->createView(),
         ));
     }
