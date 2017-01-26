@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}{% endblock %}
+{% block title %}Handissimo | Voici les résultats de votre recherche.{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/map.css') }}">
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
@@ -11,14 +11,17 @@
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
                 <div class="col-xs-12 col-md-4">
-                    {{ form_row(form.keyword, { 'attr':{"value":keyword["keyword"], 'placeholder': 'mot-cle'}}) }}
+                    <p class="search-label">Que cherchez-vous ?</p>
+                    {{ form_row(form.keyword, { 'attr':{"value":keyword["keyword"]}}) }}
                     <ul id="keywordautocomplete"></ul>
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {{ form_row(form.age, { 'attr':{"value":age}, 'placeholder': 'Âge'}) }}
+                    <p class="search-label">Âge</p>
+                    {{ form_row(form.age, { 'attr':{"value":age}}) }}
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    {{ form_row(form.postal, { 'attr':{"value":keyword["postal"], 'placeholder': 'Où?'}}) }}
+                    <p class="search-label">Où ?</p>
+                    {{ form_row(form.postal, { 'attr':{"value":keyword["postal"]}}) }}
                     <ul id="city"></ul>
                 </div>
 

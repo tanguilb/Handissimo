@@ -4,7 +4,14 @@
 }
 
 #search-done {
-    margin-top: 150px;
+    margin-top: 140px;
+}
+
+.search-label {
+    font-weight: 600;
+    font-size: 15px;
+    color: #FFFFFF;
+    margin-bottom: 4px;
 }
 
 #research_advanced_keyword,
@@ -21,9 +28,11 @@
     background-color: #3a3a3a;
     color: #ffffff;
     font-weight: 600;
+    margin-top: 23px;
 }
 
-.black-btn:hover {
+.black-btn:hover,
+.black-btn:focus {
     background-color: #4f4f4f;
     color: #FFFFFF;
 }
@@ -32,7 +41,8 @@
     padding: 0;
     margin-top: 22px;
     margin-bottom: 25px;
-    font-size: 16px;
+    font-size: 15px;
+    letter-spacing: 1px;
 }
 
 #btn-filter:hover,
