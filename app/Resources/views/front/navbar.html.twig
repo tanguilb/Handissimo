@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="{{ path('handissimo_homepage') }}">
+            <a class="navbar-brand" href="{{ path('research_action') }}">
                 <img alt="Handissimo vous simplifie le handicap" src="{{ asset('images/handissimo-logo.png') }}" class="logo-handissimo-navbar">
             </a>
         </div>
@@ -16,13 +16,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="handissimo-nav">
             <div class="nav navbar-nav navbar-right">
-                <a href="{{ path('handissimo_aboutpage') }}"><button class="btn orange-btn">
-                   <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
-                </button></a>
+                <a href="{{ path('handissimo_aboutpage') }}">
+                    <button class="btn orange-btn">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
+                    </button>
+                </a>
                 {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
-                <button class="btn pink-btn">
-                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i>Votre compte</a>
-                </button>
+                <a href="#">
+                    <button class="btn pink-btn">
+                        <i class="fa fa-user" aria-hidden="true"></i>Votre compte
+                    </button>
+                </a>
             </div>
         </div>
     </div>
