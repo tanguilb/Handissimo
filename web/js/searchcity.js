@@ -4,7 +4,7 @@ $( document ).ready(function() {
         if ( postalcode.length >= 2 ) {
             $.ajax({
                 type: "POST",
-                url: "/research/ajaxcity/" + postalcode,
+                url: "/ajaxcity/" + postalcode,
                 dataType: 'json',
                 timeout: 3000,
                 success: function(response){

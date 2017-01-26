@@ -7,7 +7,7 @@ $( document ).ready(function() {
         if ( keyword.length >= 2 ) {
             $.ajax({
                 type: "POST",
-                url: "/research/ajax/" + keyword,
+                url: "/ajax/" + keyword,
                 dataType: 'json',
                 timeout: 3000,
                 success: function(response){

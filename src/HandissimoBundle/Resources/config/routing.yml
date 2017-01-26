@@ -12,7 +12,7 @@ handissimo_homepage:
 
 handissimo_research:
     resource: "@HandissimoBundle/Resources/config/routing/research.yml"
-    prefix:   /research
+    prefix:   /
 
 handissimo_aboutpage:
     path:     /about
@@ -46,9 +46,6 @@ handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
 
-handissimo_research:
-    resource: "@HandissimoBundle/Resources/config/routing/research.yml"
-    prefix:   /research
 
 handissimo_organizations_standard_page:
     path: /structure/{id}
