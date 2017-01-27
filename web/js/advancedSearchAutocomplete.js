@@ -4,7 +4,7 @@
 $( document ).ready(function() {
     $("#research_advanced_keyword").keyup(function() {
         var keyword = $(this).val();
-        if ( keyword.length >= 2 ) {
+        if ( keyword.length >= 3 ) {
             $.ajax({
                 type: "POST",
                 url: "/ajax/" + keyword,
