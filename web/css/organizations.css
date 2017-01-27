@@ -1,5 +1,4 @@
 body {
-    background-color: #f4f4f4;
     font-family: 'Open Sans', sans-serif;
 }
 /*----------------------------------------------------------- img head*/
@@ -29,9 +28,9 @@ body {
 
 /**------------------- head title*/
 .update{
-    color:#8a8a8a;
+    color:#777777;
     margin-top:10px;
-    font-size: 12px;
+    font-size: 14px;
     padding-left: 15px;
 }
 .organization-logo{
@@ -53,10 +52,7 @@ body {
 .img-block{
     margin-left: 20px;
 }
-.title{
-    margin: 0 ;
-    font-size:30px;
-}
+
 .head-block{
     margin:0 10px 5px 10px;
     padding:20px;
@@ -116,6 +112,7 @@ body {
 }
 .line {
     display: flex;
+    color: #333333;
 }
 .address-link{
     color:#65bfba;
@@ -140,16 +137,14 @@ body {
 }
 .description p{
     word-wrap: break-word;
+    color: #333333;
 }
 .address-line{
     font-size: 14px;
     margin: 0 0 5px 0;
+    font-weight: 600;
 }
 /* ----------map & ressources------------------------------*/
-.map-block{
-    padding-left:0;
-    padding-right:0;
-}
 .map{
     height:400px;
     margin-top: 20px;
@@ -161,16 +156,21 @@ body {
 }
 .print p, .download p{
     font-size: 14px;
+    font-weight: 600;
 }
 .print-line p, .download-line p {
     margin-left: 10px;
+    color: #333333;
 }
-.download,.print{
+
+.print-line i, .download-line i {
     color:#65bfba;
+    font-size: 20px;
 }
+
 .download:hover, .download-line p:hover, .print:hover, .print-line p:hover{
     text-decoration: none;
-    color: #f7af49;
+    color:#65bfba;
 }
 .print:focus, .download:focus{
     color:#65bfba;
@@ -179,9 +179,6 @@ body {
 .fa-print, .fa-download {
     padding: 3px 0 10px 5px;
  }
-.download-line:hover, .print-line:hover {
-    box-shadow: 0 0 5px 1px #cfcfcf;
-}
 /*--------search return button----*/
 .return{
     display: inline;

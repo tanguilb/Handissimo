@@ -1,7 +1,6 @@
-
 body {
-    background-color: #f4f4f4;
     font-family: 'Open Sans', sans-serif;
+    color: #333333;
 }
 .head-block{
     width: 100%;
@@ -22,10 +21,18 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .text-content{
     padding-right: 30px;
     padding-left: 30px;
+    margin-top: 40px;
 }
+.text-content h3 {
+    font-weight: 600;
+    color: #333333;
+    margin-top: 40px;
+}
+
 p{
     text-align: justify;
     font-size: 14px;
@@ -42,6 +49,7 @@ p{
 .address-link{
     color:#65bfba;
     padding-left: 20px;
+    font-weight: 600;
 }
 .fa-envelope{
     font-size: 20px;

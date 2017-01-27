@@ -29,6 +29,7 @@
     border-bottom:3px solid #f7af49;
     margin:auto;
     padding-bottom:5px;
+    font-weight: 800;
 }
 .register{
     border-bottom:3px solid #65bfba;
@@ -51,8 +52,10 @@
     margin:-4px 0 0 ;
     color:#777777;
 }
+
 .forget-link{
     padding: 7px 10px 20px 10px;
+    font-weight: 600;
 }
 .forget-link a{
     color:#65bfba;
@@ -130,15 +133,18 @@ input:-ms-input-placeholder {
 
 }
 
-
-#sonata_user_registration_form_email{
+#sonata_user_registration_form_username,
+#sonata_user_registration_form_email,
+#sonata_user_registration_form_plainPassword_first,
+#sonata_user_registration_form_plainPassword_second {
     display: block;
     width: 100%;
-    height: 34px;
     padding: 6px 12px;
     font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
     line-height: 1.42857143;
-    color: #555;
+    color: #333;
     background-color: #fff;
     background-image: none;
     border: 1px solid #ccc;
@@ -174,6 +180,7 @@ input:-ms-input-placeholder {
     color: #65bfba;
     text-align: center;
     margin:40px 0 -20px 0;
+    font-weight: 700;
 }
 .form-horizontal{
     padding-top:30px;
@@ -192,6 +199,7 @@ input:-ms-input-placeholder {
     font-size: 16px;
     text-align: center;
     margin:20px auto 30px auto;
+    font-weight: 600;
 }
 .block-social-btn{
     display: flex;
@@ -220,4 +228,5 @@ input:-ms-input-placeholder {
 }
 .or{
     margin:30px;
+    font-weight: 600;
 }
