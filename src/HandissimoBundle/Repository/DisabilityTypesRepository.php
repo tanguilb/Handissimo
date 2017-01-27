@@ -21,7 +21,14 @@ class DisabilityTypesRepository extends EntityRepository
             ->setParameter('disabilityData', '%' . $keyword . '%')
             ->getQuery();
         return $query->getResult();
+    }
 
+    public function getBySelectDisability()
+    {
+        $query = $this->createQueryBuilder('dt')
+            ->select('dt.disabilityName')
+            ->orderBy('dt.disabilityName');
+            return $query;
     }
 
 }

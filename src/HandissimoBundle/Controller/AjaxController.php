@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
@@ -20,23 +21,46 @@ class AjaxController extends Controller
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
+        $formAdvancedResearch = $this->createForm('HandissimoBundle\Form\AdvancedSearchType');
+        $formAdvancedResearch->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()){
 
             $em = $this->getDoctrine()->getManager();
-            $keyword = $form->getData()['keyword'];
+            $data = $form->getData();
             $age = $form->getData()['age'];
-            $postal = $form->getData()['postal'];
 
             /**
              * @var $repository OrganizationsRepository
              */
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsName($keyword, $age, $postal);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationName($data, $age);
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
-                'keyword' => $keyword,
+                'keyword' => $data,
                 'age' => $age,
-                'postal' => $postal,
-                'form' => $form->createView(),
+                'pagination' => $pagination,
+                'form' => $formAdvancedResearch->createView(),
+            ));
+
+        } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $data = $formAdvancedResearch->getData();
+            $age = $form->getData()['age'];
+
+            /**
+             * @var $repository OrganizationsRepository
+             */
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data, $age);
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
+            return $this->render('front/search.html.twig', array(
+                'result' => $result,
+                'keyword' => $data,
+                'age' => $age,
+                'pagination' => $pagination,
+                'form' => $formAdvancedResearch->createView(),
             ));
         }
         return $this->render('front/index.html.twig', array(
@@ -91,8 +115,15 @@ class AjaxController extends Controller
          * @var $repository OrganizationsRepository
          */
         if ($request->isXmlHttpRequest()) {
+
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $data = $repository->getByCity($postalcode);
+            $postal = $repository->getByPostal($postalcode);
+
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $city = $repository->getByCity($postalcode);
+
+            $data =  array_merge($postal, $city);
+
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

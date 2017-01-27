@@ -87,8 +87,11 @@ body {
     background-color: #C37095;
 }
 
-.pink-btn:hover {
+.pink-btn:hover,
+.pink-btn:focus {
     background-color: #DC7095;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .orange-btn i,

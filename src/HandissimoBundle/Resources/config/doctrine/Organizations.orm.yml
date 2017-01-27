@@ -66,7 +66,7 @@ HandissimoBundle\Entity\Organizations:
             nullable: true
         organizationDescription:
             type: text
-            nullable: false
+            nullable: true
             length: 65535
         serveDescription:
             type: text
