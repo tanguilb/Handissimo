@@ -48,7 +48,9 @@
                         <div class="line"><div class="icon-block"><i class="fa fa-home" aria-hidden="true"></i></div><p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p></div>
                         <div class="line"><div class="icon-block"><i class="fa fa-phone" aria-hidden="true"></i></div><p class="address-line">{{ organization.phoneNumber }}</p></div>
                         <div class="line"><div class="icon-block"><i class="fa fa-envelope" aria-hidden="true"></i></div><a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a></div>
-                        <div class="line"><div class="icon-block"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers le site internet {{ organization.website }}" href="http://{{ organization.website }}" target="_blank">Site web</a></div>
+                        {% if organization.website != null %}
+                        <div class="line"><div class="icon-block"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a></div>
+                        {% endif %}
                         <div class="line"><div class="icon-block"><i class="fa fa-commenting" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a></div>
                         <div class="line"><div class="icon-block"><i class="fa fa-facebook" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a></div>
                         <div class="line"><div class="icon-block"><i class="fa fa-twitter" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a></div>
