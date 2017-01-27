@@ -64,12 +64,14 @@
                 {% for results in pagination %}
                 <div class="row" id="result-container">
                     <div class="col-sm-4">
-                        <img src="" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
+                        <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}">
+                            <img src="{{ asset('images/photo-centre.jpg') }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
+                        </a>
                     </div>
                     <div class="col-sm-8">
                         <div class="col-xs-12">
                             <div class="row">
-                                <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}" ><h4 class="searchtitre">{{ results.name }}</h4></a>
+                                <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}"><h4 class="searchtitre">{{ results.name }}</h4></a>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6" id="address-container">
