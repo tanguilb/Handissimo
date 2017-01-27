@@ -6,21 +6,21 @@ handissimo_disabilitytypes:
     resource: "@HandissimoBundle/Resources/config/routing/disabilitytypes.yml"
     prefix:   /disabilitytypes
 
-handissimo_homepage:
-    path:     /
-    defaults: { _controller: HandissimoBundle:Ajax:research }
+#handissimo_homepage:
+ #   path:     /
+  #  defaults: { _controller: HandissimoBundle:Ajax:research }
 
 handissimo_research:
     resource: "@HandissimoBundle/Resources/config/routing/research.yml"
-    prefix:   /research
+    prefix:   /
 
 handissimo_aboutpage:
     path:     /about
     defaults: { _controller: HandissimoBundle:Default:about }
 
-handissimo_search:
-    resource: "@HandissimoBundle/Resources/config/routing/search.yml"
-    prefix:   /search
+#handissimo_search:
+ #   path:     /search
+#  defaults: { _controller: HandissimoBundle:Default:search }
 
 handissimo_needs:
     resource: "@HandissimoBundle/Resources/config/routing/needs.yml"
@@ -45,6 +45,7 @@ handissimo_stafftypes:
 handissimo_structurestypes:
     resource: "@HandissimoBundle/Resources/config/routing/structurestypes.yml"
     prefix:   /structurestypes
+
 
 handissimo_organizations_standard_page:
     path: /structure/{id}

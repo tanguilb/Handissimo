@@ -110,12 +110,20 @@ sonata_block:
             contexts: [admin]
         sonata.admin.block.search_result:
             contexts: [admin]
+
 sonata_admin:
+    templates:
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+
+
+
+
+
     security:
         handler: sonata.admin.security.handler.role
 
 sonata_user:
-    security_acl: true
+    security_acl: false
     manager_type: orm
     profile:
     admin:

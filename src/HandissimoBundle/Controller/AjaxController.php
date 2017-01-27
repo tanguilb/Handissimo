@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use HandissimoBundle\Form\AdvancedSearchType;
 
 class AjaxController extends Controller
 {
@@ -21,12 +22,14 @@ class AjaxController extends Controller
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
-        $formAdvancedResearch = $this->createForm('HandissimoBundle\Form\AdvancedSearchType');
+        $em = $this->getDoctrine()->getManager();
+
+        $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
         $formAdvancedResearch->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            $em = $this->getDoctrine()->getManager();
+
             $data = $form->getData();
             $age = $form->getData()['age'];
 
@@ -119,12 +122,12 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $postal = $repository->getByPostal($postalcode);
 
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $city = $repository->getByCity($postalcode);
+           /* $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $city = $repository->getByCity($postalcode);*/
 
-            $data =  array_merge($postal, $city);
+           // $data =  array_merge($postal, $city);
 
-            return new JsonResponse(array("data" => json_encode($data)));
+            return new JsonResponse(array("data" => json_encode($postal)));
         } else {
             throw new HttpException('500', 'Invalid call');
         }

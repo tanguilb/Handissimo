@@ -6,40 +6,8 @@ security:
         #FOS\UserBundle\Model\UserInterface: bcrypt
         FOS\UserBundle\Model\UserInterface: sha512
 
-    acl:
-        connection: default
-
-    role_hierarchy:
-
-        ROLE_EDITOR:
-            - ROLE_USER
-            - ROLE_ADMIN_ORGANIZATIONS_ALL
-            - ROLE_SONATA_ADMIN
-
-        ROLE_MANAGER:
-            - ROLE_EDITOR
-
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 
-    access_control:
-        # URL of FOSUserBundle which need to be available to anonymous users
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        # Admin login page needs to be accessed without credential
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        # Secured part of the site
-        # This config requires being logged for the whole site and having the admin role for the admin part.
-        # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_SONATA_ADMIN, ROLE_ADMIN] }
-        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
     providers:
         fos_userbundle:
@@ -81,3 +49,55 @@ security:
                 failure_path:   null
             logout:             true
             anonymous:          true
+
+    access_control:
+        # URL of FOSUserBundle which need to be available to anonymous users
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Admin login page needs to be accessed without credential
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Secured part of the site
+        # This config requires being logged for the whole site and having the admin role for the admin part.
+        # Change these rules to adapt them to your needs
+        - { path: ^/admin/, role: [ROLE_SONATA_ADMIN, ROLE_ADMIN] }
+        - { path: ^/organizations/, role: [ROLE_ORG, ROLE_SONATA_ADMIN] }
+        - { path: ^/society/, role: [ROLE_SOC, ROLE_SONATA_ADMIN] }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    role_hierarchy:
+
+
+
+        ROLE_ORGANIZATION:
+            - ROLE_USER
+            - ROLE_ADMIN_ORGANIZATIONS_ALL
+            - ROLE_SONATA_ADMIN
+
+
+        ROLE_SOCIETY:
+            - ROLE_USER
+            - ROLE_ADMIN_SOCIETY_ALL
+            - ROLE_ADMIN_ORGANIZATIONS_ALL
+            - ROLE_SONATA_ADMIN
+
+        ROLE_MANAGER:
+            - ROLE_EDITOR
+
+        ROLE_SOC:         [ROLE_SOCIETY, ROLE_ORG]
+        ROLE_ORG:         [ROLE_ORGANIZATION]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_EDITOR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    acl:
+        connection: default
+
+    access_decision_manager:
+
+        # strategy value can be: affirmative, unanimous or consensus
+        strategy: unanimous

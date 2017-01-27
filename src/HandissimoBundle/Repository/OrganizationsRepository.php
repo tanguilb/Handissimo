@@ -28,7 +28,7 @@ class OrganizationsRepository extends EntityRepository
                 's'=>'jobs'),
             "postal" => array(
                 'o' => 'postal',
-                'o' => 'city'
+               // 'o' => 'city'
             ),
         );
 
@@ -124,7 +124,7 @@ class OrganizationsRepository extends EntityRepository
                 's'=>'jobs'),
             "postal" => array(
                 'o' => 'postal',
-                'o' => 'city'
+               // 'o' => 'city'
             ),
             "disabilitytypes" => array(
                 'dt'=>'id',

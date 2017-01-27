@@ -1,5 +1,8 @@
+/**
+ * Created by tangui on 19/01/17.
+ */
 $( document ).ready(function() {
-    $("#research_action_keyword").keyup(function() {
+    $("#research_advanced_keyword").keyup(function() {
         var keyword = $(this).val();
         if ( keyword.length >= 3 ) {
             $.ajax({
@@ -35,7 +38,7 @@ $( document ).ready(function() {
                     }
                     $('#keywordautocomplete').html(html);
                     $('#keywordautocomplete li').on('click', function() {
-                        $('#research_action_keyword').val($(this).text());
+                        $('#research_advanced_keyword').val($(this).text());
                         $('#keywordautocomplete').html('');
                     });
                 },

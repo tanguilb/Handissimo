@@ -22,3 +22,4 @@ society_delete:
     path:     /{id}/delete
     defaults: { _controller: "HandissimoBundle:Society:delete" }
     methods:  DELETE
+

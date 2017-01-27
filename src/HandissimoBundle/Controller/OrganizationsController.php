@@ -2,7 +2,6 @@
 
 namespace HandissimoBundle\Controller;
 
-use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +39,7 @@ class OrganizationsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $organization->setUserOrg($this->container->get('security.context')->getToken()->getUser());
             $em->persist($organization);
             $em->flush($organization);
 
