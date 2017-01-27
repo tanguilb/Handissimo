@@ -117,6 +117,15 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: true
             length: 255
+
+    oneToOne:
+        userorg:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            inversedBy: organizationsuser
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+
     manyToOne:
         structuretype:
             targetEntity: StructuresTypes
@@ -169,3 +178,4 @@ HandissimoBundle\Entity\Organizations:
 
     lifecycleCallbacks:
         prePersist: [ transformAddressGeocode ]
+        preUpdate: [ transformAddressGeocode ]

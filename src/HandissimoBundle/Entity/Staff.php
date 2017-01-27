@@ -7,6 +7,12 @@ namespace HandissimoBundle\Entity;
  */
 class Staff
 {
+
+    public function __toString()
+    {
+        return $this->jobs;
+    }
+
     /**
      * @var integer
      */

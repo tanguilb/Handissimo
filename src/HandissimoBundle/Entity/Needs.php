@@ -7,6 +7,11 @@ namespace HandissimoBundle\Entity;
  */
 class Needs
 {
+    public function __toString()
+    {
+       return $this->needName;
+    }
+
     /**
      * @var integer
      */

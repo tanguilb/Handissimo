@@ -1,53 +1,82 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Societies list</h1>
+<div class="container_fluid">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <h1>Votre société</h1>
+        </div>
+    </div>
+</div>
+<div class="container_fluid">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <table>
+                <thead>
+                    <tr>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Societyname</th>
-                <th>Logo</th>
-                <th>Address</th>
-                <th>Postal</th>
-                <th>City</th>
-                <th>Phonenumber</th>
-                <th>Mail</th>
-                <th>Societytwitter</th>
-                <th>Societyfacebook</th>
-                <th>Website</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for society in societies %}
-            <tr>
-                <td><a href="{{ path('society_show', { 'id': society.id }) }}">{{ society.id }}</a></td>
-                <td>{{ society.societyName }}</td>
-                <td>{{ society.logo }}</td>
-                <td>{{ society.address }}</td>
-                <td>{{ society.postal }}</td>
-                <td>{{ society.city }}</td>
-                <td>{{ society.phoneNumber }}</td>
-                <td>{{ society.mail }}</td>
-                <td>{{ society.societyTwitter }}</td>
-                <td>{{ society.societyFacebook }}</td>
-                <td>{{ society.website }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('society_show', { 'id': society.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('society_edit', { 'id': society.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        <th>Nom de la société</th>
+                        <th>Logo</th>
+                        <th>Adresse</th>
+                        <th>Code postal</th>
+                        <th>Ville</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                {% for society in societies %}
+                {% if society.userSociety.id == app.security.getToken().getUser().getId()  %}
+
+                <tr>
+                        <td>{{ society.societyName}}</td>
+                        <td>{{ society.logo }}</td>
+                        <td>{{ society.address }}</td>
+                        <td>{{ society.postal }}</td>
+                        <td>{{ society.city }}</td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('society_show', { 'id': society.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('society_edit', { 'id': society.id }) }}">edit</a>
+                                </li>
+                            </ul>
+
+                    </tr>
+
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container_fluid">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <h2>Liste de vos sociétés</h2>
+        </div>
+    </div>
+</div>
+<div class="container_fluid">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <ul>
+                {% for org in orgs %}
+                     {% if org.id != app.request.get('id') %}
+                         <li><a href="{{ path('organizations_edit', { 'id': org.id}) }}">{{ org.name }}</a></li>
+                     {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
 
     <ul>
         <li>
