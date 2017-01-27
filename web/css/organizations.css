@@ -9,11 +9,11 @@ body {
 .head-img{
     width: 100%;
     height: 350px;
-    background-image: url("https://s27.postimg.org/j94xd9pzn/Mc_Kay_Dee_Pond_2005_LR2.jpg");
+    background-image: url(../images/head-organization.jpg);
     background-size: cover;
-    background-position: center center;
-    position: absolute;
+    background-position: top center;
     z-index: -1;
+    position: absolute;
 }
 /*-----------------------------------------container*/
 .main-block{
@@ -36,8 +36,6 @@ body {
 .organization-logo{
     height: 50px;
     width: auto;
-    box-shadow: 5px 5px 5px 0 #e0e0e0;
-    border: solid 1px #dadada;
 }
 /*------------------- this is for the favorite/like button --------------*/
 .fa-heart-o{
