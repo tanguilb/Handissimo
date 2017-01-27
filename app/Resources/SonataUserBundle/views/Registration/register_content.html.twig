@@ -28,11 +28,13 @@
              {{ form_start(form) }}
 
              <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal">
-                 {{ form(form.username,  {'attr': {'class': 'form-control form2', 'placeholder':  'form.username'|trans({}, 'SonataUserBundle') }}) }}
-                 {{ form(form.email,  {'attr': {'class': 'mail form2', 'placeholder':  'form.email'|trans({}, 'SonataUserBundle')}}) }}
-                 {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control form2', 'placeholder':  'form.password'|trans({}, 'SonataUserBundle') }}) }}
-                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control form2', 'placeholder':  'form.password_confirmation'|trans({}, 'SonataUserBundle') }}) }}
-
+                 {{ form(form.username,  {'attr': {'class': 'form-control form2', 'placeholder':  'form.username'|trans({}, 'SonataUserBundle') ~' *' }}) }}
+                 {{ form(form.email,  {'attr': {'class': 'mail form2', 'placeholder':  'form.email'|trans({}, 'SonataUserBundle') ~' *'}}) }}
+                 {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control form2', 'placeholder':  'form.password'|trans({}, 'SonataUserBundle') ~' *' }}) }}
+                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control form2', 'placeholder':  'form.password_confirmation'|trans({}, 'SonataUserBundle') ~' *' }}) }}
+                    <p id="mandatory-field">
+                        * champs obligatoires.
+                    </p>
                  <div class="text-center block-btn-register" title="valide la création du compte">
                      <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn register-btn" />
                  </div>
