@@ -3,7 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 
-use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
@@ -17,10 +17,8 @@ use HandissimoBundle\Form\AdvancedSearchType;
 
 class AjaxController extends Controller
 {
-
     public function researchAction(Request $request)
     {
-
         $form = $this->createForm('HandissimoBundle\Form\ResearchType');
         $form->handleRequest($request);
 
@@ -28,6 +26,7 @@ class AjaxController extends Controller
 
         $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
         $formAdvancedResearch->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()){
 
 
@@ -38,57 +37,38 @@ class AjaxController extends Controller
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationName($data, $age);
-
-
-
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
+                'pagination' => $pagination,
                 'form' => $formAdvancedResearch->createView(),
             ));
 
-        }
-
-        if ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
+        } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $data = $formAdvancedResearch->getData();
-            $age = $formAdvancedResearch->getData()['age'];
+            $age = $form->getData()['age'];
 
             /**
              * @var $repository OrganizationsRepository
              */
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data, $age);
-
+            $paginator  = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
+                'pagination' => $pagination,
                 'form' => $formAdvancedResearch->createView(),
             ));
         }
-
         return $this->render('front/index.html.twig', array(
             'form' => $form->createView(),
         ));
-
-    }
-
-    public function advancedResearchAction(Request $request, $data, $age)
-    {
-        if ($request->isXmlHttpRequest())
-        {
-            /**
-             * @var $repository OrganizationsRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('handissimoBundle:Organization');
-            $results = $repository->getByOrganizationName($data, $age);
-
-            return new JsonResponse(array("results" => json_encode($results)));
-        } else {
-            throw new HttpException("500", "Invalid Call");
-        }
-
     }
 
     public function autoCompleteAction(Request $request, $keyword)
@@ -138,13 +118,18 @@ class AjaxController extends Controller
          * @var $repository OrganizationsRepository
          */
         if ($request->isXmlHttpRequest()) {
+
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $data = $repository->getByCity($postalcode);
+            $postal = $repository->getByPostal($postalcode);
+
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $city = $repository->getByCity($postalcode);
+
+            $data =  array_merge($postal, $city);
+
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');
         }
-
     }
-
 }
