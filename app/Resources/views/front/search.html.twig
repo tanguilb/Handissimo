@@ -69,7 +69,7 @@
                     <div class="col-sm-8">
                         <div class="col-xs-12">
                             <div class="row">
-                                <h4 class="searchtitre">{{ results.name }}</h4>
+                                <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}" ><h4 class="searchtitre">{{ results.name }}</h4></a>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6" id="address-container">
@@ -116,6 +116,9 @@
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
+    <script type="text/javascript" src="{{ asset ('js/advancedSearchAutocomplete.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/advancedSearchCity.js') }}"></script>
+
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>

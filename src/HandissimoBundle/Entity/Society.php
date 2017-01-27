@@ -409,4 +409,33 @@ class Society
     {
         return $this->organization;
     }
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $userSociety;
+
+
+    /**
+     * Set userSociety
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userSociety
+     *
+     * @return Society
+     */
+    public function setUserSociety(\Application\Sonata\UserBundle\Entity\User $userSociety = null)
+    {
+        $this->userSociety = $userSociety;
+
+        return $this;
+    }
+
+    /**
+     * Get userSociety
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUserSociety()
+    {
+        return $this->userSociety;
+    }
 }
