@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Créer votre fiche</h1>
+    <h1>Editez votre fiche</h1>
     <div class="well">
         {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(edit_form) }}
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ form_label(edit_form.freeplace, "Nombre de place disponible : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_label(edit_form.freeplace, "Nombre de places disponibles : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                             {{ form_errors(edit_form.freeplace) }}
                             <div class="col-sm-4">
                                 {{ form_widget(edit_form.freeplace, {'attr': {'class': 'form-control'}}) }}
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ form_label(edit_form.address, "Addresse : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_label(edit_form.address, "Adresse : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                             {{ form_errors(edit_form.address) }}
                             <div class="col-sm-4">
                                 {{ form_widget(edit_form.address, {'attr': {'class': 'form-control'}}) }}
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            {{ form_label(edit_form.openhours, "Horaire d'ouverture : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                            {{ form_label(edit_form.openhours, "Horaires d'ouverture : ", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                             {{ form_errors(edit_form.openhours) }}
                             <div class="col-sm-4">
                                 {{ form_widget(edit_form.openhours, {'attr': {'class': 'form-control'}}) }}
@@ -259,7 +259,7 @@
             </div>
         </div>
     </div>
-    <input type="submit" value="Create" />
+    <input type="submit" value="Créez" />
     {{ form_end(edit_form) }}
         {% if is_granted('ROLE_SOC') %}
         <li>
@@ -271,7 +271,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="supprimer">
             {{ form_end(delete_form) }}
         </li>
         {% endif %}
