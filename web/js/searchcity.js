@@ -11,11 +11,11 @@ $( document ).ready(function() {
                     var postalcodes = JSON.parse(response.data);
                     html = "";
                     for (var i = 0; i < postalcodes.length; i++) {
-                        if (postalcode = postalcodes[i].postal) {
+                        //if (postalcode = postalcodes[i].postal) {
                             html += "<li>" + postalcodes[i].postal + "</li>";
-                        }else if(postalcode = postalcodes[i].city) {
-                            html += "<li>" + postalcodes[i].city + "</li>";
-                        }
+                        //}else if(postalcode = postalcodes[i].city) {
+                          //  html += "<li>" + postalcodes[i].city + "</li>";
+                       // }
                     }
 
                     $('#city').html(html);
