@@ -4,6 +4,10 @@ function initMap() {
         zoom: 12,
         center: uluru
     });
+    var zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+        map.setZoom( Math.min( 11, map.getZoom() ) );
+    });
+    var bounds = new google.maps.LatLngBounds();
 
     var coordinate = document.getElementsByClassName('arrayjson');
     for (var i = 0; i < coordinate.length; i++) {
@@ -14,8 +18,9 @@ function initMap() {
                 position:localisation,
                 map: map
             });
-
+            bounds.extend(localisation);
         })(i);
     }
+    map.fitBounds(bounds);
 }
 
