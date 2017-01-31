@@ -86,6 +86,7 @@ p {
 .orange-btn:focus {
     background-color: #FFBE49;
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 .pink-btn {
