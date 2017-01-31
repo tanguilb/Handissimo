@@ -2,65 +2,166 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
-
 {% endblock %}
 
 {% block body %}
 
-    <!--  bloc container --------------------------------------->
+    <!-- Block container -->
     <div class="head-img"></div>
 
-   <div class="container main-block">
-
+    <div class="container main-block">
         <div class="container-info row">
-            <!-- Block entete / titre----------------------------->
+            <!-- Block Title-->
             <div class="head-block">
-                <!-- date de mise a jour-->
-                <div class="row "><p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('Y-m-d') }}</p></div>
-                <!-- titre/logo/favoris---------------------------------- -->
-                <div class="row head">
+                <div class="row ">
+                    <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('Y-m-d') }}</p>
+                </div>
+
+                <div class="row">
                     <div class="head-title col-md-11 col-sm-11">
-                        <h2 class="title"> {{ organization.societies.societyname }} - {{ organization.name }} </h2>
+                        <h1 class="title"> {{ organization.societies.societyname }} - {{ organization.name }} </h1>
                         <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
                     </div>
                     <!-- this is the line to display like button
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
                 </div>
             </div>
-            <!-- caroussel----------------------------------------------------------->
-            <div class="main-carousel">
-                <div class="carousel">
-                    <ul>
-                        <li class="line-img"><img class="image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt=""></li>
-                        <li class="line-img"><img class="image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt=""></li>
-                        <li class="line-img"><img class="image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt=""></li>
-                        <li class="line-img"><img class="image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt=""></li>
-                        <li class="line-img"><img class="image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt=""></li>
-                    </ul>
-                </div>
+
+            <!-- Carousel-->
+            <div class="carousel">
+                <ul>
+                    <li class="line-img">
+                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
+                    </li>
+                    <li class="line-img">
+                        <img class="carousel-image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt="">
+                    </li>
+                    <li class="line-img">
+                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
+                    </li>
+                    <li class="line-img">
+                        <img class="carousel-image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt="">
+                    </li>
+                    <li class="line-img">
+                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
+                    </li>
+                </ul>
             </div>
 
-            <!-- block essentiel----------------------------------->
+            <!-- Essential Block -->
             <div class="essential-block col-md-8">
-                <!-- adress block---------------------->
-                <div class="info-block">
-                    <div class="address">
-                        <div class="line"><div class="icon-block"><i class="fa fa-home" aria-hidden="true"></i></div><p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p></div>
-                        <div class="line"><div class="icon-block"><i class="fa fa-phone" aria-hidden="true"></i></div><p class="address-line">{{ organization.phoneNumber }}</p></div>
-                        <div class="line"><div class="icon-block"><i class="fa fa-envelope" aria-hidden="true"></i></div><a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a></div>
-                        {% if organization.website != null %}
-                        <div class="line"><div class="icon-block"><i class="fa fa-desktop" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a></div>
-                        {% endif %}
-                        <div class="line"><div class="icon-block"><i class="fa fa-commenting" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a></div>
-                        <div class="line"><div class="icon-block"><i class="fa fa-facebook" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a></div>
-                        <div class="line"><div class="icon-block"><i class="fa fa-twitter" aria-hidden="true"></i></div><a class="address-line address-link" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a></div>
-
+            <!-- Contact Block -->
+                <div class="contact-info">
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                        </div>
+                        <p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p>
                     </div>
-                   <div class="description col-md-12"><p>{{ organization.organizationDescription|raw }}</p></div>
-                    <div class="description col-md-12"><p>{{ organization.serveDescription|raw }}</p></div>
+
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                        </div>
+                        <p class="address-line">{{ organization.phoneNumber }}</p>
+                    </div>
+
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>
+                    </div>
+
+                    {% if organization.website %}
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-desktop" aria-hidden="true"></i>
+                        </div>
+                        <a class="address-line address-link" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a>
+                    </div>
+                    {% endif %}
+
+                    {% if organization.blog %}
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-commenting" aria-hidden="true"></i>
+                        </div>
+                        <a class="address-line address-link" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a>
+                    </div>
+                    {% endif %}
+
+                    {% if organization.facebook %}
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                        <a class="address-line address-link" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a>
+                    </div>
+                    {% endif %}
+
+                    {% if organization.twitter %}
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </div>
+                        <a class="address-line address-link" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
+                    </div>
+                    {% endif %}
                 </div>
+
+                <!-- Descriptions Block -->
+                {% if  organization.organizationDescription %}
+                    <div class="col-md-12 description">
+                        <h2>Description de l'organisation</h2>
+                       <p>{{ organization.organizationDescription|raw }}</p>
+                    </div>
+                {% endif %}
+
+                {% if organization.serveDescription %}
+                    <div class="col-md-12 description">
+                        <h2>Les services proposés</h2>
+                        <p>{{ organization.serveDescription|raw }}</p>
+                    </div>
+                {% endif %}
+
+                {% if organization.placeDescription %}
+                    <div class="col-md-12 description">
+                        <h2>Nos locaux</h2>
+                        <p>{{ organization.placeDescription|raw }}</p>
+                    </div>
+                {% endif %}
+
+                {% if organization.schoolDescription %}
+                    <div class="col-md-12 description">
+                        <h2>L'école</h2>
+                        <p>{{ organization.schoolDescription|raw }}</p>
+                    </div>
+                {% endif %}
+
+                {% if organization.teamDescription %}
+                    <div class="col-md-12 description">
+                        <h2>Description de l'équipe</h2>
+                        <p>{{ organization.teamDescription|raw }}</p>
+                    </div>
+                {% endif %}
+
+                {% if organization.workingDescription %}
+                    <div class="col-md-12 description">
+                        <h2>Comment travaillons-nous ?</h2>
+                        <p>{{ organization.workingDescription|raw }}</p>
+                    </div>
+                {% endif %}
+
+                {% if organization.activities %}
+                    <div class="col-md-12 description">
+                        <h2>Les activités proposées</h2>
+                        <p>{{ organization.activities|raw }}</p>
+                    </div>
+                {% endif %}
             </div>
-            <!-- ------------------ map --------------------------->
+
+            <!-- Map -->
             <div class="col-md-4 map-block">
                 <div class="map col-md-12" id="map">
                 </div>
@@ -71,19 +172,18 @@
 
                 {% set arrayjson = array|json_encode %}
 
-
                 <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
 
-
-                <div class="ressources col-md-12">
-                    <!-- ---------download button ---------->
+                <!-- Resources -->
+                <div class="resources col-md-12">
+                    <!-- download button -->
                     <a class="download" href="https://s23.postimg.org/k5yj75xe3/image.jpg" target="_blank">
                         <div class="line download-line">
                             <i class="fa fa-download" aria-hidden="true"></i>
                             <p>Télécharger des documents</p>
                         </div>
                     </a>
-                    <!-- -----------print button -------->
+                    <!-- print button -->
                     <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
                         <div class="line print-line">
                             <i class="fa fa-print" aria-hidden="true"></i>
@@ -92,6 +192,7 @@
                     </a>
                 </div>
             </div>
+
             <!-- return button -->
             <div class="col-md-12">
                 <div class="text-center btn-return">
@@ -101,12 +202,14 @@
                 </div>
             </div>
         </div>
+    </div>
+{% endblock %}
 
-   </div>
+{% block javascripts %}
     <script src="{{ asset('js/carousel.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
-
 {% endblock %}
+
