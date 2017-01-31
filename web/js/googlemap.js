@@ -12,7 +12,10 @@ function initMap() {
         google.maps.event.trigger(map, "resize");
         map.setCenter(center);
     });
-
+    var zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+        map.setZoom( Math.min( 11, map.getZoom() ) );
+    });
+    var bounds = new google.maps.LatLngBounds();
 
     var coordinate =  document.getElementsByClassName('arrayjson');
     for(var i = 0; i < coordinate.length; i++) {
@@ -42,10 +45,13 @@ function initMap() {
                 map: map,
                 title: elements.name
             });
+            bounds.extend(localisation);
+
             marker.addListener( 'click', function () {
                 infoWindow.open(map, marker);
             });
+
         })(i);
     }
-
+    map.fitBounds(bounds);
 }
