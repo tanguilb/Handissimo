@@ -240,22 +240,22 @@ input:-ms-input-placeholder {
 }
 .check-email{
     width: 400px;
-    height: 300px;
+    height: auto;
     margin-top:200px;
-    display:flex;
-    align-items: center;
-    justify-content: center;
     padding:15px;
 }
 .check-email p{
     text-align: center;
     font-size:20px;
 }
+.confirm{
+    color: #71DBD7;
+}
 @media screen and (max-width: 768px){
     .check-email{
         width: 70%;
         margin-top:150px;
-        height: 300px;
+
     }
     .check-email p{
         font-size:1.3em;
