@@ -13,7 +13,7 @@ body {
 
 .search-label {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 1.1em;
     color: #FFFFFF;
     margin-bottom: 4px;
 }
@@ -26,13 +26,13 @@ body {
     border-radius: 3px;
     font-weight: 600;
     width: 100%;
-    font-size: 15px;
+    font-size: 1.1em;
 }
 
 #filter {
     margin-top: 12px;
     margin-bottom: 12px;
-    font-size: 15px;
+    font-size: 1.1em;
     color: #FFFFFF;
     font-weight: 600;
     text-decoration: underline;
@@ -45,7 +45,7 @@ body {
     background-color: #FFFFFF;
     border-radius: 3px;
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 1.1em;
     font-weight: 600;
     font-style: italic;
     color: #777777;
@@ -78,13 +78,13 @@ body {
 
 #map{
     overflow:hidden;
-    padding-bottom:85%;
+    padding-bottom:100%;
     position:relative;
     height:0;
 }
 @media (max-width: 992px) {
     #map {
-    padding-bottom:50%;
+    padding-bottom:60%;
     }
 }
 #count-results {
@@ -101,11 +101,15 @@ body {
     text-decoration: none;
 }
 
-#img-search {
-    height: 110px;
-    width: 100%;
-    background-color: #0f0f0f;
+#crop-height {
+    max-height: 250px;
     overflow: hidden;
+}
+
+#img-search {
+    display: block;
+    max-width: 100%;
+    -ms-interpolation-mode: bicubic;
 }
 
 #img-search:hover {
@@ -114,20 +118,9 @@ body {
     transition: 0.3s;
 }
 
-@media (max-width: 992px) {
-    #img-search {
-        height: 130px;
-    }
-}
-@media (max-width: 767px) {
-    #img-search {
-        height: 170px;
-    }
-}
-
 .searchtitre {
     color: #61bdb9;
-    font-size: 19px;
+    font-size: 1.3em;
     text-transform: uppercase;
     font-weight: 800;
     margin-top:0;
@@ -149,29 +142,40 @@ body {
 #address-container,
 #social-container {
     padding-left: 0;
+    font-size: 1.1em;
+}
+
+#address-container p,
+#social-container p a {
+    font-size: 1.1em;
+    margin: 0;
 }
 
 .contact-phone {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 1.1em;
+    margin: 0;
 }
 
 #social-container p a {
     text-decoration: none;
-    font-weight: 600;
     color: #61bdb9;
 }
 
-#social-container p a:hover ,
-.social-media:hover {
-    color: #f7af49;
+.website-address {
+    margin-top: 5px;
 }
 
 .social-media {
     text-decoration: none;
     color: #61bdb9;
-    font-size: 24px;
-    margin-right: 5px;
+    font-size: 1.5em;
+}
+
+#social-container p a:hover ,
+.social-media:hover,
+.social-media:focus {
+    color: #f7af49;
 }
 
 .pagination > li > a,

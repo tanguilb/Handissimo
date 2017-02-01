@@ -1,6 +1,11 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #f7f7f7;
+    color: #333333;
+}
+
+p {
+   font-size: 1.1em;
 }
 
 .btn,
@@ -81,6 +86,7 @@ body {
 .orange-btn:focus {
     background-color: #FFBE49;
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 .pink-btn {
@@ -208,7 +214,7 @@ body {
 #footer-menu ul{
     list-style: none;
     margin-top: 13px;
-    font-size: 13px;
+    font-size: 1.1em;
     font-weight: 600;
 }
 @media (max-width: 992px) {
@@ -272,10 +278,48 @@ body {
 /**********************************/
 /*****COMMON ELEMENTS ON PAGES*****/
 /**********************************/
+
+/*Main container of pages */
+.main-block {
+    background-color: #ffffff;
+    margin:-100px auto 50px auto ;
+    box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
+}
+@media screen and (max-width: 768px) {
+    .main-block {
+        margin-top: 110px;
+        margin-bottom: 0;
+    }
+}
+
 .title {
     margin: 0 ;
-    font-size:30px;
+    font-size:2.2em;
     font-weight: 700;
-    color: #333333;
+    padding: 0;
     text-align: left;
+}
+
+.description {
+    margin-top: 10px;
+}
+
+.description h2 {
+    text-align: left;
+    font-size: 1.5em;
+    padding: 0;
+    font-weight: 600;
+}
+
+.description h3 {
+    text-align: left;
+    font-size: 1.2em;
+    padding: 0;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.description p {
+    text-align: justify;
+    margin-bottom: 10px;
 }
