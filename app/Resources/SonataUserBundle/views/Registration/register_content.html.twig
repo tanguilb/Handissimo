@@ -8,7 +8,7 @@
              <h2 class="login-title register">{{ 'title_user_registration'|trans({}, 'SonataUserBundle') }}</h2>
          </div>
          <div class="panel-body">
-             <div class="social-block">
+             <!--<div class="social-block">
                 <h4 class="social-title">Vous n'avez pas de compte ? <br>Connectez-vous avec :</h4>
                  <div class="block-social-btn">
                      <a href="" class="facebook-btn" title="Permet de vous enregistrer avec votre compte Facebook">
@@ -24,7 +24,7 @@
                      </a>
                  </div>
              </div>
-             <h4 class="create-title">CREER UN COMPTE</h4>
+             <h4 class="create-title">CREER UN COMPTE</h4>-->
 
              <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal">
                  {{ form_errors(form) }}
