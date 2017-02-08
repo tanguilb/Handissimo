@@ -122,11 +122,7 @@ sonata_admin:
     security:
         handler: sonata.admin.security.handler.noop
 
-sonata_user:
-    security_acl: false
-    manager_type: orm
-    profile:
-    admin:
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -157,9 +153,31 @@ fos_user:
         sender_name: Handissimo
 
     registration:
+        form:
+            type: front_user_registration
+
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+    profile:
+        form:
+            type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            validation_groups:  [Authentication]
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    profile:
+        register:
+            # You may customize the registration forms over here
+            form:
+                type:                 front_user_registration
+                handler:              sonata.user.registration.form.handler.default
+                name:                 front_user_registration_form
+    admin:
+
 
 ivory_ck_editor:
     default_config: my_custom_config

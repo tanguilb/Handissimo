@@ -94,123 +94,34 @@ class User extends BaseUser
     {
         return $this->societyUser;
     }
+
     /**
-     * @var boolean
+     * @var string
      */
-    private $simpleUser;
+    private $userType;
 
 
     /**
-     * @var boolean
-     */
-    private $professionnal;
-
-    /**
-     * @var boolean
-     */
-    private $structure;
-
-
-    /**
-     * Set simpleUser
+     * Set userType
      *
-     * @param boolean $simpleUser
+     * @param string $userType
      *
      * @return User
      */
-    public function setSimpleUser($simpleUser)
+    public function setUserType($userType)
     {
-        $this->simpleUser = $simpleUser;
+        $this->userType = $userType;
 
         return $this;
     }
 
     /**
-     * Get simpleUser
+     * Get userType
      *
-     * @return boolean
+     * @return string
      */
-    public function getSimpleUser()
+    public function getUserType()
     {
-        return $this->simpleUser;
-    }
-
-
-
-    /**
-     * Set professionnal
-     *
-     * @param boolean $professionnal
-     *
-     * @return User
-     */
-    public function setProfessionnal($professionnal)
-    {
-        $this->professionnal = $professionnal;
-
-        return $this;
-    }
-
-    /**
-     * Get professionnal
-     *
-     * @return boolean
-     */
-    public function getProfessionnal()
-    {
-        return $this->professionnal;
-    }
-
-    /**
-     * Set structure
-     *
-     * @param boolean $structure
-     *
-     * @return User
-     */
-    public function setStructure($structure)
-    {
-        $this->structure = $structure;
-
-        return $this;
-    }
-
-    /**
-     * Get structure
-     *
-     * @return boolean
-     */
-    public function getStructure()
-    {
-        return $this->structure;
-    }
-    /**
-     * @var boolean
-     */
-    private $gestionnaire;
-
-
-    /**
-     * Set gestionnaire
-     *
-     * @param boolean $gestionnaire
-     *
-     * @return User
-     */
-    public function setGestionnaire($gestionnaire)
-    {
-        $this->gestionnaire = $gestionnaire;
-
-        return $this;
-    }
-
-    /**
-     * Get gestionnaire
-     *
-     * @return boolean
-     */
-    public function getGestionnaire()
-    {
-        return $this->gestionnaire;
+        return $this->userType;
     }
 }

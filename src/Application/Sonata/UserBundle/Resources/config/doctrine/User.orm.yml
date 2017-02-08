@@ -8,19 +8,10 @@ Application\Sonata\UserBundle\Entity\User:
                strategy: AUTO
 
    fields:
-       simpleUser:
-           type: boolean
-           nullable: true
-       gestionnaire:
-           type: boolean
-           nullable: true
-       professionnal:
-           type: boolean
-           nullable: true
-       structure:
-           type: boolean
-           nullable: true
-
+       userType:
+          type: string
+          nullable: false
+          length: 50
 
    oneToOne:
        organizationsuser:

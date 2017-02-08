@@ -54,3 +54,9 @@ services:
         arguments: [~, HandissimoBundle\Entity\Opinion, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions }
+
+    user.form.register.type:
+        class: Application\Sonata\UserBundle\Form\Type\RegisterType
+        parent: fos_user.registration.form.type
+        tags:
+            - { name: form.type, alias: front_user_registration }
