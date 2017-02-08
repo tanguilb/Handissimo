@@ -115,10 +115,6 @@ sonata_admin:
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
-
-
-
-
     security:
         handler: sonata.admin.security.handler.role
 
@@ -126,6 +122,11 @@ sonata_user:
     security_acl: false
     manager_type: orm
     profile:
+        form:
+            type:               application_sonata_user_profile
+            handler:            sonata_user.form.handler.profile
+            name:               sonata_user_profile_form
+            validation_groups:  [Profile]
     admin:
 
 # Swiftmailer Configuration

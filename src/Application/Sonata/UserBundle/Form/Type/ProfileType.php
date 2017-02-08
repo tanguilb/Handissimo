@@ -82,7 +82,7 @@ class ProfileType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'sonata_user_profile';
+        return 'application_sonata_user_profile';
     }
 
     /**
