@@ -184,33 +184,4 @@ class User extends BaseUser
     {
         return $this->structure;
     }
-    /**
-     * @var boolean
-     */
-    private $gestionnaire;
-
-
-    /**
-     * Set gestionnaire
-     *
-     * @param boolean $gestionnaire
-     *
-     * @return User
-     */
-    public function setGestionnaire($gestionnaire)
-    {
-        $this->gestionnaire = $gestionnaire;
-
-        return $this;
-    }
-
-    /**
-     * Get gestionnaire
-     *
-     * @return boolean
-     */
-    public function getGestionnaire()
-    {
-        return $this->gestionnaire;
-    }
 }

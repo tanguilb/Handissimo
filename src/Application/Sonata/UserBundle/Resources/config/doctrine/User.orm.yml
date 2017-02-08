@@ -7,6 +7,20 @@ Application\Sonata\UserBundle\Entity\User:
            generator:
                strategy: AUTO
 
+   fields:
+       simpleUser:
+           type: boolean
+           nullable: true
+       gestionnaire:
+           type: boolean
+           nullable: true
+       professionnal:
+           type: boolean
+           nullable: true
+       structure:
+           type: boolean
+           nullable: true
+
 
    oneToOne:
        organizationsuser:
