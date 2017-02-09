@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -11,7 +12,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class OrganizationsAdmin extends Admin
+class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -161,4 +162,6 @@ class OrganizationsAdmin extends Admin
                     ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
         ;
     }
+
+
 }

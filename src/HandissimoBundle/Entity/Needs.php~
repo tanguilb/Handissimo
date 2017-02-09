@@ -3,14 +3,13 @@
 namespace HandissimoBundle\Entity;
 
 /**
- * DisabilityTypes
+ * Needs
  */
-class DisabilityTypes
+class Needs
 {
-
     public function __toString()
     {
-        return $this->disabilityName;
+       return $this->needName;
     }
 
     /**
@@ -21,19 +20,19 @@ class DisabilityTypes
     /**
      * @var string
      */
-    private $disabilityName;
+    private $needName;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $organizations;
+    private $structures;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->organizations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->structures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -47,35 +46,74 @@ class DisabilityTypes
     }
 
     /**
-     * Set disabilityName
+     * Set needName
      *
-     * @param string $disabilityName
+     * @param string $needName
      *
-     * @return DisabilityTypes
+     * @return Needs
      */
-    public function setDisabilityName($disabilityName)
+    public function setNeedName($needName)
     {
-        $this->disabilityName = $disabilityName;
+        $this->needName = $needName;
 
         return $this;
     }
 
     /**
-     * Get disabilityName
+     * Get needName
      *
      * @return string
      */
-    public function getDisabilityName()
+    public function getNeedName()
     {
-        return $this->disabilityName;
+        return $this->needName;
     }
+
+    /**
+     * Add structure
+     *
+     * @param \HandissimoBundle\Entity\Organizations $structure
+     *
+     * @return Needs
+     */
+    public function addStructure(\HandissimoBundle\Entity\Organizations $structure)
+    {
+        $this->structures[] = $structure;
+
+        return $this;
+    }
+
+    /**
+     * Remove structure
+     *
+     * @param \HandissimoBundle\Entity\Organizations $structure
+     */
+    public function removeStructure(\HandissimoBundle\Entity\Organizations $structure)
+    {
+        $this->structures->removeElement($structure);
+    }
+
+    /**
+     * Get structures
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStructures()
+    {
+        return $this->structures;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $organizations;
+
 
     /**
      * Add organization
      *
      * @param \HandissimoBundle\Entity\Organizations $organization
      *
-     * @return DisabilityTypes
+     * @return Needs
      */
     public function addOrganization(\HandissimoBundle\Entity\Organizations $organization)
     {

@@ -11,7 +11,7 @@ services:
         arguments:
             - null
             - HandissimoBundle\Entity\Organizations
-            - HandissimoBundle:CRUD
+            - HandissimoBundle:OrganizationsAdmin
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin

@@ -8,8 +8,6 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
-use Doctrine\ORM\Query\Expr\Base;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;

@@ -24,6 +24,7 @@ class DisabilityTypesAdmin extends Admin
                 'choice_label' => 'disabilityName',
                 'label' => false,
                 'expanded' => true,
+                'multiple' => true,
                 'by_reference' => true,
                 'disabled' => true
             ));

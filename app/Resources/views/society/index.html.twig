@@ -27,26 +27,26 @@
                 </thead>
                 <tbody>
                 {% for society in societies %}
-                {% if society.userSociety.id == app.security.getToken().getUser().getId()  %}
+                    {% if society.userSociety.id == app.security.getToken().getUser().getId()  %}
 
-                <tr>
-                        <td>{{ society.societyName}}</td>
-                        <td>{{ society.logo }}</td>
-                        <td>{{ society.address }}</td>
-                        <td>{{ society.postal }}</td>
-                        <td>{{ society.city }}</td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('society_show', { 'id': society.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('society_edit', { 'id': society.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                        <tr>
+                            <td>{{ society.societyName}}</td>
+                            <td>{{ society.logo }}</td>
+                            <td>{{ society.address }}</td>
+                            <td>{{ society.postal }}</td>
+                            <td>{{ society.city }}</td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('society_show', { 'id': society.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('society_edit', { 'id': society.id }) }}">edit</a>
+                                    </li>
+                                </ul>
 
-                    </tr>
+                        </tr>
 
-                {% endif %}
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
@@ -67,20 +67,19 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
             <ul>
-                {#}{ dump(societies.) }}
-                    {% for org in orgs %}
-                        {{ dump(org.societies.id) }}
-                        {#% if org.societies.id == societies.id %}
-
-                            <li><a href="{{ path('organizations_edit', { 'id': org.id}) }}">{{ org.name }}</a></li>
-                         {% endif %}}
-                    {% endfor %#}
+                {% for society in societies %}
+                    {% if society.userSociety.id == app.security.getToken().getUser().getId()  %}
+                        {% for org in orgs %}
+                            {% if org.societies.id == society.id %}
+                                <li><a href="{{ path('organizations_edit', { 'id': org.id}) }}">{{ org.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
             </ul>
         </div>
     </div>
 </div>
-
-
     <ul>
         <li>
             <a href="{{ path('society_new') }}">Create a new society</a>
