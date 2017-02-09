@@ -139,10 +139,11 @@ input:-ms-input-placeholder {
 
 }
 
-#sonata_user_registration_form_username,
-#sonata_user_registration_form_email,
-#sonata_user_registration_form_plainPassword_first,
-#sonata_user_registration_form_plainPassword_second,
+
+#front_user_registration_form_username,
+#front_user_registration_form_email,
+#front_user_registration_form_plainPassword_first,
+#front_user_registration_form_plainPassword_second,
 #username,
 #password {
     display: block;
@@ -172,7 +173,7 @@ input:-ms-input-placeholder {
     margin-top:20px;
     margin-bottom:20px;
 }
-.form2:focus , #sonata_user_registration_form_email:focus{
+.form2:focus , #front_user_registration_form_email:focus{
     border-color: #65bfba;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);

@@ -12,6 +12,7 @@ namespace Application\Sonata\UserBundle\Form\Type;
 use FOS\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -23,13 +24,17 @@ class RegisterType extends RegistrationFormType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('userType', CheckboxType::class, array(
-                'value' => array(
-                    "Je suis une personne handicapée ou sa famille" => null,
-                    "Je suis un professionnel(médecin, assistante social ...)" => false,
-                    "Je suis un gestionnaire (association, fondation, autre)" => true,
+            ->add('userType', ChoiceType::class, array(
+                'choices' => array(
+                    'utilisateur' => "Je suis une personne handicapée ou sa famille",
+                    'professionnel' => "Je suis un professionnel (médecin, assistante sociale...)",
+                    'gestionnaire' => "Je suis un gestionnaire (association, fondation, autre)",
+                    'structure' => "Je suis un administrateur de structure"
+                ),
+                'multiple' => false,
+                'expanded' => true
 
-                )
+
             ));
     }
 
