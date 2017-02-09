@@ -122,11 +122,33 @@ sonata_user:
     security_acl: false
     manager_type: orm
     profile:
+        register:
+            # You may customize the registration forms over here
+            form:
+                type:                 sonata_user_registration
+                handler:              sonata.user.registration.form.handler.default
+                name:                 sonata_user_registration_form
+                validation_groups:
+                    # Defaults:
+                    - Registration
+                    - Default
+            confirm:
+                redirect:
+                    # Set it to false to disable redirection
+                    route: 'sonata_user_profile_show'
+                    route_parameters: ~
+        menu:
+            -
+                route: 'sonata_user_profile_edit'
+                label: 'link_edit_profile'
+                domain: 'SonataUserBundle'
+
         form:
             type:               application_sonata_user_profile
             handler:            sonata_user.form.handler.profile
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
+
     admin:
 
 # Swiftmailer Configuration
@@ -161,6 +183,11 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+
+    change_password:
+        form:
+            type: fos_user_change_password
+            name: fos_user_change_password
 
 ivory_ck_editor:
     default_config: my_custom_config

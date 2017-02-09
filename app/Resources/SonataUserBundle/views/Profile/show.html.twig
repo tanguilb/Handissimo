@@ -10,7 +10,7 @@
             {% endif %}
         {% endfor %}
 
-        <div class="{% if has_center %}span4 col-lg-4{% else %}span6 col-lg-6{% endif %}">
+        <div class="{% if has_center %}col-md-4{% else %}col-md-6{% endif %}">
             {% for block in blocks %}
                 {% if block.position == 'left' %}
                     {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
@@ -19,7 +19,7 @@
         </div>
 
         {% if has_center %}
-            <div class="span4 col-lg-4">
+            <div class="col-md-4">
                 {% for block in blocks %}
                     {% if block.position == 'center' %}
                         {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
@@ -28,7 +28,7 @@
             </div>
         {% endif %}
 
-        <div class="{% if has_center %}span4 col-lg-4{% else %}span6 col-lg-6{% endif %}">
+        <div class="{% if has_center %}col-md-4{% else %}col-md-6{% endif %}">
             {% for block in blocks %}
                 {% if block.position == 'right' %}
                     {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}

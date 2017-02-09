@@ -66,3 +66,9 @@ services:
         arguments: ["@sonata.user.profile.form", "@request", "@fos_user.user_manager"]
         scope: request
         public: false
+
+    fos_user.change_password.form.type:
+        class: Application\Sonata\UserBundle\Form\Type\ChangePasswordFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: fos_user_change_password }

@@ -33,7 +33,13 @@ input:-ms-input-placeholder {
 #sonata_user_profile_form_firstname,
 #sonata_user_profile_form_lastname,
 #sonata_user_profile_form_website,
-#sonata_user_profile_form_phone {
+#sonata_user_profile_form_phone,
+#fos_user_profile_form_username,
+#fos_user_profile_form_email,
+#fos_user_profile_form_current_password,
+#fos_user_change_password_current_password,
+#fos_user_change_password_new_first,
+#fos_user_change_password_new_second {
     display: block;
     width: 100%;
     padding: 6px 12px;
@@ -64,15 +70,32 @@ input:-ms-input-placeholder {
 
 /* Title */
 
-.title-block{
+.title-block {
     display: flex;
     align-items: center;
 }
 
-.panel-title{
+.panel-title {
     text-align: center;
     border-bottom:3px solid #f7af49;
     margin:auto;
     padding-bottom:5px;
     font-weight: 800;
+    font-size: 30px;
+
+}
+
+.panel-info > .panel-heading,
+.panel-danger > .panel-heading,
+.panel-warning > .panel-heading {
+    background-color: #ffffff;
+    color: #0f0f0f;
+
+}
+
+/* Button */
+
+.btn-profile {
+    color: #fff;
+    background-color:#65bfba ;
 }

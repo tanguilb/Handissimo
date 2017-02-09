@@ -1,20 +1,25 @@
+{% extends 'base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="span6 col-md-6">
+    <div class="block-container">
+        <div class="col-md-6">
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <h2 class="panel-title">{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h2>
                 </div>
                 <div class="panel-body">
-                    {% include "SonataUserBundle:Profile:edit_authentication_content.html.twig" %}
+                    <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
+                        {{ form_widget(form) }}
+
+                        <button type="submit" name="submit" class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="span6 col-md-6">
+        <div class="col-md-6">
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h2 class="panel-title">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
