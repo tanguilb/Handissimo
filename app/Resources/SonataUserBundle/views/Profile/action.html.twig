@@ -1,3 +1,5 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/profile.css') }}">{% endblock %}
 {% block sonata_page_breadcrumb %}
     {% if breadcrumb_context is not defined %}
         {% set breadcrumb_context = 'user_index' %}
@@ -6,21 +8,16 @@
         {{ sonata_block_render_event('breadcrumb', { 'context': breadcrumb_context, 'current_uri': app.request.requestUri }) }}
     </div>
 {% endblock %}
-
-
-<div class="sonata-user-show row row-fluid">
-<div class="row">
-    <div class="span2 col-md-offset-3 col-md-2" style="padding: 8px 0;">
-        {% block sonata_profile_menu %}
-            {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
-        {% endblock %}
+{% block body %}
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    <div class="row">
+        <div class="col-md-2" id="profile-menu">
+            {% block sonata_profile_menu %}
+                {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
+            {% endblock %}
+        </div>
+        <div class="col-md-10">
+            {% block sonata_profile_content '' %}
+        </div>
     </div>
-</div>
-
-    <div class="col-md-10">
-        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
-
-        {% block sonata_profile_content '' %}
-    </div>
-
-</div>
+{% endblock %}

@@ -184,10 +184,7 @@ fos_user:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
 
-    change_password:
-        form:
-            type: fos_user_change_password
-            name: fos_user_change_password
+
 
 ivory_ck_editor:
     default_config: my_custom_config
