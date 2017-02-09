@@ -67,11 +67,14 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
             <ul>
-                {% for org in orgs %}
-                     {% if org.id != app.request.get('id') %}
-                         <li><a href="{{ path('organizations_edit', { 'id': org.id}) }}">{{ org.name }}</a></li>
-                     {% endif %}
-                {% endfor %}
+                {#}{ dump(societies.) }}
+                    {% for org in orgs %}
+                        {{ dump(org.societies.id) }}
+                        {#% if org.societies.id == societies.id %}
+
+                            <li><a href="{{ path('organizations_edit', { 'id': org.id}) }}">{{ org.name }}</a></li>
+                         {% endif %}}
+                    {% endfor %#}
             </ul>
         </div>
     </div>

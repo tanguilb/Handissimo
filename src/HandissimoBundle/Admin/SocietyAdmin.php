@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class SocietyAdmin extends Admin
 {
@@ -51,7 +52,13 @@ class SocietyAdmin extends Admin
                     ->add('logo', 'text', array(
                         'label' => 'Logo de profil',
                         'required' => false
-    ));
+                    ))
+                    ->add('userSociety', EntityType::class, array(
+                        'class' => 'Application\Sonata\UserBundle\Entity\User',
+                        'required' => false
+
+
+                    ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

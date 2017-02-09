@@ -176,7 +176,9 @@ sonata_user:
                 type:                 front_user_registration
                 handler:              sonata.user.registration.form.handler.default
                 name:                 front_user_registration_form
-    admin:
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\UserAdmin # there define your extended admin class
 
 
 ivory_ck_editor:
