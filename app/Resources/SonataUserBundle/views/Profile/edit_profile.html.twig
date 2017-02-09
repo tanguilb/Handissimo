@@ -4,9 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 {% endblock %}
 
-{% block sonata_profile_title %}
-    {{ "title_user_account" | trans({}, 'SonataUserBundle')}} - {{ "title_user_edit_profile" | trans({}, 'SonataUserBundle')}}
-{% endblock %}
+
 
 {% block sonata_profile_content %}
 
@@ -16,7 +14,7 @@
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>
+            <h2 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h2>
         </div>
         <div class="panel-body">
             {% include "SonataUserBundle:Profile:edit_profile_content.html.twig" %}
