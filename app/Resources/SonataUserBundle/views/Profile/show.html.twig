@@ -1,7 +1,4 @@
 {% extends "SonataUserBundle:Profile:action.html.twig" %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-{% endblock %}
 
 {% block sonata_profile_content %}
 
@@ -16,7 +13,7 @@
         <div class="{% if has_center %}col-md-4{% else %}col-md-6{% endif %}">
             {% for block in blocks %}
                 {% if block.position == 'left' %}
-                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+                    {#}{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }#}
                 {% endif %}
             {% endfor %}
         </div>
@@ -25,7 +22,7 @@
             <div class="col-md-4">
                 {% for block in blocks %}
                     {% if block.position == 'center' %}
-                        {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+                        {#}{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }#}
                     {% endif %}
                 {% endfor %}
             </div>
@@ -34,7 +31,7 @@
         <div class="{% if has_center %}col-md-4{% else %}col-md-6{% endif %}">
             {% for block in blocks %}
                 {% if block.position == 'right' %}
-                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+                    {#}{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }#}
                 {% endif %}
             {% endfor %}
         </div>

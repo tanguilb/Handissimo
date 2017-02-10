@@ -1,5 +1,8 @@
-{% extends 'base.html.twig' %}
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/profile.css') }}">{% endblock %}
+{% extends 'SonataUserBundle::layout.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
 {% block sonata_page_breadcrumb %}
     {% if breadcrumb_context is not defined %}
         {% set breadcrumb_context = 'user_index' %}
@@ -8,8 +11,11 @@
         {{ sonata_block_render_event('breadcrumb', { 'context': breadcrumb_context, 'current_uri': app.request.requestUri }) }}
     </div>
 {% endblock %}
-{% block body %}
+
+{% block sonata_user_content %}
     {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    <div class="head-block"></div>
+
     <div class="row">
         <div class="col-md-2" id="profile-menu">
             {% block sonata_profile_menu %}
@@ -17,7 +23,8 @@
             {% endblock %}
         </div>
         <div class="col-md-10">
-            {% block sonata_profile_content '' %}
+            {% block sonata_profile_content %}
+            {% endblock %}
         </div>
     </div>
 {% endblock %}

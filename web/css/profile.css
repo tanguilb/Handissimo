@@ -1,8 +1,3 @@
-body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #f7f7f7;
-    color: #333333;
-}
 
 .panel-info,
 .panel-warning {
@@ -13,7 +8,7 @@ body {
     margin-top: 100px;
 }
 
-.head-block{
+head {
     width: 100%;
     height: 400px;
     background-color: #f7af49 ;
