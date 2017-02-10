@@ -166,9 +166,11 @@ class OrganizationsRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('o')
             ->join('o.userorg', 'u')
-            ->where('u.id : ?1')
+            ->where('u.id = ?1')
             ->setParameter(1, $user->getId())
             ->getQuery();
         return $query->getResult();
     }
+
+
 }

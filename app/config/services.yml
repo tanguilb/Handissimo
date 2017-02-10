@@ -15,7 +15,6 @@ services:
         calls:
             - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
 
-
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
         arguments: [~, HandissimoBundle\Entity\DisabilityTypes, ~]
@@ -24,9 +23,15 @@ services:
 
     admin.society:
         class: HandissimoBundle\Admin\SocietyAdmin
-        arguments: [~, HandissimoBundle\Entity\Society, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Gestionnaire }
+        arguments:
+            - null
+            - HandissimoBundle\Entity\Society
+            - HandissimoBundle:SocietyAdmin
+        calls:
+            - [ setTemplate, [list, HandissimoBundle:SocietyAdmin:list.html.twig]]
+
 
     admin.structures_types:
         class: HandissimoBundle\Admin\StructuresTypesAdmin
