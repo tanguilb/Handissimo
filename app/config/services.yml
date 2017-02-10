@@ -12,6 +12,9 @@ services:
             - null
             - HandissimoBundle\Entity\Organizations
             - HandissimoBundle:OrganizationsAdmin
+        calls:
+            - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
+
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin

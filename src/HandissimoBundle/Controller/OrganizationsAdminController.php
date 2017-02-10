@@ -22,8 +22,8 @@ class OrganizationsAdminController extends Controller
             $formView = $datagrid->getForm()->createView();
 
 
-            return $this->render($this->admin->getTemplate('list'), array(
-                'organization' => $organizations,
+            return $this->render('list.html.twig', array(
+                'organizations' => $organizations,
                 'action' => 'list',
                 'form' => $formView,
                 'datagrid' => $datagrid,
