@@ -182,7 +182,7 @@ fos_user:
     registration:
         confirmation:
             enabled: true
-            template: FOSUserBundle:Registration:email.txt.twig
+            #template: FOSUserBundle:Registration:email.txt.twig
 
 ivory_ck_editor:
     default_config: my_custom_config

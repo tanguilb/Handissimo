@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 {% block fos_user_content %}
+    <div class="head-block"></div>
    <div class=" container main-block check-email">
        <div class="row"><h3 class="confirm">Confirmation</h3></div>
        <p class="test">{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>
