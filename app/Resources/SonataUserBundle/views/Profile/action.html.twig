@@ -15,16 +15,17 @@
 {% block sonata_user_content %}
     {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
     <div class="head-block"></div>
-
-    <div class="row">
-        <div class="col-md-2" id="profile-menu">
-            {% block sonata_profile_menu %}
-                {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
-            {% endblock %}
-        </div>
-        <div class="col-md-10">
-            {% block sonata_profile_content %}
-            {% endblock %}
+    <div class="main-block container">
+        <div class="row">
+            <div class="col-md-2" id="profile-menu">
+                {% block sonata_profile_menu %}
+                    {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
+                {% endblock %}
+            </div>
+            <div class="col-md-10">
+                {% block sonata_profile_content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}
