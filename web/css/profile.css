@@ -167,7 +167,6 @@ input:-ms-input-placeholder {
 
 /* Button */
 
-#btn-profile,
 #btn-authentication,
 #btn-password,
 #btn-resetting {
@@ -176,12 +175,22 @@ input:-ms-input-placeholder {
     border-color: #65bfba;
 }
 
-#btn-profile:hover,
 #btn-authentication:hover,
 #btn-password:hover {
     color: #fff;
     background-color:#71DBD7;
     border-color: #71DBD7;
+}
+
+#btn-profile {
+    color: #fff;
+    background-color: #f7af49;
+    border-color: #f7af49;
+}
+
+#btn-profile:hover {
+    color: #fff;
+    background-color: #FFBE49;
 }
 
 /* Request password */
