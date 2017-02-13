@@ -3,6 +3,10 @@
     margin-top: 30px;
 }
 
+.password-block {
+    margin-bottom: 30px;
+}
+
 #profile-menu {
     margin-top: 30px;
 }
@@ -157,13 +161,13 @@ input:-ms-input-placeholder {
     font-weight: 800;
     font-size: 30px;
 }
-
+/*
 .panel-info > .panel-heading,
 .panel-danger > .panel-heading,
 .panel-warning > .panel-heading {
     background-color: #ffffff;
     color: #0f0f0f;
-}
+}*/
 
 /* Button */
 
@@ -195,8 +199,9 @@ input:-ms-input-placeholder {
 
 /* Request password */
 
-#request-password {
-    padding-top: 100px;
+.request-password {
+    margin-top:100px;
+    padding:15px;
 }
 
 @media screen and (max-width: 768px) {
@@ -205,6 +210,33 @@ input:-ms-input-placeholder {
     }
 }
 
+.confirm{
+    color: #71DBD7;
+}
+
 .resetting {
     padding-top: 100px;
+}
+
+.check-password {
+    width: 400px;
+    height: auto;
+    margin-top:100px;
+    padding:15px;
+}
+
+.check-password p {
+    text-align: center;
+    font-size:20px;
+}
+
+@media screen and (max-width: 768px){
+    .check-password{
+        width: 70%;
+        margin-top:150px;
+
+    }
+    .check-password p{
+        font-size:1.3em;
+    }
 }
