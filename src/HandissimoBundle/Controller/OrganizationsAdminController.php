@@ -18,13 +18,18 @@ class OrganizationsAdminController extends Controller
     {
 
             $em = $this->getDoctrine()->getManager();
+            $nonUser = $this->getUser()->getOrganizationsuser();
             $user = $this->getUser();
-            var_dump($user);
-            $organizations = $em->getRepository('HandissimoBundle:Organizations')->getByNonUser($user);
 
+            if ($nonUser == null)
+            {
+                $organizations = $em->getRepository('HandissimoBundle:Organizations')->findAll();
+            } else {
+                $organizations = $em->getRepository('HandissimoBundle:Organizations')->getByUser($user);
+
+            }
             $datagrid = $this->admin->getDatagrid();
             $formView = $datagrid->getForm()->createView();
-
 
             return $this->render('admin/organizations.list.html.twig', array(
                 'organizations' => $organizations,

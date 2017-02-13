@@ -172,5 +172,12 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getByNonUser()
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('o.userorg =' .null)
+            ->getQuery();
+        return $query->getResult();
 
+    }
 }

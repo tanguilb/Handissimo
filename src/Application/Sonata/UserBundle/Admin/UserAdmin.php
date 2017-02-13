@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserAdmin extends BaseUserAdmin
@@ -44,6 +45,11 @@ class UserAdmin extends BaseUserAdmin
                         ),
                         'multiple' => false,
                         'expanded' => true
+                    ))
+                    ->add('organizationsuser', EntityType::class, array(
+                            'class' => 'HandissimoBundle\Entity\Organizations',
+                            'label' => 'Structures',
+                            'required' => false
                     ))
                 ->end()
                 ->remove('dateOfBirth')

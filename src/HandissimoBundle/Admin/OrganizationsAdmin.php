@@ -12,19 +12,29 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
+
 class OrganizationsAdmin extends AbstractAdmin
 {
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('name', 'text', array(
+                'label' => 'Nom de la structure',
+                'required' => true
+            ))
             ->add('societies', EntityType::class, array(
                 'class' => 'HandissimoBundle:Society',
                 'choice_label' => 'society_name',
-                'label' => 'Organisme gestionnaire'
+                'label' => 'Non de l\'organisme gestionnaire'
             ))
-            ->add('name', 'text', array(
-                'label' => 'Nom de l\'organisation',
-                'required' => true
+            ->add('structuretype', EntityType::class, array(
+                'class' => 'HandissimoBundle:StructuresTypes',
+                'choice_label' => 'structurestype',
+                'label' => 'Type de structure',
+                'multiple' => false,
+                'by_reference' => true,
+                'expanded' => false
             ))
             ->add('address', 'text', array(
                 'label' => 'Adresse postale',
@@ -50,17 +60,19 @@ class OrganizationsAdmin extends AbstractAdmin
                 'label' => 'Site internet',
                 'required' => false
             ))
-            ->add('blog', 'text', array(
-                'label' => 'Blog',
+            ->add('openhours', 'text', array(
+                'label' => 'Heures d\'ouverture',
                 'required' => false
             ))
-            ->add('facebook', 'text', array(
-                'label' => 'Facebook',
+            ->add('opendays', 'ckeditor', array(
+                'label' => 'Jours d\'ouverture',
                 'required' => false
             ))
-            ->add('twitter', 'text', array(
-                'label' => 'Twitter',
-                'required' => false
+            ->add('disabilitytypes',EntityType::class,array (
+                'class' => 'HandissimoBundle:DisabilityTypes',
+                'choice_label' => 'disabilityName',
+                'label' => 'Handicap des personnes accompagnées',
+                'multiple' => true
             ))
             ->add('agemini', 'integer', array(
                 'label' => 'Âge minimum',
@@ -71,76 +83,66 @@ class OrganizationsAdmin extends AbstractAdmin
                 'required' => false
             ))
             ->add('freeplace', 'text', array(
-                'label' => 'Nombre de places disponibles',
+                'label' => 'Nombre de personnes accompagnées',
                 'required' => false
             ))
-            ->add('organization_description', 'ckeditor', array(
-                'label' => 'Description de la structure',
+            ->add('organization_description','ckeditor', array(
+                'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
                 'required' => false
+            ))
+            ->add('needs', EntityType::class, array(
+                'class' => 'HandissimoBundle:Needs',
+                'choice_label' => 'needName',
+                'label' => 'Services/prestations proposés par la structure',
+                'multiple' => true
             ))
             ->add('serve_description', 'ckeditor', array(
-                'label' => 'Description des services',
-                'required' => false
-            ))
-            ->add('openhours', 'text', array(
-                'label' => 'Heures d\'ouverture',
-                'required' => false
-            ))
-            ->add('opendays', 'ckeditor', array(
-                'label' => 'Jours d\'ouverture',
+                'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
                 'required' => false
             ))
             ->add('team_members_number', 'text', array(
-                'label' => 'Nombre de membres du personnel',
+                'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
                 'required' => false
             ))
-            ->add('team_description', 'ckeditor', array(
-                'label' => 'Description de la ou des équipe(s)',
+            ->add('Stafforganizations', EntityType::class, array(
+                'class' => 'HandissimoBundle:Staff',
+                'choice_label' => 'jobs',
+                'label' => 'Le personnel',
+                'multiple' => true
+            ))
+            ->add('school', CheckboxType::class, array(
+                'label' => 'Proposez-vous de la scolarisation ?',
                 'required' => false
             ))
+
+
+
+
+
+
+
             ->add('working_description', 'ckeditor', array(
                 'label' => 'Description du travail effectué',
                 'required' => false
             ))
-            ->add('school', CheckboxType::class, array(
-                'label' => 'Ètes-vous un établissement scolaire ?',
-                'required' => false
-            ))
+
             ->add('school_description', 'ckeditor', array(
                 'label' => 'Description de l\'établissement',
                 'required' => false,
             ))
-            ->add('disabilitytypes',EntityType::class,array (
-                'class' => 'HandissimoBundle:DisabilityTypes',
-                'choice_label' => 'disabilityName',
-                'label' => 'Type de handicap',
-                'multiple' => true
-            ))
+
             ->add('Stafforganizations', EntityType::class, array(
                 'class' => 'HandissimoBundle:Staff',
                 'choice_label' => 'jobs',
                 'label' => 'Métier',
                 'multiple' => true
             ))
-            ->add('needs', EntityType::class, array(
-                'class' => 'HandissimoBundle:Needs',
-                'choice_label' => 'needName',
-                'label' => 'Type de service',
-                'multiple' => true
-            ))
-            ->add('structuretype', EntityType::class, array(
-                'class' => 'HandissimoBundle:StructuresTypes',
-                'choice_label' => 'structurestype',
-                'label' => 'Type de structure',
-                'multiple' => false,
-                'by_reference' => true,
-                'expanded' => false
-            ))
+
+
             ->add('userOrg', EntityType::class, array(
                 'class' => 'Application\Sonata\UserBundle\Entity\User',
+                'label' => 'Utilisateur',
                 'required' => false
-
-
             ))
         ;
     }
@@ -162,6 +164,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
         ;
     }
+
+
 
 
 }

@@ -72,22 +72,18 @@ security:
     role_hierarchy:
 
         ROLE_ORGANIZATION:
-            - ROLE_USER
             - ROLE_ADMIN_ORGANIZATIONS_ALL
-            - ROLE_SONATA_ADMIN
 
 
         ROLE_SOCIETY:
-            - ROLE_USER
             - ROLE_ADMIN_SOCIETY_ALL
             - ROLE_ADMIN_ORGANIZATIONS_ALL
-            - ROLE_SONATA_ADMIN
 
         ROLE_MANAGER:
             - ROLE_EDITOR
 
         ROLE_SOC:         [ROLE_SOCIETY, ROLE_ORG]
-        ROLE_ORG:         [ROLE_ORGANIZATION, ROLE_MANAGER]
+        ROLE_ORG:         [ROLE_ORGANIZATION]
         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_EDITOR]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
