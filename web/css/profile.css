@@ -72,6 +72,11 @@ input:-ms-input-placeholder {
     #username::-moz-placeholder { /* Firefox 19+ */
         font-size: 1em;
     }
+
+    .connect-block,
+    .password-block {
+        border-left: none;
+    }
 }
 
 #sonata_user_profile_form_firstname,
@@ -238,5 +243,10 @@ input:-ms-input-placeholder {
     }
     .check-password p{
         font-size:1.3em;
+    }
+}
+@media screen and (max-width: 768px){
+    .avatar {
+        word-wrap: break-word;
     }
 }

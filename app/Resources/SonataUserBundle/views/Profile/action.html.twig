@@ -17,12 +17,7 @@
     <div class="head-block"></div>
     <div class="main-block container">
         <div class="row">
-            <div class="col-md-2" id="profile-menu">
-                {% block sonata_profile_menu %}
-                    {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
-                {% endblock %}
-            </div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 {% block sonata_profile_content %}
                 {% endblock %}
             </div>

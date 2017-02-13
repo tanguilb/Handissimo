@@ -1,25 +1,27 @@
 {% block body %}
-    <div class="col-md-12 connect-block">
-        <div class="title-block">
-            <h2 class="connect-title">{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+    <div class="row">
+        <div class="col-md-12 connect-block">
+            <div class="title-block">
+                <h2 class="connect-title">{{ 'title_user_edit_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+            </div>
+            <div class="panel-body">
+                <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username,  {'attr': {'class': 'form-control form2', 'placeholder':  'form.username'|trans({}, 'FOSUserBundle') ~' *' }}) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email,  {'attr': {'class': 'mail form2', 'placeholder':  'form.email'|trans({}, 'FOSUserBundle') ~' *'}}) }}
+                    {{ form_widget(form.current_password,  {'attr': {'class': 'mail form2', 'placeholder':  'form.current_password'|trans({}, 'FOSUserBundle') ~' *'}}) }}
+                    <button type="submit" name="submit" class="btn btn-primary pull-right" id="btn-authentication">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+                </form>
+            </div>
         </div>
-        <div class="panel-body">
-            <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
-                {{ form_errors(form.username) }}
-                {{ form_widget(form.username,  {'attr': {'class': 'form-control form2', 'placeholder':  'form.username'|trans({}, 'FOSUserBundle') ~' *' }}) }}
-                {{ form_errors(form.email) }}
-                {{ form_widget(form.email,  {'attr': {'class': 'mail form2', 'placeholder':  'form.email'|trans({}, 'FOSUserBundle') ~' *'}}) }}
-                {{ form_widget(form.current_password,  {'attr': {'class': 'mail form2', 'placeholder':  'form.current_password'|trans({}, 'FOSUserBundle') ~' *'}}) }}
-                <button type="submit" name="submit" class="btn btn-primary pull-right" id="btn-authentication">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
-            </form>
-        </div>
-    </div>
-    <div class="col-md-12 password-block">
-        <div class="title-block">
-            <h2 class="password-title">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
-        </div>
-        <div class="panel-body">
-            {% render url("sonata_user_change_password") %}
+        <div class="col-md-12 password-block">
+            <div class="title-block">
+                <h2 class="password-title">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
+            </div>
+            <div class="panel-body">
+                {% render url("sonata_user_change_password") %}
+            </div>
         </div>
     </div>
 {% endblock %}
