@@ -16,7 +16,11 @@ Application\Sonata\UserBundle\Entity\User:
    oneToOne:
        organizationsuser:
            targetEntity: HandissimoBundle\Entity\Organizations
-           mappedBy: userorg
+           inversedBy: userorg
+           joinColumn:
+               name: organizations_id
+               referencedColumnName: id
+               nullable: true
 
        societyUser:
            targetEntity: HandissimoBundle\Entity\Society

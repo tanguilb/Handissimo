@@ -1218,4 +1218,149 @@ class Organizations
     }
 
 
+    /**
+     * @var string
+     */
+    private $fax;
+
+    /**
+     * @var string
+     */
+    private $directorName;
+
+    /**
+     * @var string
+     */
+    private $accomodation;
+
+    /**
+     * @var string
+     */
+    private $accomodationDescription;
+
+    /**
+     * @var string
+     */
+    private $service;
+
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Organizations
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set directorName
+     *
+     * @param string $directorName
+     *
+     * @return Organizations
+     */
+    public function setDirectorName($directorName)
+    {
+        $this->directorName = $directorName;
+
+        return $this;
+    }
+
+    /**
+     * Get directorName
+     *
+     * @return string
+     */
+    public function getDirectorName()
+    {
+        return $this->directorName;
+    }
+
+    /**
+     * Set accomodation
+     *
+     * @param string $accomodation
+     *
+     * @return Organizations
+     */
+    public function setAccomodation($accomodation)
+    {
+        $this->accomodation = $accomodation;
+
+        return $this;
+    }
+
+    /**
+     * Get accomodation
+     *
+     * @return string
+     */
+    public function getAccomodation()
+    {
+        return $this->accomodation;
+    }
+
+    /**
+     * Set accomodationDescription
+     *
+     * @param string $accomodationDescription
+     *
+     * @return Organizations
+     */
+    public function setAccomodationDescription($accomodationDescription)
+    {
+        $this->accomodationDescription = $accomodationDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get accomodationDescription
+     *
+     * @return string
+     */
+    public function getAccomodationDescription()
+    {
+        return $this->accomodationDescription;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return Organizations
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
 }
