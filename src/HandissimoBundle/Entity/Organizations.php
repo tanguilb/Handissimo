@@ -144,6 +144,10 @@ class Organizations
      */
     private $profilPicture;
 
+    /**
+     * @var \HandissimoBundle\Entity\Pictures
+     */
+    private $pictures;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -806,7 +810,29 @@ class Organizations
         return $this->profilPicture;
     }
 
+    /**
+     * Set pictures
+     *
+     * @param \HandissimoBundle\Entity\Pictures $pictures
+     *
+     * @return Organizations
+     */
+    public function setPictures(\HandissimoBundle\Entity\Pictures $pictures = null)
+    {
+        $this->pictures = $pictures;
 
+        return $this;
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \HandissimoBundle\Entity\Pictures
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
 
     /**
      * Add disabilityType
@@ -950,7 +976,29 @@ class Organizations
         return $this->structuretype;
     }
 
+    /**
+     * Set picture
+     *
+     * @param \HandissimoBundle\Entity\Pictures $picture
+     *
+     * @return Organizations
+     */
+    public function setPicture(\HandissimoBundle\Entity\Pictures $picture = null)
+    {
+        $this->picture = $picture;
 
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \HandissimoBundle\Entity\Pictures
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
 
     /**
      * Set societies
