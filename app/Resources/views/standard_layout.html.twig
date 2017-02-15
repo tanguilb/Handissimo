@@ -1,0 +1,45 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% block stylesheets %}
+    /*this will extend the parent block */
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/adminnavbar.css') }}"/>
+{% endblock %}
+    {% block sonata_header %}
+        {% include 'front/navbar.html.twig' %}
+    {% endblock sonata_header %}
+{#{% block side_bar_nav %}#}
+{% block side_bar_after_nav_content %}
+    <p style="color: white; text-align: center">Rejoignez nous sur les réseaux</p>
+    <div class="col-xs-12 col-md-2" id="social-icons-footer">
+        <a id="fb-icon" href="https://www.facebook.com/Handissimo-934218853377525/" target="_blank" >
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://twitter.com/Handissimo_2017" target="_blank">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+    </div>
+{% endblock %}
+

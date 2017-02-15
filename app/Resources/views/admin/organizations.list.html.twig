@@ -1,0 +1,54 @@
+{% extends 'SonataAdminBundle:CRUD:list.html.twig' %}
+
+
+
+{% block table_body %}
+    <tbody>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    {% include admin.getTemplate('outer_list_rows_' ~ admin.getListMode()) %}
+    {% elseif is_granted('ROLE_ORG') %}
+        {% for organization in organizations %}
+
+            {% if organization.userorg is empty %}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="idx[]" value="{{ organization.id }}">
+                    </td>
+                    <td>
+                        <a class="sonata-link-identifier" href="{{ path('admin_handissimo_organizations_edit', { 'id': organization.id}) }}">{{ organization.name }}</a>
+                    </td>
+
+                    <td>{{ organization.address }}</td>
+                    <td>{{ organization.postal }}</td>
+                    <td>{{ organization.city }}</td>
+                    <td>{{ organization.phoneNumber }}</td>
+                    <td>{{ organization.mail }}</td>
+
+
+                </tr>
+            {% elseif organization.userOrg is defined and organization.userOrg.id == app.security.getToken().getUser().getId() %}
+
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="idx[]" value="{{ organization.id }}">
+                        </td>
+                        <td><a class="sonata-link-identifier" href="{{ path('admin_handissimo_organizations_edit', { 'id': organization.id}) }}">{{ organization.name }}</a></td>
+
+                        <td>{{ organization.address }}</td>
+                        <td>{{ organization.postal }}</td>
+                        <td>{{ organization.city }}</td>
+                        <td>{{ organization.phoneNumber }}</td>
+                        <td>{{ organization.mail }}</td>
+
+
+                    </tr>
+            {% endif %}
+        {% endfor %}
+    {% elseif is_granted('ROLE_SOC') %}
+
+    {% endif %}
+    </tbody>
+{% endblock %}
+
+{% block table_footer %}
+{% endblock %}

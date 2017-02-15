@@ -1,0 +1,59 @@
+{% extends 'SonataAdminBundle:CRUD:list.html.twig' %}
+{% block table_body %}
+    <tbody>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        {% include admin.getTemplate('outer_list_rows_' ~ admin.getListMode()) %}
+    {% elseif is_granted('ROLE_ORG') %}
+        {% for societies in society %}
+            {% if societies.userSociety.id is empty %}
+                <tr>
+                    <td><a href="{{ path('society_show', { 'id': societies.id}) }}">{{ societies.societyname }}</a></td>
+
+                    <td>{{ societies.address }}</td>
+                    <td>{{ societies.postal }}</td>
+                    <td>{{ societies.city }}</td>
+                    <td>{{ societies.phoneNumber }}</td>
+                    <td>{{ societies.mail }}</td>
+
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('society_show', { 'id': societies.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('society_edit', { 'id': societies.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% elseif societies.userSociety.id is defined %}
+                {% if societies.userSociety.id == app.security.getToken().getUser().getId()  %}
+
+                    <tr>
+                        <td><a href="{{ path('society_show', { 'id': societies.id}) }}">{{ societies.societyname }}</a></td>
+
+                        <td>{{ societies.address }}</td>
+                        <td>{{ societies.postal }}</td>
+                        <td>{{ societies.city }}</td>
+                        <td>{{ societies.phoneNumber }}</td>
+                        <td>{{ societies.mail }}</td>
+
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('society_show', { 'id': societies.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('society_edit', { 'id': societies.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% elseif is_granted('ROLE_SOC') %}
+
+    {% endif %}
+    </tbody>
+{% endblock table_body %}

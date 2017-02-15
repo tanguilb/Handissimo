@@ -94,6 +94,36 @@ class User extends BaseUser
     {
         return $this->societyUser;
     }
+
+    /**
+     * @var string
+     */
+    private $userType;
+
+
+    /**
+     * Set userType
+     *
+     * @param string $userType
+     *
+     * @return User
+     */
+    public function setUserType($userType)
+    {
+        $this->userType = $userType;
+
+        return $this;
+    }
+
+    /**
+     * Get userType
+     *
+     * @return string
+     */
+    public function getUserType()
+    {
+        return $this->userType;
+    }
     /**
      * @var string
      */

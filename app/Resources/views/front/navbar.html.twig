@@ -42,6 +42,13 @@
                     </button>
                 </a>
                 {% endif %}
+                {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') %}
+                    <a href="#">
+                        <button class="btn pink-btn">
+                            <i class="fa fa-user" aria-hidden="true"></i>Vous êtes une structure
+                        </button>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

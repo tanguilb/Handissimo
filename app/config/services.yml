@@ -11,7 +11,9 @@ services:
         arguments:
             - null
             - HandissimoBundle\Entity\Organizations
-            - HandissimoBundle:CRUD
+            - HandissimoBundle:OrganizationsAdmin
+        calls:
+            - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
@@ -21,9 +23,15 @@ services:
 
     admin.society:
         class: HandissimoBundle\Admin\SocietyAdmin
-        arguments: [~, HandissimoBundle\Entity\Society, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Gestionnaire }
+        arguments:
+            - null
+            - HandissimoBundle\Entity\Society
+            - HandissimoBundle:SocietyAdmin
+        calls:
+            - [ setTemplate, [list, HandissimoBundle:SocietyAdmin:list.html.twig]]
+
 
     admin.structures_types:
         class: HandissimoBundle\Admin\StructuresTypesAdmin
@@ -66,3 +74,9 @@ services:
         arguments: ["@sonata.user.profile.form", "@request", "@fos_user.user_manager"]
         scope: request
         public: false
+
+    user.form.register.type:
+        class: Application\Sonata\UserBundle\Form\Type\RegisterType
+        parent: fos_user.registration.form.type
+        tags:
+            - { name: form.type, alias: front_user_registration }

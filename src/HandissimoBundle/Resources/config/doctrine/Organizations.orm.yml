@@ -95,7 +95,8 @@ HandissimoBundle\Entity\Organizations:
             nullable: true
             length: 65535
         school:
-            type: boolean
+            type: string
+            length: 4
             nullable: true
         schoolDescription:
             type: text
@@ -117,14 +118,33 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: true
             length: 255
+        fax:
+            type: string
+            length: 50
+            nullable: false
+        directorName:
+            type: string
+            length: 50
+            nullable: false
+        accomodation:
+            type: string
+            length: 4
+            nullable: true
+        accomodationDescription:
+            type: text
+            length: 65535
+            nullable: true
+        service:
+            type: string
+            length: 4
+            nullable: true
+
 
     oneToOne:
         userorg:
             targetEntity: Application\Sonata\UserBundle\Entity\User
-            inversedBy: organizationsuser
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
+            mappedBy: organizationsuser
+
 
     manyToOne:
         structuretype:
@@ -179,3 +199,4 @@ HandissimoBundle\Entity\Organizations:
     lifecycleCallbacks:
         prePersist: [ transformAddressGeocode ]
         preUpdate: [ transformAddressGeocode ]
+
