@@ -638,6 +638,7 @@ class Organizations
         return $this->updateDatetime;
     }
 
+
     /**
      * Set workingDescription
      *
@@ -1309,4 +1310,5 @@ class Organizations
     {
         return $this->service;
     }
+
 }

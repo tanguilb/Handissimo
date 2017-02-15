@@ -73,6 +73,12 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Nom du directeur',
                     'required' => 'false'
                 ))
+                ->add('update_datetime', 'datetime' , array(
+                    'label' => false,
+                    'pattern' => 'dd MMM y G' ,
+                    'attr' => array('style' => 'display:none'),
+                    'data' => new \DateTime(),
+                ))
             ->end()
             ->with('Caractéristiques', array('class' => 'col-md-6'))
                 ->add('openhours', 'text', array(
@@ -212,6 +218,7 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'city' , null, array ( 'label' => 'Ville') )
             ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
             ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
+            ->add('update_datetime', 'date', array('label' => 'date de modification'))
         ;
     }
 
