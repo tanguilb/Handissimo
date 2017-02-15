@@ -138,6 +138,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 4
             nullable: true
+        user:
+            type: string
+            length: 50
+            nullable: true
 
 
     oneToOne:

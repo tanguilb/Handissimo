@@ -2,24 +2,20 @@
 
 namespace HandissimoBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-
 
 class OrganizationsAdmin extends AbstractAdmin
 {
 
+
+
     protected function configureFormFields(FormMapper $formMapper)
     {
+    //    $user = $this->getUser();
 
 
         $formMapper
@@ -78,6 +74,12 @@ class OrganizationsAdmin extends AbstractAdmin
                     'pattern' => 'dd MMM y G' ,
                     'attr' => array('style' => 'display:none'),
                     'data' => new \DateTime(),
+                ))
+                ->add('user', EntityType::class, array(
+                    'class' => 'Application\Sonata\UserBundle\Entity\User',
+                    'label' => false,
+                    'attr' => array('style' => 'display:none'),
+                    'data' => 'app.user.username'
                 ))
             ->end()
             ->with('Caractéristiques', array('class' => 'col-md-6'))
