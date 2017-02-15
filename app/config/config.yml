@@ -136,9 +136,9 @@ sonata_user:
         register:
             # You may customize the registration forms over here
             form:
-                type:                 sonata_user_registration
+                type:                 front_user_registration
                 handler:              sonata.user.registration.form.handler.default
-                name:                 sonata_user_registration_form
+                name:                 front_user_registration_form
                 validation_groups:
                     # Defaults:
                     - Registration
@@ -160,7 +160,9 @@ sonata_user:
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
 
-    admin:
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\UserAdmin # there define your extended admin class
 
 sonata_media:
     class:

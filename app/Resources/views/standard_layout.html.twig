@@ -22,7 +22,11 @@ file that was distributed with this source code.
 
 #}
 
-
+{% block stylesheets %}
+    /*this will extend the parent block */
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/adminnavbar.css') }}"/>
+{% endblock %}
     {% block sonata_header %}
         {% include 'front/navbar.html.twig' %}
     {% endblock sonata_header %}
