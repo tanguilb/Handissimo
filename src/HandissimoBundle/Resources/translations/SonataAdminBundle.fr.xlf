@@ -5,7 +5,7 @@
            <trans-unit id="Dashboard">
                <source>Dashboard</source>
                <target>Tableau de bord</target>
-            </trans-unit>
+           </trans-unit>
         </body>
     </file>
 </xliff>
