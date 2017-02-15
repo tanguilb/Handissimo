@@ -6,9 +6,6 @@ security:
         #FOS\UserBundle\Model\UserInterface: bcrypt
         FOS\UserBundle\Model\UserInterface: sha512
 
-
-
-
     providers:
         fos_userbundle:
             id: fos_user.user_manager
@@ -72,13 +69,10 @@ security:
 
     role_hierarchy:
 
-
-
         ROLE_ORGANIZATION:
             - ROLE_USER
             - ROLE_ADMIN_ORGANIZATIONS_ALL
             - ROLE_SONATA_ADMIN
-
 
         ROLE_SOCIETY:
             - ROLE_USER

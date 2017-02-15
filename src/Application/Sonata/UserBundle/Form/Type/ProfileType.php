@@ -9,6 +9,7 @@
 namespace Application\Sonata\UserBundle\Form\Type;
 
 use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,7 +36,6 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('avatar', FileType::class)
             ->add('gender', 'sonata_user_gender', array(
                 'label' => 'form.label_gender',
                 'required' => true,

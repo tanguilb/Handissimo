@@ -104,4 +104,3 @@ class DisabilityTypes
         return $this->organizations;
     }
 }
-

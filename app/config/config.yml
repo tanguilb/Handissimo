@@ -36,6 +36,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+    #form:
+     #   resources:
+      #      - 'SonataMediaBundle:Form:media_widgets.html.twig'
     #Sonata with Symfony >= 2.6
     form_themes:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
@@ -174,11 +177,14 @@ sonata_media:
                 - sonata.media.provider.file
                 - sonata.media.provider.youtube
                 - sonata.media.provider.vimeo
-
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
-
+        avatar:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
     cdn:
         server:
             path: /uploads/media
@@ -239,12 +245,12 @@ fos_user:
 
     from_email:
         address: dev.wildcodeshool@gmail.com
-        sender_name: Handissimo
+        sender_name: Test
 
     registration:
         confirmation:
             enabled: true
-            #template: FOSUserBundle:Registration:email.txt.twig
+            template: FOSUserBundle:Registration:email.txt.twig
 
 ivory_ck_editor:
     default_config: my_custom_config

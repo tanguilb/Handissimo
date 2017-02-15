@@ -250,3 +250,8 @@ input:-ms-input-placeholder {
         word-wrap: break-word;
     }
 }
+
+.profil-image {
+    width: 200px;
+    height: 150px;
+}

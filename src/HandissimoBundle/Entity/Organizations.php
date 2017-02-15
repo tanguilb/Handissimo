@@ -1,6 +1,7 @@
 <?php
 
 namespace HandissimoBundle\Entity;
+use Faker\Provider\cs_CZ\DateTime;
 
 /**
  * Organizations
@@ -145,11 +146,6 @@ class Organizations
     private $profilPicture;
 
     /**
-     * @var \HandissimoBundle\Entity\Pictures
-     */
-    private $pictures;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $disabilityTypes;
@@ -183,6 +179,7 @@ class Organizations
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->updateDatetime = new \DateTime();
     }
 
     /**
