@@ -1,8 +1,10 @@
 {% extends "base.html.twig" %}
 
-    {% block body %}
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-        </div>
-    {% endblock body %}
+{% block body %}
+
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+    {% block sonata_user_content %}
+    {% endblock sonata_user_content %}
+
+{% endblock body %}

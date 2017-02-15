@@ -29,3 +29,8 @@ monolog:
         #chromephp:
         #    type:   chromephp
         #    level:  info
+
+swiftmailer:
+    transport: gmail
+    username:  dev.wildcodeshool@gmail.com
+    password:  Handissimo

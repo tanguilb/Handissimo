@@ -36,6 +36,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+    #form:
+     #   resources:
+      #      - 'SonataMediaBundle:Form:media_widgets.html.twig'
     #Sonata with Symfony >= 2.6
     form_themes:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
@@ -74,6 +77,11 @@ sonata_formatter:
             service: sonata.formatter.text.twigengine
             extensions: [] # Twig formatter cannot have extensions
 
+    ckeditor:
+        templates:
+            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
+            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -95,8 +103,10 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
 
 # Sonata Configuration
 sonata_block:
@@ -115,10 +125,6 @@ sonata_admin:
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
-
-
-
-
     security:
         handler: sonata.admin.security.handler.role
 
@@ -126,7 +132,92 @@ sonata_user:
     security_acl: false
     manager_type: orm
     profile:
+        register:
+            # You may customize the registration forms over here
+            form:
+                type:                 sonata_user_registration
+                handler:              sonata.user.registration.form.handler.default
+                name:                 sonata_user_registration_form
+                validation_groups:
+                    # Defaults:
+                    - Registration
+                    - Default
+            confirm:
+                redirect:
+                    # Set it to false to disable redirection
+                    route: 'sonata_user_profile_show'
+                    route_parameters: ~
+        menu:
+            -
+                route: 'sonata_user_profile_edit'
+                label: 'link_edit_profile'
+                domain: 'SonataUserBundle'
+
+        form:
+            type:               application_sonata_user_profile
+            handler:            sonata_user.form.handler.profile
+            name:               sonata_user_profile_form
+            validation_groups:  [Profile]
+
     admin:
+
+sonata_media:
+    class:
+        media:              Application\Sonata\MediaBundle\Entity\Media
+        gallery:            Application\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media:  Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+        category:           Application\Sonata\ClassificationBundle\Entity\Category
+
+    db_driver: doctrine_orm
+    default_context: handissimo
+    contexts:
+        handissimo:
+            providers:
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.youtube
+                - sonata.media.provider.vimeo
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+        avatar:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 100 , quality: 70}
+    cdn:
+        server:
+            path: /uploads/media
+
+    filesystem:
+        local:
+            directory:  "%kernel.root_dir%/../web/uploads/media"
+            create:     false
+
+    providers:
+        file:
+            service:    sonata.media.provider.file
+            resizer:    false
+            generator:  sonata.media.generator.default
+            thumbnail:  sonata.media.thumbnail.format
+            allowed_extensions: ['pdf', 'txt', 'rtf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pttx', 'odt', 'odg', 'odp', 'ods', 'odc', 'odf', 'odb', 'csv', 'xml']
+            allowed_mime_types: ['application/pdf', 'application/x-pdf', 'application/rtf', 'text/html', 'text/rtf', 'text/plain']
+
+        image:
+            service:    sonata.media.provider.image
+            resizer:    sonata.media.resizer.simple # sonata.media.resizer.square
+            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            thumbnail:  sonata.media.thumbnail.format
+            allowed_extensions: ['jpg', 'png', 'jpeg', 'gif']
+            allowed_mime_types: ['image/pjpeg', 'image/jpeg', 'image/png', 'image/x-png', 'image/gif']
+
+        youtube:
+            service:    sonata.media.provider.youtube
+            resizer:    sonata.media.resizer.simple
+            generator:  sonata.media.generator.default
+            thumbnail: sonata.media.thumbnail.format
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -154,7 +245,7 @@ fos_user:
 
     from_email:
         address: dev.wildcodeshool@gmail.com
-        sender_name: Handissimo
+        sender_name: Test
 
     registration:
         confirmation:
@@ -165,6 +256,19 @@ ivory_ck_editor:
     default_config: my_custom_config
     configs:
         my_custom_config:
+            filebrowserBrowseRoute: admin_sonata_media_media_ckeditor_browser
+            filebrowserImageBrowseRoute: admin_sonata_media_media_ckeditor_browser
+            # Display images by default when clicking the image dialog browse button
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadRoute: admin_sonata_media_media_ckeditor_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            # Upload file as image when sending a file from the image dialog
+            filebrowserImageUploadRoute: admin_sonata_media_media_ckeditor_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: my-context # Optional, to upload in a custom context
             toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Image','Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
 

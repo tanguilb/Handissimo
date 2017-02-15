@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="title_user_account">
                 <source>title_user_account</source>
-                <target>Profil utilisateur</target>
+                <target>PROFIL UTILISATEUR</target>
             </trans-unit>
             <trans-unit id="title_user_edit_profile">
                 <source>title_user_edit_profile</source>
@@ -20,7 +20,7 @@
             </trans-unit>
             <trans-unit id="sonata_user_submit">
                 <source>sonata_user_submit</source>
-                <target>Envoyer</target>
+                <target>Mettre à jour</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_user_list">
                 <source>breadcrumb.link_user_list</source>
@@ -440,11 +440,11 @@
             </trans-unit>
             <trans-unit id="title_user_edit_authentication">
                 <source>title_user_edit_authentication</source>
-                <target>Informations de connexion</target>
+                <target>INFORMATIONS DE CONNEXION</target>
             </trans-unit>
             <trans-unit id="link_edit_authentication">
                 <source>link_edit_authentication</source>
-                <target>Informations de connexion</target>
+                <target>INFORMATIONS DE CONNEXION</target>
             </trans-unit>
             <trans-unit id="label_profile_gender">
                 <source>label_profile_gender</source>
@@ -488,7 +488,7 @@
             </trans-unit>
             <trans-unit id="sonata_change_password_link">
                 <source>sonata_change_password_link</source>
-                <target>Changer votre mot de passe</target>
+                <target>CHANGER VOTRE MOT DE PASSE</target>
             </trans-unit>
             <trans-unit id="link_register">
                 <source>link_register</source>

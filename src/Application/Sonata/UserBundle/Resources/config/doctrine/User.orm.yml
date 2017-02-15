@@ -6,7 +6,10 @@ Application\Sonata\UserBundle\Entity\User:
            type: integer
            generator:
                strategy: AUTO
-
+   fields:
+       avatar:
+           type: text
+           nullable: true
 
    oneToOne:
        organizationsuser:
