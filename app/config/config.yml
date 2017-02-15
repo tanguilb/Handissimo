@@ -123,6 +123,7 @@ sonata_block:
 
 sonata_admin:
     templates:
+        layout:    "::standard_layout.html.twig"
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
     security:
@@ -135,9 +136,9 @@ sonata_user:
         register:
             # You may customize the registration forms over here
             form:
-                type:                 sonata_user_registration
+                type:                 front_user_registration
                 handler:              sonata.user.registration.form.handler.default
-                name:                 sonata_user_registration_form
+                name:                 front_user_registration_form
                 validation_groups:
                     # Defaults:
                     - Registration
@@ -159,7 +160,9 @@ sonata_user:
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
 
-    admin:
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\UserAdmin # there define your extended admin class
 
 sonata_media:
     class:
@@ -245,12 +248,36 @@ fos_user:
 
     from_email:
         address: dev.wildcodeshool@gmail.com
-        sender_name: Test
+        sender_name: Handissimo
 
     registration:
+        form:
+            type: front_user_registration
+
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+    profile:
+        form:
+            type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            validation_groups:  [Authentication]
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    profile:
+        register:
+            # You may customize the registration forms over here
+            form:
+                type:                 front_user_registration
+                handler:              sonata.user.registration.form.handler.default
+                name:                 front_user_registration_form
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\UserAdmin # there define your extended admin class
+
 
 ivory_ck_editor:
     default_config: my_custom_config

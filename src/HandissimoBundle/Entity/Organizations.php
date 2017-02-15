@@ -145,6 +145,7 @@ class Organizations
      */
     private $profilPicture;
 
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -179,7 +180,6 @@ class Organizations
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->updateDatetime = new \DateTime();
     }
 
     /**
@@ -639,6 +639,7 @@ class Organizations
         return $this->updateDatetime;
     }
 
+
     /**
      * Set workingDescription
      *
@@ -807,29 +808,7 @@ class Organizations
         return $this->profilPicture;
     }
 
-    /**
-     * Set pictures
-     *
-     * @param \HandissimoBundle\Entity\Pictures $pictures
-     *
-     * @return Organizations
-     */
-    public function setPictures(\HandissimoBundle\Entity\Pictures $pictures = null)
-    {
-        $this->pictures = $pictures;
 
-        return $this;
-    }
-
-    /**
-     * Get pictures
-     *
-     * @return \HandissimoBundle\Entity\Pictures
-     */
-    public function getPictures()
-    {
-        return $this->pictures;
-    }
 
     /**
      * Add disabilityType
@@ -938,10 +917,6 @@ class Organizations
      */
     private $structuretype;
 
-    /**
-     * @var \HandissimoBundle\Entity\Pictures
-     */
-    private $picture;
 
     /**
      * @var \HandissimoBundle\Entity\Society
@@ -971,30 +946,6 @@ class Organizations
     public function getStructuretype()
     {
         return $this->structuretype;
-    }
-
-    /**
-     * Set picture
-     *
-     * @param \HandissimoBundle\Entity\Pictures $picture
-     *
-     * @return Organizations
-     */
-    public function setPicture(\HandissimoBundle\Entity\Pictures $picture = null)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return \HandissimoBundle\Entity\Pictures
-     */
-    public function getPicture()
-    {
-        return $this->picture;
     }
 
     /**
@@ -1214,5 +1165,151 @@ class Organizations
         return $this->userorg;
     }
 
+
+    /**
+     * @var string
+     */
+    private $fax;
+
+    /**
+     * @var string
+     */
+    private $directorName;
+
+    /**
+     * @var string
+     */
+    private $accomodation;
+
+    /**
+     * @var string
+     */
+    private $accomodationDescription;
+
+    /**
+     * @var string
+     */
+    private $service;
+
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Organizations
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * Set directorName
+     *
+     * @param string $directorName
+     *
+     * @return Organizations
+     */
+    public function setDirectorName($directorName)
+    {
+        $this->directorName = $directorName;
+
+        return $this;
+    }
+
+    /**
+     * Get directorName
+     *
+     * @return string
+     */
+    public function getDirectorName()
+    {
+        return $this->directorName;
+    }
+
+    /**
+     * Set accomodation
+     *
+     * @param string $accomodation
+     *
+     * @return Organizations
+     */
+    public function setAccomodation($accomodation)
+    {
+        $this->accomodation = $accomodation;
+
+        return $this;
+    }
+
+    /**
+     * Get accomodation
+     *
+     * @return string
+     */
+    public function getAccomodation()
+    {
+        return $this->accomodation;
+    }
+
+    /**
+     * Set accomodationDescription
+     *
+     * @param string $accomodationDescription
+     *
+     * @return Organizations
+     */
+    public function setAccomodationDescription($accomodationDescription)
+    {
+        $this->accomodationDescription = $accomodationDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get accomodationDescription
+     *
+     * @return string
+     */
+    public function getAccomodationDescription()
+    {
+        return $this->accomodationDescription;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return Organizations
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
 
 }

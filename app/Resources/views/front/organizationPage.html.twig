@@ -14,7 +14,7 @@
             <!-- Block Title-->
             <div class="head-block">
                 <div class="row ">
-                    <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('Y-m-d') }}</p>
+                    <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}}</p>
                 </div>
 
                 <div class="row">
@@ -192,13 +192,25 @@
                     </a>
                 </div>
             </div>
-
             <!-- return button -->
             <div class="col-md-12">
                 <div class="text-center btn-return">
                     <a href="javascript:history.go(-1)" class="btn-return-link">
                     <p class="return">Retour à la recherche</p>
-                    </a>
+                    {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') %}
+                        {% if organization.userorg == null %}
+
+                        <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn-return-link">
+                            <p class="return">Editer cette fiche</p>
+                        </a>
+                         {% else %}
+                        <p class="return">Cette fiche n'est pas éditable</p>
+                         {% endif %}
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}" class="btn-return-link">
+                            <p class="return">Editer cette fiche</p>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

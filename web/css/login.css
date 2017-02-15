@@ -139,10 +139,11 @@ input:-ms-input-placeholder {
 
 }
 
-#sonata_user_registration_form_username,
-#sonata_user_registration_form_email,
-#sonata_user_registration_form_plainPassword_first,
-#sonata_user_registration_form_plainPassword_second,
+
+#front_user_registration_form_username,
+#front_user_registration_form_email,
+#front_user_registration_form_plainPassword_first,
+#front_user_registration_form_plainPassword_second,
 #username,
 #password {
     display: block;
@@ -244,6 +245,7 @@ input:-ms-input-placeholder {
 .check-email{
     width: 400px;
     height: auto;
+    margin-top:200px;
     padding:15px;
 }
 .check-email p{

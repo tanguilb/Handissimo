@@ -39,7 +39,6 @@ class OrganizationsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $organization->setUserOrg($this->container->get('security.context')->getToken()->getUser());
             $em->persist($organization);
             $em->flush($organization);
 
@@ -47,7 +46,6 @@ class OrganizationsController extends Controller
         }
 
         return $this->render('organizations/new.html.twig', array(
-            'organization' => $organization,
             'form' => $form->createView(),
         ));
     }
