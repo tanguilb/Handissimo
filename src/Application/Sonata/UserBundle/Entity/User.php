@@ -124,4 +124,33 @@ class User extends BaseUser
     {
         return $this->userType;
     }
+    /**
+     * @var string
+     */
+    private $avatar;
+
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
 }

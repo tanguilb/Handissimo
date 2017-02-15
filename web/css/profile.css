@@ -1,0 +1,257 @@
+.profil-block,
+.connect-block {
+    margin-top: 30px;
+}
+
+.password-block {
+    margin-bottom: 30px;
+}
+
+#profile-menu {
+    margin-top: 30px;
+}
+
+.head-block{
+    width: 100%;
+    height: 400px;
+    background-color: #f7af49 ;
+}
+
+@media screen and (max-width: 768px) {
+    .head-block {
+        display: none;
+    }
+}
+
+.connect-block,
+.password-block {
+    border-left: 1px solid lightgrey;
+}
+
+input::-webkit-input-placeholder {
+    font-size: 20px;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    font-size: 20px;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 20px;
+}
+
+input:-ms-input-placeholder {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+
+    input::-webkit-input-placeholder {
+        font-size: 1.3em;
+    }
+
+    input:-moz-placeholder { /* Firefox 18- */
+        font-size: 1.3em;
+    }
+
+    input::-moz-placeholder { /* Firefox 19+ */
+        font-size: 1.3em;
+    }
+
+    input:-ms-input-placeholder {
+        font-size: 1.3em;
+    }
+    #username::-webkit-input-placeholder {
+        font-size: 1em;
+    }
+
+    #username:-moz-placeholder { /* Firefox 18- */
+        font-size: 1em;
+    }
+
+    #username::-moz-placeholder { /* Firefox 19+ */
+        font-size: 1em;
+    }
+
+    .connect-block,
+    .password-block {
+        border-left: none;
+    }
+}
+
+#sonata_user_profile_form_firstname,
+#sonata_user_profile_form_lastname,
+#sonata_user_profile_form_website,
+#sonata_user_profile_form_phone,
+#fos_user_profile_form_username,
+#fos_user_profile_form_email,
+#fos_user_profile_form_current_password,
+#fos_user_change_password_current_password,
+#fos_user_change_password_new_first,
+#fos_user_change_password_new_second,
+#username {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.form2{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#sonata_user_profile_form_firstname:focus,
+#sonata_user_profile_form_lastname:focus,
+#sonata_user_profile_form_phone:focus,
+#sonata_user_profile_form_website:focus,
+#sonata_user_profile_form_gender:focus {
+    border-color: #f7af49;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 175, 73, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 175, 73, 0.6);
+}
+
+#fos_user_profile_form_username:focus,
+#fos_user_profile_form_email:focus,
+#fos_user_profile_form_current_password:focus,
+#fos_user_change_password_current_password:focus,
+#fos_user_change_password_new_first:focus,
+#fos_user_change_password_new_second:focus {
+    border-color: #65bfba;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);
+}
+
+/* Title */
+
+.title-block {
+    display: flex;
+    align-items: center;
+}
+
+.profil-title {
+    text-align: center;
+    border-bottom:3px solid #f7af49;
+    margin:auto;
+    padding-bottom:5px;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.connect-title,
+.password-title {
+    text-align: center;
+    border-bottom:3px solid #65bfba;
+    margin:auto;
+    padding-bottom:5px;
+    font-weight: 800;
+    font-size: 30px;
+}
+/*
+.panel-info > .panel-heading,
+.panel-danger > .panel-heading,
+.panel-warning > .panel-heading {
+    background-color: #ffffff;
+    color: #0f0f0f;
+}*/
+
+/* Button */
+
+#btn-authentication,
+#btn-password,
+#btn-resetting {
+    color: #fff;
+    background-color:#65bfba;
+    border-color: #65bfba;
+}
+
+#btn-authentication:hover,
+#btn-password:hover {
+    color: #fff;
+    background-color:#71DBD7;
+    border-color: #71DBD7;
+}
+
+#btn-profile {
+    color: #fff;
+    background-color: #f7af49;
+    border-color: #f7af49;
+}
+
+#btn-profile:hover {
+    color: #fff;
+    background-color: #FFBE49;
+}
+
+/* Request password */
+
+.request-password {
+    margin-top:100px;
+    padding:15px;
+}
+
+@media screen and (max-width: 768px) {
+    #request-password {
+        padding-top: 50px;
+    }
+}
+
+.confirm{
+    color: #71DBD7;
+}
+
+.resetting {
+    padding-top: 100px;
+}
+
+.check-password {
+    width: 400px;
+    height: auto;
+    margin-top:100px;
+    padding:15px;
+}
+
+.check-password p {
+    text-align: center;
+    font-size:20px;
+}
+
+@media screen and (max-width: 768px){
+    .check-password{
+        width: 70%;
+        margin-top:150px;
+
+    }
+    .check-password p{
+        font-size:1.3em;
+    }
+}
+@media screen and (max-width: 768px){
+    .avatar {
+        word-wrap: break-word;
+    }
+}
+
+.profil-image {
+    width: 200px;
+    height: 150px;
+}

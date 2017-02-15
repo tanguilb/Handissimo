@@ -22,6 +22,20 @@
                     </button>
                 </a>
                 {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
+                {% if app.user %}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ asset('images/avatar/businessman.png') }}" class="img-avatar">
+                            Bonjour {{ app.user.username }}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
+                            <li><a href="{{ path('sonata_user_profile_edit') }}">Profil</a></li>
+                            <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
+                    {% endif %}
+                            </ul>
+                {% else %}
                 <a href="{{ path('fos_user_security_login') }}">
                     <button class="btn pink-btn">
                         <i class="fa fa-user" aria-hidden="true"></i>Votre compte
