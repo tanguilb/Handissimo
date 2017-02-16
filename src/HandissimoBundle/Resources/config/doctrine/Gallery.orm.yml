@@ -1,0 +1,27 @@
+HandissimoBundle\Entity\Gallery:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\GalleryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        updated:
+            type: datetime
+            nullable: true
+        user:
+            type: string
+            length: 50
+            nullable: false
+
+
+
+    lifecycleCallbacks:
+        prePersist:   [ lifecycleFileUpload ]
+        preUpdate:    [ lifecycleFileUpload ]

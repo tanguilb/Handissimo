@@ -1,41 +1,38 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tangui
- * Date: 09/02/17
- * Time: 15:38
- */
 
 namespace HandissimoBundle\Controller;
 
-use Sonata\AdminBundle\Controller\CRUDController as Controller;
-use Application\Sonata\UserBundle\Entity\User;
-use HandissimoBundle\Repository\Organizations;
+use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\Form\FormView;
 
-class OrganizationsAdminController extends Controller
+class GalleryAdminController extends CRUDController
 {
+
+    /**
+     * List action.
+     *
+     * @return Response
+     *
+     * @throws AccessDeniedException If access is not granted
+     */
     public function listAction()
     {
-
         $em = $this->getDoctrine()->getManager();
-        $nonUser = $this->getUser()->getOrganizationsuser();
-        $user = $this->getUser();
+        $user = $this->getUser()->getId();
+        var_dump($user);
+
+        $picture = $em->getRepository('HandissimoBundle:Gallery')->getById($user);
 
 
-        if ($nonUser == null)
-        {
-            $organizations = $em->getRepository('HandissimoBundle:Organizations')->findAll();
-        } else {
-            $organizations = $em->getRepository('HandissimoBundle:Organizations')->getByUser($user);
-
-        }
         $datagrid = $this->admin->getDatagrid();
         $formView = $datagrid->getForm()->createView();
 
-        return $this->render('admin/organizations.list.html.twig', array(
-            'organizations' => $organizations,
+        // set the theme for the current Admin Form
+       // $this->setFormTheme($formView, $this->admin->getFilterTheme());
+
+        return $this->render('admin/gallery.list.html.twig', array(
             'action' => 'list',
+            'pictures' => $picture,
             'form' => $formView,
             'datagrid' => $datagrid,
             'csrf_token' => $this->getCsrfToken('sonata.batch'),
@@ -43,39 +40,45 @@ class OrganizationsAdminController extends Controller
     }
 
     /**
-     * Edit action.
+     * Create action.
      *
-     * @param int|string|null $id
+     * @return Response
      *
-     * @return Response|RedirectResponse
-     *
-     * @throws NotFoundHttpException If the object does not exist
      * @throws AccessDeniedException If access is not granted
      */
-    public function editAction($id = null)
+    public function createAction()
     {
         $request = $this->getRequest();
         // the key used to lookup the template
         $templateKey = 'edit';
 
-        $id = $request->get($this->admin->getIdParameter());
-        $object = $this->admin->getObject($id);
+        $this->admin->checkAccess('create');
 
-        if (!$object) {
-            throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
+        $class = new \ReflectionClass($this->admin->hasActiveSubClass() ? $this->admin->getActiveSubClass() : $this->admin->getClass());
+
+        if ($class->isAbstract()) {
+            return $this->render(
+                'SonataAdminBundle:CRUD:select_subclass.html.twig',
+                array(
+                    'base_template' => $this->getBaseTemplate(),
+                    'admin' => $this->admin,
+                    'action' => 'create',
+                ),
+                null,
+                $request
+            );
         }
 
-        $this->admin->checkAccess('edit', $object);
+        $object = $this->admin->getNewInstance();
 
-        $preResponse = $this->preEdit($request, $object);
+        $preResponse = $this->preCreate($request, $object);
         if ($preResponse !== null) {
             return $preResponse;
         }
 
         $this->admin->setSubject($object);
-        var_dump($this->admin->setSubject($object));
 
-        /** @var $form Form */
+        /** @var $form \Symfony\Component\Form\Form */
         $form = $this->admin->getForm();
         $form->setData($object);
         $form->handleRequest($request);
@@ -89,24 +92,23 @@ class OrganizationsAdminController extends Controller
 
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
-                try {
-                    $object->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-                    $object->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
-                    $object = $this->admin->update($object);
+                $this->admin->checkAccess('create', $object);
 
+                try {
+                    $object->setUser($this->container->get('security.token_storage')->getToken()->getUser()->getId());
+                    $object = $this->admin->create($object);
 
                     if ($this->isXmlHttpRequest()) {
                         return $this->renderJson(array(
                             'result' => 'ok',
                             'objectId' => $this->admin->getNormalizedIdentifier($object),
-                            'objectName' => $this->escapeHtml($this->admin->toString($object)),
                         ), 200, array());
                     }
 
                     $this->addFlash(
                         'sonata_flash_success',
                         $this->trans(
-                            'flash_edit_success',
+                            'flash_create_success',
                             array('%name%' => $this->escapeHtml($this->admin->toString($object))),
                             'SonataAdminBundle'
                         )
@@ -118,12 +120,6 @@ class OrganizationsAdminController extends Controller
                     $this->handleModelManagerException($e);
 
                     $isFormValid = false;
-                } catch (LockException $e) {
-                    $this->addFlash('sonata_flash_error', $this->trans('flash_lock_error', array(
-                        '%name%' => $this->escapeHtml($this->admin->toString($object)),
-                        '%link_start%' => '<a href="'.$this->admin->generateObjectUrl('edit', $object).'">',
-                        '%link_end%' => '</a>',
-                    ), 'SonataAdminBundle'));
                 }
             }
 
@@ -133,14 +129,14 @@ class OrganizationsAdminController extends Controller
                     $this->addFlash(
                         'sonata_flash_error',
                         $this->trans(
-                            'flash_edit_error',
+                            'flash_create_error',
                             array('%name%' => $this->escapeHtml($this->admin->toString($object))),
                             'SonataAdminBundle'
                         )
                     );
                 }
             } elseif ($this->isPreviewRequested()) {
-                // enable the preview template if the form was valid and preview was requested
+                // pick the preview template if the form was valid and preview was requested
                 $templateKey = 'preview';
                 $this->admin->getShow();
             }
@@ -151,7 +147,7 @@ class OrganizationsAdminController extends Controller
         $this->setFormTheme($formView, $this->admin->getFormTheme());
 
         return $this->render($this->admin->getTemplate($templateKey), array(
-            'action' => 'edit',
+            'action' => 'create',
             'form' => $formView,
             'object' => $object,
         ), null);
@@ -179,6 +175,5 @@ class OrganizationsAdminController extends Controller
                 ->setTheme($formView, $theme);
         }
     }
-
 
 }

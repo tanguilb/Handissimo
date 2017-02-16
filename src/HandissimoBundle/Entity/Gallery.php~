@@ -1,0 +1,181 @@
+<?php
+
+namespace HandissimoBundle\Entity;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+/**
+ * Gallery
+ */
+class Gallery
+{
+
+    const SERVER_PATH_TO_IMAGE  = 'images';
+
+
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * Unmapped property to handle file uploads
+     */
+    private $file;
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function upload()
+    {
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // we use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and target filename as params
+        $this->getFile()->move(
+            self::SERVER_PATH_TO_IMAGE,
+            $this->getFile()->getClientOriginalName()
+        );
+
+        // set the path property to the filename where you've saved the file
+        $this->filename = $this->getFile()->getClientOriginalName();
+
+        // clean up the file property as you won't need it anymore
+        $this->setFile(null);
+    }
+
+    /**
+     * Lifecycle callback to upload the file to the server
+     */
+    public function lifecycleFileUpload()
+    {
+        $this->upload();
+    }
+
+    /**
+     * Updates the hash value to force the preUpdate and postUpdate events to fire
+     */
+    public function refreshUpdated()
+    {
+        $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Gallery
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $userPicture;
+
+
+    /**
+     * Set userPicture
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userPicture
+     *
+     * @return Gallery
+     */
+    public function setUserPicture(\Application\Sonata\UserBundle\Entity\User $userPicture = null)
+    {
+        $this->userPicture = $userPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get userPicture
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUserPicture()
+    {
+        return $this->userPicture;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $updated;
+
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Gallery
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+}

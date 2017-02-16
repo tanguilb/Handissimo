@@ -2,3 +2,8 @@ services:
 #    handissimo.example:
 #        class: HandissimoBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    handissimo.admin.gallery:
+        class: HandissimoBundle\Admin\GalleryAdmin
+        arguments: [~, HandissimoBundle\Entity\Gallery, HandissimoBundle:GalleryAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Gallery }
