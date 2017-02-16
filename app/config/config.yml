@@ -77,10 +77,7 @@ sonata_formatter:
             service: sonata.formatter.text.twigengine
             extensions: [] # Twig formatter cannot have extensions
 
-    ckeditor:
-        templates:
-            browser: 'SonataFormatterBundle:Ckeditor:browser.html.twig'
-            upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
+
 
 # Doctrine Configuration
 doctrine:
@@ -283,20 +280,8 @@ ivory_ck_editor:
     default_config: my_custom_config
     configs:
         my_custom_config:
-            filebrowserBrowseRoute: admin_sonata_media_media_ckeditor_browser
-            filebrowserImageBrowseRoute: admin_sonata_media_media_ckeditor_browser
-            # Display images by default when clicking the image dialog browse button
-            filebrowserImageBrowseRouteParameters:
-                provider: sonata.media.provider.image
-            filebrowserUploadRoute: admin_sonata_media_media_ckeditor_upload
-            filebrowserUploadRouteParameters:
-                provider: sonata.media.provider.file
-            # Upload file as image when sending a file from the image dialog
-            filebrowserImageUploadRoute: admin_sonata_media_media_ckeditor_upload
-            filebrowserImageUploadRouteParameters:
-                provider: sonata.media.provider.image
-                context: my-context # Optional, to upload in a custom context
-            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Image','Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
 
 knp_paginator:

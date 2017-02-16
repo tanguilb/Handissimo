@@ -15,8 +15,7 @@ class OrganizationsAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-
-            $formMapper
+         $formMapper
                 ->with('Identité', array('class' => 'col-md-6'))
                 ->add('name', 'text', array(
                     'label' => 'Nom de la structure',
