@@ -138,7 +138,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 4
             nullable: true
-
+        statut:
+            type: boolean
+        replay:
+            type: boolean
 
     oneToOne:
         userorg:

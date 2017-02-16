@@ -10,7 +10,10 @@ namespace HandissimoBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Application\Sonata\UserBundle\Entity\User;
-use HandissimoBundle\Repository\Organizations;
+use HandissimoBundle\Repository\OrganizationsRepository;
+use Sonata\AdminBundle\Exception\ModelManagerException;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrganizationsAdminController extends Controller
 {
@@ -39,4 +42,5 @@ class OrganizationsAdminController extends Controller
             'csrf_token' => $this->getCsrfToken('sonata.batch'),
         ), null);
     }
+
 }
