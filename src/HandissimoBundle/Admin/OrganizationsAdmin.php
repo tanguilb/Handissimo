@@ -15,14 +15,12 @@ class OrganizationsAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-    //    $user = $this->getUser();
 
-
-        $formMapper
-            ->with('Identité', array('class' => 'col-md-6'))
+            $formMapper
+                ->with('Identité', array('class' => 'col-md-6'))
                 ->add('name', 'text', array(
-                'label' => 'Nom de la structure',
-                'required' => true
+                    'label' => 'Nom de la structure',
+                    'required' => true
                 ))
                 ->add('societies', EntityType::class, array(
                     'class' => 'HandissimoBundle:Society',
@@ -69,20 +67,14 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Nom du directeur',
                     'required' => 'false'
                 ))
-                ->add('update_datetime', 'datetime' , array(
+                ->add('update_datetime', 'datetime', array(
                     'label' => false,
-                    'pattern' => 'dd MMM y G' ,
+                    'pattern' => 'dd MMM y G',
                     'attr' => array('style' => 'display:none'),
                     'data' => new \DateTime(),
                 ))
-                ->add('user', EntityType::class, array(
-                    'class' => 'Application\Sonata\UserBundle\Entity\User',
-                    'label' => false,
-                    'attr' => array('style' => 'display:none'),
-                    'data' => 'app.user.username'
-                ))
-            ->end()
-            ->with('Caractéristiques', array('class' => 'col-md-6'))
+                ->end()
+                ->with('Caractéristiques', array('class' => 'col-md-6'))
                 ->add('openhours', 'text', array(
                     'label' => 'Heures d\'ouverture',
                     'required' => false
@@ -91,7 +83,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Jours d\'ouverture',
                     'required' => false
                 ))
-                ->add('disabilitytypes',EntityType::class,array (
+                ->add('disabilitytypes', EntityType::class, array(
                     'class' => 'HandissimoBundle:DisabilityTypes',
                     'choice_label' => 'disabilityName',
                     'label' => 'Handicap des personnes accompagnées',
@@ -109,12 +101,12 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Nombre de personnes accompagnées',
                     'required' => false
                 ))
-            ->end()
-            ->with('Travail effectué')
-                ->add('organization_description','ckeditor', array(
+                ->end()
+                ->with('Travail effectué')
+                ->add('organization_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
                     'required' => false),
-                     array(
+                    array(
                         'placeholder' => 'essai',
 
                     )
@@ -139,16 +131,14 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Le personnel',
                     'multiple' => true
                 ))
-            ->end()
-
-
-            ->with('Ecole', array('class' => 'col-md-4'))
+                ->end()
+                ->with('Ecole', array('class' => 'col-md-4'))
                 ->add('school', 'sonata_type_choice_field_mask', array(
-                'choices' => array(
-                    'oui' => 'oui',
-                    'non' => 'non'
+                    'choices' => array(
+                        'oui' => 'oui',
+                        'non' => 'non'
 
-                ),
+                    ),
                     'map' => array(
                         'oui' => array('school_description'),
 
@@ -156,23 +146,21 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Proposez-vous de la scolarisation ?',
                     'required' => false
                 ))
-
-
                 ->add('school_description', 'ckeditor', array(
                     'label' => 'Description de l\'établissement',
                     'required' => false,
                 ))
-            ->end()
-            ->with('Hébergement', array('class' => 'col-md-4'))
+                ->end()
+                ->with('Hébergement', array('class' => 'col-md-4'))
                 ->add('accomodation', 'sonata_type_choice_field_mask', array(
                     'choices' => array(
                         'oui' => 'oui',
                         'non' => 'non'
 
                     ),
-                        'map' => array(
-                            'oui' => array('accomodation_description'),
-                        ),
+                    'map' => array(
+                        'oui' => array('accomodation_description'),
+                    ),
                     'label' => 'Porposez-vous un hébergement ?',
                     'required' => false
                 ))
@@ -180,8 +168,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Conditions (nombre de place, autonomie nécessaire ...)',
                     'required' => false,
                 ))
-            ->end()
-            ->with('Service', array('class' => 'col-md-4'))
+                ->end()
+                ->with('Service', array('class' => 'col-md-4'))
                 ->add('service', 'sonata_type_choice_field_mask', array(
                     'choices' => array(
                         'oui' => 'oui',
@@ -198,7 +186,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Zone d\'interventions, de quel ordre ...)',
                     'required' => false,
                 ))
-            ->end();
+                ->end();
 
         ;
     }
@@ -223,7 +211,6 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add('update_datetime', 'date', array('label' => 'date de modification'))
         ;
     }
-
 
 
 

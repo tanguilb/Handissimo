@@ -142,6 +142,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 50
             nullable: true
+        userType:
+            type: string
+            length: 50
+            nullable: true
 
 
     oneToOne:
