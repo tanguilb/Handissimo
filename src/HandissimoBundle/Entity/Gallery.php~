@@ -63,6 +63,7 @@ class Gallery
             self::SERVER_PATH_TO_IMAGE,
             $this->getFile()->getClientOriginalName()
         );
+        $this->webPath = $this->getFile()->getClientOriginalName();
 
         // set the path property to the filename where you've saved the file
         $this->filename = $this->getFile()->getClientOriginalName();
@@ -120,35 +121,9 @@ class Gallery
     {
         return $this->name;
     }
-    /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $userPicture;
 
 
-    /**
-     * Set userPicture
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $userPicture
-     *
-     * @return Gallery
-     */
-    public function setUserPicture(\Application\Sonata\UserBundle\Entity\User $userPicture = null)
-    {
-        $this->userPicture = $userPicture;
 
-        return $this;
-    }
-
-    /**
-     * Get userPicture
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User
-     */
-    public function getUserPicture()
-    {
-        return $this->userPicture;
-    }
     /**
      * @var \DateTime
      */
@@ -177,5 +152,92 @@ class Gallery
     public function getUpdated()
     {
         return $this->updated;
+    }
+    /**
+     * @var string
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     *
+     * @return Gallery
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    /**
+     * @var string
+     */
+    private $webPath;
+
+
+    /**
+     * Set webPath
+     *
+     * @param string $webPath
+     *
+     * @return Gallery
+     */
+    public function setWebPath($webPath)
+    {
+        $this->webPath = $webPath;
+
+        return $this;
+    }
+
+    /**
+     * Get webPath
+     *
+     * @return string
+     */
+    public function getWebPath()
+    {
+        return $this->webPath;
+    }
+    /**
+     * @var \HandissimoBundle\Entity\Organizations
+     */
+    private $organizationPictures;
+
+
+    /**
+     * Set organizationPictures
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationPictures
+     *
+     * @return Gallery
+     */
+    public function setOrganizationPictures(\HandissimoBundle\Entity\Organizations $organizationPictures = null)
+    {
+        $this->organizationPictures = $organizationPictures;
+
+        return $this;
+    }
+
+    /**
+     * Get organizationPictures
+     *
+     * @return \HandissimoBundle\Entity\Organizations
+     */
+    public function getOrganizationPictures()
+    {
+        return $this->organizationPictures;
     }
 }

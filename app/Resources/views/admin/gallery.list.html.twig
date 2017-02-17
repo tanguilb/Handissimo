@@ -1,7 +1,11 @@
 {% extends 'SonataAdminBundle:CRUD:list.html.twig' %}
 
 
-
+{% block stylesheets %}
+    /*this will extend the parent block */
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/adminnavbar.css') }}"/>
+{% endblock %}
 {% block table_body %}
     <tbody>
     {% if is_granted('ROLE_SUPER_ADMIN') %}

@@ -19,7 +19,6 @@ class GalleryAdminController extends CRUDController
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser()->getId();
-        var_dump($user);
 
         $picture = $em->getRepository('HandissimoBundle:Gallery')->getById($user);
 

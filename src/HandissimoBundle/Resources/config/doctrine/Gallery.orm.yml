@@ -19,6 +19,19 @@ HandissimoBundle\Entity\Gallery:
             type: string
             length: 50
             nullable: false
+        webPath:
+            type: string
+            length: 255
+            nullable: true
+
+    manyToOne:
+        organizationPictures:
+            targetEntity: HandissimoBundle\Entity\Organizations
+            inversedBy: galleryPictures
+            joinColumn:
+                name: organization_id
+                inversedColumnName: id
+
 
 
 
