@@ -1370,4 +1370,33 @@ class Organizations
     {
         return $this->replay;
     }
+    /**
+     * @var string
+     */
+    private $addressComplement;
+
+
+    /**
+     * Set addressComplement
+     *
+     * @param string $addressComplement
+     *
+     * @return Organizations
+     */
+    public function setAddressComplement($addressComplement)
+    {
+        $this->addressComplement = $addressComplement;
+
+        return $this;
+    }
+
+    /**
+     * Get addressComplement
+     *
+     * @return string
+     */
+    public function getAddressComplement()
+    {
+        return $this->addressComplement;
+    }
 }

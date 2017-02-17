@@ -1341,4 +1341,33 @@ class Organizations
     {
         return $this->statut;
     }
+    /**
+     * @var boolean
+     */
+    private $replay;
+
+
+    /**
+     * Set replay
+     *
+     * @param boolean $replay
+     *
+     * @return Organizations
+     */
+    public function setReplay($replay)
+    {
+        $this->replay = $replay;
+
+        return $this;
+    }
+
+    /**
+     * Get replay
+     *
+     * @return boolean
+     */
+    public function getReplay()
+    {
+        return $this->replay;
+    }
 }

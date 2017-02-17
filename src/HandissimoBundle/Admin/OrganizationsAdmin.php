@@ -99,7 +99,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false
                     ))
                     ->add('freeplace', 'text', array(
-                        'label' => 'Nombre de personnes accompagnées',
+                        'label' => 'Nombre de places',
                         'required' => false
                     ))
                 ->end()
