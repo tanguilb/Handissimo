@@ -112,6 +112,14 @@ p {
     }
 }
 
+@media only screen and (max-device-width: 1600px) {
+    .orange-btn,
+    .pink-btn,
+    .modal-button {
+        font-size: 10px;
+    }
+}
+
 /*Hamburger menu*/
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-toggle {

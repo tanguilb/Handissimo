@@ -145,7 +145,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('school_description', 'ckeditor', array(
                         'label' => 'Description de l\'établissement',
-                        'required' => false,
+                        'required' => false
                     ))
                 ->end()
                 ->with('Hébergement', array('class' => 'col-md-4'))
@@ -183,7 +183,14 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                 ->end()
             ->end();
-
+       /* if ($this->isCurrentRoute('edit')){
+            $formMapper
+                ->add('statut', BooleanType::class, array(
+                    'hidden' => true,
+                    'data' => 2
+                ));
+        }*/
+        //$subject = $this->getSubject();var_dump($subject);
         if ($securityContext->isGranted('ROLE_SUPER_ADMIN')) {
             $formMapper
                 ->tab('Validation')
