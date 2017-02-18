@@ -166,6 +166,138 @@ INSERT INTO `acl_security_identities` VALUES (51,'Application\\Sonata\\UserBundl
 UNLOCK TABLES;
 
 --
+-- Table structure for table `classification__category`
+--
+
+DROP TABLE IF EXISTS `classification__category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `classification__category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  `context` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `media_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `position` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_43629B36727ACA70` (`parent_id`),
+  KEY `IDX_43629B36E25D857E` (`context`),
+  KEY `IDX_43629B36EA9FDD75` (`media_id`),
+  CONSTRAINT `FK_43629B36727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `classification__category` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_43629B36E25D857E` FOREIGN KEY (`context`) REFERENCES `classification__context` (`id`),
+  CONSTRAINT `FK_43629B36EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media__media` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `classification__category`
+--
+
+LOCK TABLES `classification__category` WRITE;
+/*!40000 ALTER TABLE `classification__category` DISABLE KEYS */;
+INSERT INTO `classification__category` VALUES (1,NULL,'handissimo',NULL,'handissimo',1,'handissimo','handissimo',NULL,'2017-02-13 11:05:23','2017-02-13 11:05:23'),(2,1,'handissimo',NULL,'Avatar',0,'avatar',NULL,0,'2017-02-13 11:21:01','2017-02-13 11:21:01');
+/*!40000 ALTER TABLE `classification__category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `classification__collection`
+--
+
+DROP TABLE IF EXISTS `classification__collection`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `classification__collection` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `media_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag_collection` (`slug`,`context`),
+  KEY `IDX_A406B56AE25D857E` (`context`),
+  KEY `IDX_A406B56AEA9FDD75` (`media_id`),
+  CONSTRAINT `FK_A406B56AE25D857E` FOREIGN KEY (`context`) REFERENCES `classification__context` (`id`),
+  CONSTRAINT `FK_A406B56AEA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media__media` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `classification__collection`
+--
+
+LOCK TABLES `classification__collection` WRITE;
+/*!40000 ALTER TABLE `classification__collection` DISABLE KEYS */;
+/*!40000 ALTER TABLE `classification__collection` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `classification__context`
+--
+
+DROP TABLE IF EXISTS `classification__context`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `classification__context` (
+  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `classification__context`
+--
+
+LOCK TABLES `classification__context` WRITE;
+/*!40000 ALTER TABLE `classification__context` DISABLE KEYS */;
+INSERT INTO `classification__context` VALUES ('handissimo','handissimo',1,'2017-02-13 11:05:22','2017-02-13 11:05:22');
+/*!40000 ALTER TABLE `classification__context` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `classification__tag`
+--
+
+DROP TABLE IF EXISTS `classification__tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `classification__tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `context` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag_context` (`slug`,`context`),
+  KEY `IDX_CA57A1C7E25D857E` (`context`),
+  CONSTRAINT `FK_CA57A1C7E25D857E` FOREIGN KEY (`context`) REFERENCES `classification__context` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `classification__tag`
+--
+
+LOCK TABLES `classification__tag` WRITE;
+/*!40000 ALTER TABLE `classification__tag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `classification__tag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `disability_types`
 --
 
@@ -213,7 +345,7 @@ CREATE TABLE `disability_types_has_organizations` (
 
 LOCK TABLES `disability_types_has_organizations` WRITE;
 /*!40000 ALTER TABLE `disability_types_has_organizations` DISABLE KEYS */;
-INSERT INTO `disability_types_has_organizations` VALUES (40,1),(40,2),(41,2),(41,3),(41,5),(42,1),(42,3),(43,1),(43,3),(44,4),(44,5),(44,7);
+INSERT INTO `disability_types_has_organizations` VALUES (40,2),(40,6),(40,8),(41,2),(41,5),(42,1),(42,4),(42,5),(43,1),(43,12),(44,7);
 /*!40000 ALTER TABLE `disability_types_has_organizations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +371,7 @@ CREATE TABLE `fos_group` (
 
 LOCK TABLES `fos_group` WRITE;
 /*!40000 ALTER TABLE `fos_group` DISABLE KEYS */;
-INSERT INTO `fos_group` VALUES (1,'Société','a:11:{i:0;s:17:\"ROLE_SONATA_ADMIN\";i:1;s:9:\"ROLE_USER\";i:2;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:3;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:4;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:5;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:6;s:24:\"ROLE_ADMIN_SOCIETY_GUEST\";i:7;s:24:\"ROLE_ADMIN_SOCIETY_STAFF\";i:8;s:25:\"ROLE_ADMIN_SOCIETY_EDITOR\";i:9;s:24:\"ROLE_ADMIN_SOCIETY_ADMIN\";i:10;s:11:\"ROLE_EDITOR\";}'),(2,'Structures','a:6:{i:0;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:1;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:2;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:3;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:4;s:11:\"ROLE_EDITOR\";i:5;s:28:\"ROLE_ADMIN_ORGANIZATIONS_ALL\";}');
+INSERT INTO `fos_group` VALUES (1,'Société','a:11:{i:0;s:17:\"ROLE_SONATA_ADMIN\";i:1;s:9:\"ROLE_USER\";i:2;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:3;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:4;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:5;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:6;s:24:\"ROLE_ADMIN_SOCIETY_GUEST\";i:7;s:24:\"ROLE_ADMIN_SOCIETY_STAFF\";i:8;s:25:\"ROLE_ADMIN_SOCIETY_EDITOR\";i:9;s:24:\"ROLE_ADMIN_SOCIETY_ADMIN\";i:10;s:11:\"ROLE_EDITOR\";}'),(2,'Structures','a:7:{i:0;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:1;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:2;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:3;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:4;s:28:\"ROLE_ADMIN_ORGANIZATIONS_ALL\";i:5;s:8:\"ROLE_ORG\";i:6;s:10:\"ROLE_ADMIN\";}');
 /*!40000 ALTER TABLE `fos_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,10 +422,14 @@ CREATE TABLE `fos_user` (
   `gplus_data` longtext COLLATE utf8_unicode_ci COMMENT '(DC2Type:json)',
   `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `two_step_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `organizations_id` int(11) DEFAULT NULL,
+  `user_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
-  UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
+  UNIQUE KEY `UNIQ_957A647986288A55` (`organizations_id`),
+  CONSTRAINT `FK_957A647986288A55` FOREIGN KEY (`organizations_id`) REFERENCES `organizations` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +438,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (5,'dev','dev','tangui.lebourdonnec@gmail.com','tangui.lebourdonnec@gmail.com',1,'pvcatcn4ls044c8404ck8wo04gggsgw','nPlXFmvGX6iKCTIy6t9xXVZLVJhZVznN1ygRLBiFp7VEeYYkswCg6S+xbIXVeOdwXwkE7oMfJCG9EHOCtPfOCw==','2017-01-27 13:58:05',0,0,NULL,NULL,NULL,'a:12:{i:0;s:16:\"ROLE_SUPER_ADMIN\";i:1;s:28:\"ROLE_ADMIN_ORGANIZATIONS_ALL\";i:2;s:30:\"ROLE_ADMIN_DISABILITYTYPES_ALL\";i:3;s:22:\"ROLE_ADMIN_SOCIETY_ALL\";i:4;s:31:\"ROLE_ADMIN_STRUCTURES_TYPES_ALL\";i:5;s:20:\"ROLE_ADMIN_STAFF_ALL\";i:6;s:24:\"ROLE_ADMIN_STAFFTYPE_ALL\";i:7;s:20:\"ROLE_ADMIN_NEEDS_ALL\";i:8;s:22:\"ROLE_ADMIN_OPINION_ALL\";i:9;s:19:\"ROLE_ADMIN_USER_ALL\";i:10;s:31:\"ROLE_SONATA_USER_ADMIN_USER_ALL\";i:11;s:32:\"ROLE_SONATA_USER_ADMIN_GROUP_ALL\";}',0,NULL,'2017-01-10 10:03:19','2017-01-27 13:58:05',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL),(6,'utilisateur','utilisateur','tangui8@hotmail.com','tangui8@hotmail.com',1,'6frvjhu77o080wgg8s0048o4s4oc04s','b34PNAQoMNhKKAkbm4xNsPuHUzUvm3fuOrDMfVv4pRl3HSBMXBVNNVNBUZhdtN7a3Al0twqkExj3TSfrLLah8A==','2017-01-26 17:45:49',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_ORG\";}',0,NULL,'2017-01-10 13:40:19','2017-01-26 17:45:49',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL),(8,'users','users','dev.wildcodeshool@gmail.com','dev.wildcodeshool@gmail.com',1,'uigwml9upq848ww8kso088cooks0so','BLVZOK60/SAyhoVio1Xf5MJzTQlBJGsTKnJS8JW3f0R8qpgQE2BmcZcFwT4MSWLquZZbOdHlux0U3nXhX676Sw==','2017-01-27 10:39:47',0,0,NULL,NULL,NULL,'a:6:{i:0;s:8:\"ROLE_ORG\";i:1;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:2;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:3;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:4;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:5;s:12:\"ROLE_SOCIETE\";}',0,NULL,'2017-01-10 16:15:04','2017-01-27 10:39:47',NULL,'tangui','le bourdonnec',NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL),(9,'gestionnaire','gestionnaire','apocynac@gmail.com','apocynac@gmail.com',1,'nmr9zh8orr40o4g0w48c0408400wwco','8QgmDKO+YWZkTs49fqHLgi58t9X1B2y4y4C+kNkZjz4E25QDQeylyaK9qpdeOP/9xkKf3pdy0JRzSZI0zo+vRg==','2017-01-27 10:38:40',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_SOC\";}',0,NULL,'2017-01-16 15:27:08','2017-01-27 10:38:40',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL),(10,'itep','itep','test@gmail.com','test@gmail.com',1,'b24gt2duu1skggcw4sg8wk844k88wcg','WCiF9abcDdN920S65oFL4MTldfEm6LMztgSpOF7Gf+GJTj7DrHnYWDRX3YFfNbwppyhXvnDpunMScfUQ1gXwog==','2017-01-27 13:57:19',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_ORG\";}',0,NULL,'2017-01-27 13:56:56','2017-01-27 13:57:19',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL),(11,'itep marius','itep marius','test2@gmail.com','test2@gmail.com',1,'36z6svrex2wwkk4s8sog4gw8c8g0o8g','ptFQlVVVEGn32FpyA6WnxbAZd4ef1X9iaFX8Yiad5CyFy3wQ1b8oGDm6Y0aLLeqHEOCxWkUm3W9+K/15bm5EZg==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,'2017-01-27 14:05:25','2017-01-27 14:05:34',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL),(12,'ime','ime','test3@gmail.com','test3@gmail.com',0,'mwcn349ewpw0gkg8gkkkk0o44o4gk0g','N5pRNuMu3HpukxzbJPIPiUpTNTX2/ciNs6YfxvhvziLBh8oXMqk5P3FTx80JaPF2+AqME8qEl8iDa4o0/o+D0w==',NULL,0,0,NULL,NULL,NULL,'a:0:{}',0,NULL,'2017-01-27 14:09:12','2017-01-27 14:09:12',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL);
+INSERT INTO `fos_user` VALUES (5,'dev','dev','tangui.lebourdonnec@gmail.com','tangui.lebourdonnec@gmail.com',1,'pvcatcn4ls044c8404ck8wo04gggsgw','2fPclSLsYNlFQALDTWfdIK+MjkHmLq5XOgcyeNyVpHbpA3f+5AV9SWfAfUwl3EBAEdnRT+DfnXhJH7e1CBv7Ag==','2017-02-17 11:29:37',0,0,NULL,'niFZXBvBAZqplydnjlsQPH_NMNXSKoDhIstTjd3ljv4','2017-02-14 15:19:49','a:12:{i:0;s:16:\"ROLE_SUPER_ADMIN\";i:1;s:28:\"ROLE_ADMIN_ORGANIZATIONS_ALL\";i:2;s:30:\"ROLE_ADMIN_DISABILITYTYPES_ALL\";i:3;s:22:\"ROLE_ADMIN_SOCIETY_ALL\";i:4;s:31:\"ROLE_ADMIN_STRUCTURES_TYPES_ALL\";i:5;s:20:\"ROLE_ADMIN_STAFF_ALL\";i:6;s:24:\"ROLE_ADMIN_STAFFTYPE_ALL\";i:7;s:20:\"ROLE_ADMIN_NEEDS_ALL\";i:8;s:22:\"ROLE_ADMIN_OPINION_ALL\";i:9;s:19:\"ROLE_ADMIN_USER_ALL\";i:10;s:31:\"ROLE_SONATA_USER_ADMIN_USER_ALL\";i:11;s:32:\"ROLE_SONATA_USER_ADMIN_GROUP_ALL\";}',0,NULL,'2017-01-10 10:03:19','2017-02-17 11:29:37',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,''),(6,'utilisateur','utilisateur','tangui8@hotmail.com','tangui8@hotmail.com',1,'6frvjhu77o080wgg8s0048o4s4oc04s','b34PNAQoMNhKKAkbm4xNsPuHUzUvm3fuOrDMfVv4pRl3HSBMXBVNNVNBUZhdtN7a3Al0twqkExj3TSfrLLah8A==','2017-02-17 10:31:24',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_ORG\";}',0,NULL,'2017-01-10 13:40:19','2017-02-17 10:31:24',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,'utilisateur'),(8,'users','users','dev.wildcodeshool@gmail.com','dev.wildcodeshool@gmail.com',1,'uigwml9upq848ww8kso088cooks0so','BLVZOK60/SAyhoVio1Xf5MJzTQlBJGsTKnJS8JW3f0R8qpgQE2BmcZcFwT4MSWLquZZbOdHlux0U3nXhX676Sw==','2017-02-16 10:52:38',0,0,NULL,NULL,NULL,'a:6:{i:0;s:8:\"ROLE_ORG\";i:1;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:2;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:3;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:4;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:5;s:12:\"ROLE_SOCIETE\";}',0,NULL,'2017-01-10 16:15:04','2017-02-16 10:52:38',NULL,'tangui','le bourdonnec',NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,''),(9,'gestionnaire','gestionnaire','apocynac@gmail.com','apocynac@gmail.com',1,'nmr9zh8orr40o4g0w48c0408400wwco','8QgmDKO+YWZkTs49fqHLgi58t9X1B2y4y4C+kNkZjz4E25QDQeylyaK9qpdeOP/9xkKf3pdy0JRzSZI0zo+vRg==','2017-02-17 11:14:51',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_SOC\";}',0,NULL,'2017-01-16 15:27:08','2017-02-17 11:14:51',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,''),(21,'rand74','rand74','david.ducruet74@gmail.com','david.ducruet74@gmail.com',0,'d9y34gh7zaos8s08ckkskgk4k4c44oo','Q94aFFuJRa7Rd09pk7l4hTBn6aEGG1CXN6MS+ki3INuGz5DxlY887lySHQXgJDLoobQ08Lk4UF/l21113agDuQ==',NULL,0,0,NULL,'NoH4UOyUwhgKKSsZU5f3okoQoldCh_Qbq3RxnJ-T3wA',NULL,'a:0:{}',0,NULL,'2017-02-14 17:03:08','2017-02-14 17:03:08',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,'');
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,7 +466,114 @@ CREATE TABLE `fos_user_user_group` (
 
 LOCK TABLES `fos_user_user_group` WRITE;
 /*!40000 ALTER TABLE `fos_user_user_group` DISABLE KEYS */;
+INSERT INTO `fos_user_user_group` VALUES (6,2);
 /*!40000 ALTER TABLE `fos_user_user_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `media__gallery`
+--
+
+DROP TABLE IF EXISTS `media__gallery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `media__gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `context` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `default_format` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `media__gallery`
+--
+
+LOCK TABLES `media__gallery` WRITE;
+/*!40000 ALTER TABLE `media__gallery` DISABLE KEYS */;
+/*!40000 ALTER TABLE `media__gallery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `media__gallery_media`
+--
+
+DROP TABLE IF EXISTS `media__gallery_media`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `media__gallery_media` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gallery_id` int(11) DEFAULT NULL,
+  `media_id` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_80D4C5414E7AF8F` (`gallery_id`),
+  KEY `IDX_80D4C541EA9FDD75` (`media_id`),
+  CONSTRAINT `FK_80D4C5414E7AF8F` FOREIGN KEY (`gallery_id`) REFERENCES `media__gallery` (`id`),
+  CONSTRAINT `FK_80D4C541EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media__media` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `media__gallery_media`
+--
+
+LOCK TABLES `media__gallery_media` WRITE;
+/*!40000 ALTER TABLE `media__gallery_media` DISABLE KEYS */;
+/*!40000 ALTER TABLE `media__gallery_media` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `media__media`
+--
+
+DROP TABLE IF EXISTS `media__media`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `media__media` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `enabled` tinyint(1) NOT NULL,
+  `provider_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `provider_status` int(11) NOT NULL,
+  `provider_reference` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `provider_metadata` longtext COLLATE utf8_unicode_ci COMMENT '(DC2Type:json)',
+  `width` int(11) DEFAULT NULL,
+  `height` int(11) DEFAULT NULL,
+  `length` decimal(10,0) DEFAULT NULL,
+  `content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_size` int(11) DEFAULT NULL,
+  `copyright` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `author_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `context` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cdn_is_flushable` tinyint(1) DEFAULT NULL,
+  `cdn_flush_identifier` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cdn_flush_at` datetime DEFAULT NULL,
+  `cdn_status` int(11) DEFAULT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5C6DD74E12469DE2` (`category_id`),
+  CONSTRAINT `FK_5C6DD74E12469DE2` FOREIGN KEY (`category_id`) REFERENCES `classification__category` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `media__media`
+--
+
+LOCK TABLES `media__media` WRITE;
+/*!40000 ALTER TABLE `media__media` DISABLE KEYS */;
+/*!40000 ALTER TABLE `media__media` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -381,7 +624,7 @@ CREATE TABLE `needs_has_organizations` (
 
 LOCK TABLES `needs_has_organizations` WRITE;
 /*!40000 ALTER TABLE `needs_has_organizations` DISABLE KEYS */;
-INSERT INTO `needs_has_organizations` VALUES (40,3),(41,4),(41,9),(42,3),(42,4),(43,3),(43,4),(44,3),(44,7);
+INSERT INTO `needs_has_organizations` VALUES (40,3),(41,3),(42,6),(43,7),(44,4);
 /*!40000 ALTER TABLE `needs_has_organizations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +683,7 @@ CREATE TABLE `organizations` (
   `opendays` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `team_members_number` int(11) DEFAULT NULL,
   `update_datetime` datetime DEFAULT NULL,
-  `school` tinyint(1) DEFAULT NULL,
+  `school` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   `activities` text COLLATE utf8_unicode_ci,
   `doc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `profil_picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -451,13 +694,18 @@ CREATE TABLE `organizations` (
   `working_description` text COLLATE utf8_unicode_ci,
   `school_description` text COLLATE utf8_unicode_ci,
   `place_description` text COLLATE utf8_unicode_ci,
-  `user_id` int(11) DEFAULT NULL,
+  `fax` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `director_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `accomodation` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `accomodation_description` text COLLATE utf8_unicode_ci,
+  `service` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `statut` tinyint(1) NOT NULL,
+  `replay` tinyint(1) NOT NULL,
+  `address_complement` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_427C1C7FA76ED395` (`user_id`),
   KEY `IDX_427C1C7FBB72E0AA` (`structurestypes_id`),
   KEY `IDX_427C1C7F3FB29001` (`societies_id`),
   CONSTRAINT `FK_427C1C7F3FB29001` FOREIGN KEY (`societies_id`) REFERENCES `society` (`id`),
-  CONSTRAINT `FK_427C1C7FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `fos_user` (`id`),
   CONSTRAINT `FK_427C1C7FBB72E0AA` FOREIGN KEY (`structurestypes_id`) REFERENCES `structures_types` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -468,7 +716,7 @@ CREATE TABLE `organizations` (
 
 LOCK TABLES `organizations` WRITE;
 /*!40000 ALTER TABLE `organizations` DISABLE KEYS */;
-INSERT INTO `organizations` VALUES (40,4,3,'DELTA 01','Avenue Charles de Gaulle','01330','VILLARS-LES-DOMBES',45.9979296,5.0286438,'0469858213','nicole.vaillotpol@fondation-ove.fr',NULL,NULL,NULL,NULL,NULL,'<p>Delta 01 est un service d&rsquo;&eacute;valuation, de soins et d&rsquo;accompagnement pour des enfants et adolescents de 4 &agrave; 16 ans pr&eacute;sentant des troubles sp&eacute;cifiques des apprentissages multiples et/ou s&eacute;v&egrave;res (dysphasie, dyspraxie, d&eacute;ficit de l&rsquo;attention, trouble de la m&eacute;moire, dyslexie, dysorthographie,dyscalculie).<br />\r\nDelta intervient via trois entit&eacute;s compl&eacute;mentaires : un Sessad sur les lieux de vie de l&#39;enfant, une unit&eacute; transversale de liaison, service d&rsquo;&eacute;coute et de conseils pour les familles, lien entre les professionnels et enfin un centre de ressource (service d&eacute;partemental de r&eacute;f&eacute;rence) aupr&egrave;s des acteurs des diff&eacute;rents secteurs pour des actions de sensibilisation, formation et information, communication.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6),(41,5,3,'CMPP Alfred Binet site Les Andelys','RUE ROGER GAUDEAU','27700','LES ANDELYS',49.242659,1.401851,'0635215353','guillaume.fresnais@fondation-ove.fr',NULL,NULL,NULL,NULL,NULL,'<p>Le CMPP est un &eacute;tablissement m&eacute;dico-social situ&eacute; en premi&egrave;re ligne d&#39;acc&egrave;s au public : il peut &ecirc;tre ainsi directement sollicit&eacute;. Avec son &eacute;quipe pluridisciplinaire, il agit sur prescription m&eacute;dicale. Il apporte une aide pour toutes sortes de difficult&eacute;s chez des enfants et des adolescents de 0 &agrave; 20 ans : dans chaque situation, sa mission est de poser d&#39;abord un diagnostic, puis de contribuer &agrave; l&#39;intervention th&eacute;rapeutique qui en d&eacute;coule. En collaboration avec les lieux d&#39;expertise, services hospitaliers, centres de r&eacute;f&eacute;rence sp&eacute;cialis&eacute;s et centres de ressource, sa comp&eacute;tence concerne les psychopathologies de la relation et du comportement, les troubles neuro-d&eacute;veloppementaux de l&#39;attention, du langage et des apprentissages, et les troubles du spectre autistique. Son but est de soutenir l&#39;enfant ou l&#39;adolescent dans son environnement familial, scolaire et social, en &eacute;tablissant des liens autant que de besoin et en accord avec l&#39;usager : avec les professionnels de la scolarit&eacute;, les partenaires sociaux, m&eacute;dicaux, et m&eacute;dico-sociaux. L&#39;activit&eacute; du CMPP des Andelys portera sur la r&eacute;alisation de 6 700 actes par an. Cet &eacute;tablissement est ouvert depuis septembre 2014.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,0,20,NULL,NULL,NULL,NULL,NULL,8),(42,12,3,'ITEP Evreux','rue Victor Hugo','27000','Evreux',49.0222049,1.1464784,'0526262626','test@gmail.com',NULL,NULL,NULL,NULL,18,'<p>Le futur &eacute;tablissement implant&eacute; &agrave; Evreux sera de type ITEP (Institut Th&eacute;rapeutique &Eacute;ducatif et P&eacute;dagogique), il devra permettre d&#39;accompagner 13 adolescents souffrant de troubles du comportement et se trouvant en grande difficult&eacute; de scolarisation en milieu ordinaire. Les 13 jeunes seront accompagn&eacute;s en internat de semaine (du lundi au vendredi) durant les p&eacute;riodes scolaires. Ils b&eacute;n&eacute;ficieront sur site d&#39;une prise en charge &eacute;ducative, p&eacute;dagogique (classe en interne) et th&eacute;rapeutique (consultations m&eacute;decin, orthophonie et psychologique). L&#39;ouverture est pr&eacute;vue au 1er janvier 2016.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,11,20,NULL,NULL,NULL,NULL,NULL,10),(43,12,3,'ITEP Marius Boulogne','chemin des Tières','38330','BIVIERS',45.2356849,5.805013,'0476523163','bruno.minssieux@fondation-ove.fr',NULL,NULL,NULL,NULL,59,'<p>L&rsquo;Itep Marius Boulogne accueille des adolescents pr&eacute;sentant des troubles du comportement et de la personnalit&eacute;.<br />\r\nLes objectifs principaux de la prise en charge sont la compr&eacute;hension et la r&eacute;sorption des troubles, l&rsquo;am&eacute;lioration du niveau scolaire, la recherche d&rsquo;un choix professionnel, et dans la mesure du possible la signature d&rsquo;un contrat professionnalisant. Un retour en milieu scolaire ordinaire est favoris&eacute; d&egrave;s que possible.<br />\r\nLa prise en charge globale permet &agrave; chaque usager ainsi qu&#39;&agrave; sa famille de trouver une unit&eacute; de temps et de lieu favorable &agrave; la prise en compte de sa personnalit&eacute; et &agrave; l&#39;&eacute;mergence de potentialit&eacute;s.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,11),(44,5,3,'IME Saint Romme','impasse du Château','38940','ROYBON',45.2594595,5.2462268,'0476362267','saint.romme@fondation-ove.fr',NULL,NULL,NULL,NULL,33,'<p>L&rsquo;IME Mathias Saint-Romme de Roybon propose un accueil et un accompagnement pour des enfants en situation de d&eacute;ficience intellectuelle. L&rsquo;IME est situ&eacute; sur le territoire Bi&egrave;vre-Valloire. L&rsquo;&eacute;quipe de professionnels sp&eacute;cialis&eacute;s accueille des enfants et adolescents orient&eacute;s par la Maison D&eacute;partementale des Personnes Handicap&eacute;es, en internat ou en demi-pension. Elle propose, en collaboration avec les parents, une scolarit&eacute; adapt&eacute;e, des soins sp&eacute;cialis&eacute;s et une aide &eacute;ducative. L&#39;&eacute;tablissement est ouvert 201 jours par an. L&#39;Unit&eacute; d&#39;Enseignement int&eacute;gr&eacute;e fonctionne sur le calendrier de l&#39;ann&eacute;e scolaire.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,7,20,NULL,NULL,NULL,NULL,NULL,12);
+INSERT INTO `organizations` VALUES (40,2,3,'test 2','13 rue Dumenge','69004','Lyon',45.7768548,4.8343287,'023236565458','test2@gmail.com',NULL,NULL,NULL,'jjj',NULL,'<p>fddfsfsf</p>',NULL,NULL,NULL,'2017-02-16 15:45:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123456789','Mr Tangui l\'andouille',NULL,NULL,NULL,1,0,NULL),(41,1,3,'test 3','18 rue de nuit','69004','Lyon',45.7780016,4.8357189,'052363659656','tes@gmail.com',NULL,NULL,NULL,NULL,NULL,'fdsfds',NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,10,40,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL),(42,1,3,'test4','454 route de deyrier','74350','cruseilles',46.0217109,6.1288618,'0123456789','aa@bb.fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,50,60,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL),(43,1,3,'test5','74 rue bossuet','69006','lyon',45.7678107,4.8517982,'0987654321','cc@kk.fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL),(44,1,3,'test6','28 bis rue victor hugo','27000','Evreux',49.0214456,1.1454058,'0123456789','hh@pp.fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,50,60,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL);
 /*!40000 ALTER TABLE `organizations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +744,7 @@ CREATE TABLE `organizations_has_staff` (
 
 LOCK TABLES `organizations_has_staff` WRITE;
 /*!40000 ALTER TABLE `organizations_has_staff` DISABLE KEYS */;
-INSERT INTO `organizations_has_staff` VALUES (40,5),(40,13),(40,16),(41,5),(41,11),(41,20),(42,20),(42,34),(43,20),(43,34),(44,5),(44,34);
+INSERT INTO `organizations_has_staff` VALUES (40,3),(41,2),(42,4),(42,7),(43,4),(43,30),(44,7);
 /*!40000 ALTER TABLE `organizations_has_staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -532,7 +780,7 @@ CREATE TABLE `society` (
 
 LOCK TABLES `society` WRITE;
 /*!40000 ALTER TABLE `society` DISABLE KEYS */;
-INSERT INTO `society` VALUES (3,'Fondation OVE',NULL,'19 rue Marius Grosso','69120','Vaulx-en-Velin','04 72 07 42 00',NULL,'https://twitter.com/OveFondation',NULL,'www.fondation-ove',6),(4,'gestionnaire 2','fsdsfds','15 rue du mail','69004','Lyon','dsfnf','fkdnskdlfn','lkfndsf','fdjsdnf','fdsljnfdjs',9);
+INSERT INTO `society` VALUES (3,'gestionnaire 1','dsfsd','12 rue de nuit','69004','Lyon','0236356965','test@gmail.com','fsd,gs','fdsklglsn','fdskngdslkn',6),(4,'gestionnaire 2','fsdsfds','15 rue du mail','69004','Lyon','dsfnf','fkdnskdlfn','lkfndsf','fdjsdnf','fdsljnfdjs',9);
 /*!40000 ALTER TABLE `society` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -622,4 +870,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-27 14:19:33
+-- Dump completed on 2017-02-17 13:26:26
