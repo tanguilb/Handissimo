@@ -1,7 +1,6 @@
 <?php
 
 namespace HandissimoBundle\Entity;
-use Faker\Provider\cs_CZ\DateTime;
 
 /**
  * Organizations
@@ -1398,5 +1397,14 @@ class Organizations
     public function getAddressComplement()
     {
         return $this->addressComplement;
+    }
+
+    /**
+     * Get reset value statut when organizations is edit
+     *
+     */
+    public function resetStatut()
+    {
+        return $this->setStatut(0);
     }
 }
