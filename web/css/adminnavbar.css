@@ -2,3 +2,8 @@
     width: 24px;
     height: auto;
 }
+
+img.admin-preview {
+    max-height: 200px;
+    max-width: 200px;
+}

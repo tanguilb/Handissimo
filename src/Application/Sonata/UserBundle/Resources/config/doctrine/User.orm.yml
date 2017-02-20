@@ -12,7 +12,6 @@ Application\Sonata\UserBundle\Entity\User:
           type: string
           nullable: false
           length: 50
-   fields:
        avatar:
            type: text
            nullable: true

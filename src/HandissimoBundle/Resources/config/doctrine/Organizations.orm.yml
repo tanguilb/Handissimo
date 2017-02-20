@@ -148,6 +148,15 @@ HandissimoBundle\Entity\Organizations:
         replay:
             type: boolean
             nullable: true
+        user:
+            type: string
+            length: 50
+            nullable: true
+        userType:
+            type: string
+            length: 50
+            nullable: true
+
 
     oneToOne:
         userorg:

@@ -1312,6 +1312,65 @@ class Organizations
     }
 
     /**
+     * @var string
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     *
+     * @return Organizations
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    /**
+     * @var string
+     */
+    private $userType;
+
+
+    /**
+     * Set userType
+     *
+     * @param string $userType
+     *
+     * @return Organizations
+     */
+    public function setUserType($userType)
+    {
+        $this->userType = $userType;
+
+        return $this;
+    }
+
+    /**
+     * Get userType
+     *
+     * @return string
+     */
+    public function getUserType()
+    {
+        return $this->userType;
+    }
+
+    /**
      * @var boolean
      */
     private $statut;

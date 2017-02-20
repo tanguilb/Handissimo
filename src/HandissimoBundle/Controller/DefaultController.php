@@ -5,6 +5,7 @@ namespace HandissimoBundle\Controller;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -21,7 +22,16 @@ class DefaultController extends Controller
     public function aboutAction(){
         return $this->render('front/about.html.twig');
     }
+    public function standardPageAction(Organizations $organization){
+        $user = $this->getUser();
+        $organization = $this->get('templating')
+            ->render('front/organizationPage.html.twig', array(
+                'organization' => $organization,
+                'user' => $user));
 
+        return new Response($organization);
+
+    }
     public function loadAction()
     {
         $string = file_get_contents($this->get('kernel')->getRootDir()."/../1.json");

@@ -80,3 +80,4 @@ services:
         parent: fos_user.registration.form.type
         tags:
             - { name: form.type, alias: front_user_registration }
+

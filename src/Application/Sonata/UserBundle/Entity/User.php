@@ -35,6 +35,7 @@ class User extends BaseUser
 
     protected $societyUser;
 
+
     /**
      * Get id
      *
@@ -153,4 +154,6 @@ class User extends BaseUser
     {
         return $this->avatar;
     }
+
+
 }
