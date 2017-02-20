@@ -29,3 +29,4 @@ Application\Sonata\UserBundle\Entity\User:
        societyUser:
            targetEntity: HandissimoBundle\Entity\Society
            mappedBy: userSociety
+

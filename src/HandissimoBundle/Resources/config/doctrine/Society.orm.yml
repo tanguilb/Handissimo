@@ -81,6 +81,7 @@ HandissimoBundle\Entity\Society:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
+                onDelete: CASCADE
 
     oneToMany:
         organization:

@@ -166,138 +166,6 @@ INSERT INTO `acl_security_identities` VALUES (51,'Application\\Sonata\\UserBundl
 UNLOCK TABLES;
 
 --
--- Table structure for table `classification__category`
---
-
-DROP TABLE IF EXISTS `classification__category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `classification__category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) DEFAULT NULL,
-  `context` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `media_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `position` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_43629B36727ACA70` (`parent_id`),
-  KEY `IDX_43629B36E25D857E` (`context`),
-  KEY `IDX_43629B36EA9FDD75` (`media_id`),
-  CONSTRAINT `FK_43629B36727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `classification__category` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_43629B36E25D857E` FOREIGN KEY (`context`) REFERENCES `classification__context` (`id`),
-  CONSTRAINT `FK_43629B36EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media__media` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `classification__category`
---
-
-LOCK TABLES `classification__category` WRITE;
-/*!40000 ALTER TABLE `classification__category` DISABLE KEYS */;
-INSERT INTO `classification__category` VALUES (1,NULL,'handissimo',NULL,'handissimo',1,'handissimo','handissimo',NULL,'2017-02-13 11:05:23','2017-02-13 11:05:23'),(2,1,'handissimo',NULL,'Avatar',0,'avatar',NULL,0,'2017-02-13 11:21:01','2017-02-13 11:21:01');
-/*!40000 ALTER TABLE `classification__category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `classification__collection`
---
-
-DROP TABLE IF EXISTS `classification__collection`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `classification__collection` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `context` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `media_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_collection` (`slug`,`context`),
-  KEY `IDX_A406B56AE25D857E` (`context`),
-  KEY `IDX_A406B56AEA9FDD75` (`media_id`),
-  CONSTRAINT `FK_A406B56AE25D857E` FOREIGN KEY (`context`) REFERENCES `classification__context` (`id`),
-  CONSTRAINT `FK_A406B56AEA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media__media` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `classification__collection`
---
-
-LOCK TABLES `classification__collection` WRITE;
-/*!40000 ALTER TABLE `classification__collection` DISABLE KEYS */;
-/*!40000 ALTER TABLE `classification__collection` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `classification__context`
---
-
-DROP TABLE IF EXISTS `classification__context`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `classification__context` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `classification__context`
---
-
-LOCK TABLES `classification__context` WRITE;
-/*!40000 ALTER TABLE `classification__context` DISABLE KEYS */;
-INSERT INTO `classification__context` VALUES ('handissimo','handissimo',1,'2017-02-13 11:05:22','2017-02-13 11:05:22');
-/*!40000 ALTER TABLE `classification__context` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `classification__tag`
---
-
-DROP TABLE IF EXISTS `classification__tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `classification__tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `context` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_context` (`slug`,`context`),
-  KEY `IDX_CA57A1C7E25D857E` (`context`),
-  CONSTRAINT `FK_CA57A1C7E25D857E` FOREIGN KEY (`context`) REFERENCES `classification__context` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `classification__tag`
---
-
-LOCK TABLES `classification__tag` WRITE;
-/*!40000 ALTER TABLE `classification__tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `classification__tag` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `disability_types`
 --
 
@@ -345,7 +213,6 @@ CREATE TABLE `disability_types_has_organizations` (
 
 LOCK TABLES `disability_types_has_organizations` WRITE;
 /*!40000 ALTER TABLE `disability_types_has_organizations` DISABLE KEYS */;
-INSERT INTO `disability_types_has_organizations` VALUES (40,2),(40,6),(40,8),(41,2),(41,5),(42,1),(42,4),(42,5),(43,1),(43,12),(44,7);
 /*!40000 ALTER TABLE `disability_types_has_organizations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -438,7 +305,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (5,'dev','dev','tangui.lebourdonnec@gmail.com','tangui.lebourdonnec@gmail.com',1,'pvcatcn4ls044c8404ck8wo04gggsgw','2fPclSLsYNlFQALDTWfdIK+MjkHmLq5XOgcyeNyVpHbpA3f+5AV9SWfAfUwl3EBAEdnRT+DfnXhJH7e1CBv7Ag==','2017-02-17 11:29:37',0,0,NULL,'niFZXBvBAZqplydnjlsQPH_NMNXSKoDhIstTjd3ljv4','2017-02-14 15:19:49','a:12:{i:0;s:16:\"ROLE_SUPER_ADMIN\";i:1;s:28:\"ROLE_ADMIN_ORGANIZATIONS_ALL\";i:2;s:30:\"ROLE_ADMIN_DISABILITYTYPES_ALL\";i:3;s:22:\"ROLE_ADMIN_SOCIETY_ALL\";i:4;s:31:\"ROLE_ADMIN_STRUCTURES_TYPES_ALL\";i:5;s:20:\"ROLE_ADMIN_STAFF_ALL\";i:6;s:24:\"ROLE_ADMIN_STAFFTYPE_ALL\";i:7;s:20:\"ROLE_ADMIN_NEEDS_ALL\";i:8;s:22:\"ROLE_ADMIN_OPINION_ALL\";i:9;s:19:\"ROLE_ADMIN_USER_ALL\";i:10;s:31:\"ROLE_SONATA_USER_ADMIN_USER_ALL\";i:11;s:32:\"ROLE_SONATA_USER_ADMIN_GROUP_ALL\";}',0,NULL,'2017-01-10 10:03:19','2017-02-17 11:29:37',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,''),(6,'utilisateur','utilisateur','tangui8@hotmail.com','tangui8@hotmail.com',1,'6frvjhu77o080wgg8s0048o4s4oc04s','b34PNAQoMNhKKAkbm4xNsPuHUzUvm3fuOrDMfVv4pRl3HSBMXBVNNVNBUZhdtN7a3Al0twqkExj3TSfrLLah8A==','2017-02-17 10:31:24',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_ORG\";}',0,NULL,'2017-01-10 13:40:19','2017-02-17 10:31:24',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,'utilisateur'),(8,'users','users','dev.wildcodeshool@gmail.com','dev.wildcodeshool@gmail.com',1,'uigwml9upq848ww8kso088cooks0so','BLVZOK60/SAyhoVio1Xf5MJzTQlBJGsTKnJS8JW3f0R8qpgQE2BmcZcFwT4MSWLquZZbOdHlux0U3nXhX676Sw==','2017-02-16 10:52:38',0,0,NULL,NULL,NULL,'a:6:{i:0;s:8:\"ROLE_ORG\";i:1;s:30:\"ROLE_ADMIN_ORGANIZATIONS_GUEST\";i:2;s:30:\"ROLE_ADMIN_ORGANIZATIONS_STAFF\";i:3;s:31:\"ROLE_ADMIN_ORGANIZATIONS_EDITOR\";i:4;s:30:\"ROLE_ADMIN_ORGANIZATIONS_ADMIN\";i:5;s:12:\"ROLE_SOCIETE\";}',0,NULL,'2017-01-10 16:15:04','2017-02-16 10:52:38',NULL,'tangui','le bourdonnec',NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,''),(9,'gestionnaire','gestionnaire','apocynac@gmail.com','apocynac@gmail.com',1,'nmr9zh8orr40o4g0w48c0408400wwco','8QgmDKO+YWZkTs49fqHLgi58t9X1B2y4y4C+kNkZjz4E25QDQeylyaK9qpdeOP/9xkKf3pdy0JRzSZI0zo+vRg==','2017-02-17 11:14:51',0,0,NULL,NULL,NULL,'a:1:{i:0;s:8:\"ROLE_SOC\";}',0,NULL,'2017-01-16 15:27:08','2017-02-17 11:14:51',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,''),(21,'rand74','rand74','david.ducruet74@gmail.com','david.ducruet74@gmail.com',0,'d9y34gh7zaos8s08ckkskgk4k4c44oo','Q94aFFuJRa7Rd09pk7l4hTBn6aEGG1CXN6MS+ki3INuGz5DxlY887lySHQXgJDLoobQ08Lk4UF/l21113agDuQ==',NULL,0,0,NULL,'NoH4UOyUwhgKKSsZU5f3okoQoldCh_Qbq3RxnJ-T3wA',NULL,'a:0:{}',0,NULL,'2017-02-14 17:03:08','2017-02-14 17:03:08',NULL,NULL,NULL,NULL,NULL,'u',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,'');
+INSERT INTO `fos_user` VALUES (5,'dev','dev','tangui.lebourdonnec@gmail.com','tangui.lebourdonnec@gmail.com',1,'pvcatcn4ls044c8404ck8wo04gggsgw','2fPclSLsYNlFQALDTWfdIK+MjkHmLq5XOgcyeNyVpHbpA3f+5AV9SWfAfUwl3EBAEdnRT+DfnXhJH7e1CBv7Ag==','2017-02-20 14:00:20',0,0,NULL,'niFZXBvBAZqplydnjlsQPH_NMNXSKoDhIstTjd3ljv4','2017-02-14 15:19:49','a:13:{i:0;s:16:\"ROLE_SUPER_ADMIN\";i:1;s:28:\"ROLE_ADMIN_ORGANIZATIONS_ALL\";i:2;s:30:\"ROLE_ADMIN_DISABILITYTYPES_ALL\";i:3;s:22:\"ROLE_ADMIN_SOCIETY_ALL\";i:4;s:31:\"ROLE_ADMIN_STRUCTURES_TYPES_ALL\";i:5;s:20:\"ROLE_ADMIN_STAFF_ALL\";i:6;s:24:\"ROLE_ADMIN_STAFFTYPE_ALL\";i:7;s:20:\"ROLE_ADMIN_NEEDS_ALL\";i:8;s:22:\"ROLE_ADMIN_OPINION_ALL\";i:9;s:31:\"ROLE_SONATA_USER_ADMIN_USER_ALL\";i:10;s:32:\"ROLE_SONATA_USER_ADMIN_GROUP_ALL\";i:11;s:8:\"ROLE_ORG\";i:12;s:19:\"ROLE_ADMIN_USER_ALL\";}',0,NULL,'2017-01-10 10:03:19','2017-02-20 14:00:20',NULL,NULL,NULL,NULL,NULL,'m',NULL,NULL,NULL,NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,'null',NULL,NULL,NULL,'utilisateur');
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -466,114 +333,7 @@ CREATE TABLE `fos_user_user_group` (
 
 LOCK TABLES `fos_user_user_group` WRITE;
 /*!40000 ALTER TABLE `fos_user_user_group` DISABLE KEYS */;
-INSERT INTO `fos_user_user_group` VALUES (6,2);
 /*!40000 ALTER TABLE `fos_user_user_group` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `media__gallery`
---
-
-DROP TABLE IF EXISTS `media__gallery`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `media__gallery` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `context` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `default_format` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `media__gallery`
---
-
-LOCK TABLES `media__gallery` WRITE;
-/*!40000 ALTER TABLE `media__gallery` DISABLE KEYS */;
-/*!40000 ALTER TABLE `media__gallery` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `media__gallery_media`
---
-
-DROP TABLE IF EXISTS `media__gallery_media`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `media__gallery_media` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `gallery_id` int(11) DEFAULT NULL,
-  `media_id` int(11) DEFAULT NULL,
-  `position` int(11) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_80D4C5414E7AF8F` (`gallery_id`),
-  KEY `IDX_80D4C541EA9FDD75` (`media_id`),
-  CONSTRAINT `FK_80D4C5414E7AF8F` FOREIGN KEY (`gallery_id`) REFERENCES `media__gallery` (`id`),
-  CONSTRAINT `FK_80D4C541EA9FDD75` FOREIGN KEY (`media_id`) REFERENCES `media__media` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `media__gallery_media`
---
-
-LOCK TABLES `media__gallery_media` WRITE;
-/*!40000 ALTER TABLE `media__gallery_media` DISABLE KEYS */;
-/*!40000 ALTER TABLE `media__gallery_media` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `media__media`
---
-
-DROP TABLE IF EXISTS `media__media`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `media__media` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `enabled` tinyint(1) NOT NULL,
-  `provider_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `provider_status` int(11) NOT NULL,
-  `provider_reference` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `provider_metadata` longtext COLLATE utf8_unicode_ci COMMENT '(DC2Type:json)',
-  `width` int(11) DEFAULT NULL,
-  `height` int(11) DEFAULT NULL,
-  `length` decimal(10,0) DEFAULT NULL,
-  `content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content_size` int(11) DEFAULT NULL,
-  `copyright` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `author_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `context` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cdn_is_flushable` tinyint(1) DEFAULT NULL,
-  `cdn_flush_identifier` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cdn_flush_at` datetime DEFAULT NULL,
-  `cdn_status` int(11) DEFAULT NULL,
-  `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_5C6DD74E12469DE2` (`category_id`),
-  CONSTRAINT `FK_5C6DD74E12469DE2` FOREIGN KEY (`category_id`) REFERENCES `classification__category` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `media__media`
---
-
-LOCK TABLES `media__media` WRITE;
-/*!40000 ALTER TABLE `media__media` DISABLE KEYS */;
-/*!40000 ALTER TABLE `media__media` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -624,7 +384,6 @@ CREATE TABLE `needs_has_organizations` (
 
 LOCK TABLES `needs_has_organizations` WRITE;
 /*!40000 ALTER TABLE `needs_has_organizations` DISABLE KEYS */;
-INSERT INTO `needs_has_organizations` VALUES (40,3),(41,3),(42,6),(43,7),(44,4);
 /*!40000 ALTER TABLE `needs_has_organizations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -694,20 +453,20 @@ CREATE TABLE `organizations` (
   `working_description` text COLLATE utf8_unicode_ci,
   `school_description` text COLLATE utf8_unicode_ci,
   `place_description` text COLLATE utf8_unicode_ci,
-  `fax` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `fax` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `director_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `accomodation` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
   `accomodation_description` text COLLATE utf8_unicode_ci,
   `service` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `statut` tinyint(1) NOT NULL,
-  `replay` tinyint(1) NOT NULL,
+  `statut` tinyint(1) DEFAULT NULL,
+  `replay` tinyint(1) DEFAULT NULL,
   `address_complement` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_427C1C7FBB72E0AA` (`structurestypes_id`),
   KEY `IDX_427C1C7F3FB29001` (`societies_id`),
   CONSTRAINT `FK_427C1C7F3FB29001` FOREIGN KEY (`societies_id`) REFERENCES `society` (`id`),
   CONSTRAINT `FK_427C1C7FBB72E0AA` FOREIGN KEY (`structurestypes_id`) REFERENCES `structures_types` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -716,7 +475,7 @@ CREATE TABLE `organizations` (
 
 LOCK TABLES `organizations` WRITE;
 /*!40000 ALTER TABLE `organizations` DISABLE KEYS */;
-INSERT INTO `organizations` VALUES (40,2,3,'test 2','13 rue Dumenge','69004','Lyon',45.7768548,4.8343287,'023236565458','test2@gmail.com',NULL,NULL,NULL,'jjj',NULL,'<p>fddfsfsf</p>',NULL,NULL,NULL,'2017-02-16 15:45:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'123456789','Mr Tangui l\'andouille',NULL,NULL,NULL,1,0,NULL),(41,1,3,'test 3','18 rue de nuit','69004','Lyon',45.7780016,4.8357189,'052363659656','tes@gmail.com',NULL,NULL,NULL,NULL,NULL,'fdsfds',NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,10,40,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL),(42,1,3,'test4','454 route de deyrier','74350','cruseilles',46.0217109,6.1288618,'0123456789','aa@bb.fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,50,60,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL),(43,1,3,'test5','74 rue bossuet','69006','lyon',45.7678107,4.8517982,'0987654321','cc@kk.fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL),(44,1,3,'test6','28 bis rue victor hugo','27000','Evreux',49.0214456,1.1454058,'0123456789','hh@pp.fr',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,50,60,NULL,NULL,NULL,NULL,NULL,'','',NULL,NULL,NULL,0,0,NULL);
+INSERT INTO `organizations` VALUES (45,NULL,NULL,'OVE - DELTA 01','1327 Avenue Charles de Gaulle','1330','VILLARS-LES-DOMBES',NULL,NULL,'www.fondation-ove.fr','nicole.vaillotpol@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,44,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,16,NULL,NULL,NULL,NULL,NULL,NULL,'Vaillot Pol Nicole',NULL,NULL,NULL,NULL,NULL,'RD 1083 - BP 8'),(46,NULL,NULL,'OVE - CMPP Alfred Binet site Les Andelys','rue Roger Gaudeau','27700','LES ANDELYS',NULL,NULL,'www.fondation-ove.fr','guillaume.fresnais@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,20,NULL,NULL,NULL,NULL,NULL,NULL,'Fresnais Guillaume',NULL,NULL,NULL,NULL,NULL,''),(47,NULL,NULL,'OVE - Itep Evreux','28 bis rue Victor Hugo','27000','Evreux',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,11,20,NULL,NULL,NULL,NULL,NULL,NULL,'Fresnais Guillaume',NULL,NULL,NULL,NULL,NULL,''),(48,NULL,NULL,'OVE - CMPP Alfred Binet site de Pont-Audemer','Quai François Mitterrand','27500','Pont-Audemer',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'Fresnais Guillaume',NULL,NULL,NULL,NULL,NULL,''),(49,NULL,NULL,'OVE - Itep Marius Boulogne','677 chemin des Tières','38330','BIVIERS',NULL,NULL,'www.fondation-ove.fr','bruno.minssieux@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,59,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'MINSSIEUX Bruno',NULL,NULL,NULL,NULL,NULL,'Château de Franquières'),(50,NULL,NULL,'OVE - IME Saint-Romme','200 impasse du Château','38940','ROYBON',NULL,NULL,'www.fondation-ove.fr','saint.romme@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,33,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,7,20,NULL,NULL,NULL,NULL,NULL,NULL,'BRENIER Jean-Christophe',NULL,NULL,NULL,NULL,NULL,''),(51,NULL,NULL,'OVE - Les Maisons de Crolles','101 rue des Bécasses','38920','CROLLES',NULL,NULL,'http://blog.fondation-ove.fr/maisonsdecrolles/','maisonsdecrolles@fondation-ove.fr','http://blog.fondation-ove.fr/maisonsdecrolles/',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20,65,NULL,NULL,NULL,NULL,NULL,NULL,'CARRERA Mathilde',NULL,NULL,NULL,NULL,NULL,''),(52,NULL,NULL,'OVE - Sessad du Turquet','3 rue Paul Sage','38110','La Tour-du-Pin',NULL,NULL,'www.fondation-ove.fr','natalie.faure@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'BRENIER Jean-Christophe',NULL,NULL,NULL,NULL,NULL,''),(53,NULL,NULL,'OVE - Sessad de Grenoble','8 Rue Général Ferrié','38100','GRENOBLE',NULL,NULL,'www.fondation-ove.fr','sessad.ferrie@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,44,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'MINSSIEUX Bruno',NULL,NULL,NULL,NULL,NULL,''),(54,NULL,NULL,'OVE - Sessad Bièvre-Valloire','1 place de l\'Europe','38260','LA COTE SAINT ANDRE',NULL,NULL,'www.fondation-ove.fr','jchristophe.brenier@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,28,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,16,NULL,NULL,NULL,NULL,NULL,NULL,'BRENIER Jean-Christophe',NULL,NULL,NULL,NULL,NULL,''),(55,NULL,NULL,'OVE - Itep de Vienne','75 rue Lafayette','38200','Vienne',NULL,NULL,'www.fondation-ove.fr','melanie.tacquard@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,29,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(56,NULL,NULL,'OVE - IME André Romanet','27/29 chemin Gros Denis','42300','ROANNE',NULL,NULL,'www.fondation-ove.fr','jeanclaude.jaboulay@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,16,NULL,NULL,NULL,NULL,NULL,NULL,'Jaboulay Jean Claude',NULL,NULL,NULL,NULL,NULL,''),(57,NULL,NULL,'OVE - IME Jacques Rochas','10 rue Henri Dunant','42100','SAINT ETIENNE',NULL,NULL,'www.fondation-ove.fr','ime.jacquesrochas@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,28,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,14,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Virginie',NULL,NULL,NULL,NULL,NULL,''),(58,NULL,NULL,'OVE - IME Château de Taron','Taron','42370','RENAISON',NULL,NULL,'www.fondation-ove.fr','jeanclaude.jaboulay@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,54,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Jean-Claude',NULL,NULL,NULL,NULL,NULL,''),(59,NULL,NULL,'OVE - IME Celadon','6 chemin des Quatre','42110','FEURS',NULL,NULL,'www.fondation-ove.fr','jeanclaude.jaboulay@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'Jaboulay Jean Claude',NULL,NULL,NULL,NULL,NULL,''),(60,NULL,NULL,'OVE - Itep André Romanet','16 Rue Marx Dormoy','42370','ROANNE',NULL,NULL,'www.fondation-ove.fr','jeanclaude.jaboulay@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,37,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,13,NULL,NULL,NULL,NULL,NULL,NULL,'Jaboulay Jean Claude',NULL,NULL,NULL,NULL,NULL,''),(61,NULL,NULL,'OVE - Itep La Rose des Vents','Château de la Doue','42330','Saint Galmier',NULL,NULL,'www.fondation-ove.fr','iteplarosedesvents@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,88,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,18,NULL,NULL,NULL,NULL,NULL,NULL,'MORTEL philippe',NULL,NULL,NULL,NULL,NULL,''),(62,NULL,NULL,'OVE - Sessad Sud Forez','11 rue Molière','42160','ANDREZIEUX BOUTHEON',NULL,NULL,'www.fondation-ove.fr','sessadsud-forez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,16,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Virgine',NULL,NULL,NULL,NULL,NULL,''),(63,NULL,NULL,'OVE - Sessad André Romanet','11 rue de l\'Eglise','42370','SAINT ANDRE APHCHON',NULL,NULL,'www.fondation-ove.fr','jeanclaude.jaboulay@ove.asso.fr','www.fondation-ove.fr',NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'Jaboulay Jean Claude',NULL,NULL,NULL,NULL,NULL,''),(64,NULL,NULL,'OVE - Sessad Henri Michaud','2 rue Louis Béraud','42100','SAINT-ETIENNE',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,16,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Virginie',NULL,NULL,NULL,NULL,NULL,''),(65,NULL,NULL,'OVE - Sessad Roanne','27-29 chemin Grosdenis','42300','ROANNE',NULL,NULL,'www.fondation-ove.fr','jeanclaude.jaboulay@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Jean-Claude',NULL,NULL,NULL,NULL,NULL,''),(66,NULL,NULL,'OVE - Itep Marx Dormoy','16 Rue Marx Dormoy','42300','ROANNE',NULL,NULL,'www.fondation-ove.fr','marx.dormoy@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,37,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Jean-Claude',NULL,NULL,NULL,NULL,NULL,''),(67,NULL,NULL,'OVE - DEAT 42','21 rue Johannot','42000','Saint-Etienne',NULL,NULL,'www.fondation-ove.fr','deat42@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14,20,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Virginie',NULL,NULL,NULL,NULL,NULL,''),(68,NULL,NULL,'OVE - Itep Institut Lamoricière','7 rue Arsène Leloup','44100','Nantes',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,79,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'MILANESE Delphine',NULL,NULL,NULL,NULL,NULL,''),(69,NULL,NULL,'OVE - Sessad Jean Duret','7 rue Arsène Leloup','44100','Nantes',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,40,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'MILANESE Delphine',NULL,NULL,NULL,NULL,NULL,''),(70,NULL,NULL,'OVE - CAFS de Nantes','7 rue Arsène Leloup','44100','Nantes',NULL,NULL,'www.fondation-ove.fr','contact@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'DELLAC Sylvie',NULL,NULL,NULL,NULL,NULL,''),(71,NULL,NULL,'OVE - Itep de Montferrand','1 rue du Franc Rozier','63100','CLERMONT-FERRAND',NULL,NULL,'itep.montferrand.fondation-ove.fr','','itep.montferrand.fondation-ove.fr',NULL,NULL,NULL,80,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Jean-Claude',NULL,NULL,NULL,NULL,NULL,''),(72,NULL,NULL,'OVE - Sessad de Montferrand','1 rue du Franc Rozier','63100','CLERMONT FERRAND',NULL,NULL,'www.fondation-ove.fr','sessad.montferrand@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'JABOULAY Jean-Claude',NULL,NULL,NULL,NULL,NULL,''),(73,NULL,NULL,'OVE -SEES champagnat','22 rue du professeur Patel','69009','LYON',NULL,NULL,'www.fondation-ove.fr','yves.beroujon@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,63,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'Béroujon Yves',NULL,NULL,NULL,NULL,NULL,''),(74,NULL,NULL,'OVE - Itep Jean Fayard','257 route de Montclair','69480','POMMIERS',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,48,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,14,NULL,NULL,NULL,NULL,NULL,NULL,'Vaillot Pol Nicole',NULL,NULL,NULL,NULL,NULL,''),(75,NULL,NULL,'OVE - IME Mathis Jeune','1 rue du Dr Serullaz','69670','VAUGNERAY',NULL,NULL,'www.fondation-ove.fr','mathis.jeune@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,46,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,12,NULL,NULL,NULL,NULL,NULL,NULL,'BRET Yves',NULL,NULL,NULL,NULL,NULL,''),(76,NULL,NULL,'OVE - SEES Roland Champagnat','22 rue Professeur Patel','69009','LYON',NULL,NULL,'www.fondation-ove.fr','sees.champagnat@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,65,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'BEROUJON Yves',NULL,NULL,NULL,NULL,NULL,''),(77,NULL,NULL,'OVE - IME Yves Farge','5 rue Jean Marie Merle','69120','Vaulx-en-Velin',NULL,NULL,'www.fondation-ove.fr','ime.farge@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,75,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'Marie Eric',NULL,NULL,NULL,NULL,NULL,''),(78,NULL,NULL,'OVE - Sessad à  visée professionnelle','15 rue du Bocage','69008','Lyon',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,20,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(79,NULL,NULL,'OVE - IME Jean-Jacques Rousseau','99 avenue des Martyrs de la Résistance','69200','Vénissieux',NULL,NULL,'www.fondation-ove.fr','jeanjacques.rousseau@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,70,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'BRET Yves',NULL,NULL,NULL,NULL,NULL,''),(80,NULL,NULL,'OVE - IME Villa Henri Salvat','2 rue de la Damette','69540','Irigny',NULL,NULL,'www.fondation-ove.fr','villa.salvat@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'BRET Yves',NULL,NULL,NULL,NULL,NULL,''),(81,NULL,NULL,'OVE - IME Aline Renard','4 rue du Bottet','69140','RILLIEUX',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,36,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,14,NULL,NULL,NULL,NULL,NULL,NULL,'Marie Eric',NULL,NULL,NULL,NULL,NULL,''),(82,NULL,NULL,'OVE - Appartements Jean Lonjaret','20 rue Ducroize','69100','Villeurbanne',NULL,NULL,'www.ove.asso.fr','yves.beroujon@ove.asso.fr','www.ove.asso.fr',NULL,NULL,NULL,15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'BEROUJON Yves',NULL,NULL,NULL,NULL,NULL,''),(83,NULL,NULL,'OVE - SSEFS Recteur Louis','19 rue Marius Grosso','69120','Vaulx-en-Velin',NULL,NULL,'www.fondation-ove.fr','ssefs.recteurlouis@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,165,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'BEROUJON Yves',NULL,NULL,NULL,NULL,NULL,''),(84,NULL,NULL,'OVE - SSEFIS Primaire','19 rue Marius Grosso','69120','Vaulx-en-Velin',NULL,NULL,'www.fondation-ove.fr','yves.beroujon@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,35,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,12,NULL,NULL,NULL,NULL,NULL,NULL,'BEROUJON Yves',NULL,NULL,NULL,NULL,NULL,''),(85,NULL,NULL,'OVE - Itep L\'Ecossais','142 rue de l\'Ecossais','69400','LIMAS',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'Vaillot Pol Nicole',NULL,NULL,NULL,NULL,NULL,''),(86,NULL,NULL,'OVE - Sessad Mathis Jeune','6 rue du Chardonnet','69670','VAUGNERAY',NULL,NULL,'www.fondation-ove.fr','eric.marie@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'BRET Yves',NULL,NULL,NULL,NULL,NULL,''),(87,NULL,NULL,'OVE - Sessad Aline Renard','4 Rue Maréchal de Lattre de Tassigny','69140','RILLIEUX',NULL,NULL,'www.fondation-ove.fr','eric.marie@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,70,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'Marie Eric',NULL,NULL,NULL,NULL,NULL,''),(88,NULL,NULL,'OVE - Sessad Autisme Givors','3 montée de Cras','69702','Givors',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'BRET Yves',NULL,NULL,NULL,NULL,NULL,''),(89,NULL,NULL,'OVE - Esat Myriade - Vaulx-en-Velin','21 rue Marius Grosso','69120','Vaulx-en-Velin',NULL,NULL,'www.fondation-ove.fr','robert.doury@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,63,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,25,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(90,NULL,NULL,'OVE - Sessad Georges Seguin','7 rue Jean-Marie Merle','69120','Vaulx-en-Velin',NULL,NULL,'www.fondation-ove.fr','eric.marie@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,64,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'Marie Eric',NULL,NULL,NULL,NULL,NULL,''),(91,NULL,NULL,'OVE - IME Val-de-Saône','110 rue de la Croix des Hormes','69250','MONTANAY',NULL,NULL,'www.fondation-ove.fr','ime.valdesaone@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,53,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'CLEMENT-LUCAS Anne',NULL,NULL,NULL,NULL,NULL,''),(92,NULL,NULL,'OVE - MAS Robert Ramel','110 rue de la Croix des Hormes','69250','Montanay',NULL,NULL,'www.fondation-ove.fr','anne.clementlucas@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20,60,NULL,NULL,NULL,NULL,NULL,NULL,'CLEMENT-LUCAS Anne',NULL,NULL,NULL,NULL,NULL,''),(93,NULL,NULL,'OVE - MAS Autisme','avenue Jean Jaurès','69150','DECINES',NULL,NULL,'www.fondation-ove.fr','','www.fondation-ove.fr',NULL,NULL,NULL,40,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18,0,NULL,NULL,NULL,NULL,NULL,NULL,'Marie Eric',NULL,NULL,NULL,NULL,NULL,''),(94,NULL,NULL,'OVE - Itep de Meyzieu','9 bis rue de la République','69330','MEYZIEU',NULL,NULL,'www.fondation-ove.fr','melanie.tacquard@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(95,NULL,NULL,'OVE - Sessad Marie Curie','24-26  Avenue Auguste Blanqui','69100','VILLEURBANNE',NULL,NULL,'www.fondation-ove.fr','melanie.tacquard@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18,0,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(96,NULL,NULL,'OVE - Foyer d\'hébergement et SAVS renforcé LA CASA','45505 rue du Repos','69007','LYON',NULL,NULL,'www.fondation-ove.fr','Sofia.boughezoula@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,20,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20,62,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(97,NULL,NULL,'OVE - Centre d\'accueil de jour Les Villanelles','56 rue Pierre Brunier','69300','Caluire-et-Cuire',NULL,NULL,'www.fondation-ove.fr','les.villanelles@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,50,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18,60,NULL,NULL,NULL,NULL,NULL,NULL,'TACQUARD Mélanie',NULL,NULL,NULL,NULL,NULL,''),(98,NULL,NULL,'OVE - IME Le Château','D23 Route du Château','73110','LA ROCHETTE',NULL,NULL,'www.fondation-ove.fr','dominique.martinez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,54,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'Bruno MINSSIEUX',NULL,NULL,NULL,NULL,NULL,''),(99,NULL,NULL,'OVE - Sessad Charléty','20 rue Sébastien Charléty','73490','LA RAVOIRE',NULL,NULL,'www.fondation-ove.fr','dominique.martinez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,28,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'MINSSIEUX Bruno',NULL,NULL,NULL,NULL,NULL,''),(100,NULL,NULL,'OVE - Itep d\'Albertville','10 rue des Esserts','73200','Albertville',NULL,NULL,'www.fondation-ove.fr','dominique.martinez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'Martinez Dominique',NULL,NULL,NULL,NULL,NULL,''),(101,NULL,NULL,'OVE - Itep de Chambéry','20 rue Sébastien Charléty','73490','LA RAVOIRE',NULL,NULL,'www.fondation-ove.fr','dominique.martinez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'MINSSIEUX Bruno',NULL,NULL,NULL,NULL,NULL,''),(102,NULL,NULL,'OVE - IME Les Cygnes','45 avenue de la Fontaine Couverte','74200','THONON LES BAINS',NULL,NULL,'www.fondation-ove.fr','jeanmarc.groff@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,38,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'GROFF Jean-Marc',NULL,NULL,NULL,NULL,NULL,''),(103,NULL,NULL,'OVE - IME Guy Yver','939 route de Tamié','74210','FAVERGES',NULL,NULL,'www.fondation-ove.fr','guy.yver@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,52,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12,20,NULL,NULL,NULL,NULL,NULL,NULL,'Martinez Dominique',NULL,NULL,NULL,NULL,NULL,''),(104,NULL,NULL,'OVE - DEAT 74','320 avenue des Voirons','74800','La Roche sur Foron',NULL,NULL,'www.fondation-ove.fr','bruno.vanderborght@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,51,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10,17,NULL,NULL,NULL,NULL,NULL,NULL,'MORTEL philippe',NULL,NULL,NULL,NULL,NULL,''),(105,NULL,NULL,'OVE - Esat Myriade - Faverges','150 chemin des Vignes','74210','Faverges',NULL,NULL,'www.fondation-ove.fr','colette.domange@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18,60,NULL,NULL,NULL,NULL,NULL,NULL,'Martinez Dominique',NULL,NULL,NULL,NULL,NULL,''),(106,NULL,NULL,'OVE - Sessad Clos-Poisat','38 chemin de Froid Lieu','74200','THONON LES BAINS',NULL,NULL,'www.ove.asso.fr','jeanmarc.groff@ove.asso.fr','www.ove.asso.fr',NULL,NULL,NULL,32,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'GROFF Jean-Marc',NULL,NULL,NULL,NULL,NULL,''),(107,NULL,NULL,'OVE - Sessad de Faverges','ZAE des Boucheroz','74210','FAVERGES',NULL,NULL,'www.fondation-ove.fr','dominique.martinez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,42,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'Martinez Dominique',NULL,NULL,NULL,NULL,NULL,''),(108,NULL,NULL,'OVE - Esat Myriade - Thônes','7 rue du Mont Charvin','74230','THONES',NULL,NULL,'www.fondation-ove.fr','colette.domange@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,30,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18,60,NULL,NULL,NULL,NULL,NULL,NULL,'Martinez Dominique',NULL,NULL,NULL,NULL,NULL,''),(109,NULL,NULL,'OVE - Itep de Beaulieu','8 chemin de Beaulieu','74940','Annecy-le-Vieux',NULL,NULL,'www.fondation-ove.fr','itep.beaulieu@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,54,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10,20,NULL,NULL,NULL,NULL,NULL,NULL,'VAN DER BORGHT Bruno',NULL,NULL,NULL,NULL,NULL,''),(110,NULL,NULL,'OVE - Sessad de Beaulieu - Annecy','8 chemin de Beaulieu','74940','Annecy-le-Vieux',NULL,NULL,'www.fondation-ove.fr','bruno.vanderborght@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,24,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,20,NULL,NULL,NULL,NULL,NULL,NULL,'VAN DER BORGHT Bruno',NULL,NULL,NULL,NULL,NULL,''),(111,NULL,NULL,'OVE - Itep du Léman','38 Le Clos Poisat - 38 chemin de Froid-Lieu','74200','Thonon-les-Bains',NULL,NULL,'www.fondation-ove.fr','itep.clospoisat@ofondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,20,NULL,NULL,NULL,NULL,NULL,NULL,'GROFF Jean-Marc',NULL,NULL,NULL,NULL,NULL,'adr. postale : 45 av. de la Fontaine Couverte'),(112,NULL,NULL,'OVE - Foyer-Appartements de soutien de Faverges','79 rue des Ecoles','74210','FAVERGES',NULL,NULL,'www.fondation-ove.fr','dominique.martinez@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20,60,NULL,NULL,NULL,NULL,NULL,NULL,'Martinez Dominique',NULL,NULL,NULL,NULL,NULL,''),(113,NULL,NULL,'OVE - FAM Romain Jacob','33 rue Olivier de Serres','75015','PARIS',NULL,NULL,'www.fondation-ove.fr','contact@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,38,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18,60,NULL,NULL,NULL,NULL,NULL,NULL,'MASSONNAT Géraldine',NULL,NULL,NULL,NULL,NULL,''),(114,NULL,NULL,'OVE -  CMPP Alfred Binet - Rouen','21 rue Lecanuet','76000','ROUEN',NULL,NULL,'www.fondation-ove.fr','gerard.roudergues@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,20,NULL,NULL,NULL,NULL,NULL,NULL,'Fresnais Guillaume',NULL,NULL,NULL,NULL,NULL,''),(115,NULL,NULL,'OVE - Sessad Galilée','30 place Galilée','85300','Challans',NULL,NULL,'www.fondation-ove.fr','agathe.breton@fondation-ove.fr','www.fondation-ove.fr',NULL,NULL,NULL,37,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,20,NULL,NULL,NULL,NULL,NULL,NULL,'MILANESE Delphine',NULL,NULL,NULL,NULL,NULL,'');
 /*!40000 ALTER TABLE `organizations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -744,7 +503,6 @@ CREATE TABLE `organizations_has_staff` (
 
 LOCK TABLES `organizations_has_staff` WRITE;
 /*!40000 ALTER TABLE `organizations_has_staff` DISABLE KEYS */;
-INSERT INTO `organizations_has_staff` VALUES (40,3),(41,2),(42,4),(42,7),(43,4),(43,30),(44,7);
 /*!40000 ALTER TABLE `organizations_has_staff` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -770,7 +528,7 @@ CREATE TABLE `society` (
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D6461F2A76ED395` (`user_id`),
-  CONSTRAINT `FK_D6461F2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fos_user` (`id`)
+  CONSTRAINT `FK_D6461F2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -780,7 +538,6 @@ CREATE TABLE `society` (
 
 LOCK TABLES `society` WRITE;
 /*!40000 ALTER TABLE `society` DISABLE KEYS */;
-INSERT INTO `society` VALUES (3,'gestionnaire 1','dsfsd','12 rue de nuit','69004','Lyon','0236356965','test@gmail.com','fsd,gs','fdsklglsn','fdskngdslkn',6),(4,'gestionnaire 2','fsdsfds','15 rue du mail','69004','Lyon','dsfnf','fkdnskdlfn','lkfndsf','fdjsdnf','fdsljnfdjs',9);
 /*!40000 ALTER TABLE `society` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -870,4 +627,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-17 13:26:26
+-- Dump completed on 2017-02-20 14:41:21

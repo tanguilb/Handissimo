@@ -14,8 +14,6 @@ class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
-
         $formMapper
             ->tab('Général')
                 ->with('Identité', array('class' => 'col-md-6'))
@@ -183,29 +181,6 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                 ->end()
             ->end();
-       /* if ($this->isCurrentRoute('edit')){
-            $formMapper
-                ->add('statut', BooleanType::class, array(
-                    'hidden' => true,
-                    'data' => 2
-                ));
-        }*/
-        //$subject = $this->getSubject();var_dump($subject);
-        if ($securityContext->isGranted('ROLE_SUPER_ADMIN')) {
-            $formMapper
-                ->tab('Validation')
-                    ->with('Validation du contenu', array('class' => 'col-md 12'))
-                        ->add('replay', BooleanType::class, array(
-                            'label' => 'Relecture',
-                            'required' => false
-                        ))
-                        ->add('statut', BooleanType::class, array(
-                            'label' => 'Validation',
-                            'required' => false
-                        ))
-                    ->end()
-                ->end();
-        }
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -217,8 +192,6 @@ class OrganizationsAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
-
         $listMapper
             ->addIdentifier( 'name' , null, array ( 'label' => 'Nom de l\'organisation') )
             ->add( 'address' , null, array ( 'label' => 'Adresse') )
@@ -227,11 +200,5 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
             ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
             ->add('update_datetime', 'date', array('label' => 'date de modification'));
-        if ($securityContext->isGranted('ROLE_SUPER_ADMIN')) {
-            $listMapper
-                ->add('replay', null, array('label' => 'Relecture'))
-                ->add('statut', null, array('label' => 'Validation'));
-
-        }
     }
 }
