@@ -121,8 +121,11 @@ class OrganizationsController extends Controller
     }
     /* */
     public function standardPageAction(Organizations $organization){
+        $user = $this->getUser();
         $organization = $this->get('templating')
-            ->render('front/organizationPage.html.twig', array('organization' => $organization));
+            ->render('front/organizationPage.html.twig', array(
+                'organization' => $organization,
+                'user' => $user));
 
         return new Response($organization);
 
