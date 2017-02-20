@@ -214,10 +214,12 @@
                         {% else %}
                             <p class="return">Cette fiche n'est pas éditable</p>
                         {% endif %}
-                    {% else %}
+                    {% elseif organization.userorg == null %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn-return-link">
                             <p class="return">Editer cette fiche</p>
                         </a>
+                    {% else %}
+                        <p class="return">Cette fiche n'est pas éditable</p>
                     {% endif %}
                 </div>
             </div>
