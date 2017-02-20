@@ -14,7 +14,7 @@
             <!-- Block Title-->
             <div class="head-block">
                 <div class="row ">
-                    <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}}</p>
+                    <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                 </div>
 
                 <div class="row">
@@ -197,19 +197,29 @@
                 <div class="text-center btn-return">
                     <a href="javascript:history.go(-1)" class="btn-return-link">
                     <p class="return">Retour à la recherche</p>
-                    {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') %}
-                        {% if organization.userorg == null %}
+                    </a>
 
-                        <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn-return-link">
-                            <p class="return">Editer cette fiche</p>
-                        </a>
-                         {% else %}
-                        <p class="return">Cette fiche n'est pas éditable</p>
-                         {% endif %}
-                    {% else %}
+
+                    {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
+                        {% if organization.userorg == null %}
+                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn-return-link">
+                                <p class="return">Editer cette fiche</p>
+                            </a>
+                        {% elseif  user.organizationsuser == null %}
+                                <p class="return">Cette fiche n'est pas éditable</p>
+                        {% elseif  user.organizationsuser.id == organization.id %}
+                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn-return-link">
+                                <p class="return">Editer cette fiche</p>
+                            </a>
+                        {% else %}
+                            <p class="return">Cette fiche n'est pas éditable</p>
+                        {% endif %}
+                    {% elseif organization.userorg == null %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn-return-link">
                             <p class="return">Editer cette fiche</p>
                         </a>
+                    {% else %}
+                        <p class="return">Cette fiche n'est pas éditable</p>
                     {% endif %}
                 </div>
             </div>

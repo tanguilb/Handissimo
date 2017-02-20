@@ -23,12 +23,13 @@ class UserAdmin extends BaseUserAdmin
         $formMapper
             ->tab('User')
                 ->with('Profile', array('class' => 'col-md-6'))->end()
+                ->with('Status', array('class' => 'col-md-6'))->end()
+                ->with('Groups', array('class' => 'col-md-6'))->end()
                 ->with('General', array('class' => 'col-md-6'))->end()
                 ->with('Social', array('class' => 'col-md-6'))->end()
+
             ->end()
             ->tab('Security')
-                ->with('Status', array('class' => 'col-md-4'))->end()
-                ->with('Groups', array('class' => 'col-md-4'))->end()
                 ->with('Keys', array('class' => 'col-md-4'))->end()
                 ->with('Roles', array('class' => 'col-md-12'))->end()
             ->end()
@@ -52,6 +53,19 @@ class UserAdmin extends BaseUserAdmin
                             'required' => false
                     ))
                 ->end()
+                ->with('Status')
+                    ->add('locked', null, array('required' => false))
+                    ->add('expired', null, array('required' => false))
+                    ->add('enabled', null, array('required' => false))
+                    ->add('credentialsExpired', null, array('required' => false))
+                    ->end()
+                    ->with('Groups')
+                    ->add('groups', 'sonata_type_model', array(
+                        'required' => false,
+                        'expanded' => true,
+                        'multiple' => true,
+                    ))
+                    ->end()
                 ->remove('dateOfBirth')
                 ->remove('firstname')
                 ->remove('lastname')

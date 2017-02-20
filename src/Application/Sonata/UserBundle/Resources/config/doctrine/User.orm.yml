@@ -12,7 +12,6 @@ Application\Sonata\UserBundle\Entity\User:
           type: string
           nullable: false
           length: 50
-   fields:
        avatar:
            type: text
            nullable: true
@@ -29,3 +28,5 @@ Application\Sonata\UserBundle\Entity\User:
        societyUser:
            targetEntity: HandissimoBundle\Entity\Society
            mappedBy: userSociety
+
+
