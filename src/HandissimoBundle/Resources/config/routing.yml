@@ -49,5 +49,5 @@ handissimo_structurestypes:
 
 handissimo_organizations_standard_page:
     path: /structure/{id}
-    defaults: { _controller: "HandissimoBundle:Organizations:standardPage" }
+    defaults: { _controller: "HandissimoBundle:Default:standardPage" }
 
