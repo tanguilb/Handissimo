@@ -73,7 +73,6 @@ class OrganizationsAdminController extends Controller
         }
 
         $this->admin->setSubject($object);
-        var_dump($this->admin->setSubject($object));
 
         /** @var $form Form */
         $form = $this->admin->getForm();
