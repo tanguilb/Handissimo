@@ -32,4 +32,31 @@ class DefaultController extends Controller
         return new Response($organization);
 
     }
+    public function loadAction()
+    {
+        $string = file_get_contents($this->get('kernel')->getRootDir()."/../1.json");
+        $data = json_decode($string, true);
+        $em = $this->getDoctrine()->getManager();
+
+        $tests = $data;
+        foreach ($tests as $test){
+            $organizationsEntity = new Organizations();
+            $organizationsEntity->setName($test['name']);
+            $organizationsEntity->setAddress($test['address']);
+            $organizationsEntity->setAddressComplement($test['addressComplement']);
+            $organizationsEntity->setPostal($test['postal']);
+            $organizationsEntity->setCity($test['city']);
+            $organizationsEntity->setPhoneNumber($test['website']);
+            $organizationsEntity->setMail($test['email']);
+            $organizationsEntity->setWebsite($test['website']);
+            $organizationsEntity->setFreeplace($test['freeplace']);
+            $organizationsEntity->setAgemini($test['agemini']);
+            $organizationsEntity->setAgemaxi($test['agemaxi']);
+            $organizationsEntity->setDirectorName($test['directorName']);
+            $em->persist($organizationsEntity);
+        }
+            $em->flush();
+            $this->render(":front:about.html.twig");
+    }
+
 }

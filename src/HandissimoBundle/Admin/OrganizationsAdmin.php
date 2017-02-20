@@ -6,13 +6,12 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class OrganizationsAdmin extends AbstractAdmin
 {
-
-
-
     protected function configureFormFields(FormMapper $formMapper)
     {
          $formMapper
@@ -191,13 +190,12 @@ class OrganizationsAdmin extends AbstractAdmin
         ;
     }
 
-
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-                    ->add('name')
-                    ->add('postal');
-    }
+            ->add('name')
+            ->add('postal');
+}
 
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -208,10 +206,6 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'city' , null, array ( 'label' => 'Ville') )
             ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
             ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add('update_datetime', 'date', array('label' => 'date de modification'))
-        ;
+            ->add('update_datetime', 'date', array('label' => 'date de modification'));
     }
-
-
-
 }

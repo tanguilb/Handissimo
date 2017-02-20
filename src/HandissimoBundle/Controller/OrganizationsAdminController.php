@@ -22,7 +22,6 @@ class OrganizationsAdminController extends Controller
         $nonUser = $this->getUser()->getOrganizationsuser();
         $user = $this->getUser();
 
-
         if ($nonUser == null)
         {
             $organizations = $em->getRepository('HandissimoBundle:Organizations')->findAll();

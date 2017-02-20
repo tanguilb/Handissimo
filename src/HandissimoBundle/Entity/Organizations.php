@@ -1,7 +1,6 @@
 <?php
 
 namespace HandissimoBundle\Entity;
-use Faker\Provider\cs_CZ\DateTime;
 
 /**
  * Organizations
@@ -1371,4 +1370,100 @@ class Organizations
         return $this->userType;
     }
 
+    /**
+     * @var boolean
+     */
+    private $statut;
+
+
+    /**
+     * Set statut
+     *
+     * @param boolean $statut
+     *
+     * @return Organizations
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return boolean
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+    /**
+     * @var boolean
+     */
+    private $replay;
+
+
+    /**
+     * Set replay
+     *
+     * @param boolean $replay
+     *
+     * @return Organizations
+     */
+    public function setReplay($replay)
+    {
+        $this->replay = $replay;
+
+        return $this;
+    }
+
+    /**
+     * Get replay
+     *
+     * @return boolean
+     */
+    public function getReplay()
+    {
+        return $this->replay;
+    }
+    /**
+     * @var string
+     */
+    private $addressComplement;
+
+
+    /**
+     * Set addressComplement
+     *
+     * @param string $addressComplement
+     *
+     * @return Organizations
+     */
+    public function setAddressComplement($addressComplement)
+    {
+        $this->addressComplement = $addressComplement;
+
+        return $this;
+    }
+
+    /**
+     * Get addressComplement
+     *
+     * @return string
+     */
+    public function getAddressComplement()
+    {
+        return $this->addressComplement;
+    }
+
+    /**
+     * Get reset value statut when organizations is edit
+     *
+     */
+    public function resetStatut()
+    {
+        return $this->setStatut(0);
+    }
 }

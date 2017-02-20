@@ -80,7 +80,7 @@ class UserAdmin extends BaseUserAdmin
                 ->remove('twitterName')
                 ->remove('gplusUid')
                 ->remove('gplusName')
-                ->remove('realRoles')
+                //->remove('realRoles')
         ->end();
 
     }

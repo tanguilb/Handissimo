@@ -28,7 +28,7 @@
             <div class="col-xs-12 col-md-2">
                 <div class="col-xs-12 search-field">
                     <p>Âge<i class="fa fa-birthday-cake" aria-hidden="true"></i></p>
-                    {{ form_row(form.age, { 'attr': {'placeholder': '8 ans, 60 ans...', 'class' : 'homeField'} }) }}
+                    {{ form_row(form.age, { 'attr': {'placeholder': 'input.age'|trans({}, 'messages'), 'class' : 'homeField'} }) }}
                 </div>
             </div>
 

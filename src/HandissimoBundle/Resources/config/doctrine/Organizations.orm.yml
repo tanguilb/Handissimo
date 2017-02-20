@@ -17,6 +17,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: false
             length: 255
+        addressComplement:
+            type: string
+            nullable: true
+            length: 255
         postal:
             type: string
             nullable: false
@@ -121,7 +125,7 @@ HandissimoBundle\Entity\Organizations:
         fax:
             type: string
             length: 50
-            nullable: false
+            nullable: true
         directorName:
             type: string
             length: 50
@@ -138,6 +142,12 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 4
             nullable: true
+        statut:
+            type: boolean
+            nullable: true
+        replay:
+            type: boolean
+            nullable: true
         user:
             type: string
             length: 50
@@ -152,8 +162,6 @@ HandissimoBundle\Entity\Organizations:
         userorg:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             mappedBy: organizationsuser
-
-
 
 
     manyToOne:

@@ -173,10 +173,10 @@ input:-ms-input-placeholder {
     margin-top:20px;
     margin-bottom:20px;
 }
-#sonata_user_registration_form_email:focus,
-#sonata_user_registration_form_username:focus,
-#sonata_user_registration_form_plainPassword_first:focus,
-#sonata_user_registration_form_plainPassword_second:focus{
+#front_user_registration_form_email:focus,
+#front_user_registration_form_username:focus,
+#front_user_registration_form_plainPassword_first:focus,
+#front_user_registration_form_plainPassword_second:focus{
     border-color: #65bfba;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(101, 191, 186, 0.6);

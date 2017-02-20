@@ -109,55 +109,58 @@
                     </div>
                     {% endif %}
                 </div>
+                {% if  organization.statut == 1 %}
+                    <!-- Descriptions Block -->
+                    {% if  organization.organizationDescription %}
+                        <div class="col-md-12 description">
+                            <h2>Description de l'organisation</h2>
+                           <p>{{ organization.organizationDescription|raw }}</p>
+                        </div>
+                    {% endif %}
 
-                <!-- Descriptions Block -->
-                {% if  organization.organizationDescription %}
-                    <div class="col-md-12 description">
-                        <h2>Description de l'organisation</h2>
-                       <p>{{ organization.organizationDescription|raw }}</p>
-                    </div>
-                {% endif %}
+                    {% if organization.serveDescription %}
+                        <div class="col-md-12 description">
+                            <h2>Les services proposés</h2>
+                            <p>{{ organization.serveDescription|raw }}</p>
+                        </div>
+                    {% endif %}
 
-                {% if organization.serveDescription %}
-                    <div class="col-md-12 description">
-                        <h2>Les services proposés</h2>
-                        <p>{{ organization.serveDescription|raw }}</p>
-                    </div>
-                {% endif %}
+                    {% if organization.placeDescription %}
+                        <div class="col-md-12 description">
+                            <h2>Nos locaux</h2>
+                            <p>{{ organization.placeDescription|raw }}</p>
+                        </div>
+                    {% endif %}
 
-                {% if organization.placeDescription %}
-                    <div class="col-md-12 description">
-                        <h2>Nos locaux</h2>
-                        <p>{{ organization.placeDescription|raw }}</p>
-                    </div>
-                {% endif %}
+                    {% if organization.schoolDescription %}
+                        <div class="col-md-12 description">
+                            <h2>L'école</h2>
+                            <p>{{ organization.schoolDescription|raw }}</p>
+                        </div>
+                    {% endif %}
 
-                {% if organization.schoolDescription %}
-                    <div class="col-md-12 description">
-                        <h2>L'école</h2>
-                        <p>{{ organization.schoolDescription|raw }}</p>
-                    </div>
-                {% endif %}
+                    {% if organization.teamDescription %}
+                        <div class="col-md-12 description">
+                            <h2>Description de l'équipe</h2>
+                            <p>{{ organization.teamDescription|raw }}</p>
+                        </div>
+                    {% endif %}
 
-                {% if organization.teamDescription %}
-                    <div class="col-md-12 description">
-                        <h2>Description de l'équipe</h2>
-                        <p>{{ organization.teamDescription|raw }}</p>
-                    </div>
-                {% endif %}
+                    {% if organization.workingDescription %}
+                        <div class="col-md-12 description">
+                            <h2>Comment travaillons-nous ?</h2>
+                            <p>{{ organization.workingDescription|raw }}</p>
+                        </div>
+                    {% endif %}
 
-                {% if organization.workingDescription %}
-                    <div class="col-md-12 description">
-                        <h2>Comment travaillons-nous ?</h2>
-                        <p>{{ organization.workingDescription|raw }}</p>
-                    </div>
-                {% endif %}
-
-                {% if organization.activities %}
-                    <div class="col-md-12 description">
-                        <h2>Les activités proposées</h2>
-                        <p>{{ organization.activities|raw }}</p>
-                    </div>
+                    {% if organization.activities %}
+                        <div class="col-md-12 description">
+                            <h2>Les activités proposées</h2>
+                            <p>{{ organization.activities|raw }}</p>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <h2>Veuillez nous excuser pour le désagrement, la fiche est actuellement en correction.</h2>
                 {% endif %}
             </div>
 
@@ -198,8 +201,6 @@
                     <a href="javascript:history.go(-1)" class="btn-return-link">
                     <p class="return">Retour à la recherche</p>
                     </a>
-
-
                     {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
                         {% if organization.userorg == null %}
                             <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn-return-link">
