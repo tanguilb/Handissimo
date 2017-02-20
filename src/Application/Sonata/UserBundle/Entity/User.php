@@ -35,7 +35,6 @@ class User extends BaseUser
 
     protected $societyUser;
 
-    protected $picturesUser;
 
     /**
      * Get id
@@ -156,37 +155,5 @@ class User extends BaseUser
         return $this->avatar;
     }
 
-    /**
-     * Add picturesUser
-     *
-     * @param \HandissimoBundle\Entity\Gallery $picturesUser
-     *
-     * @return User
-     */
-    public function addPicturesUser(\HandissimoBundle\Entity\Gallery $picturesUser)
-    {
-        $this->picturesUser[] = $picturesUser;
 
-        return $this;
-    }
-
-    /**
-     * Remove picturesUser
-     *
-     * @param \HandissimoBundle\Entity\Gallery $picturesUser
-     */
-    public function removePicturesUser(\HandissimoBundle\Entity\Gallery $picturesUser)
-    {
-        $this->picturesUser->removeElement($picturesUser);
-    }
-
-    /**
-     * Get picturesUser
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPicturesUser()
-    {
-        return $this->picturesUser;
-    }
 }

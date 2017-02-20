@@ -81,13 +81,3 @@ services:
         tags:
             - { name: form.type, alias: front_user_registration }
 
-    admin.gallery:
-        class: HandissimoBundle\Admin\GalleryAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Gallerie d'images }
-        arguments:
-            - null
-            - HandissimoBundle\Entity\Gallery
-            - HandissimoBundle:GalleryAdmin
-        calls:
-            - [ setTemplate, [list, HandissimoBundle:GalleryAdmin:list.html.twig]]

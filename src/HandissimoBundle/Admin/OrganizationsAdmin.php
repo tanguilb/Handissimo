@@ -186,15 +186,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     'required' => false,
                 ))
                 ->end()
-                ->with('Images', array('class' =>  'col-md-12'))
-                ->add('galleryPictures', EntityType::class, array(
-                    'class' => 'HandissimoBundle:Gallery',
-                    'choice_label' => 'name',
-                    'label' => 'Choississez vos images',
-                    'multiple' => true,
-                    'by_reference' => true,
-                    'expanded' => false
-                ))
+
 
         ;
     }

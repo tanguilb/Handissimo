@@ -1370,57 +1370,5 @@ class Organizations
     {
         return $this->userType;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $galleryPictures;
 
-
-    /**
-     * Add galleryPicture
-     *
-     * @param \HandissimoBundle\Entity\Gallery $galleryPicture
-     *
-     * @return Organizations
-     */
-    public function addGalleryPicture(\HandissimoBundle\Entity\Gallery $galleryPicture)
-    {
-        $this->galleryPictures[] = $galleryPicture;
-
-        return $this;
-    }
-
-    /**
-     * Remove galleryPicture
-     *
-     * @param \HandissimoBundle\Entity\Gallery $galleryPicture
-     */
-    public function removeGalleryPicture(\HandissimoBundle\Entity\Gallery $galleryPicture)
-    {
-        $this->galleryPictures->removeElement($galleryPicture);
-    }
-
-    /**
-     * Get galleryPictures
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGalleryPictures()
-    {
-        return $this->galleryPictures;
-    }
-
-    /**
-     * Set galleryPictures
-     *
-     * @param \HandissimoBundle\Entity\Gallery $galleryPictures
-     *
-     * @return Organizations
-     */
-    public function setGalleryPictures(\HandissimoBundle\Entity\Gallery $galleryPictures = null)
-    {
-        $this->galleryPictures = $galleryPictures;
-
-        return $this;
-    }
 }

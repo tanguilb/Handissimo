@@ -153,10 +153,6 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             mappedBy: organizationsuser
 
-    oneToMany:
-        galleryPictures:
-            targetEntity: HandissimoBundle\Entity\Gallery
-            mappedBy: organizationPictures
 
 
 
