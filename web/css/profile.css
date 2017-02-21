@@ -14,7 +14,7 @@
 .head-block{
     width: 100%;
     height: 400px;
-    background-color: #f7af49 ;
+    background-color: #f7af49;
 }
 
 @media screen and (max-width: 768px) {
@@ -26,6 +26,11 @@
 .connect-block,
 .password-block {
     border-left: 1px solid lightgrey;
+}
+
+#return-block {
+    height: 200px;
+    padding-top: 50px
 }
 
 input::-webkit-input-placeholder {
@@ -178,14 +183,17 @@ input:-ms-input-placeholder {
 
 #btn-authentication,
 #btn-password,
-#btn-resetting {
+#btn-resetting,
+#btn-return {
     color: #fff;
     background-color:#65bfba;
     border-color: #65bfba;
 }
 
 #btn-authentication:hover,
-#btn-password:hover {
+#btn-password:hover,
+#btn-return:hover,
+#btn-resetting:hover {
     color: #fff;
     background-color:#71DBD7;
     border-color: #71DBD7;

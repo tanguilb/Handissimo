@@ -29,7 +29,6 @@ class AjaxController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()){
 
-
             $data = $form->getData();
             $age = $form->getData()['age'];
 
