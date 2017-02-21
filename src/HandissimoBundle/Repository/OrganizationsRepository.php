@@ -14,19 +14,19 @@ class OrganizationsRepository extends EntityRepository
         $query = $em->createQueryBuilder();
         $query->select('o');
         $query->from('HandissimoBundle:Organizations', 'o');
-        //$query->innerJoin('o.needs', 'n');
-        //$query->innerJoin('o.disabilityTypes', 'dt');
-        //$query->innerJoin('o.structuretype', 'st');
-        //$query->innerJoin('o.stafforganizations', 's');
+        $query->innerJoin('o.needs', 'n');
+        $query->innerJoin('o.disabilityTypes', 'dt');
+        $query->innerJoin('o.structuretype', 'st');
+        $query->innerJoin('o.stafforganizations', 's');
 
         // define data structure
         $fields =array(
             "keyword" => array(
                 'o'=>'name',
-                //'dt'=>'disabilityName',
-                //'st'=>'structurestype',
-                //'n'=>'needName',
-                /*'s'=>'jobs'*/),
+                'dt'=>'disabilityName',
+                'st'=>'structurestype',
+                'n'=>'needName',
+                's'=>'jobs'),
             "postal" => array(
                 'o' => 'postal',
                // 'o' => 'city'
