@@ -41,7 +41,7 @@ HandissimoBundle\Entity\Organizations:
             length: 255
         mail:
             type: string
-            nullable: false
+            nullable: true
             length: 255
         website:
             type: string

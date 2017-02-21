@@ -19,8 +19,13 @@
 
                 <div class="row">
                     <div class="head-title col-md-11 col-sm-11">
-                        <h1 class="title"> {{ organization.societies.societyname }} - {{ organization.name }} </h1>
-                        <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="https://s27.postimg.org/ymj7zvrw3/Logo_OVEf_RVB_300x276.jpg" alt=""></div>
+                        {% if organization.societies == null %}
+                        <h1 class="title"> {{ organization.name }} </h1>
+                        {% else %}
+                        <h1 class="title">{{ organization.societies.societyname }} - {{ organization.name }}</h1>
+                            <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="{{ organization.societies.logo }}" alt=""></div>
+
+                        {% endif %}
                     </div>
                     <!-- this is the line to display like button
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
