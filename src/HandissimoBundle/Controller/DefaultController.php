@@ -46,7 +46,7 @@ class DefaultController extends Controller
             $organizationsEntity->setAddressComplement($test['addressComplement']);
             $organizationsEntity->setPostal($test['postal']);
             $organizationsEntity->setCity($test['city']);
-            $organizationsEntity->setPhoneNumber($test['website']);
+            $organizationsEntity->setPhoneNumber($test['phoneNumber']);
             $organizationsEntity->setMail($test['email']);
             $organizationsEntity->setWebsite($test['website']);
             $organizationsEntity->setFreeplace($test['freeplace']);

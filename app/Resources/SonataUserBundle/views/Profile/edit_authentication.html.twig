@@ -17,11 +17,9 @@
         </div>
         <div class="col-md-12 password-block">
             <div class="title-block">
-                <h2 class="password-title">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
+                <a href="{{ path('sonata_user_change_password') }}">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</a>
             </div>
-            <div class="panel-body">
-                {% render url("sonata_user_change_password") %}
-            </div>
+
         </div>
     </div>
 {% endblock %}

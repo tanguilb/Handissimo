@@ -51,11 +51,11 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
                 ->add('mail', 'text', array(
                     'label' => 'E-mail de contact',
-                    'required' => true
+                    'required' => false
                 ))
                 ->add('fax', 'text', array(
                     'label' => 'Fax',
-                    'required' => true
+                    'required' => false
                 ))
                 ->add('website', 'text', array(
                     'label' => 'Site internet',
