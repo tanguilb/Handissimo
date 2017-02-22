@@ -22,6 +22,11 @@
                     </button>
                 </a>
                 {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
+                <a href="#">
+                    <button class="btn modal-button">
+                        <i class="fa fa-user" aria-hidden="true"></i>Vous êtes une solution
+                    </button>
+                </a>
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,13 +46,6 @@
                         <i class="fa fa-user" aria-hidden="true"></i>Votre compte
                     </button>
                 </a>
-                {% endif %}
-                {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') %}
-                    <a href="#">
-                        <button class="btn pink-btn">
-                            <i class="fa fa-user" aria-hidden="true"></i>Vous êtes une structure
-                        </button>
-                    </a>
                 {% endif %}
             </div>
         </div>
