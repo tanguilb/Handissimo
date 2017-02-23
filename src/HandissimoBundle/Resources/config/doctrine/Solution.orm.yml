@@ -1,0 +1,32 @@
+HandissimoBundle\Entity\Solution:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\SolutionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        lastname:
+            type: string
+            length: 255
+        firstname:
+            type: string
+            length: 255
+        mail:
+            type: string
+            length: 255
+        status:
+            type: string
+            length: 255
+        solutionName:
+            type: string
+            length: 255
+        societyName:
+            type: string
+            length: 255
+        honor:
+            type: boolean
+    lifecycleCallbacks: {  }
