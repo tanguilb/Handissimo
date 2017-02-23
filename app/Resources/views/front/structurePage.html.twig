@@ -31,17 +31,25 @@
 
         </div>
         <div class="form-solution">
-            {{ form_start(form) }}
-            {{ form_errors(form) }}
-            {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
-            {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2', 'placeholder': 'firstname'|trans({}, 'messages')}}) }}
-            {{ form_widget(form.mail, {'attr': {'class': 'form-control form2', 'placeholder': 'mail'|trans({}, 'messages')}}) }}
-            {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'your status'|trans({}, 'messages')}}) }}
-            {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2', 'placeholder': 'name of your solution'|trans({}, 'messages')}}) }}
-            {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
-            <p>J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche</p>
-            {{ form_widget(form.honor) }}
-            {{ form_end(form) }}
+            <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form_body">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2', 'placeholder': 'firstname'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.mail, {'attr': {'class': 'form-control form2', 'placeholder': 'mail'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'your status'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2', 'placeholder': 'name of your solution'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
+                <p>J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche</p>
+                {{ form_widget(form.honor) }}
+                <button id="send-solution" type="submit" class="btn btn-default orange-btn">Envoyer</button>
+                {{ form_end(form) }}
+            </form>
         </div>
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="flash-notice">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
     </div>
 {% endblock body %}

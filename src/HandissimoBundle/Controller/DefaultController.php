@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,9 +26,19 @@ class DefaultController extends Controller
 
     public function structureAction(Request $request)
     {
-        $form = $this->createForm('HandissimoBundle\Form\SolutionType');
+        $solution = new Solution();
+        $form = $this->createForm('HandissimoBundle\Form\SolutionType', $solution);
         $form->handleRequest($request);
 
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($solution);
+            $em->flush();
+
+            $this->addFlash('notice', 'Votre message a bien été envoyé');
+            return $this->redirectToRoute('research_action');
+        }
         return $this->render(':front:structurePage.html.twig', array(
             'form' => $form->createView()
         ));
