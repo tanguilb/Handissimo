@@ -22,6 +22,12 @@ class DefaultController extends Controller
     public function aboutAction(){
         return $this->render('front/about.html.twig');
     }
+
+    public function structureAction()
+    {
+        return $this->render(':front:structurePage.html.twig');
+    }
+
     public function standardPageAction(Organizations $organization){
         $user = $this->getUser();
         $organization = $this->get('templating')

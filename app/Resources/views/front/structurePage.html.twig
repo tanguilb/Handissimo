@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/structure.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Head block -->
+    <div class="head-block"></div>
+    <div class="container main-block">
+        <div class="row">
+            <h1 class="title main-title">Vous êtes une solution</h1>
+        </div>
+        <!-- Text block -->
+        <div class="">
+            <h3>Qu’est-ce qu’une solution ?</h3>
+                <ul>
+                    <li>Vous proposez des services d’accompagnement éducatif, pédagogique, thérapeutique. </li>
+                    <li>vous êtes un établissement, un lieu d’accueil, de scolarisation, de soin.</li>
+                    <li>vous proposez du répit ou du soutien aux aidants.</li>
+                    <li>vous proposez des loisirs adaptés, des activitées culturelles et sportives.</li>
+                    <li>vous êtes une association</li>
+                </ul>
+                <div class="arrow">&#8658; Vous êtes alors considéré comme une solution !</div>
+                <p>Vous pouvez:</p>
+                <ol>
+                    <li>Créer votre fiche ou la compléter si elle existe déjà en vous connectant sur <a href="{{ path('fos_user_security_login') }}">mon compte</a></li>
+                    <li>Demander à prendre la main sur votre fiche afin d’être désormais le seul à pouvoir la créer ou la modifier, en remplissant ce formulaire :</li>
+                </ol>
+
+        </div>
+    </div>
+{% endblock body %}
