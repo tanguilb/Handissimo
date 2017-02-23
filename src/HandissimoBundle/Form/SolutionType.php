@@ -9,8 +9,8 @@
 namespace HandissimoBundle\Form;
 
 
-use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,7 +26,7 @@ class SolutionType extends AbstractType
             ->add('status', TextType::class)
             ->add('solutionName', TextType::class)
             ->add('societyName', TextType::class)
-            ->add('honor', BooleanType::class)
+            ->add('honor', CheckboxType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

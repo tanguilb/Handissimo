@@ -23,9 +23,14 @@ class DefaultController extends Controller
         return $this->render('front/about.html.twig');
     }
 
-    public function structureAction()
+    public function structureAction(Request $request)
     {
-        return $this->render(':front:structurePage.html.twig');
+        $form = $this->createForm('HandissimoBundle\Form\SolutionType');
+        $form->handleRequest($request);
+
+        return $this->render(':front:structurePage.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     public function standardPageAction(Organizations $organization){
