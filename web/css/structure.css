@@ -4,6 +4,149 @@
     background-color: #f7af49;
 }
 
+@media screen and (max-width: 768px) {
+    .head-block {
+        display: none;
+    }
+}
+
 .main-title {
     margin: 50px 0 20px 30px;
 }
+
+#account-link {
+    color: #f7af49;
+    font-weight: 600;
+}
+
+#account-link:hover {
+    text-decoration: none;
+    color:#65bfba;
+}
+
+.bold {
+    font-weight: 800;
+}
+
+.arrow {
+    margin-left: 50px;
+    font-size: 18px;
+}
+
+.text-content{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.description ul {
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.description ul li {
+    margin: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .text-content{
+        padding-right: 5px;
+        padding-left: 0;
+        margin-top: 10px;
+    }
+    .description ul li {
+        margin: auto;
+    }
+}
+
+#btn-solution {
+    margin-bottom: 10px;
+    color: #fff;
+    background-color: #f7af49;
+    border-color: #f7af49;
+}
+
+#btn-solution:hover {
+    color: #fff;
+    background-color: #FFBE49;
+}
+
+/** Input **/
+
+input::-webkit-input-placeholder {
+    font-size: 17px;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    font-size: 17px;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 17px;
+}
+
+input:-ms-input-placeholder {
+    font-size: 17px;
+}
+
+@media screen and (max-width: 768px) {
+
+    input::-webkit-input-placeholder {
+        font-size: 1.1em;
+    }
+
+    input:-moz-placeholder { /* Firefox 18- */
+        font-size: 1.1em;
+    }
+
+    input::-moz-placeholder { /* Firefox 19+ */
+        font-size: 1.1em;
+    }
+
+    input:-ms-input-placeholder {
+        font-size: 1.1em;
+    }
+}
+
+#handissimo_solution_firstname,
+#handissimo_solution_lastname,
+#handissimo_solution_mail,
+#handissimo_solution_status,
+#handissimo_solution_solutionName,
+#handissimo_solution_societyName {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form2{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#handissimo_solution_firstname:focus,
+#handissimo_solution_lastname:focus,
+#handissimo_solution_mail:focus,
+#handissimo_solution_status:focus,
+#handissimo_solution_solutionName:focus,
+#handissimo_solution_societyName:focus {
+    border-color: #f7af49;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 175, 73, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 175, 73, 0.6);
+}
+
+

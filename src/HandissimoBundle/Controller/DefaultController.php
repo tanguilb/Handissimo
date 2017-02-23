@@ -24,12 +24,16 @@ class DefaultController extends Controller
         return $this->render('front/about.html.twig');
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * This function manages the page solution with the form and flash message
+     */
     public function structureAction(Request $request)
     {
         $solution = new Solution();
         $form = $this->createForm('HandissimoBundle\Form\SolutionType', $solution);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
@@ -37,7 +41,7 @@ class DefaultController extends Controller
             $em->flush();
 
             $this->addFlash('notice', 'Votre message a bien été envoyé');
-            return $this->redirectToRoute('research_action');
+            return $this->redirectToRoute('handissimo_structure');
         }
         return $this->render(':front:structurePage.html.twig', array(
             'form' => $form->createView()

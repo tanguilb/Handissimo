@@ -38,6 +38,6 @@ class SolutionType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'handissimobundle_solution';
+        return 'handissimo_solution';
     }
 }

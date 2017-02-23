@@ -10,36 +10,31 @@ namespace HandissimoBundle\Admin;
 
 
 
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Form\Type\BooleanType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 
 class SolutionAdmin extends AbstractAdmin
 {
-
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-       $formMapper
-           ->add('honor', BooleanType::class);
-    }
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('lastname')
-            ->add('firstname')
-            ->add('mail')
-            ->add('status')
-            ->add('solutionName')
-            ->add('societyName');
-    }
-
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('lastname')
-            ->add('firstname')
-            ->add('solutionName');
+            ->add('lastname', null, array(
+                'label' => 'lastname'
+            ))
+            ->add('firstname', null, array(
+                'label' => 'firstname'
+            ))
+            ->add('mail', null, array(
+                'label' => 'mail'
+            ))
+            ->add('status', null, array(
+                'label' => 'Status'
+            ))
+            ->add('solutionName', null, array(
+                'label' => 'Name of the structure'
+            ))
+            ->add('societyName', null, array(
+                'label' => 'Nom de l\'organisme gestionnaire'
+            ));
     }
 }

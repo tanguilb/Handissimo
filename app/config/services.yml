@@ -67,7 +67,7 @@ services:
         class: HandissimoBundle\Admin\SolutionAdmin
         arguments: [~, HandissimoBundle\Entity\Solution, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Gestion des demandes de solution, label: Je suis une solution }
+            - { name: sonata.admin, manager_type: orm, group: Gestion des demandes de solution, label: Je suis une solution, show_mosaic_button: false }
 
     sonata_user.profile.form.type:
         class: Application\Sonata\UserBundle\Form\Type\ProfileType
