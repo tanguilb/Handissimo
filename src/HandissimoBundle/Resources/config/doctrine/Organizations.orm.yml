@@ -156,6 +156,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 50
             nullable: true
+        brochure:
+            type: string
+            length: 255
+            nullable: true
 
 
     oneToOne:

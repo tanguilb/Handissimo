@@ -81,3 +81,6 @@ services:
         tags:
             - { name: form.type, alias: front_user_registration }
 
+    app.brochure_uploader:
+        class: HandissimoBundle\FileUploader
+        arguments: ['%brochures_directory%']

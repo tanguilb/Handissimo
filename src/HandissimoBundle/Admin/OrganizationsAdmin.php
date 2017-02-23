@@ -2,13 +2,15 @@
 
 namespace HandissimoBundle\Admin;
 
+use HandissimoBundle\Entity\Organizations;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\CallbackTransformer;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -37,6 +39,10 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Adresse postale',
                     'required' => true
                 ))
+                ->add('address_complement', 'text', array(
+                    'label' => 'Complément d\'adresse',
+                    'required' => false,
+                ))
                 ->add('postal', 'text', array(
                     'label' => 'Code postal',
                     'required' => true,
@@ -64,6 +70,11 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->add('director_name', 'text', array(
                     'label' => 'Nom du directeur',
                     'required' => 'false'
+                ))
+                ->add('brochure', FileType::class, array(
+                    'label' => 'Brochure (fichier pdf)',
+                    'data_class' => null,
+                    'required' => false,
                 ))
                 ->add('update_datetime', 'datetime', array(
                     'label' => false,
