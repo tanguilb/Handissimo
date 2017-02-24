@@ -41,12 +41,15 @@
                 {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
                 <p>
                 {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
+                <div class="g-recaptcha" data-sitekey="6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC" data-callback="enableBtn"></div>
                 <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
                 {{ form_end(form) }}
             </form>
         </div>
+
         {% for flash_message in app.session.flashBag.get('notice') %}
-            <div class="flash-notice">
+
+            <div class="alert alert-info alert-dismissible" role="alert" id="flash-notice">
                 {{ flash_message }}
             </div>
         {% endfor %}

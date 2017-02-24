@@ -31,11 +31,18 @@ class DefaultController extends Controller
      */
     public function structureAction(Request $request)
     {
+
         $solution = new Solution();
         $form = $this->createForm('HandissimoBundle\Form\SolutionType', $solution);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        $secret = '6Lc8vBYUAAAAAI-Rfhi1KUJUS0XIUN6kp4lEb-o5';
+        $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+        $resp = $recaptcha->verify($request->request->get('gRecaptchaResponse'), $request->getClientIp());
+        if (!$resp->isSuccess()) {
+            $this->addFlash('notice', 'Le captcha n\'a pas été saisi correctement. Essayez à nouveau' );
+        }
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($solution);
             $em->flush();

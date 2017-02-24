@@ -71,6 +71,14 @@
     background-color: #FFBE49;
 }
 
+#flash-notice {
+    font-size: 17px;
+    font-weight: 600;
+    background-color: #61bdb9;
+    color: #FFFFFF;
+    border: none;
+}
+
 /** Input **/
 
 input::-webkit-input-placeholder {

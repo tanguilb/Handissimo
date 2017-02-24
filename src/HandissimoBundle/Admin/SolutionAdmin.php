@@ -12,6 +12,7 @@ namespace HandissimoBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class SolutionAdmin extends AbstractAdmin
 {
@@ -36,5 +37,10 @@ class SolutionAdmin extends AbstractAdmin
             ->add('societyName', null, array(
                 'label' => 'Nom de l\'organisme gestionnaire'
             ));
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
     }
 }
