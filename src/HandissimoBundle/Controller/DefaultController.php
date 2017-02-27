@@ -44,7 +44,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('handissimo_structure');
         }
         if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverifyAction($request->get('g-recaptcha-response'))) {
-            $this->addFlash('error', 'Captcha require');
+            $this->addFlash('error', 'Le captcha n\'est pas valide, veuillez recommencer');
         }
         return $this->render(':front:structurePage.html.twig', array(
             'form' => $form->createView()
