@@ -138,4 +138,33 @@ class Comment
     {
         return $this->statusComment;
     }
+    /**
+     * @var \HandissimoBundle\Entity\Organizations
+     */
+    private $organizationsComment;
+
+
+    /**
+     * Set organizationsComment
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsComment
+     *
+     * @return Comment
+     */
+    public function setOrganizationsComment(\HandissimoBundle\Entity\Organizations $organizationsComment = null)
+    {
+        $this->organizationsComment = $organizationsComment;
+
+        return $this;
+    }
+
+    /**
+     * Get organizationsComment
+     *
+     * @return \HandissimoBundle\Entity\Organizations
+     */
+    public function getOrganizationsComment()
+    {
+        return $this->organizationsComment;
+    }
 }

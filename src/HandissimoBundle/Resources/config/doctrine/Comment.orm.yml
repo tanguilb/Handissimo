@@ -18,4 +18,13 @@ HandissimoBundle\Entity\Comment:
             type: text
         statusComment:
             type: boolean
+
+    manyToOne:
+        organizationsComment:
+            targetEntity: Organizations
+            inversedBy: comments
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
+
     lifecycleCallbacks: {  }

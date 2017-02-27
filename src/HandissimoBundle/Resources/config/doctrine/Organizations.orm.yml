@@ -178,6 +178,12 @@ HandissimoBundle\Entity\Organizations:
             joinColumn:
                 name: societies_id
                 referencedColumnName: id
+
+    oneToMany:
+        comments:
+            targetEntity: Comment
+            mappedBy: organizationsComment
+
     manyToMany:
         disabilityTypes:
             targetEntity: DisabilityTypes

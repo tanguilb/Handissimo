@@ -1466,4 +1466,43 @@ class Organizations
     {
         return $this->setStatut(0);
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $comments;
+
+
+    /**
+     * Add comment
+     *
+     * @param \HandissimoBundle\Entity\Comment $comment
+     *
+     * @return Organizations
+     */
+    public function addComment(\HandissimoBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \HandissimoBundle\Entity\Comment $comment
+     */
+    public function removeComment(\HandissimoBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }
