@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/structure.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Head block -->
+    <div class="head-block"></div>
+    <div class="container main-block">
+        <div class="row">
+            <h1 class="title main-title">Vous êtes une solution</h1>
+        </div>
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('error') %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        <!-- Text block -->
+        <div class="text-content description">
+            <h2>Qu’est-ce qu’une solution ?</h2>
+                <ul>
+                    <li>Vous proposez des services d’accompagnement éducatif, pédagogique, thérapeutique. </li>
+                    <li>vous êtes un établissement, un lieu d’accueil, de scolarisation, de soin.</li>
+                    <li>vous proposez du répit ou du soutien aux aidants.</li>
+                    <li>vous proposez des loisirs adaptés, des activitées culturelles et sportives.</li>
+                    <li>vous êtes une association</li>
+                </ul>
+                <div class="arrow">&#8658; Vous êtes alors considéré comme une solution !</div><br>
+                <p>Vous pouvez:</p>
+                <ol>
+                    <li>Créer votre fiche ou la compléter si elle existe déjà en vous connectant sur <a href="{{ path('fos_user_security_login') }}" id="account-link">mon compte</a></li>
+                    <li>Demander à prendre la main sur votre fiche afin d’être désormais le seul à pouvoir la créer ou la modifier, en remplissant <span class="bold">ce formulaire</span> :</li>
+                </ol>
+        </div>
+        <div class="col-md-offset-2 col-md-7 col-xs-12">
+            <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form_body">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2', 'placeholder': 'firstname'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.mail, {'attr': {'class': 'form-control form2', 'placeholder': 'mail'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'your status'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2', 'placeholder': 'name of your solution'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
+                <p>
+                {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
+                <div class="g-recaptcha" data-sitekey="6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC" data-callback="enableBtn"></div>
+                <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock body %}
