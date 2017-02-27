@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\Comment;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,16 +52,44 @@ class DefaultController extends Controller
         ));
     }
 
-    public function standardPageAction(Organizations $organization){
+    public function standardPageAction(Organizations $organization, Request $request)
+    {
         $user = $this->getUser();
-        $organization = $this->get('templating')
-            ->render('front/organizationPage.html.twig', array(
-                'organization' => $organization,
-                'user' => $user));
+        $comment = new Comment();
+        $form = $this->createForm('HandissimoBundle\Form\CommentType', $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+        }
+        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
+         'form' => $form->createView(),
+         'user' => $user,var_dump($user),
+         'organization' => $organization
+        ));
 
         return new Response($organization);
-
     }
+/*
+    public function commentAction(Request $request)
+    {
+        $comment = new Comment();
+        $form = $this->createForm('HandissimoBundle\Form\CommentType', $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+        }
+        return $this->render(':front:organizationPage.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+    }*/
+
     public function loadAction()
     {
         $string = file_get_contents($this->get('kernel')->getRootDir()."/../1.json");

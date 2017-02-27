@@ -217,24 +217,60 @@
     .head-img {
         display: none;
     }
-    .icon-block{
+
+    .icon-block {
         width: 6%;
-        padding-left:20px;
-    }
-    .address-line{
-        padding-left:30px;
-    }
-    .head-title{
-        align-items: flex-start;
-    }
-    .img-block{
-        padding-right: 0;
+        padding-left: 20px;
     }
 
+    .address-line {
+        padding-left: 30px;
+    }
+
+    .head-title {
+        align-items: flex-start;
+    }
+
+    .img-block {
+        padding-right: 0;
+    }
+}
 @media screen and (max-width: 360px) {
     .map {
         height:300px;
     }
 }
+
+/*******************/
+/***Block comment***/
+/*******************/
+
+#handissimo_comment_author,
+#handissimo_comment_content {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
+.form-control{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.form2{
+    margin-top:20px;
+    margin-bottom:20px;
+}

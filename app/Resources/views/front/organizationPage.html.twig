@@ -229,6 +229,22 @@
                     {% endif %}
                 </div>
             </div>
+            <div class="comment-block">
+                <div class="col-md-offset-2 col-md-7 col-xs-12">
+
+                </div>
+                <div class="col-md-offset-2 col-md-7 col-xs-12">
+                    <form method="POST" class="commentForm" action="{{path('handissimo_organizations_standard_page', {'id': organization.id })}}">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        {{ form_widget(form.author, {'attr': {'class': 'form-control form2', 'value': organization.user }}) }}
+                        {{ form_widget(form.content, {'attr': {'class': 'form-control form2', 'placeholder': 'Message'}}) }}
+                        <div class="g-recaptcha" data-sitekey="6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC" data-callback="enableBtn"></div>
+                        <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
