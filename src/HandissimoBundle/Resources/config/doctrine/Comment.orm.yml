@@ -1,0 +1,21 @@
+HandissimoBundle\Entity\Comment:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\CommentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        author:
+            type: string
+            length: 255
+        parutionDate:
+            type: datetime
+        content:
+            type: text
+        statusComment:
+            type: boolean
+    lifecycleCallbacks: {  }
