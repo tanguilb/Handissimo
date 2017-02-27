@@ -14,6 +14,10 @@ handissimo_organizations_standard_page:
     path: /structure/{id}
     defaults: { _controller: "HandissimoBundle:Default:standardPage" }
 
+handissimo_structure:
+    path: /solution
+    defaults: { _controller: "HandissimoBundle:Default:structure" }
+
 load_database:
     path: /load
     defaults: { _controller: "HandissimoBundle:Default:load" }

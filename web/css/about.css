@@ -37,20 +37,19 @@
     display: flex;
 }
 
-.address-link{
+.link-about{
     color:#65bfba;
-    padding-left: 20px;
     font-weight: 600;
 }
 .fa-envelope{
     font-size: 20px;
 
 }
-.address-link:hover{
+.link-about:hover{
     text-decoration: none;
     color: #f7af49;
 }
-.address-link:focus{
+.link-about:focus{
     color:#65bfba;
     text-decoration: none;
 }
