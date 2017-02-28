@@ -73,7 +73,7 @@ class DefaultController extends Controller
             'form' => $form->createView(),
             'user' => $user,
             'organization' => $organization,
-            'comments' => $comments
+            'comments' => $comments,
         ));
         return new Response($organization);
     }

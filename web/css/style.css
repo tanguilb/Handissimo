@@ -338,3 +338,7 @@ p {
     text-align: justify;
     margin-bottom: 10px;
 }
+
+.bold {
+    font-weight: 800;
+}

@@ -205,13 +205,20 @@
     border:2px solid  #f7af49;
 }
 
-.btn-return-link:hover{
+.btn-return-link:hover {
     text-decoration: none;
 }
 
-.btn-return{
+.btn-return {
     margin: 50px 0;
 }
+
+.line-block {
+    border-top: solid 1px #dadada;
+    padding-top: 10px;
+    margin: 5px 50px 0 50px;
+}
+
 /*media queries*/
 @media screen and (max-width: 768px) {
     .head-img {
@@ -273,4 +280,19 @@
 .form2{
     margin-top:20px;
     margin-bottom:20px;
+}
+#avatar-comment {
+    width: 50px;
+    height: auto;
+}
+
+.comment-block {
+    clear: both;
+}
+
+#comment-organizations {
+    background-color: #ffffff;
+    margin:10px auto 5px auto ;
+    box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
+    padding: 10px 10px 10px 10px;
 }
