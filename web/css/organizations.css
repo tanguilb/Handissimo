@@ -301,3 +301,29 @@
     box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
     padding: 10px 10px 10px 10px;
 }
+
+/**********************/
+/*****Vote button******/
+/**********************/
+
+.vote-btn {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    border: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.vote-like:hover {
+    color: #63a563;
+}
+
+.vote-dislike:hover {
+    color: #f2504b;
+}
+
+.vote-btns {
+    float: right;
+}

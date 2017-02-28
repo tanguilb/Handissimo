@@ -138,6 +138,7 @@ class Comment
     {
         return $this->statusComment;
     }
+
     /**
      * @var \HandissimoBundle\Entity\Organizations
      */
@@ -172,21 +173,11 @@ class Comment
     {
         $this->parutionDate = new \DateTime();
     }
+
     /**
      * @var string
      */
     private $title;
-
-    /**
-     * @var boolean
-     */
-    private $like;
-
-    /**
-     * @var boolean
-     */
-    private $dislike;
-
 
     /**
      * Set title
@@ -211,14 +202,13 @@ class Comment
     {
         return $this->title;
     }
-
     /**
-     * @var boolean
+     * @var integer
      */
     private $likeComment;
 
     /**
-     * @var boolean
+     * @var integer
      */
     private $dislikeComment;
 
@@ -226,7 +216,7 @@ class Comment
     /**
      * Set likeComment
      *
-     * @param boolean $likeComment
+     * @param integer $likeComment
      *
      * @return Comment
      */
@@ -240,7 +230,7 @@ class Comment
     /**
      * Get likeComment
      *
-     * @return boolean
+     * @return integer
      */
     public function getLikeComment()
     {
@@ -250,7 +240,7 @@ class Comment
     /**
      * Set dislikeComment
      *
-     * @param boolean $dislikeComment
+     * @param integer $dislikeComment
      *
      * @return Comment
      */
@@ -264,7 +254,7 @@ class Comment
     /**
      * Get dislikeComment
      *
-     * @return boolean
+     * @return integer
      */
     public function getDislikeComment()
     {

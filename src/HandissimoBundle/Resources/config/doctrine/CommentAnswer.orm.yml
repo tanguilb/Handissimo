@@ -23,9 +23,9 @@ HandissimoBundle\Entity\CommentAnswer:
             type: boolean
             nullable: true
         likeAnswer:
-            type: boolean
+            type: integer
             nullable: true
         dislikeAnswer:
-            type: boolean
+            type: integer
             nullable: true
     lifecycleCallbacks: {  }

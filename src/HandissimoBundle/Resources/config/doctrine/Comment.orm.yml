@@ -23,10 +23,10 @@ HandissimoBundle\Entity\Comment:
             type: boolean
             nullable: true
         likeComment:
-            type: boolean
+            type: integer
             nullable: true
         dislikeComment:
-            type: boolean
+            type: integer
             nullable: true
 
     manyToOne:

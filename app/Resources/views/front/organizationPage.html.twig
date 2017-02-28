@@ -239,7 +239,7 @@
                             {% if comment.statusComment %}
                             <div class="media" id="comment-organizations">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="media-left media-top">
                                             <img class="media-object" src="{{ asset('images/avatar/doctor-1.png') }}" alt="..." id="avatar-comment">
                                         </div>
@@ -249,12 +249,17 @@
                                             {{ comment.parutionDate|date ('d/m/Y')}}
                                         </small>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-10">
                                         <h4><span class="bold">{{ comment.title }}</span></h4>
                                         <p>{{ comment.content }}</p>
+                                        <div class="vote-btns">
+                                            <button class="vote-btn vote-like"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button>
+                                            <button class="vote-btn vote-dislike"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                             {% endif %}
                         {% endfor %}
                     </div>

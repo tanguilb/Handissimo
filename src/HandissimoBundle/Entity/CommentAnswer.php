@@ -38,17 +38,6 @@ class CommentAnswer
     private $statusComment;
 
     /**
-     * @var bool
-     */
-    private $likeAnswer;
-
-    /**
-     * @var bool
-     */
-    private $dislikeAnswer;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -177,11 +166,21 @@ class CommentAnswer
     {
         return $this->statusComment;
     }
+    /**
+     * @var integer
+     */
+    private $likeAnswer;
+
+    /**
+     * @var integer
+     */
+    private $dislikeAnswer;
+
 
     /**
      * Set likeAnswer
      *
-     * @param boolean $likeAnswer
+     * @param integer $likeAnswer
      *
      * @return CommentAnswer
      */
@@ -195,7 +194,7 @@ class CommentAnswer
     /**
      * Get likeAnswer
      *
-     * @return bool
+     * @return integer
      */
     public function getLikeAnswer()
     {
@@ -205,7 +204,7 @@ class CommentAnswer
     /**
      * Set dislikeAnswer
      *
-     * @param boolean $dislikeAnswer
+     * @param integer $dislikeAnswer
      *
      * @return CommentAnswer
      */
@@ -219,7 +218,7 @@ class CommentAnswer
     /**
      * Get dislikeAnswer
      *
-     * @return bool
+     * @return integer
      */
     public function getDislikeAnswer()
     {
