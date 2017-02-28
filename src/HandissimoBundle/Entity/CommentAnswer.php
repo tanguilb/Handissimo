@@ -3,9 +3,9 @@
 namespace HandissimoBundle\Entity;
 
 /**
- * Comment
+ * CommentAnswer
  */
-class Comment
+class CommentAnswer
 {
     /**
      * @var int
@@ -28,9 +28,24 @@ class Comment
     private $content;
 
     /**
+     * @var string
+     */
+    private $title;
+
+    /**
      * @var bool
      */
     private $statusComment;
+
+    /**
+     * @var bool
+     */
+    private $likeAnswer;
+
+    /**
+     * @var bool
+     */
+    private $dislikeAnswer;
 
 
     /**
@@ -48,7 +63,7 @@ class Comment
      *
      * @param string $author
      *
-     * @return Comment
+     * @return CommentAnswer
      */
     public function setAuthor($author)
     {
@@ -72,7 +87,7 @@ class Comment
      *
      * @param \DateTime $parutionDate
      *
-     * @return Comment
+     * @return CommentAnswer
      */
     public function setParutionDate($parutionDate)
     {
@@ -96,7 +111,7 @@ class Comment
      *
      * @param string $content
      *
-     * @return Comment
+     * @return CommentAnswer
      */
     public function setContent($content)
     {
@@ -116,11 +131,35 @@ class Comment
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return CommentAnswer
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set statusComment
      *
      * @param boolean $statusComment
      *
-     * @return Comment
+     * @return CommentAnswer
      */
     public function setStatusComment($statusComment)
     {
@@ -138,38 +177,52 @@ class Comment
     {
         return $this->statusComment;
     }
-    /**
-     * @var \HandissimoBundle\Entity\Organizations
-     */
-    private $organizationsComment;
-
 
     /**
-     * Set organizationsComment
+     * Set likeAnswer
      *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsComment
+     * @param boolean $likeAnswer
      *
-     * @return Comment
+     * @return CommentAnswer
      */
-    public function setOrganizationsComment(\HandissimoBundle\Entity\Organizations $organizationsComment = null)
+    public function setLikeAnswer($likeAnswer)
     {
-        $this->organizationsComment = $organizationsComment;
+        $this->likeAnswer = $likeAnswer;
 
         return $this;
     }
 
     /**
-     * Get organizationsComment
+     * Get likeAnswer
      *
-     * @return \HandissimoBundle\Entity\Organizations
+     * @return bool
      */
-    public function getOrganizationsComment()
+    public function getLikeAnswer()
     {
-        return $this->organizationsComment;
+        return $this->likeAnswer;
     }
 
-    public function __construct()
+    /**
+     * Set dislikeAnswer
+     *
+     * @param boolean $dislikeAnswer
+     *
+     * @return CommentAnswer
+     */
+    public function setDislikeAnswer($dislikeAnswer)
     {
-        $this->parutionDate = new \DateTime();
+        $this->dislikeAnswer = $dislikeAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Get dislikeAnswer
+     *
+     * @return bool
+     */
+    public function getDislikeAnswer()
+    {
+        return $this->dislikeAnswer;
     }
 }

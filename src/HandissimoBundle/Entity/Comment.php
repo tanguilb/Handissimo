@@ -213,50 +213,61 @@ class Comment
     }
 
     /**
-     * Set like
+     * @var boolean
+     */
+    private $likeComment;
+
+    /**
+     * @var boolean
+     */
+    private $dislikeComment;
+
+
+    /**
+     * Set likeComment
      *
-     * @param boolean $like
+     * @param boolean $likeComment
      *
      * @return Comment
      */
-    public function setLike($like)
+    public function setLikeComment($likeComment)
     {
-        $this->like = $like;
+        $this->likeComment = $likeComment;
 
         return $this;
     }
 
     /**
-     * Get like
+     * Get likeComment
      *
      * @return boolean
      */
-    public function getLike()
+    public function getLikeComment()
     {
-        return $this->like;
+        return $this->likeComment;
     }
 
     /**
-     * Set dislike
+     * Set dislikeComment
      *
-     * @param boolean $dislike
+     * @param boolean $dislikeComment
      *
      * @return Comment
      */
-    public function setDislike($dislike)
+    public function setDislikeComment($dislikeComment)
     {
-        $this->dislike = $dislike;
+        $this->dislikeComment = $dislikeComment;
 
         return $this;
     }
 
     /**
-     * Get dislike
+     * Get dislikeComment
      *
      * @return boolean
      */
-    public function getDislike()
+    public function getDislikeComment()
     {
-        return $this->dislike;
+        return $this->dislikeComment;
     }
 }

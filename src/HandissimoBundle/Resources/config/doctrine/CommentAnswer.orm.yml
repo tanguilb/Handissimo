@@ -1,7 +1,7 @@
-HandissimoBundle\Entity\Comment:
+HandissimoBundle\Entity\CommentAnswer:
     type: entity
     table: null
-    repositoryClass: HandissimoBundle\Repository\CommentRepository
+    repositoryClass: HandissimoBundle\Repository\CommentAnswerRepository
     id:
         id:
             type: integer
@@ -9,9 +9,6 @@ HandissimoBundle\Entity\Comment:
             generator:
                 strategy: AUTO
     fields:
-        title:
-            type: string
-            length: 255
         author:
             type: string
             length: 255
@@ -19,22 +16,16 @@ HandissimoBundle\Entity\Comment:
             type: datetime
         content:
             type: text
+        title:
+            type: string
+            length: 255
         statusComment:
             type: boolean
             nullable: true
-        likeComment:
+        likeAnswer:
             type: boolean
             nullable: true
-        dislikeComment:
+        dislikeAnswer:
             type: boolean
             nullable: true
-
-    manyToOne:
-        organizationsComment:
-            targetEntity: Organizations
-            inversedBy: comments
-            joinColumn:
-                name: organizations_id
-                referencedColumnName: id
-
     lifecycleCallbacks: {  }
