@@ -18,6 +18,7 @@ HandissimoBundle\Entity\Comment:
             type: text
         statusComment:
             type: boolean
+            nullable: true
 
     manyToOne:
         organizationsComment:

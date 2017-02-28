@@ -69,6 +69,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Gestion des demandes de solution, label: Je suis une solution, show_mosaic_button: false }
 
+    admin.comment:
+        class: HandissimoBundle\Admin\CommentAdmin
+        arguments: [~, HandissimoBundle\Entity\Comment, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Gestion des commentaires, label: Commentaires, show_mosaic_button: false}
+
     sonata_user.profile.form.type:
         class: Application\Sonata\UserBundle\Form\Type\ProfileType
         arguments: [%fos_user.model.user.class%]

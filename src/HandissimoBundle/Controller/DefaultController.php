@@ -56,6 +56,7 @@ class DefaultController extends Controller
     {
         $user = $this->getUser();
         $comment = new Comment();
+        $comment->setOrganizationsComment($organization);
         $form = $this->createForm('HandissimoBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 
@@ -63,32 +64,19 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
-        }
-        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
-         'form' => $form->createView(),
-         'user' => $user,var_dump($user),
-         'organization' => $organization
-        ));
 
+            $this->addFlash('comment', 'Votre commentaire a bien été posté');
+            return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
+        }
+        $comments = $organization->getComments();
+        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
+            'form' => $form->createView(),
+            'user' => $user,
+            'organization' => $organization,
+            'comments' => $comments
+        ));
         return new Response($organization);
     }
-/*
-    public function commentAction(Request $request)
-    {
-        $comment = new Comment();
-        $form = $this->createForm('HandissimoBundle\Form\CommentType', $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-        }
-        return $this->render(':front:organizationPage.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-    }*/
 
     public function loadAction()
     {

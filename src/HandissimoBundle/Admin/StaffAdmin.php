@@ -3,14 +3,12 @@
 namespace HandissimoBundle\Admin;
 
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use HandissimoBundle\HandissimoBundle;
 
-class StaffAdmin extends Admin
+class StaffAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
