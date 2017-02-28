@@ -172,4 +172,91 @@ class Comment
     {
         $this->parutionDate = new \DateTime();
     }
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var boolean
+     */
+    private $like;
+
+    /**
+     * @var boolean
+     */
+    private $dislike;
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Comment
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set like
+     *
+     * @param boolean $like
+     *
+     * @return Comment
+     */
+    public function setLike($like)
+    {
+        $this->like = $like;
+
+        return $this;
+    }
+
+    /**
+     * Get like
+     *
+     * @return boolean
+     */
+    public function getLike()
+    {
+        return $this->like;
+    }
+
+    /**
+     * Set dislike
+     *
+     * @param boolean $dislike
+     *
+     * @return Comment
+     */
+    public function setDislike($dislike)
+    {
+        $this->dislike = $dislike;
+
+        return $this;
+    }
+
+    /**
+     * Get dislike
+     *
+     * @return boolean
+     */
+    public function getDislike()
+    {
+        return $this->dislike;
+    }
 }

@@ -234,23 +234,28 @@
             <div class="comment-block">
                 <div class="row">
                     <div class="col-md-offset-2 col-md-7 col-xs-12">
-                        <h3>Commentaires</h3>
+                        <h2 id="comment-title">Commentaires</h2>
                         {%for comment in comments %}
-
+                            {% if comment.statusComment %}
                             <div class="media" id="comment-organizations">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="media-left media-top">
                                             <img class="media-object" src="{{ asset('images/avatar/doctor-1.png') }}" alt="..." id="avatar-comment">
                                         </div>
                                         <span class="bold">{{ comment.author }}</span><br>
-                                        <small>{{ comment.parutionDate|date ('d/m/Y')}}</small>
+                                        <small>
+                                            {{ organization.userType }}<br>
+                                            {{ comment.parutionDate|date ('d/m/Y')}}
+                                        </small>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-9">
+                                        <h4><span class="bold">{{ comment.title }}</span></h4>
                                         <p>{{ comment.content }}</p>
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>

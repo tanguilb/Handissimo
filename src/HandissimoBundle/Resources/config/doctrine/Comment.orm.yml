@@ -9,6 +9,9 @@ HandissimoBundle\Entity\Comment:
             generator:
                 strategy: AUTO
     fields:
+        title:
+            type: string
+            length: 255
         author:
             type: string
             length: 255
@@ -17,6 +20,12 @@ HandissimoBundle\Entity\Comment:
         content:
             type: text
         statusComment:
+            type: boolean
+            nullable: true
+        like:
+            type: boolean
+            nullable: true
+        dislike:
             type: boolean
             nullable: true
 

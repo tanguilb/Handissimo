@@ -57,6 +57,7 @@ class DefaultController extends Controller
         $user = $this->getUser();
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
+        $comment->setStatusComment(1);
         $form = $this->createForm('HandissimoBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 

@@ -290,6 +290,11 @@
     clear: both;
 }
 
+#comment-title {
+    font-weight: 600;
+    color: #61bdb9;
+}
+
 #comment-organizations {
     background-color: #ffffff;
     margin:10px auto 5px auto ;
