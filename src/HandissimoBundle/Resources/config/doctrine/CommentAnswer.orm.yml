@@ -9,6 +9,9 @@ HandissimoBundle\Entity\CommentAnswer:
             generator:
                 strategy: AUTO
     fields:
+        activate:
+            type: boolean
+            nullable: false
         author:
             type: string
             length: 255
@@ -28,4 +31,13 @@ HandissimoBundle\Entity\CommentAnswer:
         dislikeAnswer:
             type: integer
             nullable: true
+
+    manyToOne:
+        commentanswers:
+            targetEntity: HandissimoBundle\Entity\Comment
+            inversedBy: comments
+            joinColumn:
+                name: comment_id
+                referencedColumnName: id
+
     lifecycleCallbacks: {  }

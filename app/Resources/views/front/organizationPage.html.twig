@@ -258,6 +258,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <form method="post" action="{{ path('handissimo_answer', {'id': organization.id}) }}">
+                                    <button class="response-btn">Répondre</button>
+                                </form>
                             </div>
 
                             {% endif %}

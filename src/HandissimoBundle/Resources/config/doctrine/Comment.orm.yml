@@ -37,4 +37,9 @@ HandissimoBundle\Entity\Comment:
                 name: organizations_id
                 referencedColumnName: id
 
+    oneToMany:
+        comments:
+            targetEntity: HandissimoBundle\Entity\CommentAnswer
+            mappedBy: commentanswers
+
     lifecycleCallbacks: {  }

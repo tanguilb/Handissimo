@@ -1,4 +1,5 @@
 services:
-#    handissimo.example:
-#        class: HandissimoBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    handissimo.captchaverify:
+        class: HandissimoBundle\Service\CaptchaVerify
+

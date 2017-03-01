@@ -302,6 +302,19 @@
     padding: 10px 10px 10px 10px;
 }
 
+.response-btn {
+    color: #61bdb9;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.response-btn:hover {
+    color: #f7af49;
+}
+
 /**********************/
 /*****Vote button******/
 /**********************/
