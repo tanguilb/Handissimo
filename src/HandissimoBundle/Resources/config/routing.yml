@@ -25,3 +25,7 @@ handissimo_answer:
 load_database:
     path: /load
     defaults: { _controller: "HandissimoBundle:Default:load" }
+
+vote_like:
+    path: /structure/{id}
+    defaults: { _controller: "HandissimoBundle:Default:like" }

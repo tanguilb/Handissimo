@@ -6,6 +6,7 @@ use HandissimoBundle\Entity\Comment;
 use HandissimoBundle\Entity\CommentAnswer;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
+use ReCaptcha\RequestMethod\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -131,5 +132,36 @@ class DefaultController extends Controller
             'commentAnswers' => $commentAnswers,
         ));
         return new Response($organization);
+    }
+
+    public function likeAction(Organizations $organization)
+    {
+        $user = $this->getUser();
+        $comment = new Comment();
+        $comment->setOrganizationsComment($organization)->getId();
+        //var_dump($comment);die();
+        //$comment->getLikeComment();
+        $comment->setLikeComment(+1);
+        $request = $this->get('request');
+
+       if ($request->getMethod() == 'POST') {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
+        }
+        $comments = $organization->getComments();
+        return $this->render(':front:organizationPage.html.twig', array(
+            'user' => $user,
+            'comments' => $comments,
+            'organization' => $organization
+        ));
+        //return new Response($organization);
+    }
+
+    public function dislikeAction()
+    {
+
     }
 }
