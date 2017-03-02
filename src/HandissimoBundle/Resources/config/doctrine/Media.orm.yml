@@ -1,0 +1,27 @@
+HandissimoBundle\Entity\Media:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\MediaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fileName:
+            type: string
+            length: '100'
+        updated:
+            type: datetime
+            nullable: true
+        webPath:
+            type: string
+            length: 255
+        thumnbails:
+            type: string
+            length: 255
+            nullable: true
+    lifecycleCallbacks:
+        prePersist:   [lifecycleFileUpload]
+        preUpdate:    [lifecycleFileUpload]

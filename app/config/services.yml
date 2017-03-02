@@ -90,3 +90,25 @@ services:
     app.brochure_uploader:
         class: HandissimoBundle\FileUploader
         arguments: ['%brochures_directory%']
+
+    admin.media:
+        class: HandissimoBundle\Admin\MediaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Media }
+        arguments:
+                    - null
+                    - HandissimoBundle\Entity\Media
+                    - HandissimoBundle:MediaAdmin
+        calls:
+            - [ setTemplate, [list, HandissimoBundle:MediaAdmin:list.html.twig]]
+
+   # handissimo.thumnbails:
+    #    class: HandissimoBundle\ImageThumnbails
+     #   arguments: ['%media_directory%']
+
+   # handissimo.doctrine_listener.media:
+    #    class: HandissimoBundle\DoctrineListener\MediaThumnbailsListener
+     #   arguments:
+      #      - '@handissimo.thumnbails'
+       # tags:
+        #    - { name: doctrine.event_listener, event: prePersist }

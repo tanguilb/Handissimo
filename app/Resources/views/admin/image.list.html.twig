@@ -1,0 +1,16 @@
+{% extends 'SonataAdminBundle:CRUD:list.html.twig' %}
+
+{% block table_body %}
+    {% for media in medias %}
+        <tr>
+            <td>
+                <input type="checkbox" name="idx[]" value="{{ media.id }}">
+            </td>
+            <td>
+                <a class="sonata-link-identifier" href="{{ path('admin_handissimo_media_edit', { 'id': media.id}) }}">{{ media.fileName }}</a>
+            </td>
+            <td><img src="{{ asset(media.thumnbails) }}" /></td>
+        </tr>
+    {% endfor %}
+
+{% endblock %}

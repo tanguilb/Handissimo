@@ -9,6 +9,7 @@ imports:
 parameters:
     locale: fr
     brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
+    media_directory:     '%kernel.root_dir%/../web/uploads/image'
 
 framework:
     #esi:             ~
