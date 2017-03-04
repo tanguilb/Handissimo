@@ -55,7 +55,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function standardPageAction(Organizations $organization, Request $request)
+    /*public function standardPageAction(Organizations $organization, Request $request)
     {
         $user = $this->getUser();
         $comment = new Comment();
@@ -80,7 +80,7 @@ class DefaultController extends Controller
             'comments' => $comments,
         ));
         return new Response($organization);
-    }
+    }*/
 
     public function loadAction()
     {
@@ -109,14 +109,15 @@ class DefaultController extends Controller
             $this->render(":front:about.html.twig");
     }
 
-    public function commentAnswerAction(Request $request, Organizations $organization)
+    /*public function commentAnswerAction(Request $request, Comment $comment, Organizations $organization)
     {
         $user = $this->getUser();
         $commentAnswer =new CommentAnswer();
-        $form = $this->createForm('HandissimoBundle\Form\CommentAnswerType', $commentAnswer);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
+        $formbis = $this->createForm('HandissimoBundle\Form\CommentAnswerType', $commentAnswer);
+        $formbis->handleRequest($request);
+        $commentAnswer->setCommentanswers($comment);
+        //$comment->setOrganizationsComment($organization);
+        if ($formbis->isSubmitted() && $formbis->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentAnswer);
             $em->flush();
@@ -124,28 +125,69 @@ class DefaultController extends Controller
             $this->addFlash('comment', 'Votre commentaire a bien été posté');
             return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
         }
-        $commentAnswers = $organization->getComments();
-        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
-            'form' => $form->createView(),
+
+        $commentAnswers = $comment->getComments();
+        return $this->render(':front:organizationPage.html.twig', array(
+            'form' => $formbis->createView(),
             'user' => $user,
+            'comments' => $comment,
             'organization' => $organization,
             'commentAnswers' => $commentAnswers,
         ));
-        return new Response($organization);
-    }
+    }*/
 
-    public function likeAction(Organizations $organization)
+    public function standardPageAction(Request $request, Organizations $organization)
     {
         $user = $this->getUser();
         $comment = new Comment();
-        $comment->setOrganizationsComment($organization)->getId();
-        //var_dump($comment);die();
-        //$comment->getLikeComment();
-        $comment->setLikeComment(+1);
+        $comment->setOrganizationsComment($organization);
+        $comment->setStatusComment(1);
+        $commentAnswer =new CommentAnswer();
+        $commentAnswer->setCommentanswers($comment);
+
+        $form = $this->createForm('HandissimoBundle\Form\CommentType', $comment);
+        $formbis = $this->createForm('HandissimoBundle\Form\CommentAnswerType', $commentAnswer);
+        $form->handleRequest($request);
+        $formbis->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('comment', 'Votre commentaire a bien été posté');
+            return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
+        }
+
+        if ($formbis->isSubmitted() && $formbis->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commentAnswer);
+            $em->flush();
+        }
+
+        $comments = $organization->getComments();
+        $commentanswers = $comment->getComments();
+        return $this->render(':front:organizationPage.html.twig', array(
+            'form' => $form->createView(),
+            'formbis' => $formbis->createView(),
+            'commentAnswers' => $commentanswers,
+            'organization' => $organization,
+            'user' => $user,
+            'comments' => $comments
+            ));
+        //return new Response($organization);
+    }
+
+    public function likeAction(Organizations $organization, Comment $comment)
+    {
+        $user = $this->getUser();
+
+        $comment->getId();
+        var_dump($comment);
         $request = $this->get('request');
 
        if ($request->getMethod() == 'POST') {
-
+            $comment->incrementeComment();
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();

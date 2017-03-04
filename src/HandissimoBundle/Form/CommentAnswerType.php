@@ -20,14 +20,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentAnswerType extends AbstractType
 {
-    /*public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('activate', ButtonType::class, array(
                 'label' => 'Répondre'
             ));
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        /*$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $form = $event->getForm();
             $data = $event->getData();
             $activate = $data->getActivate();
@@ -37,9 +37,9 @@ class CommentAnswerType extends AbstractType
             ))
             ->add('content', TextareaType::class);
 
-        })
+        });*/
 
-    }*/
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {

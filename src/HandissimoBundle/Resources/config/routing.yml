@@ -27,5 +27,5 @@ load_database:
     defaults: { _controller: "HandissimoBundle:Default:load" }
 
 vote_like:
-    path: /structure/{id}
+    path: /structure/{id}/like
     defaults: { _controller: "HandissimoBundle:Default:like" }

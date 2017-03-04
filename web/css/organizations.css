@@ -251,7 +251,8 @@
 /*******************/
 
 #handissimo_comment_author,
-#handissimo_comment_content {
+#handissimo_comment_content,
+#handissimo_comment_title {
     display: block;
     width: 100%;
     padding: 6px 12px;

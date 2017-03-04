@@ -261,9 +261,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form method="post" action="{{ path('handissimo_answer', {'id': organization.id}) }}">
-                                    <button class="response-btn">Répondre</button>
-                                </form>
+                                {#% for commentAnswer in commentAnswers %#}
+                                    {{ form_start(formbis, {'action': path('handissimo_answer', {'id': organization.id, 'comment_id': comment.id})}) }}
+                                    {{ form_errors(formbis) }}
+                                    <button class="response-btn">
+                                    {{ form_widget(formbis.activate) }}
+                                    </button>
+                                    {{ form_end(formbis) }}
+                                {#% endfor %#}
                             </div>
 
                             {% endif %}
@@ -279,6 +284,7 @@
                             {{ form_start(form) }}
                             {{ form_errors(form) }}
                             {{ form_widget(form.author, {'attr': {'class': 'form-control form2', 'value': organization.user }}) }}
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control form2', 'placeholder': 'Titre'}}) }}
                             {{ form_widget(form.content, {'attr': {'class': 'form-control form2', 'placeholder': 'Message', 'rows': '7' }}) }}
                             <div class="g-recaptcha" data-sitekey="6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC" data-callback="enableBtn"></div>
                             <button type="submit" class="btn btn-comment">Envoyer</button>

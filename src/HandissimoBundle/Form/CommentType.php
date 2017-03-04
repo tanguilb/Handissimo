@@ -23,6 +23,7 @@ class CommentType extends AbstractType
             ->add('author', TextType::class, array(
                 'read_only' => true
             ))
+            ->add('title', TextType::class)
             ->add('content', TextareaType::class);
     }
 

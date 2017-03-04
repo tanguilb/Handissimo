@@ -205,12 +205,12 @@ class Comment
     /**
      * @var integer
      */
-    private $likeComment;
+    private $likeComment = 0;
 
     /**
      * @var integer
      */
-    private $dislikeComment;
+    private $dislikeComment = 0;
 
 
     /**
@@ -298,5 +298,15 @@ class Comment
     public function getComments()
     {
         return $this->comments;
+    }
+
+    public function incrementeComment($by = 1)
+    {
+        $this->likeComment += $by;
+    }
+
+    public function decrementeComment($by = 1)
+    {
+        $this->likeComment -= $by;
     }
 }
