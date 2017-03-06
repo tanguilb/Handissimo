@@ -123,14 +123,18 @@
     display: flex;
     color: #333333;
 }
-.address-link{
+.address-link,
+.link-account {
     color:#61bdb9;
+
 }
-.address-link:hover{
+.address-link:hover,
+.link-account:hover {
     text-decoration: none;
     color: #f7af49;
 }
-.address-link:focus{
+.address-link:focus,
+.link-account:focus {
     color:#61bdb9;
     text-decoration: none;
 }
@@ -316,6 +320,11 @@
 
 .g-recaptcha {
     margin-bottom: 10px;
+}
+
+#alert-login-comment {
+    margin-top: 20px;
+    text-align: center;
 }
 
 /**********************/
