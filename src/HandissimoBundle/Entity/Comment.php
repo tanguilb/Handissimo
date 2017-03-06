@@ -172,6 +172,7 @@ class Comment
     public function __construct()
     {
         $this->parutionDate = new \DateTime();
+        $this->statusComment = 1;
     }
 
     /**
@@ -205,12 +206,12 @@ class Comment
     /**
      * @var integer
      */
-    private $likeComment = 0;
+    private $likeComment;
 
     /**
      * @var integer
      */
-    private $dislikeComment = 0;
+    private $dislikeComment;
 
 
     /**

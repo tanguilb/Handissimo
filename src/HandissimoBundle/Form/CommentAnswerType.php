@@ -20,6 +20,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentAnswerType extends AbstractType
 {
+    //private $name = 'answer_form';
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -52,4 +54,14 @@ class CommentAnswerType extends AbstractType
     {
         return 'handissimo_answer';
     }
+
+    /**
+     * @param mixed $name
+     */
+    /*public function setName($name)
+    {
+        $this->name = $name;
+    }*/
+
+
 }

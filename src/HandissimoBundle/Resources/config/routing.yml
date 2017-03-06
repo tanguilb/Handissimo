@@ -18,14 +18,14 @@ handissimo_structure:
     path: /solution
     defaults: { _controller: "HandissimoBundle:Default:structure" }
 
-handissimo_answer:
-    path: /structure/{id}
-    defaults: { _controller: "HandissimoBundle:Default:commentAnswer" }
+#handissimo_answer:
+ #   path: /structure/{id}
+  #  defaults: { _controller: "HandissimoBundle:Default:commentAnswer" }
 
 load_database:
     path: /load
     defaults: { _controller: "HandissimoBundle:Default:load" }
 
 vote_like:
-    path: /structure/{id}/like
+    path: /structure/{id}/{comment_id}
     defaults: { _controller: "HandissimoBundle:Default:like" }

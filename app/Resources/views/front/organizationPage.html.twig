@@ -254,21 +254,21 @@
                                         <h4><span class="bold">{{ comment.title }}</span></h4>
                                         <p>{{ comment.content }}</p>
                                         <div class="vote-btns">
-                                            <form method="post" action="{{ path('vote_like', {'id': organization.id}) }}">
+                                            <form method="post" action="{{ path('vote_like', {'id': organization.id, 'comment_id': comment.id}) }}">
                                                 <button class="vote-btn vote-like"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button>
                                             </form>
                                             <button class="vote-btn vote-dislike"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
                                         </div>
                                     </div>
                                 </div>
-                                {#% for commentAnswer in commentAnswers %#}
-                                    {{ form_start(formbis, {'action': path('handissimo_answer', {'id': organization.id, 'comment_id': comment.id})}) }}
+                                {#% for commentAnswerForms in  formbis %}
+                                    {{ form_start(formbis, {'action': path('handissimo_answer', {'id': organization.id })}) }}
                                     {{ form_errors(formbis) }}
                                     <button class="response-btn">
                                     {{ form_widget(formbis.activate) }}
                                     </button>
                                     {{ form_end(formbis) }}
-                                {#% endfor %#}
+                                {% endfor %#}
                             </div>
 
                             {% endif %}
