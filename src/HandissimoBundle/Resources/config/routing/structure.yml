@@ -1,0 +1,13 @@
+vote_like:
+    path: /{like}
+    defaults: { _controller: "HandissimoBundle:Default:like" }
+    methods:  POST
+
+vote_dislike:
+    path: /{dislike}
+    defaults: { _controller: "HandissimoBundle:Default:dislike" }
+    methods:  POST
+
+structure_page:
+    path: /
+    defaults: { _controller: "HandissimoBundle:Default:standardPage" }

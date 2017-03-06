@@ -82,7 +82,7 @@ class DefaultController extends Controller
                     ))
                 );
             $this->get('mailer')->send($message);
-            return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
+            return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
         }
         $comments = $organization->getComments();
         $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
@@ -147,27 +147,11 @@ class DefaultController extends Controller
         ));
     }*/
 
-    public function likeAction(Comment $comment)
+    public function likeAction(Request $request)
     {
-        //$user = $this->getUser();
+        if ($request->isXmlHttpRequest()) {
 
-        $request = $this->get('request');
-        $comment->getId();
-        var_dump($comment);
-
-        if ($request->getMethod() == 'POST') {
-            $comment->incrementeComment();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-            //return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
         }
-        //$comments = $organization->getComments();
-        return $this->render(':front:index.html.twig', array(
-        //'user' => $user,
-        //'comments' => $comments,
-        //'organization' => $organization
-        ));
     }
 
     public function dislikeAction()
