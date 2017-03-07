@@ -254,7 +254,7 @@
                                         <h4><span class="bold">{{ comment.title }}</span></h4>
                                         <p>{{ comment.content }}</p>
                                         <div class="vote-btns">
-                                            <button class="vote-btn vote-like" value="{{ comment.id }}"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button>
+                                            <button class="vote-btn vote-like" value="{{ comment.id }}" onclick="likeFunction()"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button>
                                             <button class="vote-btn vote-dislike" value="{{ comment.id }}"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
                                         </div>
                                     </div>
@@ -268,7 +268,6 @@
                                     {{ form_end(formbis) }}
                                 {% endfor %#}
                             </div>
-                            {{ dump(app.request.headers) }}
                             {% endif %}
                         {% endfor %}
                     </div>

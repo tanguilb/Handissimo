@@ -13,7 +13,6 @@ handissimo_aboutpage:
 handissimo_organizations_standard_page:
     resource: "@HandissimoBundle/Resources/config/routing/structure.yml"
     prefix: /structure/{id}
-    #defaults: { _controller: "HandissimoBundle:Default:standardPage" }
 
 handissimo_structure:
     path: /solution

@@ -25,6 +25,7 @@
                         {{ form_row(form.lastName, { 'label': 'Nom :' }) }}
                         {{ form_row(form.eMail, { 'label': 'Adresse e-mail :' }) }}
                         {{ form_row(form.message, { 'label': 'Votre avis :'|trans ({}, 'SonataAdminBundle') }) }}
+                        <div class="g-recaptcha" data-sitekey="6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC" data-callback="enableBtn"></div>
                         <div class="modal-footer">
                             <input id="send-message" type="submit" class="btn btn-default" value="Envoyer" />
                             <button id="send-cancel" type="button" class="btn btn-default orange-btn" data-dismiss="modal">Annuler</button>
