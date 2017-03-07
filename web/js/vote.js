@@ -11,7 +11,7 @@ $(document).ready(function () {
 
             }
         })
-    })
+    });
 
     $(".vote-dislike").on('click', function () {
         var dislike = $(this).val();

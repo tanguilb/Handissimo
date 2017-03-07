@@ -41,6 +41,7 @@ security:
                 provider:       fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 login_path:     /login
+                use_referer:     true
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null

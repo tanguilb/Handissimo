@@ -9,9 +9,11 @@ use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
 use HandissimoBundle\Form\CommentAnswerType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use HandissimoBundle\Service\CaptchaVerify;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
@@ -150,7 +152,12 @@ class DefaultController extends Controller
     public function likeAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Comment');
+            $like = $repository->getByLike();
 
+            return new JsonResponse(array('data' => json_encode($like)));
+        }else{
+            throw new HttpException('500', 'Invalid Call');
         }
     }
 
