@@ -25,9 +25,9 @@ $(document).ready(function () {
 
             }
         })
-    })*/
+    });*/
 
-    function likeFunction(){
+    /*function likeFunction(){
         var value = $("#").val();
         $.post("myModuleName/myAction",
             {myParam : value},
@@ -35,7 +35,10 @@ $(document).ready(function () {
             {
                 $(".vote-like").attr("value",data);
             });
-    }
+    }*/
+    /*document.getElementById("vote-like").onclick = function () {
+        location.href = "{{ path('vote_like') }}";
+    };*/
 
 });
 

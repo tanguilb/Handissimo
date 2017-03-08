@@ -2,18 +2,14 @@
 
 namespace HandissimoBundle\Controller;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use HandissimoBundle\Entity\Comment;
-use HandissimoBundle\Entity\CommentAnswer;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
-use HandissimoBundle\Form\CommentAnswerType;
+use HandissimoBundle\Form\Handler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use HandissimoBundle\Service\CaptchaVerify;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
@@ -58,7 +54,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function standardPageAction(Organizations $organization, Request $request)
+    /*public function standardPageAction(Organizations $organization, Request $request)
     {
         $user = $this->getUser();
         $comment = new Comment();
@@ -84,6 +80,29 @@ class DefaultController extends Controller
                     ))
                 );
             $this->get('mailer')->send($message);
+            return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
+        }
+        $comments = $organization->getComments();
+        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
+            'form' => $form->createView(),
+            'user' => $user,
+            'organization' => $organization,
+            'comments' => $comments,
+        ));
+        return new Response($organization);
+    }*/
+
+    public function standardPageAction(Organizations $organization)
+    {
+        $user = $this->getUser();
+        $comment = new Comment();
+        $comment->setOrganizationsComment($organization);
+        $form = $this->createForm('HandissimoBundle\Form\Type\CommentType', $comment);
+
+        $formHandler = new Handler\CommentHandler($form, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'));
+
+        if ($formHandler->process()) {
+
             return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
         }
         $comments = $organization->getComments();
@@ -149,16 +168,21 @@ class DefaultController extends Controller
         ));
     }*/
 
-    public function likeAction(Request $request)
+    public function likeAction(Request $request, Comment $comment)
     {
-        if ($request->isXmlHttpRequest()) {
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Comment');
-            $like = $repository->getByLike();
+        //$id = $comment->getId();
+        //$comment = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->find($id);
+        //var_dump($comment);
+        /*if ($request->getMethod() == 'POST') {
+            $comment->incrementeComment();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+            return $this->redirectToRoute('handissimo_aboutpage');
+        }*/
 
-            return new JsonResponse(array('data' => json_encode($like)));
-        }else{
-            throw new HttpException('500', 'Invalid Call');
-        }
+        //$deleteForm = $this->createDeleteForm($comment);
+
     }
 
     public function dislikeAction()

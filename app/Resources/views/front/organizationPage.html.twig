@@ -254,8 +254,10 @@
                                         <h4><span class="bold">{{ comment.title }}</span></h4>
                                         <p>{{ comment.content }}</p>
                                         <div class="vote-btns">
-                                            <button class="vote-btn vote-like" value="{{ comment.id }}" onclick="likeFunction()"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button>
-                                            <button class="vote-btn vote-dislike" value="{{ comment.id }}"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
+                                            <form method="POST" action="">
+                                                <button class="vote-btn vote-like" id="vote-like" value="{{ comment.id }}"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button></a>
+                                            </form>
+                                                <button class="vote-btn vote-dislike" value="{{ comment.id }}"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
                                         </div>
                                     </div>
                                 </div>

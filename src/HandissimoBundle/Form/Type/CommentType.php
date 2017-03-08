@@ -6,7 +6,7 @@
  * Time: 11:19
  */
 
-namespace HandissimoBundle\Form;
+namespace HandissimoBundle\Form\Type;
 
 
 use Symfony\Component\Form\AbstractType;
