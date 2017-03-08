@@ -9,7 +9,7 @@
 namespace HandissimoBundle\Form\Handler;
 
 use Doctrine\ORM\EntityManager;
-use HandissimoBundle\Entity\Comment;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -18,30 +18,30 @@ class CommentHandler
     protected $form;
     protected $request;
     protected $em;
+    protected $container;
 
-    public function __construct(Form $form, Request $request, EntityManager $em)
+    public function __construct(Form $form, Request $request, EntityManager $em, Container $container)
     {
-        $this->form     = $form;
-        $this->request  = $request;
-        $this->em       = $em;
+        $this->form             = $form;
+        $this->request          = $request;
+        $this->em               = $em;
+        $this->container        = $container;
     }
 
     public function process()
     {
-        if ( $this->request->getMethod() == 'POST' ) {
-            $this->form->submit($this->request);
-            if ( $this->form->isValid() ) {
-                $this->onSuccess($this->form->getData());
-
-                return true;
-            }
+        $captchaverify = $this->container->get('handissimo.captchaverify');
+        $this->form->handleRequest($this->request);
+        if ($this->form->isValid() && $this->request->isMethod('post') && $captchaverify->verify($request->get('g-recaptcha-response'))) {
+            $this->onSuccess();
+            return true;
         }
         return false;
     }
 
-    public function onSuccess(Comment $comment)
+    public function onSuccess()
     {
-        $this->em->persist($comment);
+        $this->em->persist($this->form->getData());
         $this->em->flush();
     }
 }
