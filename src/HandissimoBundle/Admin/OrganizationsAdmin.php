@@ -96,7 +96,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     'class' => 'HandissimoBundle:DisabilityTypes',
                     'choice_label' => 'disabilityName',
                     'label' => 'Handicap des personnes accompagnées',
-                    'multiple' => true
+                    'multiple' => true,
+                    'expanded' => true
                 ))
                 ->add('agemini', 'integer', array(
                     'label' => 'Âge minimum',
@@ -124,7 +125,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     'class' => 'HandissimoBundle:Needs',
                     'choice_label' => 'needName',
                     'label' => 'Services/prestations proposés par la structure',
-                    'multiple' => true
+                    'multiple' => true,
+                    'expanded' => true
                 ))
                 ->add('working_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
@@ -138,7 +140,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     'class' => 'HandissimoBundle:Staff',
                     'choice_label' => 'jobs',
                     'label' => 'Le personnel',
-                    'multiple' => true
+                    'multiple' => true,
+                    'expanded'  => true
                 ))
                 ->end()
                 ->with('Ecole', array('class' => 'col-md-4'))

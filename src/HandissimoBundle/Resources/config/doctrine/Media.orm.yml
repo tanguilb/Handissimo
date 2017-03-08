@@ -18,10 +18,18 @@ HandissimoBundle\Entity\Media:
         webPath:
             type: string
             length: 255
-        thumnbails:
+        thumbnails:
             type: string
             length: 255
             nullable: true
+        organizationsId:
+            type: string
+            length: 255
+        caroussel:
+            type: boolean
+        firstPicture:
+            type: boolean
+
     lifecycleCallbacks:
         prePersist:   [lifecycleFileUpload]
         preUpdate:    [lifecycleFileUpload]

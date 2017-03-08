@@ -88,7 +88,7 @@ services:
             - { name: form.type, alias: front_user_registration }
 
     app.brochure_uploader:
-        class: HandissimoBundle\FileUploader
+        class: HandissimoBundle\Upload\FileUploader
         arguments: ['%brochures_directory%']
 
     admin.media:
@@ -102,11 +102,18 @@ services:
         calls:
             - [ setTemplate, [list, HandissimoBundle:MediaAdmin:list.html.twig]]
 
-   # handissimo.thumnbails:
-    #    class: HandissimoBundle\ImageThumnbails
-     #   arguments: ['%media_directory%']
+    handissimo.resize:
+        class: HandissimoBundle\Upload\UploadAndResizePictures
+        arguments:
+            - '%%media_directory%'
+            - 50
+            - 300
 
-   # handissimo.doctrine_listener.media:
+    #handissimo.thumnbails:
+     #   class: HandissimoBundle\ImageThumnbails
+      #  arguments: ['%media_directory%']
+
+   # #andissimo.doctrine_listener.media:
     #    class: HandissimoBundle\DoctrineListener\MediaThumnbailsListener
      #   arguments:
       #      - '@handissimo.thumnbails'

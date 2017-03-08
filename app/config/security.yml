@@ -68,16 +68,23 @@ security:
 
     role_hierarchy:
 
+        ROLE_HANDISSIMIEN:
+            - ROLE_ADMIN_ORGANIZATIONS_ALL
+
         ROLE_ORGANIZATION:
             - ROLE_ADMIN_ORGANIZATIONS_ALL
+            - ROLE_ADMIN_MEDIA_ALL
 
         ROLE_SOCIETY:
             - ROLE_ADMIN_SOCIETY_ALL
             - ROLE_ADMIN_ORGANIZATIONS_ALL
+            - ROLE_ADMIN_MEDIA_ALL
+
 
         ROLE_MANAGER:
             - ROLE_EDITOR
 
+        ROLE_HANDI:       [ROLE_HANDISSIMIEN]
         ROLE_SOC:         [ROLE_SOCIETY, ROLE_ORG]
         ROLE_ORG:         [ROLE_ORGANIZATION]
         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_EDITOR]

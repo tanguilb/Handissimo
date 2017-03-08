@@ -2,6 +2,11 @@
 
 namespace HandissimoBundle\Repository;
 
+
+use Application\Sonata\UserBundle\Entity\User;
+use HandissimoBundle\Entity\Media;
+use HandissimoBundle\Entity\Organizations;
+
 /**
  * MediaRepository
  *
@@ -10,4 +15,14 @@ namespace HandissimoBundle\Repository;
  */
 class MediaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByUsers($userId, $caroussel = 1)
+    {
+        $query = $this->createQueryBuilder('m')
+            ->where('m.user = ?1')
+            ->where('m.caroussel = ?2')
+            ->setParameter(1, $userId)
+            ->setParameter(2, $caroussel)
+            ->getQuery();
+        return $query->getResult();
+    }
 }

@@ -26,6 +26,8 @@ class AjaxController extends Controller
 
         $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
         $formAdvancedResearch->handleRequest($request);
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findByFirstPicture(1);
 
         if ($form->isSubmitted() && $form->isValid()){
 
@@ -39,6 +41,7 @@ class AjaxController extends Controller
             $paginator  = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
+                'picture' => $pictures,
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
@@ -58,6 +61,7 @@ class AjaxController extends Controller
             $paginator  = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
+                'picture' => $pictures,
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,

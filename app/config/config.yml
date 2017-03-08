@@ -128,6 +128,12 @@ sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
 
+sonata_doctrine_orm_admin:
+    templates:
+        types:
+            list:
+                boolean: SonataAdminBundle:CRUD:list_boolean.html.twig
+
 sonata_user:
     security_acl: false
     manager_type: orm

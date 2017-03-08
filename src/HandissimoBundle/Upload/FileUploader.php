@@ -6,7 +6,7 @@
  * Time: 09:47
  */
 
-namespace HandissimoBundle;
+namespace HandissimoBundle\Upload;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

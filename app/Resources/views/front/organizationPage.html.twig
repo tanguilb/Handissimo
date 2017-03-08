@@ -35,6 +35,9 @@
             <!-- Carousel-->
             <div class="carousel">
                 <ul>
+                    {% for picture in pictures %}
+
+                    {% if organization.userOrg == null %}
                     <li class="line-img">
                         <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
                     </li>
@@ -50,6 +53,16 @@
                     <li class="line-img">
                         <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
                     </li>
+
+                    {% elseif organization.id == picture.organizationsId %}
+                        <li class="line-img">
+                            <img class="caroussel-image" src="{{ asset(picture.webPath) }}">
+                        </li>
+
+                    {% endif %}
+                    {% endfor %}
+
+
                 </ul>
             </div>
 

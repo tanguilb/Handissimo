@@ -13,6 +13,7 @@ use HandissimoBundle\Entity\Media;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class MediaAdmin extends AbstractAdmin
 {
@@ -20,8 +21,15 @@ class MediaAdmin extends AbstractAdmin
     {
 
         $formMapper
-            ->add('file', 'file', array(
-                'required' => false
+            ->add('fileName', FileType::class, array(
+                'data_class' => null,
+                'required' => false,
+                'label' => 'ajouter une image'
+            ))
+            ->add('caroussel', null, array(
+                'label' => 'Ajouter au caroussel'))
+            ->add('firstPicture', null, array(
+                'label' => "Imgage de présentation"
             ));
     }
 

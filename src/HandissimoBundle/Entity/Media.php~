@@ -254,33 +254,4 @@ class Media
         return $this->thumbnails;
     }
 
-    /**
-     * @var string
-     */
-    private $organizationsId;
-
-
-    /**
-     * Set organizationsId
-     *
-     * @param string $organizationsId
-     *
-     * @return Media
-     */
-    public function setOrganizationsId($organizationsId)
-    {
-        $this->organizationsId = $organizationsId;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsId
-     *
-     * @return string
-     */
-    public function getOrganizationsId()
-    {
-        return $this->organizationsId;
-    }
 }

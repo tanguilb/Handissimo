@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\Media;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,9 +53,13 @@ class DefaultController extends Controller
     }
 
     public function standardPageAction(Organizations $organization){
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findByCaroussel(1);
+
         $user = $this->getUser();
         $organization = $this->get('templating')
             ->render('front/organizationPage.html.twig', array(
+                'pictures' => $pictures,
                 'organization' => $organization,
                 'user' => $user));
 
@@ -109,6 +114,19 @@ class DefaultController extends Controller
         $data = json_decode($response);
 
         return $data->success;
+    }
+
+    public function showImageAction()
+    {
+
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findByCaroussel(1);
+
+        return $this->render('front/caroussel.html.twig', array(
+            'pictures' => $pictures
+        ));
+
+
     }
 
 }

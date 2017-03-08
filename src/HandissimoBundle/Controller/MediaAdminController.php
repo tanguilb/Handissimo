@@ -8,15 +8,18 @@
 
 namespace HandissimoBundle\Controller;
 
-use HandissimoBundle\Repository\Media;
+use HandissimoBundle\Entity\Media;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class MediaAdminController extends Controller
 {
-    public function listAction()
+    protected function preList(Request $request)
     {
+
 
         $em = $this->getDoctrine()->getManager();
 
@@ -83,13 +86,9 @@ class MediaAdminController extends Controller
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
-                    $file = $object->getFileName();
-                    $fileName = $this->get('handissimo.thumnbails')->resizeImage($file);
+                    $file = $this->getFileName();
 
-                    $object->setThumnbails($fileName);
-
-                    $object->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-                    $object->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
+                    $object->setOrganizationsId($this->container->get('security.token_storage')->getToken()->getUser()->getOrganizationsUser()->getId());
                     $object = $this->admin->update($object);
 
 
@@ -211,7 +210,7 @@ class MediaAdminController extends Controller
                 $this->admin->checkAccess('create', $object);
 
                 try {
-
+                    $object->setOrganizationsId($this->container->get('security.token_storage')->getToken()->getUser()->getOrganizationsUser()->getId());
 
                     $object = $this->admin->create($object);
 
@@ -269,6 +268,9 @@ class MediaAdminController extends Controller
             'object' => $object,
         ), null);
     }
+
+
+
     /**
      * Sets the admin form theme to form view. Used for compatibility between Symfony versions.
      *
@@ -291,5 +293,6 @@ class MediaAdminController extends Controller
                 ->setTheme($formView, $theme);
         }
     }
+
 
 }
