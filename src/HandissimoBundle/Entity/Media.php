@@ -54,6 +54,7 @@ class Media
             $this->getFile()->getClientOriginalName()
         );
 
+        // resize image in thumbnials and for caroussel
         $origin = imagecreatefromjpeg(self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName());
         $widthOrigin = imagesx($origin);
         $heightOrigin = imagesy($origin);

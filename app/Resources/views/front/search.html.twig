@@ -65,11 +65,7 @@
                 <div class="row" id="result-container">
                     <div class="col-sm-5" id="crop-height">
                         {% for pictures in picture %}
-                            {% if results.mediaId == null %}
-                                <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}">
-                                    <img src="{{ asset('images/photo-centre.jpg') }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
-                                </a>
-                            {% elseif results.id == pictures.organizationsId %}
+                            {% if results.id == pictures.organizationsId %}
                                 <a href="{{ path('handissimo_organizations_standard_page', {'id': results.id}) }}">
                                     <img src="{{ asset(pictures.webPath) }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
                                 </a>
