@@ -14,6 +14,7 @@ services:
             - HandissimoBundle:OrganizationsAdmin
         calls:
             - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
+            - [ setTemplate, [form, HandsissimoBundle:OrganizationsAdmin:base_edit.html.twig]]
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin

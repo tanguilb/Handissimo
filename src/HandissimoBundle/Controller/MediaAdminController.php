@@ -210,7 +210,8 @@ class MediaAdminController extends Controller
                 $this->admin->checkAccess('create', $object);
 
                 try {
-                    $fileName = $object->getFileName();
+                    var_dump($this->container->get('security.token_storage')->getToken()->getRoles());
+                    $fileName = $object->getFileNe();
                     $object->setFile($fileName);
 
                     $object->setOrganizationsId($this->container->get('security.token_storage')->getToken()->getUser()->getOrganizationsUser()->getId());

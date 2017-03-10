@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Admin;
 
 use HandissimoBundle\Entity\Organizations;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -14,6 +15,7 @@ use Symfony\Component\Form\CallbackTransformer;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
+
     protected function configureFormFields(FormMapper $formMapper)
     {
          $formMapper
@@ -115,11 +117,28 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->with('Travail effectué')
                 ->add('organization_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
-                    'required' => false),
-                    array(
-                        'placeholder' => 'essai',
+                    'required' => false,
+                    'config' => array(
+                        'extraPlugins' => 'confighelper',
+                        'placeholder' => 'Exemple 1: Les résidents habitent à la MAS, c’est leur lieu de vie. L’équipe s’occupe des soins nécessaires, de l’aide à la vie quotidienne, propose des activités dans les locaux ou à l’extérieur. Les activités ont pour objectif de faire progresser les résidents dans leur capacité de communication, leur ouverture sur le monde, le développement de leurs compétences. <br /> <br />
+Exemple 2 : L’association Une souris verte a pour objectif de sensibiliser aux différences et d’inclure les jeunes enfants en situation de handicap dans la société. Pour cela, l’association développe 4 actions principales :
+<ul>
+<li>
+l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil.
+</li>
+<li>
+l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation
+</li>
+<li>
+la formation des acteurs et professionnels de santé.
+</li>
+<li>
+la sensibilisation à la différence
+</li>
+</ul>'
+                    ),
+                )
 
-                    )
                 )
                 ->add('needs', EntityType::class, array(
                     'class' => 'HandissimoBundle:Needs',
@@ -130,7 +149,11 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
                 ->add('working_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
-                    'required' => false
+                    'required' => false,
+                    'config' => array(
+                        'extraPlugins' => 'confighelper',
+                        'placeholder' => 'essai de texte'
+                    ),
                 ))
                 ->add('team_members_number', 'text', array(
                     'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
@@ -161,6 +184,9 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->add('school_description', 'ckeditor', array(
                     'label' => 'Description de l\'établissement',
                     'required' => false,
+                    'config' => array(
+                        'extraPlugins' => 'confighelper',
+                        'placeholder' => 'Si oui, précisez : nombre d’heure de « classe » ? dans les murs ou à l’extérieur ? combien de groupes/unités ? Combien de jeunes par groupe ? ')
                 ))
                 ->end()
                 ->with('Hébergement', array('class' => 'col-md-4'))
@@ -179,6 +205,9 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->add('accomodation_description', 'ckeditor', array(
                     'label' => 'Conditions (nombre de place, autonomie nécessaire ...)',
                     'required' => false,
+                    'config' => array(
+                        'extraPlugins' => 'confighelper',
+                        'placeholder' => 'Si oui : quel type d’accueil ? Hébergement ? Accueil de jour ? ...')
                 ))
                 ->end()
                 ->with('Service', array('class' => 'col-md-4'))
@@ -222,4 +251,6 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
             ->add('update_datetime', 'date', array('label' => 'date de modification'));
     }
+
+
 }
