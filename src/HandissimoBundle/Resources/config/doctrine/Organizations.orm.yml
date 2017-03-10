@@ -231,6 +231,18 @@ HandissimoBundle\Entity\Organizations:
                     staff_id:
                         referencedColumnName: id
 
+        socialstaffs:
+            targetEntity: HandissimoBundle\Entity\SocialStaff
+            inversedBy: socialstafforganizations:
+            joinTable:
+                name: organizations_has_socialstaff
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    social_staff_id:
+                        referencedColumnName: id
+
     lifecycleCallbacks:
         prePersist: [ transformAddressGeocode ]
         preUpdate: [ transformAddressGeocode ]

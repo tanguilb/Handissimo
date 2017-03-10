@@ -1,0 +1,54 @@
+<?php
+
+namespace HandissimoBundle\Entity;
+
+/**
+ * SocialStaff
+ */
+class SocialStaff
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $socialJobs;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set socialJobs
+     *
+     * @param string $socialJobs
+     *
+     * @return SocialStaff
+     */
+    public function setSocialJobs($socialJobs)
+    {
+        $this->socialJobs = $socialJobs;
+
+        return $this;
+    }
+
+    /**
+     * Get socialJobs
+     *
+     * @return string
+     */
+    public function getSocialJobs()
+    {
+        return $this->socialJobs;
+    }
+}

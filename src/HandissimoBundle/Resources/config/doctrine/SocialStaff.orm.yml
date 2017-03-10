@@ -1,7 +1,7 @@
-HandissimoBundle\Entity\Staff:
+HandissimoBundle\Entity\SocialStaff:
     type: entity
-    table: staff
-    repositoryClass: HandissimoBundle\Repository\StaffRepository
+    table: null
+    repositoryClass: HandissimoBundle\Repository\SocialStaffRepository
     id:
         id:
             type: integer
@@ -9,16 +9,13 @@ HandissimoBundle\Entity\Staff:
             generator:
                 strategy: AUTO
     fields:
-        jobs:
+        socialJobs:
             type: string
-            nullable: true
             length: 255
-            options:
-                fixed: false
 
     manyToMany:
-        organizations:
+        socialstafforganizations:
             targetEntity: Organizations
-            mappedBy: stafforganizations
+            mappedBy: socialstaffs
 
     lifecycleCallbacks: {  }

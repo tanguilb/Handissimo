@@ -45,12 +45,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Personnel, label: Métiers }
 
-    admin.stafftype:
-        class: HandissimoBundle\Admin\StaffTypesAdmin
-        arguments: [~, HandissimoBundle\Entity\StaffTypes, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Type de personnels }
-
     admin.needs:
         class: HandissimoBundle\Admin\NeedsAdmin
         arguments: [~, HandissimoBundle\Entity\Needs, ~]
