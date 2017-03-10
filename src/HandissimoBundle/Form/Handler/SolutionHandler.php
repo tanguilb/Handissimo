@@ -10,6 +10,8 @@ namespace HandissimoBundle\Form\Handler;
 
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -18,20 +20,27 @@ class SolutionHandler
     protected $form;
     protected $em;
     protected $request;
+    protected $container;
 
-    public function __construct(Form $form, Request $request, EntityManager $em)
+    public function __construct(Form $form, Request $request, EntityManager $em, ContainerInterface $container)
     {
-        $this->form     = $form;
-        $this->request  =$request;
-        $this->em       = $em;
+        $this->form             = $form;
+        $this->request          = $request;
+        $this->em               = $em;
+        $this->container        = $container;
     }
 
     public function process()
     {
+        //$recaptcha = new ReCaptcha('6Lc8vBYUAAAAAI-Rfhi1KUJUS0XIUN6kp4lEb-o5');
+        $captchaverify = $this->container->get('handissimo.captchaverify');
+        //$resp = $captchaverify->verify($this->request->get('g-recaptcha-response'));
         $this->form->handleRequest($this->request);
-        if ($this->form->isValid() && $this->request->isMethod('post')) {
-            $this->onSuccess();
-            return true;
+        if ($this->request->isMethod('post')) {
+            if ($captchaverify->verify($this->request->get('g-recaptcha-response')) && $this->form->isValid()) {
+                $this->onSuccess();
+                return true;
+            }
         }
         return false;
     }
@@ -40,5 +49,14 @@ class SolutionHandler
     {
         $this->em->persist($this->form->getData());
         $this->em->flush();
+    }
+
+    public function captchaFail()
+    {
+        $captchaverify = $this->container->get('handissimo.captchaverify');
+        if (!$captchaverify->verify($this->request->get('g-recaptcha-response'))) {
+            return false;
+        }
+        return true;
     }
 }

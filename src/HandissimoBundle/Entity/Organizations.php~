@@ -1561,33 +1561,4 @@ class Organizations
     {
         return $this->inscription;
     }
-    /**
-     * @var string
-     */
-    private $interventionZone;
-
-
-    /**
-     * Set interventionZone
-     *
-     * @param string $interventionZone
-     *
-     * @return Organizations
-     */
-    public function setInterventionZone($interventionZone)
-    {
-        $this->interventionZone = $interventionZone;
-
-        return $this;
-    }
-
-    /**
-     * Get interventionZone
-     *
-     * @return string
-     */
-    public function getInterventionZone()
-    {
-        return $this->interventionZone;
-    }
 }

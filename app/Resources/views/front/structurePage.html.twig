@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% import "Macros/form_elements.html.twig" as formElements %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -44,16 +45,19 @@
         <div class="col-md-offset-2 col-md-7 col-xs-12">
             <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form_body">
                 {{ form_start(form) }}
-                {{ form_errors(form) }}
+                {{ form_errors(form.lastname) }}
                 {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
+                {{ form_errors(form.firstname) }}
                 {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2', 'placeholder': 'firstname'|trans({}, 'messages')}}) }}
+                {{ form_errors(form.mail) }}
                 {{ form_widget(form.mail, {'attr': {'class': 'form-control form2', 'placeholder': 'mail'|trans({}, 'messages')}}) }}
+                {{ form_errors(form.status) }}
                 {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'your status'|trans({}, 'messages')}}) }}
                 {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2', 'placeholder': 'name of your solution'|trans({}, 'messages')}}) }}
                 {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
                 <p>
                 {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
-                <div class="g-recaptcha" data-sitekey="6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC" data-callback="enableBtn"></div>
+                {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
                 <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
                 {{ form_end(form) }}
             </form>

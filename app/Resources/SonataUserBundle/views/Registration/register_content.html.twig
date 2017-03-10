@@ -30,9 +30,9 @@
                  {{ form_errors(form) }}
                  {% for choiceFormView in form.userType %}
                      <div class="radioChoixUser">
-                     {{ form_errors(choiceFormView) }}
-                     {{ form_widget(choiceFormView) }}
-                     {{ form_label(choiceFormView) }}
+                         {{ form_errors(choiceFormView) }}
+                         {{ form_widget(choiceFormView) }}
+                         {{ form_label(choiceFormView) }}
                      </div>
                  {% endfor %}
                  {{ form_errors(form.username) }}

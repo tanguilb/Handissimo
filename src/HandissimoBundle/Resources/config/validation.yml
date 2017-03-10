@@ -3,3 +3,4 @@ HandissimoBundle\Entity\Opinion:
         eMail:
             - Email:
                 checkMX: true
+

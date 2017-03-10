@@ -7,7 +7,7 @@ services:
     admin.organizations:
         class: HandissimoBundle\Admin\OrganizationsAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Description de la structure }
+            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Créer ou modifier une fiche }
         arguments:
             - null
             - HandissimoBundle\Entity\Organizations

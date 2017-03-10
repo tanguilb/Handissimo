@@ -9,7 +9,7 @@
 namespace HandissimoBundle\Form\Handler;
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\DependencyInjection\Container;
+use ReCaptcha\ReCaptcha;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,21 +20,25 @@ class CommentHandler
     protected $em;
     protected $container;
 
-    public function __construct(Form $form, Request $request, EntityManager $em, Container $container)
+    public function __construct(Form $form, Request $request, EntityManager $em)
     {
         $this->form             = $form;
         $this->request          = $request;
         $this->em               = $em;
-        $this->container        = $container;
     }
 
     public function process()
     {
-        $captchaverify = $this->container->get('handissimo.captchaverify');
+        $recaptcha = new ReCaptcha('6Lc8vBYUAAAAAI-Rfhi1KUJUS0XIUN6kp4lEb-o5');
+        $resp = $recaptcha->verify($this->request->get('g-recaptcha-response'), $this->request->getClientIp());
         $this->form->handleRequest($this->request);
-        if ($this->form->isValid() && $this->request->isMethod('post') && $captchaverify->verify($request->get('g-recaptcha-response'))) {
-            $this->onSuccess();
-            return true;
+        if ($this->request->isMethod('post')) {
+            if (!$resp->isSuccess() && $this->form->isValid()) {
+                return false;
+            }else {
+                $this->onSuccess();
+                return true;
+            }
         }
         return false;
     }

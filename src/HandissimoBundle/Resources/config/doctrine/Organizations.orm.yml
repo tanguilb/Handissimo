@@ -72,10 +72,6 @@ HandissimoBundle\Entity\Organizations:
             type: text
             nullable: true
             length: 65535
-        serveDescription:
-            type: text
-            nullable: true
-            length: 65535
         openhours:
             type: string
             nullable: true
@@ -122,10 +118,6 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: true
             length: 255
-        fax:
-            type: string
-            length: 50
-            nullable: true
         directorName:
             type: string
             length: 50
@@ -138,9 +130,25 @@ HandissimoBundle\Entity\Organizations:
             type: text
             length: 65535
             nullable: true
-        service:
-            type: string
-            length: 4
+        dayDescription:
+            type: text
+            length: 65535
+            nullable: true
+        transport:
+            type: text
+            length: 65535
+            nullable: true
+        receptionDescription:
+            type: text
+            length: 65535
+            nullable: true
+        cost:
+            type: text
+            length: 65535
+            nullable: true
+        inscription:
+            type: text
+            length: 65535
             nullable: true
         statut:
             type: boolean
@@ -156,7 +164,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 50
             nullable: true
-
+        interventionZone:
+            type: string
+            length: 255
+            nullable: true
 
     oneToOne:
         userorg:
