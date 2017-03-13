@@ -3,11 +3,15 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
@@ -16,72 +20,80 @@ class OrganizationsAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
+            ->tab('Identité')
+                ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
+                ->end()
+                ->with('Identité', array('class' => 'col-md-6'))
+                    ->add('name', TextType::class, array(
+                        'label' => 'Nom de la structure',
+                        'required' => true
+                    ))
+                    ->add('societies', EntityType::class, array(
+                        'class' => 'HandissimoBundle:Society',
+                        'choice_label' => 'society_name',
+                        'label' => 'Nom de l\'organisme gestionnaire'
+                    ))
+                    ->add('address', TextType::class, array(
+                        'label' => 'Adresse postale',
+                        'required' => true
+                    ))
+                    ->add('addressComplement', TextType::class, array(
+                        'label' => 'Complement d\'adresse',
+                        'required' => false
+                    ))
+                    ->add('postal', TextType::class, array(
+                        'label' => 'Code postal',
+                        'required' => true,
+                    ))
+                    ->add('city', TextType::class, array(
+                        'label' => 'Ville',
+                        'required' => true
+                    ))
+                    ->add('phone_number', TextType::class, array(
+                        'label' => 'Téléphone',
+                        'required' => true
+                    ))
+                    ->add('mail', TextType::class, array(
+                        'label' => 'E-mail de contact',
+                        'required' => false
+                    ))
+                    ->add('website', TextType::class, array(
+                        'label' => 'Site internet',
+                        'required' => false
+                    ))
+                    ->add('director_name', TextType::class, array(
+                        'label' => 'Nom du responsable',
+                        'required' => false
+                    ))
+                ->end()
+                ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
+                    ->add('structuretype', EntityType::class, array(
+                        'class' => 'HandissimoBundle:StructuresTypes',
+                        'choice_label' => 'structurestype',
+                        'label' => 'Un seul choix possible',
+                        'multiple' => false,
+                        'required' => false,
+                        'expanded' => true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('st')
+                                ->orderBy('st.structurestype', 'ASC');
+                        },
+                    ))
+                ->end()
             ->end()
-            ->with('Identité', array('class' => 'col-md-6'))
-                ->add('name', 'text', array(
-                    'label' => 'Nom de la structure',
-                    'required' => true
-                ))
-                ->add('societies', EntityType::class, array(
-                    'class' => 'HandissimoBundle:Society',
-                    'choice_label' => 'society_name',
-                    'label' => 'Non de l\'organisme gestionnaire'
-                ))
-                ->add('structuretype', EntityType::class, array(
-                    'class' => 'HandissimoBundle:StructuresTypes',
-                    'choice_label' => 'structurestype',
-                    'label' => 'Type de structure',
-                    'multiple' => false,
-                    'by_reference' => true,
-                    'placeholder' => 'Choississez votre type de structure',
-                    'expanded' => false,
-                    'empty_data' => null,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('st')
-                            ->orderBy('st.structurestype', 'ASC');
-                    },
-                ))
-                ->add('address', 'text', array(
-                    'label' => 'Adresse postale',
-                    'required' => true
-                ))
-                ->add('postal', 'text', array(
-                    'label' => 'Code postal',
-                    'required' => true,
-                ))
-                ->add('city', 'text', array(
-                    'label' => 'Ville',
-                    'required' => true
-                ))
-                ->add('phone_number', 'text', array(
-                    'label' => 'Téléphone',
-                    'required' => true
-                ))
-                ->add('mail', 'text', array(
-                    'label' => 'E-mail de contact',
-                    'required' => false
-                ))
-                ->add('website', 'text', array(
-                    'label' => 'Site internet',
-                    'required' => false
-                ))
-                ->add('director_name', 'text', array(
-                    'label' => 'Nom du directeur',
-                    'required' => 'false'
-                ))
-                ->add('openhours', 'text', array(
+            ->tab('test')
+                ->add('openhours', TextType::class, array(
                     'label' => 'Heures d\'ouverture',
                     'required' => false
                 ))
-                ->add('opendays', 'sonata_type_choice_field_mask', array(
+                ->add('opendays', ChoiceFieldMaskType::class, array(
                     'label' => 'Jours d\'ouverture',
                     'required' => false,
                     'choices' => array('Lundi' => 'Lundi', 'Mardi' => 'Mardi', 'Mercredi' => 'Mercredi', 'Jeudi' => 'Jeudi', 'Vendredi' => 'Vendredi', 'Samedi' => 'Samedi', 'Dimanche' => 'Dimanche'),
                     'multiple' => true,
                     'expanded' => true
                 ))
-                ->add('update_datetime', 'datetime', array(
+                ->add('update_datetime', DateTimeType::class, array(
                     'label' => false,
                     'pattern' => 'dd MMM y G',
                     'attr' => array('style' => 'display:none'),
@@ -102,21 +114,21 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
             //->end()
 
-                ->add('agemini', 'integer', array(
+                ->add('agemini', IntegerType::class, array(
                     'label' => 'Âge minimum',
                     'required' => false
                 ))
-                ->add('agemaxi', 'integer', array(
+                ->add('agemaxi', IntegerType::class, array(
                     'label' => 'Âge maximum',
                     'required' => false
                 ))
-                ->add('freeplace', 'text', array(
+                ->add('freeplace', TextType::class, array(
                     'label' => 'Nombre de personnes accompagnées',
                     'required' => false
                 ))
             ->end()
             ->with(" ", array('class' => 'col-md-12'))
-                ->add('organization_description', 'ckeditor', array(
+                ->add('organization_description', CKEditorType::class, array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
                     'required' => false)
                 )
@@ -147,11 +159,11 @@ class OrganizationsAdmin extends AbstractAdmin
                     },
                 ))
             ->end()
-                ->add('working_description', 'ckeditor', array(
+                ->add('working_description', CKEditorType::class, array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
                     'required' => false
                 ))
-                ->add('team_members_number', 'text', array(
+                ->add('team_members_number', TextType::class, array(
                     'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
                     'required' => false
                 ))
@@ -189,7 +201,7 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
             ->end()
             ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-6'))
-                ->add('school', 'sonata_type_choice_field_mask', array(
+                ->add('school', ChoiceFieldMaskType::class, array(
                     'choices' => array(
                         'oui' => 'oui',
                         'non' => 'non'
@@ -200,7 +212,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => false,
                     'required' => false
                 ))
-                ->add('school_description', 'ckeditor', array(
+                ->add('school_description', CKEditorType::class, array(
                     'label' => 'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? ',
                     'required' => false,
                     'help' => 'Description limitée à 600 caractères',
@@ -208,7 +220,7 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
             ->end()
             ->with('Proposez-vous de l\'accueil', array('class' => 'col-md-6'))
-                ->add('accomodation', 'sonata_type_choice_field_mask', array(
+                ->add('accomodation', ChoiceFieldMaskType::class, array(
                     'choices' => array(
                         'oui' => 'oui',
                         'non' => 'non'
@@ -219,7 +231,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => false,
                     'required' => false
                 ))
-                ->add('accomodation_description', 'ckeditor', array(
+                ->add('accomodation_description', CKEditorType::class, array(
                     'label' => 'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
                     'required' => false,
                     'help' => 'Description limitée à 600 caractères',
@@ -227,7 +239,7 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
             ->end()
             ->with('Comment s’inscrire ?')
-                ->add('inscription', 'ckeditor', array(
+                ->add('inscription', CKEditorType::class, array(
                     'label' => false,
                     'help' => 'Description limitée à 400 caractères',
                     'required' => false,
@@ -235,7 +247,7 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
             ->end()
             ->with('Combien ça coûte ?')
-                ->add('cost' , 'ckeditor', array(
+                ->add('cost' , CKEditorType::class, array(
                     'label' => false,
                     'help' => 'Description limitée à 400 caractères',
                     'required' => false,
@@ -243,7 +255,7 @@ class OrganizationsAdmin extends AbstractAdmin
                 ))
             ->end()
             ->with('Qu\'est-il prévu pour les familles ?')
-            ->add('receptionDescription' , 'ckeditor', array(
+            ->add('receptionDescription' , CKEditorType::class, array(
                 'label' => 'Avant d’arriver dans la structure et une fois au sein de la structure ? Est-il possible de visiter ? Y a-t-il des réunions d’information ? Des rencontres entre parents ? A quelle fréquence ?',
                 'help' => 'Description limitée à 600 caractères',
                 'required' => false,
@@ -251,7 +263,7 @@ class OrganizationsAdmin extends AbstractAdmin
             ))
             ->end()
             ->with('Transports')
-            ->add('transport' , 'ckeditor', array(
+            ->add('transport' , CKEditorType::class, array(
                 'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
                 'help' => 'Description limitée à 400 caractères',
                 'required' => false,
@@ -259,12 +271,13 @@ class OrganizationsAdmin extends AbstractAdmin
             ))
             ->end()
             ->with('Description d’une journée type :')
-            ->add('dayDescription' , 'ckeditor', array(
+            ->add('dayDescription' , CKEditorType::class, array(
                 'label' => false,
                 'help' => 'Description limitée à 1000 caractères',
                 'required' => false,
                 'attr' => array('maxlength => 1000')
             ))
+            ->end()
             ->end()
 ;
     }
