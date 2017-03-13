@@ -1590,6 +1590,7 @@ class Organizations
     {
         return $this->interventionZone;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */

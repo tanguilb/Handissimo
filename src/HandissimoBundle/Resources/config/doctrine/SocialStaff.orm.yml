@@ -1,6 +1,6 @@
 HandissimoBundle\Entity\SocialStaff:
     type: entity
-    table: null
+    table: social_staff
     repositoryClass: HandissimoBundle\Repository\SocialStaffRepository
     id:
         id:
@@ -14,7 +14,7 @@ HandissimoBundle\Entity\SocialStaff:
             length: 255
 
     manyToMany:
-        socialstafforganizations:
+        socialstafforga:
             targetEntity: Organizations
             mappedBy: socialstaffs
 

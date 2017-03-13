@@ -43,7 +43,13 @@ services:
         class: HandissimoBundle\Admin\StaffAdmin
         arguments: [~, HandissimoBundle\Entity\Staff, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Métiers }
+            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Personnel de soins }
+
+    admin.socialstaff:
+        class: HandissimoBundle\Admin\SocialStaffAdmin
+        arguments: [~, HandissimoBundle\Entity\SocialStaff, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Personnel éducatif et social }
 
     admin.needs:
         class: HandissimoBundle\Admin\NeedsAdmin

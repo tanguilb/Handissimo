@@ -51,50 +51,51 @@ class SocialStaff
     {
         return $this->socialJobs;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $socialstafforganizations;
+    private $socialstafforga;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->socialstafforganizations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->socialstafforga = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add socialstafforganization
+     * Add socialstafforga
      *
-     * @param \HandissimoBundle\Entity\Organizations $socialstafforganization
+     * @param \HandissimoBundle\Entity\Organizations $socialstafforga
      *
      * @return SocialStaff
      */
-    public function addSocialstafforganization(\HandissimoBundle\Entity\Organizations $socialstafforganization)
+    public function addSocialstafforga(\HandissimoBundle\Entity\Organizations $socialstafforga)
     {
-        $this->socialstafforganizations[] = $socialstafforganization;
+        $this->socialstafforga[] = $socialstafforga;
 
         return $this;
     }
 
     /**
-     * Remove socialstafforganization
+     * Remove socialstafforga
      *
-     * @param \HandissimoBundle\Entity\Organizations $socialstafforganization
+     * @param \HandissimoBundle\Entity\Organizations $socialstafforga
      */
-    public function removeSocialstafforganization(\HandissimoBundle\Entity\Organizations $socialstafforganization)
+    public function removeSocialstafforga(\HandissimoBundle\Entity\Organizations $socialstafforga)
     {
-        $this->socialstafforganizations->removeElement($socialstafforganization);
+        $this->socialstafforga->removeElement($socialstafforga);
     }
 
     /**
-     * Get socialstafforganizations
+     * Get socialstafforga
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getSocialstafforganizations()
+    public function getSocialstafforga()
     {
-        return $this->socialstafforganizations;
+        return $this->socialstafforga;
     }
 }

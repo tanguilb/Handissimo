@@ -6,12 +6,8 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
-use Sonata\CoreBundle\Form\Type\BooleanType;
-use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 
 class OrganizationsAdmin extends AbstractAdmin
@@ -105,7 +101,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     'required' => false
                 ))
             ->end()
-            ->with('Travail effectué')
+            ->with(" ", array('class' => 'col-md-12'))
                 ->add('organization_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
                     'required' => false),
@@ -127,14 +123,28 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
                     'required' => false
                 ))
+            ->end()
+            ->with('Personnel de soins', array('class' => 'col-md-6'))
                 ->add('Stafforganizations', EntityType::class, array(
                     'class' => 'HandissimoBundle:Staff',
                     'choice_label' => 'jobs',
-                    'label' => 'Le personnel',
-                    'multiple' => true
+                    'label' => false,
+                    'multiple' => true,
+                    'expanded' => true
                 ))
+            ->end()
+            ->with('Personnel éducatif et social', array('class' => 'col-md-6'))
+                ->add('socialstaffs', EntityType::class, array(
+                    'class' => 'HandissimoBundle:SocialStaff',
+                    'choice_label' => 'socialJobs',
+                    'label' => false,
+                    'multiple' => true,
+                    'expanded' =>true
+                ))
+            ->end()
+            ->with("Quelle est votre zone d’intervention ?", array('class' => 'col-md-12'))
                 ->add('interventionZone', TextType::class, array(
-                    'label' => 'Quelle est votre zone d’intervention ?',
+                    'label' => false,
                     'required' => false
                 ))
             ->end()
