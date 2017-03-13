@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Admin;
 
+use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -23,7 +24,11 @@ class StructuresTypesAdmin extends AbstractAdmin
                 'label' => false,
                 'expanded' => true,
                 'by_reference' => true,
-                'disabled' => true
+                'disabled' => true,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('st')
+                        ->orderBy('st.structurestype', 'ASC');
+                },
             ))
             ->add('logo_mdph', 'text', array(
                 'label' => 'Logo MDPH',

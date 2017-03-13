@@ -34,7 +34,13 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Type de structure',
                     'multiple' => false,
                     'by_reference' => true,
-                    'expanded' => false
+                    'placeholder' => 'Choississez votre type de structure',
+                    'expanded' => false,
+                    'empty_data' => null,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('st')
+                            ->orderBy('st.structurestype', 'ASC');
+                    },
                 ))
                 ->add('address', 'text', array(
                     'label' => 'Adresse postale',
@@ -64,14 +70,6 @@ class OrganizationsAdmin extends AbstractAdmin
                     'label' => 'Nom du directeur',
                     'required' => 'false'
                 ))
-                ->add('update_datetime', 'datetime', array(
-                    'label' => false,
-                    'pattern' => 'dd MMM y G',
-                    'attr' => array('style' => 'display:none'),
-                    'data' => new \DateTime(),
-                ))
-            ->end()
-            ->with('Caractéristiques', array('class' => 'col-md-6'))
                 ->add('openhours', 'text', array(
                     'label' => 'Heures d\'ouverture',
                     'required' => false
@@ -83,10 +81,18 @@ class OrganizationsAdmin extends AbstractAdmin
                     'multiple' => true,
                     'expanded' => true
                 ))
+                ->add('update_datetime', 'datetime', array(
+                    'label' => false,
+                    'pattern' => 'dd MMM y G',
+                    'attr' => array('style' => 'display:none'),
+                    'data' => new \DateTime(),
+                ))
+            ->end()
+            ->with('Handicap des personnes accompagnées', array('class' => 'col-md-6'))
                 ->add('disabilitytypes', EntityType::class, array(
                     'class' => 'HandissimoBundle:DisabilityTypes',
                     'choice_label' => 'disabilityName',
-                    'label' => 'Handicap des personnes accompagnées',
+                    'label' => false,
                     'multiple' => true,
                     'expanded' => true,
                     'query_builder' => function(EntityRepository $er) {
@@ -94,6 +100,8 @@ class OrganizationsAdmin extends AbstractAdmin
                             ->orderBy('dt.disabilityName', 'ASC');
                     },
                 ))
+            //->end()
+
                 ->add('agemini', 'integer', array(
                     'label' => 'Âge minimum',
                     'required' => false
