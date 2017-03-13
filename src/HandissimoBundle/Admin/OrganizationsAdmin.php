@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Admin;
 
+use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -86,7 +87,12 @@ class OrganizationsAdmin extends AbstractAdmin
                     'class' => 'HandissimoBundle:DisabilityTypes',
                     'choice_label' => 'disabilityName',
                     'label' => 'Handicap des personnes accompagnées',
-                    'multiple' => true
+                    'multiple' => true,
+                    'expanded' => true,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('dt')
+                            ->orderBy('dt.disabilityName', 'ASC');
+                    },
                 ))
                 ->add('agemini', 'integer', array(
                     'label' => 'Âge minimum',
@@ -104,17 +110,35 @@ class OrganizationsAdmin extends AbstractAdmin
             ->with(" ", array('class' => 'col-md-12'))
                 ->add('organization_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
-                    'required' => false),
-                    array(
-                        'placeholder' => 'essai',
-                    )
+                    'required' => false)
                 )
+            ->end()
+            ->with('Services/prestations primaires proposés par la structure', array('class' => 'col-md-6'))
                 ->add('needs', EntityType::class, array(
                     'class' => 'HandissimoBundle:Needs',
                     'choice_label' => 'needName',
-                    'label' => 'Services/prestations proposés par la structure',
-                    'multiple' => true
+                    'label' => false,
+                    'multiple' => true,
+                    'expanded' => true,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('n')
+                            ->orderBy('n.needName', 'ASC');
+                    },
                 ))
+            ->end()
+            ->with('Services/prestations secondaires proposés par la structure', array('class' => 'col-md-6'))
+                ->add('secondneeds', EntityType::class, array(
+                    'class' => 'HandissimoBundle:SecondaryNeeds',
+                    'choice_label' => 'needName',
+                    'label' => false,
+                    'multiple' => true,
+                    'expanded' => true,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('sn')
+                            ->orderBy('sn.needName', 'ASC');
+                    },
+                ))
+            ->end()
                 ->add('working_description', 'ckeditor', array(
                     'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
                     'required' => false
@@ -130,7 +154,11 @@ class OrganizationsAdmin extends AbstractAdmin
                     'choice_label' => 'jobs',
                     'label' => false,
                     'multiple' => true,
-                    'expanded' => true
+                    'expanded' => true,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('s')
+                            ->orderBy('s.jobs', 'ASC');
+                    },
                 ))
             ->end()
             ->with('Personnel éducatif et social', array('class' => 'col-md-6'))
@@ -139,7 +167,11 @@ class OrganizationsAdmin extends AbstractAdmin
                     'choice_label' => 'socialJobs',
                     'label' => false,
                     'multiple' => true,
-                    'expanded' =>true
+                    'expanded' =>true,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('ss')
+                            ->orderBy('ss.socialJobs', 'ASC');
+                    },
                 ))
             ->end()
             ->with("Quelle est votre zone d’intervention ?", array('class' => 'col-md-12'))

@@ -1,7 +1,7 @@
-HandissimoBundle\Entity\Needs:
+HandissimoBundle\Entity\SecondaryNeeds:
     type: entity
-    table: needs
-    repositoryClass: HandissimoBundle\Repository\NeedsRepository
+    table: null
+    repositoryClass: HandissimoBundle\Repository\SecondaryNeedsRepository
     id:
         id:
             type: integer
@@ -11,16 +11,12 @@ HandissimoBundle\Entity\Needs:
     fields:
         needName:
             type: string
-            nullable: true
             length: 255
-            options:
-                fixed: false
-            column: need_name
+            nullable: true
 
     manyToMany:
-        organizations:
+        organizationsneeds:
             targetEntity: Organizations
-            mappedBy: needs
-
+            mappedBy: secondneeds
 
     lifecycleCallbacks: {  }

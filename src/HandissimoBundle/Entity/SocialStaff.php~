@@ -52,4 +52,50 @@ class SocialStaff
         return $this->socialJobs;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $socialstafforga;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->socialstafforga = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add socialstafforga
+     *
+     * @param \HandissimoBundle\Entity\Organizations $socialstafforga
+     *
+     * @return SocialStaff
+     */
+    public function addSocialstafforga(\HandissimoBundle\Entity\Organizations $socialstafforga)
+    {
+        $this->socialstafforga[] = $socialstafforga;
+
+        return $this;
+    }
+
+    /**
+     * Remove socialstafforga
+     *
+     * @param \HandissimoBundle\Entity\Organizations $socialstafforga
+     */
+    public function removeSocialstafforga(\HandissimoBundle\Entity\Organizations $socialstafforga)
+    {
+        $this->socialstafforga->removeElement($socialstafforga);
+    }
+
+    /**
+     * Get socialstafforga
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSocialstafforga()
+    {
+        return $this->socialstafforga;
+    }
 }

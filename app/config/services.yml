@@ -55,7 +55,13 @@ services:
         class: HandissimoBundle\Admin\NeedsAdmin
         arguments: [~, HandissimoBundle\Entity\Needs, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de services }
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Services primaires }
+
+    admin.secondaryneeds:
+        class: HandissimoBundle\Admin\SecondaryNeedsAdmin
+        arguments: [~, HandissimoBundle\Entity\SecondaryNeeds, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Services secondaires }
 
     admin.opinion:
         class: HandissimoBundle\Admin\OpinionAdmin

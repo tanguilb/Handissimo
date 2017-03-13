@@ -219,6 +219,18 @@ HandissimoBundle\Entity\Organizations:
                     needs_id:
                         referencedColumnName: id
 
+        secondneeds:
+            targetEntity: HandissimoBundle\Entity\SecondaryNeeds
+            inversedBy: organizationsneeds
+            joinTable:
+                name: secondaryneeds_has_organizations
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    secondary_needs_id:
+                        referencedColumnName: id
+
         stafforganizations:
             targetEntity: Staff
             inversedBy: organizations

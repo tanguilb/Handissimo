@@ -1591,4 +1591,43 @@ class Organizations
         return $this->interventionZone;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $socialstaffs;
+
+
+    /**
+     * Add socialstaff
+     *
+     * @param \HandissimoBundle\Entity\SocialStaff $socialstaff
+     *
+     * @return Organizations
+     */
+    public function addSocialstaff(\HandissimoBundle\Entity\SocialStaff $socialstaff)
+    {
+        $this->socialstaffs[] = $socialstaff;
+
+        return $this;
+    }
+
+    /**
+     * Remove socialstaff
+     *
+     * @param \HandissimoBundle\Entity\SocialStaff $socialstaff
+     */
+    public function removeSocialstaff(\HandissimoBundle\Entity\SocialStaff $socialstaff)
+    {
+        $this->socialstaffs->removeElement($socialstaff);
+    }
+
+    /**
+     * Get socialstaffs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSocialstaffs()
+    {
+        return $this->socialstaffs;
+    }
 }

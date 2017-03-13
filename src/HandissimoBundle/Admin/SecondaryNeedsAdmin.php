@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: david
+ * Date: 13/03/17
+ * Time: 11:55
+ */
 
 namespace HandissimoBundle\Admin;
 
@@ -7,30 +13,29 @@ use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class DisabilityTypesAdmin extends AbstractAdmin
+class SecondaryNeedsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('disabilityName', 'text',
+            ->add('needName', 'text',
                 array(
-                    'label' => 'Types de handicaps',
+                    'label' => 'Types de services',
                     'required' => false
                 ))
-            ->add('organizations',EntityType::class,array (
-                'class' => 'HandissimoBundle:DisabilityTypes',
-                'choice_label' => 'disabilityName',
+            ->add('organizationsneeds',EntityType::class,array (
+                'class' => 'HandissimoBundle:SecondaryNeeds',
+                'choice_label' => 'needName',
                 'label' => false,
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => true,
                 'disabled' => true,
                 'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('dt')
-                        ->orderBy('dt.disabilityName', 'ASC');
+                    return $er->createQueryBuilder('sn')
+                        ->orderBy('sn.needName', 'ASC');
                 },
             ));
     }
@@ -38,15 +43,9 @@ class DisabilityTypesAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('disabilityName', null,
+            ->add('needName', null,
                 array(
-                    'label' => 'Types de handicaps'
+                    'label' => 'Types de services'
                 ));
-    }
-
-    protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection
-            ->remove('');
     }
 }

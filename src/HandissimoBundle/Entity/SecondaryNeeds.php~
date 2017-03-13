@@ -1,0 +1,54 @@
+<?php
+
+namespace HandissimoBundle\Entity;
+
+/**
+ * SecondaryNeeds
+ */
+class SecondaryNeeds
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $needName;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set needName
+     *
+     * @param string $needName
+     *
+     * @return SecondaryNeeds
+     */
+    public function setNeedName($needName)
+    {
+        $this->needName = $needName;
+
+        return $this;
+    }
+
+    /**
+     * Get needName
+     *
+     * @return string
+     */
+    public function getNeedName()
+    {
+        return $this->needName;
+    }
+}

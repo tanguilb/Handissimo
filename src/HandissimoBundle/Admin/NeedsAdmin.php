@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Admin;
 
 
+use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -25,8 +26,12 @@ class NeedsAdmin extends AbstractAdmin
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => true,
-                'disabled' => true
-                    ));
+                'disabled' => true,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('n')
+                        ->orderBy('n.needName', 'ASC');
+                },
+            ));
         }
 
     protected function configureListFields(ListMapper $listMapper)
