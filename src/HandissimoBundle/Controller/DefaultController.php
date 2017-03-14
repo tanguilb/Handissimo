@@ -31,12 +31,12 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * This function manages the page solution with the form and flash message
      */
-    public function structureAction()
+    public function structureAction(Request $request)
     {
         $solution = new Solution();
         $form = $this->createForm('HandissimoBundle\Form\Type\SolutionType', $solution);
 
-        $formHandler = new Handler\SolutionHandler($form, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'));
+        $formHandler = new Handler\SolutionHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'));
 
         if ($formHandler->process()) {
             $this->addFlash('notice', 'Votre message a bien été envoyé');

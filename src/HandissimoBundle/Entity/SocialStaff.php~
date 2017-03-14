@@ -7,6 +7,11 @@ namespace HandissimoBundle\Entity;
  */
 class SocialStaff
 {
+    public function __toString()
+    {
+        return $this->socialJobs;
+    }
+
     /**
      * @var int
      */

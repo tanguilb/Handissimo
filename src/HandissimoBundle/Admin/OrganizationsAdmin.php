@@ -31,7 +31,9 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('societies', EntityType::class, array(
                         'class' => 'HandissimoBundle:Society',
                         'choice_label' => 'society_name',
-                        'label' => 'Nom de l\'organisme gestionnaire'
+                        'label' => 'Nom de l\'organisme gestionnaire',
+                        'required' => false,
+                        'help' => 'Si différent du nom de la structure'
                     ))
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
@@ -57,12 +59,12 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'E-mail de contact',
                         'required' => false
                     ))
-                    ->add('website', TextType::class, array(
-                        'label' => 'Site internet',
-                        'required' => false
-                    ))
                     ->add('director_name', TextType::class, array(
                         'label' => 'Nom du responsable',
+                        'required' => false
+                    ))
+                    ->add('website', TextType::class, array(
+                        'label' => 'Site internet',
                         'required' => false
                     ))
                 ->end()
@@ -81,205 +83,206 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                 ->end()
             ->end()
-            ->tab('test')
-                ->add('openhours', TextType::class, array(
-                    'label' => 'Heures d\'ouverture',
-                    'required' => false
-                ))
-                ->add('opendays', ChoiceFieldMaskType::class, array(
-                    'label' => 'Jours d\'ouverture',
-                    'required' => false,
-                    'choices' => array('Lundi' => 'Lundi', 'Mardi' => 'Mardi', 'Mercredi' => 'Mercredi', 'Jeudi' => 'Jeudi', 'Vendredi' => 'Vendredi', 'Samedi' => 'Samedi', 'Dimanche' => 'Dimanche'),
-                    'multiple' => true,
-                    'expanded' => true
-                ))
-                ->add('update_datetime', DateTimeType::class, array(
-                    'label' => false,
-                    'pattern' => 'dd MMM y G',
-                    'attr' => array('style' => 'display:none'),
-                    'data' => new \DateTime(),
-                ))
+            ->tab('Public ciblé')
+                ->with('C\'est pour qui ?', array('class' => 'col-md-12'))
+                    ->add('disabilitytypes', EntityType::class, array(
+                        'class' => 'HandissimoBundle:DisabilityTypes',
+                        'choice_label' => 'disabilityName',
+                        'label' => 'Handicap des personnes accompagnées',
+                        'multiple' => true,
+                        'expanded' => true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('dt')
+                                ->orderBy('dt.disabilityName', 'ASC');
+                        },
+                    ))
+                    ->add('agemini', IntegerType::class, array(
+                        'label' => 'Âge minimum',
+                        'required' => false
+                    ))
+                    ->add('agemaxi', IntegerType::class, array(
+                        'label' => 'Âge maximum',
+                        'required' => false
+                    ))
+                    ->add('freeplace', TextType::class, array(
+                        'label' => 'Nombre de personnes accompagnées',
+                        'required' => false
+                    ))
+                    ->add('organization_description', CKEditorType::class, array(
+                            'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
+                            'required' => false)
+                    )
+                    ->add('interventionZone', TextType::class, array(
+                        'label' => "Quelle est votre zone d’intervention ?",
+                        'required' => false
+                    ))
+                ->end()
             ->end()
-            ->with('Handicap des personnes accompagnées', array('class' => 'col-md-6'))
-                ->add('disabilitytypes', EntityType::class, array(
-                    'class' => 'HandissimoBundle:DisabilityTypes',
-                    'choice_label' => 'disabilityName',
-                    'label' => false,
-                    'multiple' => true,
-                    'expanded' => true,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('dt')
-                            ->orderBy('dt.disabilityName', 'ASC');
-                    },
-                ))
-            //->end()
-
-                ->add('agemini', IntegerType::class, array(
-                    'label' => 'Âge minimum',
-                    'required' => false
-                ))
-                ->add('agemaxi', IntegerType::class, array(
-                    'label' => 'Âge maximum',
-                    'required' => false
-                ))
-                ->add('freeplace', TextType::class, array(
-                    'label' => 'Nombre de personnes accompagnées',
-                    'required' => false
-                ))
+            ->tab('Les services proposés')
+                ->with('Qu’est-ce qui est proposé ?')
+                    ->add('needs', EntityType::class, array(
+                        'class' => 'HandissimoBundle:Needs',
+                        'choice_label' => 'needName',
+                        'label' => 'Services/prestations primaires proposés par la structure',
+                        'multiple' => true,
+                        'expanded' => true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('n')
+                                ->orderBy('n.needName', 'ASC');
+                        },
+                    ))
+                    ->add('secondneeds', EntityType::class, array(
+                        'class' => 'HandissimoBundle:SecondaryNeeds',
+                        'choice_label' => 'needName',
+                        'label' => 'Services/prestations secondaires proposés par la structure',
+                        'multiple' => true,
+                        'expanded' => true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('sn')
+                                ->orderBy('sn.needName', 'ASC');
+                        },
+                    ))
+                    ->add('working_description', CKEditorType::class, array(
+                        'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
+                        'required' => false
+                    ))
+                ->end()
+                ->with('Proposez-vous de l\'accueil', array('class' => 'col-md-6'))
+                    ->add('accomodation', ChoiceFieldMaskType::class, array(
+                        'choices' => array(
+                            'oui' => 'oui',
+                            'non' => 'non'
+                        ),
+                        'map' => array(
+                            'oui' => array('accomodation_description'),
+                        ),
+                        'label' => false,
+                        'required' => false
+                    ))
+                    ->add('accomodation_description', CKEditorType::class, array(
+                        'label' => 'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
+                        'required' => false,
+                        'help' => 'Description limitée à 600 caractères',
+                        'attr' => array('maxlength => 600')
+                    ))
+                ->end()
+                ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-6'))
+                    ->add('school', ChoiceFieldMaskType::class, array(
+                        'choices' => array(
+                            'oui' => 'oui',
+                            'non' => 'non'
+                        ),
+                        'map' => array(
+                            'oui' => array('school_description'),
+                        ),
+                        'label' => false,
+                        'required' => false
+                    ))
+                    ->add('school_description', CKEditorType::class, array(
+                        'label' => 'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? ',
+                        'required' => false,
+                        'help' => 'Description limitée à 600 caractères',
+                        'attr' => array('maxlength => 600')
+                    ))
+                ->end()
+                ->with('Description d’une journée type :')
+                    ->add('dayDescription' , CKEditorType::class, array(
+                        'label' => false,
+                        'help' => 'Description limitée à 1000 caractères',
+                        'required' => false,
+                        'attr' => array('maxlength => 1000')
+                    ))
+                ->end()
+                ->with('Qu\'est-il prévu pour les familles ?')
+                    ->add('receptionDescription' , CKEditorType::class, array(
+                        'label' => 'Avant d’arriver dans la structure et une fois au sein de la structure ? Est-il possible de visiter ? Y a-t-il des réunions d’information ? Des rencontres entre parents ? A quelle fréquence ?',
+                        'help' => 'Description limitée à 600 caractères',
+                        'required' => false,
+                        'attr' => array('maxlength => 600')
+                    ))
+                ->end()
             ->end()
-            ->with(" ", array('class' => 'col-md-12'))
-                ->add('organization_description', CKEditorType::class, array(
-                    'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
-                    'required' => false)
-                )
+            ->tab('L\'équipe')
+                ->with(' ')
+                    ->add('team_members_number', TextType::class, array(
+                        'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
+                        'required' => false
+                    ))
+                    ->add('Stafforganizations', EntityType::class, array(
+                        'class' => 'HandissimoBundle:Staff',
+                        'choice_label' => 'jobs',
+                        'label' => 'Personnel de soins',
+                        'multiple' => true,
+                        'expanded' => true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('s')
+                                ->orderBy('s.jobs', 'ASC');
+                        },
+                    ))
+                    ->add('socialstaffs', EntityType::class, array(
+                        'class' => 'HandissimoBundle:SocialStaff',
+                        'choice_label' => 'socialJobs',
+                        'label' => 'Personnel éducatif et social',
+                        'multiple' => true,
+                        'expanded' =>true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('ss')
+                                ->orderBy('ss.socialJobs', 'ASC');
+                        },
+                    ))
+                ->end()
             ->end()
-            ->with('Services/prestations primaires proposés par la structure', array('class' => 'col-md-6'))
-                ->add('needs', EntityType::class, array(
-                    'class' => 'HandissimoBundle:Needs',
-                    'choice_label' => 'needName',
-                    'label' => false,
-                    'multiple' => true,
-                    'expanded' => true,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('n')
-                            ->orderBy('n.needName', 'ASC');
-                    },
-                ))
-            ->end()
-            ->with('Services/prestations secondaires proposés par la structure', array('class' => 'col-md-6'))
-                ->add('secondneeds', EntityType::class, array(
-                    'class' => 'HandissimoBundle:SecondaryNeeds',
-                    'choice_label' => 'needName',
-                    'label' => false,
-                    'multiple' => true,
-                    'expanded' => true,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('sn')
-                            ->orderBy('sn.needName', 'ASC');
-                    },
-                ))
-            ->end()
-                ->add('working_description', CKEditorType::class, array(
-                    'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
-                    'required' => false
-                ))
-                ->add('team_members_number', TextType::class, array(
-                    'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
-                    'required' => false
-                ))
-            ->end()
-            ->with('Personnel de soins', array('class' => 'col-md-6'))
-                ->add('Stafforganizations', EntityType::class, array(
-                    'class' => 'HandissimoBundle:Staff',
-                    'choice_label' => 'jobs',
-                    'label' => false,
-                    'multiple' => true,
-                    'expanded' => true,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('s')
-                            ->orderBy('s.jobs', 'ASC');
-                    },
-                ))
-            ->end()
-            ->with('Personnel éducatif et social', array('class' => 'col-md-6'))
-                ->add('socialstaffs', EntityType::class, array(
-                    'class' => 'HandissimoBundle:SocialStaff',
-                    'choice_label' => 'socialJobs',
-                    'label' => false,
-                    'multiple' => true,
-                    'expanded' =>true,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('ss')
-                            ->orderBy('ss.socialJobs', 'ASC');
-                    },
-                ))
-            ->end()
-            ->with("Quelle est votre zone d’intervention ?", array('class' => 'col-md-12'))
-                ->add('interventionZone', TextType::class, array(
-                    'label' => false,
-                    'required' => false
-                ))
-            ->end()
-            ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-6'))
-                ->add('school', ChoiceFieldMaskType::class, array(
-                    'choices' => array(
-                        'oui' => 'oui',
-                        'non' => 'non'
-                    ),
-                    'map' => array(
-                        'oui' => array('school_description'),
-                    ),
-                    'label' => false,
-                    'required' => false
-                ))
-                ->add('school_description', CKEditorType::class, array(
-                    'label' => 'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? ',
-                    'required' => false,
-                    'help' => 'Description limitée à 600 caractères',
-                    'attr' => array('maxlength => 600')
-                ))
-            ->end()
-            ->with('Proposez-vous de l\'accueil', array('class' => 'col-md-6'))
-                ->add('accomodation', ChoiceFieldMaskType::class, array(
-                    'choices' => array(
-                        'oui' => 'oui',
-                        'non' => 'non'
-                    ),
-                    'map' => array(
-                        'oui' => array('accomodation_description'),
-                    ),
-                    'label' => false,
-                    'required' => false
-                ))
-                ->add('accomodation_description', CKEditorType::class, array(
-                    'label' => 'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
-                    'required' => false,
-                    'help' => 'Description limitée à 600 caractères',
-                    'attr' => array('maxlength => 600')
-                ))
-            ->end()
-            ->with('Comment s’inscrire ?')
-                ->add('inscription', CKEditorType::class, array(
-                    'label' => false,
-                    'help' => 'Description limitée à 400 caractères',
-                    'required' => false,
-                    'attr' => array('maxlength => 400')
-                ))
-            ->end()
-            ->with('Combien ça coûte ?')
-                ->add('cost' , CKEditorType::class, array(
-                    'label' => false,
-                    'help' => 'Description limitée à 400 caractères',
-                    'required' => false,
-                    'attr' => array('maxlength => 400')
-                ))
-            ->end()
-            ->with('Qu\'est-il prévu pour les familles ?')
-            ->add('receptionDescription' , CKEditorType::class, array(
-                'label' => 'Avant d’arriver dans la structure et une fois au sein de la structure ? Est-il possible de visiter ? Y a-t-il des réunions d’information ? Des rencontres entre parents ? A quelle fréquence ?',
-                'help' => 'Description limitée à 600 caractères',
-                'required' => false,
-                'attr' => array('maxlength => 600')
-            ))
-            ->end()
-            ->with('Transports')
-            ->add('transport' , CKEditorType::class, array(
-                'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
-                'help' => 'Description limitée à 400 caractères',
-                'required' => false,
-                'attr' => array('maxlength => 400')
-            ))
-            ->end()
-            ->with('Description d’une journée type :')
-            ->add('dayDescription' , CKEditorType::class, array(
-                'label' => false,
-                'help' => 'Description limitée à 1000 caractères',
-                'required' => false,
-                'attr' => array('maxlength => 1000')
-            ))
-            ->end()
-            ->end()
-;
+            ->tab('Informations pratiques')
+                ->with(' ')
+                    ->add('openhours', TextType::class, array(
+                        'label' => 'Heures d\'ouverture',
+                        'required' => false
+                    ))
+                    ->add('opendays', ChoiceFieldMaskType::class, array(
+                        'label' => 'Jours d\'ouverture',
+                        'required' => false,
+                        'choices' => array('Lundi' => 'Lundi', 'Mardi' => 'Mardi', 'Mercredi' => 'Mercredi', 'Jeudi' => 'Jeudi', 'Vendredi' => 'Vendredi', 'Samedi' => 'Samedi', 'Dimanche' => 'Dimanche'),
+                        'multiple' => true,
+                        'expanded' => true
+                    ))
+                    ->add('opendaysYear', ChoiceFieldMaskType::class, array(
+                        'label' => 'Jours d\'ouverture par an',
+                        'required' => false,
+                        'choices' => array(
+                            'Toute l’année' => 'Toute l’année',
+                            'Sur le temps scolaire' => 'Sur le temps scolaire',
+                            'Sur le temps scolaire et en partie pendant les vacances scolaires' => 'Sur le temps scolaire et en partie pendant les vacances scolaires',
+                            'Pendant les vacances scolaires uniquement' => 'Pendant les vacances scolaires uniquement',
+                            'Les week-ends' => 'Les week-ends'),
+                        'multiple' => true,
+                        'expanded' => true
+                    ))
+                    ->add('update_datetime', DateTimeType::class, array(
+                        'label' => false,
+                        'pattern' => 'dd MMM y G',
+                        'attr' => array('style' => 'display:none'),
+                        'data' => new \DateTime(),
+                    ))
+                    ->add('inscription', CKEditorType::class, array(
+                        'label' => 'Comment s’inscrire ?',
+                        'help' => 'Description limitée à 400 caractères',
+                        'required' => false,
+                        'attr' => array('maxlength => 400')
+                    ))
+                    ->add('cost' , CKEditorType::class, array(
+                        'label' => 'Combien ça coûte ?',
+                        'help' => 'Description limitée à 400 caractères',
+                        'required' => false,
+                        'attr' => array('maxlength => 400')
+                    ))
+                    ->add('transport' , CKEditorType::class, array(
+                        'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
+                        'help' => 'Description limitée à 400 caractères',
+                        'required' => false,
+                        'attr' => array('maxlength => 400')
+                    ))
+                ->end()
+            ->end();
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

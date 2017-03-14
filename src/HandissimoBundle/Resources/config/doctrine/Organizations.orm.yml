@@ -80,6 +80,9 @@ HandissimoBundle\Entity\Organizations:
             type: array
             nullable: true
             length: 255
+        opendaysYear:
+            type: array
+            nullable: true
         teamMembersNumber:
             type: integer
             nullable: true

@@ -1669,4 +1669,33 @@ class Organizations
     {
         return $this->secondneeds;
     }
+    /**
+     * @var string
+     */
+    private $opendaysYear;
+
+
+    /**
+     * Set opendaysYear
+     *
+     * @param string $opendaysYear
+     *
+     * @return Organizations
+     */
+    public function setOpendaysYear($opendaysYear)
+    {
+        $this->opendaysYear = $opendaysYear;
+
+        return $this;
+    }
+
+    /**
+     * Get opendaysYear
+     *
+     * @return string
+     */
+    public function getOpendaysYear()
+    {
+        return $this->opendaysYear;
+    }
 }

@@ -8,13 +8,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class StructuresTypesAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('structurestype', 'text', array(
+            ->add('structurestype', TextType::class, array(
                 'label' => 'Types de structures',
                 'required' => false
             ))
@@ -30,7 +31,7 @@ class StructuresTypesAdmin extends AbstractAdmin
                         ->orderBy('st.structurestype', 'ASC');
                 },
             ))
-            ->add('logo_mdph', 'text', array(
+            ->add('logo_mdph', TextType::class, array(
                 'label' => 'Logo MDPH',
                 'required' => false
             ));

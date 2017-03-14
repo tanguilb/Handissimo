@@ -7,49 +7,50 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SocietyAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-                    ->add('societyname', 'text', array(
+                    ->add('societyname', TextType::class, array(
                     'label' => 'Nom de la société',
                     'required' => true
                     ))
-                    ->add('address', 'text', array(
+                    ->add('address', TextType::class, array(
                         'label' => 'Adresse',
                         'required' => true
                     ))
-                    ->add('postal', 'text', array(
+                    ->add('postal', TextType::class, array(
                         'label' => 'Code postal',
                         'required' => true
                     ))
-                    ->add('city', 'text', array(
+                    ->add('city', TextType::class, array(
                         'label' => 'Ville',
                         'required' => true
                     ))
-                    ->add('phone_number', 'text', array(
+                    ->add('phone_number', TextType::class, array(
                         'label' => 'Téléphone',
                         'required' => true
                     ))
-                    ->add('mail', 'text', array(
+                    ->add('mail', TextType::class, array(
                         'label' => 'Adresse e-mail',
                         'required' => false
                     ))
-                    ->add('society_facebook', 'text', array(
+                    ->add('society_facebook', TextType::class, array(
                         'label' => 'Page Facebook',
                         'required' => false
                     ))
-                    ->add('society_twitter', 'text', array(
+                    ->add('society_twitter', TextType::class, array(
                         'label' => 'Page Twitter',
                         'required' => false
                     ))
-                    ->add('website', 'text', array(
+                    ->add('website', TextType::class, array(
                         'label' => 'Site internet',
                         'required' => false
                     ))
-                    ->add('logo', 'text', array(
+                    ->add('logo', TextType::class, array(
                         'label' => 'Logo de profil',
                         'required' => false
                     ))

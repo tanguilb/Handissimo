@@ -1630,4 +1630,43 @@ class Organizations
     {
         return $this->socialstaffs;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $secondneeds;
+
+
+    /**
+     * Add secondneed
+     *
+     * @param \HandissimoBundle\Entity\SecondaryNeeds $secondneed
+     *
+     * @return Organizations
+     */
+    public function addSecondneed(\HandissimoBundle\Entity\SecondaryNeeds $secondneed)
+    {
+        $this->secondneeds[] = $secondneed;
+
+        return $this;
+    }
+
+    /**
+     * Remove secondneed
+     *
+     * @param \HandissimoBundle\Entity\SecondaryNeeds $secondneed
+     */
+    public function removeSecondneed(\HandissimoBundle\Entity\SecondaryNeeds $secondneed)
+    {
+        $this->secondneeds->removeElement($secondneed);
+    }
+
+    /**
+     * Get secondneeds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSecondneeds()
+    {
+        return $this->secondneeds;
+    }
 }
