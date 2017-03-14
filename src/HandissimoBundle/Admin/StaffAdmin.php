@@ -40,7 +40,11 @@ class StaffAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('jobs', null,
                 array(
-                    'label' => 'Métiers'
+                    'label' => 'Métiers',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('s')
+                            ->orderBy('s.jobs', 'ASC');
+                    },
                 ));
     }
 }

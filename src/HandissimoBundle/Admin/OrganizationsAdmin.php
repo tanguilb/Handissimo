@@ -13,8 +13,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\CallbackTransformer;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -111,10 +109,19 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('organization_description', CKEditorType::class, array(
                             'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
-                            'required' => false)
-                    )
+                            'required' => false,
+                            'help' => 'Description limitée à 600 caractères',
+                            'config' => array(
+                                'extraPlugins' => 'confighelper',
+                                'placeholder' =>
+                                    'Exemple 1: Exemple 1 : La MAS Robert Ramel accueille 50 adultes polyhandicapés et autistes lourdement handicapés, qui ont entre 20 et 60 ans à leur arrivée. Certains résidents souffrent d’épilepsie. La moitié des résidents se déplace en fauteuil. La majorité d’entre eux ne parlent pas ou très peu. <br /> <br /> 
+                                     Exemple 2 : L’association Une souris verte s’adresse à tous les enfants en situation de handicap et leurs familles, notamment les enfants dont le handicap pose difficulté pour être accueillis dans une structure ordinaire (crèche, garderie, …)<br /> <br />
+                                     Exemple 3 : Les usagers du C.E.M. sont des pré-adolescents, adolescents et jeunes adultes pour la plupart atteint d’infirmité motrice d’origine cérébrale, ou paralysie cérébrale.  L’établissement accueille également des jeunes polyhandicapés. 
+                                     Certains se déplacent en fauteuil roulant manuel ou électrique, d’autres avec diverses aides de marche, d’autres en tricycles ou en marchant. La plupart des jeunes savent s’exprimer à l’oral. Environ 110 jeunes sont accueillis.'
+                            ),
+                    ))
                     ->add('interventionZone', TextType::class, array(
-                        'label' => "Quelle est votre zone d’intervention ?",
+                        'label' => "Quelle est votre zone d’intervention ? Quelles sont les conditions de résidence pour accéder à la structure ?",
                         'required' => false
                     ))
                 ->end()
@@ -145,7 +152,14 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('working_description', CKEditorType::class, array(
                         'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
-                        'required' => false
+                        'required' => false,
+                        'config' => array(
+                            'extraPlugins' => 'confighelper',
+                            'placeholder' =>
+                                'Exemple 1: Les résidents habitent à la MAS, c’est leur lieu de vie. L’équipe s’occupe des soins nécessaires, de l’aide à la vie quotidienne, propose des activités dans les locaux ou à l’extérieur. Les activités ont pour objectif de faire progresser les résidents dans leur capacité de communication, leur ouverture sur le monde, le développement de leurs compétences. <br /> <br /> 
+                                 Exemple 2 : L’association Une souris verte a pour objectif de sensibiliser aux différences et d’inclure les jeunes enfants en situation de handicap dans la société. Pour cela, l’association développe 4 actions principales : <ul> <li> l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil. </li> <li> l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation </li> <li> la formation des acteurs et professionnels de santé. </li> <li> la sensibilisation à la différence </li> </ul>
+                                 Exemple 3 : L\'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure : l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée, pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.'
+                        ),
                     ))
                 ->end()
                 ->with('Proposez-vous de l\'accueil', array('class' => 'col-md-6'))
@@ -161,10 +175,15 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false
                     ))
                     ->add('accomodation_description', CKEditorType::class, array(
-                        'label' => 'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
+                        'label' => false,
                         'required' => false,
                         'help' => 'Description limitée à 600 caractères',
-                        'attr' => array('maxlength => 600')
+                        'attr' => array('maxlength => 600'),
+                        'config' => array(
+                            'extraPlugins' => 'confighelper',
+                            'placeholder' =>
+                                'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...'
+                        )
                     ))
                 ->end()
                 ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-6'))
@@ -180,10 +199,15 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false
                     ))
                     ->add('school_description', CKEditorType::class, array(
-                        'label' => 'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? ',
+                        'label' => false,
                         'required' => false,
                         'help' => 'Description limitée à 600 caractères',
-                        'attr' => array('maxlength => 600')
+                        'attr' => array('maxlength => 600'),
+                        'config' => array(
+                            'extraPlugins' => 'confighelper',
+                            'placeholder' =>
+                                'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? '
+                        )
                     ))
                 ->end()
                 ->with('Description d’une journée type :')
@@ -196,10 +220,15 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->end()
                 ->with('Qu\'est-il prévu pour les familles ?')
                     ->add('receptionDescription' , CKEditorType::class, array(
-                        'label' => 'Avant d’arriver dans la structure et une fois au sein de la structure ? Est-il possible de visiter ? Y a-t-il des réunions d’information ? Des rencontres entre parents ? A quelle fréquence ?',
+                        'label' => false,
                         'help' => 'Description limitée à 600 caractères',
                         'required' => false,
-                        'attr' => array('maxlength => 600')
+                        'attr' => array('maxlength => 600'),
+                        'config' => array(
+                            'extraPlugins' => 'confighelper',
+                            'placeholder' =>
+                                'Avant d’arriver dans la structure et une fois au sein de la structure ? Est-il possible de visiter ? Y a-t-il des réunions d’information ? Des rencontres entre parents ? A quelle fréquence ?'
+                        )
                     ))
                 ->end()
             ->end()

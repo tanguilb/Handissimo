@@ -42,7 +42,11 @@ class StructuresTypesAdmin extends AbstractAdmin
         $datagridMapper
             ->add('structurestype', null,
                 array(
-                    'label' => 'Types de structures'
+                    'label' => 'Types de structures',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('st')
+                            ->orderBy('st.structurestype', 'ASC');
+                    },
                 ));
 
     }

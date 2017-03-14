@@ -49,7 +49,11 @@ class SocialStaffAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('socialJobs', null,
                 array(
-                    'label' => 'Métiers'
+                    'label' => 'Métiers',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('ss')
+                            ->orderBy('ss.socialJobs', 'ASC');
+                    },
                 ));
     }
 }

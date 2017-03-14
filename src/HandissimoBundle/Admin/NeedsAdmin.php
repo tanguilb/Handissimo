@@ -40,7 +40,11 @@ class NeedsAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('needName', null,
                 array(
-                    'label' => 'Types de services'
+                    'label' => 'Types de services',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('n')
+                            ->orderBy('n.needName', 'ASC');
+                    },
                 ));
     }
 }
