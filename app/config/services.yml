@@ -51,6 +51,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Personnel, label: Personnel éducatif et social }
 
+    admin.otherjob:
+            class: HandissimoBundle\Admin\OtherJobAdmin
+            arguments: [~, HandissimoBundle\Entity\OtherJob, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Personnel, label: Autres métiers }
+
     admin.needs:
         class: HandissimoBundle\Admin\NeedsAdmin
         arguments: [~, HandissimoBundle\Entity\Needs, ~]

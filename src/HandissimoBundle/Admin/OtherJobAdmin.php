@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: david
- * Date: 13/03/17
- * Time: 11:55
+ * Date: 14/03/17
+ * Time: 10:47
  */
 
 namespace HandissimoBundle\Admin;
@@ -16,27 +16,27 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class SecondaryNeedsAdmin extends AbstractAdmin
+class OtherJobAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('needName', TextType::class,
+            ->add('name', TextType::class,
                 array(
-                    'label' => 'Types de services',
+                    'label' => 'Métiers',
                     'required' => false
                 ))
-            ->add('organizationsneeds',EntityType::class,array (
-                'class' => 'HandissimoBundle:SecondaryNeeds',
-                'choice_label' => 'needName',
+            ->add('otherjoborga',EntityType::class,array (
+                'class' => 'HandissimoBundle:OtherJob',
+                'choice_label' => 'name',
                 'label' => false,
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => true,
                 'disabled' => true,
                 'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('sn')
-                        ->orderBy('sn.needName', 'ASC');
+                    return $er->createQueryBuilder('oj')
+                        ->orderBy('oj.name', 'ASC');
                 },
             ));
     }
@@ -44,9 +44,9 @@ class SecondaryNeedsAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('needName', null,
+            ->addIdentifier('name', null,
                 array(
-                    'label' => 'Types de services'
+                    'label' => 'Métiers'
                 ));
     }
 }

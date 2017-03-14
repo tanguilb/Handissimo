@@ -1698,4 +1698,43 @@ class Organizations
     {
         return $this->opendaysYear;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $otherjobs;
+
+
+    /**
+     * Add otherjob
+     *
+     * @param \HandissimoBundle\Entity\OtherJob $otherjob
+     *
+     * @return Organizations
+     */
+    public function addOtherjob(\HandissimoBundle\Entity\OtherJob $otherjob)
+    {
+        $this->otherjobs[] = $otherjob;
+
+        return $this;
+    }
+
+    /**
+     * Remove otherjob
+     *
+     * @param \HandissimoBundle\Entity\OtherJob $otherjob
+     */
+    public function removeOtherjob(\HandissimoBundle\Entity\OtherJob $otherjob)
+    {
+        $this->otherjobs->removeElement($otherjob);
+    }
+
+    /**
+     * Get otherjobs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOtherjobs()
+    {
+        return $this->otherjobs;
+    }
 }

@@ -7,6 +7,11 @@ namespace HandissimoBundle\Entity;
  */
 class OtherJob
 {
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @var int
      */

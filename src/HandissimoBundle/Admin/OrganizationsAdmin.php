@@ -123,7 +123,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('needs', EntityType::class, array(
                         'class' => 'HandissimoBundle:Needs',
                         'choice_label' => 'needName',
-                        'label' => 'Services/prestations primaires proposés par la structure',
+                        'label' => 'Services/prestations principaux proposés par la structure',
                         'multiple' => true,
                         'expanded' => true,
                         'query_builder' => function(EntityRepository $er) {
@@ -204,7 +204,7 @@ class OrganizationsAdmin extends AbstractAdmin
             ->end()
             ->tab('L\'équipe')
                 ->with(' ')
-                    ->add('team_members_number', TextType::class, array(
+                    ->add('team_members_number', IntegerType::class, array(
                         'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
                         'required' => false
                     ))
@@ -229,6 +229,23 @@ class OrganizationsAdmin extends AbstractAdmin
                             return $er->createQueryBuilder('ss')
                                 ->orderBy('ss.socialJobs', 'ASC');
                         },
+                    ))
+                    ->add('otherjobs', EntityType::class, array(
+                        'class' => 'HandissimoBundle:OtherJob',
+                        'choice_label' => 'name',
+                        'label' => 'Autres métiers',
+                        'multiple' => true,
+                        'expanded' =>true,
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('oj')
+                                ->orderBy('oj.name', 'ASC');
+                        },
+                    ))
+                    ->add('commentStaff', CKEditorType::class, array(
+                        'label' => 'Commentaire éventuel sur l’équipe',
+                        'help' => 'Description limitée à 300 caractères',
+                        'required' => false,
+                        'attr' => array('maxlength => 300')
                     ))
                 ->end()
             ->end()

@@ -38,7 +38,7 @@ class NeedsAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('needName', null,
+            ->addIdentifier('needName', null,
                 array(
                     'label' => 'Types de services'
                 ));

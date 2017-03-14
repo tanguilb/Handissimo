@@ -1737,4 +1737,33 @@ class Organizations
     {
         return $this->otherjobs;
     }
+    /**
+     * @var string
+     */
+    private $commentStaff;
+
+
+    /**
+     * Set commentStaff
+     *
+     * @param string $commentStaff
+     *
+     * @return Organizations
+     */
+    public function setCommentStaff($commentStaff)
+    {
+        $this->commentStaff = $commentStaff;
+
+        return $this;
+    }
+
+    /**
+     * Get commentStaff
+     *
+     * @return string
+     */
+    public function getCommentStaff()
+    {
+        return $this->commentStaff;
+    }
 }
