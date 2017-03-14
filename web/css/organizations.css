@@ -206,7 +206,7 @@
     padding-top: 10px;
     margin: 5px 50px 0 50px;
 }
-
+.btn-edit,
 .btn-return{
     margin: 50px 0;
 }
@@ -340,4 +340,16 @@
 
 .vote-btns {
     float: right;
+}
+
+.second-title{
+    font-size: 1.7em;
+}
+h4,
+h3 {
+    font-size: 1.2em;
+}
+
+.organization-panel{
+    padding: 20px;
 }
