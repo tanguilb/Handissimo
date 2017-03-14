@@ -103,12 +103,28 @@ services:
         calls:
             - [ setTemplate, [list, HandissimoBundle:MediaAdmin:list.html.twig]]
 
-    handissimo.resize:
-        class: HandissimoBundle\Upload\UploadAndResizePictures
+  #  handissimo.resize:
+   #     class: HandissimoBundle\Upload\ResizePictures
+    #    arguments:
+     #       - 50
+      #      - 300
+
+   # handissimo.doctrine_listener.resize_media:
+  #      class: HandissimoBundle\DoctrineListener\ResizeMediaListener
+   #     arguments:
+    #        - "@handissimo.resize"
+     #   tags:
+      #      - { name: doctrine.event_listener, event: postPersist }
+    handissimo.remove:
+       class: HandissimoBundle\Upload\MediaRemove
+
+    handissimo.doctrine_listener.remove_media:
+        class: HandissimoBundle\DoctrineListener\RemoveMediaListener
         arguments:
-            - '%%media_directory%'
-            - 50
-            - 300
+            - "@handissimo.remove"
+        tags:
+            - { name: doctrine.event_listener, event: postRemove }
+
 
     #handissimo.thumnbails:
      #   class: HandissimoBundle\ImageThumnbails

@@ -39,9 +39,9 @@ class UserAdmin extends BaseUserAdmin
                 ->with('General')
                     ->add('userType', ChoiceType::class, array(
                         'choices' => array(
-                            'Personne en situation de handicap' => "je suis une personne en situation de handicap",
-                            'Proche ou aidant' => " je suis un proche, une famille, un aidant)",
-                            'professionnel' => "je suis un professionnel",
+                            'personne en situation de handicap' => "je suis une personne en situation de handicap",
+                            'proche ou aidant' => " je suis un proche, une famille, un aidant)",
+                            'professionnel(le)' => "je suis un professionnel",
                         ),
                         'multiple' => false,
                         'expanded' => true

@@ -18,8 +18,22 @@ class OrganizationsAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $formMapper
+            ->tab('Identité')
+                ->with('Identité')->end()
+            ->end()
+            ->tab('Public cible')
+                ->with('Caractéristiques')->end()
+                ->with('Travail effectué')->end()
+                ->with('Ecole')->end()
+                ->with('Hébergement')->end()
+                ->with('Service')->end()
+            ->end()
+            ;
          $formMapper
-                ->with('Identité', array('class' => 'col-md-6'))
+             ->tab('Identité')
+                ->with('Identité', array('class' => 'col-off    set-3 col-md-6'))
                 ->add('name', 'text', array(
                     'label' => 'Nom de la structure',
                     'required' => true
@@ -85,15 +99,19 @@ class OrganizationsAdmin extends AbstractAdmin
                     'data' => new \DateTime(),
                 ))
                 ->end()
+             ->end()
+             ->tab('Public cible')
                 ->with('Caractéristiques', array('class' => 'col-md-6'))
+
                 ->add('openhours', 'text', array(
                     'label' => 'Heures d\'ouverture',
-                    'required' => false
+                    'required' => false,
                 ))
                 ->add('opendays', 'ckeditor', array(
                     'label' => 'Jours d\'ouverture',
                     'required' => false
                 ))
+
                 ->add('disabilitytypes', EntityType::class, array(
                     'class' => 'HandissimoBundle:DisabilityTypes',
                     'choice_label' => 'disabilityName',
@@ -228,6 +246,7 @@ la sensibilisation à la différence
                     'required' => false,
                 ))
                 ->end()
+             ->end()
 
 
         ;

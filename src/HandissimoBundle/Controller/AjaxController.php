@@ -4,6 +4,7 @@ namespace HandissimoBundle\Controller;
 
 
 use HandissimoBundle\Entity\DisabilityTypes;
+use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
@@ -134,5 +135,19 @@ class AjaxController extends Controller
         } else {
             throw new HttpException('500', 'Invalid call');
         }
+    }
+
+    public function cloneAction()
+    {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('HandissimoBundle:Organizations')
+        ;
+
+        $organizations = $repository->find(45);
+            $copy = clone $organizations;
+
+            var_dump($copy);
     }
 }
