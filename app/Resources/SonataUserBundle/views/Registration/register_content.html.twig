@@ -36,13 +36,13 @@
                      </div>
                  {% endfor %}
                  {{ form_errors(form.username) }}
-                 {{ form_widget(form.username,  {'attr': {'class': 'form-control form2', 'placeholder':  'form.username'|trans({}, 'SonataUserBundle') ~' *' }}) }}
+                 {{ form_widget(form.username,  {'attr': {'class': 'form-control form2', 'placeholder':  'Choissisez votre pseudo *' }}) }}
                  {{ form_errors(form.email) }}
                  {{ form_widget(form.email,  {'attr': {'class': 'mail form2', 'placeholder':  'form.email'|trans({}, 'SonataUserBundle') ~' *'}}) }}
                  {{ form_errors(form.plainPassword.first) }}
                  {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control form2', 'placeholder':  'form.password'|trans({}, 'SonataUserBundle') ~' *' }}) }}
                  {{ form_errors(form.plainPassword.second) }}
-                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control form2', 'placeholder':  'form.password_confirmation'|trans({}, 'SonataUserBundle') ~' *' }}) }}
+                 {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control form2', 'placeholder':  'Confirmez votre mot de passe *' }}) }}
                  {{ form_rest(form) }}
                  <p id="mandatory-field">
                         * champs obligatoires.</p>

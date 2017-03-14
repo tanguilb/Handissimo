@@ -23,7 +23,8 @@
                         {% if organization.societies == null %}
                         <h1 class="title"> {{ organization.name }} </h1>
                         {% else %}
-                        <h1 class="title">{{ organization.societies.societyname }} - {{ organization.name }}</h1>
+                        <h1 class="title">{{ organization.name }}</h1>
+                            <p>Structure gérée par : {{ organization.societies.societyname }}</p>
                             <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="{{ organization.societies.logo }}" alt=""></div>
 
                         {% endif %}
@@ -36,6 +37,9 @@
             <!-- Carousel-->
             <div class="carousel">
                 <ul>
+                    {% for picture in pictures %}
+
+                    {% if organization.userOrg == null %}
                     <li class="line-img">
                         <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
                     </li>
@@ -51,72 +55,36 @@
                     <li class="line-img">
                         <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
                     </li>
+
+                    {% elseif organization.id == picture.organizationsId %}
+                        <li class="line-img">
+                            <img class="caroussel-image" src="{{ asset(picture.webPath) }}">
+                        </li>
+
+                    {% endif %}
+                    {% endfor %}
+
+
                 </ul>
             </div>
 
             <!-- Essential Block -->
             <div class="essential-block col-md-8">
-            <!-- Contact Block -->
-                <div class="contact-info">
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                        </div>
-                        <p class="address-line">{{ organization.address }} {{ organization.postal }} {{ organization.city }}</p>
-                    </div>
-
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                        </div>
-                        <p class="address-line">{{ organization.phoneNumber }}</p>
-                    </div>
-
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <a class="address-line address-link" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>
-                    </div>
-
-                    {% if organization.website %}
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-desktop" aria-hidden="true"></i>
-                        </div>
-                        <a class="address-line address-link" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a>
-                    </div>
-                    {% endif %}
-
-                    {% if organization.blog %}
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-commenting" aria-hidden="true"></i>
-                        </div>
-                        <a class="address-line address-link" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a>
-                    </div>
-                    {% endif %}
-
-                    {% if organization.facebook %}
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                        </div>
-                        <a class="address-line address-link" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a>
-                    </div>
-                    {% endif %}
-
-                    {% if organization.twitter %}
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </div>
-                        <a class="address-line address-link" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
-                    </div>
-                    {% endif %}
-                </div>
                 {#{% if  organization.statut == 1 %}#}
                     <!-- Descriptions Block -->
+                <h1>C'est pour qui ?</h1>
+                <p>Principaux troubles des personnes accueillies :</p>
+                <ul>
+                    {% for disability in organization.disabilityTypes %}
+                        <li>{{ disability }}</li>
+
+                    {% endfor %}
+                </ul>
+                <p>Age : De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                {% if organization.freeplace %}
+                    <p>Nombre de personnes accompagnées : {{ organization.freeplace }}</p>
+                {% endif %}
+                <h2>A qui s'adresse-t-on ?</h2>
                     {% if  organization.organizationDescription %}
                         <div class="col-md-12 description">
                             <h2>Description de l'organisation</h2>
@@ -168,6 +136,80 @@
             <div class="col-md-4 map-block">
                 <div class="map col-md-12" id="map">
                 </div>
+                <!-- Contact block -->
+                <div class="contact-info col-md-12">
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-tag" aria-hidden="true"></i>
+                        </div>
+                        <p class="address-line">{{ organization.structuretype }}</p>
+                    </div>
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                        </div>
+                        {% if organization.addressComplement == null %}
+                        <p class="address-line">{{ organization.address }} <br/>{{ organization.postal }} {{ organization.city }}</p>
+                        {% else %}
+                        <p class="address-line">{{ organization.address }}<br/>{{ organization.addressComplement }}<br/>{{ organization.postal }} {{ organization.city }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                        </div>
+                        <p class="address-line">{{ organization.phoneNumber }}</p>
+                    </div>
+
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <a class="address-line link-about" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>
+                    </div>
+                    <div class="line">
+                        <div class="icon-block">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </div>
+                        <p class="address-line" >Responsable : {{ organization.directorName }}</p>
+                    </div>
+                    {% if organization.website %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-desktop" aria-hidden="true"></i>
+                            </div>
+                            <a class="address-line link-about" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a>
+                        </div>
+                    {% endif %}
+
+                    {% if organization.blog %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-commenting" aria-hidden="true"></i>
+                            </div>
+                            <a class="address-line link-about" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a>
+                        </div>
+                    {% endif %}
+
+                    {% if organization.facebook %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </div>
+                            <a class="address-line link-about" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a>
+                        </div>
+                    {% endif %}
+
+                    {% if organization.twitter %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </div>
+                            <a class="address-line link-about" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
+                        </div>
+                    {% endif %}
+                </div>
                 {% set array = {
                 'latitude': organization.latitude,
                 'longitude': organization.longitude,
@@ -180,7 +222,7 @@
                 <!-- Resources -->
                 <div class="resources col-md-12">
                     <!-- download button -->
-                    <a class="download" href="https://s23.postimg.org/k5yj75xe3/image.jpg" target="_blank">
+                    <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochure) }}" target="_blank">
                         <div class="line download-line">
                             <i class="fa fa-download" aria-hidden="true"></i>
                             <p>Télécharger des documents</p>

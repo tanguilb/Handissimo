@@ -16,11 +16,11 @@
             </trans-unit>
             <trans-unit id="form.password_confirmation">
                 <source>form.password_confirmation</source>
-                <target>Vérification</target>
+                <target>Confirmation du mot de passe</target>
             </trans-unit>
             <trans-unit id="form.new_password">
                 <source>form.new_password</source>
-                <target>Mot de passe</target>
+                <target>Nouveau mot de passe</target>
             </trans-unit>
             <trans-unit id="form.current_password">
                 <source>form.current_password</source>
@@ -28,7 +28,7 @@
             </trans-unit>
             <trans-unit id="form.new_password_confirmation">
                 <source>form.new_password_confirmation</source>
-                <target>Vérification</target>
+                <target>Confirmation du mot de passe</target>
             </trans-unit>
             <trans-unit id="security.login.submit">
                 <source>security.login.submit</source>

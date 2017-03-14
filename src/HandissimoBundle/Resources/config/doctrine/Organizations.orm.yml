@@ -174,12 +174,16 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
+        brochure:
+            type: string
+            length: 255
+            nullable: true
+
 
     oneToOne:
         userorg:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             mappedBy: organizationsuser
-
 
     manyToOne:
         structuretype:
@@ -275,5 +279,5 @@ HandissimoBundle\Entity\Organizations:
 
     lifecycleCallbacks:
         prePersist: [ transformAddressGeocode ]
-        preUpdate: [ transformAddressGeocode ]
+        preUpdate:  [ transformAddressGeocode ]
 

@@ -82,6 +82,14 @@ class Organizations
     /**
      * @var string
      */
+<<<<<<< HEAD
+=======
+    private $serveDescription;
+
+    /**
+     * @var string
+     */
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
     private $openhours;
 
     /**
@@ -490,6 +498,33 @@ class Organizations
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set serveDescription
+     *
+     * @param string $serveDescription
+     *
+     * @return Organizations
+     */
+    public function setServeDescription($serveDescription)
+    {
+        $this->serveDescription = $serveDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get serveDescription
+     *
+     * @return string
+     */
+    public function getServeDescription()
+    {
+        return $this->serveDescription;
+    }
+
+    /**
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
      * Set openhours
      *
      * @param string $openhours
@@ -1135,6 +1170,15 @@ class Organizations
         return $this->userorg;
     }
 
+<<<<<<< HEAD
+=======
+
+    /**
+     * @var string
+     */
+    private $fax;
+
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
     /**
      * @var string
      */
@@ -1151,6 +1195,39 @@ class Organizations
     private $accomodationDescription;
 
     /**
+<<<<<<< HEAD
+=======
+     * @var string
+     */
+    private $service;
+
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     *
+     * @return Organizations
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
      * Set directorName
      *
      * @param string $directorName
@@ -1223,6 +1300,33 @@ class Organizations
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return Organizations
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
      * @var string
      */
     private $user;
@@ -1378,6 +1482,7 @@ class Organizations
         return $this->setStatut(0);
     }
     /**
+<<<<<<< HEAD
      * @var \Doctrine\Common\Collections\Collection
      */
     private $comments;
@@ -1577,11 +1682,29 @@ class Organizations
     public function setInterventionZone($interventionZone)
     {
         $this->interventionZone = $interventionZone;
+=======
+     * @var string
+     */
+    private $brochure;
+
+
+    /**
+     * Set brochure
+     *
+     * @param string $brochure
+     *
+     * @return Organizations
+     */
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
 
         return $this;
     }
 
     /**
+<<<<<<< HEAD
      * Get interventionZone
      *
      * @return string
@@ -1737,4 +1860,16 @@ class Organizations
     {
         return $this->otherjobs;
     }
+=======
+     * Get brochure
+     *
+     * @return string
+     */
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+
+>>>>>>> 99f1215f1c0f7babad059a8f6a4c89fa606551f1
 }
