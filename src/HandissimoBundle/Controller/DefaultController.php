@@ -7,6 +7,8 @@ use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use HandissimoBundle\Entity\Comment;
+use HandissimoBundle\Form\Handler;
 
 class DefaultController extends Controller
 {
@@ -154,7 +156,7 @@ class DefaultController extends Controller
     {
 
     }
-    public function showImageAction()
+  /*  public function showImageAction()
     {
 
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
@@ -165,6 +167,6 @@ class DefaultController extends Controller
         ));
 
 
-    }
+    }*/
 
 }

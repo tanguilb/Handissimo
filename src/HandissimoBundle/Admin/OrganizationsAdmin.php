@@ -70,6 +70,12 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Site internet',
                         'required' => false
                     ))
+                    ->add('brochure', FileType::class, array(
+                        'label' => 'Brochure (fichier PDF)',
+                        'data_class' => null,
+                        'required' => false,
+                    ))
+
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
                     ->add('structuretype', EntityType::class, array(

@@ -151,11 +151,6 @@ class Organizations
     private $needs;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $staff;
-
-    /**
      * @var float
      */
     private $latitude;
@@ -173,7 +168,6 @@ class Organizations
     {
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -846,40 +840,6 @@ class Organizations
     public function getNeeds()
     {
         return $this->needs;
-    }
-
-    /**
-     * Add staff
-     *
-     * @param \HandissimoBundle\Entity\Staff $staff
-     *
-     * @return Organizations
-     */
-    public function addStaff(\HandissimoBundle\Entity\Staff $staff)
-    {
-        $this->staff[] = $staff;
-
-        return $this;
-    }
-
-    /**
-     * Remove staff
-     *
-     * @param \HandissimoBundle\Entity\Staff $staff
-     */
-    public function removeStaff(\HandissimoBundle\Entity\Staff $staff)
-    {
-        $this->staff->removeElement($staff);
-    }
-
-    /**
-     * Get staff
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStaff()
-    {
-        return $this->staff;
     }
 
     /**
