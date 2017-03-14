@@ -4,6 +4,7 @@ namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use HandissimoBundle\Entity\Organizations;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -13,10 +14,12 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\CallbackTransformer;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

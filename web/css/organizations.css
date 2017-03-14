@@ -123,21 +123,7 @@
     display: flex;
     color: #333333;
 }
-.address-link,
-.link-account {
-    color:#61bdb9;
 
-}
-.address-link:hover,
-.link-account:hover {
-    text-decoration: none;
-    color: #f7af49;
-}
-.address-link:focus,
-.link-account:focus {
-    color:#61bdb9;
-    text-decoration: none;
-}
 
 .address-line {
     margin: 0 0 5px 0;
@@ -221,6 +207,9 @@
     margin: 5px 50px 0 50px;
 }
 
+.btn-return{
+    margin: 50px 0;
+}
 /*media queries*/
 @media screen and (max-width: 768px) {
     .head-img {

@@ -1766,4 +1766,35 @@ class Organizations
     {
         return $this->commentStaff;
     }
+    /**
+     * @var string
+     */
+    private $brochure;
+
+
+    /**
+     * Set brochure
+     *
+     * @param string $brochure
+     *
+     * @return Organizations
+     */
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
+
+    /**
+     * Get brochure
+     *
+     * @return string
+     */
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+
 }

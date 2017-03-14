@@ -8,6 +8,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
+    media_directory:     '%kernel.root_dir%/../web/uploads/image'
 
 framework:
     #esi:             ~
@@ -123,6 +125,12 @@ sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
 
+sonata_doctrine_orm_admin:
+    templates:
+        types:
+            list:
+                boolean: SonataAdminBundle:CRUD:list_boolean.html.twig
+
 sonata_user:
     security_acl: false
     manager_type: orm
@@ -221,6 +229,7 @@ ivory_ck_editor:
         my_custom_config:
             toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
+
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
