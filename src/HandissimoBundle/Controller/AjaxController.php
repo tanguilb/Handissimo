@@ -137,7 +137,7 @@ class AjaxController extends Controller
         }
     }
 
-    public function cloneAction()
+   /* public function cloneAction()
     {
         $repository = $this
             ->getDoctrine()
@@ -149,5 +149,5 @@ class AjaxController extends Controller
             $copy = clone $organizations;
 
             var_dump($copy);
-    }
+    }*/
 }
