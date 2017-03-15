@@ -389,7 +389,9 @@
                             Editer cette fiche
                         </a>
                     {% else %}
-                        <p>Cette fiche n'est pas éditable</p>
+                        <a href="javascript:history.go(-1)" class="btn btn-return" role="button">
+                            Cette fiche n'est pas éditable
+                        </a>
                     {% endif %}
                 </div>
             </div>
