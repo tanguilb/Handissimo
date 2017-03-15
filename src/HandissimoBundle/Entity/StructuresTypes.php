@@ -1,6 +1,7 @@
 <?php
 
 namespace HandissimoBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * StructuresTypes
@@ -21,17 +22,6 @@ class StructuresTypes
      * @var string
      */
     private $structurestype;
-
-    /**
-     * @var string
-     */
-    private $logoMdph;
-
-    /**
-     * @var \HandissimoBundle\Entity\Organizations
-     */
-    private $structures;
-
 
     /**
      * Set id
@@ -82,53 +72,6 @@ class StructuresTypes
     }
 
     /**
-     * Set logoMdph
-     *
-     * @param string $logoMdph
-     *
-     * @return StructuresTypes
-     */
-    public function setLogoMdph($logoMdph)
-    {
-        $this->logoMdph = $logoMdph;
-
-        return $this;
-    }
-
-    /**
-     * Get logoMdph
-     *
-     * @return string
-     */
-    public function getLogoMdph()
-    {
-        return $this->logoMdph;
-    }
-
-    /**
-     * Set structures
-     *
-     * @param \HandissimoBundle\Entity\Organizations $structures
-     *
-     * @return StructuresTypes
-     */
-    public function setStructures(\HandissimoBundle\Entity\Organizations $structures = null)
-    {
-        $this->structures = $structures;
-
-        return $this;
-    }
-
-    /**
-     * Get structures
-     *
-     * @return \HandissimoBundle\Entity\Organizations
-     */
-    public function getStructures()
-    {
-        return $this->structures;
-    }
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $organizationtype;
@@ -139,6 +82,7 @@ class StructuresTypes
     public function __construct()
     {
         $this->organizationtype = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orgastructuretype = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -173,5 +117,62 @@ class StructuresTypes
     public function getOrganizationtype()
     {
         return $this->organizationtype;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orgastructuretype;
+
+    /**
+     * Add orgastructuretype
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgastructuretype
+     *
+     * @return StructuresTypes
+     */
+    public function addOrgastructuretype(\HandissimoBundle\Entity\StructuresList $orgastructuretype)
+    {
+        $orgastructuretype->setStructurelists($this);
+        $this->orgastructuretype[] = $orgastructuretype;
+
+        return $this;
+    }
+
+    /**
+     * Remove orgastructuretype
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgastructuretype
+     */
+    public function removeOrgastructuretype(\HandissimoBundle\Entity\StructuresList $orgastructuretype)
+    {
+        //$this->orgastructuretype->removeElement($orgastructuretype);
+        foreach ($this->orgastructuretype as $k => $v) {
+            if ($v->getId() == $orgastructuretype->getId()) {
+                unset($this->orgastructuretype[$k]);
+            }
+        }
+    }
+
+    /**
+     * Get orgastructuretype
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrgastructuretype()
+    {
+        return $this->orgastructuretype;
+    }
+
+
+    /**
+     * @param $orgastructuretype
+     *
+     * @return $this
+     */
+    public function setOrgastructuretype($orgastructuretype)
+    {
+        $this->orgastructuretype = $orgastructuretype;
+
+        return $this;
     }
 }

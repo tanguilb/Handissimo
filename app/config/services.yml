@@ -33,12 +33,18 @@ services:
         calls:
             - [ setTemplate, [list, HandissimoBundle:SocietyAdmin:list.html.twig]]
 
-
     admin.structures_types:
         class: HandissimoBundle\Admin\StructuresTypesAdmin
         arguments: [~, HandissimoBundle\Entity\StructuresTypes, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de structures }
+
+    admin.structureslist:
+        class: HandissimoBundle\Admin\StructuresListAdmin
+        arguments: [~, HandissimoBundle\Entity\StructuresList, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Liste des structures }
+
 
     admin.staff:
         class: HandissimoBundle\Admin\StaffAdmin

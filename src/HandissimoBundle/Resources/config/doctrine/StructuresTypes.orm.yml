@@ -16,16 +16,16 @@ HandissimoBundle\Entity\StructuresTypes:
             options:
                 fixed: false
             column: structurestype
-        logoMdph:
-            type: string
-            nullable: true
-            length: 255
-            options:
-                fixed: false
-            column: logo_mdph
+
     oneToMany:
         organizationtype:
             targetEntity: Organizations
             mappedBy: structuretype
+
+        orgastructuretype:
+            targetEntity: HandissimoBundle\Entity\StructuresList
+            mappedBy: structurelists
+            cascade: [ persist ]
+            orphanRemoval: true
 
     lifecycleCallbacks: {  }
