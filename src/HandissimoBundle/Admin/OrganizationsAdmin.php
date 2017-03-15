@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -327,6 +328,22 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'city' , null, array ( 'label' => 'Ville') )
             ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
             ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add('update_datetime', 'date', array('label' => 'date de modification'));
+            ->add('update_datetime', 'date', array('label' => 'date de modification'))
+            ->add('_action', null, array(
+                'actions' => array(
+                    'edit' => array(),
+                    'clone' => array(
+                        'template' => ':admin:list_action_clone.html.twig'
+                    )
+                )
+            ));
+
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+
+        $collection
+            ->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }

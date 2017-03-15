@@ -178,6 +178,9 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
+        visible:
+            type: boolean
+            nullable: true
 
 
     oneToOne:

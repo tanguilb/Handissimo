@@ -1757,4 +1757,33 @@ class Organizations
     }
 
 
+    /**
+     * @var boolean
+     */
+    private $visible;
+
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     *
+     * @return Organizations
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
 }
