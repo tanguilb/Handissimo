@@ -76,7 +76,7 @@
                     <div class="panel panel-default">
                         <div class="organization-panel">
                             <div class="panel-heading" role="tab" id="headingOne">
-                                <h2 class="panel-title second-title">
+                                <h2 class="panel-title primary-title">
                                     <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         C'est pour qui ?
                                     </a>
@@ -85,18 +85,18 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="headingOne">
                             <div  class="panel-body">
-                                <h3>Principaux troubles des personnes accueillies :</h3>
+                                <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
                                 <ul>
                                     {% for disability in organization.disabilityTypes %}
                                         <li>{{ disability }}</li>
 
                                     {% endfor %}
                                 </ul>
-                                <h3 class="second-title">Age : De {{ organization.agemini }} à {{ organization.agemaxi }} ans</h3>
+                                <p class="bold">Age : De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                 {% if organization.freeplace %}
-                                    <h3>Nombre de personnes accompagnées : {{ organization.freeplace }}</h3>
+                                    <p class="bold">Nombre de personnes accompagnées : {{ organization.freeplace }}</p>
                                 {% endif %}
-                                <h3>A qui s'adresse-t-on ?</h3>
+                                <h3 class="second-title">A qui s'adresse-t-on ?</h3>
                                 {% if  organization.organizationDescription %}
                                     <div class="col-md-12 description">
                                        <p>{{ organization.organizationDescription|raw }}</p>
@@ -104,7 +104,7 @@
                                 {% endif %}
                                 {% if organization.interventionZone %}
                                     <div class="col-md-12 description">
-                                        <h3>Pour bénéficier du service, il faut habiter sur le territoire suivant : {{ organization.interventionZone }}</h3>
+                                        <p class="bold">Pour bénéficier du service, il faut habiter sur le territoire suivant : {{ organization.interventionZone }}</p>
                                     </div>
                                 {% endif %}
                             </div>
@@ -113,7 +113,7 @@
                     <div class="panel panel-default">
                         <div class="organization-panel">
                             <div class="panel-heading" role="tab" id="headingTwo">
-                                <h2 class="panel-title second-title">
+                                <h2 class="panel-title primary-title">
                                     <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Qu'est-ce qui est proposé ?
                                     </a>
@@ -122,14 +122,14 @@
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="panel-body">
-                                <h3>La structure offre principalement : </h3>
+                                <h3 class="second-title">La structure offre principalement : </h3>
                                 <ul>
                                     {% for need in organization.needs %}
                                         <li>{{ need }}</li>
                                     {% endfor %}
                                 </ul>
                                 {% if organization.secondneeds != null %}
-                                    <h3>Et aussi : </h3>
+                                    <h3 class="second-title">Et aussi : </h3>
                                     <ul>
                                         {% for secondneeds in organization.secondneeds %}
                                             <li>{{ secondneeds }}</li>
@@ -138,24 +138,24 @@
 
                                 {% endif %}
                                 {% if organization.workingDescription %}
-                                    <h3>Que proposons nous ? </h3>
+                                    <h3 class="second-title">Que proposons nous ? </h3>
                                     {{ organization.workingDescription|raw }}
                                 {% endif %}
                                 {% if organization.accomodation == "oui" %}
-                                    <h3>Les conditions d'accueil : </h3>
+                                    <h3 class="second-title">Les conditions d'accueil : </h3>
                                     <p>{{ organization.accomodationDescription|raw }}</p>
                                 {% endif %}
                                 {% if organization.school == "oui" %}
-                                    <h3>La scolarisation</h3>
+                                    <h3 class="second-title">La scolarisation</h3>
                                     <p>{{ organization.schoolDescription|raw }}</p>
                                 {% endif %}
                                 {% if organization.dayDescription %}
-                                    <h3>Concrètement, voici ce qui est proposé :</h3>
+                                    <h3 class="second-title">Concrètement, voici ce qui est proposé :</h3>
                                     <p>{{ organization.dayDescription|raw  }}</p>
                                 {% endif %}
 
                                 {% if organization.receptionDescription %}
-                                    <h3>Ce qui est prévu pour les familles :</h3>
+                                    <h3 class="second-title">Ce qui est prévu pour les familles :</h3>
                                     <p>{{ organization.receptionDescription|raw  }}</p>
                                 {% endif %}
                             </div>
@@ -164,7 +164,7 @@
                     <div class="panel panel-default">
                         <div class="organization-panel">
                             <div class="panel-heading" role="tab" id="headingThree">
-                                <h2 class="panel-title second-title">
+                                <h2 class="panel-title primary-title">
                                     <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                         L'équipe
                                     </a>
@@ -173,8 +173,8 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="panel-body">
-                                <h3>L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</h3>
-                                <h3>Leurs métiers sont :</h3>
+                                <p class="bold">L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</p>
+                                <h3 class="second-title">Leurs métiers sont :</h3>
                                 <ul>
                                     <li>
                                         <h4>Personnel de soin :</h4>
@@ -207,7 +207,7 @@
                     <div class="panel panel-default">
                         <div class="organization-panel">
                             <div class="panel-heading" role="tab" id="headinFour">
-                                <h2 class="panel-title second-title">
+                                <h2 class="panel-title primary-title">
                                     <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
                                         Informations pratiques :
                                     </a>
@@ -216,8 +216,8 @@
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="panel-body">
-                                <h3 class="second-title">Heures d'ouvertures : {{ organization.openhours }}</h3>
-                                <h3 class="second-title">Jours d'ouvertures : </h3>
+                                <p class="bold">Heures d'ouvertures : {{ organization.openhours }}</p>
+                                <p class="bold">Jours d'ouvertures : </p>
                                     <ul>
                                         <li>
                                             semaine : <p>{% for days in organization.opendays %}{{ days }} ,{% endfor %}</p>

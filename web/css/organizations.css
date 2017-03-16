@@ -342,12 +342,16 @@
     float: right;
 }
 
-.second-title{
+.primary-title{
     font-size: 1.7em;
 }
-h4,
-h3 {
+.second-title{
+    font-size: 1.5em;
+    color: #C37095;
+}
+h4 {
     font-size: 1.2em;
+
 }
 
 .organization-panel{
