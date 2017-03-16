@@ -88,6 +88,7 @@ class MediaAdminController extends Controller
                 try {
                     $file = $this->getFileName();
 
+
                     $object->setOrganizationsId($this->container->get('security.token_storage')->getToken()->getUser()->getOrganizationsUser()->getId());
                     $object = $this->admin->update($object);
 
