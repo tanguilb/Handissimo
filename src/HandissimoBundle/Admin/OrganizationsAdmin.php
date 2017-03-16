@@ -311,22 +311,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                 ->end()
             ->end()
-            ->tab('images')
-                ->with(' ')
-                    ->add('orgMedia', CollectionType::class, array(
-                        'label' => false,
-                        'required' => true,
-                        'type_options' => array(
-                            'delete' => true,
-                        ),
-                        'by_reference' => false),
-                        array(
-                            'edit' => 'inline',
-                            'inline' => 'table',
-                            'sortable' => 'position',
-                    ))
-                ->end()
-            ->end()
+
            ;
     }
 

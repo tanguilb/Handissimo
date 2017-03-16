@@ -30,13 +30,6 @@ HandissimoBundle\Entity\Media:
         firstPicture:
             type: boolean
 
-    manyToOne:
-        mediaOrg:
-            targetEntity: HandissimoBundle\Entity\Organizations
-            inversedBy: orgMedia
-            joinColumn:
-                name: organization_id
-                referencedColumnName: id
 
     lifecycleCallbacks:
         prePersist:   [lifecycleFileUpload]

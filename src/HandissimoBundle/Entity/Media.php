@@ -287,33 +287,5 @@ class Media
     {
         return $this->organizationsId;
     }
-    /**
-     * @var \HandissimoBundle\Entity\Organizations
-     */
-    private $mediaOrg;
 
-
-    /**
-     * Set mediaOrg
-     *
-     * @param \HandissimoBundle\Entity\Organizations $mediaOrg
-     *
-     * @return Media
-     */
-    public function setMediaOrg(\HandissimoBundle\Entity\Organizations $mediaOrg = null)
-    {
-        $this->mediaOrg = $mediaOrg;
-
-        return $this;
-    }
-
-    /**
-     * Get mediaOrg
-     *
-     * @return \HandissimoBundle\Entity\Organizations
-     */
-    public function getMediaOrg()
-    {
-        return $this->mediaOrg;
-    }
 }
