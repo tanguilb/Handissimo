@@ -4,3 +4,23 @@ HandissimoBundle\Entity\Opinion:
             - Email:
                 checkMX: true
 
+HandissimoBundle\Entity\Organizations:
+    properties:
+        teamMembersNumber:
+        commentStaff:
+            - Length:
+                max: 400
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        inscription:
+            - Length:
+                max: 400
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        cost:
+            - Length:
+                max: 400
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        transport:
+            - Length:
+                max: 400
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+

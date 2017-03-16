@@ -1,0 +1,5 @@
+Application\Sonata\PageBundle\Entity\Block:
+   constraints:
+       - Sonata\CoreBundle\Validator\Constraints\InlineConstraint:
+           service: sonata.page.cms.page
+           method: validateBlock

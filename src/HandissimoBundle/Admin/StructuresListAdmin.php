@@ -28,21 +28,8 @@ class StructuresListAdmin extends AbstractAdmin
                 'action' => array(
                     'allow_delete' => true
                 )
-
-            ));
-            /*->add('structurelists',EntityType::class,array (
-                'class' => 'HandissimoBundle:StructuresTypes',
-                'choice_label' => 'structurestype',
-                'label' => false,
-                'multiple' => true,
-                'expanded' => true,
-                'by_reference' => true,
-                /*'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('st')
-                        ->orderBy('st.structurestype', 'ASC');
-                },
-            ))*/
-            /*->add('structurelists',EntityType::class,array (
+            ))
+            ->add('structurelists',EntityType::class,array (
                 'class' => 'HandissimoBundle:StructuresList',
                 'choice_label' => 'name',
                 'label' => false,
@@ -53,7 +40,7 @@ class StructuresListAdmin extends AbstractAdmin
                     return $er->createQueryBuilder('sl')
                         ->orderBy('sl.name', 'ASC');
                 },
-            ));*/
+            ));
     }
 
     protected function configureListFields(ListMapper $listMapper)

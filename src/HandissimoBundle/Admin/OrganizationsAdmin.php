@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -18,6 +20,8 @@ class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $em =$this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
+        $listmache = $em->getRepository('HandissimoBundle:StructuresTypes')->getClassName();
         $formMapper
             ->tab('Identité')
                 ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
@@ -67,7 +71,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false
                     ))
                 ->end()
-                ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
+                /*->with('Choississez votre type de structure', array('class' => 'col-md-6'))
                     ->add('structuretype', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresTypes',
                         'choice_label' => 'structurestype',
@@ -79,7 +83,11 @@ class OrganizationsAdmin extends AbstractAdmin
                             return $er->createQueryBuilder('st')
                                 ->orderBy('st.structurestype', 'ASC');
                         },
-                    ))
+                    ))*/
+
+                    ->add('structuretype', ModelType::class, array(
+
+                ))
                 ->end()
             ->end()
             ->tab('Public ciblé')
@@ -273,9 +281,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('commentStaff', CKEditorType::class, array(
                         'label' => 'Commentaire éventuel sur l’équipe',
-                        'help' => 'Description limitée à 300 caractères',
-                        'required' => false,
-                        'attr' => array('maxlength => 300')
+                        'help' => 'Description limitée à 400 caractères',
+                        'required' => false
                     ))
                 ->end()
             ->end()
@@ -313,20 +320,17 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('inscription', CKEditorType::class, array(
                         'label' => 'Comment s’inscrire ?',
                         'help' => 'Description limitée à 400 caractères',
-                        'required' => false,
-                        'attr' => array('maxlength => 400')
+                        'required' => false
                     ))
                     ->add('cost' , CKEditorType::class, array(
                         'label' => 'Combien ça coûte ?',
                         'help' => 'Description limitée à 400 caractères',
-                        'required' => false,
-                        'attr' => array('maxlength => 400')
+                        'required' => false
                     ))
                     ->add('transport' , CKEditorType::class, array(
                         'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
                         'help' => 'Description limitée à 400 caractères',
-                        'required' => false,
-                        'attr' => array('maxlength => 400')
+                        'required' => false
                     ))
                 ->end()
             ->end();
