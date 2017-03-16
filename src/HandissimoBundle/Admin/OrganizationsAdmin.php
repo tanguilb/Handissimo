@@ -13,6 +13,7 @@ use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -70,6 +71,15 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Site internet',
                         'required' => false
                     ))
+                    ->add('facebook', TextType::class, array(
+                        'label' => 'Facebook',
+                        'required' => false
+                    ))
+                    ->add('brochure', FileType::class, array(
+                        'label' => 'Télécharger des documents',
+                        'required' => false,
+                        'data_class' => null
+                    ))
                 ->end()
                 /*->with('Choississez votre type de structure', array('class' => 'col-md-6'))
                     ->add('structuretype', EntityType::class, array(
@@ -111,7 +121,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Âge maximum',
                         'required' => false
                     ))
-                    ->add('freeplace', TextType::class, array(
+                    ->add('freeplace', IntegerType::class, array(
                         'label' => 'Nombre de personnes accompagnées',
                         'required' => false
                     ))
@@ -139,6 +149,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('needs', EntityType::class, array(
                         'class' => 'HandissimoBundle:Needs',
                         'choice_label' => 'needName',
+                        'help' => 'Vous devez cocher 5 cases maximum',
                         'label' => 'Services/prestations principaux proposés par la structure',
                         'multiple' => true,
                         'expanded' => true,
@@ -150,6 +161,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('secondneeds', EntityType::class, array(
                         'class' => 'HandissimoBundle:SecondaryNeeds',
                         'choice_label' => 'needName',
+                        'help' => 'Vous devez cocher 5 cases maximum',
                         'label' => 'Services/prestations secondaires proposés par la structure',
                         'multiple' => true,
                         'expanded' => true,
@@ -161,6 +173,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('working_description', CKEditorType::class, array(
                         'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
                         'required' => false,
+                        'help' => 'Description limitée à 1000 caractères',
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -186,7 +199,6 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => false,
                         'required' => false,
                         'help' => 'Description limitée à 600 caractères',
-                        'attr' => array('maxlength => 600'),
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -210,7 +222,6 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => false,
                         'required' => false,
                         'help' => 'Description limitée à 600 caractères',
-                        'attr' => array('maxlength => 600'),
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -222,8 +233,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('dayDescription' , CKEditorType::class, array(
                         'label' => false,
                         'help' => 'Description limitée à 1000 caractères',
-                        'required' => false,
-                        'attr' => array('maxlength => 1000')
+                        'required' => false
                     ))
                 ->end()
                 ->with('Qu\'est-il prévu pour les familles ?')
@@ -231,7 +241,6 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => false,
                         'help' => 'Description limitée à 600 caractères',
                         'required' => false,
-                        'attr' => array('maxlength => 600'),
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>

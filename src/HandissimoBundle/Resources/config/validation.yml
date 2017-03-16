@@ -6,7 +6,85 @@ HandissimoBundle\Entity\Opinion:
 
 HandissimoBundle\Entity\Organizations:
     properties:
+        name:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        address:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        addressComplement:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        postal:
+            - Length:
+                max: 10
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        city:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        phoneNumber:
+            - Length:
+                max: 30
+                maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères'
+            - Regex:
+                pattern: '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/'
+                message: "Le numéro de téléphone n'est pas valide"
+        mail:
+            - Email:
+                checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
+        directorName:
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        brochure:
+            - File:
+                maxSize: 2M
+                maxSizeMessage: 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}'
+        freeplace:
+            - Range:
+                max: 999
+                maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
+        organizationDescription:
+            - Length:
+                max: 600
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        needs:
+            - Count:
+                max: 5
+                maxMessage: 'Vous devez sélectionner au maximum {{ limit }} choix'
+        secondneeds:
+            - Count:
+                max: 5
+                maxMessage: 'Vous devez sélectionner au maximum {{ limit }} choix'
+        workingDescription:
+            - Length:
+                max: 1000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        accomodationDescription:
+            - Length:
+                max: 600
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        schoolDescription:
+            - Length:
+                max: 600
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        dayDescription:
+            - Length:
+                max: 1000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        receptionDescription:
+            - Length:
+                max: 600
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         teamMembersNumber:
+            - Range:
+                max: 999
+                maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
         commentStaff:
             - Length:
                 max: 400
