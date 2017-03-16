@@ -85,26 +85,34 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="headingOne">
                             <div  class="panel-body">
-                                <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
+                                </div>
                                 <ul>
                                     {% for disability in organization.disabilityTypes %}
                                         <li>{{ disability }}</li>
 
                                     {% endfor %}
                                 </ul>
-                                <p class="bold">Age : De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Age : </h3><p class="bold"> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                </div>
                                 {% if organization.freeplace %}
-                                    <p class="bold">Nombre de personnes accompagnées : {{ organization.freeplace }}</p>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Nombre de personnes accompagnées :</h3><p class="bold"> {{ organization.freeplace }}</p>
+                                </div>
                                 {% endif %}
+                                <div class="col-md-12">
                                 <h3 class="second-title">A qui s'adresse-t-on ?</h3>
+                                </div>
                                 {% if  organization.organizationDescription %}
                                     <div class="col-md-12 description">
                                        <p>{{ organization.organizationDescription|raw }}</p>
                                     </div>
                                 {% endif %}
                                 {% if organization.interventionZone %}
-                                    <div class="col-md-12 description">
-                                        <p class="bold">Pour bénéficier du service, il faut habiter sur le territoire suivant : {{ organization.interventionZone }}</p>
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </h3><p class="bold">{{ organization.interventionZone }}</p>
                                     </div>
                                 {% endif %}
                             </div>
@@ -122,41 +130,54 @@
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="panel-body">
+                                <div class="col-md-12">
                                 <h3 class="second-title">La structure offre principalement : </h3>
                                 <ul>
                                     {% for need in organization.needs %}
                                         <li>{{ need }}</li>
                                     {% endfor %}
                                 </ul>
+                                </div>
                                 {% if organization.secondneeds != null %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">Et aussi : </h3>
                                     <ul>
                                         {% for secondneeds in organization.secondneeds %}
                                             <li>{{ secondneeds }}</li>
                                         {% endfor %}
                                     </ul>
-
+                                </div>
                                 {% endif %}
                                 {% if organization.workingDescription %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">Que proposons nous ? </h3>
                                     {{ organization.workingDescription|raw }}
+                                </div>
                                 {% endif %}
                                 {% if organization.accomodation == "oui" %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">Les conditions d'accueil : </h3>
                                     <p>{{ organization.accomodationDescription|raw }}</p>
+                                </div>
                                 {% endif %}
                                 {% if organization.school == "oui" %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">La scolarisation</h3>
                                     <p>{{ organization.schoolDescription|raw }}</p>
+                                </div>
                                 {% endif %}
                                 {% if organization.dayDescription %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">Concrètement, voici ce qui est proposé :</h3>
                                     <p>{{ organization.dayDescription|raw  }}</p>
+                                </div>
                                 {% endif %}
 
                                 {% if organization.receptionDescription %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">Ce qui est prévu pour les familles :</h3>
                                     <p>{{ organization.receptionDescription|raw  }}</p>
+                                </div>
                                 {% endif %}
                             </div>
                         </div>
@@ -173,34 +194,38 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="panel-body">
-                                <p class="bold">L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</p>
-                                <h3 class="second-title">Leurs métiers sont :</h3>
-                                <ul>
-                                    <li>
-                                        <h4>Personnel de soin :</h4>
-                                        <ul>
-                                            {% for jobs in organization.stafforganizations %}
-                                                <li>{{ jobs }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h4>Personnel éducatif et social :</h4>
-                                        <ul>
-                                            {% for socialJobs in organization.socialstaffs %}
-                                                <li>{{ socialJobs }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <h4>Autres :</h4>
-                                        <ul>
-                                            {% for otherJobs in organization.otherjobs %}
-                                                <li>{{ otherJobs }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Leurs métiers sont :</h3>
+                                    <ul>
+                                        <li>
+                                            <h4>Personnel de soin :</h4>
+                                            <ul>
+                                                {% for jobs in organization.stafforganizations %}
+                                                    <li>{{ jobs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h4>Personnel éducatif et social :</h4>
+                                            <ul>
+                                                {% for socialJobs in organization.socialstaffs %}
+                                                    <li>{{ socialJobs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h4>Autres :</h4>
+                                            <ul>
+                                                {% for otherJobs in organization.otherjobs %}
+                                                    <li>{{ otherJobs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -216,8 +241,11 @@
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="panel-body">
-                                <p class="bold">Heures d'ouvertures : {{ organization.openhours }}</p>
-                                <p class="bold">Jours d'ouvertures : </p>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Heures d'ouvertures : </h3><p class="bold">{{ organization.openhours }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                <h3 class="second-title">Jours d'ouvertures : </h3>
                                     <ul>
                                         <li>
                                             semaine : <p>{% for days in organization.opendays %}{{ days }} ,{% endfor %}</p>
@@ -226,17 +254,25 @@
                                             année : <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }} ,{% endfor %}</p>
                                         </li>
                                     </ul>
+                                </div>
                                 {% if organization.inscription %}
-                                    <h3 class="second-title">Comment s'inscrire ?</h3>
+                                <div class="col-md-12">
+                                  <h3 class="second-title">Comment s'inscrire ?</h3>
                                     {{ organization.inscription|raw }}
+                                </div>
                                 {% endif %}
                                 {% if organization.cost %}
+                                <div class="col-md-12">
+
                                     <h3 class="second-title">Combien ça coûte ?</h3>
                                     {{ organization.cost|raw  }}
+                                </div>
                                 {% endif %}
                                 {% if organization.transport %}
+                                <div class="col-md-12">
                                     <h3 class="second-title">Les transports :</h3>
-                                    {{ organization.transport|raw  }}
+                                        {{ organization.transport|raw  }}
+                                </div>
                                 {% endif %}
                             </div>
                         </div>
