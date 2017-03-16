@@ -10,12 +10,14 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\CallbackTransformer;
+use Sonata\CoreBundle\Form\Type\CollectionType;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -308,7 +310,24 @@ class OrganizationsAdmin extends AbstractAdmin
                         'attr' => array('maxlength => 400')
                     ))
                 ->end()
-            ->end();
+            ->end()
+            ->tab('images')
+                ->with(' ')
+                    ->add('orgMedia', CollectionType::class, array(
+                        'label' => false,
+                        'required' => true,
+                        'type_options' => array(
+                            'delete' => true,
+                        ),
+                        'by_reference' => false),
+                        array(
+                            'edit' => 'inline',
+                            'inline' => 'table',
+                            'sortable' => 'position',
+                    ))
+                ->end()
+            ->end()
+           ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -327,6 +346,22 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'city' , null, array ( 'label' => 'Ville') )
             ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
             ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add('update_datetime', 'date', array('label' => 'date de modification'));
+            ->add('update_datetime', 'date', array('label' => 'date de modification'))
+            ->add('_action', null, array(
+                'actions' => array(
+                    'edit' => array(),
+                    'clone' => array(
+                        'template' => ':admin:list_action_clone.html.twig'
+                    )
+                )
+            ));
+
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+
+        $collection
+            ->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }

@@ -27,7 +27,7 @@ load_database:
     defaults: { _controller: "HandissimoBundle:Default:load" }
 
 
-#handissimo_clone:
-#    path: /clone
-#    defaults: { _controller: "HandissimoBundle:Ajax:clone"}
+handissimo_clone:
+    path: /clone
+    defaults: { _controller: "HandissimoBundle:Ajax:clone"}
 

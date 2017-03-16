@@ -180,4 +180,16 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
 
     }
+
+    public function getByNameAndVisible($name, $address)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('o.name = ?1')
+            ->andWhere('o.visible =' .true)
+            ->andWhere('o.address = ?2')
+            ->setParameter(1, $name)
+            ->setParameter(2, $address)
+            ->getQuery();
+        return $query->getResult();
+    }
 }

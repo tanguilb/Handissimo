@@ -1,7 +1,7 @@
-HandissimoBundle\Entity\Organizations:
+HandissimoBundle\Entity\OrganizationsBis:
     type: entity
-    table: organizations
-    repositoryClass: HandissimoBundle\Repository\OrganizationsRepository
+    table: organizationsbis
+    repositoryClass: HandissimoBundle\Repository\OrganizationsBisRepository
     id:
         id:
             type: integer
@@ -178,9 +178,6 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
-        visible:
-            type: boolean
-            nullable: true
 
 
     oneToOne:
@@ -208,18 +205,12 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Comment
             mappedBy: organizationsComment
 
-        orgMedia:
-            targetEntity: HandissimoBundle\Entity\Media
-            mappedBy: mediaOrg
-            cascade: [ persist ]
-            orphanRemoval: true
-
     manyToMany:
         disabilityTypes:
             targetEntity: DisabilityTypes
             inversedBy: organizations
             joinTable:
-                name: disability_types_has_organizations
+                name: disability_types_has_organizationsBis
                 joinColumns:
                     organizations_id:
                         referencedColumnName: id
@@ -230,7 +221,7 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Needs
             inversedBy: organizations
             joinTable:
-                name: needs_has_organizations
+                name: needs_has_organizationsBis
                 joinColumns:
                     organizations_id:
                         referencedColumnName: id
@@ -242,7 +233,7 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: HandissimoBundle\Entity\SecondaryNeeds
             inversedBy: organizationsneeds
             joinTable:
-                name: secondaryneeds_has_organizations
+                name: secondaryneeds_has_organizationsBis
                 joinColumns:
                     organizations_id:
                         referencedColumnName: id
@@ -254,7 +245,7 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Staff
             inversedBy: organizations
             joinTable:
-                name: organizations_has_staff
+                name: organizationsBis_has_staff
                 joinColumns:
                     organizations_id:
                         referencedColumnName: id
@@ -266,7 +257,7 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: HandissimoBundle\Entity\SocialStaff
             inversedBy: socialstafforga
             joinTable:
-                name: organizations_has_socialstaff
+                name: organizationsBis_has_socialstaff
                 joinColumns:
                     organizations_id:
                         referencedColumnName: id
@@ -278,7 +269,7 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: HandissimoBundle\Entity\OtherJob
             inversedBy: otherjoborga
             joinTable:
-                name: organizations_has_otherjob
+                name: organizationsBis_has_otherjob
                 joinColumns:
                     organizations_id:
                         referencedColumnName: id
@@ -287,6 +278,5 @@ HandissimoBundle\Entity\Organizations:
                         referencedColumnName: id
 
     lifecycleCallbacks:
-        prePersist: [ transformAddressGeocode ]
-        preUpdate:  [ transformAddressGeocode ]
-
+       # prePersist: [ transformAddressGeocode ]
+        #preUpdate:  [ transformAddressGeocode ]

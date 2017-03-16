@@ -14,7 +14,7 @@ services:
             - HandissimoBundle:OrganizationsAdmin
         calls:
             - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
-            - [ setTemplate, [form, HandsissimoBundle:OrganizationsAdmin:base_edit.html.twig]]
+           # - [ setTemplate, [form, HandsissimoBundle:OrganizationsAdmin:edit.html.twig]]
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
@@ -112,14 +112,10 @@ services:
 
     admin.media:
         class: HandissimoBundle\Admin\MediaAdmin
+        arguments: [~, HandissimoBundle\Entity\Media, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Media }
-        arguments:
-                    - null
-                    - HandissimoBundle\Entity\Media
-                    - HandissimoBundle:MediaAdmin
-        calls:
-            - [ setTemplate, [list, HandissimoBundle:MediaAdmin:list.html.twig]]
+
 
   #  handissimo.resize:
    #     class: HandissimoBundle\Upload\ResizePictures

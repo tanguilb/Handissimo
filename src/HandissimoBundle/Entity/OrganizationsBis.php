@@ -1,11 +1,15 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: tangui
+ * Date: 14/03/17
+ * Time: 14:23
+ */
 
 namespace HandissimoBundle\Entity;
 
-/**
- * Organizations
- */
-class Organizations
+
+class OrganizationsBis
 {
     public function __toString()
     {
@@ -1049,20 +1053,6 @@ class Organizations
         return $this->agemaxi;
     }
 
-    public function transformAddressGeocode()
-    {
-        $geocoder = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc";
-        $addresse = $this->address;
-        $addresse .= ' ' . $this->postal;
-        $addresse .= ' ' . $this->city;
-
-        $query = sprintf($geocoder, urlencode($addresse));
-        $result = json_decode(file_get_contents($query));
-        $json = $result->results[0];
-
-        $this->latitude = (float) $json->geometry->location->lat;
-        $this->longitude = (float) $json->geometry->location->lng;
-    }
 
 
     /**
@@ -1756,73 +1746,4 @@ class Organizations
         return $this->brochure;
     }
 
-
-    /**
-     * @var boolean
-     */
-    private $visible;
-
-
-    /**
-     * Set visible
-     *
-     * @param boolean $visible
-     *
-     * @return Organizations
-     */
-    public function setVisible($visible)
-    {
-        $this->visible = $visible;
-
-        return $this;
-    }
-
-    /**
-     * Get visible
-     *
-     * @return boolean
-     */
-    public function getVisible()
-    {
-        return $this->visible;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $orgMedia;
-
-
-    /**
-     * Add orgMedia
-     *
-     * @param \HandissimoBundle\Entity\Media $orgMedia
-     *
-     * @return Organizations
-     */
-    public function addOrgMedia(\HandissimoBundle\Entity\Media $orgMedia)
-    {
-        $this->orgMedia[] = $orgMedia;
-
-        return $this;
-    }
-
-    /**
-     * Remove orgMedia
-     *
-     * @param \HandissimoBundle\Entity\Media $orgMedia
-     */
-    public function removeOrgMedia(\HandissimoBundle\Entity\Media $orgMedia)
-    {
-        $this->orgMedia->removeElement($orgMedia);
-    }
-
-    /**
-     * Get orgMedia
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOrgMedia()
-    {
-        return $this->orgMedia;
-    }
 }
