@@ -281,6 +281,3 @@ HandissimoBundle\Entity\Organizations:
                         referencedColumnName: id
 
     lifecycleCallbacks:
-        prePersist: [ transformAddressGeocode ]
-        preUpdate:  [ transformAddressGeocode ]
-

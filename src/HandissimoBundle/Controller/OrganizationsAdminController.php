@@ -89,10 +89,6 @@ class OrganizationsAdminController extends Controller
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
-                    $file = $object->getBrochure();
-                    $fileName = $this->get('app.brochure_uploader')->upload($file);
-
-                    $object->setBrochure($fileName);
 
                     $object->setUser($this->container->get('security.token_storage')->getToken()->getUser());
                     $object->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
@@ -217,10 +213,7 @@ class OrganizationsAdminController extends Controller
                 $this->admin->checkAccess('create', $object);
 
                 try {
-                    $file = $object->getBrochure();
-                    $fileName = $this->get('app.brochure_uploader')->upload($file);
 
-                    $object->setBrochure($fileName);
 
                     $object = $this->admin->create($object);
 

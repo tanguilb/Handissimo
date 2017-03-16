@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\BlockBundle\Util\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -74,7 +75,6 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('brochure', FileType::class, array(
                         'label' => 'Brochure (fichier PDF)',
-                        'data_class' => null,
                         'required' => false,
                     ))
 
@@ -348,5 +348,12 @@ class OrganizationsAdmin extends AbstractAdmin
 
         $collection
             ->add('clone', $this->getRouterIdParameter().'/clone');
+    }
+
+    protected function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => Organizations::class,
+        ));
     }
 }

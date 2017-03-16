@@ -1050,21 +1050,6 @@ class Organizations
         return $this->agemaxi;
     }
 
-    public function transformAddressGeocode()
-    {
-        $geocoder = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc";
-        $addresse = $this->address;
-        $addresse .= ' ' . $this->postal;
-        $addresse .= ' ' . $this->city;
-
-        $query = sprintf($geocoder, urlencode($addresse));
-        $result = json_decode(file_get_contents($query));
-        $json = $result->results[0];
-
-        $this->latitude = (float) $json->geometry->location->lat;
-        $this->longitude = (float) $json->geometry->location->lng;
-    }
-
 
     /**
      * @var \Application\Sonata\UserBundle\Entity\User

@@ -6,7 +6,7 @@
  * Time: 09:47
  */
 
-namespace HandissimoBundle\Upload;
+namespace HandissimoBundle\Services\Upload;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -26,5 +26,10 @@ class FileUploader
         $file->move($this->targetDir, $fileName);
 
         return $fileName;
+    }
+
+    public function getTargetDir()
+    {
+        return $this->targetDir;
     }
 }

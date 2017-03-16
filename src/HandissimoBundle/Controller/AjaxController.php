@@ -138,27 +138,4 @@ class AjaxController extends Controller
         }
     }
 
- /*   public function cloneAction()
-    {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('HandissimoBundle:Organizations')
-        ;
-        $organizations = $repository->find(45);
-            $copy = clone $organizations;
-            var_dump($copy);
-            $em = $this->getDoctrine()->getManager();
-            $organizationsBis = $em->getRepository('HandissimoBundle:OrganizationsBis');
-            var_dump($organizationsBis);
-
-
-
-
-            $em->persist($copy);
-            $em->flush();
-
-            return $em;
-
-    }*/
 }

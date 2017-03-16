@@ -6,7 +6,7 @@
  * Date: 01/03/17
  * Time: 10:53
  */
-namespace HandissimoBundle\Service;
+namespace HandissimoBundle\Services\Captcha;
 
 
 
