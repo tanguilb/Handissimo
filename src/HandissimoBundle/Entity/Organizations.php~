@@ -1757,4 +1757,72 @@ class Organizations
     }
 
 
+    /**
+     * @var boolean
+     */
+    private $visible;
+
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     *
+     * @return Organizations
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orgMedia;
+
+
+    /**
+     * Add orgMedia
+     *
+     * @param \HandissimoBundle\Entity\Media $orgMedia
+     *
+     * @return Organizations
+     */
+    public function addOrgMedia(\HandissimoBundle\Entity\Media $orgMedia)
+    {
+        $this->orgMedia[] = $orgMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove orgMedia
+     *
+     * @param \HandissimoBundle\Entity\Media $orgMedia
+     */
+    public function removeOrgMedia(\HandissimoBundle\Entity\Media $orgMedia)
+    {
+        $this->orgMedia->removeElement($orgMedia);
+    }
+
+    /**
+     * Get orgMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrgMedia()
+    {
+        return $this->orgMedia;
+    }
 }

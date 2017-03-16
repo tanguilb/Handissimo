@@ -168,6 +168,7 @@ class Organizations
     {
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->orgMedia = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -1785,5 +1786,64 @@ class Organizations
     public function getVisible()
     {
         return $this->visible;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orgMedia;
+
+
+    /**
+     * Add orgMedia
+     *
+     * @param \HandissimoBundle\Entity\Media $orgMedia
+     *
+     * @return Organizations
+     */
+    public function addOrgMedia(\HandissimoBundle\Entity\Media $orgMedia)
+    {
+        $orgMedia->setMediaOrg($this);
+        $this->orgMedia[] = $orgMedia;
+
+        return $this;
+    }
+
+    /**
+     * Remove orgMedia
+     *
+     * @param \HandissimoBundle\Entity\Media $orgMedia
+     */
+    public function removeOrgMedia(\HandissimoBundle\Entity\Media $orgMedia)
+    {
+        //$this->orgMedia->removeElement($orgMedia);
+        foreach ($this->orgMedia as $key => $value)
+        {
+            if($value->getId() == $orgMedia->getId())
+            {
+                unset($this->orgMedia[$key]);
+            }
+        }
+    }
+
+    /**
+     * Get orgMedia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrgMedia()
+    {
+        return $this->orgMedia;
+    }
+
+    /**
+     * @param $orgMedia
+     *
+     * @return $this
+     */
+    public function setOrgMedia($orgMedia)
+    {
+        $this->orgMedia = $orgMedia;
+
+        return $this;
     }
 }

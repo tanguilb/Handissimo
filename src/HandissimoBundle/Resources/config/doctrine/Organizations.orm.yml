@@ -208,6 +208,12 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Comment
             mappedBy: organizationsComment
 
+        orgMedia:
+            targetEntity: HandissimoBundle\Entity\Media
+            mappedBy: mediaOrg
+            cascade: [ persist ]
+            orphanRemoval: true
+
     manyToMany:
         disabilityTypes:
             targetEntity: DisabilityTypes

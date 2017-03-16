@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\CallbackTransformer;
+use Sonata\CoreBundle\Form\Type\CollectionType;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -309,7 +310,24 @@ class OrganizationsAdmin extends AbstractAdmin
                         'attr' => array('maxlength => 400')
                     ))
                 ->end()
-            ->end();
+            ->end()
+            ->tab('images')
+                ->with(' ')
+                    ->add('orgMedia', CollectionType::class, array(
+                        'label' => false,
+                        'required' => true,
+                        'type_options' => array(
+                            'delete' => true,
+                        ),
+                        'by_reference' => false),
+                        array(
+                            'edit' => 'inline',
+                            'inline' => 'table',
+                            'sortable' => 'position',
+                    ))
+                ->end()
+            ->end()
+           ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
