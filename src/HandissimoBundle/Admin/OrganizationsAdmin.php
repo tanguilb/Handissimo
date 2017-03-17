@@ -23,8 +23,6 @@ class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em =$this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
-        $listmache = $em->getRepository('HandissimoBundle:StructuresTypes')->getClassName();
         $formMapper
             ->tab('Identité')
                 ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))

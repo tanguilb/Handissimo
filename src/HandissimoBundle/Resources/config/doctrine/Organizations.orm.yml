@@ -185,6 +185,12 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: HandissimoBundle\Entity\StructuresList
             mappedBy: organizationsStructure
 
+            inversedBy: orgaStructure
+                joinColumn:
+                    name: structurelist_id
+                    referencedColumnName: id
+                    nullable: true
+
     oneToMany:
         comments:
             targetEntity: Comment

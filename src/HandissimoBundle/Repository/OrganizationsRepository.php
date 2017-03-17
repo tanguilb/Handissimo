@@ -16,7 +16,7 @@ class OrganizationsRepository extends EntityRepository
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
-        $query->innerJoin('o.structuretype', 'st');
+        $query->innerJoin('o.orgaStructure', 'sl');
         $query->innerJoin('o.stafforganizations', 's');
 
         // define data structure
@@ -24,7 +24,7 @@ class OrganizationsRepository extends EntityRepository
             "keyword" => array(
                 'o'=>'name',
                 'dt'=>'disabilityName',
-                'st'=>'structurestype',
+                'sl'=>'name',
                 'n'=>'needName',
                 's'=>'jobs'),
             "postal" => array(
