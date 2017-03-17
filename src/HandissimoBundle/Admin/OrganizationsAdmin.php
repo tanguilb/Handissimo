@@ -34,13 +34,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
-                    /*->add('societies', EntityType::class, array(
-                        'class' => 'HandissimoBundle:Society',
-                        'choice_label' => 'society_name',
-                        'label' => 'Nom de l\'organisme gestionnaire',
-                        'required' => false,
-                        'help' => 'Si différent du nom de la structure'
-                    ))*/
+
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
                         'required' => true
@@ -84,28 +78,15 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
-                    /*->add('orgaStructure', EntityType::class, array(
+                    ->add('orgaStructure', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresList',
                         'label' => 'Etablissements et services spécialisés sur orientation de la MDPH',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('sl')
-                                ->join('sl.structurelists', 'st')
-                                ->where('st.id = 8')
                                 ->orderBy('sl.name', 'ASC');
                         },
                         'expanded' => true
                     ))
-                    ->add('orgaStructure', EntityType::class, array(
-                        'class' => 'HandissimoBundle:StructuresList',
-                        'label' => 'Structures en accès libre',
-                        'query_builder' => function(EntityRepository $er) {
-                            return $er->createQueryBuilder('sl')
-                                ->join('sl.structurelists', 'st')
-                                ->where('st.id = 9')
-                                ->orderBy('sl.name', 'ASC');
-                        },
-                        'expanded' => true
-                    ))*/
                 ->end()
             ->end()
             ->tab('Public ciblé')

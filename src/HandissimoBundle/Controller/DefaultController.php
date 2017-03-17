@@ -42,10 +42,7 @@ class DefaultController extends Controller
             $this->addFlash('notice', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('handissimo_structure');
         }
-        if ($formHandler->captchaFail()) {
-            $this->addFlash('error', 'Le captcha n\'est pas valide, veuillez recommencer');
-            return $this->redirectToRoute('handissimo_structure');
-        }
+
         return $this->render(':front:structurePage.html.twig', array(
             'form' => $form->createView()
         ));
@@ -64,8 +61,6 @@ class DefaultController extends Controller
         if ($formHandler->process()) {
 
             return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
-        }else{
-            $this->addFlash('error', 'Le captcha n\'est pas valide, veuillez recommencer');
         }
         $comments = $organization->getComments();
         $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
@@ -102,53 +97,5 @@ class DefaultController extends Controller
         }
             $em->flush();
             $this->render(":front:about.html.twig");
-    }
-
-    /*public function commentAnswerAction(Request $request)
-    {
-        $commentAnswer =new CommentAnswer();
-        $formbis = $this->createForm('HandissimoBundle\Form\CommentAnswerType', $commentAnswer);
-        $formbis->handleRequest($request);
-        //$commentAnswer->setCommentanswers($comment);
-        //$comment->setOrganizationsComment($organization);
-        if ($formbis->isSubmitted() && $formbis->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commentAnswer);
-            $em->flush();
-
-            //$this->addFlash('comment', 'Votre commentaire a bien été posté');
-            //return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
-        }
-
-        //$commentAnswers = $comment->getComments();
-        return $this->render(':front:organizationPage.html.twig', array(
-            'form' => $formbis->createView(),
-            //'user' => $user,
-            //'comments' => $comment,
-            //'organization' => $organization,
-            //'commentAnswers' => $commentAnswers,
-        ));
-    }*/
-
-    public function likeAction(Request $request, Comment $comment)
-    {
-        //$id = $comment->getId();
-        //$comment = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->find($id);
-        //var_dump($comment);
-        /*if ($request->getMethod() == 'POST') {
-            $comment->incrementeComment();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-            return $this->redirectToRoute('handissimo_aboutpage');
-        }*/
-
-        //$deleteForm = $this->createDeleteForm($comment);
-
-    }
-
-    public function dislikeAction()
-    {
-
     }
 }

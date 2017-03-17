@@ -1,7 +1,6 @@
 <?php
 
 namespace HandissimoBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * StructuresTypes
