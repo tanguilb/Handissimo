@@ -206,7 +206,10 @@
     padding-top: 10px;
     margin: 5px 50px 0 50px;
 }
-
+.btn-edit,
+.btn-return{
+    margin: 50px 0;
+}
 /*media queries*/
 @media screen and (max-width: 768px) {
     .head-img {
@@ -337,4 +340,22 @@
 
 .vote-btns {
     float: right;
+}
+
+.primary-title{
+    font-size: 1.7em;
+    color: #61bdb9;
+}
+.second-title{
+    font-size: 1.2em;
+    color: #C37095;
+    font-weight: bold;
+}
+h4 {
+    font-size: 1.2em;
+
+}
+
+.organization-panel{
+    padding: 20px;
 }

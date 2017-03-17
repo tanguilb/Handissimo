@@ -10,4 +10,14 @@ namespace HandissimoBundle\Repository;
  */
 class StructuresListRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByStructure($keyword)
+    {
+        $query = $this->createQueryBuilder('s')
+            ->select('s.name')
+            ->where('s.name LIKE :structureData')
+            ->setParameter('structureData', '%' . $keyword . '%')
+            ->getQuery();
+        return $query->getResult();
+
+    }
 }

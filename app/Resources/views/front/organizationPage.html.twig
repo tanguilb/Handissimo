@@ -20,14 +20,7 @@
 
                 <div class="row">
                     <div class="head-title col-md-11 col-sm-11">
-                        {% if organization.societies == null %}
                         <h1 class="title"> {{ organization.name }} </h1>
-                        {% else %}
-                        <h1 class="title">{{ organization.name }}</h1>
-                            <p>Structure gérée par : {{ organization.societies.societyname }}</p>
-                            <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="{{ organization.societies.logo }}" alt=""></div>
-
-                        {% endif %}
                     </div>
                     <!-- this is the line to display like button
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
@@ -72,61 +65,213 @@
             <div class="essential-block col-md-8">
                 {#{% if  organization.statut == 1 %}#}
                     <!-- Descriptions Block -->
-                <h1>C'est pour qui ?</h1>
-                <p>Principaux troubles des personnes accueillies :</p>
-                <ul>
-                    {% for disability in organization.disabilityTypes %}
-                        <li>{{ disability }}</li>
-
-                    {% endfor %}
-                </ul>
-                <p>Age : De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
-                {% if organization.freeplace %}
-                    <p>Nombre de personnes accompagnées : {{ organization.freeplace }}</p>
-                {% endif %}
-                <h2>A qui s'adresse-t-on ?</h2>
-                    {% if  organization.organizationDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Description de l'organisation</h2>
-                           <p>{{ organization.organizationDescription|raw }}</p>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="organization-panel">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h2 class="panel-title primary-title">
+                                    <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        C'est pour qui ?
+                                    </a>
+                                </h2>
+                            </div>
                         </div>
-                    {% endif %}
+                        <div id="collapseOne" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="headingOne">
+                            <div  class="panel-body">
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
+                                </div>
+                                <ul>
+                                    {% for disability in organization.disabilityTypes %}
+                                        <li>{{ disability }}</li>
 
-
-                    {% if organization.placeDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Nos locaux</h2>
-                            <p>{{ organization.placeDescription|raw }}</p>
+                                    {% endfor %}
+                                </ul>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Age : </h3><p class="bold"> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                </div>
+                                {% if organization.freeplace %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Nombre de personnes accompagnées :</h3><p class="bold"> {{ organization.freeplace }}</p>
+                                </div>
+                                {% endif %}
+                                <div class="col-md-12">
+                                <h3 class="second-title">A qui s'adresse-t-on ?</h3>
+                                </div>
+                                {% if  organization.organizationDescription %}
+                                    <div class="col-md-12 description">
+                                       <p>{{ organization.organizationDescription|raw }}</p>
+                                    </div>
+                                {% endif %}
+                                {% if organization.interventionZone %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </h3><p class="bold">{{ organization.interventionZone }}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endif %}
-
-                    {% if organization.schoolDescription %}
-                        <div class="col-md-12 description">
-                            <h2>L'école</h2>
-                            <p>{{ organization.schoolDescription|raw }}</p>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="organization-panel">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h2 class="panel-title primary-title">
+                                    <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Qu'est-ce qui est proposé ?
+                                    </a>
+                                </h2>
+                            </div>
                         </div>
-                    {% endif %}
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                <h3 class="second-title">La structure offre principalement : </h3>
+                                <ul>
+                                    {% for need in organization.needs %}
+                                        <li>{{ need }}</li>
+                                    {% endfor %}
+                                </ul>
+                                </div>
+                                {% if organization.secondneeds != null %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Et aussi : </h3>
+                                    <ul>
+                                        {% for secondneeds in organization.secondneeds %}
+                                            <li>{{ secondneeds }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                                {% if organization.workingDescription %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Que proposons nous ? </h3>
+                                    {{ organization.workingDescription|raw }}
+                                </div>
+                                {% endif %}
+                                {% if organization.accomodation == "oui" %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Les conditions d'accueil : </h3>
+                                    <p>{{ organization.accomodationDescription|raw }}</p>
+                                </div>
+                                {% endif %}
+                                {% if organization.school == "oui" %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">La scolarisation</h3>
+                                    <p>{{ organization.schoolDescription|raw }}</p>
+                                </div>
+                                {% endif %}
+                                {% if organization.dayDescription %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Concrètement, voici ce qui est proposé :</h3>
+                                    <p>{{ organization.dayDescription|raw  }}</p>
+                                </div>
+                                {% endif %}
 
-                    {% if organization.teamDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Description de l'équipe</h2>
-                            <p>{{ organization.teamDescription|raw }}</p>
+                                {% if organization.receptionDescription %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Ce qui est prévu pour les familles :</h3>
+                                    <p>{{ organization.receptionDescription|raw  }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endif %}
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="organization-panel">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h2 class="panel-title primary-title">
+                                    <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        L'équipe
+                                    </a>
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <h3 class="second-title">L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Leurs métiers sont :</h3>
+                                    <ul>
+                                        <li>
+                                            <h4>Personnel de soin :</h4>
+                                            <ul>
+                                                {% for jobs in organization.stafforganizations %}
+                                                    <li>{{ jobs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h4>Personnel éducatif et social :</h4>
+                                            <ul>
+                                                {% for socialJobs in organization.socialstaffs %}
+                                                    <li>{{ socialJobs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h4>Autres :</h4>
+                                            <ul>
+                                                {% for otherJobs in organization.otherjobs %}
+                                                    <li>{{ otherJobs }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="organization-panel">
+                            <div class="panel-heading" role="tab" id="headinFour">
+                                <h2 class="panel-title primary-title">
+                                    <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                        Informations pratiques :
+                                    </a>
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Heures d'ouvertures : </h3><p class="bold">{{ organization.openhours }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                <h3 class="second-title">Jours d'ouvertures : </h3>
+                                    <ul>
+                                        <li>
+                                            semaine : <p>{% for days in organization.opendays %}{{ days }} ,{% endfor %}</p>
+                                        </li>
+                                        <li>
+                                            année : <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }} ,{% endfor %}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {% if organization.inscription %}
+                                <div class="col-md-12">
+                                  <h3 class="second-title">Comment s'inscrire ?</h3>
+                                    {{ organization.inscription|raw }}
+                                </div>
+                                {% endif %}
+                                {% if organization.cost %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Combien ça coûte ?</h3>
+                                    {{ organization.cost|raw  }}
+                                </div>
+                                {% endif %}
+                                {% if organization.transport %}
+                                <div class="col-md-12">
+                                    <h3 class="second-title">Les transports :</h3>
+                                        {{ organization.transport|raw  }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    {% if organization.workingDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Comment travaillons-nous ?</h2>
-                            <p>{{ organization.workingDescription|raw }}</p>
-                        </div>
-                    {% endif %}
 
-                    {% if organization.activities %}
-                        <div class="col-md-12 description">
-                            <h2>Les activités proposées</h2>
-                            <p>{{ organization.activities|raw }}</p>
-                        </div>
-                    {% endif %}
                 {#{% else %}
                     <h2>Veuillez nous excuser pour le désagrement, la fiche est actuellement en correction.</h2>
                 {% endif %}#}
@@ -142,8 +287,16 @@
                         <div class="icon-block">
                             <i class="fa fa-tag" aria-hidden="true"></i>
                         </div>
-                        <p class="address-line">{{ organization.structuretype }}</p>
+                        <p class="address-line">{{ organization.orgaStructure }}</p>
                     </div>
+                    {% if organization.society %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-tag" aria-hidden="true"></i>
+                            </div>
+                            <p class="address-line">Structure gére par : {{ organization.society }}</p>
+                        </div>
+                    {% endif %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-home" aria-hidden="true"></i>
@@ -221,13 +374,15 @@
 
                 <!-- Resources -->
                 <div class="resources col-md-12">
+                    {% if organization.brochure %}
                     <!-- download button -->
-                    <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochure) }}" target="_blank">
+                    <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochure.filename) }}" target="_blank">
                         <div class="line download-line">
                             <i class="fa fa-download" aria-hidden="true"></i>
                             <p>Télécharger des documents</p>
                         </div>
                     </a>
+                    {% endif %}
                     <!-- print button -->
                     <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
                         <div class="line print-line">
@@ -247,24 +402,26 @@
                 <div class="col-md-3 col-xs-offset-1 col-xs-12">
                     {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
                         {% if organization.userorg == null %}
-                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit">
+                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Editer cette fiche
                             </a>
                         {% elseif  user.organizationsuser == null %}
                                 <p>Cette fiche n'est pas éditable</p>
                         {% elseif  user.organizationsuser.id == organization.id %}
-                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit">
+                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Editer cette fiche
                             </a>
                         {% else %}
                             <p>Cette fiche n'est pas éditable</p>
                         {% endif %}
                     {% elseif organization.userorg == null %}
-                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit">
+                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
                             Editer cette fiche
                         </a>
                     {% else %}
-                        <p>Cette fiche n'est pas éditable</p>
+                        <a href="javascript:history.go(-1)" class="btn btn-return" role="button">
+                            Cette fiche n'est pas éditable
+                        </a>
                     {% endif %}
                 </div>
             </div>

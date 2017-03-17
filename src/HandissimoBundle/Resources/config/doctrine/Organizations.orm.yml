@@ -174,7 +174,10 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
-
+        society:
+            type: string
+            length: 255
+            nullable: true
 
     oneToOne:
         userorg:
@@ -183,7 +186,11 @@ HandissimoBundle\Entity\Organizations:
 
         orgaStructure:
             targetEntity: HandissimoBundle\Entity\StructuresList
-            mappedBy: organizationsStructure
+            inversedBy: organizationsStructure
+            joinColumn:
+                name: structureList_id
+                referencedColumnName: id
+                nullable: true
 
     oneToMany:
         comments:
@@ -263,6 +270,3 @@ HandissimoBundle\Entity\Organizations:
                         referencedColumnName: id
 
     lifecycleCallbacks:
-        prePersist: [ transformAddressGeocode ]
-        preUpdate:  [ transformAddressGeocode ]
-

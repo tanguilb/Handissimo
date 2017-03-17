@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use HandissimoBundle\Entity\StructuresList;
 use HandissimoBundle\Entity\StructuresTypes;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use HandissimoBundle\Entity\Organizations;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -18,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\CallbackTransformer;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -34,7 +36,10 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
-
+                    ->add('society', TextType::class, array(
+                        'label' => 'Non de l\'organisme gestionnaire',
+                        'required' => false,
+                    ))
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
                         'required' => true
@@ -116,17 +121,8 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('organization_description', CKEditorType::class, array(
                             'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
-                            'required' => false,
-                            'help' => 'Description limitée à 600 caractères',
-                            'config' => array(
-                                'extraPlugins' => 'confighelper',
-                                'placeholder' =>
-                                    'Exemple 1: Exemple 1 : La MAS Robert Ramel accueille 50 adultes polyhandicapés et autistes lourdement handicapés, qui ont entre 20 et 60 ans à leur arrivée. Certains résidents souffrent d’épilepsie. La moitié des résidents se déplace en fauteuil. La majorité d’entre eux ne parlent pas ou très peu. <br /> <br /> 
-                                     Exemple 2 : L’association Une souris verte s’adresse à tous les enfants en situation de handicap et leurs familles, notamment les enfants dont le handicap pose difficulté pour être accueillis dans une structure ordinaire (crèche, garderie, …)<br /> <br />
-                                     Exemple 3 : Les usagers du C.E.M. sont des pré-adolescents, adolescents et jeunes adultes pour la plupart atteint d’infirmité motrice d’origine cérébrale, ou paralysie cérébrale.  L’établissement accueille également des jeunes polyhandicapés. 
-                                     Certains se déplacent en fauteuil roulant manuel ou électrique, d’autres avec diverses aides de marche, d’autres en tricycles ou en marchant. La plupart des jeunes savent s’exprimer à l’oral. Environ 110 jeunes sont accueillis.'
-                            ),
-                    ))
+                            'required' => false)
+                    )
                     ->add('interventionZone', TextType::class, array(
                         'label' => "Quelle est votre zone d’intervention ? Quelles sont les conditions de résidence pour accéder à la structure ?",
                         'required' => false

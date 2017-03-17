@@ -9,9 +9,7 @@
 
 namespace Application\Sonata\UserBundle\Form\Type;
 
-use Application\Sonata\UserBundle\Entity\Group;
 use FOS\UserBundle\Form\Type\RegistrationFormType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
@@ -36,14 +34,7 @@ class RegisterType extends RegistrationFormType
                 'expanded' => true
 
 
-            ))
-            ->add('groups', EntityType::class, array(
-                'class' => Group::class,
-                //'label' => false,
-                //'attr' => array('style' => 'display:none'),
-
-            ))
-        ;
+            ));
     }
 
     public function setDefaultOption(OptionsResolverInterface $resolver)

@@ -30,6 +30,7 @@ HandissimoBundle\Entity\Media:
         firstPicture:
             type: boolean
 
+
     lifecycleCallbacks:
         prePersist:   [lifecycleFileUpload]
         preUpdate:    [lifecycleFileUpload]

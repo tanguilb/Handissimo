@@ -5,6 +5,7 @@ namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\OrganizationsBis;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
@@ -100,7 +101,7 @@ class AjaxController extends Controller
             /**
              * @var $repository StructuresTypesRepository
              */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresTypes');
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
             $structure = $repository->getByStructure($keyword);
 
             /**
@@ -137,17 +138,4 @@ class AjaxController extends Controller
         }
     }
 
-   /* public function cloneAction()
-    {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('HandissimoBundle:Organizations')
-        ;
-
-        $organizations = $repository->find(45);
-            $copy = clone $organizations;
-
-            var_dump($copy);
-    }*/
 }
