@@ -3,10 +3,12 @@
 namespace HandissimoBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Sonata\DatagridBundle\Filter\FilterInterface;
 
-class SocietyType extends AbstractType
+class MediaType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,16 +16,7 @@ class SocietyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('societyName')
-            ->add('logo')
-            ->add('address')
-            ->add('postal')
-            ->add('city')
-            ->add('phoneNumber')
-            ->add('mail')
-            ->add('societyTwitter')
-            ->add('societyFacebook')
-            ->add('website')
+            ->add('file', FileType::class)
         ;
     }
     
@@ -33,7 +26,7 @@ class SocietyType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'HandissimoBundle\Entity\Society'
+            'data_class' => 'HandissimoBundle\Entity\Media'
         ));
     }
 
@@ -42,7 +35,7 @@ class SocietyType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'handissimobundle_society';
+        return 'handissimobundle_media';
     }
 
 

@@ -3,18 +3,20 @@
 namespace HandissimoBundle\Admin;
 
 
-use Sonata\AdminBundle\Admin\Admin;
+use Doctrine\ORM\EntityRepository;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class DisabilityTypesAdmin extends Admin
+class DisabilityTypesAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('disabilityName', 'text',
+            ->add('disabilityName', TextType::class,
                 array(
                     'label' => 'Types de handicaps',
                     'required' => false
@@ -26,7 +28,11 @@ class DisabilityTypesAdmin extends Admin
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => true,
-                'disabled' => true
+                'disabled' => true,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('dt')
+                        ->orderBy('dt.disabilityName', 'ASC');
+                },
             ));
     }
 
@@ -35,7 +41,11 @@ class DisabilityTypesAdmin extends Admin
         $listMapper
             ->add('disabilityName', null,
                 array(
-                    'label' => 'Types de handicaps'
+                    'label' => 'Types de handicaps',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('dt')
+                            ->orderBy('dt.disabilityName', 'ASC');
+                    },
                 ));
     }
 

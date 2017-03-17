@@ -54,6 +54,9 @@
                                 <div class="text-center block-btn1" title="Valider la connexion">
                                     <input type="submit" id="_submit" name="_submit" class=" submit-btn btn1" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
                                 </div>
+                                {% if app.request.get('_route') != app.request.headers.get('referer') %}
+                                    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+                                {% endif %}
                             </form>
                         {% endblock %}
                     </div>

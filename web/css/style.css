@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     color: #333333;
 }
 
@@ -29,6 +29,19 @@ p {
     color: #ffffff;
 }
 
+.link-about {
+    color:#65bfba;
+    font-weight: 600;
+}
+
+.link-about:hover{
+    text-decoration: none;
+    color: #f7af49;
+}
+.link-about:focus{
+    color:#65bfba;
+    text-decoration: none;
+}
 /****************/
 /*****ALERTS*****/
 /****************/
@@ -50,7 +63,13 @@ p {
 #alert-danger {
     background-color: red;
 }
+#btn-password{
+    margin: 50px 0 50px 0;
+}
 
+.password-title{
+    margin-top: 50px;
+}
 /****************/
 /*****NAVBAR*****/
 /****************/
@@ -337,4 +356,8 @@ p {
 .description p {
     text-align: justify;
     margin-bottom: 10px;
+}
+
+.bold {
+    font-weight: 800;
 }

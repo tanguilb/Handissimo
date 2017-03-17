@@ -2,8 +2,10 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\Comment;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
+use HandissimoBundle\Form\Handler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,35 +34,44 @@ class DefaultController extends Controller
     public function structureAction(Request $request)
     {
         $solution = new Solution();
-        $form = $this->createForm('HandissimoBundle\Form\SolutionType', $solution);
-        $form->handleRequest($request);
+        $form = $this->createForm('HandissimoBundle\Form\Type\SolutionType', $solution);
 
-        if ($form->isSubmitted() && $form->isValid() && $this->captchaverifyAction($request->get('g-recaptcha-response'))){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($solution);
-            $em->flush();
+        $formHandler = new Handler\SolutionHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'));
 
+        if ($formHandler->process()) {
             $this->addFlash('notice', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('handissimo_structure');
         }
-        if($form->isSubmitted() &&  $form->isValid() && !$this->captchaverifyAction($request->get('g-recaptcha-response'))) {
-            $this->addFlash('error', 'Le captcha n\'est pas valide, veuillez recommencer');
-        }
+
         return $this->render(':front:structurePage.html.twig', array(
             'form' => $form->createView()
         ));
     }
 
-    public function standardPageAction(Organizations $organization){
+
+    public function standardPageAction(Organizations $organization)
+    {
         $user = $this->getUser();
-        $organization = $this->get('templating')
-            ->render('front/organizationPage.html.twig', array(
-                'organization' => $organization,
-                'user' => $user));
+        $comment = new Comment();
+        $comment->setOrganizationsComment($organization);
+        $form = $this->createForm('HandissimoBundle\Form\Type\CommentType', $comment);
 
+        $formHandler = new Handler\CommentHandler($form, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'));
+
+        if ($formHandler->process()) {
+
+            return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
+        }
+        $comments = $organization->getComments();
+        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
+            'form' => $form->createView(),
+            'user' => $user,
+            'organization' => $organization,
+            'comments' => $comments,
+        ));
         return new Response($organization);
-
     }
+
     public function loadAction()
     {
         $string = file_get_contents($this->get('kernel')->getRootDir()."/../1.json");
@@ -87,28 +98,4 @@ class DefaultController extends Controller
             $em->flush();
             $this->render(":front:about.html.twig");
     }
-
-    /**
-     * @param $recaptcha
-     * @return mixed
-     * method for test recaptcha form
-     */
-    public function captchaverifyAction($recaptcha)
-    {
-        $url = "https://www.google.com/recaptcha/api/siteverify";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            'secret' => '6Lc8vBYUAAAAAI-Rfhi1KUJUS0XIUN6kp4lEb-o5', 'response' => $recaptcha
-        ));
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $data = json_decode($response);
-
-        return $data->success;
-    }
-
 }

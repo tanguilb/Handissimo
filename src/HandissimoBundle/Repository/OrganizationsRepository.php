@@ -71,7 +71,7 @@ class OrganizationsRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('o')
             ->select('o.city')
-            ->orWhere('o.city LIKE :citydata')
+            ->Where('o.city LIKE :citydata')
             ->groupBy('o.city')
             ->setParameter('citydata',  '%' . $postalcode . '%')
             ->orderBy('o.postal')

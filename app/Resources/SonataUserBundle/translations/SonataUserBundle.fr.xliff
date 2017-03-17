@@ -524,7 +524,7 @@
             </trans-unit>
             <trans-unit id="security.login.username">
                 <source>security.login.username</source>
-                <target>Nom d'utilisateur</target>
+                <target>Choisissez votre pseudo</target>
             </trans-unit>
             <trans-unit id="security.login.password">
                 <source>security.login.password</source>
@@ -544,7 +544,7 @@
             </trans-unit>
             <trans-unit id="form.password_confirmation">
                 <source>form.password_confirmation</source>
-                <target>Vérification</target>
+                <target>Confirmer le mot de passe</target>
             </trans-unit>
             <trans-unit id="title_user_edit_password">
                 <source>title_user_edit_password</source>

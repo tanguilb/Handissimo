@@ -1,0 +1,21 @@
+HandissimoBundle\Entity\SocialStaff:
+    type: entity
+    table: social_staff
+    repositoryClass: HandissimoBundle\Repository\SocialStaffRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        socialJobs:
+            type: string
+            length: 255
+
+    manyToMany:
+        socialstafforga:
+            targetEntity: Organizations
+            mappedBy: socialstaffs
+
+    lifecycleCallbacks: {  }

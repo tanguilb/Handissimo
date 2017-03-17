@@ -1,0 +1,22 @@
+HandissimoBundle\Entity\SecondaryNeeds:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\SecondaryNeedsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        needName:
+            type: string
+            length: 255
+            nullable: true
+
+    manyToMany:
+        organizationsneeds:
+            targetEntity: Organizations
+            mappedBy: secondneeds
+
+    lifecycleCallbacks: {  }

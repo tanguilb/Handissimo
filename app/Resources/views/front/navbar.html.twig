@@ -16,17 +16,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="handissimo-nav">
             <div class="nav navbar-nav navbar-right">
+                <a href="{{ path('handissimo_structure') }}">
+                    <button class="btn modal-button">
+                        <i class="fa fa-user" aria-hidden="true"></i>Je suis une solution
+                    </button>
+                </a>
                 <a href="{{ path('handissimo_aboutpage') }}">
                     <button class="btn orange-btn">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
                     </button>
                 </a>
+                {#% include ':front:opinion-button.html.twig' %#}
                 {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
-                <a href="{{ path('handissimo_structure') }}">
-                    <button class="btn modal-button">
-                        <i class="fa fa-user" aria-hidden="true"></i>Vous êtes une solution
-                    </button>
-                </a>
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,9 +36,9 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
                             <li><a href="{{ path('sonata_user_profile_edit') }}">Profil</a></li>
-                            <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
+                            <li><a href="{{ path('sonata_admin_dashboard') }}">Créer ou modifier une fiche</a></li>
+                            <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
                     {% endif %}
                             </ul>
                 {% else %}

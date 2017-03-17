@@ -82,11 +82,6 @@ class Organizations
     /**
      * @var string
      */
-    private $serveDescription;
-
-    /**
-     * @var string
-     */
     private $openhours;
 
     /**
@@ -495,30 +490,6 @@ class Organizations
     }
 
     /**
-     * Set serveDescription
-     *
-     * @param string $serveDescription
-     *
-     * @return Organizations
-     */
-    public function setServeDescription($serveDescription)
-    {
-        $this->serveDescription = $serveDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get serveDescription
-     *
-     * @return string
-     */
-    public function getServeDescription()
-    {
-        return $this->serveDescription;
-    }
-
-    /**
      * Set openhours
      *
      * @param string $openhours
@@ -911,65 +882,6 @@ class Organizations
         return $this->staff;
     }
 
-    /**
-     * @var \HandissimoBundle\Entity\StructuresTypes
-     */
-    private $structuretype;
-
-
-    /**
-     * @var \HandissimoBundle\Entity\Society
-     */
-    private $societies;
-
-
-    /**
-     * Set structuretype
-     *
-     * @param \HandissimoBundle\Entity\StructuresTypes $structuretype
-     *
-     * @return Organizations
-     */
-    public function setStructuretype(\HandissimoBundle\Entity\StructuresTypes $structuretype = null)
-    {
-        $this->structuretype = $structuretype;
-
-        return $this;
-    }
-
-    /**
-     * Get structuretype
-     *
-     * @return \HandissimoBundle\Entity\StructuresTypes
-     */
-    public function getStructuretype()
-    {
-        return $this->structuretype;
-    }
-
-    /**
-     * Set societies
-     *
-     * @param \HandissimoBundle\Entity\Society $societies
-     *
-     * @return Organizations
-     */
-    public function setSocieties(\HandissimoBundle\Entity\Society $societies = null)
-    {
-        $this->societies = $societies;
-
-        return $this;
-    }
-
-    /**
-     * Get societies
-     *
-     * @return \HandissimoBundle\Entity\Society
-     */
-    public function getSocieties()
-    {
-        return $this->societies;
-    }
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -1164,12 +1076,6 @@ class Organizations
         return $this->userorg;
     }
 
-
-    /**
-     * @var string
-     */
-    private $fax;
-
     /**
      * @var string
      */
@@ -1184,36 +1090,6 @@ class Organizations
      * @var string
      */
     private $accomodationDescription;
-
-    /**
-     * @var string
-     */
-    private $service;
-
-
-    /**
-     * Set fax
-     *
-     * @param string $fax
-     *
-     * @return Organizations
-     */
-    public function setFax($fax)
-    {
-        $this->fax = $fax;
-
-        return $this;
-    }
-
-    /**
-     * Get fax
-     *
-     * @return string
-     */
-    public function getFax()
-    {
-        return $this->fax;
-    }
 
     /**
      * Set directorName
@@ -1285,30 +1161,6 @@ class Organizations
     public function getAccomodationDescription()
     {
         return $this->accomodationDescription;
-    }
-
-    /**
-     * Set service
-     *
-     * @param string $service
-     *
-     * @return Organizations
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * Get service
-     *
-     * @return string
-     */
-    public function getService()
-    {
-        return $this->service;
     }
 
     /**
@@ -1465,5 +1317,454 @@ class Organizations
     public function resetStatut()
     {
         return $this->setStatut(0);
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $comments;
+
+
+    /**
+     * Add comment
+     *
+     * @param \HandissimoBundle\Entity\Comment $comment
+     *
+     * @return Organizations
+     */
+    public function addComment(\HandissimoBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \HandissimoBundle\Entity\Comment $comment
+     */
+    public function removeComment(\HandissimoBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+    /**
+     * @var string
+     */
+    private $dayDescription;
+
+    /**
+     * @var string
+     */
+    private $transport;
+
+    /**
+     * @var string
+     */
+    private $receptionDescription;
+
+    /**
+     * @var string
+     */
+    private $cost;
+
+    /**
+     * @var string
+     */
+    private $inscription;
+
+
+    /**
+     * Set dayDescription
+     *
+     * @param string $dayDescription
+     *
+     * @return Organizations
+     */
+    public function setDayDescription($dayDescription)
+    {
+        $this->dayDescription = $dayDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get dayDescription
+     *
+     * @return string
+     */
+    public function getDayDescription()
+    {
+        return $this->dayDescription;
+    }
+
+    /**
+     * Set transport
+     *
+     * @param string $transport
+     *
+     * @return Organizations
+     */
+    public function setTransport($transport)
+    {
+        $this->transport = $transport;
+
+        return $this;
+    }
+
+    /**
+     * Get transport
+     *
+     * @return string
+     */
+    public function getTransport()
+    {
+        return $this->transport;
+    }
+
+    /**
+     * Set receptionDescription
+     *
+     * @param string $receptionDescription
+     *
+     * @return Organizations
+     */
+    public function setReceptionDescription($receptionDescription)
+    {
+        $this->receptionDescription = $receptionDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get receptionDescription
+     *
+     * @return string
+     */
+    public function getReceptionDescription()
+    {
+        return $this->receptionDescription;
+    }
+
+    /**
+     * Set cost
+     *
+     * @param string $cost
+     *
+     * @return Organizations
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Get cost
+     *
+     * @return string
+     */
+    public function getCost()
+    {
+        return $this->cost;
+    }
+
+    /**
+     * Set inscription
+     *
+     * @param string $inscription
+     *
+     * @return Organizations
+     */
+    public function setInscription($inscription)
+    {
+        $this->inscription = $inscription;
+
+        return $this;
+    }
+
+    /**
+     * Get inscription
+     *
+     * @return string
+     */
+    public function getInscription()
+    {
+        return $this->inscription;
+    }
+    /**
+     * @var string
+     */
+    private $interventionZone;
+
+
+    /**
+     * Set interventionZone
+     *
+     * @param string $interventionZone
+     *
+     * @return Organizations
+     */
+    public function setInterventionZone($interventionZone)
+    {
+        $this->interventionZone = $interventionZone;
+
+        return $this;
+    }
+
+    /**
+     * Get interventionZone
+     *
+     * @return string
+     */
+    public function getInterventionZone()
+    {
+        return $this->interventionZone;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $socialstaffs;
+
+
+    /**
+     * Add socialstaff
+     *
+     * @param \HandissimoBundle\Entity\SocialStaff $socialstaff
+     *
+     * @return Organizations
+     */
+    public function addSocialstaff(\HandissimoBundle\Entity\SocialStaff $socialstaff)
+    {
+        $this->socialstaffs[] = $socialstaff;
+
+        return $this;
+    }
+
+    /**
+     * Remove socialstaff
+     *
+     * @param \HandissimoBundle\Entity\SocialStaff $socialstaff
+     */
+    public function removeSocialstaff(\HandissimoBundle\Entity\SocialStaff $socialstaff)
+    {
+        $this->socialstaffs->removeElement($socialstaff);
+    }
+
+    /**
+     * Get socialstaffs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSocialstaffs()
+    {
+        return $this->socialstaffs;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $secondneeds;
+
+
+    /**
+     * Add secondneed
+     *
+     * @param \HandissimoBundle\Entity\SecondaryNeeds $secondneed
+     *
+     * @return Organizations
+     */
+    public function addSecondneed(\HandissimoBundle\Entity\SecondaryNeeds $secondneed)
+    {
+        $this->secondneeds[] = $secondneed;
+
+        return $this;
+    }
+
+    /**
+     * Remove secondneed
+     *
+     * @param \HandissimoBundle\Entity\SecondaryNeeds $secondneed
+     */
+    public function removeSecondneed(\HandissimoBundle\Entity\SecondaryNeeds $secondneed)
+    {
+        $this->secondneeds->removeElement($secondneed);
+    }
+
+    /**
+     * Get secondneeds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSecondneeds()
+    {
+        return $this->secondneeds;
+    }
+    /**
+     * @var string
+     */
+    private $opendaysYear;
+
+
+    /**
+     * Set opendaysYear
+     *
+     * @param string $opendaysYear
+     *
+     * @return Organizations
+     */
+    public function setOpendaysYear($opendaysYear)
+    {
+        $this->opendaysYear = $opendaysYear;
+
+        return $this;
+    }
+
+    /**
+     * Get opendaysYear
+     *
+     * @return string
+     */
+    public function getOpendaysYear()
+    {
+        return $this->opendaysYear;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $otherjobs;
+
+
+    /**
+     * Add otherjob
+     *
+     * @param \HandissimoBundle\Entity\OtherJob $otherjob
+     *
+     * @return Organizations
+     */
+    public function addOtherjob(\HandissimoBundle\Entity\OtherJob $otherjob)
+    {
+        $this->otherjobs[] = $otherjob;
+
+        return $this;
+    }
+
+    /**
+     * Remove otherjob
+     *
+     * @param \HandissimoBundle\Entity\OtherJob $otherjob
+     */
+    public function removeOtherjob(\HandissimoBundle\Entity\OtherJob $otherjob)
+    {
+        $this->otherjobs->removeElement($otherjob);
+    }
+
+    /**
+     * Get otherjobs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOtherjobs()
+    {
+        return $this->otherjobs;
+    }
+    /**
+     * @var string
+     */
+    private $commentStaff;
+
+
+    /**
+     * Set commentStaff
+     *
+     * @param string $commentStaff
+     *
+     * @return Organizations
+     */
+    public function setCommentStaff($commentStaff)
+    {
+        $this->commentStaff = $commentStaff;
+
+        return $this;
+    }
+
+    /**
+     * Get commentStaff
+     *
+     * @return string
+     */
+    public function getCommentStaff()
+    {
+        return $this->commentStaff;
+    }
+    /**
+     * @var string
+     */
+    private $brochure;
+
+
+    /**
+     * Set brochure
+     *
+     * @param string $brochure
+     *
+     * @return Organizations
+     */
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
+
+    /**
+     * Get brochure
+     *
+     * @return string
+     */
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+
+    /**
+     * @var \HandissimoBundle\Entity\StructuresList
+     */
+    private $orgaStructure;
+
+
+    /**
+     * Set orgaStructure
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
+     *
+     * @return Organizations
+     */
+    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
+    {
+        $this->orgaStructure = $orgaStructure;
+
+        return $this;
+    }
+
+    /**
+     * Get orgaStructure
+     *
+     * @return \HandissimoBundle\Entity\StructuresList
+     */
+    public function getOrgaStructure()
+    {
+        return $this->orgaStructure;
     }
 }

@@ -2,48 +2,60 @@
 
 namespace HandissimoBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Doctrine\ORM\EntityRepository;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class StructuresTypesAdmin extends Admin
+class StructuresTypesAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('structurestype', 'text', array(
+            ->add('structurestype', TextType::class, array(
                 'label' => 'Types de structures',
                 'required' => false
             ))
-            ->add('structures',EntityType::class,array (
-                'class' => 'HandissimoBundle:StructuresTypes',
-                'choice_label' => 'structurestype',
+            ->add('orgastructuretype', CollectionType::class, array(
                 'label' => false,
-                'expanded' => true,
-                'by_reference' => true,
-                'disabled' => true
-            ))
-            ->add('logo_mdph', 'text', array(
-                'label' => 'Logo MDPH',
-                'required' => false
-            ));
-    }
-
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('structurestype', null,
+                'required' => true,
+                'type_options' => array(
+                    'delete' => true,
+                ),
+                'by_reference' => false),
                 array(
-                    'label' => 'Types de structures'
-                ));
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position'
 
+            ));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper ->add( 'structurestype' , null, array ( 'label' => 'Types de structures') );
+        $listMapper
+            ->addIdentifier( 'structurestype' , null, array (
+                'label' => 'Types de structures',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('st')
+                        ->orderBy('st.structurestype', 'ASC');
+                },
+            ));
+    }
 
+    public function prePersist($orgastructuretype)
+    {
+        foreach ($orgastructuretype->getOrgastructuretype() as $structureslist) {
+            $structureslist->setStructurelists($orgastructuretype);
+        }
+    }
+
+    public function preUpdate($orgastructuretype)
+    {
+        foreach ($orgastructuretype->getOrgastructuretype() as $structureslist) {
+            $structureslist->setStructurelists($orgastructuretype);
+        }
     }
 }

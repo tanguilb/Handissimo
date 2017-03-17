@@ -1,0 +1,45 @@
+HandissimoBundle\Entity\Comment:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\CommentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        author:
+            type: string
+            length: 255
+        parutionDate:
+            type: datetime
+        content:
+            type: text
+        statusComment:
+            type: boolean
+            nullable: true
+        likeComment:
+            type: integer
+            nullable: true
+        dislikeComment:
+            type: integer
+            nullable: true
+
+    manyToOne:
+        organizationsComment:
+            targetEntity: Organizations
+            inversedBy: comments
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
+
+    oneToMany:
+        comments:
+            targetEntity: HandissimoBundle\Entity\CommentAnswer
+            mappedBy: commentanswers
+
+    lifecycleCallbacks: {  }

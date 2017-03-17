@@ -8,12 +8,12 @@
 
 namespace HandissimoBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 
-class OpinionAdmin extends Admin
+class OpinionAdmin extends AbstractAdmin
 {
     protected function configureListFields(ListMapper $listMapper)
     {

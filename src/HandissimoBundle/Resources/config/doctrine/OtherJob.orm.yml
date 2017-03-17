@@ -1,0 +1,21 @@
+HandissimoBundle\Entity\OtherJob:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\OtherJobRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+
+    manyToMany:
+        otherjoborga:
+            targetEntity: Organizations
+            mappedBy: otherjobs
+
+    lifecycleCallbacks: {  }

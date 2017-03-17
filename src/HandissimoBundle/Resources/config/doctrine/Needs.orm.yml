@@ -16,6 +16,7 @@ HandissimoBundle\Entity\Needs:
             options:
                 fixed: false
             column: need_name
+
     manyToMany:
         organizations:
             targetEntity: Organizations
