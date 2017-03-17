@@ -181,20 +181,9 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Application\Sonata\UserBundle\Entity\User
             mappedBy: organizationsuser
 
-    manyToOne:
-        structuretype:
-            targetEntity: StructuresTypes
-            inversedBy: organizationtype
-            joinColumn:
-                name: structurestypes_id
-                referencedColumnName: id
-
-        societies:
-            targetEntity: Society
-            inversedBy: organization
-            joinColumn:
-                name: societies_id
-                referencedColumnName: id
+        orgaStructure:
+            targetEntity: HandissimoBundle\Entity\StructuresList
+            mappedBy: organizationsStructure
 
     oneToMany:
         comments:

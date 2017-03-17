@@ -7,6 +7,11 @@ namespace HandissimoBundle\Entity;
  */
 class StructuresList
 {
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @var int
      */
@@ -79,5 +84,34 @@ class StructuresList
     public function getLogoMdph()
     {
         return $this->logoMdph;
+    }
+    /**
+     * @var \HandissimoBundle\Entity\StructuresTypes
+     */
+    private $structurelists;
+
+
+    /**
+     * Set structurelists
+     *
+     * @param \HandissimoBundle\Entity\StructuresTypes $structurelists
+     *
+     * @return StructuresList
+     */
+    public function setStructurelists(\HandissimoBundle\Entity\StructuresTypes $structurelists = null)
+    {
+        $this->structurelists = $structurelists;
+
+        return $this;
+    }
+
+    /**
+     * Get structurelists
+     *
+     * @return \HandissimoBundle\Entity\StructuresTypes
+     */
+    public function getStructurelists()
+    {
+        return $this->structurelists;
     }
 }

@@ -54,4 +54,9 @@ class StructuresListAdmin extends AbstractAdmin
                 },
             ));
     }
+
+    protected function getName()
+    {
+        return 'structuresList';
+    }
 }

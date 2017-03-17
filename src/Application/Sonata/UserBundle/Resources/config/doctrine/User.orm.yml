@@ -24,8 +24,3 @@ Application\Sonata\UserBundle\Entity\User:
                name: organizations_id
                referencedColumnName: id
                nullable: true
-
-       societyUser:
-           targetEntity: HandissimoBundle\Entity\Society
-           mappedBy: userSociety
-

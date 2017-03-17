@@ -3,6 +3,8 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
+use HandissimoBundle\Entity\StructuresList;
+use HandissimoBundle\Entity\StructuresTypes;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -10,7 +12,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Sonata\AdminBundle\Form\Type\ModelType;
-use Sonata\CoreBundle\Validator\ErrorElement;
+use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -32,13 +34,13 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
-                    ->add('societies', EntityType::class, array(
+                    /*->add('societies', EntityType::class, array(
                         'class' => 'HandissimoBundle:Society',
                         'choice_label' => 'society_name',
                         'label' => 'Nom de l\'organisme gestionnaire',
                         'required' => false,
                         'help' => 'Si différent du nom de la structure'
-                    ))
+                    ))*/
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
                         'required' => true
@@ -81,23 +83,29 @@ class OrganizationsAdmin extends AbstractAdmin
                         'data_class' => null
                     ))
                 ->end()
-                /*->with('Choississez votre type de structure', array('class' => 'col-md-6'))
-                    ->add('structuretype', EntityType::class, array(
-                        'class' => 'HandissimoBundle:StructuresTypes',
-                        'choice_label' => 'structurestype',
-                        'label' => 'Un seul choix possible',
-                        'multiple' => false,
-                        'required' => false,
-                        'expanded' => true,
+                ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
+                    /*->add('orgaStructure', EntityType::class, array(
+                        'class' => 'HandissimoBundle:StructuresList',
+                        'label' => 'Etablissements et services spécialisés sur orientation de la MDPH',
                         'query_builder' => function(EntityRepository $er) {
-                            return $er->createQueryBuilder('st')
-                                ->orderBy('st.structurestype', 'ASC');
+                            return $er->createQueryBuilder('sl')
+                                ->join('sl.structurelists', 'st')
+                                ->where('st.id = 8')
+                                ->orderBy('sl.name', 'ASC');
                         },
+                        'expanded' => true
+                    ))
+                    ->add('orgaStructure', EntityType::class, array(
+                        'class' => 'HandissimoBundle:StructuresList',
+                        'label' => 'Structures en accès libre',
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('sl')
+                                ->join('sl.structurelists', 'st')
+                                ->where('st.id = 9')
+                                ->orderBy('sl.name', 'ASC');
+                        },
+                        'expanded' => true
                     ))*/
-
-                    ->add('structuretype', ModelType::class, array(
-
-                ))
                 ->end()
             ->end()
             ->tab('Public ciblé')

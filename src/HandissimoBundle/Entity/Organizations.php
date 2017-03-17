@@ -882,65 +882,6 @@ class Organizations
         return $this->staff;
     }
 
-    /**
-     * @var \HandissimoBundle\Entity\StructuresTypes
-     */
-    private $structuretype;
-
-
-    /**
-     * @var \HandissimoBundle\Entity\Society
-     */
-    private $societies;
-
-
-    /**
-     * Set structuretype
-     *
-     * @param \HandissimoBundle\Entity\StructuresTypes $structuretype
-     *
-     * @return Organizations
-     */
-    public function setStructuretype(\HandissimoBundle\Entity\StructuresTypes $structuretype = null)
-    {
-        $this->structuretype = $structuretype;
-
-        return $this;
-    }
-
-    /**
-     * Get structuretype
-     *
-     * @return \HandissimoBundle\Entity\StructuresTypes
-     */
-    public function getStructuretype()
-    {
-        return $this->structuretype;
-    }
-
-    /**
-     * Set societies
-     *
-     * @param \HandissimoBundle\Entity\Society $societies
-     *
-     * @return Organizations
-     */
-    public function setSocieties(\HandissimoBundle\Entity\Society $societies = null)
-    {
-        $this->societies = $societies;
-
-        return $this;
-    }
-
-    /**
-     * Get societies
-     *
-     * @return \HandissimoBundle\Entity\Society
-     */
-    public function getSocieties()
-    {
-        return $this->societies;
-    }
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -1797,4 +1738,33 @@ class Organizations
     }
 
 
+    /**
+     * @var \HandissimoBundle\Entity\StructuresList
+     */
+    private $orgaStructure;
+
+
+    /**
+     * Set orgaStructure
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
+     *
+     * @return Organizations
+     */
+    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
+    {
+        $this->orgaStructure = $orgaStructure;
+
+        return $this;
+    }
+
+    /**
+     * Get orgaStructure
+     *
+     * @return \HandissimoBundle\Entity\StructuresList
+     */
+    public function getOrgaStructure()
+    {
+        return $this->orgaStructure;
+    }
 }

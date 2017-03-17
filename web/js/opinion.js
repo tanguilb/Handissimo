@@ -28,10 +28,11 @@
 
     });
 
-    $('#showModal').click('show.bs.modal', function () {
-        createRecaptcha();
-    });
+    /*$('#showModal').click('show.bs.modal', function () {
+        //createRecaptcha();
+        grecaptcha.execute();
+    });*/
 
-    function createRecaptcha() {
+    /*function createRecaptcha() {
         grecaptcha.render("g-recaptcha", {sitekey: "6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC"})
-    }
+    }*/

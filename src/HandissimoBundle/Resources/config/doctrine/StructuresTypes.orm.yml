@@ -18,9 +18,6 @@ HandissimoBundle\Entity\StructuresTypes:
             column: structurestype
 
     oneToMany:
-        organizationtype:
-            targetEntity: Organizations
-            mappedBy: structuretype
 
         orgastructuretype:
             targetEntity: HandissimoBundle\Entity\StructuresList

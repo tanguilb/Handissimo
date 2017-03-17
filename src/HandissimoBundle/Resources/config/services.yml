@@ -3,3 +3,6 @@ services:
     handissimo.captchaverify:
         class: HandissimoBundle\Service\CaptchaVerify
 
+    handissimo.captchaverify_modal:
+        class: HandissimoBundle\Service\Captcha\CaptchaVerifyModal
+

@@ -72,52 +72,13 @@ class StructuresTypes
     }
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $organizationtype;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->organizationtype = new \Doctrine\Common\Collections\ArrayCollection();
         $this->orgastructuretype = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add organizationtype
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationtype
-     *
-     * @return StructuresTypes
-     */
-    public function addOrganizationtype(\HandissimoBundle\Entity\Organizations $organizationtype)
-    {
-        $this->organizationtype[] = $organizationtype;
-
-        return $this;
-    }
-
-    /**
-     * Remove organizationtype
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationtype
-     */
-    public function removeOrganizationtype(\HandissimoBundle\Entity\Organizations $organizationtype)
-    {
-        $this->organizationtype->removeElement($organizationtype);
-    }
-
-    /**
-     * Get organizationtype
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOrganizationtype()
-    {
-        return $this->organizationtype;
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
