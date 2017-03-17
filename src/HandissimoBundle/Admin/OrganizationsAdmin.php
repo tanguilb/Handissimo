@@ -36,12 +36,9 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
-                    ->add('societies', EntityType::class, array(
-                        'class' => 'HandissimoBundle:Society',
-                        'choice_label' => 'society_name',
-                        'label' => 'Nom de l\'organisme gestionnaire',
+                    ->add('society', TextType::class, array(
+                        'label' => 'Non de l\'organisme gestionnaire',
                         'required' => false,
-                        'help' => 'Si différent du nom de la structure'
                     ))
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',

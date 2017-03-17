@@ -20,14 +20,7 @@
 
                 <div class="row">
                     <div class="head-title col-md-11 col-sm-11">
-                        {% if organization.societies == null %}
                         <h1 class="title"> {{ organization.name }} </h1>
-                        {% else %}
-                        <h1 class="title">{{ organization.name }}</h1>
-                            <p>Structure gérée par : {{ organization.societies.societyname }}</p>
-                            <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="{{ organization.societies.logo }}" alt=""></div>
-
-                        {% endif %}
                     </div>
                     <!-- this is the line to display like button
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
@@ -294,14 +287,14 @@
                         <div class="icon-block">
                             <i class="fa fa-tag" aria-hidden="true"></i>
                         </div>
-                        <p class="address-line">{{ organization.structuretype }}</p>
+                        <p class="address-line">{{ organization.orgaStructure }}</p>
                     </div>
-                    {% if organization.societies %}
+                    {% if organization.society %}
                         <div class="line">
                             <div class="icon-block">
                                 <i class="fa fa-tag" aria-hidden="true"></i>
                             </div>
-                            <p class="address-line">Structure gére par : {{ organization.societies }}</p>
+                            <p class="address-line">Structure gére par : {{ organization.society }}</p>
                         </div>
                     {% endif %}
                     <div class="line">

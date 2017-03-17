@@ -1724,33 +1724,4 @@ class Organizations
     {
         return $this->orgaStructure;
     }
-    /**
-     * @var string
-     */
-    private $society;
-
-
-    /**
-     * Set society
-     *
-     * @param string $society
-     *
-     * @return Organizations
-     */
-    public function setSociety($society)
-    {
-        $this->society = $society;
-
-        return $this;
-    }
-
-    /**
-     * Get society
-     *
-     * @return string
-     */
-    public function getSociety()
-    {
-        return $this->society;
-    }
 }
