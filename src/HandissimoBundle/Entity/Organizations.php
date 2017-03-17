@@ -129,10 +129,6 @@ class Organizations
      */
     private $placeDescription;
 
-    /**
-     * @var string
-     */
-    private $doc;
 
     /**
      * @var string
@@ -725,29 +721,6 @@ class Organizations
         return $this->placeDescription;
     }
 
-    /**
-     * Set doc
-     *
-     * @param string $doc
-     *
-     * @return Organizations
-     */
-    public function setDoc($doc)
-    {
-        $this->doc = $doc;
-
-        return $this;
-    }
-
-    /**
-     * Get doc
-     *
-     * @return string
-     */
-    public function getDoc()
-    {
-        return $this->doc;
-    }
 
     /**
      * Set profilPicture
@@ -1740,37 +1713,6 @@ class Organizations
     public function getBrochure()
     {
         return $this->brochure;
-    }
-
-
-    /**
-     * @var boolean
-     */
-    private $visible;
-
-
-    /**
-     * Set visible
-     *
-     * @param boolean $visible
-     *
-     * @return Organizations
-     */
-    public function setVisible($visible)
-    {
-        $this->visible = $visible;
-
-        return $this;
-    }
-
-    /**
-     * Get visible
-     *
-     * @return boolean
-     */
-    public function getVisible()
-    {
-        return $this->visible;
     }
 
 }

@@ -10,9 +10,15 @@ namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\Media;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
+use Sonata\AdminBundle\Exception\ModelManagerException;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class MediaAdminController extends Controller
@@ -86,8 +92,6 @@ class MediaAdminController extends Controller
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
-                    $file = $this->getFileName();
-
 
                     $object->setOrganizationsId($this->container->get('security.token_storage')->getToken()->getUser()->getOrganizationsUser()->getId());
                     $object = $this->admin->update($object);
@@ -297,6 +301,7 @@ class MediaAdminController extends Controller
                 ->setTheme($formView, $theme);
         }
     }
+
 
 
 }

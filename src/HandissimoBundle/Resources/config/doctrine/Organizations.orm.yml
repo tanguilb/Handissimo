@@ -113,10 +113,6 @@ HandissimoBundle\Entity\Organizations:
             type: text
             nullable: true
             length: 65535
-        doc:
-            type: string
-            nullable: true
-            length: 255
         profilPicture:
             type: string
             nullable: true
@@ -178,10 +174,6 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
-        visible:
-            type: boolean
-            nullable: true
-
 
     oneToOne:
         userorg:
