@@ -11,8 +11,14 @@ namespace HandissimoBundle\Controller;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Application\Sonata\UserBundle\Entity\User;
 use HandissimoBundle\Repository\Organizations;
+use Sonata\AdminBundle\Exception\LockException;
+use Sonata\AdminBundle\Exception\ModelManagerException;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class OrganizationsAdminController extends Controller
 {
@@ -270,36 +276,6 @@ class OrganizationsAdminController extends Controller
             'form' => $formView,
             'object' => $object,
         ), null);
-    }
-
-    public function cloneAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $object = $this->admin->getSubject();
-
-        if(!$object)
-        {
-            throw new NotFoundHttpException(sprintf('unable to find the object with id : %s ', $id));
-        }
-        $address = $object->getAddress();
-        $name = $object->getName();
-
-        $organizations = $em->getRepository('HandissimoBundle:Organizations')->getByNameAndVisible($name, $address);
-
-        $cloneObject = clone $object;
-        if(!$organizations) {
-            $cloneObject->setVisible(true);
-            $this->admin->create($cloneObject);
-        }else {
-            $org = $organizations[0];
-            var_dump($org);
-            $this->admin->delete($org);
-            $cloneObject->setVisible(true);
-            $this->admin->create($cloneObject);
-        }
-        $this->addFlash('sonat_flash_succes', 'clone successfully');
-
-        return new RedirectResponse($this->admin->generateUrl('list'));
     }
     /**
      * Sets the admin form theme to form view. Used for compatibility between Symfony versions.

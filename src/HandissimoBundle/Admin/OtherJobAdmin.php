@@ -46,7 +46,11 @@ class OtherJobAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('name', null,
                 array(
-                    'label' => 'Métiers'
+                    'label' => 'Métiers',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('oj')
+                            ->orderBy('oj.name', 'ASC');
+                    },
                 ));
     }
 }

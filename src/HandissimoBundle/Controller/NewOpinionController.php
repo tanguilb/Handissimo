@@ -44,7 +44,7 @@ class NewOpinionController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'Désolé, vous ne pouvez pas accéder à ce service.'), 400);
         }
-        $captchaverify = $this->container->get('handissimo.captchaverify');
+        $captchaverify = $this->container->get('handissimo.captchaverify_modal');
         $opinion = new Opinion();
         $form = $this->createForm('HandissimoBundle\Form\OpinionType', $opinion);
         $form->handleRequest($request);

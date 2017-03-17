@@ -41,7 +41,11 @@ class DisabilityTypesAdmin extends AbstractAdmin
         $listMapper
             ->add('disabilityName', null,
                 array(
-                    'label' => 'Types de handicaps'
+                    'label' => 'Types de handicaps',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('dt')
+                            ->orderBy('dt.disabilityName', 'ASC');
+                    },
                 ));
     }
 

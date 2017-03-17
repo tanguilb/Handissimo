@@ -7,3 +7,150 @@ img.admin-preview {
     max-height: 200px;
     max-width: 200px;
 }
+
+.navbar {
+    height: 100px;
+    z-index: 997;
+    border: none;
+    background-color: #f7f7f7;
+}
+
+.logo-handissimo-navbar {
+    width:250px;
+}
+@media (max-width: 340px) {
+    .logo-handissimo-navbar {
+        width: 220px;
+    }
+}
+
+.navbar-right button {
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.orange-btn,
+#research_action_save {
+    background-color: #f7af49;
+}
+
+.orange-btn:hover,
+#research_action_save:hover,
+.orange-btn:focus {
+    background-color: #FFBE49;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.pink-btn {
+    background-color: #C37095;
+}
+
+.pink-btn:hover,
+.pink-btn:focus {
+    background-color: #DC7095;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.orange-btn i,
+.pink-btn i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+
+@media (max-width: 320px) {
+    .orange-btn i,
+    .pink-btn i {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-device-width: 1600px) {
+    .orange-btn,
+    .pink-btn,
+    .modal-button {
+        font-size: 10px;
+    }
+}
+
+/*Hamburger menu*/
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-toggle {
+    border: none;
+}
+
+.navbar-default .navbar-toggle {
+    background-color: #61bdb9;
+    margin-top: 30px;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus{
+    background-color: #f7af49;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+
+.navbar-toggle .icon-bar {
+    width: 25px;
+    height: 3px;
+}
+
+/*Hamburger menu breakpoint*/
+@media (max-width: 1070px) {
+    .navbar-right button {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .navbar-right button {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .navbar-right button {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+        margin-left: -15px;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top:20px;
+        background-color: #f7f7f7;
+        padding-bottom: 10px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+    .navbar-right button {
+        display: block;
+        margin: 18px auto;
+    }
+}

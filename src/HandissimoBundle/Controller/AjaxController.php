@@ -101,7 +101,7 @@ class AjaxController extends Controller
             /**
              * @var $repository StructuresTypesRepository
              */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresTypes');
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
             $structure = $repository->getByStructure($keyword);
 
             /**

@@ -156,6 +156,10 @@ class Organizations
      */
     private $longitude;
 
+    /**
+     * @
+     */
+    private $staff;
 
     /**
      * Constructor
@@ -164,7 +168,7 @@ class Organizations
     {
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->orgMedia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -817,64 +821,39 @@ class Organizations
     }
 
     /**
-     * @var \HandissimoBundle\Entity\StructuresTypes
-     */
-    private $structuretype;
-
-
-    /**
-     * @var \HandissimoBundle\Entity\Society
-     */
-    private $societies;
-
-
-    /**
-     * Set structuretype
+     * Add staff
      *
-     * @param \HandissimoBundle\Entity\StructuresTypes $structuretype
+     * @param \HandissimoBundle\Entity\Staff $staff
      *
      * @return Organizations
      */
-    public function setStructuretype(\HandissimoBundle\Entity\StructuresTypes $structuretype = null)
+    public function addStaff(\HandissimoBundle\Entity\Staff $staff)
     {
-        $this->structuretype = $structuretype;
+        $this->staff[] = $staff;
 
         return $this;
     }
 
     /**
-     * Get structuretype
+     * Remove staff
      *
-     * @return \HandissimoBundle\Entity\StructuresTypes
+     * @param \HandissimoBundle\Entity\Staff $staff
      */
-    public function getStructuretype()
+    public function removeStaff(\HandissimoBundle\Entity\Staff $staff)
     {
-        return $this->structuretype;
+        $this->staff->removeElement($staff);
     }
 
     /**
-     * Set societies
+     * Get staff
      *
-     * @param \HandissimoBundle\Entity\Society $societies
-     *
-     * @return Organizations
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setSocieties(\HandissimoBundle\Entity\Society $societies = null)
+    public function getStaff()
     {
-        $this->societies = $societies;
-
-        return $this;
+        return $this->staff;
     }
 
-    /**
-     * Get societies
-     *
-     * @return \HandissimoBundle\Entity\Society
-     */
-    public function getSocieties()
-    {
-        return $this->societies;
-    }
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -1715,4 +1694,34 @@ class Organizations
         return $this->brochure;
     }
 
+
+    /**
+     * @var \HandissimoBundle\Entity\StructuresList
+     */
+    private $orgaStructure;
+
+
+    /**
+     * Set orgaStructure
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
+     *
+     * @return Organizations
+     */
+    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
+    {
+        $this->orgaStructure = $orgaStructure;
+
+        return $this;
+    }
+
+    /**
+     * Get orgaStructure
+     *
+     * @return \HandissimoBundle\Entity\StructuresList
+     */
+    public function getOrgaStructure()
+    {
+        return $this->orgaStructure;
+    }
 }

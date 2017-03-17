@@ -16,7 +16,7 @@ class OrganizationsRepository extends EntityRepository
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
-        $query->innerJoin('o.structuretype', 'st');
+        $query->innerJoin('o.orgaStructure', 'sl');
         $query->innerJoin('o.stafforganizations', 's');
 
         // define data structure
@@ -24,7 +24,7 @@ class OrganizationsRepository extends EntityRepository
             "keyword" => array(
                 'o'=>'name',
                 'dt'=>'disabilityName',
-                'st'=>'structurestype',
+                'sl'=>'name',
                 'n'=>'needName',
                 's'=>'jobs'),
             "postal" => array(
@@ -112,7 +112,7 @@ class OrganizationsRepository extends EntityRepository
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->innerJoin('o.needs', 'n');
         $query->innerJoin('o.disabilityTypes', 'dt');
-        $query->innerJoin('o.structuretype', 'st');
+        $query->innerJoin('o.orgaStructure', 'sl');
         $query->innerJoin('o.stafforganizations', 's');
 
         // define data structure
@@ -120,7 +120,7 @@ class OrganizationsRepository extends EntityRepository
             "keyword" => array(
                 'o'=>'name',
                 'dt'=>'disabilityName',
-                'st'=>'structurestype',
+                'sl'=>'name',
                 'n'=>'needName',
                 's'=>'jobs'),
             "postal" => array(
@@ -179,16 +179,5 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $query->getResult();
 
-    }
-
-    public function getByNameAndVisible($name, $address)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->where('o.name = ?1')
-            ->andWhere('o.address = ?2')
-            ->setParameter(1, $name)
-            ->setParameter(2, $address)
-            ->getQuery();
-        return $query->getResult();
     }
 }

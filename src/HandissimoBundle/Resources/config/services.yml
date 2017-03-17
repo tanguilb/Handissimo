@@ -2,4 +2,3 @@ services:
 
     handissimo.captchaverify:
         class: HandissimoBundle\Services\Captcha\CaptchaVerify
-
