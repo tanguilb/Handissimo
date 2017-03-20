@@ -129,10 +129,6 @@ class Organizations
      */
     private $placeDescription;
 
-    /**
-     * @var string
-     */
-    private $doc;
 
     /**
      * @var string
@@ -151,11 +147,6 @@ class Organizations
     private $needs;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $staff;
-
-    /**
      * @var float
      */
     private $latitude;
@@ -165,6 +156,10 @@ class Organizations
      */
     private $longitude;
 
+    /**
+     * @
+     */
+    private $staff;
 
     /**
      * Constructor
@@ -730,29 +725,6 @@ class Organizations
         return $this->placeDescription;
     }
 
-    /**
-     * Set doc
-     *
-     * @param string $doc
-     *
-     * @return Organizations
-     */
-    public function setDoc($doc)
-    {
-        $this->doc = $doc;
-
-        return $this;
-    }
-
-    /**
-     * Get doc
-     *
-     * @return string
-     */
-    public function getDoc()
-    {
-        return $this->doc;
-    }
 
     /**
      * Set profilPicture
@@ -1028,21 +1000,6 @@ class Organizations
     public function getAgemaxi()
     {
         return $this->agemaxi;
-    }
-
-    public function transformAddressGeocode()
-    {
-        $geocoder = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc";
-        $addresse = $this->address;
-        $addresse .= ' ' . $this->postal;
-        $addresse .= ' ' . $this->city;
-
-        $query = sprintf($geocoder, urlencode($addresse));
-        $result = json_decode(file_get_contents($query));
-        $json = $result->results[0];
-
-        $this->latitude = (float) $json->geometry->location->lat;
-        $this->longitude = (float) $json->geometry->location->lng;
     }
 
 
@@ -1766,5 +1723,34 @@ class Organizations
     public function getOrgaStructure()
     {
         return $this->orgaStructure;
+    }
+    /**
+     * @var string
+     */
+    private $society;
+
+
+    /**
+     * Set society
+     *
+     * @param string $society
+     *
+     * @return Organizations
+     */
+    public function setSociety($society)
+    {
+        $this->society = $society;
+
+        return $this;
+    }
+
+    /**
+     * Get society
+     *
+     * @return string
+     */
+    public function getSociety()
+    {
+        return $this->society;
     }
 }

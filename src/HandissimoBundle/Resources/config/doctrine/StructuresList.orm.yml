@@ -16,9 +16,11 @@ HandissimoBundle\Entity\StructuresList:
     oneToOne:
         organizationsStructure:
             targetEntity: HandissimoBundle\Entity\Organizations
-            inversedBy: orgaStructure
-            joinColumn:
-                name: organizations_id
+            mappedBy: orgaStructure
+
+
+    manyToOne:
+        structurelists:
             targetEntity: StructuresTypes
             inversedBy: orgastructuretype
             joinColumn:

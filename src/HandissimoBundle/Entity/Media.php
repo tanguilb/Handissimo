@@ -287,4 +287,5 @@ class Media
     {
         return $this->organizationsId;
     }
+
 }

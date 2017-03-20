@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 
 class StructuresTypesRepository extends EntityRepository
 {
-    public function getByStructure($keyword)
+    /*public function getByStructure($keyword)
     {
         $query = $this->createQueryBuilder('s')
             ->select('s.structurestype')
@@ -22,6 +22,6 @@ class StructuresTypesRepository extends EntityRepository
             ->getQuery();
         return $query->getResult();
 
-    }
+    }*/
 
 }

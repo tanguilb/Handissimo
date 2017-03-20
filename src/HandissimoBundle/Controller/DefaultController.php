@@ -2,13 +2,13 @@
 
 namespace HandissimoBundle\Controller;
 
-use HandissimoBundle\Entity\Comment;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
-use HandissimoBundle\Form\Handler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use HandissimoBundle\Entity\Comment;
+use HandissimoBundle\Form\Handler;
 
 class DefaultController extends Controller
 {
@@ -49,8 +49,10 @@ class DefaultController extends Controller
     }
 
 
-    public function standardPageAction(Organizations $organization)
-    {
+    public function standardPageAction(Organizations $organization){
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findByCaroussel(1);
+
         $user = $this->getUser();
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
@@ -65,10 +67,13 @@ class DefaultController extends Controller
         $comments = $organization->getComments();
         $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
             'form' => $form->createView(),
+            'pictures' => $pictures,
+
             'user' => $user,
             'organization' => $organization,
             'comments' => $comments,
         ));
+
         return new Response($organization);
     }
 

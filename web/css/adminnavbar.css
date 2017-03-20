@@ -9,7 +9,7 @@ img.admin-preview {
 }
 
 .navbar {
-    height: 100px;
+    height: 50px;
     z-index: 997;
     border: none;
     background-color: #f7f7f7;
@@ -26,7 +26,7 @@ img.admin-preview {
 
 .navbar-right button {
     margin-right: 25px;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .orange-btn,
