@@ -219,8 +219,6 @@ class OrganizationsAdminController extends Controller
                 $this->admin->checkAccess('create', $object);
 
                 try {
-
-
                     $object = $this->admin->create($object);
 
                     if ($this->isXmlHttpRequest()) {
