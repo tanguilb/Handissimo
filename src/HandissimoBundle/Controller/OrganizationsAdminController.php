@@ -271,7 +271,7 @@ class OrganizationsAdminController extends Controller
         // set the theme for the current Admin Form
         $this->setFormTheme($formView, $this->admin->getFormTheme());
 
-        return $this->render("admin/organizations.edit.html.twig", array(
+        return $this->render($this->admin->getTemplate($templateKey), array(
             'action' => 'create',
             'form' => $formView,
             'object' => $object,
