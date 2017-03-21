@@ -56,9 +56,9 @@ class NewOpinionController extends Controller
 
             return new JsonResponse(array('message' => 'Votre avis a bien été envoyé. Merci !'), 200);
         }
-        if($form->isSubmitted() &&  $form->isValid()/* && !$captchaverify->verify($request->get('g-recaptcha-response'))*/) {
+        /*if($form->isSubmitted() &&  $form->isValid()/* && !$captchaverify->verify($request->get('g-recaptcha-response'))) {
             $this->addFlash('error', 'Le captcha n\'est pas valide, veuillez recommencer');
-        }
+        }*/
 
         $response = new JsonResponse(
             array(
