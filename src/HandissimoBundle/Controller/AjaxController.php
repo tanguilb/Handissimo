@@ -63,6 +63,7 @@ class AjaxController extends Controller
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
+                'picture' => $pictures,
                 'keyword' => $data,
                 'age' => $age,
                 'pagination' => $pagination,

@@ -27,3 +27,7 @@
         document.getElementById("form_body").reset();
 
     });
+
+    function goBack() {
+        window.history.go(-1);
+    }

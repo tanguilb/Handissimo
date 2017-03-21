@@ -39,7 +39,7 @@ class DisabilityTypesAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('disabilityName', null,
+            ->addIdentifier('disabilityName', null,
                 array(
                     'label' => 'Types de handicaps',
                     'query_builder' => function(EntityRepository $er) {
