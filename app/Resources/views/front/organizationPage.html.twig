@@ -37,22 +37,14 @@
                             </li>
                     {% elseif organization.userOrg == null or picture.organizationsId is not defined %}
                     <li class="line-img">
-                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
+                        <img class="carousel-image" src="{{ asset('images/FICHE_DETAILS2.jpg') }}" alt="">
                     </li>
                     <li class="line-img">
-                        <img class="carousel-image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt="">
+                        <img class="carousel-image" src="{{ asset('images/FICHE_DETAILS3.jpg') }}" alt="">
                     </li>
                     <li class="line-img">
-                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
+                        <img class="carousel-image" src="{{ asset('images/FICHE_DETAILS_TOP.jpg') }}" alt="">
                     </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
-                    </li>
-
-
 
                     {% endif %}
                     {% endfor %}

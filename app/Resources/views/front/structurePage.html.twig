@@ -11,7 +11,11 @@
     <div class="container main-block">
         <div class="row">
             <h1 class="title main-title">Vous êtes une solution</h1>
+            <div class="img-block">
+                <img src="{{ asset('images/about2.png') }}" alt="" class="img-responsive">
+            </div>
         </div>
+
         {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
