@@ -398,13 +398,17 @@
                                 Editer cette fiche
                             </a>
                         {% elseif  user.organizationsuser == null %}
-                                <p>Cette fiche n'est pas éditable</p>
+                            <a href="#" class="btn btn-return" role="button">
+                                Cette fiche n'est pas éditable
+                            </a>
                         {% elseif  user.organizationsuser.id == organization.id %}
                             <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Editer cette fiche
                             </a>
                         {% else %}
-                            <p>Cette fiche n'est pas éditable</p>
+                            <a href="#" class="btn btn-return" role="button">
+                                Cette fiche n'est pas éditable
+                            </a>
                         {% endif %}
                     {% elseif organization.userorg == null %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
