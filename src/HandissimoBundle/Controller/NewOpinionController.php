@@ -44,19 +44,19 @@ class NewOpinionController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'Désolé, vous ne pouvez pas accéder à ce service.'), 400);
         }
-        $captchaverify = $this->container->get('handissimo.captchaverify_modal');
+        //$captchaverify = $this->container->get('handissimo.captchaverify_modal');
         $opinion = new Opinion();
         $form = $this->createForm('HandissimoBundle\Form\OpinionType', $opinion);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() && $captchaverify->verify($request->get('g-recaptcha-response'))) {
+        if ($form->isSubmitted() && $form->isValid()/* && $captchaverify->verify($request->get('g-recaptcha-response'))*/) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($opinion);
             $em->flush();
 
             return new JsonResponse(array('message' => 'Votre avis a bien été envoyé. Merci !'), 200);
         }
-        if($form->isSubmitted() &&  $form->isValid() && !$captchaverify->verify($request->get('g-recaptcha-response'))) {
+        if($form->isSubmitted() &&  $form->isValid()/* && !$captchaverify->verify($request->get('g-recaptcha-response'))*/) {
             $this->addFlash('error', 'Le captcha n\'est pas valide, veuillez recommencer');
         }
 
