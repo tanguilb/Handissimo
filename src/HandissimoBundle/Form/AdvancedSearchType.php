@@ -37,10 +37,10 @@ class AdvancedSearchType extends AbstractType
                     'label' => false))
             ->add('save', SubmitType::class, array(
                 'label' => 'Rechercher'))
-            ->add('structurestypes', EntityType::class, array(
+            ->add('orgaStructure', EntityType::class, array(
                 'empty_value' => 'Type de structure',
-                'class' => 'HandissimoBundle\Entity\StructuresTypes',
-                'choice_label' => 'structurestype',
+                'class' => 'HandissimoBundle\Entity\StructuresList',
+                'choice_label' => 'name',
                 'label' => false,
                 'expanded' => false,
                 'required' => false,

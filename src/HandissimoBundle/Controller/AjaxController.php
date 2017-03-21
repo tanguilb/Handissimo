@@ -5,12 +5,11 @@ namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Entity\OrganizationsBis;
 use HandissimoBundle\Repository\DisabilityTypesRepository;
 use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Repository\StaffRepository;
-use HandissimoBundle\Repository\StructuresTypesRepository;
+use HandissimoBundle\Repository\StructuresListRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +25,7 @@ class AjaxController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $formAdvancedResearch = $this->createForm(AdvancedSearchType::class/*, $searchAdvanced, array('organizationsRepository' => ($em->getRepository('HandissimoBundle:Organizations')))  */);
+        $formAdvancedResearch = $this->createForm(AdvancedSearchType::class);
         $formAdvancedResearch->handleRequest($request);
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
         $pictures = $repository->findByFirstPicture(1);
@@ -63,7 +62,6 @@ class AjaxController extends Controller
             $paginator  = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
-                'picture' => $pictures,
                 'result' => $result,
                 'keyword' => $data,
                 'age' => $age,
@@ -99,7 +97,7 @@ class AjaxController extends Controller
             $disability = $repository->getByDisability($keyword);
 
             /**
-             * @var $repository StructuresTypesRepository
+             * @var $repository StructuresListRepository
              */
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
             $structure = $repository->getByStructure($keyword);

@@ -119,6 +119,7 @@ sonata_block:
 
 sonata_admin:
     templates:
+        edit: HandissimoBundle:CRUD:edit.html.twig
         layout:    "::standard_layout.html.twig"
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 

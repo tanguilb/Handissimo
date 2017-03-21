@@ -3,30 +3,22 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use HandissimoBundle\Entity\StructuresList;
-use HandissimoBundle\Entity\StructuresTypes;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
-use HandissimoBundle\Entity\Organizations;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
-use Sonata\AdminBundle\Form\Type\ModelType;
-use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\CallbackTransformer;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em =$this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
-        $listmache = $em->getRepository('HandissimoBundle:StructuresTypes')->getClassName();
         $formMapper
             ->tab('Identité')
                 ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
@@ -85,12 +77,15 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
                     ->add('orgaStructure', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresList',
-                        'label' => 'Etablissements et services spécialisés sur orientation de la MDPH',
+                        'label' => false,
+                        //'choice_label' => 'structureType',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('sl')
                                 ->orderBy('sl.name', 'ASC');
                         },
-                        'expanded' => true
+                        'expanded' => true,
+                        //'group_by' => 'structureType'
+
                     ))
                 ->end()
             ->end()

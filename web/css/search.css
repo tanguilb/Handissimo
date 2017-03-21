@@ -38,7 +38,7 @@ body {
     text-decoration: underline;
 }
 
-#research_advanced_structurestypes,
+#research_advanced_orgaStructure,
 #research_advanced_disabilitytypes,
 #research_advanced_needs {
     border: none;
@@ -52,7 +52,7 @@ body {
     width: 100%;
 }
 
-#research_advanced_structurestypes option,
+#research_advanced_orgaStructure option,
 #research_advanced_disabilitytypes option,
 #research_advanced_needs option {
     width: 335px;
