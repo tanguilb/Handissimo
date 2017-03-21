@@ -85,35 +85,7 @@ class StructuresList
     {
         return $this->logoMdph;
     }
-    /**
-     * @var \HandissimoBundle\Entity\StructuresTypes
-     */
-    private $structurelists;
 
-
-    /**
-     * Set structurelists
-     *
-     * @param \HandissimoBundle\Entity\StructuresTypes $structurelists
-     *
-     * @return StructuresList
-     */
-    public function setStructurelists(\HandissimoBundle\Entity\StructuresTypes $structurelists = null)
-    {
-        $this->structurelists = $structurelists;
-
-        return $this;
-    }
-
-    /**
-     * Get structurelists
-     *
-     * @return \HandissimoBundle\Entity\StructuresTypes
-     */
-    public function getStructurelists()
-    {
-        return $this->structurelists;
-    }
     /**
      * @var \HandissimoBundle\Entity\Organizations
      */
@@ -142,5 +114,35 @@ class StructuresList
     public function getOrganizationsStructure()
     {
         return $this->organizationsStructure;
+    }
+
+    /**
+     * @var array
+     */
+    private $structureType;
+
+
+    /**
+     * Set structureType
+     *
+     * @param array $structureType
+     *
+     * @return StructuresList
+     */
+    public function setStructureType($structureType)
+    {
+        $this->structureType = $structureType;
+
+        return $this;
+    }
+
+    /**
+     * Get structureType
+     *
+     * @return array
+     */
+    public function getStructureType()
+    {
+        return $this->structureType;
     }
 }

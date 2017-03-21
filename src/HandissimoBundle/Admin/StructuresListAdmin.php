@@ -13,23 +13,31 @@ use Doctrine\ORM\EntityRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class StructuresListAdmin extends AbstractAdmin
 {
-    protected $parentAssociationMapping = 'StructuresTypes';
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name', TextType::class, array(
-                'label' => 'Liste des structures',
-                'action' => array(
-                    'allow_delete' => true
-                )
+                'label' => 'Liste des structures'
             ))
-            ->add('structurelists',EntityType::class,array (
+            ->add('structureType', ChoiceFieldMaskType::class, array(
+                'label' => 'Type de structure',
+                'required' => true,
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => array(
+                    'Etablissements et services spécialisés sur orientation de la MDPH' => 'Etablissements et services spécialisés sur orientation de la MDPH',
+                    'Structures en accès libre' => 'Structures en accès libre',
+                    'Petite enfance et scolarité ordinaire' => 'Petite enfance et scolarité ordinaire',
+                    'Réseaux d’entraide' => 'Réseaux d’entraide',
+                    'Service d’information, d’orientation et de coordination' => 'Service d’information, d’orientation et de coordination'
+                )
+            ));
+            /*->add('structurelists',EntityType::class,array (
                 'class' => 'HandissimoBundle:StructuresList',
                 'choice_label' => 'name',
                 'label' => false,
@@ -40,13 +48,13 @@ class StructuresListAdmin extends AbstractAdmin
                     return $er->createQueryBuilder('sl')
                         ->orderBy('sl.name', 'ASC');
                 },
-            ));
+            ));*/
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add( 'name' , null, array (
+            ->addIdentifier( 'name' , null, array (
                 'label' => 'Types de structures',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('sl')
