@@ -65,12 +65,13 @@
                 <div class="row" id="result-container">
                     <div class="col-sm-5" id="crop-height">
                         {% for pictures in picture %}
-                            {% if results.id == pictures.organizationsId %}
                                 <a href="{{ path('structure_page', {'id': results.id}) }}">
+                                {% if pictures.organizationsId is defined and results.id == pictures.organizationsId %}
                                     <img src="{{ asset(pictures.webPath) }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
+                                {% else %}
+                                    <img src="{{ asset('images/tim-wright-147360.jpg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
+                                {% endif %}
                                 </a>
-
-                            {% endif %}
                         {% endfor %}
 
                     </div>

@@ -68,7 +68,6 @@ class DefaultController extends Controller
         $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
             'form' => $form->createView(),
             'pictures' => $pictures,
-
             'user' => $user,
             'organization' => $organization,
             'comments' => $comments,
