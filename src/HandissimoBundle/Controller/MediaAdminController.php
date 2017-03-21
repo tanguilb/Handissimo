@@ -92,7 +92,8 @@ class MediaAdminController extends Controller
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
-
+                    $fileName = $object->getFileName();
+                    $object->setFile($fileName);
                     $object->setOrganizationsId($this->container->get('security.token_storage')->getToken()->getUser()->getOrganizationsUser()->getId());
                     $object = $this->admin->update($object);
 

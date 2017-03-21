@@ -89,6 +89,30 @@ class Media
         $this->setFile(null);
     }
 
+    public function removeFile()
+    {
+        $file = $this->getWebPath();
+
+        return unlink($file);
+    }
+
+    public function removeThumbnails()
+    {
+        $file = $this->getThumbnails();
+
+        return unlink($file);
+    }
+
+
+    public function lifecycleFileRemove()
+    {
+        $this->removeFile();
+    }
+
+    public function lifecycleThumbnailsRemove()
+    {
+        $this->removeThumbnails();
+    }
 
     public function lifecycleFileUpload()
     {
