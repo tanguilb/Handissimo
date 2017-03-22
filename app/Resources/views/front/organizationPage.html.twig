@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
 {% endblock %}
 
+
 {% block body %}
 
     <!-- Block container -->
@@ -311,7 +312,16 @@
                         <div class="icon-block">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </div>
-                        <a class="address-line link-about" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>
+                        {% set mail = organization.mail %}
+
+                        <script language="javascript">
+                            function generateaddress(mail)
+                            {
+                                document.write("<a class='address-line link-about' href=" + "mail" + "to:" + mail + ">"+ mail + "</a>")
+                            }
+                        </script>
+                        <script language="javascript">generateaddress(mail)</script>
+                        {#<a class="address-line link-about" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>#}
                     </div>
                     <div class="line">
                         <div class="icon-block">
@@ -363,6 +373,9 @@
                 {% set arrayjson = array|json_encode %}
 
                 <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
+                {% set arraymail = organization.mail|json_encode %}
+                <input type="hidden" class="arraymail" value="{{ arraymail }}" />
+
 
                 <!-- Resources -->
                 <div class="resources col-md-12">
@@ -495,6 +508,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/vote.js') }}"></script>
     <script src="{{ asset('js/carousel.js') }}"></script>
+    <script src="{{ asset('js/generateadress.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">

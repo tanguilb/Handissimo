@@ -108,6 +108,7 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Staff');
             $staff = $repository->getByStaff($keyword);
 
+
             $data =  array_merge($organization, $needs, $disability, $structure, $staff);
 
             return new JsonResponse(array("data" => json_encode($data)));
