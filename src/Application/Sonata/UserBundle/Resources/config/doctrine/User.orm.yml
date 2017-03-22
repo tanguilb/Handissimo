@@ -13,8 +13,11 @@ Application\Sonata\UserBundle\Entity\User:
           nullable: false
           length: 50
        avatar:
-           type: text
-           nullable: true
+          type: text
+          nullable: true
+       compact:
+          type: boolean
+          nullable: false
 
    oneToOne:
        organizationsuser:
