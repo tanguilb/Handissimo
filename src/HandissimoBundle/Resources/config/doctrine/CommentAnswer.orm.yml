@@ -9,9 +9,6 @@ HandissimoBundle\Entity\CommentAnswer:
             generator:
                 strategy: AUTO
     fields:
-        activate:
-            type: boolean
-            nullable: false
         author:
             type: string
             length: 255

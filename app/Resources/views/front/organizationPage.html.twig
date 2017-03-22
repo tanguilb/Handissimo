@@ -420,72 +420,7 @@
                 </div>
             </div>
             <div class ="line-block"></div>
-            <div class="container comment-block">
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-7 col-xs-12">
-                        <h2 id="comment-title">Commentaires</h2>
-                        {%for comment in comments %}
-                            {% if comment.statusComment %}
-                            <div class="media" id="comment-organizations">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="media-left media-top">
-                                            <img class="media-object" src="{{ asset('images/avatar/doctor-1.png') }}" alt="..." id="avatar-comment">
-                                        </div>
-                                        <span class="bold">{{ comment.author }}</span><br>
-                                        <small>
-                                            {{ organization.userType }}<br>
-                                            {{ comment.parutionDate|date ('d/m/Y')}}
-                                        </small>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h4><span class="bold">{{ comment.title }}</span></h4>
-                                        <p>{{ comment.content }}</p>
-                                        <div class="vote-btns">
-                                            <form method="POST" action="">
-                                                <button class="vote-btn vote-like" id="vote-like" value="{{ comment.id }}"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button></a>
-                                            </form>
-                                                <button class="vote-btn vote-dislike" value="{{ comment.id }}"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                {#% for commentAnswerForms in  formbis %}
-                                    {{ form_start(formbis, {'action': path('handissimo_answer', {'id': organization.id })}) }}
-                                    {{ form_errors(formbis) }}
-                                    <button class="response-btn">
-                                    {{ form_widget(formbis.activate) }}
-                                    </button>
-                                    {{ form_end(formbis) }}
-                                {% endfor %#}
-                            </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div class="container comment-form">
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-7 col-xs-12">
-                            <h3>Laissez un commentaire</h3>
-                            <form method="POST" action="{{path('structure_page', {'id': organization.id })}}">
-                                {{ form_start(form) }}
-                                {{ form_errors(form) }}
-                                {{ form_widget(form.author, {'attr': {'class': 'form-control form2', 'value': organization.user }}) }}
-                                {{ form_widget(form.title, {'attr': {'class': 'form-control form2', 'placeholder': 'Titre'}}) }}
-                                {{ form_widget(form.content, {'attr': {'class': 'form-control form2', 'placeholder': 'Message', 'rows': '7' }}) }}
-                                {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
-                                <button type="submit" class="btn btn-comment">Envoyer</button>
-                                {{ form_end(form) }}
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-md-offset-2 col-md-7" id="alert-login-comment">
-                    <p >Veuillez vous authentifiez sur votre <a href="{{ path('fos_user_security_login') }}" class="link-account address-line">votre compte</a> pour pouvoir poster un commentaire.</p>
-                </div>
-            {% endif %}
+            {% include ':front/comment:comment.html.twig' %}
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,43 @@
+<div class="container comment-block">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-7 col-xs-12">
+            <h2 id="comment-title">Commentaires</h2>
+            {%for comment in comments %}
+                {% if comment.statusComment %}
+                    <div class="media" id="comment-organizations">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="media-left media-top">
+                                    <img class="media-object" src="{{ asset('images/avatar/doctor-1.png') }}" alt="..." id="avatar-comment">
+                                </div>
+                                <span class="bold">{{ comment.author }}</span><br>
+                                <small>
+                                    {{ organization.userType }}<br>
+                                    {{ comment.parutionDate|date ('d/m/Y')}}
+                                </small>
+                            </div>
+                            <div class="col-md-10">
+                                <h4><span class="bold">{{ comment.title }}</span></h4>
+                                <p>{{ comment.content }}</p>
+                                <div class="vote-btns">
+                                    <form method="POST" action="">
+                                        <button class="vote-btn vote-like" id="vote-like" value="{{ comment.id }}"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button>
+                                    </form>
+                                    <button class="vote-btn vote-dislike" value="{{ comment.id }}"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
+                                </div>
+                            </div>
+                        </div>
+                        {% include 'front/comment/answer.html.twig' %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {% include ':front/comment:comment-form.html.twig' %}
+{% else %}
+    <div class="col-md-offset-2 col-md-7" id="alert-login-comment">
+        <p >Veuillez vous authentifiez sur votre <a href="{{ path('fos_user_security_login') }}" class="link-account address-line">votre compte</a> pour pouvoir poster un commentaire.</p>
+    </div>
+{% endif %}
