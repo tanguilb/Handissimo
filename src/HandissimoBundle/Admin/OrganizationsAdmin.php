@@ -116,6 +116,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('organization_description', CKEditorType::class, array(
                             'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
+                            'help' => 'Description limitée à 5000 caractères',
                             'required' => false)
                     )
                     ->add('interventionZone', TextType::class, array(
@@ -153,7 +154,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('working_description', CKEditorType::class, array(
                         'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
                         'required' => false,
-                        'help' => 'Description limitée à 1000 caractères',
+                        'help' => 'Description limitée à 5000 caractères',
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -178,7 +179,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('accomodation_description', CKEditorType::class, array(
                         'label' => false,
                         'required' => false,
-                        'help' => 'Description limitée à 600 caractères',
+                        'help' => 'Description limitée à 3000 caractères',
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -201,7 +202,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('school_description', CKEditorType::class, array(
                         'label' => false,
                         'required' => false,
-                        'help' => 'Description limitée à 600 caractères',
+                        'help' => 'Description limitée à 3000 caractères',
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -212,14 +213,14 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->with('Description d’une journée type :')
                     ->add('dayDescription' , CKEditorType::class, array(
                         'label' => false,
-                        'help' => 'Description limitée à 1000 caractères',
+                        'help' => 'Description limitée à 5000 caractères',
                         'required' => false
                     ))
                 ->end()
                 ->with('Qu\'est-il prévu pour les familles ?')
                     ->add('receptionDescription' , CKEditorType::class, array(
                         'label' => false,
-                        'help' => 'Description limitée à 600 caractères',
+                        'help' => 'Description limitée à 5000 caractères',
                         'required' => false,
                         'config' => array(
                             'extraPlugins' => 'confighelper',
@@ -270,7 +271,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('commentStaff', CKEditorType::class, array(
                         'label' => 'Commentaire éventuel sur l’équipe',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 1000 caractères',
                         'required' => false
                     ))
                 ->end()
@@ -308,17 +309,17 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('inscription', CKEditorType::class, array(
                         'label' => 'Comment s’inscrire ?',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
                     ->add('cost' , CKEditorType::class, array(
                         'label' => 'Combien ça coûte ?',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
                     ->add('transport' , CKEditorType::class, array(
                         'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
                 ->end()

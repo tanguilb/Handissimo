@@ -130,8 +130,8 @@ class OrganizationsRepository extends EntityRepository
             "disabilitytypes" => array(
                 'dt'=>'id',
             ),
-            "structurestypes" => array(
-                'st'=>'id',
+            "orgaStructure" => array(
+                'sl'=>'id',
             ),
             "needs" => array(
                 'n'=>'id',

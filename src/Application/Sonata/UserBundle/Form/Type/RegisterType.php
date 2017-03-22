@@ -34,7 +34,8 @@ class RegisterType extends RegistrationFormType
                 'expanded' => true
 
 
-            ));
+            ))
+            ->add('compact', CheckboxType::class);
     }
 
     public function setDefaultOption(OptionsResolverInterface $resolver)

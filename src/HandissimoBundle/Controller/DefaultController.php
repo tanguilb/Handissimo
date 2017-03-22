@@ -26,6 +26,11 @@ class DefaultController extends Controller
         return $this->render('front/about.html.twig');
     }
 
+    public function noticeAction()
+    {
+        return $this->render(':front:legal-notice.html.twig');
+    }
+
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
