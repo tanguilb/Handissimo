@@ -46,6 +46,7 @@
                  {{ form_rest(form) }}
                  <p id="mandatory-field">
                         * champs obligatoires.</p>
+                 {% include ':front:charte.html.twig' %}
                  <div class="text-center block-btn-register" title="valide la création du compte">
                      <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn register-btn" />
                  </div>
