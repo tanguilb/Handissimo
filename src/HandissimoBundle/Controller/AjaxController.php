@@ -63,6 +63,7 @@ class AjaxController extends Controller
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
             return $this->render('front/search.html.twig', array(
                 'result' => $result,
+                'picture' => $pictures,
                 'keyword' => $data,
                 'age' => $age,
                 'pagination' => $pagination,
@@ -134,6 +135,19 @@ class AjaxController extends Controller
             return new JsonResponse(array("data" => json_encode($postal)));
         } else {
             throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    public function emailAction(Request $request, $id)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $email = $repository->getEmailByOrganization($id);
+
+            return new JsonResponse(array("data" => json_encode($email)));
+        }else {
+            throw new \HttpException('500', 'Invalid call');
         }
     }
 

@@ -131,4 +131,33 @@ class User extends BaseUser
     }
 
 
+    /**
+     * @var boolean
+     */
+    private $compact;
+
+
+    /**
+     * Set compact
+     *
+     * @param boolean $compact
+     *
+     * @return User
+     */
+    public function setCompact($compact)
+    {
+        $this->compact = $compact;
+
+        return $this;
+    }
+
+    /**
+     * Get compact
+     *
+     * @return boolean
+     */
+    public function getCompact()
+    {
+        return $this->compact;
+    }
 }

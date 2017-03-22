@@ -120,7 +120,7 @@ HandissimoBundle\Entity\Organizations:
         directorName:
             type: string
             length: 50
-            nullable: false
+            nullable: true
         accomodation:
             type: string
             length: 4

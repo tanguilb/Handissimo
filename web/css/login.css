@@ -266,4 +266,9 @@ input:-ms-input-placeholder {
     }
 }
 
+#modal-charte {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
 

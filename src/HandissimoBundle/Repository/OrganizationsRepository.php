@@ -130,8 +130,8 @@ class OrganizationsRepository extends EntityRepository
             "disabilitytypes" => array(
                 'dt'=>'id',
             ),
-            "structurestypes" => array(
-                'st'=>'id',
+            "orgaStructure" => array(
+                'sl'=>'id',
             ),
             "needs" => array(
                 'n'=>'id',
@@ -179,5 +179,14 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $query->getResult();
 
+    }
+
+    public function getEmailByOrganization($id)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('o.mail')
+            ->where('o.id =' .$id)
+            ->getQuery();
+        return$query->getResult();
     }
 }

@@ -12,3 +12,8 @@ research_action:
     path:     /
     defaults: { _controller: "HandissimoBundle:Ajax:research" }
     methods:  [GET, POST]
+
+mail_action:
+    path:     /mail/{id}
+    defaults: { _controller: "HandissimoBundle:Ajax:email" }
+    methods:  POST

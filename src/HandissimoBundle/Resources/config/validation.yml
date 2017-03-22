@@ -51,7 +51,7 @@ HandissimoBundle\Entity\Organizations:
                 maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
         organizationDescription:
             - Length:
-                max: 600
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         needs:
             - Count:
@@ -63,23 +63,23 @@ HandissimoBundle\Entity\Organizations:
                 maxMessage: 'Vous devez sélectionner au maximum {{ limit }} choix'
         workingDescription:
             - Length:
-                max: 1000
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         accomodationDescription:
             - Length:
-                max: 600
+                max: 3000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         schoolDescription:
             - Length:
-                max: 600
+                max: 3000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         dayDescription:
             - Length:
-                max: 1000
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         receptionDescription:
             - Length:
-                max: 600
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         teamMembersNumber:
             - Range:
@@ -87,18 +87,18 @@ HandissimoBundle\Entity\Organizations:
                 maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
         commentStaff:
             - Length:
-                max: 400
+                max: 1000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         inscription:
             - Length:
-                max: 400
+                max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         cost:
             - Length:
-                max: 400
+                max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         transport:
             - Length:
-                max: 400
+                max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
 

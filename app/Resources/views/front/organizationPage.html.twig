@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
 {% endblock %}
 
-
 {% block body %}
 
     <!-- Block container -->
@@ -312,16 +311,9 @@
                         <div class="icon-block">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </div>
-                        {% set mail = organization.mail %}
+                        <div id="mail">
 
-                        <script language="javascript">
-                            function generateaddress(mail)
-                            {
-                                document.write("<a class='address-line link-about' href=" + "mail" + "to:" + mail + ">"+ mail + "</a>")
-                            }
-                        </script>
-                        <script language="javascript">generateaddress(mail)</script>
-                        {#<a class="address-line link-about" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>#}
+                        </div>
                     </div>
                     <div class="line">
                         <div class="icon-block">
@@ -373,8 +365,10 @@
                 {% set arrayjson = array|json_encode %}
 
                 <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
-                {% set arraymail = organization.mail|json_encode %}
-                <input type="hidden" class="arraymail" value="{{ arraymail }}" />
+                {% set id = { 'id': organization.id,
+                } %}
+                {% set idjson = id|json_encode %}
+                <input type="hidden" class="arraymail" value="{{ idjson }}" />
 
 
                 <!-- Resources -->
@@ -400,9 +394,9 @@
             <!-- return button -->
             <div class="row">
                 <div class="col-md-offset-2 col-md-3 col-xs-offset-1 col-xs-12">
-                    <a class="btn btn-return" href="javascript:history.go(-1)" role="button">
+                    <button onclick="goBack()" class="btn btn-return" role="button" >
                         Retour à la recherche
-                    </a>
+                    </button>
                 </div>
                 <div class="col-md-3 col-xs-offset-1 col-xs-12">
                     {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
@@ -419,9 +413,9 @@
                                 Editer cette fiche
                             </a>
                         {% else %}
-                            <a href="#" class="btn btn-return" role="button">
+                            <<button onclick="goBack()" class="btn btn-return" role="button">
                                 Cette fiche n'est pas éditable
-                            </a>
+                            </button>
                         {% endif %}
                     {% elseif organization.userorg == null %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
