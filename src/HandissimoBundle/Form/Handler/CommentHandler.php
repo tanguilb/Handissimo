@@ -9,9 +9,12 @@
 namespace HandissimoBundle\Form\Handler;
 
 use Doctrine\ORM\EntityManager;
+use HandissimoBundle\Entity\Organizations;
 use ReCaptcha\ReCaptcha;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CommentHandler
 {
@@ -48,4 +51,6 @@ class CommentHandler
         $this->em->persist($this->form->getData());
         $this->em->flush();
     }
+
+
 }
