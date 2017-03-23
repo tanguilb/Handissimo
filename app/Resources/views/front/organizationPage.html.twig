@@ -275,12 +275,14 @@
                 </div>
                 <!-- Contact block -->
                 <div class="contact-info col-md-12">
+                    {% if organization.orgaStructure %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-tag" aria-hidden="true"></i>
                         </div>
                         <p class="address-line">{{ organization.orgaStructure }}</p>
                     </div>
+                    {% endif %}
                     {% if organization.society %}
                         <div class="line">
                             <div class="icon-block">
@@ -299,14 +301,15 @@
                         <p class="address-line">{{ organization.address }}<br/>{{ organization.addressComplement }}<br/>{{ organization.postal }} {{ organization.city }}</p>
                         {% endif %}
                     </div>
-
+                    {% if organization.phoneNumber %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                         </div>
                         <p class="address-line">{{ organization.phoneNumber }}</p>
                     </div>
-
+                    {% endif %}
+                    {% if organization.mail %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -315,12 +318,15 @@
 
                         </div>
                     </div>
+                    {% endif %}
+                    {% if organization.directorName %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
                         <p class="address-line" >Responsable : {{ organization.directorName }}</p>
                     </div>
+                    {% endif %}
                     {% if organization.website %}
                         <div class="line">
                             <div class="icon-block">
