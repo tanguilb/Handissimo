@@ -24,13 +24,6 @@ $( document ).ready(function () {
             error: function() {
                 $('#mail').text('Ajax call error');
             }
-
-
         });
-
-
-
-
     }
-
 });
