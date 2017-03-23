@@ -18,7 +18,6 @@ class OrganizationsRepository extends EntityRepository
         $query->innerJoin('o.disabilityTypes', 'dt');
         $query->innerJoin('o.orgaStructure', 'sl');
         $query->innerJoin('o.stafforganizations', 's');
-
         // define data structure
         $fields =array(
             "keyword" => array(
@@ -51,6 +50,7 @@ class OrganizationsRepository extends EntityRepository
                 }
                 $query->andWhere($ormodule);
                 $query->setParameter($item, $data[$item]);
+
             }
         }
         //echo $query->getQuery()->getSQL();;die();
@@ -179,5 +179,14 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $query->getResult();
 
+    }
+
+    public function getEmailByOrganization($id)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('o.mail')
+            ->where('o.id =' .$id)
+            ->getQuery();
+        return$query->getResult();
     }
 }

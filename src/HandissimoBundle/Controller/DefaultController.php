@@ -5,10 +5,12 @@ namespace HandissimoBundle\Controller;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use HandissimoBundle\Entity\Comment;
 use HandissimoBundle\Form\Handler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
@@ -69,8 +71,9 @@ class DefaultController extends Controller
 
             return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
         }
+
         $comments = $organization->getComments();
-        $organization = $this->get('templating')->render(':front:organizationPage.html.twig', array(
+        return $this->render(':front:organizationPage.html.twig', array(
             'form' => $form->createView(),
             'pictures' => $pictures,
             'user' => $user,
@@ -78,7 +81,8 @@ class DefaultController extends Controller
             'comments' => $comments,
         ));
 
-        return new Response($organization);
+
+        //return new Response($organization);
     }
 
     public function loadAction()

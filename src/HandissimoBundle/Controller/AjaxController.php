@@ -109,6 +109,7 @@ class AjaxController extends Controller
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Staff');
             $staff = $repository->getByStaff($keyword);
 
+
             $data =  array_merge($organization, $needs, $disability, $structure, $staff);
 
             return new JsonResponse(array("data" => json_encode($data)));
@@ -134,6 +135,19 @@ class AjaxController extends Controller
             return new JsonResponse(array("data" => json_encode($postal)));
         } else {
             throw new HttpException('500', 'Invalid call');
+        }
+    }
+
+    public function emailAction(Request $request, $id)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $email = $repository->getEmailByOrganization($id);
+
+            return new JsonResponse(array("data" => json_encode($email)));
+        }else {
+            throw new \HttpException('500', 'Invalid call');
         }
     }
 

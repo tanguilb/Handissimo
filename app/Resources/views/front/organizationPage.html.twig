@@ -275,12 +275,14 @@
                 </div>
                 <!-- Contact block -->
                 <div class="contact-info col-md-12">
+                    {% if organization.orgaStructure %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-tag" aria-hidden="true"></i>
                         </div>
                         <p class="address-line">{{ organization.orgaStructure }}</p>
                     </div>
+                    {% endif %}
                     {% if organization.society %}
                         <div class="line">
                             <div class="icon-block">
@@ -299,26 +301,32 @@
                         <p class="address-line">{{ organization.address }}<br/>{{ organization.addressComplement }}<br/>{{ organization.postal }} {{ organization.city }}</p>
                         {% endif %}
                     </div>
-
+                    {% if organization.phoneNumber %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                         </div>
                         <p class="address-line">{{ organization.phoneNumber }}</p>
                     </div>
-
+                    {% endif %}
+                    {% if organization.mail %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </div>
-                        <a class="address-line link-about" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>
+                        <div id="mail">
+
+                        </div>
                     </div>
+                    {% endif %}
+                    {% if organization.directorName %}
                     <div class="line">
                         <div class="icon-block">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
                         <p class="address-line" >Responsable : {{ organization.directorName }}</p>
                     </div>
+                    {% endif %}
                     {% if organization.website %}
                         <div class="line">
                             <div class="icon-block">
@@ -363,6 +371,11 @@
                 {% set arrayjson = array|json_encode %}
 
                 <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
+                {% set id = { 'id': organization.id,
+                } %}
+                {% set idjson = id|json_encode %}
+                <input type="hidden" class="arraymail" value="{{ idjson }}" />
+
 
                 <!-- Resources -->
                 <div class="resources col-md-12">
@@ -398,13 +411,15 @@
                                 Editer cette fiche
                             </a>
                         {% elseif  user.organizationsuser == null %}
-                                <p>Cette fiche n'est pas éditable</p>
+                            <button onclick="goBack()" class="btn btn-return" role="button">
+                                Cette fiche n'est pas éditable
+                            </button>
                         {% elseif  user.organizationsuser.id == organization.id %}
                             <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Editer cette fiche
                             </a>
                         {% else %}
-                            <<button onclick="goBack()" class="btn btn-return" role="button">
+                            <button onclick="goBack()" class="btn btn-return" role="button">
                                 Cette fiche n'est pas éditable
                             </button>
                         {% endif %}
@@ -493,6 +508,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/vote.js') }}"></script>
     <script src="{{ asset('js/carousel.js') }}"></script>
+    <script src="{{ asset('js/generateadress.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
