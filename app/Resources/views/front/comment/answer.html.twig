@@ -1,7 +1,6 @@
 {% block answer %}
-    <a role="button" data-toggle="collapse" data-target="#{{ loop.index }}">Répondre</a>
 
     <div id="{{ loop.index }}" class="collapse">
-        {{ comment.content }}
+        {#% render (controller('HandissimoBundle:CommentAnswer:new', {'comment_id': comment.id})) %#}
     </div>
 {% endblock %}

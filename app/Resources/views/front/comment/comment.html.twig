@@ -1,3 +1,4 @@
+
 <div class="container comment-block">
     <div class="row">
         <div class="col-md-offset-2 col-md-7 col-xs-12">
@@ -27,13 +28,15 @@
                                 </div>
                             </div>
                         </div>
-                        {% include 'front/comment/answer.html.twig' %}
+                        <a role="button" data-toggle="collapse" data-target="#{{ loop.index }}">Répondre</a>
                     </div>
+                    {% include 'front/comment/answer.html.twig' %}
                 {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
+
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     {% include ':front/comment:comment-form.html.twig' %}
 {% else %}
