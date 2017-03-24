@@ -2,13 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: tangui
- * Date: 16/03/17
- * Time: 14:30
+ * Date: 23/03/17
+ * Time: 09:59
  */
 
 namespace HandissimoBundle\EventListener;
 
-use Doctrine\ORM\EntityManager;
+
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -16,22 +16,13 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Services\Upload\FileUploader;
 
-class BrochureUploaderListener
+class LogoUploaderListener
 {
     private $uploader;
 
-    private $em;
-
-    public function __construct(FileUploader $uploader, EntityManager $entityManager)
+    public function __construct(FileUploader $uploader)
     {
         $this->uploader = $uploader;
-        $this->em = $entityManager;
-    }
-
-    public function getOrganizations($brochures)
-    {
-        $org = $this->em;
-        var_dump($org);
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -44,11 +35,8 @@ class BrochureUploaderListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
-       // $org = $this->organizations->getBrochure();
-       // var_dump($org);
 
         $this->uploadFile($entity);
-
     }
 
     private function uploadFile($entity)
@@ -57,7 +45,8 @@ class BrochureUploaderListener
         {
             return;
         }
-        $file = $entity->getBrochure();
+
+        $file = $entity->getStructureLogo();
 
         if(!$file instanceof UploadedFile)
         {
@@ -66,8 +55,7 @@ class BrochureUploaderListener
 
         $fileName = $this->uploader->upload($file);
 
-        $entity->setBrochure($fileName);
-
+        $entity->setStructureLogo($fileName);
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -79,12 +67,9 @@ class BrochureUploaderListener
             return;
         }
 
-        $fileName = $entity->getBrochure();
-        //var_dump($fileName);
-
-        if($fileName)
+        if($fileName = $entity->getStructureLogo())
         {
-            $entity->setBrochure(new File($this->uploader->getTargetDir().'/'.$fileName));
+            $entity->setStructureLogo(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
 

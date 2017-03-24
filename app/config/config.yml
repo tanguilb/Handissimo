@@ -10,6 +10,7 @@ parameters:
     locale: fr
     brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
     media_directory:     '%kernel.root_dir%/../web/uploads/image'
+    logo_directory:      '%kernel.root_dir%/../web/uploads/logo'
 
 framework:
     #esi:             ~

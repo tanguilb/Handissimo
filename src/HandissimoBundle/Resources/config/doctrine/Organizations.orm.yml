@@ -178,6 +178,15 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
+        structureLogo:
+            type: string
+            length: 255
+            nullable: true
+        societyLogo:
+            type: string
+            length: 255
+            nullable: true
+
 
     oneToOne:
         userorg:

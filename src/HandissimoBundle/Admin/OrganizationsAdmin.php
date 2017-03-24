@@ -3,6 +3,8 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
+use Faker\Provider\File;
+use HandissimoBundle\Entity\Organizations;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -14,11 +16,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Test\FormInterface;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper
             ->tab('Identité')
                 ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
@@ -28,9 +32,19 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
+                    ->add('structureLogo', FileType::class, array(
+                        'label' => 'Si vous avez un logo vous pouvez le télécharger',
+                        'required' => false,
+                        'data_class' => null,
+                    ))
                     ->add('society', TextType::class, array(
                         'label' => 'Non de l\'organisme gestionnaire',
                         'required' => false,
+                    ))
+                    ->add('societyLogo', FileType::class, array(
+                        'label' => 'Télécharger le logo de la société',
+                        'required' => false,
+                        'data_class' => null,
                     ))
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
@@ -69,9 +83,9 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false
                     ))
                     ->add('brochure', FileType::class, array(
-                        'label' => 'Télécharger des documents',
+                        'data_class' => null,
+                        'label' => 'Brochure',
                         'required' => false,
-                        'data_class' => null
                     ))
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))

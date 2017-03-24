@@ -29,6 +29,7 @@ class RegisterType extends RegistrationFormType
                     'Personne en situation de handicap' => "je suis une personne en situation de handicap",
                     'Proche ou aidant' => " je suis un proche, une famille, un aidant",
                     'professionnel(le)' => "je suis un professionnel",
+                    '' => "Autres",
                 ),
                 'multiple' => false,
                 'expanded' => true

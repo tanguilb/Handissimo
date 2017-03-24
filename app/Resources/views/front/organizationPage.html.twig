@@ -20,6 +20,9 @@
 
                 <div class="row">
                     <div class="head-title col-md-11 col-sm-11">
+                        {% if organization.societyLogo %}
+                            <img src="{{ asset(organization.societyLogo) }}" alt="{{ 'logo de' ~ organization.society }}">
+                        {% endif %}
                         <h1 class="title"> {{ organization.name }} </h1>
                     </div>
                     <!-- this is the line to display like button
@@ -62,7 +65,7 @@
                         <div class="organization-panel">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h2 class="panel-title primary-title">
-                                    <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                         C'est pour qui ?
                                     </a>
                                 </h2>
@@ -80,11 +83,11 @@
                                     {% endfor %}
                                 </ul>
                                 <div class="col-md-12">
-                                    <h3 class="second-title">Age : </h3><p class="bold"> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                    <h3 class="second-title">Age : </h3><p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                 </div>
                                 {% if organization.freeplace %}
                                 <div class="col-md-12">
-                                    <h3 class="second-title">Nombre de personnes accompagnées :</h3><p class="bold"> {{ organization.freeplace }}</p>
+                                    <h3 class="second-title">Nombre de personnes accompagnées :</h3><p> {{ organization.freeplace }}</p>
                                 </div>
                                 {% endif %}
                                 <div class="col-md-12">
@@ -97,7 +100,7 @@
                                 {% endif %}
                                 {% if organization.interventionZone %}
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </h3><p class="bold">{{ organization.interventionZone }}</p>
+                                        <h3 class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </h3><p>{{ organization.interventionZone }}</p>
                                     </div>
                                 {% endif %}
                             </div>
@@ -227,7 +230,7 @@
                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="panel-body">
                                 <div class="col-md-12">
-                                    <h3 class="second-title">Heures d'ouvertures : </h3><p class="bold">{{ organization.openhours }}</p>
+                                    <h3 class="second-title">Heures d'ouvertures : </h3><p>{{ organization.openhours }}</p>
                                 </div>
                                 <div class="col-md-12">
                                 <h3 class="second-title">Jours d'ouvertures : </h3>
