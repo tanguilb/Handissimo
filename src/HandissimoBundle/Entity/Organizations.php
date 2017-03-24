@@ -1696,35 +1696,6 @@ class Organizations
 
 
     /**
-     * @var \HandissimoBundle\Entity\StructuresList
-     */
-    private $orgaStructure;
-
-
-    /**
-     * Set orgaStructure
-     *
-     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
-     *
-     * @return Organizations
-     */
-    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
-    {
-        $this->orgaStructure = $orgaStructure;
-
-        return $this;
-    }
-
-    /**
-     * Get orgaStructure
-     *
-     * @return \HandissimoBundle\Entity\StructuresList
-     */
-    public function getOrgaStructure()
-    {
-        return $this->orgaStructure;
-    }
-    /**
      * @var string
      */
     private $society;
@@ -1752,5 +1723,35 @@ class Organizations
     public function getSociety()
     {
         return $this->society;
+    }
+
+    /**
+     * @var \HandissimoBundle\Entity\StructuresList
+     */
+    private $orgaStructure;
+
+
+    /**
+     * Set orgaStructure
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
+     *
+     * @return Organizations
+     */
+    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
+    {
+        $this->orgaStructure = $orgaStructure;
+
+        return $this;
+    }
+
+    /**
+     * Get orgaStructure
+     *
+     * @return \HandissimoBundle\Entity\StructuresList
+     */
+    public function getOrgaStructure()
+    {
+        return $this->orgaStructure;
     }
 }

@@ -16,7 +16,7 @@ HandissimoBundle\Entity\StructuresList:
             type: array
             nullable: true
 
-    oneToOne:
+    oneToMany:
         organizationsStructure:
             targetEntity: HandissimoBundle\Entity\Organizations
             mappedBy: orgaStructure
