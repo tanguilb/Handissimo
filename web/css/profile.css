@@ -1,3 +1,26 @@
+/**********************************/
+/********* Profil page ************/
+/**********************************/
+
+.menu-block {
+    background-color: #ffffff;
+    margin:-100px 20px 50px 20px;
+    box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
+}
+.main-block-profil {
+    background-color: #ffffff;
+    margin:-100px auto 50px auto ;
+    box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
+}
+
+@media screen and (max-width: 768px) {
+    .main-block-profil,
+    .menu-block {
+        margin-top: 110px;
+        margin-bottom: 0;
+    }
+}
+
 .profil-block,
 .connect-block {
     margin-top: 30px;
@@ -5,10 +28,6 @@
 
 .password-block {
     margin-bottom: 30px;
-}
-
-#profile-menu {
-    margin-top: 30px;
 }
 
 .head-block{
@@ -153,6 +172,14 @@ input:-ms-input-placeholder {
     align-items: center;
 }
 
+.title-menu {
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+    padding-bottom:5px;
+    border-bottom:3px solid #65bfba;
+}
+
 .profil-title {
     text-align: center;
     border-bottom:3px solid #f7af49;
@@ -253,14 +280,31 @@ input:-ms-input-placeholder {
         font-size:1.3em;
     }
 }
-@media screen and (max-width: 768px){
-    .avatar {
-        word-wrap: break-word;
-    }
+
+/**********************************/
+/********** Menu block ************/
+/**********************************/
+
+.list-button {
+    background-color: #65bfba;
+    border-color: #65bfba;
+    border-radius: 90px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 5px 5px;
+    width: 180px;
 }
 
-.profil-image {
-    width: 200px;
-    height: 150px;
+.list-button:hover,
+.list-button:focus {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-color: #71DBD7;
+}
+
+.button-block {
+    margin-bottom: 10px;
 }
 

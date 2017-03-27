@@ -15,12 +15,30 @@
 {% block sonata_user_content %}
     {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
     <div class="head-block"></div>
-    <div class="main-block container">
-        <div class="row">
-            <div class="col-md-12">
-                {% block sonata_profile_content %}
-                {% endblock %}
+    <div class="row">
+        <div class="col-md-2 col-xs-12 menu-block">
+            <div class="title-block">
+                <h2 class="title-menu">MENU</h2>
             </div>
+            <div class="list-menu">
+                <div class="button-block">
+                    <button href="" class="list-button">Profil</button>
+                </div>
+                <div class="button-block">
+                    <button href="" class="list-button">Créer une fiche</button>
+                </div>
+                <div class="button-block">
+                    <button href="" class="list-button">Rechercher une fiche</button>
+                </div>
+                <div class="button-block">
+                    <button href="" class="list-button">test1</button>
+                </div>
+
+            </div>
+        </div>
+        <div class=" col-md-9 col-xs-12 main-block-profil">
+            {% block sonata_profile_content %}
+            {% endblock %}
         </div>
     </div>
 {% endblock %}
