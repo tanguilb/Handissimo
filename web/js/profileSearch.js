@@ -4,7 +4,7 @@ $( document ).ready(function() {
         if ( profileSearch.length >= 2 ) {
             $.ajax({
                 type: "POST",
-                url: "/ajax/" + profileSearch,
+                url: "/profile/search/ajax/" + profileSearch,
                 dataType: 'json',
                 timeout: 3000,
                 success: function(response){

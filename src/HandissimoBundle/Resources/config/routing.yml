@@ -30,3 +30,7 @@ handissimo_profile_search:
     path:  /profile/search
     defaults: { _controller: "HandissimoBundle:Profile:profileSearch" }
 
+search_profile:
+    path:   /profile/search/ajax/{profileSearch}
+    defaults: { _controller: "HandissimoBundle:Ajax:searchProfile"}
+    methods: POST

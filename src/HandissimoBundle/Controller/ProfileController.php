@@ -19,11 +19,21 @@ class ProfileController extends Controller
         $form = $this->createForm('HandissimoBundle\Form\Type\ProfileSearchType');
         $form->handleRequest($request);
 
-        /*if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-        }*/
+        $em = $this->getDoctrine()->getManager();
+        $result ="";
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData()['profileSearch'];
+
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsProfile($data);
+            return $this->render('front/profile/profile-search.html.twig', array(
+                'form' => $form->createView(),
+                'result' => $result,
+                'profileSearch' => $data
+            ));
+        }
         return $this->render(':front/profile:profile-search.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'result' => $result
         ));
     }
 }

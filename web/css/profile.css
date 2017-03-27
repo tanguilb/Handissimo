@@ -309,3 +309,95 @@ input:-ms-input-placeholder {
     margin-bottom: 10px;
 }
 
+/**********************************/
+/********** Search page ***********/
+/**********************************/
+
+.search-field {
+    background-color: #FFFFFF;
+    border: 2px solid #f7af49;
+    border-radius: 3px;
+    padding: 5px 5px 5px 5px;
+}
+@media (max-width: 992px) {
+    .search-field {
+        margin: 10px 0;
+    }
+}
+
+.search-field p {
+    font-size: 22px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    padding-top: 8px;
+    color: #777777;
+}
+@media (max-width: 360px) {
+    .search-field p {
+        font-size: 20px;
+    }
+}
+
+.search-field i {
+    display: inline-block;
+    color: #f7af49;
+    float: right;
+    margin-top: 5px;
+}
+
+.homeField {
+    padding: 0 0 0 10px;
+    border: none;
+    border-bottom: solid 1px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+    font-style: italic;
+    color: #777777;
+}
+
+.homeField:focus,
+.homeField.focus {
+    border-bottom: solid 1px #777777;
+}
+
+#list-name {
+    position: absolute;
+    width: 100%;
+    padding: 10px 15px;
+    list-style-type: none;
+    margin: 0 0 0 -15px;
+    z-index: 997;
+    border-radius: 3px;
+}
+
+#list-name li {
+    list-style: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    color: #777777;
+    font-style: italic;
+    display: block;
+    padding: 10px 15px;
+    border-bottom: 1px solid #c9c9c9;
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+#list-name li:hover {
+    background-color: #F4F3F2;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.form-search {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.btn-search {
+    margin-top: 20px;
+}
