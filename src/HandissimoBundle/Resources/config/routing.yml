@@ -30,3 +30,7 @@ handissimo_notice:
     path: /mentions-légales
     defaults: { _controller: "HandissimoBundle:Default:notice" }
 
+handissimobundle_organizations:
+    path: /organizations
+    defaults: { _controller: "HandissimoBundle:Organizations:new" }
+
