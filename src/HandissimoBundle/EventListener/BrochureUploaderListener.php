@@ -20,18 +20,9 @@ class BrochureUploaderListener
 {
     private $uploader;
 
-    private $em;
-
-    public function __construct(FileUploader $uploader, EntityManager $entityManager)
+    public function __construct(FileUploader $uploader)
     {
         $this->uploader = $uploader;
-        $this->em = $entityManager;
-    }
-
-    public function getOrganizations($brochures)
-    {
-        $org = $this->em;
-        var_dump($org);
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -44,11 +35,18 @@ class BrochureUploaderListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
-       // $org = $this->organizations->getBrochure();
-       // var_dump($org);
-
-        $this->uploadFile($entity);
-
+        $id = $entity->getId();
+        $em = $args->getObjectManager();
+        $repository = $em->getRepository('HandissimoBundle:Organizations');
+        $brochure = $repository->getBrochureById($id);
+        foreach($brochure as $brochures)
+        {
+            if($brochures['brochure'] !== null and $entity->getBrochure() == null)
+            {
+                $entity->setBrochure($brochures['brochure']);
+            }
+            $this->uploadFile($entity);
+        }
     }
 
     private function uploadFile($entity)
@@ -57,6 +55,7 @@ class BrochureUploaderListener
         {
             return;
         }
+
         $file = $entity->getBrochure();
 
         if(!$file instanceof UploadedFile)
@@ -79,10 +78,8 @@ class BrochureUploaderListener
             return;
         }
 
-        $fileName = $entity->getBrochure();
-        //var_dump($fileName);
 
-        if($fileName)
+        if($fileName = $entity->getBrochure())
         {
             $entity->setBrochure(new File($this->uploader->getTargetDir().'/'.$fileName));
         }

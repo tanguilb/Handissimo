@@ -35,8 +35,21 @@ class LogoUploaderListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
+        $id = $entity->getId();
+        $em = $args->getObjectManager();
+        $repository = $em->getRepository('HandissimoBundle:Organizations');
+        $logos = $repository->getLogoStructureById($id);
 
-        $this->uploadFile($entity);
+        foreach($logos as $logo)
+        {
+            if($logo['structureLogo'] !== null and $entity->getStructureLogo() == null)
+            {
+                $entity->setStructureLogo($logo['structureLogo']);
+            }
+            $this->uploadFile($entity);
+        }
+
+
     }
 
     private function uploadFile($entity)

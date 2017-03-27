@@ -34,8 +34,17 @@ class SocietyLogoUploaderListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
+        $id = $entity->getId();
+        $em = $args->getObjectManager();
+        $repository = $em->getRepository('HandissimoBundle:Organizations');
+        $logos = $repository->getLogoSocietyById($id);
 
-        $this->uploadFile($entity);
+        foreach($logos as $logo) {
+            if ($logo['societyLogo'] !== null and $entity->getSocietyLogo() == null) {
+                $entity->setSocietyLogo($logo['societyLogo']);
+            }
+            $this->uploadFile($entity);
+        }
     }
 
     private function uploadFile($entity)
