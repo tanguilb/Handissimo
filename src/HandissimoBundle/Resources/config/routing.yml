@@ -18,10 +18,6 @@ handissimo_structure:
     path: /solution
     defaults: { _controller: "HandissimoBundle:Default:structure" }
 
-#handissimo_answer:
- #   path: /structure/{id}
-  #  defaults: { _controller: "HandissimoBundle:Default:commentAnswer" }
-
 load_database:
     path: /load
     defaults: { _controller: "HandissimoBundle:Default:load" }
@@ -29,4 +25,8 @@ load_database:
 handissimo_notice:
     path: /mentions-légales
     defaults: { _controller: "HandissimoBundle:Default:notice" }
+
+handissimo_profile_search:
+    path:  /profile/search
+    defaults: { _controller: "HandissimoBundle:Profile:profileSearch" }
 

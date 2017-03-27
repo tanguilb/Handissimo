@@ -1,0 +1,20 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="search-block">
+        <div class="title-block">
+            <h3 class="title-search">RECHERCHE D'UNE FICHE</h3>
+        </div>
+        <div class="form-search">
+            {{ form_start(form) }}
+            {{ form_errors(form.profileSearch) }}
+            {{ form_widget(form.profileSearch) }}
+            <ul id="list-name"></ul>
+            <button type="submit" class="btn-default">Rechercher</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="result-block">
+
+        </div>
+    </div>
+{% endblock %}

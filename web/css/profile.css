@@ -180,7 +180,8 @@ input:-ms-input-placeholder {
     border-bottom:3px solid #65bfba;
 }
 
-.profil-title {
+.profil-title,
+.title-search {
     text-align: center;
     border-bottom:3px solid #f7af49;
     margin:auto;

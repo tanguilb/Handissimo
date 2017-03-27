@@ -151,4 +151,17 @@ class AjaxController extends Controller
         }
     }
 
+    public function searchProfileAction(Request $request, $dataSearch)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $profileSearch = $repository->getSearchProfile($dataSearch);
+
+            return new JsonResponse(array("data" => json_encode($profileSearch)));
+        }else{
+            throw new \HttpException('500', 'Invalid call');
+        }
+    }
+
 }

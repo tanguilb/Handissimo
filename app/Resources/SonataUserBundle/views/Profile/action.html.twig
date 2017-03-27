@@ -22,16 +22,24 @@
             </div>
             <div class="list-menu">
                 <div class="button-block">
-                    <button href="" class="list-button">Profil</button>
+                    <a href="{{ path('sonata_user_profile_edit') }}">
+                        <button class="list-button">Profil</button>
+                    </a>
                 </div>
                 <div class="button-block">
-                    <button href="" class="list-button">Créer une fiche</button>
+                    <a href="">
+                        <button class="list-button">Créer une fiche</button>
+                    </a>
                 </div>
                 <div class="button-block">
-                    <button href="" class="list-button">Rechercher une fiche</button>
+                    <a href="{{ path('handissimo_profile_search') }}">
+                        <button  class="list-button">Rechercher une fiche</button>
+                    </a>
                 </div>
                 <div class="button-block">
-                    <button href="" class="list-button">test1</button>
+                    <a href="">
+                        <button href="" class="list-button">test1</button>
+                    </a>
                 </div>
 
             </div>
@@ -41,4 +49,8 @@
             {% endblock %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/profileSearch.js') }}"></script>
 {% endblock %}
