@@ -1,0 +1,15 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: tangui
+ * Date: 28/03/17
+ * Time: 12:18
+ */
+
+namespace HandissimoBundle\Entity;
+
+
+class OrganizationsDraftCopy
+{
+
+}

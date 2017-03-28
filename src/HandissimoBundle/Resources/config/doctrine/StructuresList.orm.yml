@@ -21,4 +21,6 @@ HandissimoBundle\Entity\StructuresList:
             targetEntity: HandissimoBundle\Entity\Organizations
             mappedBy: orgaStructure
 
+
+
     lifecycleCallbacks: {  }

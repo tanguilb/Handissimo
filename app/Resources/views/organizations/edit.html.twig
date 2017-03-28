@@ -17,9 +17,9 @@
             </div>
         </div>
         {% block organization_form %}
-            <form method="POST" class="ajaxForm" action="{{path('handissimobundle_organizations')}}" id="form_body">
-                {{ form_start(form) }}
-                {{ form_errors(form) }}
+            <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" id="form_body">
+                {{ form_start(edit_form) }}
+                {{ form_errors(edit_form) }}
 
                 <div class="container">
 
@@ -36,38 +36,38 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
                             <div class="col-md-5">
-                                {{ form_row(form.name) }}
-                                {{ form_errors(form.name) }}
-                                {{ form_row(form.structureLogo) }}
-                                {{ form_errors(form.structureLogo) }}
-                                {{ form_row(form.society) }}
-                                {{ form_errors(form.society) }}
-                                {{ form_row(form.societyLogo) }}
-                                {{ form_errors(form.societyLogo) }}
-                                {{ form_row(form.address) }}
-                                {{ form_errors(form.address) }}
-                                {{ form_row(form.addressComplement) }}
-                                {{ form_errors(form.addressComplement) }}
-                                {{ form_row(form.postal) }}
-                                {{ form_errors(form.postal) }}
-                                {{ form_row(form.city) }}
-                                {{ form_errors(form.city) }}
-                                {{ form_row(form.phone_number) }}
-                                {{ form_errors(form.phone_number) }}
-                                {{ form_row(form.mail) }}
-                                {{ form_errors(form.mail) }}
-                                {{ form_row(form.directorName) }}
-                                {{ form_errors(form.directorName) }}
-                                {{ form_row(form.website) }}
-                                {{ form_errors(form.website ) }}
-                                {{ form_row(form.facebook) }}
-                                {{ form_errors(form.facebook) }}
-                                {{ form_row(form.brochure) }}
-                                {{ form_errors(form.brochure) }}
+                                {{ form_row(edit_form.name) }}
+                                {{ form_errors(edit_form.name) }}
+                                {{ form_row(edit_form.structureLogo) }}
+                                {{ form_errors(edit_form.structureLogo) }}
+                                {{ form_row(edit_form.society) }}
+                                {{ form_errors(edit_form.society) }}
+                                {{ form_row(edit_form.societyLogo) }}
+                                {{ form_errors(edit_form.societyLogo) }}
+                                {{ form_row(edit_form.address) }}
+                                {{ form_errors(edit_form.address) }}
+                                {{ form_row(edit_form.addressComplement) }}
+                                {{ form_errors(edit_form.addressComplement) }}
+                                {{ form_row(edit_form.postal) }}
+                                {{ form_errors(edit_form.postal) }}
+                                {{ form_row(edit_form.city) }}
+                                {{ form_errors(edit_form.city) }}
+                                {{ form_row(edit_form.phone_number) }}
+                                {{ form_errors(edit_form.phone_number) }}
+                                {{ form_row(edit_form.mail) }}
+                                {{ form_errors(edit_form.mail) }}
+                                {{ form_row(edit_form.directorName) }}
+                                {{ form_errors(edit_form.directorName) }}
+                                {{ form_row(edit_form.website) }}
+                                {{ form_errors(edit_form.website ) }}
+                                {{ form_row(edit_form.facebook) }}
+                                {{ form_errors(edit_form.facebook) }}
+                                {{ form_row(edit_form.brochure) }}
+                                {{ form_errors(edit_form.brochure) }}
                             </div>
                             <div class="col-md-7">
                                 <h3>Choissisez votre type de structure</h3>
-                                {% for form in form.orgaStructure %}
+                                {% for form in edit_form.orgaStructure %}
                                     <div>
                                         {{ form_widget(form) }}
                                         {{ form_label(form) }}
@@ -78,37 +78,37 @@
                         <div role="tabpanel" class="tab-pane fade" id="publictarget">
                             <div class="row">
                                 <div class="col-md-7">
-                            {% for disability in form.disabilitytypes %}
-                                <div>
-                                    {{ form_widget(disability) }}
-                                    {{ form_label(disability) }}
-                                </div>
-                            {% endfor %}
-                                </div>
-
-                            <div class="col-md-5">
-                                <h3>Âge des personnes accueillies</h3>
-
-                                <div class="col-md-6">
-                                    {{ form_row(form.agemini) }}
+                                    {% for disability in edit_form.disabilitytypes %}
+                                        <div>
+                                            {{ form_widget(disability) }}
+                                            {{ form_label(disability) }}
+                                        </div>
+                                    {% endfor %}
                                 </div>
 
-                                <div class="col-md-6">
-                                    {{ form_row(form.agemaxi) }}
-                                </div>
-                                {{ form_row(form.freeplace) }}
-                                {{ form_row(form.interventionZone) }}
+                                <div class="col-md-5">
+                                    <h3>Âge des personnes accueillies</h3>
 
+                                    <div class="col-md-6">
+                                        {{ form_row(edit_form.agemini) }}
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        {{ form_row(edit_form.agemaxi) }}
+                                    </div>
+                                    {{ form_row(edit_form.freeplace) }}
+                                    {{ form_row(edit_form.interventionZone) }}
+
+                                </div>
                             </div>
-                            </div>
-                            {{ form_row(form.organizationDescription) }}
+                            {{ form_row(edit_form.organizationDescription) }}
 
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="serve">
                             <div class="row">
                                 <div class="col-md-6">
-                                    {{ form_label(form.needs) }}
-                                    {% for needs in form.needs %}
+                                    {{ form_label(edit_form.needs) }}
+                                    {% for needs in edit_form.needs %}
                                         <div>
                                             {{ form_widget(needs) }}
                                             {{ form_label(needs) }}
@@ -116,8 +116,8 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-md-6">
-                                    {{ form_label(form.secondneeds) }}
-                                    {% for secondneeds in form.secondneeds %}
+                                    {{ form_label(edit_form.secondneeds) }}
+                                    {% for secondneeds in edit_form.secondneeds %}
                                         <div>
                                             {{ form_widget(secondneeds) }}
                                             {{ form_label(secondneeds) }}
@@ -125,22 +125,22 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            {{ form_row(form.workingDescription) }}
-                            {{ form_row(form.accomodation) }}
-                            {{ form_row(form.accomodationDescription) }}
-                            {{ form_row(form.school) }}
-                            {{ form_row(form.schoolDescription) }}
-                            {{ form_row(form.dayDescription) }}
-                            {{ form_row(form.receptionDescription) }}
+                            {{ form_row(edit_form.workingDescription) }}
+                            {{ form_row(edit_form.accomodation) }}
+                            {{ form_row(edit_form.accomodationDescription) }}
+                            {{ form_row(edit_form.school) }}
+                            {{ form_row(edit_form.schoolDescription) }}
+                            {{ form_row(edit_form.dayDescription) }}
+                            {{ form_row(edit_form.receptionDescription) }}
 
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="team">
 
-                            {{ form_row(form.teamMembersNumber) }}
+                            {{ form_row(edit_form.teamMembersNumber) }}
                             <div class="row">
                                 <div class="col-md-4">
-                                    {{ form_label(form.stafforganizations) }}
-                                    {% for staff in form.stafforganizations %}
+                                    {{ form_label(edit_form.stafforganizations) }}
+                                    {% for staff in edit_form.stafforganizations %}
                                         <div>
                                             {{ form_widget(staff) }}
                                             {{ form_label(staff) }}
@@ -148,8 +148,8 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form_label(form.socialstaffs) }}
-                                    {% for social in form.socialstaffs %}
+                                    {{ form_label(edit_form.socialstaffs) }}
+                                    {% for social in edit_form.socialstaffs %}
                                         <div>
                                             {{ form_widget(social) }}
                                             {{ form_label(social) }}
@@ -157,8 +157,8 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-md-4">
-                                    {{ form_label(form.otherjobs) }}
-                                    {% for other in form.otherjobs %}
+                                    {{ form_label(edit_form.otherjobs) }}
+                                    {% for other in edit_form.otherjobs %}
                                         <div>
                                             {{ form_widget(other) }}
                                             {{ form_label(other) }}
@@ -166,15 +166,15 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            {{ form_row(form.commentStaff) }}
+                            {{ form_row(edit_form.commentStaff) }}
 
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="informations">
 
-                            {{ form_row(form.openhours) }}
+                            {{ form_row(edit_form.openhours) }}
                             <div class="row">
                                 <div class="col-md-6">
-                                    {% for days in form.opendays %}
+                                    {% for days in edit_form.opendays %}
                                         <div>
                                             {{ form_widget(days) }}
                                             {{ form_label(days) }}
@@ -182,7 +182,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-md-6">
-                                    {% for daysYear in form.opendaysYear %}
+                                    {% for daysYear in edit_form.opendaysYear %}
                                         <div>
                                             {{ form_widget(daysYear) }}
                                             {{ form_label(daysYear) }}
@@ -190,23 +190,38 @@
                                     {% endfor %}
                                 </div>
                             </div>
-                            {{ form_row(form.inscription) }}
-                            {{ form_row(form.cost) }}
-                            {{ form_row(form.transport) }}
+                            {{ form_row(edit_form.inscription) }}
+                            {{ form_row(edit_form.cost) }}
+                            {{ form_row(edit_form.transport) }}
 
                         </div>
 
                     </div>
 
                 </div>
-
                 <input type="submit" value="envoyer"/>
-                {{ form_end(form) }}
+
+
+                {{ form_end(edit_form) }}
 
             </form>
 
         {% endblock organization_form %}
     </div>
+    <ul>
+        {#<li>
+            <a href="{{ path('organizations_index') }}">Back to the list</a>
+        </li>#}
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+            <form method="POST" action="{{ path("organization_draft_copy", {'id': organization.id}) }}">
+                <button type="submit" value="enregistrer un brouillon" >Enregistrer un brouillon</button>
+            </form>
+
+        </li>
+    </ul>
 {% endblock %}
 
 {% block javascript %}
@@ -214,11 +229,4 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $( function() {
-            $( "input" ).checkboxradio({
-                icon: false
-            });
-        } );
-    </script>
 {% endblock %}

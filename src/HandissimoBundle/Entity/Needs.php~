@@ -15,7 +15,7 @@ class Needs
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
