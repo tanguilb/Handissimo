@@ -6,6 +6,7 @@
     background-color: #ffffff;
     margin:-100px 20px 50px 20px;
     box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
+    padding-top: 30px;
 }
 .main-block-profil {
     background-color: #ffffff;
@@ -14,9 +15,16 @@
 }
 
 @media screen and (max-width: 768px) {
-    .main-block-profil,
     .menu-block {
         margin-top: 110px;
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-block-profil {
+        margin-top: 20px;
         margin-bottom: 0;
     }
 }
@@ -178,10 +186,20 @@ input:-ms-input-placeholder {
     font-size: 30px;
     padding-bottom:5px;
     border-bottom:3px solid #65bfba;
+    margin: auto;
 }
 
-.profil-title,
 .title-search {
+    text-align: center;
+    border-bottom:3px solid #f7af49;
+    margin:auto;
+    padding-top: 30px;
+    padding-bottom:5px;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.profil-title {
     text-align: center;
     border-bottom:3px solid #f7af49;
     margin:auto;
@@ -227,13 +245,15 @@ input:-ms-input-placeholder {
     border-color: #71DBD7;
 }
 
-#btn-profile {
+#btn-profile,
+.btn-search {
     color: #fff;
     background-color: #f7af49;
     border-color: #f7af49;
 }
 
-#btn-profile:hover {
+#btn-profile:hover,
+.btn-search:hover {
     color: #fff;
     background-color: #FFBE49;
 }
@@ -295,6 +315,8 @@ input:-ms-input-placeholder {
     font-size: 14px;
     padding: 5px 5px;
     width: 180px;
+    display: block;
+    margin: auto;
 }
 
 .list-button:hover,
@@ -309,6 +331,14 @@ input:-ms-input-placeholder {
     margin-bottom: 10px;
 }
 
+.button-block a {
+    text-decoration: none;
+}
+
+.list-menu {
+    margin-top: 20px;
+}
+
 /**********************************/
 /********** Search page ***********/
 /**********************************/
@@ -317,7 +347,7 @@ input:-ms-input-placeholder {
     background-color: #FFFFFF;
     border: 2px solid #f7af49;
     border-radius: 3px;
-    padding: 5px 5px 5px 5px;
+    padding: 10px 10px 10px 10px;
 }
 @media (max-width: 992px) {
     .search-field {
@@ -400,4 +430,8 @@ input:-ms-input-placeholder {
 
 .btn-search {
     margin-top: 20px;
+}
+
+.result-block {
+    margin-bottom: 50px;
 }

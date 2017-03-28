@@ -25,15 +25,15 @@ class ProfileController extends Controller
             $data = $form->getData()['profileSearch'];
 
             $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsProfile($data);
-            return $this->render('front/profile/profile-search.html.twig', array(
+            return $this->render(':front/profile:profile-search.html.twig', array(
                 'form' => $form->createView(),
                 'result' => $result,
-                'profileSearch' => $data
+                'profileSearch' => $data,
             ));
         }
         return $this->render(':front/profile:profile-search.html.twig', array(
             'form' => $form->createView(),
-            'result' => $result
+            'result' => $result,
         ));
     }
 }
