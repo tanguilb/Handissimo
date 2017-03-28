@@ -45,5 +45,52 @@
             {{ form_end(form) }}
         </div>
     </section>
+    <section class="container-fluid" id="headband-solution">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <h2>Vous connaissez une solution ? Vous êtes responsable d’une solution ?
+                Inscrivez-la sur Handissimo pour la partager avec tous.</h2>
+                <div id="services-items">
+                    <div class="row">
+                        <div class="grid">
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="effect-sadie">
+                                    <img src="{{ asset('images/photo1.jpeg') }}" alt="Je connais une solution"/>
+                                    <figcaption>
+                                        <h3>Je connais une solution</h3>
+                                        <p>Handissimo est collaboratif : les familles et les professionnels contribuent</p>
+                                        <a href="{{ path('handissimo_structure') }}"></a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="effect-sadie">
+                                    <img src="{{ asset('images/photo2.jpeg') }}" alt="Qui sommes nous?" />
+                                    <figcaption>
+                                        <h3>Qui sommes nous?</h3>
+                                        <p>Handissimo est interactif : complétez, commentez, posez des questions…</p>
+                                        <a href="{{ path('handissimo_aboutpage') }}"></a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="effect-sadie">
+                                    <img src="{{ asset('images/photo3.jpeg') }}" alt="Comment nous aider?" />
+                                    <figcaption>
+                                        <h3>Comment nous aider?</h3>
+                                        <p>Handissimo est en construction : nous avons besoin de vous !</p>
+                                        <a href="#"></a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
 
 {% endblock %}
