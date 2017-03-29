@@ -67,6 +67,7 @@
                             </div>
                             <div class="col-md-7">
                                 <h3>Choissisez votre type de structure</h3>
+                                {{ dump(organization) }}
                                 {% for form in edit_form.orgaStructure %}
                                     <div>
                                         {{ form_widget(form) }}
@@ -216,9 +217,7 @@
             {{ form_start(delete_form) }}
             <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
-            <form method="POST" action="{{ path("organization_draft_copy", {'id': organization.id}) }}">
-                <button type="submit" value="enregistrer un brouillon" >Enregistrer un brouillon</button>
-            </form>
+
 
         </li>
     </ul>

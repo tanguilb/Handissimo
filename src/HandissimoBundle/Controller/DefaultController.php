@@ -3,7 +3,9 @@
 namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\SecondaryNeeds;
 use HandissimoBundle\Entity\Solution;
+use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -111,4 +113,5 @@ class DefaultController extends Controller
             $em->flush();
             $this->render(":front:about.html.twig");
     }
+
 }

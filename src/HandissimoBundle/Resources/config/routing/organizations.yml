@@ -13,8 +13,8 @@ organizations_delete:
     defaults: { _controller: "HandissimoBundle:Organizations:delete" }
     methods:  DELETE
 
-organization_draft_copy:
+organizations_draft_copy:
     path:     /{id}/clone
     defaults: { _controller: "HandissimoBundle:Organizations:draftCopy" }
-    methods:  POST
+    methods:  [GET, POST]
 

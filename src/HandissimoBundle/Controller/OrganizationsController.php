@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,10 +15,13 @@ class OrganizationsController extends Controller
 {
     /**
      * Creates a new organization entity.
-     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getRepository('HandissimoBundle:StructureType');
+        $structuresList = $em->findAll();
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $form->handleRequest($request);
@@ -32,13 +36,16 @@ class OrganizationsController extends Controller
 
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
+            'structureList' => $structuresList,
             'form' => $form->createView(),
         ));
     }
 
     /**
      * Displays a form to edit an existing organization entity.
-     *
+     * @param Request $request
+     * @param Organizations $organization
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Organizations $organization)
     {
@@ -61,7 +68,9 @@ class OrganizationsController extends Controller
 
     /**
      * Deletes a organization entity.
-     *
+     * @param Request $request
+     * @param Organizations $organization
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Organizations $organization)
     {
@@ -93,7 +102,7 @@ class OrganizationsController extends Controller
         ;
     }
 
-    private function draftCopyAction(Organizations $organization)
+   /* private function draftCopyAction(Organizations $organization)
     {
         $em = $this->getDoctrine()->getManager();
         $copy = clone $organization;
@@ -102,4 +111,13 @@ class OrganizationsController extends Controller
         return $this->redirectToRoute('handissimo_structure');
 
     }
+
+    private function createCloneForm(Organizations $organizations)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('/{id}/clone', array('id' => $organizations->getId())))
+            ->setMethod('CLONE')
+            ->getForm()
+            ;
+    }*/
 }

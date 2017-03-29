@@ -2,6 +2,11 @@
 
 namespace HandissimoBundle\Form\Type;
 
+
+use Doctrine\ORM\EntityRepository;
+use HandissimoBundle\Entity\StructureType;
+use HandissimoBundle\Repository\StructuresListRepository;
+use Sonata\AdminBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,6 +20,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class OrganizationsType extends AbstractType
 {
+
+
+
     /**
      * {@inheritdoc}
      */
@@ -81,13 +89,12 @@ class OrganizationsType extends AbstractType
                 'required' => false,
             ))
             ->add('orgaStructure', EntityType::class, array(
-                'class' => 'HandissimoBundle:StructuresList',
-                'label' => false,
+                'class' => 'HandissimoBundle\Entity\StructuresList',
                 'choice_label' => 'name',
                 'expanded' => true,
-                'attr' => array(
-                    'class' => 'orgaStru',
-                )
+                'label' => false,
+
+
             ))
             ->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
@@ -282,7 +289,7 @@ class OrganizationsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'HandissimoBundle\Entity\Organizations'
+            'data_class' => 'HandissimoBundle\Entity\Organizations',
         ));
     }
 

@@ -67,12 +67,22 @@
                             </div>
                             <div class="col-md-7">
                                 <h3>Choissisez votre type de structure</h3>
-                                {% for form in form.orgaStructure %}
-                                    <div>
-                                        {{ form_widget(form) }}
-                                        {{ form_label(form) }}
-                                    </div>
+                                {% for type in structureList %}
+                                    <h4>{{ type.name }}</h4>
+                                    {% for format in form.orgaStructure.vars.choices %}
+
+                                        {% if type.id == format.data.type.id %}
+
+                                            {{ form_widget(form.orgaStructure) }}
+                                            {{ form_label(form.orgaStructure) }}
+
+
+                                        {% endif %}
+                                    {% endfor %}
                                 {% endfor %}
+
+
+
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="publictarget">
