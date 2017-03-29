@@ -138,6 +138,24 @@
     margin: 50px auto 90px auto;
 }
 
+/***************************/
+/***** Headband solution****/
+/***************************/
+
+#headband-solution {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.headband-title {
+    color: #61bdb9;
+    text-align: center;
+}
+
+.test {
+    text-align: center;
+}
+
 /*--------------------------*/
 /*Appearing Effect on images*/
 /*--------------------------*/
@@ -272,4 +290,66 @@ figure.effect-sadie:hover p {
     opacity: 1;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
+}
+
+/****************************/
+/**** Headband stats ***/
+/****************************/
+#headband-stats {
+    background-color: #61bdb9;
+    height: 100px;
+    text-align: center;
+}
+
+.stat-content {
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+.nb-stat {
+    font-size: 3em;
+}
+
+/****************************/
+/****** Headband news *******/
+/****************************/
+
+.zoom {
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+}
+
+.zoom:hover,
+.zoom:active,
+.zoom:focus {
+    /**adjust scale to desired size,
+    add browser prefixes**/
+    -ms-transform: scale(2.5);
+    -moz-transform: scale(2.5);
+    -webkit-transform: scale(2.5);
+    -o-transform: scale(2.5);
+    transform: scale(2.5);
+    position:relative;
+    z-index:100;
+}
+
+#img-week {
+    width: 220px;
+    height: auto;
+}
+
+#title-news {
+    margin-bottom: 50px;
+}
+
+.news-content {
+    margin-bottom: 50px;
+}
+
+#video {
+
 }

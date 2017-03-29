@@ -209,4 +209,21 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getAllOrganizations()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('count(o.id)')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
+    }
+
+    /*public function getAllUsers()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->innerJoin('o.userorg', 'u')
+            ->select('count(u.id)')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
+    }*/
 }

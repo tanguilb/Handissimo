@@ -26,7 +26,6 @@
                         <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
                     </button>
                 </a>
-                {#% include ':front:opinion-button.html.twig' %#}
                 {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
