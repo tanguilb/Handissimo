@@ -70,30 +70,26 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="headingOne">
                             <div  class="panel-body">
+                                {% if  organization.organizationDescription %}
+                                    <div class="col-md-12 description">
+                                        <p>{{ organization.organizationDescription|raw }}</p>
+                                    </div>
+                                {% endif %}
                                 <div class="col-md-12">
                                     <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
                                 </div>
                                 <ul>
                                     {% for disability in organization.disabilityTypes %}
                                         <li>{{ disability }}</li>
-
                                     {% endfor %}
                                 </ul>
-                                <div class="col-md-12">
-                                    <h3 class="second-title">Age : </h3><p class="bold"> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                <div class="col-md-6">
+                                    <h3 class="second-title">Age : </h3><p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                 </div>
                                 {% if organization.freeplace %}
-                                <div class="col-md-12">
-                                    <h3 class="second-title">Nombre de personnes accompagnées :</h3><p class="bold"> {{ organization.freeplace }}</p>
+                                <div class="col-md-6">
+                                    <h3 class="second-title">Nombre de personnes accompagnées :</h3><p> {{ organization.freeplace }}</p>
                                 </div>
-                                {% endif %}
-                                <div class="col-md-12">
-                                <h3 class="second-title">A qui s'adresse-t-on ?</h3>
-                                </div>
-                                {% if  organization.organizationDescription %}
-                                    <div class="col-md-12 description">
-                                       <p>{{ organization.organizationDescription|raw }}</p>
-                                    </div>
                                 {% endif %}
                                 {% if organization.interventionZone %}
                                     <div class="col-md-12">
@@ -116,7 +112,7 @@
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="panel-body">
                                 <div class="col-md-12">
-                                <h3 class="second-title">La structure offre principalement : </h3>
+                                <h3 class="second-title">Cette solution offre principalement les services suivants: </h3>
                                 <ul>
                                     {% for need in organization.needs %}
                                         <li>{{ need }}</li>
@@ -185,7 +181,8 @@
                                 <div class="col-md-12">
                                     <h3 class="second-title">Leurs métiers sont :</h3>
                                     <ul>
-                                        <li>
+                                        {% if organization.stafforganizations is not empty %}
+                                        <li class="col-md-4">
                                             <h4>Personnel de soin :</h4>
                                             <ul>
                                                 {% for jobs in organization.stafforganizations %}
@@ -193,7 +190,9 @@
                                                 {% endfor %}
                                             </ul>
                                         </li>
-                                        <li>
+                                        {% endif %}
+                                        {% if organization.socialstaffs is not empty %}
+                                        <li class="col-md-4">
                                             <h4>Personnel éducatif et social :</h4>
                                             <ul>
                                                 {% for socialJobs in organization.socialstaffs %}
@@ -201,7 +200,9 @@
                                                 {% endfor %}
                                             </ul>
                                         </li>
-                                        <li>
+                                        {% endif %}
+                                        {% if organization.otherjobs is not empty %}
+                                        <li class="col-md-4">
                                             <h4>Autres :</h4>
                                             <ul>
                                                 {% for otherJobs in organization.otherjobs %}
@@ -209,6 +210,7 @@
                                                 {% endfor %}
                                             </ul>
                                         </li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>
