@@ -379,12 +379,12 @@
 
                 <!-- Resources -->
                 <div class="resources col-md-12">
-                    {% if organization.brochure %}
+                    {% if organization.brochures %}
                     <!-- download button -->
-                    <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochure.filename) }}" target="_blank">
+                    <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochures.filename) }}" target="_blank">
                         <div class="line download-line">
                             <i class="fa fa-download" aria-hidden="true"></i>
-                            <p>{{ organization.brochure.filename }}</p>
+                            <p>{{ organization.brochures.filename }}</p>
                         </div>
                     </a>
                     {% endif %}

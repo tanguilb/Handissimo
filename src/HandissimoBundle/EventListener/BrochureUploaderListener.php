@@ -45,7 +45,7 @@ class BrochureUploaderListener
             return;
         }
 
-        $file = $entity->getBrochure();
+        $file = $entity->getBrochures();
 
         if(!$file instanceof UploadedFile)
         {
@@ -54,7 +54,7 @@ class BrochureUploaderListener
 
         $fileName = $this->uploader->upload($file);
 
-        $entity->setBrochure($fileName);
+        $entity->setBrochures($fileName);
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -66,9 +66,9 @@ class BrochureUploaderListener
             return;
         }
 
-        if($fileName = $entity->getBrochure())
+        if($fileName = $entity->getBrochures())
         {
-            $entity->setBrochure(new File($this->uploader->getTargetDir().'/'.$fileName));
+            $entity->setBrochures(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Entity;
 
+
 /**
  * Organizations
  */
@@ -1666,31 +1667,31 @@ class Organizations
     /**
      * @var string
      */
-    private $brochure;
+    private $brochures;
 
 
     /**
-     * Set brochure
+     * Set brochures
      *
-     * @param string $brochure
+     * @param string $brochures
      *
      * @return Organizations
      */
-    public function setBrochure($brochure)
+    public function setBrochures($brochures)
     {
-        $this->brochure = $brochure;
+        $this->brochures = $brochures;
 
         return $this;
     }
 
     /**
-     * Get brochure
+     * Get brochures
      *
      * @return string
      */
-    public function getBrochure()
+    public function getBrochures()
     {
-        return $this->brochure;
+        return $this->brochures;
     }
 
 
