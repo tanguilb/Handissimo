@@ -18,7 +18,7 @@
             <div class="nav navbar-nav navbar-right">
                 <a href="{{ path('handissimo_structure') }}">
                     <button class="btn modal-button">
-                        <i class="fa fa-user" aria-hidden="true"></i>Je suis une solution
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>Comment ça marche ?
                     </button>
                 </a>
                 <a href="{{ path('handissimo_aboutpage') }}">
@@ -34,9 +34,9 @@
                             Bonjour {{ app.user.username }}
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('sonata_user_profile_edit') }}">Mon compte</a></li>
-                            <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('sonata_user_profile_edit') }}">MON COMPTE</a></li>
+                            <li><a href="{{ path('sonata_user_security_logout') }}">DECONNEXION</a></li>
                     {% endif %}
                             </ul>
                 {% else %}
