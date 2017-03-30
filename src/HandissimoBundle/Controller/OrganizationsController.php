@@ -21,21 +21,25 @@ class OrganizationsController extends Controller
     public function newAction(Request $request)
     {
         $em = $this->getDoctrine()->getRepository('HandissimoBundle:StructureType');
-        $structuresList = $em->findAll();
+        $structuresType = $em->findAll();
+        $em2 = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
+        $structuresList = $em2->findAll();
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($organization);
             $em->flush($organization);
 
-            return $this->redirectToRoute('handissimo_organizations_standard_page', array('id' => $organization->getId()));
+            return $this->redirectToRoute('handissimo_aboutpage');
         }
 
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
+            'structureType' => $structuresType,
             'structureList' => $structuresList,
             'form' => $form->createView(),
         ));

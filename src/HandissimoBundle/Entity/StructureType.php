@@ -7,6 +7,7 @@ namespace HandissimoBundle\Entity;
  */
 class StructureType
 {
+
     /**
      * @var int
      */

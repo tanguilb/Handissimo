@@ -9,6 +9,8 @@
     <!-- Head block -->
     <div class="head-block"></div>
     <div class="container main-block">
+        {##}
+
         <div class="row">
             <h1 class="title main-title">Vous êtes une solution</h1>
             <div class="img-block">
@@ -16,7 +18,10 @@
             </div>
         </div>
 
-        {% for flash_message in app.session.flashBag.get('notice') %}
+        {% for use in howToUse %}
+            {{ use.howToUse|raw }}
+        {% endfor %}
+       {# {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 {{ flash_message }}
@@ -70,6 +75,6 @@
                 <li>Créer votre fiche ou la compléter si elle existe déjà en vous connectant sur <a href="{{ path('fos_user_security_login') }}" class="link-about">mon compte</a></li>
             </ul>
             </div>
-        {% endif %}
+        {% endif %}#}
     </div>
 {% endblock body %}

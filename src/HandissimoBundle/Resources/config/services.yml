@@ -8,3 +8,9 @@ services:
         arguments: [~, HandissimoBundle\Entity\StructureType, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: StructureType }
+
+    handissimo.admin.edit_content:
+        class: HandissimoBundle\Admin\EditContentAdmin
+        arguments: [~, HandissimoBundle\Entity\EditContent, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: EditContent }

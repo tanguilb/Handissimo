@@ -16,7 +16,7 @@ handissimo_organizations_standard_page:
 
 handissimo_structure:
     path: /solution
-    defaults: { _controller: "HandissimoBundle:Default:structure" }
+    defaults: { _controller: "HandissimoBundle:EditContent:howToUse" }
 
 #handissimo_answer:
  #   path: /structure/{id}

@@ -5,7 +5,7 @@
  * Date: 29/03/17
  * Time: 11:49
  */
-/*
+
 namespace HandissimoBundle\Form\Type;
 
 
@@ -37,7 +37,7 @@ class StructuresListType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
- /*   public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'HandissimoBundle\Entity\StructuresList',

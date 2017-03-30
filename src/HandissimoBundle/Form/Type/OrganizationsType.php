@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use HandissimoBundle\Entity\StructureType;
 use HandissimoBundle\Repository\StructuresListRepository;
 use Sonata\AdminBundle\Form\Type\CollectionType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,13 +15,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class OrganizationsType extends AbstractType
 {
-
 
 
     /**
@@ -92,13 +94,24 @@ class OrganizationsType extends AbstractType
                 'class' => 'HandissimoBundle\Entity\StructuresList',
                 'choice_label' => 'name',
                 'expanded' => true,
-                'label' => false,
+                'required' => true,))
 
+            ;
 
-            ))
+        /*$builder
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use($options){
+                $obj = $event->getData();
+                var_dump($obj);
+                $form = $event->getForm();
+                //var_dump($form);
+            });
+*/
+
+            $builder
             ->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
                 'choice_label' => 'disabilityName',
+                'choice_value' => 'id',
                 'label' => 'Handicap des personnes accompagnées',
                 'multiple' => true,
                 'expanded' => true,
