@@ -106,7 +106,7 @@ class OrganizationsController extends Controller
         ;
     }
 
-   /* private function draftCopyAction(Organizations $organization)
+    private function draftCopyAction(Organizations $organization)
     {
         $em = $this->getDoctrine()->getManager();
         $copy = clone $organization;
@@ -116,7 +116,7 @@ class OrganizationsController extends Controller
 
     }
 
-    private function createCloneForm(Organizations $organizations)
+    /*private function createCloneForm(Organizations $organizations)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('/{id}/clone', array('id' => $organizations->getId())))

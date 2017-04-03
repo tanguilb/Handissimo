@@ -17,7 +17,7 @@ Application\Sonata\UserBundle\Entity\User:
           nullable: true
        compact:
           type: boolean
-          nullable: false
+          nullable: true
 
    oneToOne:
        organizationsuser:

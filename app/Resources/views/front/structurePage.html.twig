@@ -14,14 +14,14 @@
         <div class="row">
             <h1 class="title main-title">Vous êtes une solution</h1>
             <div class="img-block">
-                <img src="{{ asset('images/about2.png') }}" alt="" class="img-responsive">
+                <img src="{{ asset('images/about3.jpeg') }}" alt="" class="img-responsive">
             </div>
         </div>
 
         {% for use in howToUse %}
             {{ use.howToUse|raw }}
         {% endfor %}
-       {# {% for flash_message in app.session.flashBag.get('notice') %}
+        {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 {{ flash_message }}
@@ -34,7 +34,7 @@
             </div>
         {% endfor %}
         <!-- Text block -->
-        <div class="text-content description">
+        {#<div class="text-content description">
             <h2>Qu’est-ce qu’une solution ?</h2>
                 <ul>
                     <li>Vous proposez des services d’accompagnement éducatif, pédagogique, thérapeutique. </li>
@@ -49,7 +49,7 @@
                 <ul>
                     <li>Demander à prendre la main sur votre fiche afin d’être désormais le seul à pouvoir la créer ou la modifier, en remplissant <span class="bold">ce formulaire</span> :</li>
                 </ul>
-        </div>
+        </div>#}
         <div class="col-md-offset-2 col-md-7 col-xs-12">
             <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form_body">
                 {{ form_start(form) }}
@@ -65,12 +65,12 @@
                 {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
                 <p>
                 {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
-                {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
+                {#{{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}#}
                 <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
                 {{ form_end(form) }}
             </form>
         </div>
-        {% else %}
+       {# {% else %}
             <ul>
                 <li>Créer votre fiche ou la compléter si elle existe déjà en vous connectant sur <a href="{{ path('fos_user_security_login') }}" class="link-about">mon compte</a></li>
             </ul>

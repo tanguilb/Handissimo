@@ -67,7 +67,6 @@
                             </div>
                             <div class="col-md-7">
                                 <h3>Choissisez votre type de structure</h3>
-                                {{ dump(organization) }}
                                 {% for form in edit_form.orgaStructure %}
                                     <div>
                                         {{ form_widget(form) }}
