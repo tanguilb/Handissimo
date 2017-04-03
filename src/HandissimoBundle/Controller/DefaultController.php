@@ -48,7 +48,9 @@ class DefaultController extends Controller
 
     public function standardPageAction(Organizations $organization){
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        $pictures = $repository->findByCaroussel(1);
+        //$pictures = $repository->findByCaroussel(1);
+        $organizationsId = $organization->getId();
+        $pictures = $repository->getImageByOrganizations($organizationsId);
 
         $user = $this->getUser();
         $comment = new Comment();

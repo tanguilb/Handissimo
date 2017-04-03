@@ -26,32 +26,14 @@
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
                 </div>
             </div>
-
+            {% if organization.media is not empty %}
             <!-- Carousel-->
-            <div class="carousel">
-                <ul>
-                    {% for picture in pictures %}
-                        {% if organization.id == picture.organizationsId %}
-                            <li class="line-img">
-                                <img class="caroussel-image" src="{{ asset(picture.webPath) }}">
-                            </li>
-                    {% elseif organization.userOrg == null or picture.organizationsId is not defined %}
-                    <li class="line-img">
-                        <img class="carousel-image" src="{{ asset('images/FICHE_DETAILS2.jpg') }}" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="{{ asset('images/FICHE_DETAILS3.jpg') }}" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="{{ asset('images/FICHE_DETAILS_TOP.jpg') }}" alt="">
-                    </li>
+            {% include 'front/carousel.html.twig' %}
+            {% else%}
 
-                    {% endif %}
-                    {% endfor %}
+            <img class="main-image" src="{{ asset('images/FAM LUCON 2.png') }}" alt="Handissimo - Image principal structure">
 
-
-                </ul>
-            </div>
+            {% endif %}
 
             <!-- Essential Block -->
             <div class="essential-block col-md-8">
@@ -68,7 +50,7 @@
                                 </h2>
                             </div>
                         </div>
-                        <div id="collapseOne" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <div  class="panel-body">
                                 {% if  organization.organizationDescription %}
                                     <div class="col-md-12 description">
@@ -175,43 +157,43 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                             <div class="panel-body">
+                                {% if organization.teamMembersNumber is not empty %}
                                 <div class="col-md-12">
                                     <h3 class="second-title">L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</h3>
                                 </div>
+                                {% endif %}
                                 <div class="col-md-12">
                                     <h3 class="second-title">Leurs métiers sont :</h3>
-                                    <ul>
                                         {% if organization.stafforganizations is not empty %}
-                                        <li class="col-md-4">
+                                        <div class="col-md-4">
                                             <h4>Personnel de soin :</h4>
                                             <ul>
                                                 {% for jobs in organization.stafforganizations %}
                                                     <li>{{ jobs }}</li>
                                                 {% endfor %}
                                             </ul>
-                                        </li>
+                                        </div>
                                         {% endif %}
                                         {% if organization.socialstaffs is not empty %}
-                                        <li class="col-md-4">
+                                        <div class="col-md-4">
                                             <h4>Personnel éducatif et social :</h4>
                                             <ul>
                                                 {% for socialJobs in organization.socialstaffs %}
                                                     <li>{{ socialJobs }}</li>
                                                 {% endfor %}
                                             </ul>
-                                        </li>
+                                        </div>
                                         {% endif %}
                                         {% if organization.otherjobs is not empty %}
-                                        <li class="col-md-4">
+                                        <div class="col-md-4">
                                             <h4>Autres :</h4>
                                             <ul>
                                                 {% for otherJobs in organization.otherjobs %}
                                                     <li>{{ otherJobs }}</li>
                                                 {% endfor %}
                                             </ul>
-                                        </li>
+                                        </div>
                                         {% endif %}
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -228,18 +210,22 @@
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                             <div class="panel-body">
+                                {% if organization.openhours is not empty %}
                                 <div class="col-md-12">
-                                    <h3 class="second-title">Heures d'ouvertures : </h3><p class="bold">{{ organization.openhours }}</p>
+                                    <h3 class="second-title">Heures d'ouverture : </h3><p class="bold">{{ organization.openhours }}</p>
                                 </div>
+                                {% endif %}
                                 <div class="col-md-12">
-                                <h3 class="second-title">Jours d'ouvertures : </h3>
+                                <h3 class="second-title">Jours d'ouverture : </h3>
                                     <ul>
                                         <li>
-                                            semaine : <p>{% for days in organization.opendays %}{{ days }} ,{% endfor %}</p>
+                                            semaine : <p>{% for days in organization.opendays %}{{ days }}&nbsp;{% endfor %}</p>
                                         </li>
+                                        {% if organization.opendaysYear is not empty %}
                                         <li>
-                                            année : <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }} ,{% endfor %}</p>
+                                            année : <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }}&nbsp;{% endfor %}</p>
                                         </li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                                 {% if organization.inscription %}
@@ -406,32 +392,37 @@
                         Retour à la recherche
                     </button>
                 </div>
+                <div class="col-md-2">
+                    <a href="{{ path('research_action') }}" class="btn btn-edit" role="button">
+                        Retour à l'acceuil
+                    </a>
+                </div>
                 <div class="col-md-3 col-xs-offset-1 col-xs-12">
                     {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
                         {% if organization.userorg == null %}
                             <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
-                                Editer cette fiche
+                                Modifier la fiche
                             </a>
                         {% elseif  user.organizationsuser == null %}
                             <button onclick="goBack()" class="btn btn-return" role="button">
-                                Cette fiche n'est pas éditable
+                                Vous ne pouvez pas modifier cette fiche
                             </button>
                         {% elseif  user.organizationsuser.id == organization.id %}
                             <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
-                                Editer cette fiche
+                                Modifier la fiche
                             </a>
                         {% else %}
                             <button onclick="goBack()" class="btn btn-return" role="button">
-                                Cette fiche n'est pas éditable
+                                Vous ne pouvez pas modifier cette fiche
                             </button>
                         {% endif %}
                     {% elseif organization.userorg == null %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
-                            Editer cette fiche
+                            Modifier la fiche
                         </a>
                     {% else %}
                         <button onclick="goBack()" class="btn btn-return" role="button">
-                            Cette fiche n'est pas éditable
+                            Vous ne pouvez pas modifier cette fiche
                         </button>
                     {% endif %}
                 </div>

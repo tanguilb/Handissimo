@@ -1753,43 +1753,4 @@ class Organizations
     {
         return $this->society;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $media;
-
-
-    /**
-     * Add medium
-     *
-     * @param \HandissimoBundle\Entity\Media $medium
-     *
-     * @return Organizations
-     */
-    public function addMedia(\HandissimoBundle\Entity\Media $medium)
-    {
-        $this->media[] = $medium;
-
-        return $this;
-    }
-
-    /**
-     * Remove medium
-     *
-     * @param \HandissimoBundle\Entity\Media $medium
-     */
-    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
-    {
-        $this->media->removeElement($medium);
-    }
-
-    /**
-     * Get media
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
 }

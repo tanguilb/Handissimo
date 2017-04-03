@@ -1,0 +1,35 @@
+<div class="container">
+
+    <!-- thumb navigation carousel -->
+    <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+        <!-- thumb navigation carousel items -->
+        <ul class="list-inline">
+            {% for picture in pictures %}
+            <li> <a id="carousel-selector-{{ loop.index0 }}" class="selected">
+                    <img src="{{ asset(picture.webPath) }}" class="img-responsive">
+                </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- main slider carousel -->
+
+    <div class="row">
+        <div class="col-md-12" id="slider">
+            <div class="col-md-12" id="carousel-bounding-box">
+                <div id="myCarousel" class="carousel">
+                    <!-- main slider carousel items -->
+                    <div class="carousel-inner">
+                        {% for picture in pictures %}
+                        <div class="{% if loop.index0 == 0 %} active {% endif %} item" data-slide-number="{{ loop.index0 }}">
+                            <img src="{{ asset(picture.webPath) }}" class="img-responsive">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/main slider carousel-->
+</div>

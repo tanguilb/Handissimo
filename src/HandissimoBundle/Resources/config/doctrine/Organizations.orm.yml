@@ -197,6 +197,10 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Comment
             mappedBy: organizationsComment
 
+        media:
+            targetEntity: HandissimoBundle\Entity\Media
+            mappedBy: organizationsImg
+
     manyToMany:
         disabilityTypes:
             targetEntity: DisabilityTypes
