@@ -27,7 +27,6 @@ HandissimoBundle\Entity\Media:
         firstPicture:
             type: boolean
 
-
     manyToOne:
         organizationsImg:
             targetEntity: HandissimoBundle\Entity\Organizations

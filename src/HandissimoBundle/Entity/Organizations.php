@@ -1754,45 +1754,12 @@ class Organizations
     {
         return $this->orgaStructure;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $media;
 
-
-    /**
-     * Add medium
-     *
-     * @param \HandissimoBundle\Entity\Media $medium
-     *
-     * @return Organizations
-     */
-    public function addMedia(\HandissimoBundle\Entity\Media $medium)
-    {
-        $this->media[] = $medium;
-
-        return $this;
-    }
-
-    /**
-     * Remove medium
-     *
-     * @param \HandissimoBundle\Entity\Media $medium
-     */
-    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
-    {
-        $this->media->removeElement($medium);
-    }
-
-    /**
-     * Get media
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
     /**
      * @var string
      */
@@ -1852,17 +1819,38 @@ class Organizations
         return $this->societyLogo;
     }
 
+
     /**
-     * Set media
+     * Add medium
      *
-     * @param \HandissimoBundle\Entity\Media $media
+     * @param \HandissimoBundle\Entity\Media $medium
      *
      * @return Organizations
      */
-    public function setMedia(\HandissimoBundle\Entity\Media $media = null)
+    public function addMedia(\HandissimoBundle\Entity\Media $medium)
     {
-        $this->media = $media;
+        $this->media[] = $medium;
 
         return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     */
+    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
+    }
+
+    /**
+     * Get media
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 }
