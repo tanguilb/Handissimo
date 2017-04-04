@@ -1,6 +1,8 @@
 <?php
 
 namespace HandissimoBundle\Repository;
+use HandissimoBundle\Entity\StructuresList;
+use HandissimoBundle\Entity\StructureType;
 
 /**
  * StructuresListRepository
@@ -20,4 +22,15 @@ class StructuresListRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
 
     }
+
+    public function getByType(StructureType $structuresList)
+    {
+        $query = $this->createQueryBuilder('sl')
+            ->join('sl.type', 'st')
+            ->where('st.id = :type')
+            ->setParameter('type', $structuresList->getId())
+            ->getQuery();
+        return $query->getResult();
+    }
+
 }

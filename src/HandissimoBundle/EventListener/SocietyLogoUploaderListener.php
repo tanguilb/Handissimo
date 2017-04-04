@@ -2,13 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: tangui
- * Date: 16/03/17
- * Time: 14:30
+ * Date: 23/03/17
+ * Time: 10:07
  */
 
 namespace HandissimoBundle\EventListener;
 
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -16,7 +15,7 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Services\Upload\FileUploader;
 
-class BrochureUploaderListener
+class SocietyLogoUploaderListener
 {
     private $uploader;
 
@@ -38,12 +37,11 @@ class BrochureUploaderListener
         $id = $entity->getId();
         $em = $args->getObjectManager();
         $repository = $em->getRepository('HandissimoBundle:Organizations');
-        $brochures = $repository->getBrochuresById($id);
-        foreach($brochures as $brochure)
-        {
-            if($brochure['brochure'] !== null and $entity->getBrochures() == null)
-            {
-                $entity->setBrochures($brochure['brochure']);
+        $logos = $repository->getLogoSocietyById($id);
+
+        foreach($logos as $logo) {
+            if ($logo['societyLogo'] !== null and $entity->getSocietyLogo() == null) {
+                $entity->setSocietyLogo($logo['societyLogo']);
             }
             $this->uploadFile($entity);
         }
@@ -56,7 +54,7 @@ class BrochureUploaderListener
             return;
         }
 
-        $file = $entity->getBrochures();
+        $file = $entity->getSocietyLogo();
 
         if(!$file instanceof UploadedFile)
         {
@@ -65,7 +63,7 @@ class BrochureUploaderListener
 
         $fileName = $this->uploader->upload($file);
 
-        $entity->setBrochures($fileName);
+        $entity->setSocietyLogo($fileName);
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -77,9 +75,9 @@ class BrochureUploaderListener
             return;
         }
 
-        if($fileName = $entity->getBrochures())
+        if($fileName = $entity->getSocietyLogo())
         {
-            $entity->setBrochures(new File($this->uploader->getTargetDir().'/'.$fileName));
+            $entity->setSocietyLogo(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
 

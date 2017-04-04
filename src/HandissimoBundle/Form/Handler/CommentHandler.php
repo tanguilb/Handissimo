@@ -21,7 +21,6 @@ class CommentHandler
     protected $form;
     protected $request;
     protected $em;
-    protected $container;
 
     public function __construct(Form $form, Request $request, EntityManager $em)
     {

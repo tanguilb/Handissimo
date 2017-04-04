@@ -12,13 +12,19 @@ HandissimoBundle\Entity\StructuresList:
         name:
             type: string
             length: 255
-        structureType:
-            type: array
-            nullable: true
+
 
     oneToMany:
         organizationsStructure:
             targetEntity: HandissimoBundle\Entity\Organizations
             mappedBy: orgaStructure
+
+    manyToOne:
+        type:
+            targetEntity: HandissimoBundle\Entity\StructureType
+            inversedBy: structure
+            joinColumn:
+                name: type_id
+                referencedColunName: id
 
     lifecycleCallbacks: {  }

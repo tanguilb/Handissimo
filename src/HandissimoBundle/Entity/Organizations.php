@@ -1793,4 +1793,76 @@ class Organizations
     {
         return $this->media;
     }
+    /**
+     * @var string
+     */
+    private $structureLogo;
+
+    /**
+     * @var string
+     */
+    private $societyLogo;
+
+
+    /**
+     * Set structureLogo
+     *
+     * @param string $structureLogo
+     *
+     * @return Organizations
+     */
+    public function setStructureLogo($structureLogo)
+    {
+        $this->structureLogo = $structureLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get structureLogo
+     *
+     * @return string
+     */
+    public function getStructureLogo()
+    {
+        return $this->structureLogo;
+    }
+
+    /**
+     * Set societyLogo
+     *
+     * @param string $societyLogo
+     *
+     * @return Organizations
+     */
+    public function setSocietyLogo($societyLogo)
+    {
+        $this->societyLogo = $societyLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get societyLogo
+     *
+     * @return string
+     */
+    public function getSocietyLogo()
+    {
+        return $this->societyLogo;
+    }
+
+    /**
+     * Set media
+     *
+     * @param \HandissimoBundle\Entity\Media $media
+     *
+     * @return Organizations
+     */
+    public function setMedia(\HandissimoBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
 }

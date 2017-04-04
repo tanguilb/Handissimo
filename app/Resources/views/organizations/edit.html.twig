@@ -1,0 +1,230 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organedit.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="head-img"></div>
+    <div class="container main-block">
+        <div class="container-info row">
+            <!-- Block Title-->
+            <div class="head-block">
+                <div class="row ">
+                    <p class="update">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas!</p>
+                </div>
+
+            </div>
+        </div>
+        {% block organization_form %}
+            <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" id="form_body">
+                {{ form_start(edit_form) }}
+                {{ form_errors(edit_form) }}
+
+                <div class="container">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
+                        <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public ciblé</a></li>
+                        <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
+                        <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
+                        <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
+                            <div class="col-md-5">
+                                {{ form_row(edit_form.name) }}
+                                {{ form_errors(edit_form.name) }}
+                                {{ form_row(edit_form.structureLogo) }}
+                                {{ form_errors(edit_form.structureLogo) }}
+                                {{ form_row(edit_form.society) }}
+                                {{ form_errors(edit_form.society) }}
+                                {{ form_row(edit_form.societyLogo) }}
+                                {{ form_errors(edit_form.societyLogo) }}
+                                {{ form_row(edit_form.address) }}
+                                {{ form_errors(edit_form.address) }}
+                                {{ form_row(edit_form.addressComplement) }}
+                                {{ form_errors(edit_form.addressComplement) }}
+                                {{ form_row(edit_form.postal) }}
+                                {{ form_errors(edit_form.postal) }}
+                                {{ form_row(edit_form.city) }}
+                                {{ form_errors(edit_form.city) }}
+                                {{ form_row(edit_form.phone_number) }}
+                                {{ form_errors(edit_form.phone_number) }}
+                                {{ form_row(edit_form.mail) }}
+                                {{ form_errors(edit_form.mail) }}
+                                {{ form_row(edit_form.directorName) }}
+                                {{ form_errors(edit_form.directorName) }}
+                                {{ form_row(edit_form.website) }}
+                                {{ form_errors(edit_form.website ) }}
+                                {{ form_row(edit_form.facebook) }}
+                                {{ form_errors(edit_form.facebook) }}
+                                {{ form_row(edit_form.brochures) }}
+                                {{ form_errors(edit_form.brochures) }}
+                            </div>
+                            <div class="col-md-7">
+                                <h3>Choissisez votre type de structure</h3>
+                                {% for form in edit_form.orgaStructure %}
+                                    <div>
+                                        {{ form_widget(form) }}
+                                        {{ form_label(form) }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="publictarget">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    {% for disability in edit_form.disabilitytypes %}
+                                        <div>
+                                            {{ form_widget(disability) }}
+                                            {{ form_label(disability) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-md-5">
+                                    <h3>Âge des personnes accueillies</h3>
+
+                                    <div class="col-md-6">
+                                        {{ form_row(edit_form.agemini) }}
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        {{ form_row(edit_form.agemaxi) }}
+                                    </div>
+                                    {{ form_row(edit_form.freeplace) }}
+                                    {{ form_row(edit_form.interventionZone) }}
+
+                                </div>
+                            </div>
+                            {{ form_row(edit_form.organizationDescription) }}
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="serve">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{ form_label(edit_form.needs) }}
+                                    {% for needs in edit_form.needs %}
+                                        <div>
+                                            {{ form_widget(needs) }}
+                                            {{ form_label(needs) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_label(edit_form.secondneeds) }}
+                                    {% for secondneeds in edit_form.secondneeds %}
+                                        <div>
+                                            {{ form_widget(secondneeds) }}
+                                            {{ form_label(secondneeds) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form_row(edit_form.workingDescription) }}
+                            {{ form_row(edit_form.accomodation) }}
+                            {{ form_row(edit_form.accomodationDescription) }}
+                            {{ form_row(edit_form.school) }}
+                            {{ form_row(edit_form.schoolDescription) }}
+                            {{ form_row(edit_form.dayDescription) }}
+                            {{ form_row(edit_form.receptionDescription) }}
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="team">
+
+                            {{ form_row(edit_form.teamMembersNumber) }}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form_label(edit_form.stafforganizations) }}
+                                    {% for staff in edit_form.stafforganizations %}
+                                        <div>
+                                            {{ form_widget(staff) }}
+                                            {{ form_label(staff) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form_label(edit_form.socialstaffs) }}
+                                    {% for social in edit_form.socialstaffs %}
+                                        <div>
+                                            {{ form_widget(social) }}
+                                            {{ form_label(social) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form_label(edit_form.otherjobs) }}
+                                    {% for other in edit_form.otherjobs %}
+                                        <div>
+                                            {{ form_widget(other) }}
+                                            {{ form_label(other) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form_row(edit_form.commentStaff) }}
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="informations">
+
+                            {{ form_row(edit_form.openhours) }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {% for days in edit_form.opendays %}
+                                        <div>
+                                            {{ form_widget(days) }}
+                                            {{ form_label(days) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-6">
+                                    {% for daysYear in edit_form.opendaysYear %}
+                                        <div>
+                                            {{ form_widget(daysYear) }}
+                                            {{ form_label(daysYear) }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form_row(edit_form.inscription) }}
+                            {{ form_row(edit_form.cost) }}
+                            {{ form_row(edit_form.transport) }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <input type="submit" value="envoyer"/>
+
+
+                {{ form_end(edit_form) }}
+
+            </form>
+
+        {% endblock organization_form %}
+    </div>
+    <ul>
+        {#<li>
+            <a href="{{ path('organizations_index') }}">Back to the list</a>
+        </li>#}
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+
+
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascript %}
+    link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}

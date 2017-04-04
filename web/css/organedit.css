@@ -1,0 +1,59 @@
+
+
+#form_body label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 2px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+#handissimobundle_organizations_name,
+#handissimobundle_organizations_society,
+#handissimobundle_organizations_address,
+#handissimobundle_organizations_addressComplement,
+#handissimobundle_organizations_postal,
+#handissimobundle_organizations_city,
+#handissimobundle_organizations_phone_number,
+#handissimobundle_organizations_mail,
+#handissimobundle_organizations_directorName,
+#handissimobundle_organizations_website,
+#handissimobundle_organizations_facebook,
+#handissimobundle_organizations_agemini,
+#handissimobundle_organizations_agemaxi,
+#handissimobundle_organizations_freeplace,
+#handissimobundle_organizations_interventionZone,
+#handissimobundle_organizations_teamMembersNumber,
+#handissimobundle_organizations_openhours
+{
+    padding: 5px 0 0 0;
+    border: none;
+    border-bottom: solid 1px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+    color: #777777;
+}
+
+input[type=radio]:checked {
+    position: absolute;
+    border: 5px solid black;
+}
+input[type=radio]:checked + label{
+    position: relative;
+}
+
+.orgaStru {
+    padding: 5px 0 0 0;
+}
+
+.orgaStru input {
+    position: absolute;
+}
+
+#handissimobundle_organizations_stafforganizations input[type=checkbox]
+{
+    text-align: center;
+    position: relative;
+}
+

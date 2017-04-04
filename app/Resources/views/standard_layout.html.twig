@@ -33,4 +33,9 @@ file that was distributed with this source code.
 {#{% block sonata_left_side %}
 
 {% endblock %}#}
-
+{% block side_bar_after_nav %}
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
+        <img src="{{ asset("images/handissimo-logo.png") }}" alt="Logo handissimo">
+        Retournez au menu
+    </a>
+{% endblock side_bar_after_nav %}

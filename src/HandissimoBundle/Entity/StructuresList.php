@@ -88,35 +88,34 @@ class StructuresList
 
 
     /**
-     * @var array
+     * @var \HandissimoBundle\Entity\StructureType
      */
-    private $structureType;
+    private $type;
 
 
     /**
-     * Set structureType
+     * Set type
      *
-     * @param array $structureType
+     * @param \HandissimoBundle\Entity\StructureType $type
      *
      * @return StructuresList
      */
-    public function setStructureType($structureType)
+    public function setType(\HandissimoBundle\Entity\StructureType $type = null)
     {
-        $this->structureType = $structureType;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get structureType
+     * Get type
      *
-     * @return array
+     * @return \HandissimoBundle\Entity\StructureType
      */
-    public function getStructureType()
+    public function getType()
     {
-        return $this->structureType;
+        return $this->type;
     }
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */

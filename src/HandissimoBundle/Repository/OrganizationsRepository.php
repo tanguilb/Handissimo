@@ -187,7 +187,34 @@ class OrganizationsRepository extends EntityRepository
             ->select('o.mail')
             ->where('o.id =' .$id)
             ->getQuery();
-        return$query->getResult();
+        return $query->getResult();
+    }
+
+    public function getBrochuresById($id)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('o.brochures')
+            ->where('o.id =' . $id)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function getLogoStructureById($id)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('o.structureLogo')
+            ->where('o.id =' . $id)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function getLogoSocietyById($id)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('o.societyLogo')
+            ->where('o.id =' . $id)
+            ->getQuery();
+        return $query->getResult();
     }
 
     public function getSearchProfile($profileSearch)
