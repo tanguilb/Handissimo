@@ -48,43 +48,18 @@
     display: flex;
     justify-content: flex-end;
 }
-/*Carousel*/
-.carousel,
-.carousel ul,
-.carousel ul li,
-.line-img {
-    margin: 0;
+
+.list-inline img {
+    width: 80px;
+    height: 60px;
 }
 
-.carousel {
-    margin: 10px 0;
-    height: 300px;
-    overflow: hidden;
+#slider {
+    text-align: center;
 }
 
-.carousel ul{
-    list-style: none;
-    width: 600px;
-    height: 300px;
-    display: flex;
-    padding-left: 0;
-    padding-right: 0;
-}
+#block-carousel {
 
-.carousel ul li {
-    width: 600px;
-    height: 300px;
-    margin-right: 10px;
-}
-
-.line-img{
-    max-width: 600px;
-    max-height:300px;
-}
-
-.carousel-image {
-    width: auto;
-    height: 100%;
 }
 
 /* Essential block */
@@ -232,11 +207,29 @@
     .img-block {
         padding-right: 0;
     }
+    .btn-return,
+    .btn-edit {
+        margin-bottom: 0;
+        margin-top: 5px;
+    }
 }
 @media screen and (max-width: 360px) {
     .map {
         height:300px;
     }
+}
+
+.notModify {
+    margin-top: 50px;
+    background-color: #C37095;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+#return-button {
+    margin: 0 auto;
+    text-align: center;
 }
 
 /*******************/
@@ -358,4 +351,8 @@ h4 {
 
 .organization-panel{
     padding: 20px;
+}
+
+.panel-body {
+    padding-top: 0;
 }

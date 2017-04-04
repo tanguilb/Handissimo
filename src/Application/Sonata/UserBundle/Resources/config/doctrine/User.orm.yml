@@ -1,29 +1,29 @@
 Application\Sonata\UserBundle\Entity\User:
-   type:  entity
-   table: fos_user
-   id:
-       id:
-           type: integer
-           generator:
-               strategy: AUTO
+    type:  entity
+    table: fos_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
 
-   fields:
-       userType:
-          type: string
-          nullable: false
-          length: 50
-       avatar:
-          type: text
-          nullable: true
-       compact:
-          type: boolean
-          nullable: true
+    fields:
+        userType:
+            type: string
+            nullable: false
+            length: 50
+        avatar:
+            type: text
+            nullable: true
+        compact:
+            type: boolean
+            nullable: true
 
-   oneToOne:
-       organizationsuser:
-           targetEntity: HandissimoBundle\Entity\Organizations
-           inversedBy: userorg
-           joinColumn:
-               name: organizations_id
-               referencedColumnName: id
-               nullable: true
+    oneToOne:
+        organizationsuser:
+            targetEntity: HandissimoBundle\Entity\Organizations
+            inversedBy: userorg
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
+                nullable: true

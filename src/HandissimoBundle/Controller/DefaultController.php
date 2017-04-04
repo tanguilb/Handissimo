@@ -16,16 +16,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
-    public function searchAction(Request $request)
-    {
-        $form = $this->createForm('HandissimoBundle\Form\SearchType');
-        $form->handleRequest($request);
-
-        return $this->render('front/search.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
-
     public function aboutAction(){
         return $this->render('front/about.html.twig');
     }
@@ -60,7 +50,9 @@ class DefaultController extends Controller
 
     public function standardPageAction(Organizations $organization){
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        $pictures = $repository->findByCaroussel(1);
+        //$pictures = $repository->findByCaroussel(1);
+        $organizationsId = $organization->getId();
+        $pictures = $repository->getImageByOrganizations($organizationsId);
 
         $user = $this->getUser();
         $comment = new Comment();

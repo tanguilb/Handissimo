@@ -10,6 +10,7 @@ use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Repository\StaffRepository;
 use HandissimoBundle\Repository\StructuresListRepository;
+use HandissimoBundle\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,8 +71,18 @@ class AjaxController extends Controller
                 'form' => $formAdvancedResearch->createView(),
             ));
         }
+        $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getLastOrganizations(6);
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+        $organizations = $repository->findAll();
+
+        $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
+        $statOrganizations = $repository->getAllOrganizations();
         return $this->render('front/index.html.twig', array(
             'form' => $form->createView(),
+            'carousel' => $carousel,
+            'organizations' => $organizations,
+            'statUser' => $statUser,
+            'statOrganizations' => $statOrganizations
         ));
     }
 
@@ -147,6 +158,19 @@ class AjaxController extends Controller
 
             return new JsonResponse(array("data" => json_encode($email)));
         }else {
+            throw new \HttpException('500', 'Invalid call');
+        }
+    }
+
+    public function searchProfileAction(Request $request, $profileSearch)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $profile = $repository->getSearchProfile($profileSearch);
+
+            return new JsonResponse(array("data" => json_encode($profile)));
+        }else{
             throw new \HttpException('500', 'Invalid call');
         }
     }

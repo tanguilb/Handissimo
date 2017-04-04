@@ -22,7 +22,6 @@ class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
             ->tab('Identité')
                 ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
@@ -82,10 +81,10 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Facebook',
                         'required' => false
                     ))
-                    ->add('brochure', FileType::class, array(
-                        'data_class' => null,
-                        'label' => 'Brochure',
+                    ->add('brochures', FileType::class, array(
+                        'label' => 'Télécharger des documents',
                         'required' => false,
+                        'data_class' => null,
                     ))
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))

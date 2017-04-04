@@ -26,10 +26,10 @@ class RegisterType extends RegistrationFormType
         $builder
             ->add('userType', ChoiceType::class, array(
                 'choices' => array(
-                    'Personne en situation de handicap' => "je suis une personne en situation de handicap",
-                    'Proche ou aidant' => " je suis un proche, une famille, un aidant",
-                    'professionnel(le)' => "je suis un professionnel",
-                    '' => "Autres",
+                    'Personne en situation de handicap' => "Je suis une personne en situation de handicap",
+                    'Proche ou aidant' => " Je suis un proche, une famille, un aidant",
+                    'Professionnel(le)' => "Je suis un professionnel",
+                    'Autre' => "Autre"
                 ),
                 'multiple' => false,
                 'expanded' => true

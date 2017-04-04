@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Entity;
 
+
 /**
  * Organizations
  */
@@ -10,7 +11,6 @@ class Organizations
     public function __toString()
     {
         return $this->name;
-
     }
 
     // GENERATE CODE
@@ -1667,33 +1667,63 @@ class Organizations
     /**
      * @var string
      */
-    private $brochure;
+    private $brochures;
 
 
     /**
-     * Set brochure
+     * Set brochures
      *
-     * @param string $brochure
+     * @param string $brochures
      *
      * @return Organizations
      */
-    public function setBrochure($brochure)
+    public function setBrochures($brochures)
     {
-        $this->brochure = $brochure;
+        $this->brochures = $brochures;
 
         return $this;
     }
 
     /**
-     * Get brochure
+     * Get brochures
      *
      * @return string
      */
-    public function getBrochure()
+    public function getBrochures()
     {
-        return $this->brochure;
+        return $this->brochures;
     }
 
+
+    /**
+     * @var string
+     */
+    private $society;
+
+
+    /**
+     * Set society
+     *
+     * @param string $society
+     *
+     * @return Organizations
+     */
+    public function setSociety($society)
+    {
+        $this->society = $society;
+
+        return $this;
+    }
+
+    /**
+     * Get society
+     *
+     * @return string
+     */
+    public function getSociety()
+    {
+        return $this->society;
+    }
 
     /**
      * @var \HandissimoBundle\Entity\StructuresList
@@ -1725,33 +1755,43 @@ class Organizations
         return $this->orgaStructure;
     }
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $society;
+    private $media;
 
 
     /**
-     * Set society
+     * Add medium
      *
-     * @param string $society
+     * @param \HandissimoBundle\Entity\Media $medium
      *
      * @return Organizations
      */
-    public function setSociety($society)
+    public function addMedia(\HandissimoBundle\Entity\Media $medium)
     {
-        $this->society = $society;
+        $this->media[] = $medium;
 
         return $this;
     }
 
     /**
-     * Get society
+     * Remove medium
      *
-     * @return string
+     * @param \HandissimoBundle\Entity\Media $medium
      */
-    public function getSociety()
+    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
     {
-        return $this->society;
+        $this->media->removeElement($medium);
+    }
+
+    /**
+     * Get media
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
     /**
      * @var string

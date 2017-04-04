@@ -25,4 +25,26 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function getLastOrganizations($limit)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->orderBy('m.id', 'DESC')
+            ->where('m.firstPicture = 1')
+            ->groupBy('m.webPath')
+            ->setMaxResults($limit)
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getImageByOrganizations($organizationsId)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->join('m.organizationsImg', 'o')
+            ->where('m.caroussel = 1')
+            ->andWhere('m.organizationsImg = ?1')
+            ->setParameter(1, $organizationsId)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

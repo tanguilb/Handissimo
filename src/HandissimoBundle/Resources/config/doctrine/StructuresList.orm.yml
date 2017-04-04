@@ -14,7 +14,7 @@ HandissimoBundle\Entity\StructuresList:
             length: 255
 
 
-    oneToOne:
+    oneToMany:
         organizationsStructure:
             targetEntity: HandissimoBundle\Entity\Organizations
             mappedBy: orgaStructure

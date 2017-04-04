@@ -38,12 +38,12 @@ class BrochureUploaderListener
         $id = $entity->getId();
         $em = $args->getObjectManager();
         $repository = $em->getRepository('HandissimoBundle:Organizations');
-        $brochure = $repository->getBrochureById($id);
-        foreach($brochure as $brochures)
+        $brochures = $repository->getBrochuresById($id);
+        foreach($brochures as $brochure)
         {
-            if($brochures['brochure'] !== null and $entity->getBrochure() == null)
+            if($brochure['brochure'] !== null and $entity->getBrochures() == null)
             {
-                $entity->setBrochure($brochures['brochure']);
+                $entity->setBrochures($brochure['brochure']);
             }
             $this->uploadFile($entity);
         }
@@ -56,7 +56,7 @@ class BrochureUploaderListener
             return;
         }
 
-        $file = $entity->getBrochure();
+        $file = $entity->getBrochures();
 
         if(!$file instanceof UploadedFile)
         {
@@ -65,8 +65,7 @@ class BrochureUploaderListener
 
         $fileName = $this->uploader->upload($file);
 
-        $entity->setBrochure($fileName);
-
+        $entity->setBrochures($fileName);
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -78,10 +77,9 @@ class BrochureUploaderListener
             return;
         }
 
-
-        if($fileName = $entity->getBrochure())
+        if($fileName = $entity->getBrochures())
         {
-            $entity->setBrochure(new File($this->uploader->getTargetDir().'/'.$fileName));
+            $entity->setBrochures(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }
 

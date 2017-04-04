@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
+{% import "Macros/form_elements.html.twig" as formElements %}
 
+{% block title %}Handissimo - Comment ça marche ?{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/structure.css') }}">
@@ -12,7 +14,7 @@
         {##}
 
         <div class="row">
-            <h1 class="title main-title">Vous êtes une solution</h1>
+            <h1 class="title main-title">Comment ça marche ?</h1>
             <div class="img-block">
                 <img src="{{ asset('images/about3.jpeg') }}" alt="" class="img-responsive">
             </div>

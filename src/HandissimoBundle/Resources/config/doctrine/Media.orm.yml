@@ -22,14 +22,19 @@ HandissimoBundle\Entity\Media:
             type: string
             length: 255
             nullable: true
-        organizationsId:
-            type: string
-            length: 255
         caroussel:
             type: boolean
         firstPicture:
             type: boolean
 
+
+    manyToOne:
+        organizationsImg:
+            targetEntity: HandissimoBundle\Entity\Organizations
+            inversedBy: media
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
 
     lifecycleCallbacks:
         prePersist:   [lifecycleFileUpload]

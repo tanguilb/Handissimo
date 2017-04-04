@@ -258,33 +258,4 @@ class CommentAnswer
     {
         $this->parutionDate = new \DateTime();
     }
-    /**
-     * @var boolean
-     */
-    private $activate;
-
-
-    /**
-     * Set activate
-     *
-     * @param boolean $activate
-     *
-     * @return CommentAnswer
-     */
-    public function setActivate($activate)
-    {
-        $this->activate = $activate;
-
-        return $this;
-    }
-
-    /**
-     * Get activate
-     *
-     * @return boolean
-     */
-    public function getActivate()
-    {
-        return $this->activate;
-    }
 }

@@ -74,6 +74,20 @@ p {
 /*****NAVBAR*****/
 /****************/
 
+#dropdown-home {
+    background-color: #C37095;
+
+}
+
+#dropdown-home li a {
+    color: #FFFFFF;
+}
+
+#dropdown-home li a:focus,
+#dropdown-home li a:hover{
+    background-color: #DC7095;;
+}
+
 .navbar {
     height: 100px;
     z-index: 997;

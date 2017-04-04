@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -95,7 +96,6 @@ class OrganizationsAdminController extends Controller
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 try {
-
                     $object->setUser($this->container->get('security.token_storage')->getToken()->getUser());
                     $object->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
                     $object = $this->admin->update($object);

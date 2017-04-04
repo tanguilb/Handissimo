@@ -86,36 +86,6 @@ class StructuresList
         return $this->logoMdph;
     }
 
-    /**
-     * @var \HandissimoBundle\Entity\Organizations
-     */
-    private $organizationsStructure;
-
-
-    /**
-     * Set organizationsStructure
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
-     *
-     * @return StructuresList
-     */
-    public function setOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure = null)
-    {
-        $this->organizationsStructure = $organizationsStructure;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsStructure
-     *
-     * @return \HandissimoBundle\Entity\Organizations
-     */
-    public function getOrganizationsStructure()
-    {
-        return $this->organizationsStructure;
-    }
-
 
     /**
      * @var \HandissimoBundle\Entity\StructureType

@@ -41,7 +41,7 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 100
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
-        brochure:
+        brochures:
             - File:
                 maxSize: 2M
                 maxSizeMessage: 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}'
