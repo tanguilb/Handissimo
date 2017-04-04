@@ -68,10 +68,10 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Facebook',
                         'required' => false
                     ))
-                    ->add('brochure', FileType::class, array(
+                    ->add('brochures', FileType::class, array(
                         'label' => 'Télécharger des documents',
                         'required' => false,
-                        'data_class' => null
+                        'data_class' => null,
                     ))
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))

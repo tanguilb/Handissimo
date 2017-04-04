@@ -170,7 +170,7 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
-        brochure:
+        brochures:
             type: string
             length: 255
             nullable: true
@@ -199,6 +199,10 @@ HandissimoBundle\Entity\Organizations:
                 name: structure_list_id
                 referencedColumnName: id
 
+
+        media:
+            targetEntity: HandissimoBundle\Entity\Media
+            mappedBy: organizationsImg
 
     manyToMany:
         disabilityTypes:

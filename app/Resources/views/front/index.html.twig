@@ -45,5 +45,114 @@
             {{ form_end(form) }}
         </div>
     </section>
+    <section class="container-fluid" id="headband-solution">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <h2 class="headband-title">Vous connaissez une solution ? Vous êtes responsable d’une solution ?
+                Inscrivez-la sur Handissimo pour la partager avec tous.</h2>
+                <div id="services-items">
+                    <div class="row">
+                        <div class="grid">
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="effect-sadie">
+                                    <img src="{{ asset('images/photo1.jpeg') }}" alt="Je connais une solution"/>
+                                    <figcaption>
+                                        <h3>Je connais une solution</h3>
+                                        <p>Handissimo est collaboratif : les familles et les professionnels contribuent</p>
+                                        <a href="{{ path('handissimo_structure') }}"></a>
+                                    </figcaption>
+                                </figure>
+                            </div>
 
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="effect-sadie">
+                                    <img src="{{ asset('images/photo2.jpeg') }}" alt="Qui sommes nous?" />
+                                    <figcaption>
+                                        <h3>Qui sommes nous?</h3>
+                                        <p>Handissimo est interactif : complétez, commentez, posez des questions…</p>
+                                        <a href="{{ path('handissimo_aboutpage') }}"></a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
+                                <figure class="effect-sadie">
+                                    <img src="{{ asset('images/photo3.jpeg') }}" alt="Comment nous aider?" />
+                                    <figcaption>
+                                        <h3>Comment nous aider?</h3>
+                                        <p>Handissimo est en construction : nous avons besoin de vous !</p>
+                                        <a href="#"></a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid" id="headband-stats">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <p class="stat-content"><span class="nb-stat">{{ statUser|length }}
+                </span><br> Utilisateurs enregistrés sur le site</p>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <p class="stat-content"><span class="nb-stat">{{ statOrganizations }}</span><br> Solutions de répertoriées</p>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <p class="stat-content"><span class="nb-stat">?</span><br> Bénévoles participent à la vie du site</p>
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid" id="headband-news">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <h2 class="headband-title" id="title-news">Les actualités de Handissimo</h2>
+                <div class="news-content">
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12"  id="video">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <video src="{{ asset('images/Cavernae_Terragen2.mp4') }}" controls="controls" typeof="video"></video>
+                            </div>
+                            <p>Handissimo démarre! Comment ce sera après ?</p>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    {% for images in carousel %}
+                                        <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
+                                    {% endfor %}
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    {% for images in carousel %}
+                                        <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
+                                            <img src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
+                                            <div class="carousel-caption">
+                                                <h3>{#{ organizations.name }#}</h3>
+                                                <p>{#{ organizations.city }#}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/photo4.png') }}" alt=" Handissimo - L'image de la semaine"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Entity;
 
+
 /**
  * Organizations
  */
@@ -10,7 +11,6 @@ class Organizations
     public function __toString()
     {
         return $this->name;
-
     }
 
     // GENERATE CODE
@@ -1667,31 +1667,31 @@ class Organizations
     /**
      * @var string
      */
-    private $brochure;
+    private $brochures;
 
 
     /**
-     * Set brochure
+     * Set brochures
      *
-     * @param string $brochure
+     * @param string $brochures
      *
      * @return Organizations
      */
-    public function setBrochure($brochure)
+    public function setBrochures($brochures)
     {
-        $this->brochure = $brochure;
+        $this->brochures = $brochures;
 
         return $this;
     }
 
     /**
-     * Get brochure
+     * Get brochures
      *
      * @return string
      */
-    public function getBrochure()
+    public function getBrochures()
     {
-        return $this->brochure;
+        return $this->brochures;
     }
 
 
@@ -1753,5 +1753,44 @@ class Organizations
     public function getOrgaStructure()
     {
         return $this->orgaStructure;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $media;
+
+
+    /**
+     * Add medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     *
+     * @return Organizations
+     */
+    public function addMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media[] = $medium;
+
+        return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     */
+    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
+    }
+
+    /**
+     * Get media
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 }

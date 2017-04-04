@@ -189,4 +189,32 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return$query->getResult();
     }
+
+    public function getSearchProfile($profileSearch)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o.name')
+            ->where('o.name like :data')
+            ->setParameter(':data', '%' . $profileSearch . '%')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getByOrganizationsProfile($data)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o')
+            ->where('o.name like :organizationData')
+            ->setParameter('organizationData', '%'. $data . '%')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getAllOrganizations()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('count(o.id)')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
+    }
 }
