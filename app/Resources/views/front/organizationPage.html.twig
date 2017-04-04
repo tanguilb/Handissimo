@@ -20,7 +20,13 @@
 
                 <div class="row">
                     <div class="head-title col-md-11 col-sm-11">
+                        {% if organization.societyLogo %}
+                            <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}">
+                        {% endif %}
                         <h1 class="title"> {{ organization.name }} </h1>
+                        {% if organization.structureLogo %}
+                            <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}">
+                        {% endif %}
                     </div>
                     <!-- this is the line to display like button
                     <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->

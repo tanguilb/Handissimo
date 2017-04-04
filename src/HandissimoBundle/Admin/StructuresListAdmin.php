@@ -14,6 +14,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class StructuresListAdmin extends AbstractAdmin
@@ -24,18 +25,14 @@ class StructuresListAdmin extends AbstractAdmin
             ->add('name', TextType::class, array(
                 'label' => 'Liste des structures'
             ))
-            ->add('structureType', ChoiceFieldMaskType::class, array(
+            ->add('type', EntityType::class, array(
+                'class' => 'HandissimoBundle:StructureType',
+                'choice_label' => 'name',
                 'label' => 'Type de structure',
                 'required' => true,
-                'multiple' => true,
                 'expanded' => true,
-                'choices' => array(
-                    'Etablissements et services spécialisés sur orientation de la MDPH' => 'Etablissements et services spécialisés sur orientation de la MDPH',
-                    'Structures en accès libre' => 'Structures en accès libre',
-                    'Petite enfance et scolarité ordinaire' => 'Petite enfance et scolarité ordinaire',
-                    'Réseaux d’entraide' => 'Réseaux d’entraide',
-                    'Service d’information, d’orientation et de coordination' => 'Service d’information, d’orientation et de coordination'
-                )
+                'by_reference' => true,
+
             ));
             /*->add('structurelists',EntityType::class,array (
                 'class' => 'HandissimoBundle:StructuresList',

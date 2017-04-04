@@ -1,0 +1,20 @@
+organizations_new:
+    path:     /new
+    defaults: { _controller: "HandissimoBundle:Organizations:new" }
+    methods:  [GET, POST]
+
+organizations_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HandissimoBundle:Organizations:edit" }
+    methods:  [GET, POST]
+
+organizations_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HandissimoBundle:Organizations:delete" }
+    methods:  DELETE
+
+organizations_draft_copy:
+    path:     /{id}/clone
+    defaults: { _controller: "HandissimoBundle:Organizations:draftCopy" }
+    methods:  [GET, POST]
+

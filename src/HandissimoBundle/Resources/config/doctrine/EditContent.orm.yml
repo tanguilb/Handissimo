@@ -1,0 +1,19 @@
+HandissimoBundle\Entity\EditContent:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\EditContentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        howToUse:
+            type: text
+            nullable: true
+        home:
+            type: string
+            length: 255
+            nullable: true
+    lifecycleCallbacks: {  }

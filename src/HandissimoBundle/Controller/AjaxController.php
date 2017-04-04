@@ -10,7 +10,6 @@ use HandissimoBundle\Repository\NeedsRepository;
 use HandissimoBundle\Repository\OrganizationsRepository;
 use HandissimoBundle\Repository\StaffRepository;
 use HandissimoBundle\Repository\StructuresListRepository;
-use HandissimoBundle\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

@@ -105,7 +105,7 @@ class Needs
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $organizations;
+    protected $organizations;
 
 
     /**

@@ -86,63 +86,80 @@ class StructuresList
         return $this->logoMdph;
     }
 
+
     /**
-     * @var \HandissimoBundle\Entity\Organizations
+     * @var \HandissimoBundle\Entity\StructureType
+     */
+    private $type;
+
+
+    /**
+     * Set type
+     *
+     * @param \HandissimoBundle\Entity\StructureType $type
+     *
+     * @return StructuresList
+     */
+    public function setType(\HandissimoBundle\Entity\StructureType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \HandissimoBundle\Entity\StructureType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $organizationsStructure;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->organizationsStructure = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set organizationsStructure
+     * Add organizationsStructure
      *
      * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
      *
      * @return StructuresList
      */
-    public function setOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure = null)
+    public function addOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure)
     {
-        $this->organizationsStructure = $organizationsStructure;
+        $this->organizationsStructure[] = $organizationsStructure;
 
         return $this;
+    }
+
+    /**
+     * Remove organizationsStructure
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
+     */
+    public function removeOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure)
+    {
+        $this->organizationsStructure->removeElement($organizationsStructure);
     }
 
     /**
      * Get organizationsStructure
      *
-     * @return \HandissimoBundle\Entity\Organizations
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOrganizationsStructure()
     {
         return $this->organizationsStructure;
-    }
-
-    /**
-     * @var array
-     */
-    private $structureType;
-
-
-    /**
-     * Set structureType
-     *
-     * @param array $structureType
-     *
-     * @return StructuresList
-     */
-    public function setStructureType($structureType)
-    {
-        $this->structureType = $structureType;
-
-        return $this;
-    }
-
-    /**
-     * Get structureType
-     *
-     * @return array
-     */
-    public function getStructureType()
-    {
-        return $this->structureType;
     }
 }

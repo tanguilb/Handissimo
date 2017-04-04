@@ -1696,35 +1696,6 @@ class Organizations
 
 
     /**
-     * @var \HandissimoBundle\Entity\StructuresList
-     */
-    private $orgaStructure;
-
-
-    /**
-     * Set orgaStructure
-     *
-     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
-     *
-     * @return Organizations
-     */
-    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
-    {
-        $this->orgaStructure = $orgaStructure;
-
-        return $this;
-    }
-
-    /**
-     * Get orgaStructure
-     *
-     * @return \HandissimoBundle\Entity\StructuresList
-     */
-    public function getOrgaStructure()
-    {
-        return $this->orgaStructure;
-    }
-    /**
      * @var string
      */
     private $society;
@@ -1752,6 +1723,36 @@ class Organizations
     public function getSociety()
     {
         return $this->society;
+    }
+
+    /**
+     * @var \HandissimoBundle\Entity\StructuresList
+     */
+    private $orgaStructure;
+
+
+    /**
+     * Set orgaStructure
+     *
+     * @param \HandissimoBundle\Entity\StructuresList $orgaStructure
+     *
+     * @return Organizations
+     */
+    public function setOrgaStructure(\HandissimoBundle\Entity\StructuresList $orgaStructure = null)
+    {
+        $this->orgaStructure = $orgaStructure;
+
+        return $this;
+    }
+
+    /**
+     * Get orgaStructure
+     *
+     * @return \HandissimoBundle\Entity\StructuresList
+     */
+    public function getOrgaStructure()
+    {
+        return $this->orgaStructure;
     }
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -1791,5 +1792,77 @@ class Organizations
     public function getMedia()
     {
         return $this->media;
+    }
+    /**
+     * @var string
+     */
+    private $structureLogo;
+
+    /**
+     * @var string
+     */
+    private $societyLogo;
+
+
+    /**
+     * Set structureLogo
+     *
+     * @param string $structureLogo
+     *
+     * @return Organizations
+     */
+    public function setStructureLogo($structureLogo)
+    {
+        $this->structureLogo = $structureLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get structureLogo
+     *
+     * @return string
+     */
+    public function getStructureLogo()
+    {
+        return $this->structureLogo;
+    }
+
+    /**
+     * Set societyLogo
+     *
+     * @param string $societyLogo
+     *
+     * @return Organizations
+     */
+    public function setSocietyLogo($societyLogo)
+    {
+        $this->societyLogo = $societyLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get societyLogo
+     *
+     * @return string
+     */
+    public function getSocietyLogo()
+    {
+        return $this->societyLogo;
+    }
+
+    /**
+     * Set media
+     *
+     * @param \HandissimoBundle\Entity\Media $media
+     *
+     * @return Organizations
+     */
+    public function setMedia(\HandissimoBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
     }
 }
