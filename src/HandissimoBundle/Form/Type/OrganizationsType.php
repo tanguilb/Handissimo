@@ -79,8 +79,8 @@ class OrganizationsType extends AbstractType
                 'label' => 'Facebook :',
                 'required' => false,
             ))
-            ->add('brochure', FileType::class, array(
-                'label' => 'Brochure :',
+            ->add('brochures', FileType::class, array(
+                'label' => 'Brochures :',
                 'data_class' => null,
                 'required' => false,
             ))

@@ -116,4 +116,50 @@ class StructuresList
     {
         return $this->type;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $organizationsStructure;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->organizationsStructure = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add organizationsStructure
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
+     *
+     * @return StructuresList
+     */
+    public function addOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure)
+    {
+        $this->organizationsStructure[] = $organizationsStructure;
+
+        return $this;
+    }
+
+    /**
+     * Remove organizationsStructure
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
+     */
+    public function removeOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure)
+    {
+        $this->organizationsStructure->removeElement($organizationsStructure);
+    }
+
+    /**
+     * Get organizationsStructure
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganizationsStructure()
+    {
+        return $this->organizationsStructure;
+    }
 }

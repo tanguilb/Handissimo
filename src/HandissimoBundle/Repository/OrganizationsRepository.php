@@ -190,10 +190,10 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getBrochureById($id)
+    public function getBrochuresById($id)
     {
         $query = $this->createQueryBuilder('o')
-            ->select('o.brochure')
+            ->select('o.brochures')
             ->where('o.id =' . $id)
             ->getQuery();
         return $query->getResult();

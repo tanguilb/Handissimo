@@ -1851,4 +1851,18 @@ class Organizations
     {
         return $this->societyLogo;
     }
+
+    /**
+     * Set media
+     *
+     * @param \HandissimoBundle\Entity\Media $media
+     *
+     * @return Organizations
+     */
+    public function setMedia(\HandissimoBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
 }

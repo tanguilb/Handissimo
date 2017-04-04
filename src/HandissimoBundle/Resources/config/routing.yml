@@ -34,6 +34,7 @@ search_profile:
     path:   /profile/search/ajax/{profileSearch}
     defaults: { _controller: "HandissimoBundle:Ajax:searchProfile"}
     methods: POST
+
 handissimo_organizations:
     resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
     prefix:   /organizations
