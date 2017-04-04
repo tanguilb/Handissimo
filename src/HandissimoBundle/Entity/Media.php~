@@ -313,33 +313,4 @@ class Media
     }
 
 
-    /**
-     * @var \HandissimoBundle\Entity\Organizations
-     */
-    private $organizationsImg;
-
-
-    /**
-     * Set organizationsImg
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsImg
-     *
-     * @return Media
-     */
-    public function setOrganizationsImg(\HandissimoBundle\Entity\Organizations $organizationsImg = null)
-    {
-        $this->organizationsImg = $organizationsImg;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsImg
-     *
-     * @return \HandissimoBundle\Entity\Organizations
-     */
-    public function getOrganizationsImg()
-    {
-        return $this->organizationsImg;
-    }
 }
