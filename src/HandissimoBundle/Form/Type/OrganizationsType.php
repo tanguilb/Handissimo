@@ -3,11 +3,7 @@
 namespace HandissimoBundle\Form\Type;
 
 
-use Doctrine\ORM\EntityRepository;
-use HandissimoBundle\Entity\StructureType;
-use HandissimoBundle\Repository\StructuresListRepository;
-use Sonata\AdminBundle\Form\Type\CollectionType;
-use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,8 +11,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -94,20 +88,8 @@ class OrganizationsType extends AbstractType
                 'class' => 'HandissimoBundle\Entity\StructuresList',
                 'choice_label' => 'name',
                 'expanded' => true,
-                'required' => true,))
-
-            ;
-
-        /*$builder
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use($options){
-                $obj = $event->getData();
-                var_dump($obj);
-                $form = $event->getForm();
-                //var_dump($form);
-            });
-*/
-
-            $builder
+                'required' => true,
+            ))
             ->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
                 'choice_label' => 'disabilityName',
@@ -166,9 +148,9 @@ class OrganizationsType extends AbstractType
             ->add('accomodation', ChoiceType::class, array(
                 'choices' => array(
                     'oui' => 'oui',
-                    'non' => 'non',
-                )
-            ))
+                    'non' => 'non'
+                ))
+            )
             ->add('accomodationDescription', CKEditorType::class, array(
                 'label' => false,
                 'required' => false,
@@ -176,8 +158,8 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                     'extraPlugins' => 'confighelper',
                     'placeholder' =>
-                        'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...'
-                )
+                        'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
+                ),
             ))
             ->add('school', ChoiceType::class, array(
                 'choices' => array(

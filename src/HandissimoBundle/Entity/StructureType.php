@@ -8,6 +8,10 @@ namespace HandissimoBundle\Entity;
 class StructureType
 {
 
+    public function __toString()
+    {
+        return $this->name;
+    }
     /**
      * @var int
      */
