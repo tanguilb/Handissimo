@@ -7,6 +7,7 @@ HandissimoBundle\Entity\Opinion:
 HandissimoBundle\Entity\Organizations:
     properties:
         name:
+            - NotBlank: ~
             - Length:
                 max: 200
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
@@ -101,4 +102,7 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
-
+        freeDescription:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'

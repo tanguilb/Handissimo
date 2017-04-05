@@ -5,6 +5,8 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
     <link rel="stylesheet" href="{{ asset('css/organedit.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 {% endblock %}
 
 {% block sonata_profile_content %}
@@ -16,7 +18,6 @@
             <form method="POST" action="{{path('organizations_new')}}">
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
-
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
@@ -31,33 +32,20 @@
                         <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
                             <div class="col-md-5">
                                 {{ form_row(form.name) }}
-                                {{ form_errors(form.name) }}
                                 {{ form_row(form.structureLogo) }}
-                                {{ form_errors(form.structureLogo) }}
                                 {{ form_row(form.society) }}
-                                {{ form_errors(form.society) }}
                                 {{ form_row(form.societyLogo) }}
-                                {{ form_errors(form.societyLogo) }}
                                 {{ form_row(form.address) }}
-                                {{ form_errors(form.address) }}
                                 {{ form_row(form.addressComplement) }}
-                                {{ form_errors(form.addressComplement) }}
                                 {{ form_row(form.postal) }}
-                                {{ form_errors(form.postal) }}
                                 {{ form_row(form.city) }}
-                                {{ form_errors(form.city) }}
-                                {{ form_row(form.phone_number) }}
                                 {{ form_errors(form.phone_number) }}
+                                {{ form_row(form.phone_number) }}
                                 {{ form_row(form.mail) }}
-                                {{ form_errors(form.mail) }}
                                 {{ form_row(form.directorName) }}
-                                {{ form_errors(form.directorName) }}
                                 {{ form_row(form.website) }}
-                                {{ form_errors(form.website ) }}
                                 {{ form_row(form.facebook) }}
-                                {{ form_errors(form.facebook) }}
                                 {{ form_row(form.brochures) }}
-                                {{ form_errors(form.brochures) }}
                             </div>
                             <div class="col-md-7">
                                 <h3>Choissisez votre type de structure</h3>
@@ -160,6 +148,8 @@
                             </div>
                             {{ form_row(form.inscription) }}
                             <p class="update">Description limitée à 2000 caractères</p>
+                            {{ form_row(form.orientationMdph) }}
+
                             {{ form_row(form.cost) }}
                             <p class="update">Description limitée à 2000 caractères</p>
                             {{ form_row(form.transport) }}
@@ -176,8 +166,7 @@
 {% endblock %}
 
 {% block javascript %}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}

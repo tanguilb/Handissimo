@@ -245,6 +245,19 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                 )
             ))
+            /*->add('orientationMdph', ChoiceType::class, array(
+                'label' => 'Orientation MDPH',
+                'required' => false,
+                'choices' => array(
+                    1 => 'oui',
+                    0 => 'non'
+                ),
+                'expanded' => true
+            ))*/
+            ->add('orientationMdph', BooleanType::class, array(
+                'compound' => boolval(true)
+
+            ))
             ->add('openhours', TextType::class, array(
                 'label' => 'Heures d\'ouverture :',
                 'required' => false
