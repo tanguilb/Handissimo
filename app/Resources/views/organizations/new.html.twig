@@ -1,27 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends '@SonataUser/Profile/action.html.twig' %}
+{#% form_theme form ':Form:fields.html.twig' %#}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% block stylesheets %}
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
     <link rel="stylesheet" href="{{ asset('css/organedit.css') }}">
 {% endblock %}
 
-{% block body %}
-    <div class="head-img"></div>
-    <div class="container main-block">
-        <div class="container-info row">
+{% block sonata_profile_content %}
+        <div class="Advert">
             <!-- Block Title-->
-            <div class="head-block">
-                <div class="row ">
-                    <p class="update">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas!</p>
-                </div>
-
-            </div>
+            <p><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas!</span></p>
         </div>
         {% block organization_form %}
-            <form method="POST" action="{{path('organizations_new')}}" id="form_body">
+            <form method="POST" action="{{path('organizations_new')}}">
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
-
-                <div class="container">
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
@@ -67,23 +61,15 @@
                             </div>
                             <div class="col-md-7">
                                 <h3>Choissisez votre type de structure</h3>
-                                {% for form in form.orgaStructure %}
-                                    <div>
-                                        {{ form_widget(form) }}
-                                        {{ form_label(form) }}
-                                    </div>
-                                {% endfor %}
+                                    {{ form_widget(form.orgaStructure) }}
+                                    {{ form_label(form.orgaStructure) }}
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="publictarget">
                             <div class="row">
                                 <div class="col-md-7">
-                                    {% for disability in form.disabilitytypes %}
-                                        <div>
-                                            {{ form_widget(disability) }}
-                                            {{ form_label(disability) }}
-                                        </div>
-                                    {% endfor %}
+                                    {{ form_label(form.disabilitytypes) }}
+                                    {{ form_widget(form.disabilitytypes) }}
                                 </div>
 
                                 <div class="col-md-5">
@@ -108,21 +94,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     {{ form_label(form.needs) }}
-                                    {% for needs in form.needs %}
-                                        <div>
-                                            {{ form_widget(needs) }}
-                                            {{ form_label(needs) }}
-                                        </div>
-                                    {% endfor %}
+                                    {{ form_widget(form.needs) }}
                                 </div>
                                 <div class="col-md-6">
                                     {{ form_label(form.secondneeds) }}
-                                    {% for secondneeds in form.secondneeds %}
-                                        <div>
-                                            {{ form_widget(secondneeds) }}
-                                            {{ form_label(secondneeds) }}
-                                        </div>
-                                    {% endfor %}
+                                    {{ form_widget(form.secondneeds) }}
                                 </div>
                             </div>
                             {{ form_row(form.workingDescription) }}
@@ -174,47 +150,33 @@
                             {{ form_row(form.openhours) }}
                             <div class="row">
                                 <div class="col-md-6">
-                                    {% for days in form.opendays %}
-                                        <div>
-                                            {{ form_widget(days) }}
-                                            {{ form_label(days) }}
-                                        </div>
-                                    {% endfor %}
+                                    {{ form_label(form.opendays) }}
+                                    {{ form_widget(form.opendays) }}
                                 </div>
                                 <div class="col-md-6">
-                                    {% for daysYear in form.opendaysYear %}
-                                        <div>
-                                            {{ form_widget(daysYear) }}
-                                            {{ form_label(daysYear) }}
-                                        </div>
-                                    {% endfor %}
+                                    {{ form_label(form.opendaysYear) }}
+                                    {{ form_widget(form.opendaysYear) }}
                                 </div>
                             </div>
                             {{ form_row(form.inscription) }}
+                            <p class="update">Description limitée à 2000 caractères</p>
                             {{ form_row(form.cost) }}
+                            <p class="update">Description limitée à 2000 caractères</p>
                             {{ form_row(form.transport) }}
-
+                            <p class="update">Description limitée à 2000 caractères</p>
                         </div>
-
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <input id="send-message" type="submit" class="btn btn-default" value="Envoyer" />
-                    <button id="send-cancel" type="button" class="btn btn-default orange-btn" data-dismiss="modal">Annuler</button>
-                </div>
-                <input type="submit" value="envoyer"/>
+                    <input type="submit" value="Valider" id="send-message" class="btn btn-default"/>
 
                 {{ form_end(form) }}
 
             </form>
 
         {% endblock organization_form %}
-    </div>
 {% endblock %}
 
 {% block javascript %}
-    link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

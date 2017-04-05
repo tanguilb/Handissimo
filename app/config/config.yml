@@ -42,7 +42,6 @@ twig:
     form_themes:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
-        - 'form/fields.html.twig'
 
 sonata_formatter:
     formatters:

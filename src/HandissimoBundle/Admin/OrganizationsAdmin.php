@@ -3,7 +3,6 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use Faker\Provider\File;
 use HandissimoBundle\Entity\Organizations;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;

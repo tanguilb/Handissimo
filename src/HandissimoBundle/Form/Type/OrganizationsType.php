@@ -3,7 +3,7 @@
 namespace HandissimoBundle\Form\Type;
 
 
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -11,6 +11,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -76,19 +78,21 @@ class OrganizationsType extends AbstractType
                 'required' => false,
             ))
             ->add('facebook', TextType::class, array(
-                'label' => 'Facebook :',
+                'label' => 'Page Facebook :',
                 'required' => false,
             ))
             ->add('brochures', FileType::class, array(
-                'label' => 'Brochures :',
+                'label' => 'Télécharger des documents :',
                 'data_class' => null,
                 'required' => false,
             ))
             ->add('orgaStructure', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\StructuresList',
+                'label' => false,
                 'choice_label' => 'name',
                 'expanded' => true,
                 'required' => true,
+
             ))
             ->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
@@ -161,11 +165,14 @@ class OrganizationsType extends AbstractType
                         'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
                 ),
             ))
-            ->add('school', ChoiceType::class, array(
+            ->add('school', ChoiceFieldMaskType::class, array(
                 'choices' => array(
                     'oui' => 'oui',
                     'non' => 'non',
-                )
+                ),
+                'map' => array(
+                    'oui' => array('schoolDescription')
+                ),
             ))
             ->add('schoolDescription', CKEditorType::class, array(
                 'label' => false,
@@ -177,7 +184,7 @@ class OrganizationsType extends AbstractType
                         )
             ))
             ->add('dayDescription', CKEditorType::class, array(
-                'label' => false,
+                'label' => "Description d’une journée/semaine/intervention type",
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
@@ -269,13 +276,21 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('transport' , CKEditorType::class, array(
-                'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
+                'label' => 'Transports :',
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
+                    'extraPlugins' => 'confighelper',
+                    'placeholder' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?'
                 )
             ))
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
+
+        });
     }
     
     /**
