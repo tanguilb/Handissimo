@@ -3,7 +3,7 @@
 namespace HandissimoBundle\Form\Type;
 
 
-use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -11,8 +11,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -151,10 +149,15 @@ class OrganizationsType extends AbstractType
             ))
             ->add('accomodation', ChoiceType::class, array(
                 'choices' => array(
-                    'oui' => 'oui',
-                    'non' => 'non'
-                ))
-            )
+                    'oui' => '1',
+                    'non' => '0'
+                ),
+                'expanded' => true,
+                'empty_data' => false,
+                'required' => true,
+                'choices_as_values' => true,
+                'label' => 'Proposez-vous de l’accueil ?'
+            ))
             ->add('accomodationDescription', CKEditorType::class, array(
                 'label' => false,
                 'required' => false,
@@ -165,14 +168,16 @@ class OrganizationsType extends AbstractType
                         'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
                 ),
             ))
-            ->add('school', ChoiceFieldMaskType::class, array(
+            ->add('school', ChoiceType::class, array(
                 'choices' => array(
-                    'oui' => 'oui',
-                    'non' => 'non',
+                    'oui' => '1',
+                    'non' => '0'
                 ),
-                'map' => array(
-                    'oui' => array('schoolDescription')
-                ),
+                'expanded' => true,
+                'empty_data' => false,
+                'choices_as_values' => true,
+                'required' => true,
+                'label' => 'Proposez-vous de la scolarisation ?'
             ))
             ->add('schoolDescription', CKEditorType::class, array(
                 'label' => false,
@@ -191,7 +196,7 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('receptionDescription', CKEditorType::class, array(
-                'label' => false,
+                'label' => "Qu'est-il prévu pour les familles ?",
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
@@ -245,17 +250,16 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                 )
             ))
-            /*->add('orientationMdph', ChoiceType::class, array(
-                'label' => 'Orientation MDPH',
-                'required' => false,
+            ->add('orientationMdph', ChoiceType::class, array(
                 'choices' => array(
-                    1 => 'oui',
-                    0 => 'non'
+                    'oui' => '1',
+                    'non' => '0'
                 ),
-                'expanded' => true
-            ))*/
-            ->add('orientationMdph', BooleanType::class, array(
-                'compound' => boolval(true)
+                'expanded' => true,
+                'empty_value' => false,
+                'choices_as_values' => true,
+                'label' => 'Orientation Mdph',
+                'required' => true
 
             ))
             ->add('openhours', TextType::class, array(
@@ -296,14 +300,35 @@ class OrganizationsType extends AbstractType
                     'extraPlugins' => 'confighelper',
                     'placeholder' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?'
                 )
-            ))
-        ;
+            ));
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $data = $event->getData();
-            $form = $event->getForm();
-
-        });
+        $builder->get('school')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($schoolAsBoolean){
+                    return $schoolAsBoolean ? "1" : "0";
+                },
+                function ($schoolAsString){
+                    return $schoolAsString === "1" ? true : false;
+                }
+            ));
+        $builder->get('accomodation')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($accomodationAsBoolean){
+                    return $accomodationAsBoolean ? "1" : "0";
+                },
+                function ($accomodationAsString){
+                    return $accomodationAsString === "1" ? true : false;
+                }
+            ));
+        $builder->get('orientationMdph')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($orientationMdphAsBoolean){
+                    return $orientationMdphAsBoolean ? "1" : "0";
+                },
+                function ($orientationMdphAsString){
+                    return $orientationMdphAsString === "1" ? true : false;
+                }
+            ));
     }
     
     /**

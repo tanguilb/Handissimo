@@ -33,7 +33,37 @@
 
 .advert {
     text-align: center;
+    margin-top: 10px;
 }
 
+#new-organization,
+#edit-organization {
+    margin-bottom: 10px;
+    background-color: #61bdb9;
+    border: none;
+}
 
+#new-organization:hover,
+#new-organization:focus,
+#edit-organization:focus,
+#edit-organization:hover {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+#delete-organization {
+    margin-bottom: 10px;
+    background-color: #f7af49;
+    border: none;
+}
+
+#delete-organization:hover,
+#delete-organization:focus {
+    background-color: #FFBE49;
+    color: #FFFFFF;
+}
+
+#workingDescription {
+    margin-top: 10px;
+}
 

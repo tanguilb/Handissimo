@@ -1,4 +1,5 @@
 {% extends '@SonataUser/Profile/action.html.twig' %}
+{% form_theme edit_form ':Form:fields.html.twig' %}
 {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
@@ -10,7 +11,7 @@
 
 {% block sonata_profile_content %}
     {% block organization_form %}
-        <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" id="form_body">
+        <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}">
             {{ form_start(edit_form) }}
             {{ form_errors(edit_form) }}
                 <!-- Nav tabs -->
@@ -87,7 +88,9 @@
                                 {{ form_widget(edit_form.secondneeds) }}
                             </div>
                         </div>
-                        {{ form_row(edit_form.workingDescription) }}
+                        <div id="workingDescription">
+                            {{ form_row(edit_form.workingDescription) }}
+                        </div>
                         {{ form_row(edit_form.accomodation) }}
                         {{ form_row(edit_form.accomodationDescription) }}
                         {{ form_row(edit_form.school) }}
@@ -137,20 +140,27 @@
                         <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(edit_form.orientationMdph) }}
                         {{ form_row(edit_form.cost) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(edit_form.transport) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
                     </div>
                 </div>
-            <input type="submit" value="Valider" id="send-message" class="btn btn-default"/>
+            <div class="col-md-6">
+                <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
+            </div>
             {{ form_end(edit_form) }}
         </form>
 
+        <form method="POST" action="{{ path('organizations_delete', {'id': organization.id}) }}">
+            {{ form_start(delete_form) }}
+            <div class="col-md-6">
+                <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default"/>
+            </div>
+            {{ form_end(delete_form) }}
+        </form>
     {% endblock organization_form %}
-        {{ form_start(delete_form) }}
-        <input type="submit" value="Delete">
-        {{ form_end(delete_form) }}
 {% endblock %}
 
 {% block javascript %}
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}

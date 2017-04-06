@@ -41,9 +41,9 @@ class BrochureUploaderListener
         $brochures = $repository->getBrochuresById($id);
         foreach($brochures as $brochure)
         {
-            if($brochure['brochure'] !== null and $entity->getBrochures() == null)
+            if($brochure['brochures'] !== null and $entity->getBrochures() == null)
             {
-                $entity->setBrochures($brochure['brochure']);
+                $entity->setBrochures($brochure['brochures']);
             }
             $this->uploadFile($entity);
         }

@@ -242,6 +242,28 @@
                                             {% endif %}
                                         </ul>
                                     </div>
+                                    {% if organization.orientationMdph == 1 %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Sur orientation Mdph :</h3><p>oui</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img id="logo-mdph" src="{{ asset('images/mdph.jpg') }}" alt="handissimo - logo-mdph"
+                                                     class="media-object">
+                                            </div>
+                                            <div class="media-body">
+                                                Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite
+                                                "loi pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées",
+                                                entrée en vigueur le 1er janvier 2006...
+                                                La MDPH constitue un guichet unique destiné à accueillir les personnes handicapées et leur entourage pour les
+                                                informer et évaluer leurs besoins. Elles permettent de faciliter leurs démarches dans l'accès à leurs droits.
+                                                Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
+                                                médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
                                     {% if organization.inscription %}
                                     <div class="col-md-12">
                                       <h3 class="second-title">Comment s'inscrire ?</h3>

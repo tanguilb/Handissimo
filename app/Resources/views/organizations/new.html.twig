@@ -10,9 +10,9 @@
 {% endblock %}
 
 {% block sonata_profile_content %}
-    <div class="Advert">
+    <div class="advert">
         <!-- Block Title-->
-        <p><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas!</span></p>
+        <p><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}">>>CLIQUEZ-ICI<<<</a></span></p>
     </div>
     {% block organization_form %}
         <form method="POST" action="{{path('organizations_new')}}">
@@ -48,13 +48,15 @@
                         </div>
                         <div class="col-md-7">
                             <h3>Choissisez votre type de structure</h3>
-                                {{ form_widget(form.orgaStructure) }}
-                                {{ form_label(form.orgaStructure) }}
+                            {{ form_errors(form.orgaStructure) }}
+                            {{ form_label(form.orgaStructure) }}
+                            {{ form_widget(form.orgaStructure) }}
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="publictarget">
                         <div class="row">
                             <div class="col-md-7">
+                                {{ form_errors(form.disabilitytypes) }}
                                 {{ form_label(form.disabilitytypes) }}
                                 {{ form_widget(form.disabilitytypes) }}
                             </div>
@@ -80,15 +82,19 @@
                     <div role="tabpanel" class="tab-pane fade" id="serve">
                         <div class="row">
                             <div class="col-md-6">
+                                {{ form_errors(form.needs) }}
                                 {{ form_label(form.needs) }}
                                 {{ form_widget(form.needs) }}
                             </div>
                             <div class="col-md-6">
+                                {{ form_errors(form.secondneeds) }}
                                 {{ form_label(form.secondneeds) }}
                                 {{ form_widget(form.secondneeds) }}
                             </div>
                         </div>
-                        {{ form_row(form.workingDescription) }}
+                        <div id="workingDescription">
+                            {{ form_row(form.workingDescription) }}
+                        </div>
                         {{ form_row(form.accomodation) }}
                         {{ form_row(form.accomodationDescription) }}
                         {{ form_row(form.school) }}
@@ -102,31 +108,19 @@
                         {{ form_row(form.teamMembersNumber) }}
                         <div class="row">
                             <div class="col-md-4">
+                                {{ form_errors(form.stafforganizations) }}
                                 {{ form_label(form.stafforganizations) }}
-                                {% for staff in form.stafforganizations %}
-                                    <div>
-                                        {{ form_widget(staff) }}
-                                        {{ form_label(staff) }}
-                                    </div>
-                                {% endfor %}
+                                {{ form_widget(form.stafforganizations) }}
                             </div>
                             <div class="col-md-4">
+                                {{ form_errors(form.socialstaffs) }}
                                 {{ form_label(form.socialstaffs) }}
-                                {% for social in form.socialstaffs %}
-                                    <div>
-                                        {{ form_widget(social) }}
-                                        {{ form_label(social) }}
-                                    </div>
-                                {% endfor %}
+                                {{ form_widget(form.socialstaffs) }}
                             </div>
                             <div class="col-md-4">
+                                {{ form_errors(form.otherjobs) }}
                                 {{ form_label(form.otherjobs) }}
-                                {% for other in form.otherjobs %}
-                                    <div>
-                                        {{ form_widget(other) }}
-                                        {{ form_label(other) }}
-                                    </div>
-                                {% endfor %}
+                                {{ form_widget(form.otherjobs) }}
                             </div>
                         </div>
                         {{ form_row(form.commentStaff) }}
@@ -137,10 +131,12 @@
                         {{ form_row(form.openhours) }}
                         <div class="row">
                             <div class="col-md-6">
+                                {{ form_errors(form.opendays) }}
                                 {{ form_label(form.opendays) }}
                                 {{ form_widget(form.opendays) }}
                             </div>
                             <div class="col-md-6">
+                                {{ form_errors(form.opendaysYear) }}
                                 {{ form_label(form.opendaysYear) }}
                                 {{ form_widget(form.opendaysYear) }}
                             </div>
@@ -148,24 +144,19 @@
                         {{ form_row(form.inscription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(form.orientationMdph) }}
-
                         {{ form_row(form.cost) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(form.transport) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                     </div>
                 </div>
-                <input type="submit" value="Valider" id="send-message" class="btn btn-default"/>
-
+                <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>
             {{ form_end(form) }}
-
         </form>
-
     {% endblock organization_form %}
 {% endblock %}
 
 {% block javascript %}
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}
