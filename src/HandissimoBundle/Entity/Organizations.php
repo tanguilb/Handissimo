@@ -1836,6 +1836,7 @@ class Organizations
     public function addMedium(\HandissimoBundle\Entity\Media $medium)
     {
         $this->media[] = $medium;
+        $medium->setOrganizationsImg($this);
 
         return $this;
     }
@@ -1859,6 +1860,7 @@ class Organizations
     {
         return $this->media;
     }
+
 
 
 }

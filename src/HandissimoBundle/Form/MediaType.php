@@ -21,11 +21,6 @@ class MediaType extends AbstractType
             ->add('file', FileType::class)
             ->add('caroussel')
             ->add('firstPicture')
-            ->add('organizationsImg', collectionType::class, array(
-                'entry_type' => OrganizationsType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-            ))
         ;
     }
     
