@@ -169,6 +169,7 @@ class Organizations
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -1813,6 +1814,5 @@ class Organizations
     {
         return $this->societyLogo;
     }
-
 
 }

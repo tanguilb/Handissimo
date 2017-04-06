@@ -2,7 +2,9 @@
 
 namespace HandissimoBundle\Form;
 
+use HandissimoBundle\Form\Type\OrganizationsType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +19,13 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('file', FileType::class)
+            ->add('caroussel')
+            ->add('firstPicture')
+            ->add('organizationsImg', collectionType::class, array(
+                'entry_type' => OrganizationsType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+            ))
         ;
     }
     

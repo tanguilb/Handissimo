@@ -11,6 +11,8 @@ class Media
 {
     const PATH_TO_UPLOAD_FILE = 'uploads/image';
 
+
+
     /**
      * @var int
      */
@@ -280,36 +282,6 @@ class Media
     public function getThumbnails()
     {
         return $this->thumbnails;
-    }
-
-    /**
-     * @var string
-     */
-    private $organizationsId;
-
-
-    /**
-     * Set organizationsId
-     *
-     * @param string $organizationsId
-     *
-     * @return Media
-     */
-    public function setOrganizationsId($organizationsId)
-    {
-        $this->organizationsId = $organizationsId;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsId
-     *
-     * @return string
-     */
-    public function getOrganizationsId()
-    {
-        return $this->organizationsId;
     }
 
 

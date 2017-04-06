@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\Media;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,9 +31,9 @@ class OrganizationsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             $em->persist($organization);
             $em->flush($organization);
+
 
             return $this->redirectToRoute('handissimo_aboutpage');
         }

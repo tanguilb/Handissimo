@@ -3,7 +3,9 @@
 namespace HandissimoBundle\Form\Type;
 
 
+use HandissimoBundle\Form\MediaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -274,6 +276,13 @@ class OrganizationsType extends AbstractType
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
+            ))
+            ->add('media', collectionType::class, array(
+                'entry_type' => MediaType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'required' => false,
             ))
         ;
     }
