@@ -21,7 +21,6 @@
     color:#777777;
     margin-top:10px;
     font-size: 1.1em;
-    padding-left: 15px;
 }
 .organization-logo{
     width: 55px;
@@ -161,6 +160,11 @@
     background-color: white;
     text-transform: none;
     font-weight: 600;
+}
+
+#btn-sol {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .btn-return:hover,
