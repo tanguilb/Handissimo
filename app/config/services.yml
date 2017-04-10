@@ -147,8 +147,3 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
-
-    handissimo.form.type.boolean:
-        class: HandissimoBundle\Form\Type\BooleanType
-        tags:
-            - { name: form.type, alias: boolean }
