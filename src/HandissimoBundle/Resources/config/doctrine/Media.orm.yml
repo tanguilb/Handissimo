@@ -35,8 +35,9 @@ HandissimoBundle\Entity\Media:
                 name: organizations_id
                 referencedColumnName: id
 
+
     lifecycleCallbacks:
         prePersist:   [lifecycleFileUpload]
-        preUpdate:    [lifecycleFileUpload]
+        preUpdate:    [refreshUpdated]
         postRemove:   [lifecycleFileRemove, lifecycleThumbnailsRemove]
 

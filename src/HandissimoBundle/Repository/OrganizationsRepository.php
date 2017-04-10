@@ -244,4 +244,16 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getSingleScalarResult();
     }
+
+    public function getMediaByOrganizations($id)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->join('o.media', 'm')
+            ->select('m.fileName')
+            ->addSelect('m.id')
+            ->addSelect('m.thumbnails')
+            ->where('m.organizationsImg =' . $id)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

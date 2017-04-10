@@ -8,10 +8,10 @@ namespace HandissimoBundle\Entity;
  */
 class Organizations
 {
-    /*public function __toString()
+    public function __toString()
     {
         return $this->name;
-    }*/
+    }
 
     // GENERATE CODE
     /**
@@ -169,6 +169,7 @@ class Organizations
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -1756,11 +1757,6 @@ class Organizations
     }
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $media;
-
-    /**
      * @var string
      */
     private $structureLogo;
@@ -1819,17 +1815,23 @@ class Organizations
         return $this->societyLogo;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $media;
+
 
     /**
      * Add medium
      *
-     * @param \HandissimoBundle\Entity\Media $medium
+     * @param \HandissimoBundle\Entity\Media $media
      *
      * @return Organizations
      */
-    public function addMedia(\HandissimoBundle\Entity\Media $medium)
+    public function addMedium(\HandissimoBundle\Entity\Media $medium)
     {
         $this->media[] = $medium;
+        $medium->setOrganizationsImg($this);
 
         return $this;
     }
@@ -1839,7 +1841,7 @@ class Organizations
      *
      * @param \HandissimoBundle\Entity\Media $medium
      */
-    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
+    public function removeMedium(\HandissimoBundle\Entity\Media $medium)
     {
         $this->media->removeElement($medium);
     }
@@ -1853,6 +1855,9 @@ class Organizations
     {
         return $this->media;
     }
+
+
+
     /**
      * @var boolean
      */
@@ -1910,5 +1915,29 @@ class Organizations
     public function getFreeDescription()
     {
         return $this->freeDescription;
+    }
+
+    /**
+     * Add medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     *
+     * @return Organizations
+     */
+    public function addMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media[] = $medium;
+
+        return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     */
+    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
     }
 }

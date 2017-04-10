@@ -3,6 +3,8 @@
 namespace HandissimoBundle\Form\Type;
 
 
+use HandissimoBundle\Form\MediaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -300,6 +302,15 @@ class OrganizationsType extends AbstractType
                     'extraPlugins' => 'confighelper',
                     'placeholder' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?'
                 )
+            ))
+            ->add('media', collectionType::class, array(
+                'entry_type' => MediaType::class,
+                'label' => 'Images',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+                'required' => false,
             ));
 
         $builder->get('school')
@@ -329,6 +340,8 @@ class OrganizationsType extends AbstractType
                     return $orientationMdphAsString === "1" ? true : false;
                 }
             ));
+
+    ;
     }
     
     /**

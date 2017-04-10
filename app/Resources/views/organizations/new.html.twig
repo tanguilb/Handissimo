@@ -15,7 +15,7 @@
         <p><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}">>>CLIQUEZ-ICI<<<</a></span></p>
     </div>
     {% block organization_form %}
-        <form method="POST" action="{{path('organizations_new')}}">
+        <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data">
             {{ form_start(form) }}
             {{ form_errors(form) }}
                 <!-- Nav tabs -->
@@ -25,6 +25,7 @@
                     <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
                     <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
                     <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
+                    <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                 </ul>
 
                 <!-- Tab panes -->
@@ -148,6 +149,10 @@
                         <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(form.transport) }}
                         <p class="update">Description limitée à 2000 caractères</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                        {{ form_row(form.media) }}
+                        <a href="#" id="add_picture" class="btn btn-default">Ajouter une image</a>
                     </div>
                 </div>
                 <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>

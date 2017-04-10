@@ -39,10 +39,9 @@ class BrochureUploaderListener
         $em = $args->getObjectManager();
         $repository = $em->getRepository('HandissimoBundle:Organizations');
         $brochures = $repository->getBrochuresById($id);
-        foreach($brochures as $brochure)
-        {
-            if($brochure['brochures'] !== null and $entity->getBrochures() == null)
-            {
+        foreach($brochures as $brochure) {
+
+            if ($brochure['brochures'] !== null and $entity->getBrochures() == null) {
                 $entity->setBrochures($brochure['brochures']);
             }
             $this->uploadFile($entity);

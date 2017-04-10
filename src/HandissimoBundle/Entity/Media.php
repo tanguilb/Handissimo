@@ -11,6 +11,8 @@ class Media
 {
     const PATH_TO_UPLOAD_FILE = 'uploads/image';
 
+
+
     /**
      * @var int
      */
@@ -123,6 +125,7 @@ class Media
     public function refreshUpdated()
     {
         $this->setUpdated( new \DateTime());
+        $this->upload();
     }
     /**
      * Get id
@@ -282,35 +285,6 @@ class Media
         return $this->thumbnails;
     }
 
-    /**
-     * @var string
-     */
-    private $organizationsId;
-
-
-    /**
-     * Set organizationsId
-     *
-     * @param string $organizationsId
-     *
-     * @return Media
-     */
-    public function setOrganizationsId($organizationsId)
-    {
-        $this->organizationsId = $organizationsId;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsId
-     *
-     * @return string
-     */
-    public function getOrganizationsId()
-    {
-        return $this->organizationsId;
-    }
 
     /**
      * @var \HandissimoBundle\Entity\Organizations

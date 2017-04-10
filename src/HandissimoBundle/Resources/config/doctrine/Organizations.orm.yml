@@ -206,6 +206,8 @@ HandissimoBundle\Entity\Organizations:
         media:
             targetEntity: HandissimoBundle\Entity\Media
             mappedBy: organizationsImg
+            cascade: ["persist", "merge"]
+            orphanRemoval: true
 
     manyToOne:
         orgaStructure:

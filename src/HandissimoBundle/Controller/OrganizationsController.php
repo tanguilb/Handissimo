@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\Media;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,9 +31,9 @@ class OrganizationsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             $em->persist($organization);
             $em->flush($organization);
+
 
             return $this->redirectToRoute('handissimo_aboutpage');
         }
@@ -53,6 +54,8 @@ class OrganizationsController extends Controller
      */
     public function editAction(Request $request, Organizations $organization)
     {
+        $em = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+        $pictures = $em->getMediaByOrganizations($organization->getId());
         $deleteForm = $this->createDeleteForm($organization);
         $editForm = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $editForm->handleRequest($request);
@@ -60,10 +63,11 @@ class OrganizationsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
+            return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
 
         return $this->render('organizations/edit.html.twig', array(
+            'pictures' => $pictures,
             'organization' => $organization,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
