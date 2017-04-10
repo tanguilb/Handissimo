@@ -17,7 +17,7 @@
             </div>
         </div>
         {% block organization_form %}
-            <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" id="form_body">
+            <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" id="form_body" enctype="multipart/form-data">
                 {{ form_start(edit_form) }}
                 {{ form_errors(edit_form) }}
 
@@ -30,6 +30,7 @@
                         <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
                         <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
                         <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
+                        <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -195,7 +196,20 @@
                             {{ form_row(edit_form.transport) }}
 
                         </div>
-
+                        <div role="tabpanel" class="tab-pane fade" id="pictures">
+                            <div>
+                                <h4>Cliquez sur l'image pour la modifier ou la supprimer</h4>
+                                {% if pictures %}
+                                    {% for picture in pictures %}
+                                        <a href="{{ path('media_edit', { 'id': picture.id }) }}"><img src="{{ asset(picture.thumbnails) }}"></a>
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Vous n'avez pas encore d'images</p>
+                                {% endif %}
+                            </div>
+                            {{ form_row(edit_form.media) }}
+                            <a href="#" id="add_picture" class="btn btn-default">Ajouter une image</a>
+                        </div>
                     </div>
 
                 </div>
@@ -223,7 +237,7 @@
 {% endblock %}
 
 {% block javascript %}
-    link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

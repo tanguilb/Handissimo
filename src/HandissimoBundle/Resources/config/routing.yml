@@ -38,3 +38,7 @@ search_profile:
 handissimo_organizations:
     resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
     prefix:   /organizations
+
+handissimo_media:
+    resource: "@HandissimoBundle/Resources/config/routing/media.yml"
+    prefix:   /media

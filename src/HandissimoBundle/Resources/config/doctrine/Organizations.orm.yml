@@ -200,6 +200,12 @@ HandissimoBundle\Entity\Organizations:
             targetEntity: Comment
             mappedBy: organizationsComment
 
+        media:
+            targetEntity: HandissimoBundle\Entity\Media
+            mappedBy: organizationsImg
+            cascade: ["persist", "merge"]
+            orphanRemoval: true
+
     manyToOne:
         orgaStructure:
             targetEntity: HandissimoBundle\Entity\StructuresList
@@ -207,11 +213,6 @@ HandissimoBundle\Entity\Organizations:
             joinColumn:
                 name: structure_list_id
                 referencedColumnName: id
-
-
-        media:
-            targetEntity: HandissimoBundle\Entity\Media
-            mappedBy: organizationsImg
 
     manyToMany:
         disabilityTypes:
