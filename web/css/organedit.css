@@ -56,4 +56,21 @@ input[type=radio]:checked + label{
     text-align: center;
     position: relative;
 }
+/******Bouton add picture****/
+#add_picture {
+    border-radius: 50px;
+    color: white;
+    margin: 50px auto 10px auto;
+    background-color: #61bdb9;
+    text-transform: none;
+    font-weight: 600;
+}
 
+#remove_img{
+    border-radius: 50px;
+    color: white;
+    margin: 0 auto 10px auto;
+    background-color: #61bdb9;
+    text-transform: none;
+    font-weight: 600;
+}

@@ -279,6 +279,7 @@ class OrganizationsType extends AbstractType
             ))
             ->add('media', collectionType::class, array(
                 'entry_type' => MediaType::class,
+                'label' => 'Images',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,

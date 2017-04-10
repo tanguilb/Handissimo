@@ -125,6 +125,7 @@ class Media
     public function refreshUpdated()
     {
         $this->setUpdated( new \DateTime());
+        $this->upload();
     }
     /**
      * Get id

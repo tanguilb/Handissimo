@@ -76,9 +76,11 @@ class MediaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('media_edit', array('id' => $medium->getId()));
+            return $this->redirectToRoute('organizations_edit', array('id' => $medium->getOrganizationsImg()->getId()));
         }
 
         return $this->render('media/edit.html.twig', array(
@@ -103,7 +105,7 @@ class MediaController extends Controller
             $em->flush($medium);
         }
 
-        return $this->redirectToRoute('media_index');
+        return $this->redirectToRoute('organizations_edit', array('id' => $medium->getOrganizationsImg()->getId()));
     }
 
     /**

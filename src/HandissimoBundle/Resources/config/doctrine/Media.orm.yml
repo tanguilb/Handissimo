@@ -39,6 +39,6 @@ HandissimoBundle\Entity\Media:
 
     lifecycleCallbacks:
         prePersist:   [lifecycleFileUpload]
-        preUpdate:    [lifecycleFileUpload]
+        preUpdate:    [refreshUpdated]
         postRemove:   [lifecycleFileRemove, lifecycleThumbnailsRemove]
 
