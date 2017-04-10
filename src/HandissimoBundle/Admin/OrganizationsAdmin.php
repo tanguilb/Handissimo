@@ -3,20 +3,18 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use Faker\Provider\File;
-use HandissimoBundle\Entity\Organizations;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
+use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Test\FormInterface;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -325,6 +323,10 @@ class OrganizationsAdmin extends AbstractAdmin
                         'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
+                    ->add('orientationMdph', BooleanType::class, array(
+                        'label' => 'Orientation MDPH',
+                        'required' => false
+                    ))
                     ->add('cost' , CKEditorType::class, array(
                         'label' => 'Combien ça coûte ?',
                         'help' => 'Description limitée à 2000 caractères',
@@ -332,6 +334,11 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('transport' , CKEditorType::class, array(
                         'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
+                        'help' => 'Description limitée à 2000 caractères',
+                        'required' => false
+                    ))
+                    ->add('freeDescription', CKEditorType::class, array(
+                        'label' => 'Decription libre',
                         'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))

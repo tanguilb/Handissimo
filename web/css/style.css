@@ -45,7 +45,7 @@ p {
 /****************/
 /*****ALERTS*****/
 /****************/
-.alert{
+#alert-success {
     position: fixed;
     margin-top: 150px;
     font-size: 17px;
@@ -53,15 +53,17 @@ p {
     background-color: #61bdb9;
     color: #FFFFFF;
     border: none;
-}
-
-#alert-success,
-#alert-danger {
     display: none;
 }
 
 #alert-danger {
-    background-color: red;
+    background-color: red;position: fixed;
+    margin-top: 150px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: none;
+    display: none;
 }
 #btn-password{
     margin: 50px 0 50px 0;

@@ -291,7 +291,6 @@ class Media
      */
     private $organizationsImg;
 
-
     /**
      * Set organizationsImg
      *

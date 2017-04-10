@@ -21,7 +21,6 @@
     color:#777777;
     margin-top:10px;
     font-size: 1.1em;
-    padding-left: 15px;
 }
 .organization-logo{
     width: 55px;
@@ -40,10 +39,6 @@
     margin-left: 20px;
 }
 
-.head-block{
-    margin:0 10px 5px 10px;
-    padding:20px;
-}
 .img-block, .like{
     display: flex;
     justify-content: flex-end;
@@ -167,6 +162,11 @@
     font-weight: 600;
 }
 
+#btn-sol {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .btn-return:hover,
 .btn-edit:hover,
 .btn-comment:hover{
@@ -230,6 +230,11 @@
 #return-button {
     margin: 0 auto;
     text-align: center;
+}
+
+#logo-mdph {
+    width: 150px;
+    height: auto;
 }
 
 /*******************/

@@ -4,8 +4,8 @@ namespace HandissimoBundle\Form\Type;
 
 
 use HandissimoBundle\Form\MediaType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -78,19 +78,21 @@ class OrganizationsType extends AbstractType
                 'required' => false,
             ))
             ->add('facebook', TextType::class, array(
-                'label' => 'Facebook :',
+                'label' => 'Page Facebook :',
                 'required' => false,
             ))
             ->add('brochures', FileType::class, array(
-                'label' => 'Brochures :',
+                'label' => 'Télécharger des documents :',
                 'data_class' => null,
                 'required' => false,
             ))
             ->add('orgaStructure', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\StructuresList',
+                'label' => false,
                 'choice_label' => 'name',
                 'expanded' => true,
                 'required' => true,
+
             ))
             ->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
@@ -149,10 +151,15 @@ class OrganizationsType extends AbstractType
             ))
             ->add('accomodation', ChoiceType::class, array(
                 'choices' => array(
-                    'oui' => 'oui',
-                    'non' => 'non'
-                ))
-            )
+                    'oui' => '1',
+                    'non' => '0'
+                ),
+                'expanded' => true,
+                'empty_data' => false,
+                'required' => true,
+                'choices_as_values' => true,
+                'label' => 'Proposez-vous de l’accueil ?'
+            ))
             ->add('accomodationDescription', CKEditorType::class, array(
                 'label' => false,
                 'required' => false,
@@ -165,9 +172,14 @@ class OrganizationsType extends AbstractType
             ))
             ->add('school', ChoiceType::class, array(
                 'choices' => array(
-                    'oui' => 'oui',
-                    'non' => 'non',
-                )
+                    'oui' => '1',
+                    'non' => '0'
+                ),
+                'expanded' => true,
+                'empty_data' => false,
+                'choices_as_values' => true,
+                'required' => true,
+                'label' => 'Proposez-vous de la scolarisation ?'
             ))
             ->add('schoolDescription', CKEditorType::class, array(
                 'label' => false,
@@ -179,14 +191,14 @@ class OrganizationsType extends AbstractType
                         )
             ))
             ->add('dayDescription', CKEditorType::class, array(
-                'label' => false,
+                'label' => "Description d’une journée/semaine/intervention type",
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
             ))
             ->add('receptionDescription', CKEditorType::class, array(
-                'label' => false,
+                'label' => "Qu'est-il prévu pour les familles ?",
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
@@ -240,6 +252,18 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                 )
             ))
+            ->add('orientationMdph', ChoiceType::class, array(
+                'choices' => array(
+                    'oui' => '1',
+                    'non' => '0'
+                ),
+                'expanded' => true,
+                'empty_value' => false,
+                'choices_as_values' => true,
+                'label' => 'Orientation Mdph',
+                'required' => true
+
+            ))
             ->add('openhours', TextType::class, array(
                 'label' => 'Heures d\'ouverture :',
                 'required' => false
@@ -271,10 +295,12 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('transport' , CKEditorType::class, array(
-                'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
+                'label' => 'Transports :',
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
+                    'extraPlugins' => 'confighelper',
+                    'placeholder' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?'
                 )
             ))
             ->add('media', collectionType::class, array(
@@ -285,8 +311,37 @@ class OrganizationsType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
                 'required' => false,
-            ))
-        ;
+            ));
+
+        $builder->get('school')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($schoolAsBoolean){
+                    return $schoolAsBoolean ? "1" : "0";
+                },
+                function ($schoolAsString){
+                    return $schoolAsString === "1" ? true : false;
+                }
+            ));
+        $builder->get('accomodation')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($accomodationAsBoolean){
+                    return $accomodationAsBoolean ? "1" : "0";
+                },
+                function ($accomodationAsString){
+                    return $accomodationAsString === "1" ? true : false;
+                }
+            ));
+        $builder->get('orientationMdph')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($orientationMdphAsBoolean){
+                    return $orientationMdphAsBoolean ? "1" : "0";
+                },
+                function ($orientationMdphAsString){
+                    return $orientationMdphAsString === "1" ? true : false;
+                }
+            ));
+
+    ;
     }
     
     /**

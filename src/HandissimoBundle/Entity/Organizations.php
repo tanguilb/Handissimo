@@ -3,16 +3,11 @@
 namespace HandissimoBundle\Entity;
 
 
-
-
 /**
  * Organizations
  */
 class Organizations
 {
-
-
-
     public function __toString()
     {
         return $this->name;
@@ -1829,7 +1824,7 @@ class Organizations
     /**
      * Add medium
      *
-     * @param \HandissimoBundle\Entity\Media $medium
+     * @param \HandissimoBundle\Entity\Media $media
      *
      * @return Organizations
      */
@@ -1863,4 +1858,86 @@ class Organizations
 
 
 
+    /**
+     * @var boolean
+     */
+    private $orientationMdph;
+
+    /**
+     * @var string
+     */
+    private $freeDescription;
+
+
+    /**
+     * Set orientationMdph
+     *
+     * @param boolean $orientationMdph
+     *
+     * @return Organizations
+     */
+    public function setOrientationMdph($orientationMdph)
+    {
+        $this->orientationMdph = $orientationMdph;
+
+        return $this;
+    }
+
+    /**
+     * Get orientationMdph
+     *
+     * @return boolean
+     */
+    public function getOrientationMdph()
+    {
+        return $this->orientationMdph;
+    }
+
+    /**
+     * Set freeDescription
+     *
+     * @param string $freeDescription
+     *
+     * @return Organizations
+     */
+    public function setFreeDescription($freeDescription)
+    {
+        $this->freeDescription = $freeDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get freeDescription
+     *
+     * @return string
+     */
+    public function getFreeDescription()
+    {
+        return $this->freeDescription;
+    }
+
+    /**
+     * Add medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     *
+     * @return Organizations
+     */
+    public function addMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media[] = $medium;
+
+        return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     */
+    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
+    }
 }

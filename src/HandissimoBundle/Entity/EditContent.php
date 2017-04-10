@@ -81,4 +81,3 @@ class EditContent
         return $this->home;
     }
 }
-

@@ -7,6 +7,7 @@ HandissimoBundle\Entity\Opinion:
 HandissimoBundle\Entity\Organizations:
     properties:
         name:
+            - NotBlank: ~
             - Length:
                 max: 200
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
@@ -22,6 +23,10 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 10
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+            - Range:
+                min: 0
+                max: 99999
+                invalidMessage: "Le code postal n'est pas un nombre"
         city:
             - Length:
                 max: 200
@@ -101,4 +106,7 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
-
+        freeDescription:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'

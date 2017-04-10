@@ -14,23 +14,20 @@
         <div class="container-info row">
             <!-- Block Title-->
             <div class="head-block">
-                <div class="row ">
+                <div class="container">
                     <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                 </div>
-
-                <div class="row">
-                    <div class="head-title col-md-11 col-sm-11">
-                        {% if organization.societyLogo %}
-                            <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}">
-                        {% endif %}
-                        <h1 class="title"> {{ organization.name }} </h1>
-                        {% if organization.structureLogo %}
-                            <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}">
-                        {% endif %}
-                    </div>
-                    <!-- this is the line to display like button
-                    <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
+                <div class="head-title col-md-11 col-sm-11">
+                    {% if organization.societyLogo %}
+                        <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}">
+                    {% endif %}
+                    <h1 class="title"> {{ organization.name }} </h1>
+                    {% if organization.structureLogo %}
+                        <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}">
+                    {% endif %}
                 </div>
+                <!-- this is the line to display like button
+                <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
             </div>
             <div class="row">
                 <div class="col-md-8" id="block-carousel">
@@ -38,7 +35,10 @@
                     <!-- Carousel-->
                         {% include 'front/carousel.html.twig' %}
                     {% else%}
-                        <img class="main-image" src="{{ asset('images/FAM LUCON 2.png') }}" alt="Handissimo - Image principal structure">
+                        <div class="container">
+                            <p>Photo non contractuelle.</p>
+                            <img class="main-image img-responsive" src="{{ asset('images/FAM LUCON 2.png') }}" alt="Handissimo - Image principal structure">
+                        </div>
                     {% endif %}
                 </div>
                 <!-- Map -->
@@ -242,6 +242,28 @@
                                             {% endif %}
                                         </ul>
                                     </div>
+                                    {% if organization.orientationMdph == 1 %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Sur orientation Mdph :</h3><p>oui</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img id="logo-mdph" src="{{ asset('images/mdph.jpg') }}" alt="handissimo - logo-mdph"
+                                                     class="media-object">
+                                            </div>
+                                            <div class="media-body">
+                                                Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite
+                                                "loi pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées",
+                                                entrée en vigueur le 1er janvier 2006...
+                                                La MDPH constitue un guichet unique destiné à accueillir les personnes handicapées et leur entourage pour les
+                                                informer et évaluer leurs besoins. Elles permettent de faciliter leurs démarches dans l'accès à leurs droits.
+                                                Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
+                                                médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
                                     {% if organization.inscription %}
                                     <div class="col-md-12">
                                       <h3 class="second-title">Comment s'inscrire ?</h3>
@@ -395,7 +417,7 @@
             </div>
             <!-- return button -->
             <div class="row" id="return-button">
-                <div class="col-md-offset-2 col-md-3 col-xs-12">
+                <div class="col-md-3 col-xs-12">
                     <button onclick="goBack()" class="btn btn-return" role="button" >
                         Retour à la recherche
                     </button>
@@ -405,16 +427,23 @@
                         Retour à l'acceuil
                     </a>
                 </div>
+                {% if organization.userorg == null %}
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
+                        Je suis responsable<br /> de cette solution
+                    </a>
+                </div>
+                {% endif %}
                 <div class="col-md-3 col-xs-12">
                     {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
                         {% if organization.userorg == null %}
-                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Modifier la fiche
                             </a>
                         {% elseif  user.organizationsuser == null %}
                             <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                         {% elseif  user.organizationsuser.id == organization.id %}
-                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Modifier la fiche
                             </a>
                         {% else %}

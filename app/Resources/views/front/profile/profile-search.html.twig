@@ -19,7 +19,7 @@
         <div class="col-md-offset-3 col-md-6 col-xs-12 result-block">
             {% for result in result %}
                 <div>
-                    <a href="{{ path('structure_page', {'id': result.id}) }}" class="link-about">{{ result.name }}</a>
+                    <a href="{{ path('organizations_edit', {'id': result.id}) }}" class="link-about">{{ result.name }}</a>
                 </div>
             {% endfor %}
         </div>
