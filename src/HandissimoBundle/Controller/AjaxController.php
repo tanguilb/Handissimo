@@ -20,7 +20,7 @@ class AjaxController extends Controller
 {
     public function researchAction(Request $request)
     {
-        $form = $this->createForm('HandissimoBundle\Form\ResearchType');
+        $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
