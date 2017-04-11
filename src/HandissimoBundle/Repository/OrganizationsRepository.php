@@ -48,7 +48,7 @@ class OrganizationsRepository extends EntityRepository
                     $ormodule->add($query->expr()->eq($key . '.' . $fieldName, ':' . $item));
                     $ormodule->add($query->expr()->isNull($key . '.' . $fieldName));
                 }
-                $query->andWhere($ormodule);
+                $query->orWhere($ormodule);
                 $query->setParameter($item, $data[$item]);
 
             }

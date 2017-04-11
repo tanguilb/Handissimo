@@ -31,7 +31,7 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('m')
             ->orderBy('m.id', 'DESC')
             ->where('m.firstPicture = 1')
-            ->groupBy('m.webPath')
+           // ->groupBy('m.webPath')
             ->setMaxResults($limit)
             ->getQuery();
         return $qb->getResult();
