@@ -8,35 +8,50 @@
 
     <section class="container-fluid" id="main-index">
         <div class="container">
-            <h1>Trouvez la solution adaptée au handicap de votre enfant, de votre proche, ou pour vous</h1>
+            <h1>Trouvez une solution adaptée. <br>Partagez votre avis et échangez avec la communauté.</h1>
             <div class="col-md-10 col-md-offset-1">
                 <h2>Handissimo vous facilite le handicap !</h2>
             </div>
         </div>
-
         <div class="container" id="search-container">
             {{ form_start(form) }}
             {{ form_errors(form) }}
-            <div class="col-xs-12 col-md-5">
+
+            <div class="row">
+            <div class="col-xs-12 col-md-4 clear">
                 <div class="col-xs-12 search-field">
-                    <p>Que cherchez-vous ?<i class="fa fa-search" aria-hidden="true"></i></p>
-                    {{ form_row(form.keyword, { 'attr': {'placeholder': 'Répit, scolarité pour enfant autiste, foyer de vie...', 'class' : 'homeField'} }) }}
-                    <ul id="keywordautocomplete"></ul>
+                    <p>Où cherchez-vous ?<i class="fa fa-map-marker" aria-hidden="true" id="marker"></i></p>
+                    {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), Paris (75000)…', 'class' : 'homeField'} }) }}
+                    <ul id="city"></ul>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-2">
+            <div class="col-xs-12 col-md-4">
                 <div class="col-xs-12 search-field">
-                    <p>Âge<i class="fa fa-birthday-cake" aria-hidden="true"></i></p>
+                    <p>Pour quelqu’un de quel âge ?<i class="fa fa-birthday-cake" aria-hidden="true"></i></p>
                     {{ form_row(form.age, { 'attr': {'placeholder': 'input.age'|trans({}, 'messages'), 'class' : 'homeField'} }) }}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-5 clear">
+            <div class="col-xs-12 col-md-4">
                 <div class="col-xs-12 search-field">
-                    <p>Où ?<i class="fa fa-map-marker" aria-hidden="true" id="marker"></i></p>
-                    {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), Paris (75000)…', 'class' : 'homeField'} }) }}
-                    <ul id="city"></ul>
+                    <p>Que cherchez-vous ?<i class="fa fa-search" aria-hidden="true"></i></p>
+                    {{ form_row(form.need, { 'attr': {'placeholder': 'Répit, scolarité pour enfant autiste, foyer de vie...', 'class' : 'homeField'} }) }}
+                    <ul id="keywordautocomplete"></ul>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12">
+                        {{ form_row(form.disability) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12">
+                        {{ form_row(form.structure) }}
+                    </div>
                 </div>
             </div>
         </div>

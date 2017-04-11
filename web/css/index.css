@@ -12,15 +12,15 @@
 
 #main-index h1 {
     font-weight: 700;
-    font-size: 52px;
+    font-size: 50px;
     color: #FFFFFF;
     text-align: center;
-    margin-top:220px;
+    margin-top:160px;
 }
 
 #main-index h2 {
-    font-size: 42px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 500;
     color: #FFFFFF;
     text-align: center;
     margin-top: 30px;
@@ -52,7 +52,7 @@
 }
 
 .search-field p {
-    font-size: 22px;
+    font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-style: italic;
