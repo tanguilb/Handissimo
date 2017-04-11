@@ -54,7 +54,6 @@ class AjaxController extends Controller
             $em = $this->getDoctrine()->getManager();
             $data = $formAdvancedResearch->getData();
             $age = $form->getData()['age'];
-
             /**
              * @var $repository OrganizationsRepository
              */
@@ -73,6 +72,7 @@ class AjaxController extends Controller
         $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getLastOrganizations(6);
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
         $organizations = $repository->findAll();
+
 
         $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
         $statOrganizations = $repository->getAllOrganizations();

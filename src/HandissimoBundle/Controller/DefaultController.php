@@ -49,10 +49,25 @@ class DefaultController extends Controller
 
 
     public function standardPageAction(Organizations $organization){
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        //$pictures = $repository->findByCaroussel(1);
         $organizationsId = $organization->getId();
-        $pictures = $repository->getImageByOrganizations($organizationsId);
+        $pictures = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getImageByOrganizations($organizationsId);
+        //$link = $this->getDoctrine()->getManager();
+        //$a = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFillingRate($organizationsId);
+        $link = new \mysqli('127.0.0.1', 'root', 'suline1982d', 'handissimo');
+        $result = $link->query( "SELECT * FROM organizations ORDER BY ID LIMIT 1");
+
+        //$a = $result->field_count;
+        $data = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $nb_fields = 0;
+        $nb_empty = 0;
+        foreach($data as $key=>$value){
+            $nb_fields ++;
+            if($value =='') {
+                $nb_empty ++;
+        }}
+        var_dump($nb_empty);
+        die();
+
 
         $user = $this->getUser();
         $comment = new Comment();
