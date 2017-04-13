@@ -48,8 +48,10 @@ class UserAdmin extends BaseUserAdmin
                     ))
                     ->add('organizationsuser', EntityType::class, array(
                             'class' => 'HandissimoBundle\Entity\Organizations',
+                            'choice_label' => 'name',
                             'label' => 'Structures',
-                            'required' => false
+                            'required' => false,
+                            'multiple' => true
                     ))
                 ->end()
                 ->with('Status')

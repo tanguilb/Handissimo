@@ -18,7 +18,7 @@ class EditContentController extends Controller
 {
     public function howToUseAction(Request $request)
     {
-        $repository = $this->GetDoctrine()->getRepository('HandissimoBundle:EditContent');
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:EditContent');
         $howToUse = $repository->findAll();
 
         $solution = new Solution();
