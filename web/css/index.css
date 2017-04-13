@@ -15,7 +15,7 @@
     font-size: 50px;
     color: #FFFFFF;
     text-align: center;
-    margin-top:160px;
+    margin-top:140px;
 }
 
 #main-index h2 {
@@ -92,13 +92,11 @@
     border-bottom: solid 1px #777777;
 }
 
-#research_action_keyword,
 #research_action_age,
 #research_action_postal {
     margin-bottom: 10px;
 }
 
-#keywordautocomplete,
 #city {
     position: absolute;
     width: 100%;
@@ -109,7 +107,6 @@
     border-radius: 3px;
 }
 
-#keywordautocomplete li,
 #city li {
     list-style: none;
     background-color: #FFFFFF;
@@ -125,7 +122,6 @@
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
-#keywordautocomplete li:hover,
 #city li:hover{
     background-color: #F4F3F2;
     font-size: 16px;
@@ -134,10 +130,38 @@
 
 #research_action_save {
     border: none;
+    font-size: 18px;
     display: block;
     margin: 50px auto 90px auto;
 }
 
+#research_action_disability,
+#research_action_structure {
+    border: 2px solid #f7af49;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    margin-top: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-style: italic;
+    color: #777777;
+    width: 100%;
+}
+
+#research_action_disability option,
+#research_action_structure option {
+    width: 335px;
+    background-color: #FFFFFF;
+    color: #777777;
+    font-weight: 500;
+    padding: 5px;
+}
+
+#research_action_need {
+    border: none;
+    background-color: #FFFFFF;
+
+}
 /***************************/
 /***** Headband solution****/
 /***************************/

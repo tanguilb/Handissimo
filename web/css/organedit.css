@@ -84,3 +84,15 @@
     text-transform: none;
     font-weight: 600;
 }
+
+/*********************/
+/*** Progress Bar ****/
+/*********************/
+
+#progressbar {
+    position: relative;
+}
+
+#percentage {
+    position: absolute;
+}
