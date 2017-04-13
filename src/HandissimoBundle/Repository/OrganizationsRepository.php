@@ -4,9 +4,61 @@ namespace HandissimoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class OrganizationsRepository extends EntityRepository
 {
+
+    public function getBySearchEngine($location, $age, $need, $disability, $structure)
+    {
+        $em =$this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->leftJoin('o.needs', 'n');
+        $query->leftJoin('o.disabilityTypes', 'dt');
+        $query->leftJoin('o.orgaStructure', 'sl');
+
+        if($location !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('o.postal', ':location'));
+            $query->orWhere($ormodule);
+            $query->setParameter('location', $location);
+        }
+        if ($age !== null) {
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->lte('o.agemini', ':age'));
+            $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
+            $query->orWhere($andmodule);
+            $query->setParameter('age', $age);
+        }
+        if($need !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('n.needName', ':need'));
+            $query->orWhere($ormodule);
+            $query->setParameter('need', $need);
+
+        }
+        if($disability !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+            $query->orWhere($ormodule);
+            $query->setParameter('disability', $disability);
+
+        }
+        if($structure !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
+            $query->orWhere($ormodule);
+            $query->setParameter('structure', $structure);
+        }
+       // $query->setFirstResult(($page - 1) * $maxPerPage)
+         //   ->setMaxResults($maxPerPage);
+
+        //return new Paginator($query);
+        //echo $query->getQuery()->getSQL();;die();
+        return $query->getQuery()->getArrayResult();
+    }
 
     public function getByOrganizationName($data, $age)
     {

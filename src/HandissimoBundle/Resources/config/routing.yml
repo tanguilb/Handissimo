@@ -42,3 +42,7 @@ handissimo_organizations:
 handissimo_media:
     resource: "@HandissimoBundle/Resources/config/routing/media.yml"
     prefix:   /media
+
+handissimo_shit:
+    path: /shit
+    defaults: { _controller: "HandissimoBundle:Ajax:shit" }

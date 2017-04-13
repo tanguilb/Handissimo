@@ -2,7 +2,7 @@
  * Created by tangui on 19/01/17.
  */
 $( document ).ready(function() {
-    $("#research_advanced_postal").keyup(function(){
+    $("#research_action_postal").keyup(function(){
         var postalcode = $(this).val();
         if ( postalcode.length >= 2 ) {
             $.ajax({
@@ -19,7 +19,7 @@ $( document ).ready(function() {
 
                     $('#city').html(html);
                     $('#city').find('li').on('click', function() {
-                        $('#research_advanced_postal').val($(this).text());
+                        $('#research_action_postal').val($(this).text());
                         $('#city').html('');
                     });
                 },

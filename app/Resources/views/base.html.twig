@@ -46,7 +46,11 @@
             <div class="alert alert-success" role="alert" id="alert-success"></div>
             <div class="alert alert-danger" role="alert" id="alert-danger"></div>
         </div>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {% block form %}
+
+            {% endblock %}
+        {% endblock %}
 
         {% include 'front/footer.html.twig' %}
 
