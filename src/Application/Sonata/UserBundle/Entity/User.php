@@ -11,6 +11,7 @@
 
 namespace Application\Sonata\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -158,7 +159,12 @@ class User extends BaseUser
      */
     public function removeOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser)
     {
-        $this->organizationsuser->removeElement($organizationsuser);
+        //$this->organizationsuser->removeElement($organizationsuser);
+        foreach ($this->organizationsuser as $k => $v){
+            if ($v->getId() == $organizationsuser->getId()){
+                unset($this->organizationsuser[$k]);
+            }
+        }
     }
 
     /**
@@ -176,5 +182,11 @@ class User extends BaseUser
         $this->organizationsuser = $organizatiosuser;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->organizationsuser = new ArrayCollection();
     }
 }

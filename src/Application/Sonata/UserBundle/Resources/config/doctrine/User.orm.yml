@@ -23,5 +23,5 @@ Application\Sonata\UserBundle\Entity\User:
         organizationsuser:
             targetEntity: HandissimoBundle\Entity\Organizations
             mappedBy: userorg
-            cascade: [ persist ]
-            orphanRemoval: true
+            nullable: true
+

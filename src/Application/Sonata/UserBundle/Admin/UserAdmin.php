@@ -93,14 +93,31 @@ class UserAdmin extends BaseUserAdmin
             ->with('General')
                 ->add('userType')
             ->end();
-
-
     }
-
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('');
     }
 
+    public function prePersist($organizationsuser)
+    {
+        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
+            $userorg->setUserorg($organizationsuser);
+        }
+    }
+
+    public function preUpdate($organizationsuser)
+    {
+        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
+            $userorg->setUserorg($organizationsuser);
+        }
+    }
+
+    public function preRemove($organizationsuser)
+    {
+        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
+            $userorg->setUserorg($organizationsuser);
+        }
+    }
 }

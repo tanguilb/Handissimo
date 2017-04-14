@@ -8,10 +8,10 @@ namespace HandissimoBundle\Entity;
  */
 class Organizations
 {
-    public function __toString()
+    /*public function __toString()
     {
         return $this->name;
-    }
+    }*/
 
     // GENERATE CODE
     /**
@@ -1909,6 +1909,7 @@ class Organizations
     {
         $this->media->removeElement($medium);
     }
+
     /**
      * @var \Application\Sonata\UserBundle\Entity\User
      */
