@@ -4,7 +4,6 @@ namespace HandissimoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\Sonata\UserBundle\Entity\User;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class OrganizationsRepository extends EntityRepository
 {
@@ -14,7 +13,7 @@ class OrganizationsRepository extends EntityRepository
         $em =$this->getEntityManager();
         $query = $em->createQueryBuilder();
         $query->select('o');
-        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->from('HandissimoBundle:Organizations', 'o', 'o.postal');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
@@ -22,13 +21,18 @@ class OrganizationsRepository extends EntityRepository
         if($location !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('o.postal', ':location'));
-            $query->orWhere($ormodule);
+            $query->having($query->expr()->gte('o.postal', ':location'));
+            $query->where($ormodule);
             $query->setParameter('location', $location);
+
+
         }
         if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
+          //  $query->having($query->expr()->gte('o.postal', ':location'));
+
             $query->orWhere($andmodule);
             $query->setParameter('age', $age);
         }
@@ -52,12 +56,16 @@ class OrganizationsRepository extends EntityRepository
             $query->orWhere($ormodule);
             $query->setParameter('structure', $structure);
         }
+
+      //  $query->addGroupBy('o.postal');
+      //  $query->setParameter('location', $location);
+
        // $query->setFirstResult(($page - 1) * $maxPerPage)
          //   ->setMaxResults($maxPerPage);
 
         //return new Paginator($query);
         //echo $query->getQuery()->getSQL();;die();
-        return $query->getQuery()->getArrayResult();
+        return $query->getQuery()->getResult();
     }
 
     public function getByOrganizationName($data, $age)
