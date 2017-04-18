@@ -184,9 +184,9 @@ class User extends BaseUser
         return $this;
     }
 
-    public function __construct()
+    /*public function __construct()
     {
         parent::__construct();
         $this->organizationsuser = new ArrayCollection();
-    }
+    }*/
 }

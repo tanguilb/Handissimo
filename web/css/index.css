@@ -192,7 +192,7 @@
 }
 #btn-call {
     border: none;
-    font-size: 18px;
+    font-size: 12px;
     background-color: #f7af49;
 }
 
@@ -271,8 +271,12 @@
 }
 
 #img-week {
-    width: 220px;
-    height: auto;
+    width: auto;
+    height: 208px;
+}
+
+#block-img-week {
+    text-align: center;
 }
 
 #title-news {
@@ -283,8 +287,16 @@
     margin-bottom: 50px;
 }
 
-#video {
+#img-carousel {
+    height: 208px;
+    width: auto;
+}
+.carousel-inner > .item > .block-img > img {
+    margin: 0 auto;
+}
 
+#video {
+    text-align: center;
 }
 
 /****************************/

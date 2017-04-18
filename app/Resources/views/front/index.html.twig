@@ -139,12 +139,13 @@
                 <div class="news-content">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12"  id="video">
+                            <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <video src="{{ asset('images/Cavernae_Terragen2.mp4') }}" controls="controls" typeof="video"></video>
                             </div>
-                            <p>Handissimo démarre! Comment ce sera après ?</p>
                         </div>
                         <div class="col-sm-4 col-xs-12">
+                            <p>Les dernières solutions inscrites sur Handissimo</p>
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
@@ -155,11 +156,13 @@
                                 <div class="carousel-inner" role="listbox">
                                     {% for images in carousel %}
                                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                                            <img src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
-                                            <div class="carousel-caption">
-                                                <h3>{#{ organizations.name }#}</h3>
-                                                <p>{#{ organizations.city }#}</p>
-                                            </div>
+                                            <a href="{{ path('structure_page', {'id': images.organizationsImg.id}) }}" class="block-img">
+                                                <img id="img-carousel" src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
+                                                <div class="carousel-caption">
+                                                    <h3>{{ images.organizationsImg.name }}</h3>
+                                                    <p>{{ images.organizationsImg.postal }} {{ images.organizationsImg.city }}</p>
+                                                </div>
+                                            </a>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -174,7 +177,8 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-xs-12">
+                        <div class="col-sm-4 col-xs-12" id="block-img-week">
+                            <p>Quoi de neuf ?</p>
                             <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/photo4.png') }}" alt=" Handissimo - L'image de la semaine"/>
                         </div>
                     </div>
