@@ -90,7 +90,6 @@ class OrganizationsController extends Controller
             $em->remove($organization);
             $em->flush($organization);
         }
-
         return $this->redirectToRoute('research_action');
     }
 

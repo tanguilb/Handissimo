@@ -15,64 +15,43 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use HandissimoBundle\Form\AdvancedSearchType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class AjaxController extends Controller
 {
-    public function researchAction(Request $request)
+
+    public function indexAction(Request $request)
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
-
-        $formAdvancedResearch = $this->createForm(AdvancedSearchType::class);
-        $formAdvancedResearch->handleRequest($request);
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        $pictures = $repository->findByFirstPicture(1);
-
-        if ($form->isSubmitted() && $form->isValid()){
-
-            $data = $form->getData();
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $location = $form->getData()['postal'];
             $age = $form->getData()['age'];
+            $need = $form->getData()['need'];
+            $disability = $form->getData()['disability'];
+            $structure = $form->getData()['structure'];
+            $this->get('session')->set('location', $location);
+            $this->get('session')->set('age', $age);
+            $this->get('session')->set('need', $need);
+            $this->get('session')->set('disability', $disability);
+            $this->get('session')->set('structure', $structure);
 
-            /**
-             * @var $repository OrganizationsRepository
-             */
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationName($data, $age);
-            $paginator  = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
-            return $this->render('front/search.html.twig', array(
-                'picture' => $pictures,
-                'result' => $result,
-                'keyword' => $data,
-                'age' => $age,
-                'pagination' => $pagination,
-                'form' => $formAdvancedResearch->createView(),
-            ));
 
-        } elseif ($formAdvancedResearch->isSubmitted() && $formAdvancedResearch->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $data = $formAdvancedResearch->getData();
-            $age = $form->getData()['age'];
-            /**
-             * @var $repository OrganizationsRepository
-             */
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByMultipleCriterias($data, $age);
-            $paginator  = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 4);
-            return $this->render('front/search.html.twig', array(
-                'result' => $result,
-                'picture' => $pictures,
-                'keyword' => $data,
-                'age' => $age,
-                'pagination' => $pagination,
-                'form' => $formAdvancedResearch->createView(),
-            ));
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+            $this->get('session')->set('result', $result);
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
+            $this->get('session')->set('pagination', $pagination);
+            $pagination->setUsedRoute('research_action');
+
+            return $this->redirectToRoute('research_action');
         }
         $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getLastOrganizations(6);
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
         $organizations = $repository->findAll();
-
 
         $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
         $statOrganizations = $repository->getAllOrganizations();
@@ -82,6 +61,29 @@ class AjaxController extends Controller
             'organizations' => $organizations,
             'statUser' => $statUser,
             'statOrganizations' => $statOrganizations
+        ));
+    }
+
+    public function researchAction(Request $request)
+    {
+
+        $session = $request->getSession();
+
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findByFirstPicture(1);
+
+        $result = $session->get('result');
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
+
+        return $this->render('front/search.html.twig', array(
+            'picture' => $pictures,
+            'location' => $session->get('location'),
+            'age' => $session->get('age'),
+            'need' => $session->get('need'),
+            'disability' => $session->get('disability'),
+            'structure' => $session->get('structure'),
+            'pagination' => $pagination,
         ));
     }
 

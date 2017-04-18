@@ -8,8 +8,13 @@ city_ajax:
     defaults: {_controller: "HandissimoBundle:Ajax:postal"}
     methods:  POST
 
-research_action:
+index_action:
     path:     /
+    defaults: { _controller: "HandissimoBundle:Ajax:index" }
+    methods:  [GET, POST]
+
+research_action:
+    path:     /list
     defaults: { _controller: "HandissimoBundle:Ajax:research" }
     methods:  [GET, POST]
 
