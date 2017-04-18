@@ -66,10 +66,7 @@ class AjaxController extends Controller
 
     public function researchAction(Request $request)
     {
-       // $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
-        //$form->handleRequest($request);
 
-        //$em = $this->getDoctrine()->getManager();
         $session = $request->getSession();
 
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
@@ -79,29 +76,6 @@ class AjaxController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
 
-        /*if ($form->isSubmitted() && $form->isValid()) {
-
-            $location = $form->getData()['postal'];
-            $age = $form->getData()['age'];
-            $need = $form->getData()['need'];
-            $disability = $form->getData()['disability'];
-            $structure = $form->getData()['structure'];
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
-            $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
-
-            return $this->render('front/search.html.twig', array(
-                'picture' => $pictures,
-                'result' => $result,
-                'location' => $location,
-                'need' => $need,
-                'disability' => $disability,
-                'structure' => $structure,
-                'age' => $age,
-                'pagination' => $pagination,
-                'form' => $form->createView(),
-            ));
-        }*/
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
             'location' => $session->get('location'),
@@ -110,62 +84,8 @@ class AjaxController extends Controller
             'disability' => $session->get('disability'),
             'structure' => $session->get('structure'),
             'pagination' => $pagination,
-           // 'form' => $form->createView(),
         ));
     }
-
-  /*  public function researchAction(Request $request)
-    {
-        $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
-        $form->handleRequest($request);
-
-        $em = $this->getDoctrine()->getManager();
-
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        $pictures = $repository->findByFirstPicture(1);
-
-        if ($form->isSubmitted() && $form->isValid()){
-
-            $location = $form->getData()['postal'];
-            $age = $form->getData()['age'];
-            $need = $form->getData()['need'];
-            $disability = $form->getData()['disability'];
-            $structure = $form->getData()['structure'];
-
-            /**
-             * @var $repository OrganizationsRepository
-             */
-      /*      $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
-            $paginator  = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
-
-            return $this->render('front/search.html.twig', array(
-                'picture' => $pictures,
-                'result' => $result,
-                'keyword' => $location,
-                'need' => $need,
-                'disability' => $disability,
-                'structure' => $structure,
-                'age' => $age,
-                'pagination' => $pagination,
-                'form' => $form->createView(),
-            ));
-
-        }
-        $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getLastOrganizations(6);
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-        $organizations = $repository->findAll();
-
-        $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
-        $statOrganizations = $repository->getAllOrganizations();
-        return $this->render('front/search.html.twig', array(
-            'form' => $form->createView(),
-            'carousel' => $carousel,
-            'organizations' => $organizations,
-            'statUser' => $statUser,
-            'statOrganizations' => $statOrganizations
-        ));
-    }*/
 
     public function autoCompleteAction(Request $request, $keyword)
     {
