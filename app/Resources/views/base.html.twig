@@ -15,6 +15,26 @@
         <!-- FONTS -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script>
+            window.addEventListener("load", function(){
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#65bfba"
+                        },
+                        "button": {
+                            "background": "#f7af49"
+                        }
+                    },
+                    "content": {
+                        "message": "En poursuivant votre navigation sans modifier vos paramètres, vous acceptez l'utilisation des cookies susceptibles de réaliser des statistiques de visite.",
+                        "dismiss": "J'accepte",
+                        "link": "Pour plus d’informations",
+                        "href": "http://www.cnil.fr/vos-libertes/vos-traces/les-cookies/"
+                    }
+                })});
+        </script>
     </head>
     <body>
 
@@ -39,7 +59,7 @@
         <script src="{{ asset('js/autoCompleteResearch.js') }}"></script>
         <script src="{{ asset('js/searchcity.js') }}"></script>
         <script src="{{ asset('js/addPictures.js') }}"></script>
-
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
     {% block javascripts %}{% endblock %}
     </body>
 </html>

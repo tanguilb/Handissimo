@@ -7,48 +7,22 @@
     <section class="container-fluid blue" id="search-reminder">
         <div class="row">
             <div class="container" id="search-done">
-                {{ form_start(form) }}
-                {{ form_errors(form) }}
-                <div class="col-xs-12 col-md-5">
-                    <p class="search-label">Que cherchez-vous ?</p>
-                    {{ form_row(form.keyword, { 'attr':{"value":keyword["keyword"]}}) }}
-                    <ul id="keywordautocomplete"></ul>
-                </div>
-                <div class="col-xs-12 col-md-2">
-                    <p class="search-label">Âge :</p>
-                    {{ form_row(form.age, { 'attr':{"value":age}}) }}
-                </div>
-                <div class="col-xs-12 col-md-5">
-                    <p class="search-label">Où ?</p>
-                    {{ form_row(form.postal, { 'attr':{"value":keyword["postal"]}}) }}
-                    <ul id="city"></ul>
-                </div>
-            </div>
+                <h3>Votre recherche:</h3>
+                <ul>
+                    {% if location %}<li>lieu : {{ location }}</li>{% endif %}
+                    {% if age %}<li>Pour une personne  : {{ age }} ans</li>{% endif %}
+                    {% if need %}<li>Ce que vous cherchez : {{ need }}</li>{% endif %}
+                    {% if disability %}<li>Le type de handicap : {{ disability }}</li>{% endif %}
+                    {% if structure %}<li>Le type de structure : {{ structure }}</li>{% endif %}
+                </ul>
+                <a href="{{ path('index_action') }}" >
+                    <button class="btn orange-btn">Retour à votre recherche</button>
+                </a>
 
-        <div class="container">
-            <div class="col-md-3">
-                <p id="filter">Affinez votre recherche</p>
             </div>
-        </div>
-
-        <div class="container">
-            <div class="col-md-4">
-                {{ form_row(form.orgaStructure) }}
-            </div>
-            <div class="col-md-4">
-                {{ form_row(form.disabilitytypes) }}
-            </div>
-            <div class="col-md-4">
-                {{ form_row(form.needs) }}
-            </div>
-            <div class="col-md-2 col-md-offset-10">
-                {{ form_row(form.save, {'attr': {'class': 'btn black-btn'}}) }}
-            </div>
-        </div>
-
-            {{ form_end(form) }}
         </div>
     </section>
+
 
     <section class="container-fluid">
         <div class="row">
@@ -58,11 +32,17 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <div class="row">
+                <div class="col-xs-12 col-md-6">
                     <h4 id="count-results">{{ pagination.getTotalItemCount }} résultat(s)</h4>
                 </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="row navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
                 {% for results in pagination %}
-                <div class="row" id="result-container">
+
+                    <div class="row" id="result-container">
                     <div class="col-sm-5" id="crop-height">
                         {% for pictures in picture %}
                                 <a href="{{ path('structure_page', {'id': results.id}) }}">
@@ -127,7 +107,7 @@
                 </div>
                 {% endfor %}
                 <div class="col-xs-12">
-                    <div class="row">
+                    <div class="row navigation">
                         {{ knp_pagination_render(pagination) }}
                     </div>
                 </div>

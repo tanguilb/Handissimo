@@ -32,6 +32,7 @@ class DefaultController extends Controller
      */
     public function structureAction(Request $request)
     {
+
         $solution = new Solution();
         $form = $this->createForm('HandissimoBundle\Form\Type\SolutionType', $solution);
 

@@ -8,54 +8,59 @@ use Application\Sonata\UserBundle\Entity\User;
 class OrganizationsRepository extends EntityRepository
 {
 
-    public function getByOrganizationName($data, $age)
+    public function getBySearchEngine($location, $age, $need, $disability, $structure)
     {
-        $em = $this->getEntityManager();
+        $em =$this->getEntityManager();
         $query = $em->createQueryBuilder();
         $query->select('o');
-        $query->from('HandissimoBundle:Organizations', 'o');
-        $query->innerJoin('o.needs', 'n');
-        $query->innerJoin('o.disabilityTypes', 'dt');
-        $query->innerJoin('o.orgaStructure', 'sl');
-       // $query->innerJoin('o.stafforganizations', 's');
-        // define data structure
-        $fields =array(
-            "keyword" => array(
-                'o'=>'name',
-                'dt'=>'disabilityName',
-                'sl'=>'name',
-                'n'=>'needName',
-                /*'s'=>'jobs'*/),
-            "postal" => array(
-                'o' => 'postal',
-               // 'o' => 'city'
-            ),
-        );
+        $query->from('HandissimoBundle:Organizations', 'o', 'o.postal');
+        $query->leftJoin('o.needs', 'n');
+        $query->leftJoin('o.disabilityTypes', 'dt');
+        $query->leftJoin('o.orgaStructure', 'sl');
 
+        if($location !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('o.postal', ':location'));
+            $query->having($query->expr()->gte('o.postal', ':location'));
+            $query->where($ormodule);
+            $query->setParameter('location', $location);
+
+
+        }
         if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
-            $query->andWhere($andmodule);
+            $query->orWhere($andmodule);
             $query->setParameter('age', $age);
         }
+        if($need !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('n.needName', ':need'));
+            $query->orWhere($ormodule);
+            $query->setParameter('need', $need);
 
-        // search data from form
-        foreach($fields as $item => $value) {
-            if (!is_null($data[$item])) {
-                $ormodule = $query->expr()->orX();
-                foreach ($value as $key => $fieldName) {
-                    $ormodule->add($query->expr()->eq($key . '.' . $fieldName, ':' . $item));
-                    $ormodule->add($query->expr()->isNull($key . '.' . $fieldName));
-                }
-                $query->andWhere($ormodule);
-                $query->setParameter($item, $data[$item]);
-
-            }
         }
+        if($disability !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+            $query->orWhere($ormodule);
+            $query->setParameter('disability', $disability);
+
+        }
+        if($structure !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
+            $query->orWhere($ormodule);
+            $query->setParameter('structure', $structure);
+        }
+
+
         //echo $query->getQuery()->getSQL();;die();
         return $query->getQuery()->getResult();
     }
+
+
 
     public function getByOrganizations($keyword)
     {
@@ -104,63 +109,6 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
-    public function getByMultipleCriterias($data, $age)
-    {
-        $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder();
-        $query->select('o');
-        $query->from('HandissimoBundle:Organizations', 'o');
-        $query->innerJoin('o.needs', 'n');
-        $query->innerJoin('o.disabilityTypes', 'dt');
-        $query->innerJoin('o.orgaStructure', 'sl');
-        $query->innerJoin('o.stafforganizations', 's');
-
-        // define data structure
-        $fields =array(
-            "keyword" => array(
-                'o'=>'name',
-                'dt'=>'disabilityName',
-                'sl'=>'name',
-                'n'=>'needName',
-                's'=>'jobs'),
-            "postal" => array(
-                'o' => 'postal',
-               // 'o' => 'city'
-            ),
-            "disabilitytypes" => array(
-                'dt'=>'id',
-            ),
-            "orgaStructure" => array(
-                'sl'=>'id',
-            ),
-            "needs" => array(
-                'n'=>'id',
-            )
-        );
-
-        if ($age !== null) {
-            $andmodule = $query->expr()->andX();
-            $andmodule->add($query->expr()->lte('o.agemini', ':age'));
-            $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
-            $query->andWhere($andmodule);
-            $query->setParameter('age', $age);
-        }
-
-        // search data from form
-        foreach($fields as $item => $value) {
-            if (!is_null($data[$item])) {
-                $ormodule = $query->expr()->orX();
-                foreach ($value as $key => $fieldName) {
-                    $ormodule->add($query->expr()->eq($key . '.' . $fieldName, ':' . $item));
-                    $ormodule->add($query->expr()->isNull($key . '.' . $fieldName));
-                }
-                $query->andWhere($ormodule);
-                $query->setParameter($item, $data[$item]);
-            }
-        }
-        //echo $query->getQuery()->getSQL();;die();
-        return $query->getQuery()->getResult();
-    }
 
     public function getByUser(User $user)
     {
