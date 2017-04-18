@@ -256,12 +256,4 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
-
-    public function getFillingRate($organizationsId){
-        $qb = $this->createQueryBuilder('o')
-            ->select('count(o)')
-            ->where('o.id =' . $organizationsId)
-            ->getQuery();
-        return $qb->getResult();
-    }
 }
