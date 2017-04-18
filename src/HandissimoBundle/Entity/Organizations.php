@@ -8,6 +8,12 @@ namespace HandissimoBundle\Entity;
  */
 class Organizations
 {
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    // GENERATE CODE
     /**
      * @var integer
      */
@@ -997,37 +1003,6 @@ class Organizations
         return $this->agemaxi;
     }
 
-
-    /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $userorg;
-
-
-    /**
-     * Set userorg
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $userorg
-     *
-     * @return Organizations
-     */
-    public function setUserorg(\Application\Sonata\UserBundle\Entity\User $userorg = null)
-    {
-        $this->userorg = $userorg;
-
-        return $this;
-    }
-
-    /**
-     * Get userorg
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User
-     */
-    public function getUserorg()
-    {
-        return $this->userorg;
-    }
-
     /**
      * @var string
      */
@@ -1933,5 +1908,35 @@ class Organizations
     public function removeMedia(\HandissimoBundle\Entity\Media $medium)
     {
         $this->media->removeElement($medium);
+    }
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $userorg;
+
+
+    /**
+     * Set userorg
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userorg
+     *
+     * @return Organizations
+     */
+    public function setUserorg(\Application\Sonata\UserBundle\Entity\User $userorg = null)
+    {
+        $this->userorg = $userorg;
+
+        return $this;
+    }
+
+    /**
+     * Get userorg
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUserorg()
+    {
+        return $this->userorg;
     }
 }

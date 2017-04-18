@@ -7,7 +7,7 @@
 {% block body %}
     <section class="container-fluid" id="main-index">
         <div class="container">
-            <h1>Trouvez une solution adaptée. <br>Partagez votre avis et échangez avec la communauté.</h1>
+            <h1 id="title-index">Trouvez une solution adaptée. <br>Partagez votre avis et échangez avec la communauté.</h1>
             <div class="col-md-10 col-md-offset-1">
                 <h2>Handissimo vous facilite le handicap !</h2>
             </div>
@@ -17,28 +17,28 @@
             {{ form_errors(form) }}
 
             <div class="row">
-            <div class="col-xs-12 col-md-4 clear">
-                <div class="col-xs-12 search-field">
-                    <p>Où cherchez-vous ?<i class="fa fa-map-marker" aria-hidden="true" id="marker"></i></p>
-                    {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), Paris (75000)…', 'class' : 'homeField'} }) }}
-                    <ul id="city"></ul>
+                <div class="col-xs-12 col-md-4 clear">
+                    <div class="col-xs-12 search-field">
+                        <p>Où cherchez-vous ?<i class="fa fa-map-marker" aria-hidden="true" id="marker"></i></p>
+                        {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), Paris (75000)…', 'class' : 'homeField'} }) }}
+                        <ul id="city"></ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 search-field">
-                    <p>Pour quelqu’un de quel âge ?<i class="fa fa-birthday-cake" aria-hidden="true"></i></p>
-                    {{ form_row(form.age, { 'attr': {'placeholder': 'input.age'|trans({}, 'messages'), 'class' : 'homeField'} }) }}
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 search-field">
+                        <p>Pour quelqu’un de quel âge ?<i class="fa fa-birthday-cake" aria-hidden="true"></i></p>
+                        {{ form_row(form.age, { 'attr': {'placeholder': 'input.age'|trans({}, 'messages'), 'class' : 'homeField'} }) }}
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-12 col-md-4">
-                <div class="col-xs-12 search-field">
-                    <p>Que cherchez-vous ?<i class="fa fa-search" aria-hidden="true"></i></p>
-                    {{ form_row(form.need, { 'attr': {'placeholder': 'Répit, scolarité pour enfant autiste, foyer de vie...', 'class' : 'homeField'} }) }}
-                    <ul id="keywordautocomplete"></ul>
+                <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 search-field">
+                        <p>Que cherchez-vous ?<i class="fa fa-search" aria-hidden="true"></i></p>
+                        {{ form_row(form.need, { 'attr': {'placeholder': 'Répit, scolarité pour enfant autiste, foyer de vie...', 'class' : 'homeField'} }) }}
+                        <ul id="keywordautocomplete"></ul>
+                    </div>
                 </div>
-            </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
@@ -66,40 +66,32 @@
                 Inscrivez-la sur Handissimo pour la partager avec tous.</h2>
                 <div id="services-items">
                     <div class="row">
-                        <div class="grid">
-                            <div class="col-sm-4 col-xs-12">
-                                <figure class="effect-sadie">
-                                    <img src="{{ asset('images/photo1.jpeg') }}" alt="Je connais une solution"/>
-                                    <figcaption>
-                                        <h3>Je connais une solution</h3>
-                                        <p>Handissimo est collaboratif : les familles et les professionnels contribuent</p>
-                                        <a href="{{ path('handissimo_structure') }}"></a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-
-                            <div class="col-sm-4 col-xs-12">
-                                <figure class="effect-sadie">
-                                    <img src="{{ asset('images/photo2.jpeg') }}" alt="Qui sommes nous?" />
-                                    <figcaption>
-                                        <h3>Qui sommes nous?</h3>
-                                        <p>Handissimo est interactif : complétez, commentez, posez des questions…</p>
-                                        <a href="{{ path('handissimo_aboutpage') }}"></a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-
-                            <div class="col-sm-4 col-xs-12">
-                                <figure class="effect-sadie">
-                                    <img src="{{ asset('images/photo3.jpeg') }}" alt="Comment nous aider?" />
-                                    <figcaption>
-                                        <h3>Comment nous aider?</h3>
-                                        <p>Handissimo est en construction : nous avons besoin de vous !</p>
-                                        <a href="#"></a>
-                                    </figcaption>
-                                </figure>
-                            </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <a href="{{ path('handissimo_structure') }}" id="solution-one">
+                                <img src="{{ asset('images/photo1.jpeg') }}" alt="Je connais une solution"/>
+                                <h3>Je connais une solution</h3>
+                                <p>Handissimo est collaboratif : les familles et les professionnels contribuent</p>
+                            </a>
                         </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <a href="{{ path('handissimo_aboutpage') }}" id="solution-two">
+                                <img src="{{ asset('images/photo2.jpeg') }}" alt="Qui sommes nous?" />
+                                <h3>Qui sommes nous?</h3>
+                                <p>Handissimo est interactif : complétez, commentez, posez des questions…</p>
+                            </a>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <a href="#" id="solution-three">
+                                <img src="{{ asset('images/photo3.jpeg') }}" alt="Comment nous aider?" />
+                                <h3>Comment nous aider?</h3>
+                                <p>Handissimo est en construction : nous avons besoin de vous !</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container" id="block-call">
+                        <button class="btn" id="btn-call">Inscrire une solution(c’est gratuit)</button>
                     </div>
                 </div>
             </div>
@@ -107,15 +99,35 @@
     </section>
     <section class="container-fluid" id="headband-stats">
         <div class="row">
-            <div class="col-sm-4 col-xs-12">
-                <p class="stat-content"><span class="nb-stat">{{ statUser|length }}
-                </span><br> Utilisateurs enregistrés sur le site</p>
+            <div class="col-md-4 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-xs-2">
+                        <div class="nb-stat">{{ statUser|length }}</div>
+                    </div>
+                    <div class="col-md-12 col-xs-10">
+                        <p class="stat-content">Utilisateurs enregistrés sur le site</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-4 col-xs-12">
-                <p class="stat-content"><span class="nb-stat">{{ statOrganizations }}</span><br> Solutions de répertoriées</p>
+            <div class="col-md-4 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-xs-2">
+                        <div class="nb-stat">{{ statOrganizations }}</div>
+                    </div>
+                    <div class="col-md-12 col-xs-10">
+                        <p class="stat-content">Solutions de répertoriées</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-4 col-xs-12">
-                <p class="stat-content"><span class="nb-stat">?</span><br> Bénévoles participent à la vie du site</p>
+            <div class="col-md-4 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-xs-2">
+                        <span class="nb-stat">?</span>
+                    </div>
+                    <div class="col-md-12 col-xs-10">
+                        <p class="stat-content">Bénévoles participent à la vie du site</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -126,12 +138,13 @@
                 <div class="news-content">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12"  id="video">
+                            <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <video src="{{ asset('images/Cavernae_Terragen2.mp4') }}" controls="controls" typeof="video"></video>
                             </div>
-                            <p>Handissimo démarre! Comment ce sera après ?</p>
                         </div>
                         <div class="col-sm-4 col-xs-12">
+                            <p>Les dernières solutions inscrites sur Handissimo</p>
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
@@ -142,11 +155,13 @@
                                 <div class="carousel-inner" role="listbox">
                                     {% for images in carousel %}
                                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                                            <img src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
-                                            <div class="carousel-caption">
-                                                <h3>{#{ organizations.name }#}</h3>
-                                                <p>{#{ organizations.city }#}</p>
-                                            </div>
+                                            <a href="{{ path('structure_page', {'id': images.organizationsImg.id}) }}" class="block-img">
+                                                <img id="img-carousel" src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
+                                                <div class="carousel-caption">
+                                                    <h3>{{ images.organizationsImg.name }}</h3>
+                                                    <p>{{ images.organizationsImg.postal }} {{ images.organizationsImg.city }}</p>
+                                                </div>
+                                            </a>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -161,12 +176,24 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-xs-12">
+                        <div class="col-sm-4 col-xs-12" id="block-img-week">
+                            <p>Quoi de neuf ?</p>
                             <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/photo4.png') }}" alt=" Handissimo - L'image de la semaine"/>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section class="container-fluid" id="headband-social">
+        <div class="col-xs-12 col-md-4">
+            <a href="https://www.facebook.com/Handissimo-934218853377525/" target="_blank" id="facebook-link"><p class="content-social">Suivez-nous sur Facebook</p></a>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <a href="https://twitter.com/Handissimo_2017" target="_blank" id="twitter-link"><p class="content-social">ou sur Twitter</p></a>
+        </div>
+        <div class="col-xs-12 col-md-4">
+            <p class="content-social">pour avoir d’autres actualités !</p>
         </div>
     </section>
 {% endblock %}

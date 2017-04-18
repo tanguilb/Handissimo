@@ -19,11 +19,9 @@ Application\Sonata\UserBundle\Entity\User:
             type: boolean
             nullable: true
 
-    oneToOne:
+    oneToMany:
         organizationsuser:
             targetEntity: HandissimoBundle\Entity\Organizations
-            inversedBy: userorg
-            joinColumn:
-                name: organizations_id
-                referencedColumnName: id
-                nullable: true
+            mappedBy: userorg
+            nullable: true
+

@@ -15,7 +15,7 @@
         <p><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci nexiste pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}">>>CLIQUEZ-ICI<<<</a></span></p>
     </div>
     {% block organization_form %}
-        <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data" id="orga-new">
             {{ form_start(form) }}
             {{ form_errors(form) }}
                 <!-- Nav tabs -->
@@ -27,7 +27,10 @@
                     <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
                     <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                 </ul>
-
+                <br>
+                <div id="progressbar">
+                    <div id="percentage"></div>
+                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
@@ -162,6 +165,5 @@
 {% endblock %}
 
 {% block javascript %}
-
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}

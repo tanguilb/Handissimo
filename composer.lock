@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35cfe2b1bba7fdb479a3ef7975682273",
-    "content-hash": "c01fd815d9fb6dff5f635635f57727fb",
+    "hash": "0d768d6b49d97f5c613315a188c70226",
+    "content-hash": "7568d8c55716c94b662b1085e0379687",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1983,16 +1983,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.16.0",
+            "version": "3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "9ef795ae04735900280bc1ba96b9ffe93032dec3"
+                "reference": "021646de4c11c170ae6205bc5740818b50da3591"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/9ef795ae04735900280bc1ba96b9ffe93032dec3",
-                "reference": "9ef795ae04735900280bc1ba96b9ffe93032dec3",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/021646de4c11c170ae6205bc5740818b50da3591",
+                "reference": "021646de4c11c170ae6205bc5740818b50da3591",
                 "shasum": ""
             },
             "require": {
@@ -2002,7 +2002,7 @@
                 "php": "^5.3 || ^7.0",
                 "sonata-project/block-bundle": "^3.2",
                 "sonata-project/core-bundle": "^3.1",
-                "sonata-project/exporter": "^1.7",
+                "sonata-project/exporter": "^1.0",
                 "symfony/class-loader": "^2.3 || ^3.0",
                 "symfony/config": "^2.3.9 || ^3.0",
                 "symfony/console": "^2.3 || ^3.0",
@@ -2022,13 +2022,11 @@
                 "twig/twig": "^1.28 || ^2.0"
             },
             "conflict": {
-                "jms/di-extra-bundle": "<1.7.0",
-                "sonata-project/exporter": "1.6.0"
+                "jms/di-extra-bundle": "<1.7.0"
             },
             "require-dev": {
                 "jms/di-extra-bundle": "^1.7",
                 "jms/translation-bundle": "^1.2",
-                "matthiasnoback/symfony-dependency-injection-test": "^0.1 || ^1.0",
                 "sensio/generator-bundle": "^2.3 || ^3.0",
                 "sllh/php-cs-fixer-styleci-bridge": "^2.0",
                 "sonata-project/intl-bundle": "^2.2.4",
@@ -2078,7 +2076,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2017-03-31 09:23:02"
+            "time": "2017-02-03 09:12:44"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -4077,16 +4075,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
                 "shasum": ""
             },
             "require": {
@@ -4115,20 +4113,20 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26 22:05:40"
+            "time": "2017-04-12 18:52:22"
         },
         {
             "name": "nelmio/alice",
-            "version": "v3.0.0-beta.4",
+            "version": "v3.0.0-beta.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/alice.git",
-                "reference": "8d3d23a70f8a2a8f62c769dd75d5cf9f134f4af1"
+                "reference": "056f173ce9911eda4561771de7ed73e62811439d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/alice/zipball/8d3d23a70f8a2a8f62c769dd75d5cf9f134f4af1",
-                "reference": "8d3d23a70f8a2a8f62c769dd75d5cf9f134f4af1",
+                "url": "https://api.github.com/repos/nelmio/alice/zipball/056f173ce9911eda4561771de7ed73e62811439d",
+                "reference": "056f173ce9911eda4561771de7ed73e62811439d",
                 "shasum": ""
             },
             "require": {
@@ -4188,7 +4186,7 @@
                 "faker",
                 "test"
             ],
-            "time": "2017-03-18 23:53:47"
+            "time": "2017-04-11 13:26:07"
         },
         {
             "name": "phpunit/php-code-coverage",
