@@ -10,7 +10,8 @@ HandissimoBundle\Entity\City:
                 strategy: AUTO
     fields:
         department:
-            type: integer
+            type: string
+            length: 50
         slug:
             type: string
             length: 255
@@ -24,7 +25,8 @@ HandissimoBundle\Entity\City:
             type: string
             length: 255
         postal:
-            type: integer
+            type: string
+            length: 255
         longitude:
             type: float
         latitude:

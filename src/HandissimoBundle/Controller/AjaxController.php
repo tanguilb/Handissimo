@@ -39,8 +39,31 @@ class AjaxController extends Controller
             $this->get('session')->set('disability', $disability);
             $this->get('session')->set('structure', $structure);
 
+            $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
+            $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
+            $radius = 6371.009;
+            $distance = 50;
+            $rad = $distance / $radius;
+            $radd = rad2deg($rad);
+            $maxLat = null;
+            $minLat = null;
+            $maxLong = null;
+            $minLong = null;
+            if($lat) {
+                $maxLat = ($lat[0]['latitude'] + $radd);
+                $minLat = ($lat[0]['latitude'] - $radd);
+                $maxLong = ($long[0]['longitude'] + $radd);
+                $minLong = ($long[0]['longitude'] - $radd);
 
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+
+                $absLat = abs($lat[0]['latitude']);
+                $absLong = abs($long[0]['longitude']);
+                $order = $absLat + $absLong;
+
+            }
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($minLat, $minLong, $maxLat, $maxLong, $age, $need, $disability, $structure);
+
+           // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);

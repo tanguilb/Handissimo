@@ -10,4 +10,24 @@ namespace HandissimoBundle\Repository;
  */
 class CityRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLatitude($name)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->select('c.latitude')
+            ->addSelect('c.name')
+            ->where('c.name = ?1')
+            ->setParameter(1, $name)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+    public function getLongitude($name)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->select('c.longitude')
+            ->where('c.name = ?1')
+            ->setParameter(1,  $name)
+            ->getQuery();
+        return $query->getResult();
+    }
 }

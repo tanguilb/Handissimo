@@ -91,6 +91,12 @@ doctrine:
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
+            geometry:   CrEOF\Spatial\DBAL\Types\GeometryType
+            point:      CrEOF\Spatial\DBAL\Types\Geometry\PointType
+            polygon:    CrEOF\Spatial\DBAL\Types\Geometry\PolygonType
+            linestring: CrEOF\Spatial\DBAL\Types\Geometry\LineStringType
+
+
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -102,8 +108,18 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         entity_managers:
             default:
-                naming_strategy: doctrine.orm.naming_strategy.underscore
+                dql:
+                    numeric_functions:
+                        st_contains:     CrEOF\Spatial\ORM\Query\AST\Functions\MySql\STContains
+                        contains:     CrEOF\Spatial\ORM\Query\AST\Functions\MySql\Contains
+                        st_area:         CrEOF\Spatial\ORM\Query\AST\Functions\MySql\Area
+                        st_geomfromtext: CrEOF\Spatial\ORM\Query\AST\Functions\MySql\GeomFromText
+                        st_intersects:     CrEOF\Spatial\ORM\Query\AST\Functions\MySql\STIntersects
+                        st_buffer:     CrEOF\Spatial\ORM\Query\AST\Functions\MySql\STBuffer
+                        point: CrEOF\Spatial\ORM\Query\AST\Functions\MySql\Point
                 auto_mapping: true
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+
 
 # Sonata Configuration
 sonata_block:
