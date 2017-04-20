@@ -39,6 +39,10 @@ class AjaxController extends Controller
             $this->get('session')->set('disability', $disability);
             $this->get('session')->set('structure', $structure);
 
+            $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
+            $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
+
+
 
             //$result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $result = $em->getRepository('HandissimoBundle:City')->getCoordinate($location);
@@ -87,65 +91,6 @@ class AjaxController extends Controller
             'pagination' => $pagination,
         ));
     }
-
-    public function autoCompleteAction(Request $request, $keyword)
-    {
-        if ($request->isXmlHttpRequest())
-        {
-            /**
-             * @var $repository OrganizationsRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $organization = $repository->getByOrganizations($keyword);
-
-            /**
-             * @var $repository NeedsRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Needs');
-            $needs = $repository->getByNeeds($keyword);
-
-            /**
-             * @var $repository DisabilityTypesRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:DisabilityTypes');
-            $disability = $repository->getByDisability($keyword);
-
-            /**
-             * @var $repository StructuresListRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
-            $structure = $repository->getByStructure($keyword);
-
-            /**
-             * @var $repository StaffRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Staff');
-            $staff = $repository->getByStaff($keyword);
-
-
-            $data =  array_merge($organization, $needs, $disability, $structure, $staff);
-
-            return new JsonResponse(array("data" => json_encode($data)));
-        } else {
-            throw new HttpException("500", "Invalid Call");
-        }
-    }
-
-    /*public function postalAction(Request $request, $postalcode)
-    {
-
-        if ($request->isXmlHttpRequest()) {
-
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $postal = $repository->getByPostal($postalcode);
-
-
-
-            return new JsonResponse(array("data" => json_encode($postal)));
-        } else {
-            throw new HttpException('500', 'Invalid call');
-        }
-    }*/
 
     public function searchByCityAction(Request $request, $city)
     {

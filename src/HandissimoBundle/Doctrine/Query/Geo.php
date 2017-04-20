@@ -7,15 +7,23 @@ use Doctrine\ORM\Query\Lexer;
 
 class Geo extends FunctionNode
 {
-    /**
-     * @var \Doctrine\ORM\Query\AST\ComparisonExpression
-     */
-    private $latitude;
+
+    const EARTH_RADIUS = 6371;
 
     /**
      * @var \Doctrine\ORM\Query\AST\ComparisonExpression
      */
-    private $longitude;
+    private $latOrigin;
+
+    /**
+     * @var \Doctrine\ORM\Query\AST\ComparisonExpression
+     */
+    private $lngOrigin;
+
+    private $latDestination;
+
+    private $lngDestination;
+
     /**
      * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
      *
@@ -23,7 +31,16 @@ class Geo extends FunctionNode
      */
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-        //return sprintf()
+        return sprintf(
+            $this->getSqlWithPlaceholders(),
+            self::EARTH_RADIUS,
+            $sqlWalker->walkArithmeticPrimary($this->latOrigin),
+            $sqlWalker->walkArithmeticPrimary($this->latDestination),
+            $sqlWalker->walkArithmeticPrimary($this->lngDestination),
+            $sqlWalker->walkArithmeticPrimary($this->lngOrigin),
+            $sqlWalker->walkArithmeticPrimary($this->latOrigin),
+            $sqlWalker->walkArithmeticPrimary($this->latDestination)
+        );
     }
 
     /**
@@ -35,9 +52,18 @@ class Geo extends FunctionNode
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
-        $this->latitude = $parser->ComparisonExpression();
+        $this->latOrigin = $parser->ComparisonExpression();
         $parser->match(Lexer::T_COMMA);
-        $this->longitude = $parser->ComparisonExpression();
+        $this->lngOrigin = $parser->ComparisonExpression();
+        $parser->match(Lexer::T_COMMA);
+        $this->latDestination = $parser->ComparisonExpression();
+        $parser->match(Lexer::T_COMMA);
+        $this->lngDestination = $parser->ComparisonExpression();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
+    }
+
+    public function getSqlWithPlaceholders()
+    {
+        return '%s * acos(cos(radians(%s)) * cos(radians(%s)) - radians(%s)) + sin(radians(%s)) * sin(radians(%s))))';
     }
 }
