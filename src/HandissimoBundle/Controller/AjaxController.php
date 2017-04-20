@@ -40,7 +40,8 @@ class AjaxController extends Controller
             $this->get('session')->set('structure', $structure);
 
 
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+            //$result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+            $result = $em->getRepository('HandissimoBundle:City')->getCoordinate($location);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
@@ -129,24 +130,32 @@ class AjaxController extends Controller
             throw new HttpException("500", "Invalid Call");
         }
     }
-    public function postalAction(Request $request, $postalcode)
+
+    /*public function postalAction(Request $request, $postalcode)
     {
-        /**
-         * @var $repository OrganizationsRepository
-         */
+
         if ($request->isXmlHttpRequest()) {
 
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $postal = $repository->getByPostal($postalcode);
 
-           /* $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $city = $repository->getByCity($postalcode);*/
 
-           // $data =  array_merge($postal, $city);
 
             return new JsonResponse(array("data" => json_encode($postal)));
         } else {
             throw new HttpException('500', 'Invalid call');
+        }
+    }*/
+
+    public function searchByCityAction(Request $request, $city)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:City');
+            $location = $repository->getByCity($city);
+
+            return new JsonResponse(array("data" => json_encode($location)));
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
     }
 

@@ -10,4 +10,30 @@ namespace HandissimoBundle\Repository;
  */
 class CityRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByCity($city)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c.name', 'c.postal')
+            ->where('c.name LIKE :namedata')
+            ->setParameter('namedata', '%'.$city.'%')
+            ->orWhere('c.postal LIKE :postaldata')
+            ->setParameter('postaldata', '%'.$city.'%')
+            ->groupBy('c.postal', 'c.name')
+            ->setMaxResults(10)
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getCoordinate($location)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c.name', 'c.postal', 'c.latitude', 'c.longitude')
+            ->where('c.name = :namedata')
+            ->setParameter('namedata', $location)
+            ->orWhere('c.postal = :postaldata')
+            ->setParameter('postaldata', $location)
+            ->getQuery();
+        return $qb->getResult();
+
+    }
 }

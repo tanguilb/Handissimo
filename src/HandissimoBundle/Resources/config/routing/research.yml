@@ -4,8 +4,8 @@ research_ajax:
     methods:  POST
 
 city_ajax:
-    path:   /ajaxcity/{postalcode}
-    defaults: {_controller: "HandissimoBundle:Ajax:postal"}
+    path:   /ajaxcity/{city}
+    defaults: {_controller: "HandissimoBundle:Ajax:searchByCity"}
     methods:  POST
 
 index_action:

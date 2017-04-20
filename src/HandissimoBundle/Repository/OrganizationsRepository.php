@@ -12,7 +12,7 @@ class OrganizationsRepository extends EntityRepository
     {
         $em =$this->getEntityManager();
         $query = $em->createQueryBuilder();
-        $query->select('o');
+        $query->select('o', 'c');
         $query->from('HandissimoBundle:Organizations', 'o', 'o.postal');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
@@ -24,9 +24,9 @@ class OrganizationsRepository extends EntityRepository
             $query->having($query->expr()->gte('o.postal', ':location'));
             $query->where($ormodule);
             $query->setParameter('location', $location);
-
-
         }
+
+
         if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
