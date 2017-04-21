@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Doctrine\Common\Collections\Collection;
 use HandissimoBundle\Form\AdvancedSearchType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -42,15 +43,22 @@ class AjaxController extends Controller
             $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
             $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
 
+            $rlat = null;
+            $rlong = null;
+            if(!empty($lat) and !empty($long))
+            {
             $rlat = $lat[0]['latitude'];
+            var_dump($rlat);
             $rlong = $long[0]['longitude'];
-
+            var_dump($rlong);
+            }
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
-
+           // var_dump($result);
            // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
+           // var_dump($pagination);
             $this->get('session')->set('pagination', $pagination);
             $pagination->setUsedRoute('research_action');
 

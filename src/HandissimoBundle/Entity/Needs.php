@@ -25,16 +25,16 @@ class Needs
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $structures;
+   /* private $structures;
 
     /**
      * Constructor
      */
-    public function __construct()
+   /* public function __construct()
     {
         $this->structures = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+*/
     /**
      * Get id
      *
@@ -76,7 +76,7 @@ class Needs
      *
      * @return Needs
      */
-    public function addStructure(\HandissimoBundle\Entity\Organizations $structure)
+ /*   public function addStructure(\HandissimoBundle\Entity\Organizations $structure)
     {
         $this->structures[] = $structure;
 
@@ -88,7 +88,7 @@ class Needs
      *
      * @param \HandissimoBundle\Entity\Organizations $structure
      */
-    public function removeStructure(\HandissimoBundle\Entity\Organizations $structure)
+   /* public function removeStructure(\HandissimoBundle\Entity\Organizations $structure)
     {
         $this->structures->removeElement($structure);
     }
@@ -98,15 +98,19 @@ class Needs
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getStructures()
+ /*   public function getStructures()
     {
         return $this->structures;
-    }
+    }*/
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
     protected $organizations;
 
+    public function __construct()
+    {
+        $this->organizations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Add organization

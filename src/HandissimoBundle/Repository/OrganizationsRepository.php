@@ -8,7 +8,7 @@ use Application\Sonata\UserBundle\Entity\User;
 class OrganizationsRepository extends EntityRepository
 {
 
-    public function getNearBy( $lat, $long, $age, $need, $disability, $structure)
+    public function getNearBy($lat, $long, $age, $need, $disability, $structure)
     {
 
         $em = $this->getEntityManager();
@@ -27,7 +27,8 @@ class OrganizationsRepository extends EntityRepository
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
-
+        if($lat !== null and $long !== null)
+        {
        // $andmodule = $query->expr()->andX();
         $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
         //$query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
@@ -36,7 +37,7 @@ class OrganizationsRepository extends EntityRepository
         $query->setParameter('long', $long);
         $query->orderBy('distance');
        // $query->where($andmodule);
-
+        }
        // echo $query->getQuery()->getSQL();;die();
        // return $query->getQuery()->getResult();
 
@@ -61,26 +62,7 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
        // }*/
 
-      /*  if($minLat !== null and $maxLat !== null and $maxLong !== null and $minLong !== null)
-        {
-            $andmodule = $query->expr()->andX();
-            $andmodule->add($query->expr()->gte('o.latitude', ':minLat'));
-            $query->setParameter('minLat', $minLat);
-            $andmodule->add($query->expr()->lte ('o.latitude', ':maxLat'));
-            $query->setParameter('maxLat', $maxLat);
 
-            $query->andWhere($andmodule);
-            // $query->setParameters(array('minLat' => $minLat, 'maxLat' => $maxLat));
-            $andmoduleBis = $query->expr()->andX();
-            $andmoduleBis->add($query->expr()->gte('o.longitude', ':minLong'));
-            $query->setParameter('minLong', $minLong);
-            $andmoduleBis->add($query->expr()->lte('o.longitude', ':maxLong'));
-            $query->setParameter('maxLong', $maxLong);
-
-            $query->andWhere($andmoduleBis);
-            $query->orderBy('o.latitude');
-        }*/
-       // $query->setParameters(array('minLong' => $minLong, 'maxLong' => $maxLong));
        // echo $query->getQuery()->getSQL();;die();
         if ($age !== null) {
             $andmodule = $query->expr()->andX();
@@ -90,9 +72,14 @@ class OrganizationsRepository extends EntityRepository
             $query->setParameter('age', $age);
         }
         if($need !== null){
+            /*
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
             $query->andWhere($ormodule);
+            $query->setParameter('need', $need);*/
+            $query->addSelect('n');
+            //$query->from('HandissimoBundle:Needs', 'n');
+            $query->andWhere('n.needName = :need');
             $query->setParameter('need', $need);
 
         }
