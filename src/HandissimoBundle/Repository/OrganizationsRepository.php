@@ -4,43 +4,49 @@ namespace HandissimoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\Sonata\UserBundle\Entity\User;
-use HandissimoBundle\Doctrine\Query\Geo;
 
 class OrganizationsRepository extends EntityRepository
 {
 
-   /* public function getByLocalisation()
+    public function getNearBy( $lat, $long, $age, $need, $disability, $structure)
     {
-        $manager = $this->getEntityManager();
-        $queryBuilder = $manager->createQueryBuilder();
-        $queryBuilder
-            ->select("id, ST_AsText(things.geometry) as geometry")
-            ->from("geometryOfThings", "things")
-            ->where(
-                $queryBuilder->expr()->eq(
-                    sprintf("ST_Intersects(things.geometry, ST_SetSRID(ST_GeomFromGeoJSON('%s'), 4326))", $geoJsonPolygon),
-                    $queryBuilder->expr()->literal(true)
-                )
-            );
-        return $queryBuilder->getQuery()->getResult();
-    }*/
-    public function getNearBy( $lat, $long/*, $age, $need, $disability, $structure*/)
-    {
+
         $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder('o');
+        /*$geo = $em->createQueryBuilder();
+        $geo->select('o','Geo(:lat, :long, o.latitude, o.longitude) as distance');
+        $geo->from('HandissimoBundle:Organizations', 'o');
+        $geo->having('distance <= 10');
+        $geo->setParameter('lat', $lat);
+        $geo->setParameter('long', $long);
+        $geo->orderBy('distance');
+        //$geo->setMaxResults($connard);*/
+
+        $query = $em->createQueryBuilder();
         $query->select('o');
         $query->from('HandissimoBundle:Organizations', 'o');
+        $query->leftJoin('o.needs', 'n');
+        $query->leftJoin('o.disabilityTypes', 'dt');
+        $query->leftJoin('o.orgaStructure', 'sl');
+
+       // $andmodule = $query->expr()->andX();
         $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
+        //$query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
         $query->having('distance <= 10');
         $query->setParameter('lat', $lat);
         $query->setParameter('long', $long);
         $query->orderBy('distance');
+       // $query->where($andmodule);
 
        // echo $query->getQuery()->getSQL();;die();
-        return $query->getQuery()->getResult();
-        /*$query->leftJoin('o.needs', 'n');
-        $query->leftJoin('o.disabilityTypes', 'dt');
-        $query->leftJoin('o.orgaStructure', 'sl');
+       // return $query->getQuery()->getResult();
+
+       /* if($geo !== null)
+        {
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->any($geo->getDQL()));
+        }*/
+        //echo $query->getQuery()->getSQL();;die();
+        //return $query->getQuery()->getResult();
 
         /*if($lat !== null and $long !== null)
         {*/
@@ -76,14 +82,14 @@ class OrganizationsRepository extends EntityRepository
         }*/
        // $query->setParameters(array('minLong' => $minLong, 'maxLong' => $maxLong));
        // echo $query->getQuery()->getSQL();;die();
-        /*if ($age !== null) {
+        if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
             $query->andWhere($andmodule);
             $query->setParameter('age', $age);
         }
-       /* if($need !== null){
+        if($need !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
             $query->andWhere($ormodule);
@@ -102,11 +108,11 @@ class OrganizationsRepository extends EntityRepository
             $ormodule->add($query->expr()->eq('sl.name', ':structure'));
             $query->andWhere($ormodule);
             $query->setParameter('structure', $structure);
-        }*/
+        }
         //echo $query->getQuery()->getSQL();;die();
-        return $query->getResult();
+        //return $query->getResult();
 
-        //return $query->getQuery()->getResult();
+        return $query->getQuery()->getResult();
            /* $query = $this->createQueryBuilder('o')
                 ->select('o')
                 ->from('HandissimoBundle:Organizations', 'o')

@@ -45,7 +45,7 @@ class AjaxController extends Controller
             $rlat = $lat[0]['latitude'];
             $rlong = $long[0]['longitude'];
 
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong/*, $age, $need, $disability, $structure*/);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
 
            // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
