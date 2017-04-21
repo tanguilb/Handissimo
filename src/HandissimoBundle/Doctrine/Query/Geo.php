@@ -52,18 +52,18 @@ class Geo extends FunctionNode
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
-        $this->latOrigin = $parser->ComparisonExpression();
+        $this->latOrigin = $parser->ArithmeticExpression();
         $parser->match(Lexer::T_COMMA);
-        $this->lngOrigin = $parser->ComparisonExpression();
+        $this->lngOrigin = $parser->ArithmeticExpression();
         $parser->match(Lexer::T_COMMA);
-        $this->latDestination = $parser->ComparisonExpression();
+        $this->latDestination = $parser->ArithmeticExpression();
         $parser->match(Lexer::T_COMMA);
-        $this->lngDestination = $parser->ComparisonExpression();
+        $this->lngDestination = $parser->ArithmeticExpression();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
     public function getSqlWithPlaceholders()
     {
-        return '%s * acos(cos(radians(%s)) * cos(radians(%s)) - radians(%s)) + sin(radians(%s)) * sin(radians(%s))))';
+        return '%s * acos(cos(radians(%s)) * cos(radians(%s)) * cos(radians(%s)) - radians(%s)) + sin(radians(%s)) * sin(radians(%s))))';
     }
 }

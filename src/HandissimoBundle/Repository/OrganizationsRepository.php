@@ -8,26 +8,34 @@ use Application\Sonata\UserBundle\Entity\User;
 class OrganizationsRepository extends EntityRepository
 {
 
-    public function getBySearchEngine($location, $age, $need, $disability, $structure)
+    public function getBySearchEngine($lat, $long/*, $age, $need, $disability, $structure*/)
     {
         $em =$this->getEntityManager();
         $query = $em->createQueryBuilder();
-        $query->select('o', 'c');
-        $query->from('HandissimoBundle:Organizations', 'o', 'o.postal');
-        $query->leftJoin('o.needs', 'n');
-        $query->leftJoin('o.disabilityTypes', 'dt');
-        $query->leftJoin('o.orgaStructure', 'sl');
+        //$query->select('o', 'c');
+        //$query->from('HandissimoBundle:Organizations', 'o', 'o.postal');
+        //$query->leftJoin('o.needs', 'n');
+        //$query->leftJoin('o.disabilityTypes', 'dt');
+        //$query->leftJoin('o.orgaStructure', 'sl');
 
-        if($location !== null){
-            $ormodule = $query->expr()->orX();
+        if($lat !== null && $long !== null ){
+            $query->addSelect('geo(:lat, :long, o.latitude, o.longitude) as HIDDEN distance');
+            $query->setParameter('lat', $lat);
+            $query->setParameter('lat', $long);
+            //$query->having('distance < 10');
+            $query->orderBy('distance', 'ASC');
+
+            /*$ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('o.postal', ':location'));
             $query->having($query->expr()->gte('o.postal', ':location'));
             $query->where($ormodule);
-            $query->setParameter('location', $location);
+            $query->setParameter('location', $location);*/
         }
+        echo $query->getQuery()->getSQL();die();
+        return $query->getQuery()->getResult();
 
 
-        if ($age !== null) {
+        /*if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
@@ -57,7 +65,7 @@ class OrganizationsRepository extends EntityRepository
 
 
         //echo $query->getQuery()->getSQL();;die();
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getResult();*/
     }
 
 
