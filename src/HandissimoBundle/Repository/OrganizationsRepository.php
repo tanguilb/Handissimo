@@ -8,26 +8,10 @@ use HandissimoBundle\Doctrine\Query\Geo;
 
 class OrganizationsRepository extends EntityRepository
 {
-
-   /* public function getByLocalisation()
-    {
-        $manager = $this->getEntityManager();
-        $queryBuilder = $manager->createQueryBuilder();
-        $queryBuilder
-            ->select("id, ST_AsText(things.geometry) as geometry")
-            ->from("geometryOfThings", "things")
-            ->where(
-                $queryBuilder->expr()->eq(
-                    sprintf("ST_Intersects(things.geometry, ST_SetSRID(ST_GeomFromGeoJSON('%s'), 4326))", $geoJsonPolygon),
-                    $queryBuilder->expr()->literal(true)
-                )
-            );
-        return $queryBuilder->getQuery()->getResult();
-    }*/
     public function getNearBy( $lat, $long/*, $age, $need, $disability, $structure*/)
     {
         $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder('o');
+        $query = $em->createQueryBuilder();
         $query->select('o');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
@@ -55,27 +39,7 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
        // }*/
 
-      /*  if($minLat !== null and $maxLat !== null and $maxLong !== null and $minLong !== null)
-        {
-            $andmodule = $query->expr()->andX();
-            $andmodule->add($query->expr()->gte('o.latitude', ':minLat'));
-            $query->setParameter('minLat', $minLat);
-            $andmodule->add($query->expr()->lte ('o.latitude', ':maxLat'));
-            $query->setParameter('maxLat', $maxLat);
 
-            $query->andWhere($andmodule);
-            // $query->setParameters(array('minLat' => $minLat, 'maxLat' => $maxLat));
-            $andmoduleBis = $query->expr()->andX();
-            $andmoduleBis->add($query->expr()->gte('o.longitude', ':minLong'));
-            $query->setParameter('minLong', $minLong);
-            $andmoduleBis->add($query->expr()->lte('o.longitude', ':maxLong'));
-            $query->setParameter('maxLong', $maxLong);
-
-            $query->andWhere($andmoduleBis);
-            $query->orderBy('o.latitude');
-        }*/
-       // $query->setParameters(array('minLong' => $minLong, 'maxLong' => $maxLong));
-       // echo $query->getQuery()->getSQL();;die();
         /*if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
