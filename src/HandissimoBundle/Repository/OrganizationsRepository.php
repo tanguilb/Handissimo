@@ -4,6 +4,9 @@ namespace HandissimoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\Sonata\UserBundle\Entity\User;
+use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\Needs;
+
 
 class OrganizationsRepository extends EntityRepository
 {
@@ -12,15 +15,6 @@ class OrganizationsRepository extends EntityRepository
     {
 
         $em = $this->getEntityManager();
-        /*$geo = $em->createQueryBuilder();
-        $geo->select('o','Geo(:lat, :long, o.latitude, o.longitude) as distance');
-        $geo->from('HandissimoBundle:Organizations', 'o');
-        $geo->having('distance <= 10');
-        $geo->setParameter('lat', $lat);
-        $geo->setParameter('long', $long);
-        $geo->orderBy('distance');
-        //$geo->setMaxResults($connard);*/
-
         $query = $em->createQueryBuilder();
         $query->select('o');
         $query->from('HandissimoBundle:Organizations', 'o');
@@ -29,41 +23,15 @@ class OrganizationsRepository extends EntityRepository
         $query->leftJoin('o.orgaStructure', 'sl');
         if($lat !== null and $long !== null)
         {
-       // $andmodule = $query->expr()->andX();
         $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
-        //$query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
         $query->having('distance <= 10');
         $query->setParameter('lat', $lat);
         $query->setParameter('long', $long);
         $query->orderBy('distance');
-       // $query->where($andmodule);
         }
        // echo $query->getQuery()->getSQL();;die();
-       // return $query->getQuery()->getResult();
-
-       /* if($geo !== null)
-        {
-            $andmodule = $query->expr()->andX();
-            $andmodule->add($query->expr()->any($geo->getDQL()));
-        }*/
-        //echo $query->getQuery()->getSQL();;die();
-        //return $query->getQuery()->getResult();
-
-        /*if($lat !== null and $long !== null)
-        {*/
-
-        /*$query = $this->createQueryBuilder('o')
-            ->select('o, Geo(:lat, :long, o.latitude, o.longitude) as HIDDEN distance')
-            ->having('distance <= 10')
-            ->setParameter('lat', $lat)
-            ->setParameter('long', $long)
-            ->orderBy('distance')
-            //echo $query->getQuery()->getSQL();;die();
-            ->getQuery();
-       // }*/
 
 
-       // echo $query->getQuery()->getSQL();;die();
         if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
@@ -76,66 +44,27 @@ class OrganizationsRepository extends EntityRepository
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
             $query->orWhere($ormodule);
-            $query->setParameter('need', $need);
-           /* $query->addSelect('n');
-            //$query->from('HandissimoBundle:Needs', 'n');
-            $query->andWhere('n.needName = :need');
-            $query->setParameter('need', $need);*/
+            $query->setParameter('need', $need->getNeedName());
+
 
         }
         if($disability !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
             $query->orWhere($ormodule);
-            $query->setParameter('disability', $disability);
+            $query->setParameter('disability', $disability->getDisabilityName());
 
         }
         if($structure !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('sl.name', ':structure'));
             $query->orWhere($ormodule);
-            $query->setParameter('structure', $structure);
+            $query->setParameter('structure', $structure->getName());
         }
         //echo $query->getQuery()->getSQL();;die();
-        //return $query->getResult();
         $query->distinct();
 
-        return $query->getQuery()->getScalarResult();
-           /* $query = $this->createQueryBuilder('o')
-                ->select('o')
-                ->from('HandissimoBundle:Organizations', 'o')
-                ->where('o.latitude > :minLat')
-                ->andWhere('o.latitude < :maxLat')
-                ->andWhere('o.longitude > :minLong')
-                ->andWhere('o.longitude < : maxLong')
-                ->setParameters(array('minLat' => $minLat, 'maxLat' => $maxLat, 'minLong' => $minLong, 'maxLong' => $maxLong))
-                ->orderBy($lat + $long, 'ASC')
-                ->getQuery();
-            return $query->getResult();
-
-           public static function getNearby($lat, $lng, $type = 'cities', $limit = 50, $distance = 50, $unit = 'km')
-{
-    // radius of earth; @note: the earth is not perfectly spherical, but this is considered the 'mean radius'
-    if ($unit == 'km') $radius = 6371.009; // in kilometers
-    elseif ($unit == 'mi') $radius = 3958.761; // in miles
-
-    // latitude boundaries
-    $maxLat = (float) $lat + rad2deg($distance / $radius);
-    $minLat = (float) $lat - rad2deg($distance / $radius);
-
-    // longitude boundaries (longitude gets smaller when latitude increases)
-    $maxLng = (float) $lng + rad2deg($distance / $radius / cos(deg2rad((float) $lat)));
-    $minLng = (float) $lng - rad2deg($distance / $radius / cos(deg2rad((float) $lat)));
-
-    // get results ordered by distance (approx)
-    $nearby = (array) FrontendDB::getDB()->retrieve('SELECT *
-                                                    FROM cities
-                                                    WHERE lat > ? AND lat < ? AND lng > ? AND lng < ?
-                                                    ORDER BY ABS(lat - ?) + ABS(lng - ?) ASC
-                                                    LIMIT ?;',
-                                                    array($minLat, $maxLat, $minLng, $maxLng, (float) $lat, (float) $lng, (int) $limit));
-
-    return $nearby;*/
+        return $query->getQuery()->getResult();
 
     }
 
@@ -151,15 +80,7 @@ class OrganizationsRepository extends EntityRepository
         $query->andWhere('n.needName = :need');
         $query->setParameter('need', $needs);
         return $query->getQuery()->getResult();
-        /*$query = $this->createQueryBuilder('o')
-            ->select('o')
-            ->leftJoin('o.needs', 'n')
-            ->where('o.id = :id')
-            ->setParameter('id', $result)
-            ->andWhere('n.needName = :need')
-            ->setParameter('need', $needs)
-            ->getQuery();
-        return $query->getResult();*/
+
     }
 
     public function getBySearchEngine($location, $age, $need, $disability, $structure)

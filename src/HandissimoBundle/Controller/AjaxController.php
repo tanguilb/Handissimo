@@ -53,7 +53,7 @@ class AjaxController extends Controller
             var_dump($rlong);
             }
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
-            /*var_dump($result);
+           /* var_dump($result);
             if($need !== null)
             {
                 foreach ($result as $res)
@@ -65,13 +65,14 @@ class AjaxController extends Controller
                  //   var_dump($resultFilter);
                 }
             }*/
-           // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+            //$result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+            //var_dump($result);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
-           // var_dump($pagination);
+            //var_dump($pagination);
             $this->get('session')->set('pagination', $pagination);
-            $pagination->setUsedRsoute('research_action');
+            $pagination->setUsedRoute('research_action');
 
             return $this->redirectToRoute('research_action');
         }
