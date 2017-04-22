@@ -53,14 +53,25 @@ class AjaxController extends Controller
             var_dump($rlong);
             }
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
-           // var_dump($result);
+            /*var_dump($result);
+            if($need !== null)
+            {
+                foreach ($result as $res)
+                {
+                  //  var_dump($res['o_id']);
+                    $resu = $res['o_id'];
+                    $resultFilter = $em->getRepository('HandissimoBundle:Organizations')->getByFilters($resu, $need);
+
+                 //   var_dump($resultFilter);
+                }
+            }*/
            // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
            // var_dump($pagination);
             $this->get('session')->set('pagination', $pagination);
-            $pagination->setUsedRoute('research_action');
+            $pagination->setUsedRsoute('research_action');
 
             return $this->redirectToRoute('research_action');
         }

@@ -60,24 +60,24 @@ class Needs
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $organizations;
+   /* private $organizations;
 
-    /**
+   /* /**
      * Constructor
      */
-    public function __construct()
+   /* public function __construct()
     {
         $this->organizations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    }*/
 
-    /**
+  /*  /**
      * Add organization
      *
      * @param \HandissimoBundle\Entity\Organizations $organization
      *
      * @return Needs
      */
-    public function addOrganization(\HandissimoBundle\Entity\Organizations $organization)
+  /*  public function addOrganization(\HandissimoBundle\Entity\Organizations $organization)
     {
         $this->organizations[] = $organization;
 
@@ -89,7 +89,7 @@ class Needs
      *
      * @param \HandissimoBundle\Entity\Organizations $organization
      */
-    public function removeOrganization(\HandissimoBundle\Entity\Organizations $organization)
+   /* public function removeOrganization(\HandissimoBundle\Entity\Organizations $organization)
     {
         $this->organizations->removeElement($organization);
     }
@@ -99,8 +99,8 @@ class Needs
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getOrganizations()
+   /* public function getOrganizations()
     {
         return $this->organizations;
-    }
+    }*/
 }

@@ -72,34 +72,35 @@ class OrganizationsRepository extends EntityRepository
             $query->setParameter('age', $age);
         }
         if($need !== null){
-            /*
+
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->andWhere($ormodule);
-            $query->setParameter('need', $need);*/
-            $query->addSelect('n');
+            $query->orWhere($ormodule);
+            $query->setParameter('need', $need);
+           /* $query->addSelect('n');
             //$query->from('HandissimoBundle:Needs', 'n');
             $query->andWhere('n.needName = :need');
-            $query->setParameter('need', $need);
+            $query->setParameter('need', $need);*/
 
         }
         if($disability !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->andWhere($ormodule);
+            $query->orWhere($ormodule);
             $query->setParameter('disability', $disability);
 
         }
         if($structure !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->andWhere($ormodule);
+            $query->orWhere($ormodule);
             $query->setParameter('structure', $structure);
         }
         //echo $query->getQuery()->getSQL();;die();
         //return $query->getResult();
+        $query->distinct();
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getScalarResult();
            /* $query = $this->createQueryBuilder('o')
                 ->select('o')
                 ->from('HandissimoBundle:Organizations', 'o')
@@ -138,6 +139,29 @@ class OrganizationsRepository extends EntityRepository
 
     }
 
+    public function getByFilters($result, $needs)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->leftJoin('o.needs', 'n');
+        $query->where('o.id = :id');
+        $query->setParameter('id', $result);
+        $query->andWhere('n.needName = :need');
+        $query->setParameter('need', $needs);
+        return $query->getQuery()->getResult();
+        /*$query = $this->createQueryBuilder('o')
+            ->select('o')
+            ->leftJoin('o.needs', 'n')
+            ->where('o.id = :id')
+            ->setParameter('id', $result)
+            ->andWhere('n.needName = :need')
+            ->setParameter('need', $needs)
+            ->getQuery();
+        return $query->getResult();*/
+    }
+
     public function getBySearchEngine($location, $age, $need, $disability, $structure)
     {
         $em =$this->getEntityManager();
@@ -161,27 +185,27 @@ class OrganizationsRepository extends EntityRepository
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
-            $query->orWhere($andmodule);
+            $query->andWhere($andmodule);
             $query->setParameter('age', $age);
         }
         if($need !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->orWhere($ormodule);
+            $query->andWhere($ormodule);
             $query->setParameter('need', $need);
 
         }
         if($disability !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->orWhere($ormodule);
+            $query->andWhere($ormodule);
             $query->setParameter('disability', $disability);
 
         }
         if($structure !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->orWhere($ormodule);
+            $query->andWhere($ormodule);
             $query->setParameter('structure', $structure);
         }
 
