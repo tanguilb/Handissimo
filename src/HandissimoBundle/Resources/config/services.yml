@@ -5,12 +5,12 @@ services:
 
     handissimo.admin.structure_type:
         class: HandissimoBundle\Admin\StructureTypeAdmin
-        arguments: [~, HandissimoBundle\Entity\StructureType, SonataAdminBundle:CRUD]
+        arguments: [~, HandissimoBundle\Entity\StructureType, ~ ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: StructureType }
 
     handissimo.admin.edit_content:
         class: HandissimoBundle\Admin\EditContentAdmin
-        arguments: [~, HandissimoBundle\Entity\EditContent, SonataAdminBundle:CRUD]
+        arguments: [~, HandissimoBundle\Entity\EditContent, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Contenu éditable, label: Modiffication du contenu }

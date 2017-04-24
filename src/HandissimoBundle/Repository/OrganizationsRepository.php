@@ -4,28 +4,28 @@ namespace HandissimoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\Sonata\UserBundle\Entity\User;
+use HandissimoBundle\Entity\Organizations;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function getNearBy( $lat, $long, $age, $need, $disability, $structure)
+    public function getNearBy($lat, $long, $age, $need, $disability, $structure)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
-        $query->select('o');
+        $query->select('o.name');
+        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
-
         if($lat !== null and $long !== null)
         {
-            $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
-            $query->having('distance <= 50');
-            $query->setParameter('lat', $lat);
-            $query->setParameter('long', $long);
-            $query->orderBy('distance');
+        $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
+        $query->having('distance <= 10');
+        $query->setParameter('lat', $lat);
+        $query->setParameter('long', $long);
+        $query->orderBy('distance');
         }
-
         if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
@@ -36,99 +36,23 @@ class OrganizationsRepository extends EntityRepository
         if($need !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->andWhere($ormodule);
+            $query->orWhere($ormodule);
             $query->setParameter('need', $need->getNeedName());
-
         }
         if($disability !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->andWhere($ormodule);
+            $query->orWhere($ormodule);
             $query->setParameter('disability', $disability->getDisabilityName());
-
         }
         if($structure !== null){
             $ormodule = $query->expr()->orX();
             $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->andWhere($ormodule);
+            $query->orWhere($ormodule);
             $query->setParameter('structure', $structure->getName());
         }
-
         $query->distinct();
-        //echo $query->getQuery()->getSQL();;die();
         return $query->getQuery()->getResult();
-    }
-
-    public function getBySearchEngine($lat, $long/*, $age, $need, $disability, $structure*/)
-    {
-        $em =$this->getEntityManager();
-        $query = $em->createQueryBuilder();
-        //$query->select('o', 'c');
-        //$query->from('HandissimoBundle:Organizations', 'o', 'o.postal');
-        //$query->leftJoin('o.needs', 'n');
-        //$query->leftJoin('o.disabilityTypes', 'dt');
-        //$query->leftJoin('o.orgaStructure', 'sl');
-
-        if($lat !== null && $long !== null ){
-            $query->addSelect('geo(:lat, :long, o.latitude, o.longitude) as HIDDEN distance');
-            $query->setParameter('lat', $lat);
-            $query->setParameter('lat', $long);
-            //$query->having('distance < 10');
-            $query->orderBy('distance', 'ASC');
-
-            /*$ormodule = $query->expr()->orX();
-            $ormodule->add($query->expr()->eq('o.postal', ':location'));
-            $query->having($query->expr()->gte('o.postal', ':location'));
-            $query->where($ormodule);
-            $query->setParameter('location', $location);*/
-        }
-        echo $query->getQuery()->getSQL();die();
-        return $query->getQuery()->getResult();
-
-
-        /*if ($age !== null) {
-            $andmodule = $query->expr()->andX();
-            $andmodule->add($query->expr()->lte('o.agemini', ':age'));
-            $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
-            $query->orWhere($andmodule);
-            $query->setParameter('age', $age);
-        }
-        if($need !== null){
-            $ormodule = $query->expr()->orX();
-            $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->orWhere($ormodule);
-            $query->setParameter('need', $need);
-
-        }
-        if($disability !== null){
-            $ormodule = $query->expr()->orX();
-            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->orWhere($ormodule);
-            $query->setParameter('disability', $disability);
-
-        }
-        if($structure !== null){
-            $ormodule = $query->expr()->orX();
-            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->orWhere($ormodule);
-            $query->setParameter('structure', $structure);
-        }
-
-
-        //echo $query->getQuery()->getSQL();;die();
-        return $query->getQuery()->getResult();*/
-    }
-
-
-
-    public function getByOrganizations($keyword)
-    {
-        $query = $this->createQueryBuilder('o')
-                ->select('o.name')
-                ->where('o.name LIKE :organizationData')
-                ->setParameter('organizationData', '%' . $keyword . '%')
-                ->getQuery();
-        return $query->getResult();
     }
 
     public function getByCity($postalcode)
@@ -155,20 +79,6 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getByAge($data)
-    {
-        $data = "%" . $data . "%";
-        $qb = $this->createQueryBuilder('o')
-            ->select('o')
-            ->where("o.agemaxi > :data")
-            ->andWhere("o.agemini < :data")
-            ->andWhere('o.agemini < :data < o.agemaxi')
-            ->setParameter('data', $data)
-            ->getQuery();
-        return $qb->getResult();
-    }
-
-
     public function getByUser(User $user)
     {
         $query = $this->createQueryBuilder('o')
@@ -186,15 +96,6 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $query->getResult();
 
-    }
-
-    public function getEmailByOrganization($id)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->select('o.mail')
-            ->where('o.id =' .$id)
-            ->getQuery();
-        return $query->getResult();
     }
 
     public function getBrochuresById($id)
@@ -234,6 +135,7 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
+
     public function getByOrganizationsProfile($data)
     {
         $qb = $this->createQueryBuilder('o')
@@ -263,4 +165,5 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
 }

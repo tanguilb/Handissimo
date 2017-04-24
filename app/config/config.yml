@@ -91,6 +91,9 @@ doctrine:
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
+
+
+
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -102,11 +105,12 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         entity_managers:
             default:
-                naming_strategy: doctrine.orm.naming_strategy.underscore
-                auto_mapping: true
                 dql:
                     numeric_functions:
                         geo: HandissimoBundle\Doctrine\Query\Geo
+                auto_mapping: true
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+
 
 # Sonata Configuration
 sonata_block:

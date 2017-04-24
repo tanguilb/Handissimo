@@ -141,10 +141,7 @@ class Organizations
      */
     private $disabilityTypes;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $needs;
+
 
     /**
      * @var float
@@ -167,9 +164,9 @@ class Organizations
     public function __construct()
     {
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
         $this->media = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -787,39 +784,6 @@ class Organizations
         return $this->disabilityTypes;
     }
 
-    /**
-     * Add need
-     *
-     * @param \HandissimoBundle\Entity\Needs $need
-     *
-     * @return Organizations
-     */
-    public function addNeed(\HandissimoBundle\Entity\Needs $need)
-    {
-        $this->needs[] = $need;
-
-        return $this;
-    }
-
-    /**
-     * Remove need
-     *
-     * @param \HandissimoBundle\Entity\Needs $need
-     */
-    public function removeNeed(\HandissimoBundle\Entity\Needs $need)
-    {
-        $this->needs->removeElement($need);
-    }
-
-    /**
-     * Get needs
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getNeeds()
-    {
-        return $this->needs;
-    }
 
     /**
      * Add staff
@@ -1939,4 +1903,44 @@ class Organizations
     {
         return $this->userorg;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $needs;
+
+
+    /**
+     * Add need
+     *
+     * @param \HandissimoBundle\Entity\Needs $need
+     *
+     * @return Organizations
+     */
+    public function addNeed(\HandissimoBundle\Entity\Needs $need)
+    {
+        $this->needs[] = $need;
+
+        return $this;
+    }
+
+    /**
+     * Remove need
+     *
+     * @param \HandissimoBundle\Entity\Needs $need
+     */
+    public function removeNeed(\HandissimoBundle\Entity\Needs $need)
+    {
+        $this->needs->removeElement($need);
+    }
+
+    /**
+     * Get needs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNeeds()
+    {
+        return $this->needs;
+    }
+
 }

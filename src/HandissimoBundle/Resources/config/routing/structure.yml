@@ -1,17 +1,3 @@
-#vote_like:
- #   path: /
-  #  defaults: { _controller: "HandissimoBundle:Default:like" }
-   # methods:  POST
-
-#vote_dislike:
- #   path: /{dislike}
-  #  defaults: { _controller: "HandissimoBundle:Default:dislike" }
-   # methods:  POST
-
 structure_page:
     path: /
     defaults: { _controller: "HandissimoBundle:Default:standardPage" }
-
-comment_answer:
-    path: /{comment_id}
-    defaults: { _controller: "HandissimoBundle:CommentAnswer:create"}

@@ -18,10 +18,6 @@ handissimo_structure:
     path: /solution
     defaults: { _controller: "HandissimoBundle:EditContent:howToUse" }
 
-load_database:
-    path: /load
-    defaults: { _controller: "HandissimoBundle:Default:load" }
-
 handissimo_notice:
     path: /mentions-légales
     defaults: { _controller: "HandissimoBundle:Default:notice" }
@@ -42,7 +38,3 @@ handissimo_organizations:
 handissimo_media:
     resource: "@HandissimoBundle/Resources/config/routing/media.yml"
     prefix:   /media
-
-handissimo_shit:
-    path: /shit
-    defaults: { _controller: "HandissimoBundle:Ajax:shit" }
