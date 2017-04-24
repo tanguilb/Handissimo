@@ -42,10 +42,14 @@ class AjaxController extends Controller
             $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
             $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
 
-            $rlat = $lat[0]['latitude'];
-            $rlong = $long[0]['longitude'];
+            $rlat = null;
+            $rlong = null;
+            if(!empty($lat) and !empty($long)) {
+                $rlat = $lat[0]['latitude'];
+                $rlong = $long[0]['longitude'];
+            }
 
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong/*, $age, $need, $disability, $structure*/);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
 
            // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);

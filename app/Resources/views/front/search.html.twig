@@ -45,8 +45,8 @@
                     <div class="row" id="result-container">
                     <div class="col-sm-5" id="crop-height">
                         {% for pictures in picture %}
-                                <a href="{{ path('structure_page', {'id': results[0].id}) }}">
-                                {% if pictures.organizationsId is defined and results[0].id == pictures.organizationsId %}
+                                <a href="{{ path('structure_page', {'id': results['o_id']}) }}">
+                                {% if pictures.organizationsId is defined and results['o_id'] == pictures.organizationsId %}
                                     <img src="{{ asset(pictures.webPath) }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
                                 {% else %}
                                     <img src="{{ asset('images/tim-wright-147360.jpg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
@@ -58,28 +58,28 @@
                     <div class="col-sm-7">
                         <div class="col-xs-12">
                             <div class="row">
-                                <a href="{{ path('structure_page', {'id': results[0].id}) }}"><h4 class="searchtitre">{{ results[0].name }}</h4></a>
+                                <a href="{{ path('structure_page', {'id': results['o_id']}) }}"><h4 class="searchtitre">{{ results['0.name'] }}</h4></a>
                             </div>
                         </div>
                         <div class="col-xs-12" id="address-container">
-                            <p>{{ results[0].address }}<br>
-                            {{ results[0].postal }} {{ results[0].city }}</p>
-                            <p class="contact-phone">Tél : {{ results[0].phoneNumber }}</p>
+                            <p>{{ results['o_address'] }}<br>
+                            {{ results['o_postal'] }} {{ results['o_city'] }}</p>
+                            <p class="contact-phone">Tél : {{ results['o_phoneNumber'] }}</p>
                         </div>
                         <div class="col-xs-12" id="social-container">
-                            {% if results[0].website  %}
+                            {% if results['o_website']  %}
                             <div class="col-xs-7">
                                 <div class="row">
-                                    <p class="website-address"><a href="{{ results[0].website }}" target="_blank">Site internet</a></p>
+                                    <p class="website-address"><a href="{{ results['o_website'] }}" target="_blank">Site internet</a></p>
                                 </div>
                             </div>
                             {% endif %}
                             <div class="col-xs-5">
-                                {% if results[0].facebook %}
-                                    <a class="social-media" href="{{ results[0].facebook }}" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                                {% if results['o_facebook'] %}
+                                    <a class="social-media" href="{{ results['o_facebook'] }}" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
                                 {% endif %}
-                                {% if results[0].twitter %}
-                                    <a class="social-media" href="{{ results[0].twitter }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                                {% if results['o_twitter'] %}
+                                    <a class="social-media" href="{{ results['o_twitter'] }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
                                 {% endif %}
                             </div>
                         </div>
