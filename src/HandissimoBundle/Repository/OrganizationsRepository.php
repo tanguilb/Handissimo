@@ -125,6 +125,17 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getSearchProfile($profileSearch)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o.name')
+            ->where('o.name like :data')
+            ->setParameter(':data', '%' . $profileSearch . '%')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+
     public function getByOrganizationsProfile($data)
     {
         $qb = $this->createQueryBuilder('o')
@@ -142,4 +153,17 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getSingleScalarResult();
     }
+
+    public function getMediaByOrganizations($id)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->join('o.media', 'm')
+            ->select('m.fileName')
+            ->addSelect('m.id')
+            ->addSelect('m.thumbnails')
+            ->where('m.organizationsImg =' . $id)
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }

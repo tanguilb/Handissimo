@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: tangui
- * Date: 20/04/17
- * Time: 14:32
- */
 namespace HandissimoBundle\Doctrine\Query;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;

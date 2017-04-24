@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1648620393dfca7e5c4a80e5ea01eb8e",
-    "content-hash": "78c1baba3e943c71044b84342bd62b18",
+    "hash": "270db49314d521caf4d4a689cfdf05d3",
+    "content-hash": "e18222c62cf6da189d6e3c4b17eefb13",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -129,221 +129,6 @@
                 "tls"
             ],
             "time": "2017-03-06 11:59:08"
-        },
-        {
-            "name": "creof/doctrine2-spatial",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/creof/doctrine2-spatial.git",
-                "reference": "7f87fc36954ad52e3bee9ddb62e7b3c637a39710"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/creof/doctrine2-spatial/zipball/7f87fc36954ad52e3bee9ddb62e7b3c637a39710",
-                "reference": "7f87fc36954ad52e3bee9ddb62e7b3c637a39710",
-                "shasum": ""
-            },
-            "require": {
-                "creof/geo-parser": "~2.0",
-                "creof/wkb-parser": "~2.0",
-                "creof/wkt-parser": "~2.0",
-                "doctrine/orm": ">=2.3"
-            },
-            "require-dev": {
-                "phpunit/phpcov": "*",
-                "phpunit/phpunit": "<5.0",
-                "satooshi/php-coveralls": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "CrEOF\\Spatial": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Derek Lambert",
-                    "email": "dlambert@dereklambert.com"
-                }
-            ],
-            "description": "Doctrine2 multi-platform support for spatial types and functions",
-            "keywords": [
-                "database",
-                "dbal",
-                "geography",
-                "geometry",
-                "gis",
-                "mysql",
-                "opengis",
-                "orm",
-                "postgis",
-                "postgresql",
-                "spatial"
-            ],
-            "time": "2016-02-18 14:21:13"
-        },
-        {
-            "name": "creof/geo-parser",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/creof/geo-parser.git",
-                "reference": "14fbd732207bc264cfeff836230ef6022bb751b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/creof/geo-parser/zipball/14fbd732207bc264cfeff836230ef6022bb751b6",
-                "reference": "14fbd732207bc264cfeff836230ef6022bb751b6",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/lexer": ">=1.0",
-                "ext-spl": "*",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "phpunit/phpunit": ">=4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "CrEOF\\Geo\\String": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Derek J. Lambert",
-                    "email": "dlambert@dereklambert.com"
-                }
-            ],
-            "description": "Parser for geography coordinate strings",
-            "keywords": [
-                "coordinate",
-                "geo",
-                "geography",
-                "geometry",
-                "lexer",
-                "parser",
-                "spatial",
-                "string",
-                "text"
-            ],
-            "time": "2016-05-03 18:19:41"
-        },
-        {
-            "name": "creof/wkb-parser",
-            "version": "v2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/creof/wkb-parser.git",
-                "reference": "1ddb69da8cc90607dd528fd9992ef1fc10cc8839"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/creof/wkb-parser/zipball/1ddb69da8cc90607dd528fd9992ef1fc10cc8839",
-                "reference": "1ddb69da8cc90607dd528fd9992ef1fc10cc8839",
-                "shasum": ""
-            },
-            "require": {
-                "ext-spl": "*",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "phpunit/phpunit": ">=4.8",
-                "satooshi/php-coveralls": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "CrEOF\\Geo\\WKB": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Derek J. Lambert",
-                    "email": "dlambert@dereklambert.com"
-                }
-            ],
-            "description": "Parser for well-known binary (WKB/EWKB) object data",
-            "keywords": [
-                "ewkb",
-                "geography",
-                "geometry",
-                "parser",
-                "spatial",
-                "string",
-                "text",
-                "wkb"
-            ],
-            "time": "2016-05-22 22:47:16"
-        },
-        {
-            "name": "creof/wkt-parser",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/creof/wkt-parser.git",
-                "reference": "bc4c051b7a4e99b4943e2ec358218ed200aa991e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/creof/wkt-parser/zipball/bc4c051b7a4e99b4943e2ec358218ed200aa991e",
-                "reference": "bc4c051b7a4e99b4943e2ec358218ed200aa991e",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/lexer": "~1.0",
-                "ext-spl": "*",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "phpunit/phpunit": ">=4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "CrEOF\\Geo\\WKT": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Derek J. Lambert",
-                    "email": "dlambert@dereklambert.com"
-                }
-            ],
-            "description": "Parser for well-known text (WKT) object strings",
-            "keywords": [
-                "ewkt",
-                "geography",
-                "geometry",
-                "lexer",
-                "parser",
-                "spatial",
-                "string",
-                "text",
-                "wkt"
-            ],
-            "time": "2016-05-03 16:15:16"
         },
         {
             "name": "doctrine/annotations",
@@ -2031,16 +1816,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.18",
+            "version": "v5.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "17846680901003d26d823c2e3ac9228702837916"
+                "reference": "654c4fa3d11448c8005400a244987896243a990a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/17846680901003d26d823c2e3ac9228702837916",
-                "reference": "17846680901003d26d823c2e3ac9228702837916",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/654c4fa3d11448c8005400a244987896243a990a",
+                "reference": "654c4fa3d11448c8005400a244987896243a990a",
                 "shasum": ""
             },
             "require": {
@@ -2079,7 +1864,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-01-10 14:58:45"
+            "time": "2017-04-23 22:28:23"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2906,26 +2691,35 @@
         },
         {
             "name": "sonata-project/google-authenticator",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/GoogleAuthenticator.git",
-                "reference": "72f47caddd09d09c0d3c3e046f6b435e0c004cd4"
+                "reference": "ccf7ecb68e875562c70b28a470fe0daf48625b39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/GoogleAuthenticator/zipball/72f47caddd09d09c0d3c3e046f6b435e0c004cd4",
-                "reference": "72f47caddd09d09c0d3c3e046f6b435e0c004cd4",
+                "url": "https://api.github.com/repos/sonata-project/GoogleAuthenticator/zipball/ccf7ecb68e875562c70b28a470fe0daf48625b39",
+                "reference": "ccf7ecb68e875562c70b28a470fe0daf48625b39",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "paragonie/random_compat": "^2.0",
+                "php": "^5.3 || ^7.0"
+            },
+            "require-dev": {
+                "sllh/php-cs-fixer-styleci-bridge": "^2.0",
+                "symfony/phpunit-bridge": "~2.7|~3.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Google\\Authenticator\\": "lib/",
-                    "Google\\Authenticator\\Tests\\": "tests/"
+                    "Google\\Authenticator\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2934,17 +2728,16 @@
             ],
             "authors": [
                 {
-                    "name": "Thomas Rabaix",
-                    "email": "thomas.rabaix@gmail.com",
-                    "homepage": "http://sonata-project.org/"
-                },
-                {
                     "name": "Christian Stocker",
                     "email": "me@chregu.tv"
                 },
                 {
                     "name": "Andre DeMarre",
                     "homepage": "http://www.devnetwork.net/viewtopic.php?f=50&t=94989"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@gmail.com"
                 }
             ],
             "description": "Library to integrate Google Authenticator into a PHP project",
@@ -2952,7 +2745,7 @@
             "keywords": [
                 "google authenticator"
             ],
-            "time": "2014-03-31 09:18:53"
+            "time": "2017-04-19 14:00:07"
         },
         {
             "name": "sonata-project/intl-bundle",
@@ -3119,16 +2912,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -3169,7 +2962,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13 07:52:53"
+            "time": "2017-04-20 17:32:18"
         },
         {
             "name": "symfony/monolog-bundle",

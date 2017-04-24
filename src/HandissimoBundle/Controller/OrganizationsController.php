@@ -34,7 +34,6 @@ class OrganizationsController extends Controller
             $em->persist($organization);
             $em->flush($organization);
 
-
             return $this->redirectToRoute('handissimo_aboutpage');
         }
 
