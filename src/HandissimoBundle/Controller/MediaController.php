@@ -13,21 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 class MediaController extends Controller
 {
     /**
-     * Lists all medium entities.
-     *
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $media = $em->getRepository('HandissimoBundle:Media')->findAll();
-
-        return $this->render('media/index.html.twig', array(
-            'media' => $media,
-        ));
-    }
-
-    /**
      * Creates a new medium entity.
      *
      */
@@ -48,20 +33,6 @@ class MediaController extends Controller
         return $this->render('media/new.html.twig', array(
             'medium' => $medium,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a medium entity.
-     *
-     */
-    public function showAction(Media $medium)
-    {
-        $deleteForm = $this->createDeleteForm($medium);
-
-        return $this->render('media/show.html.twig', array(
-            'medium' => $medium,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

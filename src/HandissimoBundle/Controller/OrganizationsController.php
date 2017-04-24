@@ -108,23 +108,4 @@ class OrganizationsController extends Controller
             ->getForm()
         ;
     }
-
-    private function draftCopyAction(Organizations $organization)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $copy = clone $organization;
-        $em->persist($copy);
-        $em->flush();
-        return $this->redirectToRoute('handissimo_structure');
-
-    }
-
-    /*private function createCloneForm(Organizations $organizations)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('/{id}/clone', array('id' => $organizations->getId())))
-            ->setMethod('CLONE')
-            ->getForm()
-            ;
-    }*/
 }
