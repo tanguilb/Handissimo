@@ -4,9 +4,110 @@ namespace HandissimoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Application\Sonata\UserBundle\Entity\User;
+use HandissimoBundle\Doctrine\Query\Geo;
 
 class OrganizationsRepository extends EntityRepository
 {
+    public function getNearBy( $lat, $long/*, $age, $need, $disability, $structure*/)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
+        $query->having('distance <= 10');
+        $query->setParameter('lat', $lat);
+        $query->setParameter('long', $long);
+        $query->orderBy('distance');
+
+       // echo $query->getQuery()->getSQL();;die();
+        return $query->getQuery()->getResult();
+        /*$query->leftJoin('o.needs', 'n');
+        $query->leftJoin('o.disabilityTypes', 'dt');
+        $query->leftJoin('o.orgaStructure', 'sl');
+
+        /*if($lat !== null and $long !== null)
+        {*/
+
+        /*$query = $this->createQueryBuilder('o')
+            ->select('o, Geo(:lat, :long, o.latitude, o.longitude) as HIDDEN distance')
+            ->having('distance <= 10')
+            ->setParameter('lat', $lat)
+            ->setParameter('long', $long)
+            ->orderBy('distance')
+            //echo $query->getQuery()->getSQL();;die();
+            ->getQuery();
+       // }*/
+
+
+        /*if ($age !== null) {
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->lte('o.agemini', ':age'));
+            $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
+            $query->andWhere($andmodule);
+            $query->setParameter('age', $age);
+        }
+       /* if($need !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('n.needName', ':need'));
+            $query->andWhere($ormodule);
+            $query->setParameter('need', $need);
+
+        }
+        if($disability !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+            $query->andWhere($ormodule);
+            $query->setParameter('disability', $disability);
+
+        }
+        if($structure !== null){
+            $ormodule = $query->expr()->orX();
+            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
+            $query->andWhere($ormodule);
+            $query->setParameter('structure', $structure);
+        }*/
+        //echo $query->getQuery()->getSQL();;die();
+        return $query->getResult();
+
+        //return $query->getQuery()->getResult();
+           /* $query = $this->createQueryBuilder('o')
+                ->select('o')
+                ->from('HandissimoBundle:Organizations', 'o')
+                ->where('o.latitude > :minLat')
+                ->andWhere('o.latitude < :maxLat')
+                ->andWhere('o.longitude > :minLong')
+                ->andWhere('o.longitude < : maxLong')
+                ->setParameters(array('minLat' => $minLat, 'maxLat' => $maxLat, 'minLong' => $minLong, 'maxLong' => $maxLong))
+                ->orderBy($lat + $long, 'ASC')
+                ->getQuery();
+            return $query->getResult();
+
+           public static function getNearby($lat, $lng, $type = 'cities', $limit = 50, $distance = 50, $unit = 'km')
+{
+    // radius of earth; @note: the earth is not perfectly spherical, but this is considered the 'mean radius'
+    if ($unit == 'km') $radius = 6371.009; // in kilometers
+    elseif ($unit == 'mi') $radius = 3958.761; // in miles
+
+    // latitude boundaries
+    $maxLat = (float) $lat + rad2deg($distance / $radius);
+    $minLat = (float) $lat - rad2deg($distance / $radius);
+
+    // longitude boundaries (longitude gets smaller when latitude increases)
+    $maxLng = (float) $lng + rad2deg($distance / $radius / cos(deg2rad((float) $lat)));
+    $minLng = (float) $lng - rad2deg($distance / $radius / cos(deg2rad((float) $lat)));
+
+    // get results ordered by distance (approx)
+    $nearby = (array) FrontendDB::getDB()->retrieve('SELECT *
+                                                    FROM cities
+                                                    WHERE lat > ? AND lat < ? AND lng > ? AND lng < ?
+                                                    ORDER BY ABS(lat - ?) + ABS(lng - ?) ASC
+                                                    LIMIT ?;',
+                                                    array($minLat, $maxLat, $minLng, $maxLng, (float) $lat, (float) $lng, (int) $limit));
+
+    return $nearby;*/
+
+    }
 
     public function getBySearchEngine($lat, $long/*, $age, $need, $disability, $structure*/)
     {

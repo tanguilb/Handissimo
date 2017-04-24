@@ -25,25 +25,6 @@ class Geo extends FunctionNode
     private $lngDestination;
 
     /**
-     * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
-     *
-     * @return string
-     */
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
-    {
-        return sprintf(
-            $this->getSqlWithPlaceholders(),
-            self::EARTH_RADIUS,
-            $sqlWalker->walkArithmeticPrimary($this->latOrigin),
-            $sqlWalker->walkArithmeticPrimary($this->latDestination),
-            $sqlWalker->walkArithmeticPrimary($this->lngDestination),
-            $sqlWalker->walkArithmeticPrimary($this->lngOrigin),
-            $sqlWalker->walkArithmeticPrimary($this->latOrigin),
-            $sqlWalker->walkArithmeticPrimary($this->latDestination)
-        );
-    }
-
-    /**
      * @param \Doctrine\ORM\Query\Parser $parser
      *
      * @return void
@@ -62,8 +43,29 @@ class Geo extends FunctionNode
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
+
+    /**
+     * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
+     *
+     * @return string
+     */
+    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
+    {
+        return sprintf(
+            $this->getSqlWithPlaceholders(),
+            self::EARTH_RADIUS,
+            $sqlWalker->walkArithmeticPrimary($this->latOrigin),
+            $sqlWalker->walkArithmeticPrimary($this->latDestination),
+            $sqlWalker->walkArithmeticPrimary($this->lngDestination),
+            $sqlWalker->walkArithmeticPrimary($this->lngOrigin),
+            $sqlWalker->walkArithmeticPrimary($this->latOrigin),
+            $sqlWalker->walkArithmeticPrimary($this->latDestination)
+        );
+    }
+
+
     public function getSqlWithPlaceholders()
     {
-        return '%s * acos(cos(radians(%s)) * cos(radians(%s)) * cos(radians(%s)) - radians(%s)) + sin(radians(%s)) * sin(radians(%s))))';
+        return '%s * acos(cos(radians(%s)) * cos(radians(%s)) * cos(radians(%s) - radians(%s)) + sin(radians(%s)) * sin(radians(%s)))';
     }
 }

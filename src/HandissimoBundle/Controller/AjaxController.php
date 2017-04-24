@@ -41,11 +41,13 @@ class AjaxController extends Controller
 
             $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
             $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
+
             $rlat = $lat[0]['latitude'];
             $rlong = $long[0]['longitude'];
 
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong/*, $age, $need, $disability, $structure*/);
 
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($rlat, $rlong/*, $age, $need, $disability, $structure*/);
+           // $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
