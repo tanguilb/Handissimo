@@ -333,3 +333,10 @@
 #twitter-link {
     text-decoration: none;
 }
+
+.picto {
+    height: 150px;
+}
+.link {
+    color: #C37095;
+}

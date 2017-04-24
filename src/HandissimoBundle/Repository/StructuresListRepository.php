@@ -12,17 +12,6 @@ use HandissimoBundle\Entity\StructureType;
  */
 class StructuresListRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getByStructure($keyword)
-    {
-        $query = $this->createQueryBuilder('s')
-            ->select('s.name')
-            ->where('s.name LIKE :structureData')
-            ->setParameter('structureData', '%' . $keyword . '%')
-            ->getQuery();
-        return $query->getResult();
-
-    }
-
     public function getByType(StructureType $structuresList)
     {
         $query = $this->createQueryBuilder('sl')
@@ -32,5 +21,4 @@ class StructuresListRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
-
 }

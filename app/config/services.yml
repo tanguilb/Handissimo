@@ -6,15 +6,9 @@ parameters:
 services:
     admin.organizations:
         class: HandissimoBundle\Admin\OrganizationsAdmin
+        arguments: [~, HandissimoBundle\Entity\Organizations, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Créer ou modifier une fiche }
-        arguments:
-            - null
-            - HandissimoBundle\Entity\Organizations
-            - HandissimoBundle:OrganizationsAdmin
-        calls:
-            - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
-           # - [ setTemplate, [form, HandsissimoBundle:OrganizationsAdmin:edit.html.twig]]
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
@@ -129,14 +123,9 @@ services:
 
     admin.media:
         class: HandissimoBundle\Admin\MediaAdmin
+        arguments: [~, HandissimoBundle\Entity\Media, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Media }
-        arguments:
-            - null
-            - HandissimoBundle\Entity\Media
-            - HandissimoBundle:MediaAdmin
-        calls:
-            - [ setTemplate, [list, HandissimoBundle:MediaAdmin:list.html.twig]]
 
     handissimo.geocoder:
         class: HandissimoBundle\Services\Geocode\Geocoder

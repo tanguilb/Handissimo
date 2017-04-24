@@ -20,22 +20,16 @@ class EditContentController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:EditContent');
         $howToUse = $repository->findAll();
-
         $solution = new Solution();
         $form = $this->createForm('HandissimoBundle\Form\Type\SolutionType', $solution);
-
         $formHandler = new Handler\SolutionHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'));
-
         if ($formHandler->process()) {
             $this->addFlash('notice', 'Votre message a bien été envoyé');
             return $this->redirectToRoute('handissimo_structure');
         }
-
-
-
         return $this->render(':front:structurePage.html.twig', array(
             'howToUse' => $howToUse,
             'form' => $form->createView()
-    ));
+        ));
     }
 }

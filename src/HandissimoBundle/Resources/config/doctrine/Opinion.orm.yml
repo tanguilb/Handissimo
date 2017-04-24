@@ -1,7 +1,6 @@
 HandissimoBundle\Entity\Opinion:
     type: entity
     table: null
-    repositoryClass: HandissimoBundle\Repository\OpinionRepository
     id:
         id:
             type: integer

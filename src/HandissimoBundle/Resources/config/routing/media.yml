@@ -1,13 +1,3 @@
-media_index:
-    path:     /
-    defaults: { _controller: "HandissimoBundle:Media:index" }
-    methods:  GET
-
-media_show:
-    path:     /{id}/show
-    defaults: { _controller: "HandissimoBundle:Media:show" }
-    methods:  GET
-
 media_new:
     path:     /new
     defaults: { _controller: "HandissimoBundle:Media:new" }

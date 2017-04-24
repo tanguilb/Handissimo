@@ -1,7 +1,6 @@
 HandissimoBundle\Entity\OtherJob:
     type: entity
     table: null
-    repositoryClass: HandissimoBundle\Repository\OtherJobRepository
     id:
         id:
             type: integer

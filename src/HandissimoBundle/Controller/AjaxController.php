@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Doctrine\Common\Collections\Collection;
 use HandissimoBundle\Form\AdvancedSearchType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -39,8 +40,17 @@ class AjaxController extends Controller
             $this->get('session')->set('disability', $disability);
             $this->get('session')->set('structure', $structure);
 
+            $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
+            $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
 
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getBySearchEngine($location, $age, $need, $disability, $structure);
+            $rlat = null;
+            $rlong = null;
+            if(!empty($lat) and !empty($long))
+            {
+                $rlat = $lat[0]['latitude'];
+                $rlong = $long[0]['longitude'];
+            }
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
@@ -87,48 +97,6 @@ class AjaxController extends Controller
         ));
     }
 
-    public function autoCompleteAction(Request $request, $keyword)
-    {
-        if ($request->isXmlHttpRequest())
-        {
-            /**
-             * @var $repository OrganizationsRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $organization = $repository->getByOrganizations($keyword);
-
-            /**
-             * @var $repository NeedsRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Needs');
-            $needs = $repository->getByNeeds($keyword);
-
-            /**
-             * @var $repository DisabilityTypesRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:DisabilityTypes');
-            $disability = $repository->getByDisability($keyword);
-
-            /**
-             * @var $repository StructuresListRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
-            $structure = $repository->getByStructure($keyword);
-
-            /**
-             * @var $repository StaffRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Staff');
-            $staff = $repository->getByStaff($keyword);
-
-
-            $data =  array_merge($organization, $needs, $disability, $structure, $staff);
-
-            return new JsonResponse(array("data" => json_encode($data)));
-        } else {
-            throw new HttpException("500", "Invalid Call");
-        }
-    }
     public function postalAction(Request $request, $postalcode)
     {
         /**
@@ -138,11 +106,6 @@ class AjaxController extends Controller
 
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
             $postal = $repository->getByPostal($postalcode);
-
-           /* $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $city = $repository->getByCity($postalcode);*/
-
-           // $data =  array_merge($postal, $city);
 
             return new JsonResponse(array("data" => json_encode($postal)));
         } else {
