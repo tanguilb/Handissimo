@@ -30,6 +30,7 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
     public function getByCity($city)
     {
         $qb = $this->createQueryBuilder('c')
@@ -43,18 +44,4 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
-
-    public function getCoordinate($location)
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->select('c.name', 'c.postal', 'c.latitude', 'c.longitude')
-            ->where('c.name = :namedata')
-            ->setParameter('namedata', $location)
-            ->orWhere('c.postal = :postaldata')
-            ->setParameter('postaldata', $location)
-            ->getQuery();
-        return $qb->getResult();
-    }
-
-
 }
