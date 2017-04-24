@@ -33,9 +33,7 @@ class OrganizationsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($organization);
             $em->flush($organization);
-
-
-            return $this->redirectToRoute('handissimo_aboutpage');
+            return $this->redirectToRoute('sonata_user_profile_edit');
         }
 
         return $this->render('organizations/new.html.twig', array(
