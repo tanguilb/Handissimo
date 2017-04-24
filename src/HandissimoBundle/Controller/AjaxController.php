@@ -76,7 +76,6 @@ class AjaxController extends Controller
 
     public function researchAction(Request $request)
     {
-
         $session = $request->getSession();
 
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
@@ -97,32 +96,15 @@ class AjaxController extends Controller
         ));
     }
 
-    public function postalAction(Request $request, $postalcode)
+    public function searchByCityAction(Request $request, $city)
     {
-        /**
-         * @var $repository OrganizationsRepository
-         */
         if ($request->isXmlHttpRequest()) {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:City');
+            $location = $repository->getByCity($city);
 
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $postal = $repository->getByPostal($postalcode);
-
-            return new JsonResponse(array("data" => json_encode($postal)));
+            return new JsonResponse(array("data" => json_encode($location)));
         } else {
-            throw new HttpException('500', 'Invalid call');
-        }
-    }
-
-    public function emailAction(Request $request, $id)
-    {
-        if($request->isXmlHttpRequest())
-        {
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
-            $email = $repository->getEmailByOrganization($id);
-
-            return new JsonResponse(array("data" => json_encode($email)));
-        }else {
-            throw new \HttpException('500', 'Invalid call');
+            throw  new HttpException('500', 'Invalid call');
         }
     }
 
@@ -135,6 +117,18 @@ class AjaxController extends Controller
 
             return new JsonResponse(array("data" => json_encode($profile)));
         }else{
+            throw new \HttpException('500', 'Invalid call');
+        }
+    }
+    public function emailAction(Request $request, $id)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $email = $repository->getEmailByOrganization($id);
+
+            return new JsonResponse(array("data" => json_encode($email)));
+        }else {
             throw new \HttpException('500', 'Invalid call');
         }
     }

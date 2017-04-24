@@ -56,7 +56,7 @@ class OrganizationsType extends AbstractType
             ))
             ->add('address', TextType::class, array(
                 'label' => 'Adresse postal :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -67,21 +67,21 @@ class OrganizationsType extends AbstractType
             ))
             ->add('postal', TextType::class, array(
                 'label' => 'Code postal :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
             ))
             ->add('city', TextType::class, array(
                 'label' => 'Ville :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
             ))
             ->add('phone_number', TextType::class, array(
                 'label' => 'Telephone :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -118,7 +118,7 @@ class OrganizationsType extends AbstractType
                 'label' => false,
                 'choice_label' => 'name',
                 'expanded' => true,
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),

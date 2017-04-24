@@ -48,7 +48,7 @@
                                 {% if pictures.organizationsId is defined and results.id == pictures.organizationsId %}
                                     <img src="{{ asset(pictures.webPath) }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
                                 {% else %}
-                                    <img src="{{ asset('images/tim-wright-147360.jpg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
+                                   {{ loop.index }} <img src="{{ asset('images/tim-wright-147360.jpg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
                                 {% endif %}
                                 </a>
                         {% endfor %}
