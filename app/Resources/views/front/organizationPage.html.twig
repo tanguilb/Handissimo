@@ -16,14 +16,21 @@
                 <div class="container">
                     <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                 </div>
-                <div class="head-title col-md-11 col-sm-11">
-                    {% if organization.societyLogo %}
-                        <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}">
-                    {% endif %}
+                <div class="head-title col-md-6 col-sm-12">
                     <h1 class="title"> {{ organization.name }} </h1>
-                    {% if organization.structureLogo %}
-                        <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}">
-                    {% endif %}
+                </div>
+                <div class="logos col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
+                        {% if organization.structureLogo %}
+                            <p>Cette solution est proposé par : <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}" class="logo"></p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        {% if organization.societyLogo %}
+                            <p>Logo de l'organisme gestionnaire : <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}" class="logo"></p>
+                        {% endif %}
+                    </div>
+
                 </div>
                 <!-- this is the line to display like button
                 <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
@@ -430,7 +437,7 @@
                     </button>
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <a href="{{ path('research_action') }}" class="btn btn-edit" role="button">
+                    <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
                         Retour à l'acceuil
                     </a>
                 </div>
@@ -442,7 +449,7 @@
                 </div>
                 {% endif %}
                 <div class="col-md-3 col-xs-12">
-                    {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN')%}
                         {% if organization.userorg == null %}
                             <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Modifier la fiche

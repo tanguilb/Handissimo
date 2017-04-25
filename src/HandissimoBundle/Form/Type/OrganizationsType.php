@@ -205,7 +205,7 @@ class OrganizationsType extends AbstractType
                                  Exemple 3 : L\'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure : l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée, pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.'
                 ),
             ))
-           /* ->add('accomodation', ChoiceType::class, array(
+            ->add('accomodation', ChoiceType::class, array(
                 'choices' => array(
                     'oui' => '1',
                     'non' => '0'
@@ -231,7 +231,7 @@ class OrganizationsType extends AbstractType
                     'placeholder' =>
                         'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
                 ),
-            ))*/
+            ))
             ->add('school', ChoiceType::class, array(
                 'choices' => array(
                     'oui' => '1',
