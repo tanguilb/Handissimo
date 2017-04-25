@@ -24,7 +24,7 @@ function initMap() {
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                '<h1 id="firstHeading" class="firstHeading">' + elements.name + '</h1>' +
+                '<a href=""><h2 id="firstHeading" class="firstHeading">' + elements.name + '</h2></a>' +
                 '<div id="bodyContent">' +
                 '<p>' + elements.address + '<br>' +
                 elements.postal + '<br>' +
@@ -38,7 +38,7 @@ function initMap() {
                 content: contentString,
                 maxWidth: 200
             });
-            var localisation = {lat: elements.latitude, lng: elements.longitude}
+            var localisation = {lat: elements.latitude, lng: elements.longitude};
             var marker = new google.maps.Marker({
 
                 position: localisation,

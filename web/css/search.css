@@ -5,25 +5,44 @@ body {
 /*Result page of a research*/
 #search-reminder {
     background-color: #60bfb9;
+    z-index: 1;
+    position: relative;
 }
 
 #search-done {
     margin-top: 80px;
+
     color: #ffffff;
     font-weight: 600;
 }
 
 /*Map and results*/
+#block-map {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+}
 
 #map{
     overflow:hidden;
-    padding-bottom:100%;
-    position:relative;
-    height:0;
+    height: 0;
+    padding-bottom: 100%;
+    width: 50vw;
+    z-index: 0;
+    position: fixed !important;
+    left:0;
+    top:0;
 }
 @media (max-width: 992px) {
     #map {
+    position: relative !important;
     padding-bottom:60%;
+    width: 100vw;
+    }
+    #block-map {
+
     }
 }
 #count-results {
