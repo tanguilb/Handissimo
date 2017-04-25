@@ -34,21 +34,21 @@ class OrganizationsRepository extends EntityRepository
             $query->setParameter('age', $age);
         }
         if($need !== null){
-            $ormodule = $query->expr()->orX();
+            $ormodule = $query->expr()->andX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->orWhere($ormodule);
+            $query->andWhere($ormodule);
             $query->setParameter('need', $need->getNeedName());
         }
         if($disability !== null){
-            $ormodule = $query->expr()->orX();
+            $ormodule = $query->expr()->andX();
             $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->orWhere($ormodule);
+            $query->andWhere($ormodule);
             $query->setParameter('disability', $disability->getDisabilityName());
         }
         if($structure !== null){
-            $ormodule = $query->expr()->orX();
+            $ormodule = $query->expr()->andX();
             $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->orWhere($ormodule);
+            $query->andWhere($ormodule);
             $query->setParameter('structure', $structure->getName());
         }
         $query->distinct();

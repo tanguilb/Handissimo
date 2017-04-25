@@ -14,20 +14,21 @@
             <!-- Block Title-->
             <div class="head-block">
                 <div class="container">
+                    <p class="update">Cette fiche à été remplie par quelqu'un qui connait la structure</p>
                     <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                 </div>
                 <div class="head-title col-md-6 col-sm-12">
-                    <h1 class="title"> {{ organization.name }} </h1>
+                    <h1 class="title structure-title"> {{ organization.name }} </h1>
                 </div>
                 <div class="logos col-md-6 col-sm-12">
                     <div class="col-md-6 col-sm-12">
                         {% if organization.structureLogo %}
-                            <p>Cette solution est proposé par : <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}" class="logo"></p>
+                            <p>Cette solution est proposée par : <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}" class="logo"></p>
                         {% endif %}
                     </div>
                     <div class="col-md-6">
                         {% if organization.societyLogo %}
-                            <p>Logo de l'organisme gestionnaire : <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}" class="logo"></p>
+                            <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}" class="logo">
                         {% endif %}
                     </div>
 
@@ -42,8 +43,7 @@
                         {% include 'front/carousel.html.twig' %}
                     {% else%}
                         <div class="container">
-                            <p>Photo non contractuelle.</p>
-                            <img class="main-image img-responsive" src="{{ asset('images/FAM LUCON 2.png') }}" alt="Handissimo - Image principal structure">
+                            <img class="img-responsive" src="{{ asset('images/FAM LUCON 2.png') }}" alt="Handissimo - Image principal structure">
                         </div>
                     {% endif %}
                 </div>
@@ -76,32 +76,47 @@
                                         <div class="col-md-12 description">
                                             <p>{{ organization.organizationDescription|raw }}</p>
                                         </div>
-                                        {% else %}
-                                        <div class="col-md-12 description">
-                                            <p>Si vous en savez plus, n'hésitez pas à compléter la fiche</p>
-                                        </div>
                                     {% endif %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
                                     </div>
                                     <ul>
-                                        {% for disability in organization.disabilityTypes %}
-                                            <li>{{ disability }}</li>
-                                        {% endfor %}
+                                        {% if organization.disabilityTypes.count > 0 %}
+                                            {% for disability in organization.disabilityTypes %}
+                                                <li>{{ disability }} </li>
+                                            {% endfor %}
+                                        {% else %}
+                                            <li>?</li>
+                                        {% endif %}
+
+
                                     </ul>
-                                    <div class="col-md-6">
-                                        <h3 class="second-title">Âge : </h3><p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                    <div class="col-md-4">
+                                        <p><span class="age second-title">Âge : </span> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                     </div>
                                     {% if organization.freeplace %}
-                                    <div class="col-md-6">
-                                        <h3 class="second-title">Nombre de personnes accompagnées :</h3><p> {{ organization.freeplace }}</p>
+                                    <div class="col-md-8">
+                                        <p><span class="second-title">Nombre de personnes accompagnées :</span> {{ organization.freeplace }}</p>
                                     </div>
                                     {% endif %}
                                     {% if organization.interventionZone %}
                                         <div class="col-md-12">
-                                            <h3 class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </h3><p class="bold">{{ organization.interventionZone }}</p>
+                                            <span class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </span><p>{{ organization.interventionZone }}</p>
                                         </div>
                                     {% endif %}
+                                    {% if organization.organizationDescription == null%}
+                                        <div class="col-md-12">
+                                            <p>Si vous avez plus d'information n'hésitez pas
+                                                {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                {% else %}
+                                                <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                {% endif %}
+                                                </p>
+                                        </div>
+                                    {% endif %}
+
+
                                 </div>
                             </div>
                         </div>
@@ -120,56 +135,76 @@
                                     <div class="col-md-12">
                                     <h3 class="second-title">Cette solution offre principalement les services suivants: </h3>
                                     <ul>
-                                        {% if organization.needs != null %}
-                                        {% for need in organization.needs %}
-                                            <li>{{ need }}</li>
-                                        {% endfor %}
+                                        {% if organization.needs is not empty %}
+                                            {% for need in organization.needs %}
+                                                <li>{{ need }}</li>
+                                            {% endfor %}
                                         {% else %}
-                                            <li> ? </li>
+                                            <li>?</li>
                                         {% endif %}
                                     </ul>
                                     </div>
-                                    {% if organization.secondneeds != null %}
+
                                     <div class="col-md-12">
                                         <h3 class="second-title">Et aussi : </h3>
                                         <ul>
-                                            {% for secondneeds in organization.secondneeds %}
-                                                <li>{{ secondneeds }}</li>
-                                            {% endfor %}
+                                            {% if organization.secondneeds is not empty %}
+                                                {% for secondneeds in organization.secondneeds %}
+                                                    <li>{{ secondneeds }}</li>
+                                                {% endfor %}
+                                            {% else %}
+                                                <li>?</li>
+                                            {% endif %}
+
                                         </ul>
                                     </div>
-                                    {% endif %}
-                                    {% if organization.workingDescription %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">Pour en savoir plus :</h3>
-                                        {{ organization.workingDescription|raw }}
+                                        {% if organization.workingDescription %}
+                                            {{ organization.workingDescription|raw }}
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
+
                                     </div>
-                                    {% endif %}
-                                    {% if organization.accomodation == "oui" %}
-                                    <div class="col-md-12">
-                                        <h3 class="second-title">Les conditions d'accueil : </h3>
-                                        <p>{{ organization.accomodationDescription|raw }}</p>
-                                    </div>
-                                    {% endif %}
                                     {% if organization.school == "oui" %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">La scolarisation</h3>
                                         <p>{{ organization.schoolDescription|raw }}</p>
                                     </div>
                                     {% endif %}
-                                    {% if organization.dayDescription %}
+
                                     <div class="col-md-12">
                                         <h3 class="second-title">Description d'une journée ou d'une intervention :</h3>
-                                        <p>{{ organization.dayDescription|raw  }}</p>
+                                        {% if organization.dayDescription %}
+                                            <p>{{ organization.dayDescription|raw  }}</p>
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
                                     </div>
-                                    {% endif %}
 
-                                    {% if organization.receptionDescription %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">Ce qui est prévu pour les familles :</h3>
-                                        <p>{{ organization.receptionDescription|raw  }}</p>
+                                        {% if organization.receptionDescription %}
+                                            <p>{{ organization.receptionDescription|raw  }}</p>
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
+
                                     </div>
-                                    {% endif %}
+                                    <div class="col-md-12">
+                                        {% if organization.needs is empty or organization.secondneeds is empty or organization.workingDescription == null or organization.dayDescription == null or organization.receptionDescription %}
+                                            <div class="col-md-12">
+                                                <p>Si vous avez plus d'information n'hésitez pas
+                                                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                        <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                    {% else %}
+                                                        <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -185,43 +220,68 @@
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                 <div class="panel-body">
-                                    {% if organization.teamMembersNumber is not empty %}
+
                                     <div class="col-md-12">
-                                        <h3 class="second-title">L'équipe comprend environ {{ organization.teamMembersNumber }} professionnels.</h3>
+                                        <h3 class="second-title">L'équipe comprend environ
+                                            {% if organization.teamMembersNumber is not empty %}
+                                                {{ organization.teamMembersNumber }}
+                                            {% else %}
+                                                ?
+                                            {% endif %}
+                                            professionnels.</h3>
                                     </div>
-                                    {% endif %}
+
                                     <div class="col-md-12">
                                         <h3 class="second-title">Leurs métiers sont :</h3>
-                                            {% if organization.stafforganizations is not empty %}
+
                                             <div class="col-md-4">
                                                 <h4>Personnel de soin :</h4>
                                                 <ul>
-                                                    {% for jobs in organization.stafforganizations %}
-                                                        <li>{{ jobs }}</li>
-                                                    {% endfor %}
+                                                    {% if organization.stafforganizations is not empty %}
+                                                        {% for jobs in organization.stafforganizations %}
+                                                            <li>{{ jobs }}</li>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <li>?</li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
-                                            {% endif %}
-                                            {% if organization.socialstaffs is not empty %}
                                             <div class="col-md-4">
                                                 <h4>Personnel éducatif et social :</h4>
                                                 <ul>
-                                                    {% for socialJobs in organization.socialstaffs %}
-                                                        <li>{{ socialJobs }}</li>
-                                                    {% endfor %}
+                                                    {% if organization.socialstaffs is not empty %}
+                                                        {% for socialJobs in organization.socialstaffs %}
+                                                            <li>{{ socialJobs }}</li>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <li>?</li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
-                                            {% endif %}
-                                            {% if organization.otherjobs is not empty %}
+
                                             <div class="col-md-4">
                                                 <h4>Autres :</h4>
                                                 <ul>
-                                                    {% for otherJobs in organization.otherjobs %}
-                                                        <li>{{ otherJobs }}</li>
-                                                    {% endfor %}
+                                                    {% if organization.otherjobs is not empty %}
+                                                        {% for otherJobs in organization.otherjobs %}
+                                                            <li>{{ otherJobs }}</li>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <li>?</li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
-                                            {% endif %}
+                                        {% if organization.stafforganizations is empty or organization.socialstaffs is empty or organization.otherjobs is empty or organization.teamMembersNumber == null %}
+                                            <div class="col-md-12">
+                                                <p>Si vous avez plus d'information n'hésitez pas
+                                                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                        <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                    {% else %}
+                                                        <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -238,24 +298,30 @@
                             </div>
                             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                                 <div class="panel-body">
-                                    {% if organization.openhours is not empty %}
-                                    <div class="col-md-12">
-                                        <h3 class="second-title">Heures d'ouverture : </h3><p class="bold">{{ organization.openhours }}</p>
-                                    </div>
-                                    {% endif %}
+
                                     <div class="col-md-12">
                                     <h3 class="second-title">Jours d'ouverture : </h3>
-                                        <ul>
-                                            <li>
-                                                semaine : <p>{% for days in organization.opendays %}{{ days }}&nbsp;{% endfor %}</p>
-                                            </li>
-                                            {% if organization.opendaysYear is not empty %}
-                                            <li>
-                                                année : <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }}&nbsp;{% endfor %}</p>
-                                            </li>
-                                            {% endif %}
-                                        </ul>
+                                        {% if organization.opendays is not empty %}
+                                            <p>{% for days in organization.opendays %}{{ days }}&nbsp;{% endfor %}</p>
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
+                                        {% if organization.opendaysYear is not empty %}
+                                            <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }}&nbsp;{% endfor %}</p>
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
                                     </div>
+
+                                        <div class="col-md-12">
+                                            <p><span class="second-title">Heures d'ouverture : </span>
+                                                {% if organization.openhours is not empty %}
+                                                    {{ organization.openhours }}
+                                                {% else %}
+                                                    ?
+                                                {% endif %}
+                                            </p>
+                                        </div>
                                     {% if organization.orientationMdph == 1 %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">Sur orientation Mdph :</h3><p>oui</p>
@@ -278,23 +344,42 @@
                                         </div>
                                     </div>
                                     {% endif %}
-                                    {% if organization.inscription %}
+
                                     <div class="col-md-12">
                                       <h3 class="second-title">Comment s'inscrire ?</h3>
-                                        {{ organization.inscription|raw }}
+                                        {% if organization.inscription %}
+                                            {{ organization.inscription|raw }}
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
                                     </div>
-                                    {% endif %}
-                                    {% if organization.cost %}
+
                                     <div class="col-md-12">
                                         <h3 class="second-title">Combien ça coûte ?</h3>
-                                        {{ organization.cost|raw  }}
+                                        {% if organization.cost %}
+                                            {{ organization.cost|raw  }}
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
                                     </div>
-                                    {% endif %}
-                                    {% if organization.transport %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">Les transports :</h3>
+                                        {% if organization.transport %}
                                             {{ organization.transport|raw  }}
+                                        {% else %}
+                                            <p>?</p>
+                                        {% endif %}
                                     </div>
+                                    {% if organization.opendays is empty or organization.opendaysYear is empty or organization.openhours is empty or organization.inscription == null or organization.cost == null or organization.transport == null %}
+                                        <div class="col-md-12">
+                                            <p>Si vous avez plus d'information n'hésitez pas
+                                                {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                    <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                {% else %}
+                                                    <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                {% endif %}
+                                            </p>
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -319,7 +404,7 @@
                                 <div class="icon-block">
                                     <i class="fa fa-tag" aria-hidden="true"></i>
                                 </div>
-                                <p class="address-line">Structure gére par : {{ organization.society }}</p>
+                                <p class="address-line">Structure gérée par : {{ organization.society }}</p>
                             </div>
                         {% endif %}
                         <div class="line">
@@ -393,6 +478,11 @@
                                 <a class="address-line link-about" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
                             </div>
                         {% endif %}
+                        {% if organization.freeDescription %}
+                            <div class="col-md-12">
+                                {{ organization.freeDescription|raw  }}
+                            </div>
+                        {% endif %}
                     </div>
                     {% set array = {
                     'latitude': organization.latitude,
@@ -402,8 +492,7 @@
                     {% set arrayjson = array|json_encode %}
 
                     <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
-                    {% set id = { 'id': organization.id,
-                    } %}
+                    {% set id = { 'id': organization.id,} %}
                     {% set idjson = id|json_encode %}
                     <input type="hidden" class="arraymail" value="{{ idjson }}" />
 
@@ -433,12 +522,12 @@
             <div class="row" id="return-button">
                 <div class="col-md-3 col-xs-12">
                     <button onclick="goBack()" class="btn btn-return" role="button" >
-                        Retour à la recherche
+                        Retour à la page de résultat
                     </button>
                 </div>
                 <div class="col-md-3 col-xs-12">
                     <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
-                        Retour à l'acceuil
+                        Retour à l'accueil
                     </a>
                 </div>
                 {% if organization.userorg == null %}

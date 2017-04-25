@@ -332,7 +332,7 @@ class OrganizationsType extends AbstractType
                 'data' => new \DateTime(),
             ))
             ->add('inscription', CKEditorType::class, array(
-                'label' => 'Comment s’inscrire ?',
+                'label' => 'Si oui, précisez la procèdure d\'admission, si non, précisez les modalités d\'inscription',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -389,7 +389,7 @@ class OrganizationsType extends AbstractType
                 'expanded' => true
             ))
             ->add('cost' , CKEditorType::class, array(
-                'label' => 'Combien ça coûte ?',
+                'label' => 'Combien ça coûte pour l\'usager ?',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -399,15 +399,13 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('transport' , CKEditorType::class, array(
-                'label' => 'Transports :',
+                'label' => 'Transports : Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
-                    'placeholder' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?'
                 )
             ))
             ->add('media', collectionType::class, array(
@@ -418,6 +416,17 @@ class OrganizationsType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
                 'required' => false,
+            ))
+            ->add('freeDescription', CKEditorType::class, array(
+                'label' => 'Souhaitez-vous mettre en avant une information spécifique sur la fiche de votre structure ?',
+                'required' => false,
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                    'extraPlugins' => 'confighelper',
+                    'placeholder' => 'Ex : Exemple : la structure est complète à ce jour mais n’hésitez pas à prendre des renseignements, il existe une liste d’attente sur laquelle nous pouvons vous inscrire.<br>
+                                      Exemple : vous pouvez nous rencontrer au forum Handicap le dimanche 24 mars à partir de 14h […] // Journée porte ouverte le samedi 23 avril […]<br>
+                                      Exemple : vous trouverez plus d’information sur notre blog : www. …'
+                )
             ));
 
         $builder->get('school')
