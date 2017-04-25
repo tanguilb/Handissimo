@@ -69,6 +69,10 @@
                                         <div class="col-md-12 description">
                                             <p>{{ organization.organizationDescription|raw }}</p>
                                         </div>
+                                        {% else %}
+                                        <div class="col-md-12 description">
+                                            <p>Si vous en savez plus, n'hésitez pas à compléter la fiche</p>
+                                        </div>
                                     {% endif %}
                                     <div class="col-md-12">
                                         <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
@@ -79,7 +83,7 @@
                                         {% endfor %}
                                     </ul>
                                     <div class="col-md-6">
-                                        <h3 class="second-title">Age : </h3><p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                        <h3 class="second-title">Âge : </h3><p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                     </div>
                                     {% if organization.freeplace %}
                                     <div class="col-md-6">
@@ -109,9 +113,13 @@
                                     <div class="col-md-12">
                                     <h3 class="second-title">Cette solution offre principalement les services suivants: </h3>
                                     <ul>
+                                        {% if organization.needs != null %}
                                         {% for need in organization.needs %}
                                             <li>{{ need }}</li>
                                         {% endfor %}
+                                        {% else %}
+                                            <li> ? </li>
+                                        {% endif %}
                                     </ul>
                                     </div>
                                     {% if organization.secondneeds != null %}
@@ -126,7 +134,7 @@
                                     {% endif %}
                                     {% if organization.workingDescription %}
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Que proposons nous ? </h3>
+                                        <h3 class="second-title">Pour en savoir plus :</h3>
                                         {{ organization.workingDescription|raw }}
                                     </div>
                                     {% endif %}
@@ -144,7 +152,7 @@
                                     {% endif %}
                                     {% if organization.dayDescription %}
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Concrètement, voici ce qui est proposé :</h3>
+                                        <h3 class="second-title">Description d'une journée ou d'une intervention :</h3>
                                         <p>{{ organization.dayDescription|raw  }}</p>
                                     </div>
                                     {% endif %}

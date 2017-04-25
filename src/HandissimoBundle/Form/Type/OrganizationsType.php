@@ -191,7 +191,7 @@ class OrganizationsType extends AbstractType
                 ),
             ))
             ->add('workingDescription', CKEditorType::class, array(
-                'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes) :',
+                'label' => 'En utilisant des mots simples et des phrases courtes, merci de décrire ce que propose votre structure :',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -205,7 +205,7 @@ class OrganizationsType extends AbstractType
                                  Exemple 3 : L\'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure : l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée, pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.'
                 ),
             ))
-            ->add('accomodation', ChoiceType::class, array(
+           /* ->add('accomodation', ChoiceType::class, array(
                 'choices' => array(
                     'oui' => '1',
                     'non' => '0'
@@ -231,7 +231,7 @@ class OrganizationsType extends AbstractType
                     'placeholder' =>
                         'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
                 ),
-            ))
+            ))*/
             ->add('school', ChoiceType::class, array(
                 'choices' => array(
                     'oui' => '1',
@@ -259,7 +259,7 @@ class OrganizationsType extends AbstractType
                         )
             ))
             ->add('dayDescription', CKEditorType::class, array(
-                'label' => "Description d’une journée/semaine/intervention type",
+                'label' => "Description d’une journée/semaine/intervention type, le cas échéant",
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -282,7 +282,7 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('teamMembersNumber', IntegerType::class, array(
-                'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
+                'label' => 'Combien y a-t-il de personnes dans l\'équipe ?',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
