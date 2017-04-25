@@ -166,4 +166,14 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
+    public function getEmailByOrganization($id)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('o.mail')
+            ->where('o.id =' .$id)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+
 }

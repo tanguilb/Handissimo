@@ -51,6 +51,7 @@ class AjaxController extends Controller
                 $rlong = $long[0]['longitude'];
             }
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
+            //var_dump($result);die();
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
@@ -95,6 +96,20 @@ class AjaxController extends Controller
             'pagination' => $pagination,
         ));
     }
+
+    public function emailAction(Request $request, $id)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $email = $repository->getEmailByOrganization($id);
+
+            return new JsonResponse(array("data" => json_encode($email)));
+        }else {
+            throw new \HttpException('500', 'Invalid call');
+        }
+    }
+
 
     public function searchByCityAction(Request $request, $city)
     {
