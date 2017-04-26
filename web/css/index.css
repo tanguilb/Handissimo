@@ -1,12 +1,115 @@
 #main-index {
-    background: url(../images/handissimo-accueil-moteur-recherche.jpg) no-repeat center fixed;
+    background: url(../images/home-page-Handissimo2.jpg) no-repeat center fixed;
     background-size: cover;
     -webkit-background-size:cover;
     height: 100%;
 }
+
+@media screen and (max-width: 1920px){
+    #main-index {
+        height: 997px;
+        background-size: cover;
+    }
+    #main-index #title-index {
+        margin-top: 250px;
+    }
+
+}
+
+
+@media screen and (max-width: 1280px){
+    #main-index {
+        height: 630px;
+        background-size: cover;
+        -webkit-background-size:cover;
+    }
+    #main-index #title-index {
+        margin-top: 130px;
+        font-size: 2.5em;
+    }
+    #main-index div h2 {
+        margin-top: 20px;
+        font-size: 2em;
+    }
+    .search-field .search-text {
+        font-size: 0.8em;
+        margin-bottom: 5px;
+    }
+    .search-field .homeField {
+        font-size: 0.7em;
+    }
+    .search-field .marker {
+        font-size: 1.1em;
+    }
+    #main-index #search-container #research_action_disability, #main-index #search-container #research_action_structure {
+        font-size: 0.9em;
+    }
+    #main-index #search-container {
+        margin-top: 20px;
+    }
+    #main-index #research_action_save {
+        font-size: 1.2em;
+    }
+    #headband-solution .headband-title{
+        font-size: 1.5em;
+    }
+
+    #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
+        font-size: 1.6em;
+    }
+    .nb-stat {
+        font-size: 0.9em;
+    }
+    .stat-content {
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 780px)
+{
+    #main-index {
+        height: auto;
+        background-size: cover;
+    }
+    #main-index #title-index {
+        margin-top: 110px;
+        font-size: 1.6em;
+    }
+    #main-index div h2 {
+        margin-top: 10px;
+        font-size: 1.1em;
+    }
+    .search-field .search-text {
+        font-size: 0.7em;
+        margin-bottom: 5px;
+    }
+    .search-field .homeField {
+        font-size: 0.5em;
+    }
+    .search-field .marker {
+        font-size: 0.9em;
+    }
+    #main-index #search-container #research_action_disability, #main-index #search-container #research_action_structure {
+        font-size: 0.7em;
+        margin-top: 10px;
+    }
+    #main-index #search-container {
+        margin-top: 10px;
+    }
+    #main-index #research_action_save {
+        font-size: 0.7em;
+        margin-top: 20px;
+    }
+
+    #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
+        font-size: 1.2em;
+    }
+
+}
+
 @media (max-width: 360px) {
     #main-index {
-    background-position: 74%;
+        background-position: 74%;
     }
 }
 
@@ -337,6 +440,14 @@
 .picto {
     height: 150px;
 }
-.link {
+#collaborative {
+    color: #61bdb9;
+}
+
+#interactive {
     color: #C37095;
+}
+
+#building {
+    color: #f7af49;
 }

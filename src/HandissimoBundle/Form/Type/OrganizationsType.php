@@ -56,7 +56,7 @@ class OrganizationsType extends AbstractType
             ))
             ->add('address', TextType::class, array(
                 'label' => 'Adresse postal :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -67,21 +67,21 @@ class OrganizationsType extends AbstractType
             ))
             ->add('postal', TextType::class, array(
                 'label' => 'Code postal :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
             ))
             ->add('city', TextType::class, array(
                 'label' => 'Ville :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
             ))
             ->add('phone_number', TextType::class, array(
                 'label' => 'Telephone :',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -118,7 +118,7 @@ class OrganizationsType extends AbstractType
                 'label' => false,
                 'choice_label' => 'name',
                 'expanded' => true,
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -191,7 +191,7 @@ class OrganizationsType extends AbstractType
                 ),
             ))
             ->add('workingDescription', CKEditorType::class, array(
-                'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes) :',
+                'label' => 'En utilisant des mots simples et des phrases courtes, merci de décrire ce que propose votre structure :',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -259,7 +259,7 @@ class OrganizationsType extends AbstractType
                         )
             ))
             ->add('dayDescription', CKEditorType::class, array(
-                'label' => "Description d’une journée/semaine/intervention type",
+                'label' => "Description d’une journée/semaine/intervention type, le cas échéant",
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -282,7 +282,7 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('teamMembersNumber', IntegerType::class, array(
-                'label' => 'Combien y a-t-il de personne dans l\'équipe ?',
+                'label' => 'Combien y a-t-il de personnes dans l\'équipe ?',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -332,7 +332,7 @@ class OrganizationsType extends AbstractType
                 'data' => new \DateTime(),
             ))
             ->add('inscription', CKEditorType::class, array(
-                'label' => 'Comment s’inscrire ?',
+                'label' => 'Si oui, précisez la procèdure d\'admission, si non, précisez les modalités d\'inscription',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -389,7 +389,7 @@ class OrganizationsType extends AbstractType
                 'expanded' => true
             ))
             ->add('cost' , CKEditorType::class, array(
-                'label' => 'Combien ça coûte ?',
+                'label' => 'Combien ça coûte pour l\'usager ?',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
@@ -399,15 +399,13 @@ class OrganizationsType extends AbstractType
                 )
             ))
             ->add('transport' , CKEditorType::class, array(
-                'label' => 'Transports :',
+                'label' => 'Transports : Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
                 'required' => false,
                 'attr' => array(
                     'class' => 'stat',
                 ),
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
-                    'placeholder' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?'
                 )
             ))
             ->add('media', collectionType::class, array(
@@ -418,6 +416,17 @@ class OrganizationsType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
                 'required' => false,
+            ))
+            ->add('freeDescription', CKEditorType::class, array(
+                'label' => 'Souhaitez-vous mettre en avant une information spécifique sur la fiche de votre structure ?',
+                'required' => false,
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                    'extraPlugins' => 'confighelper',
+                    'placeholder' => 'Ex : Exemple : la structure est complète à ce jour mais n’hésitez pas à prendre des renseignements, il existe une liste d’attente sur laquelle nous pouvons vous inscrire.<br>
+                                      Exemple : vous pouvez nous rencontrer au forum Handicap le dimanche 24 mars à partir de 14h […] // Journée porte ouverte le samedi 23 avril […]<br>
+                                      Exemple : vous trouverez plus d’information sur notre blog : www. …'
+                )
             ));
 
         $builder->get('school')

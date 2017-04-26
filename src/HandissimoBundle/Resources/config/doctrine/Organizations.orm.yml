@@ -15,7 +15,7 @@ HandissimoBundle\Entity\Organizations:
             length: 255
         address:
             type: string
-            nullable: false
+            nullable: true
             length: 255
         addressComplement:
             type: string
@@ -23,11 +23,11 @@ HandissimoBundle\Entity\Organizations:
             length: 255
         postal:
             type: string
-            nullable: false
+            nullable: true
             length: 255
         city:
             type: string
-            nullable: false
+            nullable: true
             length: 255
         latitude:
             type: float

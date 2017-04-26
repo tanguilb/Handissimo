@@ -17,7 +17,7 @@ $( document ).ready(function () {
 
                 for(var i = 0 ; i < mail.length; i++)
                 {
-                    html += '<a class="address-line link-about" href=' + 'mail' + 'to:' + mail[i].mail + 'target="_blank">' + mail[i].mail + '</a>';
+                    html += '<a class="address-line link-about" href="' + 'mail' + 'to:' + mail[i].mail +'"' + 'target="_blank">' + mail[i].mail + '</a>';
                 }
                 $('#mail').html(html);
             },
