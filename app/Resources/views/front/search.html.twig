@@ -59,8 +59,8 @@
                             {{ knp_pagination_render(pagination) }}
                     </div>
                 </div>
-
                 {% for results in pagination %}
+                    {#{ dump(pagination) }#}
                     <div class="row" id="result-container">
                         <div class="col-sm-5" id="crop-height">
                             {% for pictures in picture %}
@@ -84,9 +84,12 @@
                                 </div>
                             </div>
                             <div class="col-xs-12" id="address-container">
-                                <p>{{ results.address }}<br>
-                                {{ results.postal }} {{ results.city }}</p>
-                                <p class="contact-phone">Tél : {{ results.phoneNumber }}</p>
+                                <p>{{ results.postal }} {{ results.city }}</p>
+                            </div>
+                            <div class="col-xs-12" id="needs-container">
+
+                                <p>{#{results.needName }#}</p>
+
                             </div>
                             <div class="col-xs-12" id="social-container">
                                 {% if results.website  %}
@@ -108,6 +111,7 @@
                         </div>
 
                         {% set array = {
+                            'id' : results.id,
                             'name': results.name,
                             'address': results.address,
                             'postal': results.postal,
@@ -141,6 +145,8 @@
     </section>
 {% endblock %}
 {% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script type="text/javascript" src="{{ asset ('js/googlemap.js')}}"></script>
     <script type="text/javascript" src="{{ asset ('js/search.js')}}"></script>
     <script async defer

@@ -55,5 +55,8 @@ sonata_user_security_logout:
     path:  /logout
     defaults: { _controller: SonataUserBundle:SecurityFOSUser1:logout }
 
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 
 

@@ -21,10 +21,12 @@ function initMap() {
     for(var i = 0; i < coordinate.length; i++) {
         (function(index){
             var elements = JSON.parse( coordinate[i].value );
+            var locId = elements.id;
+            var url = Routing.generate('structure_page', { id: locId });
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                '<a href=""><h2 id="firstHeading" class="firstHeading">' + elements.name + '</h2></a>' +
+                '<a href= "'+url+'"><h3 id="firstHeading" class="firstHeading">' + elements.name + '</h3></a>' +
                 '<div id="bodyContent">' +
                 '<p>' + elements.address + '<br>' +
                 elements.postal + '<br>' +
