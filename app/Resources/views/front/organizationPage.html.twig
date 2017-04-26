@@ -86,7 +86,7 @@
                                                 <li>{{ disability }} </li>
                                             {% endfor %}
                                         {% else %}
-                                            <li>?</li>
+                                            <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
                                         {% endif %}
 
 
@@ -140,7 +140,7 @@
                                                 <li>{{ need }}</li>
                                             {% endfor %}
                                         {% else %}
-                                            <li>?</li>
+                                            <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
                                         {% endif %}
                                     </ul>
                                     </div>
@@ -153,7 +153,7 @@
                                                     <li>{{ secondneeds }}</li>
                                                 {% endfor %}
                                             {% else %}
-                                                <li>?</li>
+                                                <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
                                             {% endif %}
 
                                         </ul>
@@ -163,7 +163,7 @@
                                         {% if organization.workingDescription %}
                                             {{ organization.workingDescription|raw }}
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
 
                                     </div>
@@ -179,7 +179,7 @@
                                         {% if organization.dayDescription %}
                                             <p>{{ organization.dayDescription|raw  }}</p>
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
                                     </div>
 
@@ -188,7 +188,7 @@
                                         {% if organization.receptionDescription %}
                                             <p>{{ organization.receptionDescription|raw  }}</p>
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
 
                                     </div>
@@ -226,7 +226,7 @@
                                             {% if organization.teamMembersNumber is not empty %}
                                                 {{ organization.teamMembersNumber }}
                                             {% else %}
-                                                ?
+                                                <i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i>
                                             {% endif %}
                                             professionnels.</h3>
                                     </div>
@@ -242,7 +242,7 @@
                                                             <li>{{ jobs }}</li>
                                                         {% endfor %}
                                                     {% else %}
-                                                        <li>?</li>
+                                                        <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
                                                     {% endif %}
                                                 </ul>
                                             </div>
@@ -254,7 +254,7 @@
                                                             <li>{{ socialJobs }}</li>
                                                         {% endfor %}
                                                     {% else %}
-                                                        <li>?</li>
+                                                        <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
                                                     {% endif %}
                                                 </ul>
                                             </div>
@@ -267,7 +267,7 @@
                                                             <li>{{ otherJobs }}</li>
                                                         {% endfor %}
                                                     {% else %}
-                                                        <li>?</li>
+                                                        <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
                                                     {% endif %}
                                                 </ul>
                                             </div>
@@ -304,12 +304,12 @@
                                         {% if organization.opendays is not empty %}
                                             <p>{% for days in organization.opendays %}{{ days }}&nbsp;{% endfor %}</p>
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
                                         {% if organization.opendaysYear is not empty %}
                                             <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }}&nbsp;{% endfor %}</p>
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
                                     </div>
 
@@ -318,30 +318,21 @@
                                                 {% if organization.openhours is not empty %}
                                                     {{ organization.openhours }}
                                                 {% else %}
-                                                    ?
+                                                    <i class="question fa fa-question" aria-hidden="true"></i>
                                                 {% endif %}
                                             </p>
                                         </div>
                                     {% if organization.orientationMdph == 1 %}
+                                        {% set mdphText="Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite
+                                                \"loi pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées\",
+                                            entrée en vigueur le 1er janvier 2006...
+                                            La MDPH constitue un guichet unique destiné à accueillir les personnes handicapées et leur entourage pour les
+                                            informer et évaluer leurs besoins. Elles permettent de faciliter leurs démarches dans l'accès à leurs droits.
+                                            Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
+                                            médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes." %}
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Sur orientation Mdph :</h3><p>oui</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <img id="logo-mdph" src="{{ asset('images/mdph.jpg') }}" alt="handissimo - logo-mdph"
-                                                     class="media-object">
-                                            </div>
-                                            <div class="media-body">
-                                                Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite
-                                                "loi pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées",
-                                                entrée en vigueur le 1er janvier 2006...
-                                                La MDPH constitue un guichet unique destiné à accueillir les personnes handicapées et leur entourage pour les
-                                                informer et évaluer leurs besoins. Elles permettent de faciliter leurs démarches dans l'accès à leurs droits.
-                                                Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
-                                                médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes.
-                                            </div>
-                                        </div>
+                                        <p><span class="second-title">Sur orientation Mdph :</span> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
+                                        </p>
                                     </div>
                                     {% endif %}
 
@@ -350,7 +341,7 @@
                                         {% if organization.inscription %}
                                             {{ organization.inscription|raw }}
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
                                     </div>
 
@@ -359,7 +350,7 @@
                                         {% if organization.cost %}
                                             {{ organization.cost|raw  }}
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
                                     </div>
                                     <div class="col-md-12">
@@ -367,7 +358,7 @@
                                         {% if organization.transport %}
                                             {{ organization.transport|raw  }}
                                         {% else %}
-                                            <p>?</p>
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
                                     </div>
                                     {% if organization.opendays is empty or organization.opendaysYear is empty or organization.openhours is empty or organization.inscription == null or organization.cost == null or organization.transport == null %}
@@ -390,7 +381,7 @@
 
                 <div class="col-md-4">
                     <!-- Contact block -->
-                    <div class="contact-info col-md-12">
+                    <div class="contact-info    col-md-12">
                         {% if organization.orgaStructure %}
                         <div class="line">
                             <div class="icon-block">
@@ -572,6 +563,7 @@
     <script src="{{ asset('js/carousel.js') }}"></script>
     <script src="{{ asset('js/generateadress.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
+    <script src="{{ asset('js/popover.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>

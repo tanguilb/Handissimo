@@ -7,10 +7,9 @@
 {% block body %}
     <section class="container-fluid" id="main-index">
         <div class="container">
-            <h1 id="title-index">Trouvez rapidement la solution adaptée au handicap de votre enfant, de votre proche, ou pour vous</h1>
+            <h1 id="title-index">Trouvez rapidement la solution adaptée</h1>
             <div class="col-md-10 col-md-offset-1">
-                <h2>Handissimo vous facilite le handicap !</h2>
-                <h2>Lancement sur la région lyonnaise en 2017</h2>
+                <h2 class="titre">Lancement sur la région lyonnaise en 2017</h2>
             </div>
         </div>
         <div class="container" id="search-container">
@@ -18,37 +17,37 @@
             {{ form_errors(form) }}
 
             <div class="row">
-                <div class="col-xs-12 col-md-4 clear">
+                <div class="col-xs-12 col-sm-4 col-md-4 clear">
                     <div class="col-xs-12 search-field">
-                        <p>Où cherchez-vous ?<i class="fa fa-map-marker" aria-hidden="true" id="marker"></i></p>
+                        <p class="search-text">Où cherchez-vous ?<i class="marker fa fa-map-marker" aria-hidden="true"></i></p>
                         {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), Paris (75000)…', 'class' : 'homeField'} }) }}
                         <ul id="city"></ul>
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="col-xs-12 search-field">
-                        <p>Pour quelqu’un de quel âge ?<i class="fa fa-birthday-cake" aria-hidden="true"></i></p>
+                        <p class="search-text">Pour quelqu’un de quel âge ?<i class="marker fa fa-birthday-cake" aria-hidden="true"></i></p>
                         {{ form_row(form.age, { 'attr': {'placeholder': 'input.age'|trans({}, 'messages'), 'class' : 'homeField'} }) }}
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="col-xs-12 search-field">
-                        <p>Que cherchez-vous ?<i class="fa fa-search" aria-hidden="true"></i></p>
+                        <p class="search-text">Que cherchez-vous ?<i class="marker fa fa-search" aria-hidden="true"></i></p>
                         {{ form_row(form.need, { 'attr': {'placeholder': 'Répit, scolarité pour enfant autiste, foyer de vie...', 'class' : 'homeField'} }) }}
                         <ul id="keywordautocomplete"></ul>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="col-xs-12">
                         {{ form_row(form.disability) }}
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="col-xs-12">
                         {{ form_row(form.structure) }}
                     </div>
@@ -69,25 +68,25 @@
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
                             <a href="{{ path('handissimo_structure') }}" id="solution-one">
-                                <img class="picto" src="{{ asset('images/Pictogramme_bleu_interactif.png') }}" alt="Je connais une solution"/>
-                                <h3 class="link">Handissimo est collaboratif.<br><br>
+                                <img class="picto" src="{{ asset('images/Pictogramme_jaune_collaboratif.png') }}" alt="Je connais une solution"/>
+                                <h3 id="collaborative">Handissimo est collaboratif.<br><br>
                                 Les familles et les professionnels contribuent.</h3>
                             </a>
                         </div>
 
                         <div class="col-sm-4 col-xs-12">
                             <a href="{{ path('handissimo_aboutpage') }}" id="solution-two">
-                                <img src="{{ asset('images/photo2.jpeg') }}" alt="Qui sommes nous?" />
-                                <h3>Handissimo est interactif</h3>
-                                <p>Complétez, commentez, posez des questions…</p>
+                                <img class="picto" src="{{ asset('images/Pictogramme_bleu_interactif.png') }}" alt="Qui sommes nous?" />
+                                <h3 id="interactive">Handissimo est interactif.<br><br>
+                                    Complétez, commentez, posez des questions…</h3>
                             </a>
                         </div>
 
                         <div class="col-sm-4 col-xs-12">
                             <a href="#" id="solution-three">
-                                <img src="{{ asset('images/photo3.jpeg') }}" alt="Comment nous aider?" />
-                                <h3>Handissimo est en construction</h3>
-                                <p>Nous avons besoin de vous !</p>
+                                <img class="picto" src="{{ asset('images/Pictogramme_mauve_construction.png') }}" alt="Comment nous aider?" />
+                                <h3 id="building">Handissimo est en construction<br><br>
+                                Nous avons besoin de vous !</h3>
                             </a>
                         </div>
                     </div>

@@ -378,3 +378,22 @@ h4 {
 .age {
     display: inline-block;
 }
+
+.question {
+    font-size: 1.3em;
+    margin-left: 45px;
+}
+
+.mdphInfo {
+    font-size: 1.8em;
+    margin-left: 30px;
+    color: #C37095;
+}
+.mdphInfo:hover {
+    color: #f7af49;
+}
+
+.tooltip-inner {
+    background-color: #61bdb9;
+    color: #fff;
+}

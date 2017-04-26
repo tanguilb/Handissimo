@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Form\Type;
 
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,12 +28,23 @@ class ResearchType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'class' => 'HandissimoBundle\Entity\Needs',
-                'choice_name' => 'needName'
+                'query_builder' => function(EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('n')
+                        ->orderBy('n.needName', 'ASC');
+                },
+                'choice_name' => 'needName',
+                'empty_value' => 'scolarité, soin, établissement…'
             ))
             ->add('disability', EntityType::class, array(
                 'label' => false,
                 'required' => false,
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
+                'query_builder' => function(EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('dt')
+                        ->orderBy('dt.disabilityName', 'ASC');
+                },
                 'choice_name' => 'disabilityName',
                 'empty_value' => 'Précisez le handicap'
             ))
@@ -40,6 +52,11 @@ class ResearchType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'class' => 'HandissimoBundle\Entity\StructuresList',
+                'query_builder' => function(EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('sl')
+                        ->orderBy('sl.name', 'ASC');
+                },
                 'choice_name' => 'name',
                 'empty_value' => 'Précisez le type de structure'
             ))
