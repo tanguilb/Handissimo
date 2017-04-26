@@ -11,9 +11,12 @@ body {
 
 #search-done {
     margin-top: 80px;
-
     color: #ffffff;
     font-weight: 600;
+}
+
+#btn-return {
+    margin-bottom: 5px;
 }
 
 /*Map and results*/
@@ -38,10 +41,12 @@ body {
 }
 @media (max-width: 992px) {
     #map {
-    position: relative !important;
-    padding-bottom:60%;
-    width: 100vw;
-    top: 0;
+        position: relative !important;
+        width: 100vw;
+        top: 0;
+    }
+    #block-map {
+        height: 60vh;
     }
 }
 #count-results {
@@ -170,9 +175,9 @@ body {
     color: #777777;
 }
 
-@media only screen and (max-width: 15in) {
-    #headband-pagination > .pagination > li > a,
-    #headband-pagination > .pagination > li > span {
-        font-size: 12px;
+@media (max-width: 992px) {
+    body > .pagination > li > a,
+    body > #headband-pagination > .pagination > li > span {
+        font-size: 10px;
     }
 }
