@@ -96,6 +96,20 @@ class AjaxController extends Controller
         ));
     }
 
+    public function emailAction(Request $request, $id)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $email = $repository->getEmailByOrganization($id);
+
+            return new JsonResponse(array("data" => json_encode($email)));
+        }else {
+            throw new \HttpException('500', 'Invalid call');
+        }
+    }
+
+
     public function searchByCityAction(Request $request, $city)
     {
         if ($request->isXmlHttpRequest()) {

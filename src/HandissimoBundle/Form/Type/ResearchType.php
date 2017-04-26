@@ -27,7 +27,8 @@ class ResearchType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'class' => 'HandissimoBundle\Entity\Needs',
-                'choice_name' => 'needName'
+                'choice_name' => 'needName',
+                'empty_value' => 'Scolarité, emploi, établissement....'
             ))
             ->add('disability', EntityType::class, array(
                 'label' => false,

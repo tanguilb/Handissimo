@@ -251,3 +251,5 @@ knp_paginator:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig      # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig # sort link template
 
+fos_js_routing:
+    routes_to_expose: [structure_page]
