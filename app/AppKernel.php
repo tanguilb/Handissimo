@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

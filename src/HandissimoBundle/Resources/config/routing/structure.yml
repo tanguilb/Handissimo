@@ -1,3 +1,5 @@
 structure_page:
     path: /
     defaults: { _controller: "HandissimoBundle:Default:standardPage" }
+    options:
+        expose: true

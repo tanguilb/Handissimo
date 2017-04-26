@@ -248,6 +248,8 @@ p {
 
 #footer {
     background-color: #f7f7f7;
+    z-index: 997;
+    position: relative;
 }
 
 .logo-handissimo-footer {
