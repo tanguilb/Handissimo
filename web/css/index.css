@@ -8,7 +8,7 @@
 @media screen and (max-width: 1920px){
     #main-index {
         height: 997px;
-        background-size: cover;
+        /*background-size: cover;*/
     }
     #main-index #title-index {
         margin-top: 250px;
@@ -103,6 +103,13 @@
 
     #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
         font-size: 1.2em;
+    }
+
+    .nb-stat {
+        font-size: 0.6em;
+    }
+    .stat-content {
+        font-size: 0.6em;
     }
 
 }
