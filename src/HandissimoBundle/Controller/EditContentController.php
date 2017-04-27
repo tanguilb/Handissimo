@@ -32,4 +32,24 @@ class EditContentController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function howToHelpUsAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:EditContent');
+        $howToHelpUs = $repository->findAll();
+
+        return $this->render('front/helpPage.html.twig', array(
+           'howToHelpUs' => $howToHelpUs
+        ));
+    }
+
+    public function whoAreWeAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:EditContent');
+        $whoAreWe = $repository->findAll();
+
+        return $this->render(':front:about.html.twig', array(
+           'whoAreWe' => $whoAreWe
+        ));
+    }
 }

@@ -80,4 +80,62 @@ class EditContent
     {
         return $this->home;
     }
+    /**
+     * @var string
+     */
+    private $howToHelpUs;
+
+
+    /**
+     * Set howToHelpUs
+     *
+     * @param string $howToHelpUs
+     *
+     * @return EditContent
+     */
+    public function setHowToHelpUs($howToHelpUs)
+    {
+        $this->howToHelpUs = $howToHelpUs;
+
+        return $this;
+    }
+
+    /**
+     * Get howToHelpUs
+     *
+     * @return string
+     */
+    public function getHowToHelpUs()
+    {
+        return $this->howToHelpUs;
+    }
+    /**
+     * @var string
+     */
+    private $whoAreWe;
+
+
+    /**
+     * Set whoAreWe
+     *
+     * @param string $whoAreWe
+     *
+     * @return EditContent
+     */
+    public function setWhoAreWe($whoAreWe)
+    {
+        $this->whoAreWe = $whoAreWe;
+
+        return $this;
+    }
+
+    /**
+     * Get whoAreWe
+     *
+     * @return string
+     */
+    public function getWhoAreWe()
+    {
+        return $this->whoAreWe;
+    }
 }

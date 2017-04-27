@@ -26,7 +26,7 @@ function initMap() {
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                '<a href= "'+url+'"><h3 id="firstHeading" class="firstHeading">' + elements.name + '</h3></a>' +
+                '<a href= "'+url+'" class="link-about"><h3 id="firstHeading" class="firstHeading">' + elements.name + '</h3></a>' +
                 '<div id="bodyContent">' +
                 '<p>' + elements.address + '<br>' +
                 elements.postal + '<br>' +

@@ -8,7 +8,7 @@ handissimo_research:
 
 handissimo_aboutpage:
     path:     /about
-    defaults: { _controller: HandissimoBundle:Default:about }
+    defaults: { _controller: HandissimoBundle:EditContent:whoAreWe }
 
 handissimo_organizations_standard_page:
     resource: "@HandissimoBundle/Resources/config/routing/structure.yml"
@@ -38,3 +38,7 @@ handissimo_organizations:
 handissimo_media:
     resource: "@HandissimoBundle/Resources/config/routing/media.yml"
     prefix:   /media
+
+handissimo_help:
+    path: /help
+    defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }

@@ -15,4 +15,11 @@ HandissimoBundle\Entity\EditContent:
             type: string
             length: 255
             nullable: true
+        howToHelpUs:
+            type: text
+            nullable: true
+        whoAreWe:
+            type: text
+            nullable: true
+
     lifecycleCallbacks: {  }

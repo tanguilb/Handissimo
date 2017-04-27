@@ -16,17 +16,21 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="handissimo-nav">
             <div class="nav navbar-nav navbar-right">
-                <a href="{{ path('handissimo_structure') }}">
-                    <button class="btn modal-button">
+                <a href="{{ path('handissimo_structure') }}" class="link-nav">
+                    <button class="btn blue-btn">
                         <i class="fa fa-lightbulb-o" aria-hidden="true"></i>Comment ça marche ?
                     </button>
                 </a>
-                <a href="{{ path('handissimo_aboutpage') }}">
+                <a href="{{ path('handissimo_aboutpage') }}"  class="link-nav">
                     <button class="btn orange-btn">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
                     </button>
                 </a>
-                {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
+                <a href="{{ path('handissimo_help') }}"  class="link-nav">
+                    <button class="btn blue-btn">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>Comment nous aider
+                    </button>
+                </a>
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <div class="btn-group">
@@ -36,7 +40,8 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdown-home">
-                                <li><a href="{{ path('sonata_user_profile_edit') }}">MON COMPTE</a></li>
+                                <li><a href="{{ path('sonata_user_profile_show') }}">MON COMPTE</a></li>
+                                <li><a href="{{ path('organizations_new') }}">CREER UNE FICHE</a> </li>
                                 <li><a href="{{ path('sonata_user_security_logout') }}">DECONNEXION</a></li>
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                                     <li><a href="{{ path('sonata_admin_dashboard') }}">ADMIN</a></li>

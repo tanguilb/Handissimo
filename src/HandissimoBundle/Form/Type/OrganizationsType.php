@@ -205,33 +205,6 @@ class OrganizationsType extends AbstractType
                                  Exemple 3 : L\'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure : l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée, pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.'
                 ),
             ))
-            ->add('accomodation', ChoiceType::class, array(
-                'choices' => array(
-                    'oui' => '1',
-                    'non' => '0'
-                ),
-                'expanded' => true,
-                'empty_data' => false,
-                'required' => true,
-                'choices_as_values' => true,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
-                'label' => 'Proposez-vous de l’accueil ?'
-            ))
-            ->add('accomodationDescription', CKEditorType::class, array(
-                'label' => false,
-                'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
-                'config' => array(
-                    'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
-                    'placeholder' =>
-                        'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...',
-                ),
-            ))
             ->add('school', ChoiceType::class, array(
                 'choices' => array(
                     'oui' => '1',
@@ -436,15 +409,6 @@ class OrganizationsType extends AbstractType
                 },
                 function ($schoolAsString){
                     return $schoolAsString === "1" ? true : false;
-                }
-            ));
-        $builder->get('accomodation')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($accomodationAsBoolean){
-                    return $accomodationAsBoolean ? "1" : "0";
-                },
-                function ($accomodationAsString){
-                    return $accomodationAsString === "1" ? true : false;
                 }
             ));
         $builder->get('orientationMdph')
