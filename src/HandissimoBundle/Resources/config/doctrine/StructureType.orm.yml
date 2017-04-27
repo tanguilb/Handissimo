@@ -1,0 +1,20 @@
+HandissimoBundle\Entity\StructureType:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+
+    oneToMany:
+        structure:
+            targetEntity: HandissimoBundle\Entity\StructuresList
+            mappedBy: type
+
+    lifecycleCallbacks: {  }

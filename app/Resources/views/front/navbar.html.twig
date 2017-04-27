@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="{{ path('research_action') }}">
+            <a class="navbar-brand" href="{{ path('index_action') }}">
                 <img alt="Handissimo vous simplifie le handicap" src="{{ asset('images/handissimo-logo.png') }}" class="logo-handissimo-navbar">
             </a>
         </div>
@@ -16,35 +16,43 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="handissimo-nav">
             <div class="nav navbar-nav navbar-right">
-                <a href="{{ path('handissimo_structure') }}">
-                    <button class="btn modal-button">
-                        <i class="fa fa-user" aria-hidden="true"></i>Je suis une solution
+                <a href="{{ path('handissimo_structure') }}" class="link-nav">
+                    <button class="btn blue-btn">
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>Comment ça marche ?
                     </button>
                 </a>
-                <a href="{{ path('handissimo_aboutpage') }}">
+                <a href="{{ path('handissimo_aboutpage') }}"  class="link-nav">
                     <button class="btn orange-btn">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
                     </button>
                 </a>
-                {#% include ':front:opinion-button.html.twig' %#}
-                {{ render(controller("HandissimoBundle:NewOpinion:new")) }}
+                <a href="{{ path('handissimo_help') }}"  class="link-nav">
+                    <button class="btn blue-btn">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>Comment nous aider
+                    </button>
+                </a>
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset('images/avatar/businessman.png') }}" class="img-avatar">
-                            Bonjour {{ app.user.username }}
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('sonata_user_profile_edit') }}">Profil</a></li>
-                            <li><a href="{{ path('sonata_admin_dashboard') }}">Créer ou modifier une fiche</a></li>
-                            <li><a href="{{ path('sonata_user_security_logout') }}">Déconnexion</a></li>
+                        <div class="btn-group">
+                            <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ asset('images/avatar/businessman.png') }}" class="img-avatar">
+                                Bonjour {{ app.user.username }}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="dropdown-home">
+                                <li><a href="{{ path('sonata_user_profile_show') }}">MON COMPTE</a></li>
+                                <li><a href="{{ path('organizations_new') }}">CREER UNE FICHE</a> </li>
+                                <li><a href="{{ path('sonata_user_security_logout') }}">DECONNEXION</a></li>
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <li><a href="{{ path('sonata_admin_dashboard') }}">ADMIN</a></li>
+                                {% endif %}
                     {% endif %}
                             </ul>
+                        </div>
                 {% else %}
                 <a href="{{ path('fos_user_security_login') }}">
                     <button class="btn pink-btn">
-                        <i class="fa fa-user" aria-hidden="true"></i>Votre compte
+                        <i class="fa fa-user" aria-hidden="true"></i>Mon compte
                     </button>
                 </a>
                 {% endif %}

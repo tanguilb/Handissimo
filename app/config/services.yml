@@ -6,15 +6,9 @@ parameters:
 services:
     admin.organizations:
         class: HandissimoBundle\Admin\OrganizationsAdmin
+        arguments: [~, HandissimoBundle\Entity\Organizations, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Créer ou modifier une fiche }
-        arguments:
-            - null
-            - HandissimoBundle\Entity\Organizations
-            - HandissimoBundle:OrganizationsAdmin
-        calls:
-            - [ setTemplate, [list, HandissimoBundle:OrganizationsAdmin:list.html.twig]]
-            - [ setTemplate, [form, HandsissimoBundle:OrganizationsAdmin:base_edit.html.twig]]
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
@@ -22,18 +16,11 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Types de handicaps }
 
-    admin.structures_types:
-        class: HandissimoBundle\Admin\StructuresTypesAdmin
-        arguments: [~, HandissimoBundle\Entity\StructuresTypes, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Type de structures }
-
     admin.structureslist:
         class: HandissimoBundle\Admin\StructuresListAdmin
         arguments: [~, HandissimoBundle\Entity\StructuresList, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Dossier, label: Liste des structures }
-
 
     admin.staff:
         class: HandissimoBundle\Admin\StaffAdmin
@@ -102,50 +89,50 @@ services:
             - { name: form.type, alias: front_user_registration }
 
     app.brochure_uploader:
-        class: HandissimoBundle\Upload\FileUploader
+        class: HandissimoBundle\Services\Upload\FileUploader
         arguments: ['%brochures_directory%']
+
+    app.logo_uploader:
+        class: HandissimoBundle\Services\Upload\FileUploader
+        arguments: ['%logo_directory%']
+
+    handissimo.doctrine_brochure_listener:
+        class: HandissimoBundle\EventListener\BrochureUploaderListener
+        arguments: ["@app.brochure_uploader"]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+
+
+    handissimo.doctrine_logo_listener:
+        class: HandissimoBundle\EventListener\LogoUploaderListener
+        arguments: ['@app.logo_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+
+    handissimo.doctrine_society_logo_listener:
+        class: HandissimoBundle\EventListener\SocietyLogoUploaderListener
+        arguments: ['@app.logo_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
 
     admin.media:
         class: HandissimoBundle\Admin\MediaAdmin
+        arguments: [~, HandissimoBundle\Entity\Media, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Organismes, label: Media }
-        arguments:
-                    - null
-                    - HandissimoBundle\Entity\Media
-                    - HandissimoBundle:MediaAdmin
-        calls:
-            - [ setTemplate, [list, HandissimoBundle:MediaAdmin:list.html.twig]]
 
-  #  handissimo.resize:
-   #     class: HandissimoBundle\Upload\ResizePictures
-    #    arguments:
-     #       - 50
-      #      - 300
+    handissimo.geocoder:
+        class: HandissimoBundle\Services\Geocode\Geocoder
 
-   # handissimo.doctrine_listener.resize_media:
-  #      class: HandissimoBundle\DoctrineListener\ResizeMediaListener
-   #     arguments:
-    #        - "@handissimo.resize"
-     #   tags:
-      #      - { name: doctrine.event_listener, event: postPersist }
-    handissimo.remove:
-       class: HandissimoBundle\Upload\MediaRemove
-
-    handissimo.doctrine_listener.remove_media:
-        class: HandissimoBundle\DoctrineListener\RemoveMediaListener
-        arguments:
-            - "@handissimo.remove"
+    handissimo.geocoder.listener:
+        class: HandissimoBundle\EventListener\GeocoderListener
+        arguments: ['@handissimo.geocoder']
         tags:
-            - { name: doctrine.event_listener, event: postRemove }
-
-
-    #handissimo.thumnbails:
-     #   class: HandissimoBundle\ImageThumnbails
-      #  arguments: ['%media_directory%']
-
-   # #andissimo.doctrine_listener.media:
-    #    class: HandissimoBundle\DoctrineListener\MediaThumnbailsListener
-     #   arguments:
-      #      - '@handissimo.thumnbails'
-       # tags:
-        #    - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

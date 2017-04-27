@@ -29,7 +29,7 @@ class MediaAdmin extends AbstractAdmin
             ->add('caroussel', null, array(
                 'label' => 'Ajouter au caroussel'))
             ->add('firstPicture', null, array(
-                'label' => "Imgage de présentation"
+                'label' => "Image de présentation"
             ));
     }
 

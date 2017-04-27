@@ -1,14 +1,19 @@
-research_ajax:
-    path:   /ajax/{keyword}
-    defaults: {_controller: "HandissimoBundle:Ajax:autoComplete"}
+city_ajax:
+    path:   /ajaxcity/{city}
+    defaults: {_controller: "HandissimoBundle:Ajax:searchByCity"}
     methods:  POST
 
-city_ajax:
-    path:   /ajaxcity/{postalcode}
-    defaults: {_controller: "HandissimoBundle:Ajax:postal"}
-    methods:  POST
+index_action:
+    path:     /
+    defaults: { _controller: "HandissimoBundle:Ajax:index" }
+    methods:  [GET, POST]
 
 research_action:
-    path:     /
+    path:     /list
     defaults: { _controller: "HandissimoBundle:Ajax:research" }
     methods:  [GET, POST]
+
+mail_action:
+    path:     /mail/{id}
+    defaults: { _controller: "HandissimoBundle:Ajax:email" }
+    methods:  POST

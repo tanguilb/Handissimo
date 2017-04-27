@@ -1,0 +1,179 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+{% form_theme edit_form ':Form:fields.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organedit.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block sonata_profile_content %}
+    {% block organization_form %}
+        <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" enctype="multipart/form-data">
+            {{ form_start(edit_form) }}
+            {{ form_errors(edit_form) }}
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
+                    <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
+                    <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
+                    <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
+                    <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
+                    <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
+                </ul>
+                <br>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
+                        <div class="col-md-5">
+                            {{ form_row(edit_form.name) }}
+                            {{ form_row(edit_form.structureLogo) }}
+                            {{ form_row(edit_form.society) }}
+                            {{ form_row(edit_form.societyLogo) }}
+                            {{ form_row(edit_form.address) }}
+                            {{ form_row(edit_form.addressComplement) }}
+                            {{ form_row(edit_form.postal) }}
+                            {{ form_row(edit_form.city) }}
+                            {{ form_row(edit_form.phone_number) }}
+                            {{ form_row(edit_form.mail) }}
+                            {{ form_row(edit_form.directorName) }}
+                            {{ form_row(edit_form.website) }}
+                            {{ form_row(edit_form.facebook) }}
+                            {{ form_row(edit_form.brochures) }}
+                        </div>
+                        <div class="col-md-7">
+                            <h3>Choissisez votre type de structure</h3>
+                            {{ form_errors(edit_form.orgaStructure) }}
+                            {{ form_label(edit_form.orgaStructure) }}
+                            {{ form_widget(edit_form.orgaStructure) }}
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="publictarget">
+                        <div class="row">
+                            <div class="col-md-7">
+                                {{ form_errors(edit_form.disabilitytypes) }}
+                                {{ form_label(edit_form.disabilitytypes) }}
+                                {{ form_widget(edit_form.disabilitytypes) }}
+                            </div>
+
+                            <div class="col-md-5">
+                                <h3>Âge des personnes accueillies</h3>
+
+                                <div class="col-md-6">
+                                    {{ form_row(edit_form.agemini) }}
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ form_row(edit_form.agemaxi) }}
+                                </div>
+                                {{ form_row(edit_form.freeplace) }}
+                                {{ form_row(edit_form.interventionZone) }}
+
+                            </div>
+                        </div>
+                        {{ form_row(edit_form.organizationDescription) }}
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="serve">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_errors(edit_form.needs) }}
+                                {{ form_label(edit_form.needs) }}
+                                {{ form_widget(edit_form.needs) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_errors(edit_form.secondneeds) }}
+                                {{ form_label(edit_form.secondneeds) }}
+                                {{ form_widget(edit_form.secondneeds) }}
+                            </div>
+                        </div>
+                        <div id="workingDescription">
+                            {{ form_row(edit_form.workingDescription) }}
+                        </div>
+                        {{ form_row(edit_form.school) }}
+                        {{ form_row(edit_form.schoolDescription) }}
+                        {{ form_row(edit_form.dayDescription) }}
+                        {{ form_row(edit_form.receptionDescription) }}
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="team">
+
+                        {{ form_row(edit_form.teamMembersNumber) }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ form_errors(edit_form.stafforganizations) }}
+                                {{ form_label(edit_form.stafforganizations) }}
+                                {{ form_widget(edit_form.stafforganizations) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_errors(edit_form.socialstaffs) }}
+                                {{ form_label(edit_form.socialstaffs) }}
+                                {{ form_widget(edit_form.socialstaffs) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_errors(edit_form.otherjobs) }}
+                                {{ form_label(edit_form.otherjobs) }}
+                                {{ form_widget(edit_form.otherjobs) }}
+                            </div>
+                        </div>
+                        {{ form_row(edit_form.commentStaff) }}
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="informations">
+
+                        {{ form_row(edit_form.openhours) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_errors(edit_form.opendays) }}
+                                {{ form_label(edit_form.opendays) }}
+                                {{ form_widget(edit_form.opendays) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_errors(edit_form.opendaysYear) }}
+                                {{ form_label(edit_form.opendaysYear) }}
+                                {{ form_widget(edit_form.opendaysYear) }}
+                            </div>
+                        </div>
+                        {{ form_row(edit_form.orientationMdph) }}
+                        {{ form_row(edit_form.inscription) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(edit_form.cost) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(edit_form.transport) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(edit_form.freeDescription) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                        <div>
+                            <h4>Cliquez sur l'image pour la modifier ou la supprimer</h4>
+                            {% if pictures %}
+                                {% for picture in pictures %}
+                                    <a href="{{ path('media_edit', { 'id': picture.id }) }}"><img src="{{ asset(picture.thumbnails) }}"></a>
+                                {% endfor %}
+                            {% else %}
+                                <p>Vous n'avez pas encore d'images</p>
+                            {% endif %}
+                        </div>
+                        {{ form_row(edit_form.media) }}
+                        <a href="#" id="add_picture" class="btn btn-default">Ajouter une image</a>
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
+            </div>
+            {{ form_end(edit_form) }}
+        </form>
+
+        <form method="POST" action="{{ path('organizations_delete', {'id': organization.id}) }}">
+            {{ form_start(delete_form) }}
+            <div class="col-md-6">
+                <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default"/>
+            </div>
+            {{ form_end(delete_form) }}
+        </form>
+    {% endblock organization_form %}
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

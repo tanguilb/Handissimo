@@ -7,7 +7,7 @@
 .head-img {
     width: 100%;
     height: 400px;
-    background-image: url(../images/head-organization.jpg);
+    background-image: url(../images/scott-webb-167099.jpeg);
     background-size: cover;
     background-position: top center;
 }
@@ -21,10 +21,13 @@
     color:#777777;
     margin-top:10px;
     font-size: 1.1em;
-    padding-left: 15px;
 }
-.organization-logo{
+.logo{
     width: 55px;
+}
+
+.structure-title{
+    margin-bottom: 10px;
 }
 /*------------------- this is for the favorite/like button --------------*/
 .fa-heart-o{
@@ -40,51 +43,22 @@
     margin-left: 20px;
 }
 
-.head-block{
-    margin:0 10px 5px 10px;
-    padding:20px;
-}
 .img-block, .like{
     display: flex;
     justify-content: flex-end;
 }
-/*Carousel*/
-.carousel,
-.carousel ul,
-.carousel ul li,
-.line-img {
-    margin: 0;
+
+.list-inline img {
+    width: 80px;
+    height: 60px;
 }
 
-.carousel {
-    margin: 10px 0;
-    height: 300px;
-    overflow: hidden;
+#slider {
+    text-align: center;
 }
 
-.carousel ul{
-    list-style: none;
-    width: 600px;
-    height: 300px;
-    display: flex;
-    padding-left: 0;
-    padding-right: 0;
-}
+#block-carousel {
 
-.carousel ul li {
-    width: 600px;
-    height: 300px;
-    margin-right: 10px;
-}
-
-.line-img{
-    max-width: 600px;
-    max-height:300px;
-}
-
-.carousel-image {
-    width: auto;
-    height: 100%;
 }
 
 /* Essential block */
@@ -192,6 +166,11 @@
     font-weight: 600;
 }
 
+#btn-sol {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .btn-return:hover,
 .btn-edit:hover,
 .btn-comment:hover{
@@ -206,7 +185,10 @@
     padding-top: 10px;
     margin: 5px 50px 0 50px;
 }
-
+.btn-edit,
+.btn-return{
+    margin: 50px 0;
+}
 /*media queries*/
 @media screen and (max-width: 768px) {
     .head-img {
@@ -229,12 +211,44 @@
     .img-block {
         padding-right: 0;
     }
+    .btn-return,
+    .btn-edit {
+        margin-bottom: 0;
+        margin-top: 5px;
+    }
 }
 @media screen and (max-width: 360px) {
     .map {
         height:300px;
     }
 }
+
+.notModify {
+    margin-top: 50px;
+    background-color: #C37095;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+#return-button {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#logo-mdph {
+    width: 150px;
+    height: auto;
+}
+
+.panel-heading .collapsed:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: #61bdb9;         /* adjust as needed */
+}
+
 
 /*******************/
 /***Block comment***/
@@ -337,4 +351,49 @@
 
 .vote-btns {
     float: right;
+}
+
+.primary-title{
+    font-size: 1.7em;
+    color: #61bdb9;
+}
+.second-title{
+    font-size: 1.2em;
+    color: #C37095;
+    font-weight: bold;
+}
+h4 {
+    font-size: 1.2em;
+
+}
+
+.organization-panel{
+    padding: 20px;
+}
+
+.panel-body {
+    padding-top: 0;
+}
+
+.age {
+    display: inline-block;
+}
+
+.question {
+    font-size: 1.3em;
+    margin-left: 45px;
+}
+
+.mdphInfo {
+    font-size: 1.8em;
+    margin-left: 30px;
+    color: #C37095;
+}
+.mdphInfo:hover {
+    color: #f7af49;
+}
+
+.tooltip-inner {
+    background-color: #61bdb9;
+    color: #fff;
 }

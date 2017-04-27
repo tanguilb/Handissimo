@@ -11,6 +11,8 @@ class Media
 {
     const PATH_TO_UPLOAD_FILE = 'uploads/image';
 
+
+
     /**
      * @var int
      */
@@ -56,7 +58,6 @@ class Media
 
         // resize image in thumbnials and for caroussel
         $origin = imagecreatefromjpeg(self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName());
-        var_dump($origin);
         $widthOrigin = imagesx($origin);
         $heightOrigin = imagesy($origin);
 
@@ -87,8 +88,33 @@ class Media
         $this->fileName = $this->getFile()->getClientOriginalName();
 
         $this->setFile(null);
+
     }
 
+    public function removeFile()
+    {
+        $file = $this->getWebPath();
+
+        return unlink($file);
+    }
+
+    public function removeThumbnails()
+    {
+        $file = $this->getThumbnails();
+
+        return unlink($file);
+    }
+
+
+    public function lifecycleFileRemove()
+    {
+        $this->removeFile();
+    }
+
+    public function lifecycleThumbnailsRemove()
+    {
+        $this->removeThumbnails();
+    }
 
     public function lifecycleFileUpload()
     {
@@ -99,6 +125,7 @@ class Media
     public function refreshUpdated()
     {
         $this->setUpdated( new \DateTime());
+        $this->upload();
     }
     /**
      * Get id
@@ -258,33 +285,33 @@ class Media
         return $this->thumbnails;
     }
 
+
     /**
-     * @var string
+     * @var \HandissimoBundle\Entity\Organizations
      */
-    private $organizationsId;
-
+    private $organizationsImg;
 
     /**
-     * Set organizationsId
+     * Set organizationsImg
      *
-     * @param string $organizationsId
+     * @param \HandissimoBundle\Entity\Organizations $organizationsImg
      *
      * @return Media
      */
-    public function setOrganizationsId($organizationsId)
+    public function setOrganizationsImg(\HandissimoBundle\Entity\Organizations $organizationsImg = null)
     {
-        $this->organizationsId = $organizationsId;
+        $this->organizationsImg = $organizationsImg;
 
         return $this;
     }
 
     /**
-     * Get organizationsId
+     * Get organizationsImg
      *
-     * @return string
+     * @return \HandissimoBundle\Entity\Organizations
      */
-    public function getOrganizationsId()
+    public function getOrganizationsImg()
     {
-        return $this->organizationsId;
+        return $this->organizationsImg;
     }
 }

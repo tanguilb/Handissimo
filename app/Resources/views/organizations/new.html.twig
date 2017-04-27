@@ -1,0 +1,166 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+{% form_theme form ':Form:fields.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organedit.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block sonata_profile_content %}
+    <div class="advert">
+        <!-- Block Title-->
+        <p class="verification"><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci n'existe pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}" id="verification-link"> >>CLIQUEZ-ICI<<< </a></span></p>
+    </div>
+    {% block organization_form %}
+        <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data" id="orga-new">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
+                    <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
+                    <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
+                    <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
+                    <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
+                    <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
+                </ul>
+                <br>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
+                        <div class="col-md-5">
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.structureLogo) }}
+                            {{ form_row(form.society) }}
+                            {{ form_row(form.societyLogo) }}
+                            {{ form_row(form.address) }}
+                            {{ form_row(form.addressComplement) }}
+                            {{ form_row(form.postal) }}
+                            {{ form_row(form.city) }}
+                            {{ form_row(form.phone_number) }}
+                            {{ form_row(form.mail) }}
+                            {{ form_row(form.directorName) }}
+                            {{ form_row(form.website) }}
+                            {{ form_row(form.facebook) }}
+                            {{ form_row(form.brochures) }}
+                        </div>
+                        <div class="col-md-7">
+                            <h3>Choissisez votre type de structure</h3>
+                            {{ form_errors(form.orgaStructure) }}
+                            {{ form_label(form.orgaStructure) }}
+                            {{ form_widget(form.orgaStructure) }}
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="publictarget">
+                        <div class="row">
+                            <div class="col-md-7">
+                                {{ form_errors(form.disabilitytypes) }}
+                                {{ form_label(form.disabilitytypes) }}
+                                {{ form_widget(form.disabilitytypes) }}
+                            </div>
+
+                            <div class="col-md-5">
+                                <h3>Âge des personnes accueillies</h3>
+
+                                <div class="col-md-6">
+                                    {{ form_row(form.agemini) }}
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ form_row(form.agemaxi) }}
+                                </div>
+                                {{ form_row(form.freeplace) }}
+                                {{ form_row(form.interventionZone) }}
+
+                            </div>
+                        </div>
+                        {{ form_row(form.organizationDescription) }}
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="serve">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_errors(form.needs) }}
+                                {{ form_label(form.needs) }}
+                                {{ form_widget(form.needs) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_errors(form.secondneeds) }}
+                                {{ form_label(form.secondneeds) }}
+                                {{ form_widget(form.secondneeds) }}
+                            </div>
+                        </div>
+                        <div id="workingDescription">
+                            {{ form_row(form.workingDescription) }}
+                        </div>
+                        {{ form_row(form.school) }}
+                        {{ form_row(form.schoolDescription) }}
+                        {{ form_row(form.dayDescription) }}
+                        {{ form_row(form.receptionDescription) }}
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="team">
+
+                        {{ form_row(form.teamMembersNumber) }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ form_errors(form.stafforganizations) }}
+                                {{ form_label(form.stafforganizations) }}
+                                {{ form_widget(form.stafforganizations) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_errors(form.socialstaffs) }}
+                                {{ form_label(form.socialstaffs) }}
+                                {{ form_widget(form.socialstaffs) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_errors(form.otherjobs) }}
+                                {{ form_label(form.otherjobs) }}
+                                {{ form_widget(form.otherjobs) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.commentStaff) }}
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="informations">
+
+                        {{ form_row(form.openhours) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_errors(form.opendays) }}
+                                {{ form_label(form.opendays) }}
+                                {{ form_widget(form.opendays) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_errors(form.opendaysYear) }}
+                                {{ form_label(form.opendaysYear) }}
+                                {{ form_widget(form.opendaysYear) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.orientationMdph) }}
+                        {{ form_row(form.inscription) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(form.cost) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(form.transport) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(form.freeDescription) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                        {{ form_row(form.media) }}
+                        <a href="#" id="add_picture" class="btn btn-default">Ajouter une image</a>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>
+                </div>
+            {{ form_end(form) }}
+        </form>
+    {% endblock organization_form %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}

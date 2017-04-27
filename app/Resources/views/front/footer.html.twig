@@ -3,16 +3,14 @@
 <div class="container-fluid" id="footer">
     <div class="row">
         <div class="col-xs-12 col-md-2">
-            <a href="{{ path('research_action') }}">
-                <img alt="Handissimo vous simplifie le handicap" src="{{ asset('images/handissimo-logo.png') }}" class="logo-handissimo-footer">
-            </a>
+            <img alt="Handissimo vous simplifie le handicap" src="{{ asset('images/handissimo-logo.png') }}" class="logo-handissimo-footer">
         </div>
 
         <div class="col-xs-12 col-md-3" id="footer-menu">
             <ul>
                 <li><a href="{{ path('handissimo_aboutpage') }}">Qui sommes-nous ?</a></li>
                 <li><a href="{{ path('fos_user_security_login') }}">Accédez à votre compte</a></li>
-                <li><a href="">Mentions légales</a></li>
+                <li><a href="{{ path('handissimo_notice') }}">Mentions légales</a></li>
             </ul>
         </div>
 

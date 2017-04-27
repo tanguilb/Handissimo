@@ -3,16 +3,13 @@
 namespace HandissimoBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use HandissimoBundle\Entity\StructuresList;
-use HandissimoBundle\Entity\StructuresTypes;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
-use Sonata\AdminBundle\Form\Type\ModelType;
-use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -23,8 +20,6 @@ class OrganizationsAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em =$this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
-        $listmache = $em->getRepository('HandissimoBundle:StructuresTypes')->getClassName();
         $formMapper
             ->tab('Identité')
                 ->with('Information', array('class' => 'col-md-12', 'description' =>'Avant de remplir une fiche, merci de vérifier si la fiche n’existe pas déjà'))
@@ -34,13 +29,20 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
-                    /*->add('societies', EntityType::class, array(
-                        'class' => 'HandissimoBundle:Society',
-                        'choice_label' => 'society_name',
-                        'label' => 'Nom de l\'organisme gestionnaire',
+                    ->add('structureLogo', FileType::class, array(
+                        'label' => 'Si vous avez un logo vous pouvez le télécharger',
                         'required' => false,
-                        'help' => 'Si différent du nom de la structure'
-                    ))*/
+                        'data_class' => null,
+                    ))
+                    ->add('society', TextType::class, array(
+                        'label' => 'Non de l\'organisme gestionnaire',
+                        'required' => false,
+                    ))
+                    ->add('societyLogo', FileType::class, array(
+                        'label' => 'Télécharger le logo de la société',
+                        'required' => false,
+                        'data_class' => null,
+                    ))
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
                         'required' => true
@@ -77,35 +79,25 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Facebook',
                         'required' => false
                     ))
-                    ->add('brochure', FileType::class, array(
+                    ->add('brochures', FileType::class, array(
                         'label' => 'Télécharger des documents',
                         'required' => false,
-                        'data_class' => null
+                        'data_class' => null,
                     ))
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
-                    /*->add('orgaStructure', EntityType::class, array(
-                        'class' => 'HandissimoBundle:StructuresList',
-                        'label' => 'Etablissements et services spécialisés sur orientation de la MDPH',
-                        'query_builder' => function(EntityRepository $er) {
-                            return $er->createQueryBuilder('sl')
-                                ->join('sl.structurelists', 'st')
-                                ->where('st.id = 8')
-                                ->orderBy('sl.name', 'ASC');
-                        },
-                        'expanded' => true
-                    ))
                     ->add('orgaStructure', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresList',
-                        'label' => 'Structures en accès libre',
+                        'label' => false,
+                        //'choice_label' => 'structureType',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('sl')
-                                ->join('sl.structurelists', 'st')
-                                ->where('st.id = 9')
                                 ->orderBy('sl.name', 'ASC');
                         },
-                        'expanded' => true
-                    ))*/
+                        'expanded' => true,
+                        //'group_by' => 'structureType'
+
+                    ))
                 ->end()
             ->end()
             ->tab('Public ciblé')
@@ -135,17 +127,9 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('organization_description', CKEditorType::class, array(
                             'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s\'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d\'autonomie est nécessaire pour être accompagné.',
-                            'required' => false,
-                            'help' => 'Description limitée à 600 caractères',
-                            'config' => array(
-                                'extraPlugins' => 'confighelper',
-                                'placeholder' =>
-                                    'Exemple 1: Exemple 1 : La MAS Robert Ramel accueille 50 adultes polyhandicapés et autistes lourdement handicapés, qui ont entre 20 et 60 ans à leur arrivée. Certains résidents souffrent d’épilepsie. La moitié des résidents se déplace en fauteuil. La majorité d’entre eux ne parlent pas ou très peu. <br /> <br /> 
-                                     Exemple 2 : L’association Une souris verte s’adresse à tous les enfants en situation de handicap et leurs familles, notamment les enfants dont le handicap pose difficulté pour être accueillis dans une structure ordinaire (crèche, garderie, …)<br /> <br />
-                                     Exemple 3 : Les usagers du C.E.M. sont des pré-adolescents, adolescents et jeunes adultes pour la plupart atteint d’infirmité motrice d’origine cérébrale, ou paralysie cérébrale.  L’établissement accueille également des jeunes polyhandicapés. 
-                                     Certains se déplacent en fauteuil roulant manuel ou électrique, d’autres avec diverses aides de marche, d’autres en tricycles ou en marchant. La plupart des jeunes savent s’exprimer à l’oral. Environ 110 jeunes sont accueillis.'
-                            ),
-                    ))
+                            'help' => 'Description limitée à 5000 caractères',
+                            'required' => false)
+                    )
                     ->add('interventionZone', TextType::class, array(
                         'label' => "Quelle est votre zone d’intervention ? Quelles sont les conditions de résidence pour accéder à la structure ?",
                         'required' => false
@@ -181,7 +165,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('working_description', CKEditorType::class, array(
                         'label' => 'En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire ce que propose votre structure aux personnes accompagnées (en "hiérarchisant" le cœur de votre travail et les activités annexes)',
                         'required' => false,
-                        'help' => 'Description limitée à 1000 caractères',
+                        'help' => 'Description limitée à 5000 caractères',
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -191,30 +175,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         ),
                     ))
                 ->end()
-                ->with('Proposez-vous de l\'accueil', array('class' => 'col-md-6'))
-                    ->add('accomodation', ChoiceFieldMaskType::class, array(
-                        'choices' => array(
-                            'oui' => 'oui',
-                            'non' => 'non'
-                        ),
-                        'map' => array(
-                            'oui' => array('accomodation_description'),
-                        ),
-                        'label' => false,
-                        'required' => false
-                    ))
-                    ->add('accomodation_description', CKEditorType::class, array(
-                        'label' => false,
-                        'required' => false,
-                        'help' => 'Description limitée à 600 caractères',
-                        'config' => array(
-                            'extraPlugins' => 'confighelper',
-                            'placeholder' =>
-                                'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...'
-                        )
-                    ))
-                ->end()
-                ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-6'))
+                ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-12'))
                     ->add('school', ChoiceFieldMaskType::class, array(
                         'choices' => array(
                             'oui' => 'oui',
@@ -229,7 +190,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('school_description', CKEditorType::class, array(
                         'label' => false,
                         'required' => false,
-                        'help' => 'Description limitée à 600 caractères',
+                        'help' => 'Description limitée à 3000 caractères',
                         'config' => array(
                             'extraPlugins' => 'confighelper',
                             'placeholder' =>
@@ -240,14 +201,14 @@ class OrganizationsAdmin extends AbstractAdmin
                 ->with('Description d’une journée type :')
                     ->add('dayDescription' , CKEditorType::class, array(
                         'label' => false,
-                        'help' => 'Description limitée à 1000 caractères',
+                        'help' => 'Description limitée à 5000 caractères',
                         'required' => false
                     ))
                 ->end()
                 ->with('Qu\'est-il prévu pour les familles ?')
                     ->add('receptionDescription' , CKEditorType::class, array(
                         'label' => false,
-                        'help' => 'Description limitée à 600 caractères',
+                        'help' => 'Description limitée à 5000 caractères',
                         'required' => false,
                         'config' => array(
                             'extraPlugins' => 'confighelper',
@@ -298,7 +259,7 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('commentStaff', CKEditorType::class, array(
                         'label' => 'Commentaire éventuel sur l’équipe',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 1000 caractères',
                         'required' => false
                     ))
                 ->end()
@@ -336,17 +297,26 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('inscription', CKEditorType::class, array(
                         'label' => 'Comment s’inscrire ?',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 2000 caractères',
+                        'required' => false
+                    ))
+                    ->add('orientationMdph', BooleanType::class, array(
+                        'label' => 'Orientation MDPH',
                         'required' => false
                     ))
                     ->add('cost' , CKEditorType::class, array(
                         'label' => 'Combien ça coûte ?',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
                     ->add('transport' , CKEditorType::class, array(
                         'label' => 'Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
-                        'help' => 'Description limitée à 400 caractères',
+                        'help' => 'Description limitée à 2000 caractères',
+                        'required' => false
+                    ))
+                    ->add('freeDescription', CKEditorType::class, array(
+                        'label' => 'Decription libre',
+                        'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
                 ->end()

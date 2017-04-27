@@ -9,16 +9,18 @@
 namespace HandissimoBundle\Form\Handler;
 
 use Doctrine\ORM\EntityManager;
+use HandissimoBundle\Entity\Organizations;
 use ReCaptcha\ReCaptcha;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CommentHandler
 {
     protected $form;
     protected $request;
     protected $em;
-    protected $container;
 
     public function __construct(Form $form, Request $request, EntityManager $em)
     {
@@ -48,4 +50,6 @@ class CommentHandler
         $this->em->persist($this->form->getData());
         $this->em->flush();
     }
+
+
 }

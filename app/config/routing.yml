@@ -1,3 +1,6 @@
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"
+
 handissimo:
     resource: "@HandissimoBundle/Resources/config/routing.yml"
     prefix:   /
@@ -16,8 +19,8 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
-sonata_user_security:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+#sonata_user_security:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
 
 sonata_user_resetting:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
@@ -32,7 +35,6 @@ sonata_user_register:
     prefix: /register
 
 sonata_user_change_password:
-    #resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
     resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
     prefix: /profile
 
@@ -43,6 +45,21 @@ sonata_user_admin_security:
 sonata_user_admin_resetting:
     resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
     prefix: /admin/resetting
+
+fos_user_security_login:
+    path:  /login/
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+fos_user_security_check:
+    path:  /login_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+sonata_user_security_logout:
+    path:  /logout
+    defaults: { _controller: SonataUserBundle:SecurityFOSUser1:logout }
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 
 

@@ -1,0 +1,34 @@
+HandissimoBundle\Entity\City:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\CityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        department:
+            type: string
+            length: 50
+        slug:
+            type: string
+            length: 255
+        majName:
+            type: string
+            length: 255
+        simpleName:
+            type: string
+            length: 255
+        name:
+            type: string
+            length: 255
+        postal:
+            type: string
+            length: 255
+        longitude:
+            type: float
+        latitude:
+            type: float
+    lifecycleCallbacks: {  }

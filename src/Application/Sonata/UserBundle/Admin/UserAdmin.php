@@ -9,6 +9,7 @@
 namespace Application\Sonata\UserBundle\Admin;
 
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
@@ -48,8 +49,10 @@ class UserAdmin extends BaseUserAdmin
                     ))
                     ->add('organizationsuser', EntityType::class, array(
                             'class' => 'HandissimoBundle\Entity\Organizations',
+                            'choice_label' => 'name',
                             'label' => 'Structures',
-                            'required' => false
+                            'required' => false,
+                            'multiple' => true
                     ))
                 ->end()
                 ->with('Status')
@@ -79,7 +82,6 @@ class UserAdmin extends BaseUserAdmin
                 ->remove('twitterName')
                 ->remove('gplusUid')
                 ->remove('gplusName')
-                //->remove('realRoles')
         ->end();
 
     }
@@ -91,14 +93,25 @@ class UserAdmin extends BaseUserAdmin
             ->with('General')
                 ->add('userType')
             ->end();
-
-
     }
-
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('');
+    }
+
+    public function prePersist($organizationsuser)
+    {
+        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
+            $userorg->setUserorg($organizationsuser);
+        }
+    }
+
+    public function preUpdate($organizationsuser)
+    {
+        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
+            $userorg->setUserorg($organizationsuser);
+        }
     }
 
 }

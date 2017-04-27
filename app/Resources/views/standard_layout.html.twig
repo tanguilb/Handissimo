@@ -23,14 +23,18 @@ file that was distributed with this source code.
 #}
 
 {% block stylesheets %}
-    /*this will extend the parent block */
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/adminnavbar.css') }}"/>
 {% endblock %}
     {% block sonata_header %}
         {% include 'front/navbar.html.twig' %}
     {% endblock sonata_header %}
-{#% block sonata_left_side %}
+{#{% block sonata_left_side %}
 
-{% endblock %#}
-
+{% endblock %}#}
+{% block side_bar_after_nav %}
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
+        <img src="{{ asset("images/handissimo-logo.png") }}" alt="Logo handissimo">
+        Retournez au menu
+    </a>
+{% endblock side_bar_after_nav %}

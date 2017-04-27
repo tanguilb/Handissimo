@@ -7,6 +7,7 @@ HandissimoBundle\Entity\Opinion:
 HandissimoBundle\Entity\Organizations:
     properties:
         name:
+            - NotBlank: ~
             - Length:
                 max: 200
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
@@ -22,6 +23,10 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 10
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+            - Range:
+                min: 0
+                max: 99999
+                invalidMessage: "Le code postal n'est pas un nombre"
         city:
             - Length:
                 max: 200
@@ -41,7 +46,7 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 100
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
-        brochure:
+        brochures:
             - File:
                 maxSize: 2M
                 maxSizeMessage: 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}'
@@ -51,7 +56,7 @@ HandissimoBundle\Entity\Organizations:
                 maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
         organizationDescription:
             - Length:
-                max: 600
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         needs:
             - Count:
@@ -63,23 +68,23 @@ HandissimoBundle\Entity\Organizations:
                 maxMessage: 'Vous devez sélectionner au maximum {{ limit }} choix'
         workingDescription:
             - Length:
-                max: 1000
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         accomodationDescription:
             - Length:
-                max: 600
+                max: 3000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         schoolDescription:
             - Length:
-                max: 600
+                max: 3000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         dayDescription:
             - Length:
-                max: 1000
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         receptionDescription:
             - Length:
-                max: 600
+                max: 5000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         teamMembersNumber:
             - Range:
@@ -87,18 +92,21 @@ HandissimoBundle\Entity\Organizations:
                 maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
         commentStaff:
             - Length:
-                max: 400
+                max: 1000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         inscription:
             - Length:
-                max: 400
+                max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         cost:
             - Length:
-                max: 400
+                max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         transport:
             - Length:
-                max: 400
+                max: 2000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
-
+        freeDescription:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'

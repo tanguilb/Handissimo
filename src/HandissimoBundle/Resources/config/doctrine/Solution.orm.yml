@@ -1,7 +1,6 @@
 HandissimoBundle\Entity\Solution:
     type: entity
     table: null
-    repositoryClass: HandissimoBundle\Repository\SolutionRepository
     id:
         id:
             type: integer

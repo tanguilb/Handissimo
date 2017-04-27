@@ -11,6 +11,7 @@
 
 namespace Application\Sonata\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,11 +32,6 @@ class User extends BaseUser
      */
     protected $id;
 
-    protected $organizationsuser;
-
-    protected $societyUser;
-
-
     /**
      * Get id
      *
@@ -44,56 +40,6 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-
-
-    /**
-     * Set organizationsuser
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsuser
-     *
-     * @return User
-     */
-    public function setOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser = null)
-    {
-        $this->organizationsuser = $organizationsuser;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationsuser
-     *
-     * @return \HandissimoBundle\Entity\Organizations
-     */
-    public function getOrganizationsuser()
-    {
-        return $this->organizationsuser;
-    }
-
-    /**
-     * Set societyUser
-     *
-     * @param \HandissimoBundle\Entity\Society $societyUser
-     *
-     * @return User
-     */
-    public function setSocietyUser(\HandissimoBundle\Entity\Society $societyUser = null)
-    {
-        $this->societyUser = $societyUser;
-
-        return $this;
-    }
-
-    /**
-     * Get societyUser
-     *
-     * @return \HandissimoBundle\Entity\Society
-     */
-    public function getSocietyUser()
-    {
-        return $this->societyUser;
     }
 
     /**
@@ -156,4 +102,91 @@ class User extends BaseUser
     }
 
 
+    /**
+     * @var boolean
+     */
+    private $compact;
+
+
+    /**
+     * Set compact
+     *
+     * @param boolean $compact
+     *
+     * @return User
+     */
+    public function setCompact($compact)
+    {
+        $this->compact = $compact;
+
+        return $this;
+    }
+
+    /**
+     * Get compact
+     *
+     * @return boolean
+     */
+    public function getCompact()
+    {
+        return $this->compact;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $organizationsuser;
+
+
+    /**
+     * Add organizationsuser
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsuser
+     *
+     * @return User
+     */
+    public function addOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser)
+    {
+        $organizationsuser->setUserorg($this);
+        $this->organizationsuser[] = $organizationsuser;
+
+        return $this;
+    }
+
+    /**
+     * Remove organizationsuser
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsuser
+     */
+    public function removeOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser)
+    {
+        //$this->organizationsuser->removeElement($organizationsuser);
+        foreach ($this->organizationsuser as $k => $v){
+            if ($v->getId() == $organizationsuser->getId()){
+                unset($this->organizationsuser[$k]);
+            }
+        }
+    }
+
+    /**
+     * Get organizationsuser
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganizationsuser()
+    {
+        return $this->organizationsuser;
+    }
+
+    public function setOrganizationuser($organizatiosuser)
+    {
+        $this->organizationsuser = $organizatiosuser;
+
+        return $this;
+    }
+
+    /*public function __construct()
+    {
+        parent::__construct();
+        $this->organizationsuser = new ArrayCollection();
+    }*/
 }

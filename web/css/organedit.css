@@ -1,0 +1,95 @@
+#handissimobundle_organizations_name,
+#handissimobundle_organizations_society,
+#handissimobundle_organizations_address,
+#handissimobundle_organizations_addressComplement,
+#handissimobundle_organizations_postal,
+#handissimobundle_organizations_city,
+#handissimobundle_organizations_phone_number,
+#handissimobundle_organizations_mail,
+#handissimobundle_organizations_directorName,
+#handissimobundle_organizations_website,
+#handissimobundle_organizations_facebook,
+#handissimobundle_organizations_agemini,
+#handissimobundle_organizations_agemaxi,
+#handissimobundle_organizations_freeplace,
+#handissimobundle_organizations_interventionZone,
+#handissimobundle_organizations_teamMembersNumber,
+#handissimobundle_organizations_openhours
+{
+    padding: 5px 0 0 5px;
+    border: none;
+    border-bottom: solid 1px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+    color: #777777;
+}
+
+#handissimobundle_organizations_stafforganizations input[type=checkbox]
+{
+    text-align: center;
+    position: relative;
+}
+
+.advert {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#new-organization,
+#edit-organization {
+    margin-bottom: 10px;
+    background-color: #61bdb9;
+    border: none;
+}
+
+#new-organization:hover,
+#new-organization:focus,
+#edit-organization:focus,
+#edit-organization:hover {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+#delete-organization {
+    margin-bottom: 10px;
+    background-color: #f7af49;
+    border: none;
+}
+
+#delete-organization:hover,
+#delete-organization:focus {
+    background-color: #FFBE49;
+    color: #FFFFFF;
+}
+
+#workingDescription {
+    margin-top: 10px;
+}
+
+.verification {
+    font-size: 18px;
+}
+
+#verification-link {
+    margin-left: 15px;
+}
+
+/******Bouton add picture****/
+#add_picture {
+    border-radius: 50px;
+    color: white;
+    margin: 50px auto 10px auto;
+    background-color: #61bdb9;
+    text-transform: none;
+    font-weight: 600;
+}
+
+#remove_img{
+    border-radius: 50px;
+    color: white;
+    margin: 0 auto 10px auto;
+    background-color: #61bdb9;
+    text-transform: none;
+    font-weight: 600;
+}

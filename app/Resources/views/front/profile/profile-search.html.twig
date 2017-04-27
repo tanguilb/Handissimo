@@ -1,0 +1,27 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="search-block">
+        <div class="title-block">
+            <h3 class="title-search">RECHERCHE D'UNE FICHE</h3>
+        </div>
+        <div class="col-md-offset-3 col-md-6 col-xs-12 form-search">
+            {{ form_start(form) }}
+            {{ form_errors(form.profileSearch) }}
+            <div class="search-field">
+                <p>Que cherchez-vous ?<i class="fa fa-search" aria-hidden="true"></i></p>
+                {{ form_widget(form.profileSearch, { 'attr': {'placeholder': 'Taper le nom de la structure', 'class' : 'homeField'}}) }}
+            </div>
+            <ul id="list-name"></ul>
+            <button type="submit" class="btn btn-search">Rechercher</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-offset-3 col-md-6 col-xs-12 result-block">
+            {% for result in result %}
+                <div>
+                    <a href="{{ path('organizations_edit', {'id': result.id}) }}" class="link-about">{{ result.name }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

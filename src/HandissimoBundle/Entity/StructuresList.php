@@ -85,59 +85,78 @@ class StructuresList
     {
         return $this->logoMdph;
     }
+
+
     /**
-     * @var \HandissimoBundle\Entity\StructuresTypes
+     * @var \HandissimoBundle\Entity\StructureType
      */
-    private $structurelists;
+    private $type;
 
 
     /**
-     * Set structurelists
+     * Set type
      *
-     * @param \HandissimoBundle\Entity\StructuresTypes $structurelists
+     * @param \HandissimoBundle\Entity\StructureType $type
      *
      * @return StructuresList
      */
-    public function setStructurelists(\HandissimoBundle\Entity\StructuresTypes $structurelists = null)
+    public function setType(\HandissimoBundle\Entity\StructureType $type = null)
     {
-        $this->structurelists = $structurelists;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get structurelists
+     * Get type
      *
-     * @return \HandissimoBundle\Entity\StructuresTypes
+     * @return \HandissimoBundle\Entity\StructureType
      */
-    public function getStructurelists()
+    public function getType()
     {
-        return $this->structurelists;
+        return $this->type;
     }
     /**
-     * @var \HandissimoBundle\Entity\Organizations
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $organizationsStructure;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->organizationsStructure = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set organizationsStructure
+     * Add organizationsStructure
      *
      * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
      *
      * @return StructuresList
      */
-    public function setOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure = null)
+    public function addOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure)
     {
-        $this->organizationsStructure = $organizationsStructure;
+        $this->organizationsStructure[] = $organizationsStructure;
 
         return $this;
     }
 
     /**
+     * Remove organizationsStructure
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsStructure
+     */
+    public function removeOrganizationsStructure(\HandissimoBundle\Entity\Organizations $organizationsStructure)
+    {
+        $this->organizationsStructure->removeElement($organizationsStructure);
+    }
+
+    /**
      * Get organizationsStructure
      *
-     * @return \HandissimoBundle\Entity\Organizations
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOrganizationsStructure()
     {

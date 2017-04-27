@@ -1,0 +1,25 @@
+HandissimoBundle\Entity\EditContent:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        howToUse:
+            type: text
+            nullable: true
+        home:
+            type: string
+            length: 255
+            nullable: true
+        howToHelpUs:
+            type: text
+            nullable: true
+        whoAreWe:
+            type: text
+            nullable: true
+
+    lifecycleCallbacks: {  }

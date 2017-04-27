@@ -2,6 +2,7 @@
 
 namespace HandissimoBundle\Entity;
 
+
 /**
  * Organizations
  */
@@ -10,7 +11,6 @@ class Organizations
     public function __toString()
     {
         return $this->name;
-
     }
 
     // GENERATE CODE
@@ -129,10 +129,6 @@ class Organizations
      */
     private $placeDescription;
 
-    /**
-     * @var string
-     */
-    private $doc;
 
     /**
      * @var string
@@ -145,15 +141,7 @@ class Organizations
      */
     private $disabilityTypes;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $needs;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $staff;
 
     /**
      * @var float
@@ -165,6 +153,10 @@ class Organizations
      */
     private $longitude;
 
+    /**
+     * @
+     */
+    private $staff;
 
     /**
      * Constructor
@@ -172,8 +164,9 @@ class Organizations
     public function __construct()
     {
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -730,29 +723,6 @@ class Organizations
         return $this->placeDescription;
     }
 
-    /**
-     * Set doc
-     *
-     * @param string $doc
-     *
-     * @return Organizations
-     */
-    public function setDoc($doc)
-    {
-        $this->doc = $doc;
-
-        return $this;
-    }
-
-    /**
-     * Get doc
-     *
-     * @return string
-     */
-    public function getDoc()
-    {
-        return $this->doc;
-    }
 
     /**
      * Set profilPicture
@@ -814,39 +784,6 @@ class Organizations
         return $this->disabilityTypes;
     }
 
-    /**
-     * Add need
-     *
-     * @param \HandissimoBundle\Entity\Needs $need
-     *
-     * @return Organizations
-     */
-    public function addNeed(\HandissimoBundle\Entity\Needs $need)
-    {
-        $this->needs[] = $need;
-
-        return $this;
-    }
-
-    /**
-     * Remove need
-     *
-     * @param \HandissimoBundle\Entity\Needs $need
-     */
-    public function removeNeed(\HandissimoBundle\Entity\Needs $need)
-    {
-        $this->needs->removeElement($need);
-    }
-
-    /**
-     * Get needs
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getNeeds()
-    {
-        return $this->needs;
-    }
 
     /**
      * Add staff
@@ -1028,52 +965,6 @@ class Organizations
     public function getAgemaxi()
     {
         return $this->agemaxi;
-    }
-
-    public function transformAddressGeocode()
-    {
-        $geocoder = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc";
-        $addresse = $this->address;
-        $addresse .= ' ' . $this->postal;
-        $addresse .= ' ' . $this->city;
-
-        $query = sprintf($geocoder, urlencode($addresse));
-        $result = json_decode(file_get_contents($query));
-        $json = $result->results[0];
-
-        $this->latitude = (float) $json->geometry->location->lat;
-        $this->longitude = (float) $json->geometry->location->lng;
-    }
-
-
-    /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $userorg;
-
-
-    /**
-     * Set userorg
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $userorg
-     *
-     * @return Organizations
-     */
-    public function setUserorg(\Application\Sonata\UserBundle\Entity\User $userorg = null)
-    {
-        $this->userorg = $userorg;
-
-        return $this;
-    }
-
-    /**
-     * Get userorg
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User
-     */
-    public function getUserorg()
-    {
-        return $this->userorg;
     }
 
     /**
@@ -1710,33 +1601,63 @@ class Organizations
     /**
      * @var string
      */
-    private $brochure;
+    private $brochures;
 
 
     /**
-     * Set brochure
+     * Set brochures
      *
-     * @param string $brochure
+     * @param string $brochures
      *
      * @return Organizations
      */
-    public function setBrochure($brochure)
+    public function setBrochures($brochures)
     {
-        $this->brochure = $brochure;
+        $this->brochures = $brochures;
 
         return $this;
     }
 
     /**
-     * Get brochure
+     * Get brochures
      *
      * @return string
      */
-    public function getBrochure()
+    public function getBrochures()
     {
-        return $this->brochure;
+        return $this->brochures;
     }
 
+
+    /**
+     * @var string
+     */
+    private $society;
+
+
+    /**
+     * Set society
+     *
+     * @param string $society
+     *
+     * @return Organizations
+     */
+    public function setSociety($society)
+    {
+        $this->society = $society;
+
+        return $this;
+    }
+
+    /**
+     * Get society
+     *
+     * @return string
+     */
+    public function getSociety()
+    {
+        return $this->society;
+    }
 
     /**
      * @var \HandissimoBundle\Entity\StructuresList
@@ -1767,4 +1688,259 @@ class Organizations
     {
         return $this->orgaStructure;
     }
+
+    /**
+     * @var string
+     */
+    private $structureLogo;
+
+    /**
+     * @var string
+     */
+    private $societyLogo;
+
+
+    /**
+     * Set structureLogo
+     *
+     * @param string $structureLogo
+     *
+     * @return Organizations
+     */
+    public function setStructureLogo($structureLogo)
+    {
+        $this->structureLogo = $structureLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get structureLogo
+     *
+     * @return string
+     */
+    public function getStructureLogo()
+    {
+        return $this->structureLogo;
+    }
+
+    /**
+     * Set societyLogo
+     *
+     * @param string $societyLogo
+     *
+     * @return Organizations
+     */
+    public function setSocietyLogo($societyLogo)
+    {
+        $this->societyLogo = $societyLogo;
+
+        return $this;
+    }
+
+    /**
+     * Get societyLogo
+     *
+     * @return string
+     */
+    public function getSocietyLogo()
+    {
+        return $this->societyLogo;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $media;
+
+
+    /**
+     * Add medium
+     *
+     * @param \HandissimoBundle\Entity\Media $media
+     *
+     * @return Organizations
+     */
+    public function addMedium(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media[] = $medium;
+        $medium->setOrganizationsImg($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     */
+    public function removeMedium(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
+    }
+
+    /**
+     * Get media
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+
+
+    /**
+     * @var boolean
+     */
+    private $orientationMdph;
+
+    /**
+     * @var string
+     */
+    private $freeDescription;
+
+
+    /**
+     * Set orientationMdph
+     *
+     * @param boolean $orientationMdph
+     *
+     * @return Organizations
+     */
+    public function setOrientationMdph($orientationMdph)
+    {
+        $this->orientationMdph = $orientationMdph;
+
+        return $this;
+    }
+
+    /**
+     * Get orientationMdph
+     *
+     * @return boolean
+     */
+    public function getOrientationMdph()
+    {
+        return $this->orientationMdph;
+    }
+
+    /**
+     * Set freeDescription
+     *
+     * @param string $freeDescription
+     *
+     * @return Organizations
+     */
+    public function setFreeDescription($freeDescription)
+    {
+        $this->freeDescription = $freeDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get freeDescription
+     *
+     * @return string
+     */
+    public function getFreeDescription()
+    {
+        return $this->freeDescription;
+    }
+
+    /**
+     * Add medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     *
+     * @return Organizations
+     */
+    public function addMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media[] = $medium;
+
+        return $this;
+    }
+
+    /**
+     * Remove medium
+     *
+     * @param \HandissimoBundle\Entity\Media $medium
+     */
+    public function removeMedia(\HandissimoBundle\Entity\Media $medium)
+    {
+        $this->media->removeElement($medium);
+    }
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $userorg;
+
+
+    /**
+     * Set userorg
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userorg
+     *
+     * @return Organizations
+     */
+    public function setUserorg(\Application\Sonata\UserBundle\Entity\User $userorg = null)
+    {
+        $this->userorg = $userorg;
+
+        return $this;
+    }
+
+    /**
+     * Get userorg
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUserorg()
+    {
+        return $this->userorg;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $needs;
+
+
+    /**
+     * Add need
+     *
+     * @param \HandissimoBundle\Entity\Needs $need
+     *
+     * @return Organizations
+     */
+    public function addNeed(\HandissimoBundle\Entity\Needs $need)
+    {
+        $this->needs[] = $need;
+
+        return $this;
+    }
+
+    /**
+     * Remove need
+     *
+     * @param \HandissimoBundle\Entity\Needs $need
+     */
+    public function removeNeed(\HandissimoBundle\Entity\Needs $need)
+    {
+        $this->needs->removeElement($need);
+    }
+
+    /**
+     * Get needs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNeeds()
+    {
+        return $this->needs;
+    }
+
 }

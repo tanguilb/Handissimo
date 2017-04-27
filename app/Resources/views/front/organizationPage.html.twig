@@ -9,332 +9,551 @@
 
     <!-- Block container -->
     <div class="head-img"></div>
-
     <div class="container main-block">
         <div class="container-info row">
             <!-- Block Title-->
             <div class="head-block">
-                <div class="row ">
+                <div class="container">
+                    <p class="update">Cette fiche à été remplie par quelqu'un qui connait la structure</p>
                     <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                 </div>
-
-                <div class="row">
-                    <div class="head-title col-md-11 col-sm-11">
-                        {% if organization.societies == null %}
-                        <h1 class="title"> {{ organization.name }} </h1>
-                        {% else %}
-                        <h1 class="title">{{ organization.name }}</h1>
-                            <p>Structure gérée par : {{ organization.societies.societyname }}</p>
-                            <div class="img-block col-md-1 "><img class="organization-logo"  title="Logo de {{ organization.name }}" src="{{ organization.societies.logo }}" alt=""></div>
-
+                <div class="head-title col-md-6 col-sm-12">
+                    <h1 class="title structure-title"> {{ organization.name }} </h1>
+                </div>
+                <div class="logos col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
+                        {% if organization.structureLogo %}
+                            <p>Cette solution est proposée par : <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}" class="logo"></p>
                         {% endif %}
                     </div>
-                    <!-- this is the line to display like button
-                    <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
+                    <div class="col-md-6">
+                        {% if organization.societyLogo %}
+                            <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}" class="logo">
+                        {% endif %}
+                    </div>
+
+                </div>
+                <!-- this is the line to display like button
+                <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
+            </div>
+            <div class="row">
+                <div class="col-md-8" id="block-carousel">
+                    {% if organization.media is not empty %}
+                    <!-- Carousel-->
+                        {% include 'front/carousel.html.twig' %}
+                    {% else%}
+                        <div class="container">
+                            <img class="img-responsive" src="{{ asset('images/FAM LUCON 2.png') }}" alt="Handissimo - Image principal structure">
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- Map -->
+                <div class="col-md-4 map-block">
+                    <div class="map col-md-12" id="map">
+                    </div>
                 </div>
             </div>
 
-            <!-- Carousel-->
-            <div class="carousel">
-                <ul>
-                    {% for picture in pictures %}
-
-                    {% if organization.userOrg == null %}
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s28.postimg.org/xczbol3q5/image.jpg" alt="">
-                    </li>
-                    <li class="line-img">
-                        <img class="carousel-image" src="https://s23.postimg.org/k5yj75xe3/image.jpg" alt="">
-                    </li>
-
-                    {% elseif organization.id == picture.organizationsId %}
-                        <li class="line-img">
-                            <img class="caroussel-image" src="{{ asset(picture.webPath) }}">
-                        </li>
-
-                    {% endif %}
-                    {% endfor %}
-
-
-                </ul>
-            </div>
-
+            <div class="row">
             <!-- Essential Block -->
-            <div class="essential-block col-md-8">
-                {#{% if  organization.statut == 1 %}#}
-                    <!-- Descriptions Block -->
-                <h1>C'est pour qui ?</h1>
-                <p>Principaux troubles des personnes accueillies :</p>
-                <ul>
-                    {% for disability in organization.disabilityTypes %}
-                        <li>{{ disability }}</li>
+                <div class="essential-block col-md-8">
+                    {#{% if  organization.statut == 1 %}#}
+                        <!-- Descriptions Block -->
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            C'est pour qui ?
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div  class="panel-body">
+                                    {% if  organization.organizationDescription %}
+                                        <div class="col-md-12 description">
+                                            <p>{{ organization.organizationDescription|raw }}</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
+                                    </div>
+                                    <ul>
+                                        {% if organization.disabilityTypes.count > 0 %}
+                                            {% for disability in organization.disabilityTypes %}
+                                                <li>{{ disability }} </li>
+                                            {% endfor %}
+                                        {% else %}
+                                            <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                        {% endif %}
 
-                    {% endfor %}
-                </ul>
-                <p>Age : De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
-                {% if organization.freeplace %}
-                    <p>Nombre de personnes accompagnées : {{ organization.freeplace }}</p>
-                {% endif %}
-                <h2>A qui s'adresse-t-on ?</h2>
-                    {% if  organization.organizationDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Description de l'organisation</h2>
-                           <p>{{ organization.organizationDescription|raw }}</p>
+
+                                    </ul>
+                                    <div class="col-md-4">
+                                        <p><span class="age second-title">Âge : </span> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                    </div>
+                                    {% if organization.freeplace %}
+                                    <div class="col-md-8">
+                                        <p><span class="second-title">Nombre de personnes accompagnées :</span> {{ organization.freeplace }}</p>
+                                    </div>
+                                    {% endif %}
+                                    {% if organization.interventionZone %}
+                                        <div class="col-md-12">
+                                            <span class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </span><p>{{ organization.interventionZone }}</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if organization.organizationDescription == null%}
+                                        <div class="col-md-12">
+                                            <p>Si vous avez plus d'information n'hésitez pas
+                                                {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                {% else %}
+                                                <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                {% endif %}
+                                                </p>
+                                        </div>
+                                    {% endif %}
+
+
+                                </div>
+                            </div>
                         </div>
-                    {% endif %}
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Qu'est-ce qui est proposé ?
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                    <h3 class="second-title">Cette solution offre principalement les services suivants: </h3>
+                                    <ul>
+                                        {% if organization.needs is not empty %}
+                                            {% for need in organization.needs %}
+                                                <li>{{ need }}</li>
+                                            {% endfor %}
+                                        {% else %}
+                                            <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                        {% endif %}
+                                    </ul>
+                                    </div>
 
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Et aussi : </h3>
+                                        <ul>
+                                            {% if organization.secondneeds is not empty %}
+                                                {% for secondneeds in organization.secondneeds %}
+                                                    <li>{{ secondneeds }}</li>
+                                                {% endfor %}
+                                            {% else %}
+                                                <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                            {% endif %}
 
-                    {% if organization.placeDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Nos locaux</h2>
-                            <p>{{ organization.placeDescription|raw }}</p>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Pour en savoir plus :</h3>
+                                        {% if organization.workingDescription %}
+                                            {{ organization.workingDescription|raw }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+
+                                    </div>
+                                    {% if organization.school == "oui" %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">La scolarisation</h3>
+                                        <p>{{ organization.schoolDescription|raw }}</p>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Description d'une journée ou d'une intervention :</h3>
+                                        {% if organization.dayDescription %}
+                                            <p>{{ organization.dayDescription|raw  }}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Ce qui est prévu pour les familles :</h3>
+                                        {% if organization.receptionDescription %}
+                                            <p>{{ organization.receptionDescription|raw  }}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        {% if organization.needs is empty or organization.secondneeds is empty or organization.workingDescription == null or organization.dayDescription == null or organization.receptionDescription %}
+                                            <div class="col-md-12">
+                                                <p>Si vous avez plus d'information n'hésitez pas
+                                                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                        <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                    {% else %}
+                                                        <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    {% endif %}
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            L'équipe
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
 
-                    {% if organization.schoolDescription %}
-                        <div class="col-md-12 description">
-                            <h2>L'école</h2>
-                            <p>{{ organization.schoolDescription|raw }}</p>
-                        </div>
-                    {% endif %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">L'équipe comprend environ
+                                            {% if organization.teamMembersNumber is not empty %}
+                                                {{ organization.teamMembersNumber }}
+                                            {% else %}
+                                                <i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i>
+                                            {% endif %}
+                                            professionnels.</h3>
+                                    </div>
 
-                    {% if organization.teamDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Description de l'équipe</h2>
-                            <p>{{ organization.teamDescription|raw }}</p>
-                        </div>
-                    {% endif %}
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Leurs métiers sont :</h3>
 
-                    {% if organization.workingDescription %}
-                        <div class="col-md-12 description">
-                            <h2>Comment travaillons-nous ?</h2>
-                            <p>{{ organization.workingDescription|raw }}</p>
-                        </div>
-                    {% endif %}
+                                            <div class="col-md-4">
+                                                <h4>Personnel de soin :</h4>
+                                                <ul>
+                                                    {% if organization.stafforganizations is not empty %}
+                                                        {% for jobs in organization.stafforganizations %}
+                                                            <li>{{ jobs }}</li>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h4>Personnel éducatif et social :</h4>
+                                                <ul>
+                                                    {% if organization.socialstaffs is not empty %}
+                                                        {% for socialJobs in organization.socialstaffs %}
+                                                            <li>{{ socialJobs }}</li>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
 
-                    {% if organization.activities %}
-                        <div class="col-md-12 description">
-                            <h2>Les activités proposées</h2>
-                            <p>{{ organization.activities|raw }}</p>
+                                            <div class="col-md-4">
+                                                <h4>Autres :</h4>
+                                                <ul>
+                                                    {% if organization.otherjobs is not empty %}
+                                                        {% for otherJobs in organization.otherjobs %}
+                                                            <li>{{ otherJobs }}</li>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                        {% if organization.stafforganizations is empty or organization.socialstaffs is empty or organization.otherjobs is empty or organization.teamMembersNumber == null %}
+                                            <div class="col-md-12">
+                                                <p>Si vous avez plus d'information n'hésitez pas
+                                                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                        <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                    {% else %}
+                                                        <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    {% endif %}
-                {#{% else %}
-                    <h2>Veuillez nous excuser pour le désagrement, la fiche est actuellement en correction.</h2>
-                {% endif %}#}
-            </div>
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headinFour">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                            Informations pratiques :
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body">
 
-            <!-- Map -->
-            <div class="col-md-4 map-block">
-                <div class="map col-md-12" id="map">
-                </div>
-                <!-- Contact block -->
-                <div class="contact-info col-md-12">
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-tag" aria-hidden="true"></i>
+                                    <div class="col-md-12">
+                                    <h3 class="second-title">Jours d'ouverture : </h3>
+                                        {% if organization.opendays is not empty %}
+                                            <p>{% for days in organization.opendays %}{{ days }}&nbsp;{% endfor %}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                        {% if organization.opendaysYear is not empty %}
+                                            <p>{% for yearsDays in organization.opendaysYear %}{{ yearsDays }}&nbsp;{% endfor %}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+
+                                        <div class="col-md-12">
+                                            <p><span class="second-title">Heures d'ouverture : </span>
+                                                {% if organization.openhours is not empty %}
+                                                    {{ organization.openhours }}
+                                                {% else %}
+                                                    <i class="question fa fa-question" aria-hidden="true"></i>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    {% if organization.orientationMdph == 1 %}
+                                        {% set mdphText="Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite
+                                                \"loi pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées\",
+                                            entrée en vigueur le 1er janvier 2006...
+                                            La MDPH constitue un guichet unique destiné à accueillir les personnes handicapées et leur entourage pour les
+                                            informer et évaluer leurs besoins. Elles permettent de faciliter leurs démarches dans l'accès à leurs droits.
+                                            Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
+                                            médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes." %}
+                                    <div class="col-md-12">
+                                        <p><span class="second-title">Sur orientation Mdph :</span> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
+                                        </p>
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="col-md-12">
+                                      <h3 class="second-title">Comment s'inscrire ?</h3>
+                                        {% if organization.inscription %}
+                                            {{ organization.inscription|raw }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Combien ça coûte ?</h3>
+                                        {% if organization.cost %}
+                                            {{ organization.cost|raw  }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Les transports :</h3>
+                                        {% if organization.transport %}
+                                            {{ organization.transport|raw  }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+                                    {% if organization.opendays is empty or organization.opendaysYear is empty or organization.openhours is empty or organization.inscription == null or organization.cost == null or organization.transport == null %}
+                                        <div class="col-md-12">
+                                            <p>Si vous avez plus d'information n'hésitez pas
+                                                {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                                                    <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
+                                                {% else %}
+                                                    <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                        <p class="address-line">{{ organization.structuretype }}</p>
                     </div>
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-home" aria-hidden="true"></i>
+                </div>
+
+
+                <div class="col-md-4">
+                    <!-- Contact block -->
+                    <div class="contact-info    col-md-12">
+                        {% if organization.orgaStructure %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-tag" aria-hidden="true"></i>
+                            </div>
+                            <p class="address-line">{{ organization.orgaStructure }}</p>
                         </div>
-                        {% if organization.addressComplement == null %}
-                        <p class="address-line">{{ organization.address }} <br/>{{ organization.postal }} {{ organization.city }}</p>
-                        {% else %}
-                        <p class="address-line">{{ organization.address }}<br/>{{ organization.addressComplement }}<br/>{{ organization.postal }} {{ organization.city }}</p>
+                        {% endif %}
+                        {% if organization.society %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-tag" aria-hidden="true"></i>
+                                </div>
+                                <p class="address-line">Structure gérée par : {{ organization.society }}</p>
+                            </div>
+                        {% endif %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                            </div>
+                            {% if organization.addressComplement == null %}
+                            <p class="address-line">{{ organization.address }} <br/>{{ organization.postal }} {{ organization.city }}</p>
+                            {% else %}
+                            <p class="address-line">{{ organization.address }}<br/>{{ organization.addressComplement }}<br/>{{ organization.postal }} {{ organization.city }}</p>
+                            {% endif %}
+                        </div>
+                        {% if organization.phoneNumber %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <p class="address-line">{{ organization.phoneNumber }}</p>
+                        </div>
+                        {% endif %}
+                        {% if organization.mail %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div id="mail">
+
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if organization.directorName %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </div>
+                            <p class="address-line" >Responsable : {{ organization.directorName }}</p>
+                        </div>
+                        {% endif %}
+                        {% if organization.website %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                                </div>
+                                <a class="address-line link-about" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a>
+                            </div>
+                        {% endif %}
+
+                        {% if organization.blog %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-commenting" aria-hidden="true"></i>
+                                </div>
+                                <a class="address-line link-about" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a>
+                            </div>
+                        {% endif %}
+
+                        {% if organization.facebook %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </div>
+                                <a class="address-line link-about" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a>
+                            </div>
+                        {% endif %}
+
+                        {% if organization.twitter %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </div>
+                                <a class="address-line link-about" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
+                            </div>
+                        {% endif %}
+                        {% if organization.freeDescription %}
+                            <div class="col-md-12">
+                                {{ organization.freeDescription|raw  }}
+                            </div>
                         {% endif %}
                     </div>
+                    {% set array = {
+                    'latitude': organization.latitude,
+                    'longitude': organization.longitude,
+                    } %}
 
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                        </div>
-                        <p class="address-line">{{ organization.phoneNumber }}</p>
+                    {% set arrayjson = array|json_encode %}
+
+                    <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
+                    {% set id = { 'id': organization.id,} %}
+                    {% set idjson = id|json_encode %}
+                    <input type="hidden" class="arraymail" value="{{ idjson }}" />
+
+
+                    <!-- Resources -->
+                    <div class="resources col-md-12">
+                        {% if organization.brochures %}
+                        <!-- download button -->
+                        <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochures.filename) }}" target="_blank">
+                            <div class="line download-line">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                                <p>{{ organization.brochures.filename }}</p>
+                            </div>
+                        </a>
+                        {% endif %}
+                        <!-- print button -->
+                        <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
+                            <div class="line print-line">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                                <p>Imprimer</p>
+                            </div>
+                        </a>
                     </div>
-
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <a class="address-line link-about" href="mailto:{{ organization.mail }}" target="_blank">{{ organization.mail }}</a>
-                    </div>
-                    <div class="line">
-                        <div class="icon-block">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </div>
-                        <p class="address-line" >Responsable : {{ organization.directorName }}</p>
-                    </div>
-                    {% if organization.website %}
-                        <div class="line">
-                            <div class="icon-block">
-                                <i class="fa fa-desktop" aria-hidden="true"></i>
-                            </div>
-                            <a class="address-line link-about" title="Liens vers le site internet {{ organization.website }}" href="{{ organization.website }}" target="_blank">Site web</a>
-                        </div>
-                    {% endif %}
-
-                    {% if organization.blog %}
-                        <div class="line">
-                            <div class="icon-block">
-                                <i class="fa fa-commenting" aria-hidden="true"></i>
-                            </div>
-                            <a class="address-line link-about" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a>
-                        </div>
-                    {% endif %}
-
-                    {% if organization.facebook %}
-                        <div class="line">
-                            <div class="icon-block">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </div>
-                            <a class="address-line link-about" title="Liens vers la page facebook" href="http://{{ organization.facebook }}" target="_blank">Facebook</a>
-                        </div>
-                    {% endif %}
-
-                    {% if organization.twitter %}
-                        <div class="line">
-                            <div class="icon-block">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </div>
-                            <a class="address-line link-about" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
-                        </div>
-                    {% endif %}
-                </div>
-                {% set array = {
-                'latitude': organization.latitude,
-                'longitude': organization.longitude,
-                } %}
-
-                {% set arrayjson = array|json_encode %}
-
-                <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
-
-                <!-- Resources -->
-                <div class="resources col-md-12">
-                    <!-- download button -->
-                    <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochure) }}" target="_blank">
-                        <div class="line download-line">
-                            <i class="fa fa-download" aria-hidden="true"></i>
-                            <p>Télécharger des documents</p>
-                        </div>
-                    </a>
-                    <!-- print button -->
-                    <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
-                        <div class="line print-line">
-                            <i class="fa fa-print" aria-hidden="true"></i>
-                            <p>Imprimer</p>
-                        </div>
-                    </a>
                 </div>
             </div>
             <!-- return button -->
-            <div class="row">
-                <div class="col-md-offset-2 col-md-3 col-xs-offset-1 col-xs-12">
-                    <a class="btn btn-return" href="javascript:history.go(-1)" role="button">
-                        Retour à la recherche
+            <div class="row" id="return-button">
+                <div class="col-md-3 col-xs-12">
+                    <button onclick="goBack()" class="btn btn-return" role="button" >
+                        Retour à la page de résultat
+                    </button>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
+                        Retour à l'accueil
                     </a>
                 </div>
-                <div class="col-md-3 col-xs-offset-1 col-xs-12">
-                    {% if is_granted('ROLE_ORG') or is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN')%}
+                {% if organization.userorg == null %}
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
+                        Je suis responsable<br /> de cette solution
+                    </a>
+                </div>
+                {% endif %}
+                <div class="col-md-3 col-xs-12">
+                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN')%}
                         {% if organization.userorg == null %}
-                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit">
-                                Editer cette fiche
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                Modifier la fiche
                             </a>
                         {% elseif  user.organizationsuser == null %}
-                                <p>Cette fiche n'est pas éditable</p>
+                            <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                         {% elseif  user.organizationsuser.id == organization.id %}
-                            <a href="{{ path('admin_handissimo_organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit">
-                                Editer cette fiche
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                Modifier la fiche
                             </a>
                         {% else %}
-                            <p>Cette fiche n'est pas éditable</p>
+                        <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                         {% endif %}
                     {% elseif organization.userorg == null %}
-                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit">
-                            Editer cette fiche
+                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
+                            Modifier la fiche
                         </a>
                     {% else %}
-                        <p>Cette fiche n'est pas éditable</p>
+                        <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                     {% endif %}
                 </div>
             </div>
             <div class ="line-block"></div>
-            <div class="container comment-block">
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-7 col-xs-12">
-                        <h2 id="comment-title">Commentaires</h2>
-                        {%for comment in comments %}
-                            {% if comment.statusComment %}
-                            <div class="media" id="comment-organizations">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="media-left media-top">
-                                            <img class="media-object" src="{{ asset('images/avatar/doctor-1.png') }}" alt="..." id="avatar-comment">
-                                        </div>
-                                        <span class="bold">{{ comment.author }}</span><br>
-                                        <small>
-                                            {{ organization.userType }}<br>
-                                            {{ comment.parutionDate|date ('d/m/Y')}}
-                                        </small>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h4><span class="bold">{{ comment.title }}</span></h4>
-                                        <p>{{ comment.content }}</p>
-                                        <div class="vote-btns">
-                                            <form method="POST" action="">
-                                                <button class="vote-btn vote-like" id="vote-like" value="{{ comment.id }}"><i class="fa fa-thumbs-up">{{ comment.likeComment }}</i></button></a>
-                                            </form>
-                                                <button class="vote-btn vote-dislike" value="{{ comment.id }}"><i class="fa fa-thumbs-down">{{ comment.dislikeComment }}</i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                {#% for commentAnswerForms in  formbis %}
-                                    {{ form_start(formbis, {'action': path('handissimo_answer', {'id': organization.id })}) }}
-                                    {{ form_errors(formbis) }}
-                                    <button class="response-btn">
-                                    {{ form_widget(formbis.activate) }}
-                                    </button>
-                                    {{ form_end(formbis) }}
-                                {% endfor %#}
-                            </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div class="container comment-form">
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-7 col-xs-12">
-                            <h3>Laissez un commentaire</h3>
-                            <form method="POST" action="{{path('structure_page', {'id': organization.id })}}">
-                                {{ form_start(form) }}
-                                {{ form_errors(form) }}
-                                {{ form_widget(form.author, {'attr': {'class': 'form-control form2', 'value': organization.user }}) }}
-                                {{ form_widget(form.title, {'attr': {'class': 'form-control form2', 'placeholder': 'Titre'}}) }}
-                                {{ form_widget(form.content, {'attr': {'class': 'form-control form2', 'placeholder': 'Message', 'rows': '7' }}) }}
-                                {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
-                                <button type="submit" class="btn btn-comment">Envoyer</button>
-                                {{ form_end(form) }}
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-md-offset-2 col-md-7" id="alert-login-comment">
-                    <p >Veuillez vous authentifiez sur votre <a href="{{ path('fos_user_security_login') }}" class="link-account address-line">votre compte</a> pour pouvoir poster un commentaire.</p>
-                </div>
-            {% endif %}
+            {% include ':front/comment:comment.html.twig' %}
         </div>
     </div>
 {% endblock %}
@@ -342,7 +561,9 @@
 {% block javascripts %}
     <script src="{{ asset('js/vote.js') }}"></script>
     <script src="{{ asset('js/carousel.js') }}"></script>
+    <script src="{{ asset('js/generateadress.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
+    <script src="{{ asset('js/popover.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
