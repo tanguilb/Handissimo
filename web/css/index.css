@@ -2,16 +2,16 @@
     background: url(../images/home-page-Handissimo2.jpg) no-repeat center fixed;
     background-size: cover;
     -webkit-background-size:cover;
-    height: 100%;
+    height: 100vh;
 }
 
 @media screen and (max-width: 1920px){
     #main-index {
-        height: 997px;
+        height: 100vh;
         /*background-size: cover;*/
     }
     #main-index #title-index {
-        margin-top: 250px;
+        margin-top: 10%;
     }
 
 }
@@ -19,12 +19,12 @@
 
 @media screen and (max-width: 1280px){
     #main-index {
-        height: 630px;
+        height: 100vh;
         background-size: cover;
         -webkit-background-size:cover;
     }
     #main-index #title-index {
-        margin-top: 130px;
+        margin-top: 10%;
         font-size: 2.5em;
     }
     #main-index div h2 {
@@ -68,11 +68,11 @@
 @media screen and (max-width: 780px)
 {
     #main-index {
-        height: auto;
+        height: 100vh;
         background-size: cover;
     }
     #main-index #title-index {
-        margin-top: 110px;
+        margin-top: 10%;
         font-size: 1.6em;
     }
     #main-index div h2 {
