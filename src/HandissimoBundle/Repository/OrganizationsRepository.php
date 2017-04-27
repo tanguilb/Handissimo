@@ -8,7 +8,7 @@ use HandissimoBundle\Entity\Organizations;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function getNearBy($rlat, $rlong, $age, $need, $disability, $structure)
+    public function getNearBy($lat, $long, $age, $need, $disability, $structure)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
@@ -16,15 +16,14 @@ class OrganizationsRepository extends EntityRepository
         $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->leftJoin('o.needs', 'n');
-        //$query->addSelect('n.');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
-        if($rlat !== null and $rlong !== null)
+        if($lat !== null and $long !== null)
         {
         $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
         $query->having('distance <= 10');
-        $query->setParameter('lat', $rlat);
-        $query->setParameter('long', $rlong);
+        $query->setParameter('lat', $lat);
+        $query->setParameter('long', $long);
         $query->orderBy('distance');
         }
         if ($age !== null) {
@@ -52,7 +51,6 @@ class OrganizationsRepository extends EntityRepository
             $query->andWhere($ormodule);
             $query->setParameter('structure', $structure->getName());
         }
-
         $query->distinct();
         return $query->getQuery()->getResult();
     }
