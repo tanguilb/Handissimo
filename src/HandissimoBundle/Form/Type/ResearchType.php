@@ -24,17 +24,12 @@ class ResearchType extends AbstractType
             ->add('age', TextType::class,
                 array('label' => false, 'attr' => array('autocomplete' => 'off'),
                 'required' => false))
-            ->add('need', EntityType::class, array(
+            ->add('need', TextType::class, array(
                 'label' => false,
+                'attr' =>array(
+                    'autocomplete' => 'off'
+                ),
                 'required' => false,
-                'class' => 'HandissimoBundle\Entity\Needs',
-                'query_builder' => function(EntityRepository $er)
-                {
-                    return $er->createQueryBuilder('n')
-                        ->orderBy('n.needName', 'ASC');
-                },
-                'choice_name' => 'needName',
-                'empty_value' => 'scolarité, soin, établissement…'
             ))
             ->add('disability', EntityType::class, array(
                 'label' => false,

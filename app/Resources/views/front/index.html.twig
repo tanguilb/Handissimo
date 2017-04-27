@@ -35,8 +35,8 @@
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <div class="col-xs-12 search-field">
                         <p class="search-text">Que cherchez-vous ?<i class="marker fa fa-search" aria-hidden="true"></i></p>
-                        {{ form_row(form.need, { 'attr': {'placeholder': 'Répit, scolarité pour enfant autiste, foyer de vie...', 'class' : 'homeField'} }) }}
-                        <ul id="keywordautocomplete"></ul>
+                        {{ form_row(form.need, { 'attr': {'placeholder': 'scolarité, soin, établissement...', 'class' : 'homeField'} }) }}
+                        <ul id="need"></ul>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
                             <a href="{{ path('handissimo_structure') }}" id="solution-one">
-                                <img class="picto" src="{{ asset('images/Pictogramme_jaune_collaboratif.png') }}" alt="Je connais une solution"/>
+                                <img class="picto" src="{{ asset('images/Pictogramme_jaune_collaboratif.png') }}" alt="handissimo-collaboration"/>
                                 <h3 id="collaborative">Handissimo est collaboratif.<br><br>
                                 Les familles et les professionnels contribuent.</h3>
                             </a>
@@ -76,7 +76,7 @@
 
                         <div class="col-sm-4 col-xs-12">
                             <a href="{{ path('handissimo_aboutpage') }}" id="solution-two">
-                                <img class="picto" src="{{ asset('images/Pictogramme_bleu_interactif.png') }}" alt="Qui sommes nous?" />
+                                <img class="picto" src="{{ asset('images/Pictogramme_bleu_interactif.png') }}" alt="handissimo-interactivité" />
                                 <h3 id="interactive">Handissimo est interactif.<br><br>
                                     Complétez, commentez, posez des questions…</h3>
                             </a>
@@ -84,7 +84,7 @@
 
                         <div class="col-sm-4 col-xs-12">
                             <a href="#" id="solution-three">
-                                <img class="picto" src="{{ asset('images/Pictogramme_mauve_construction.png') }}" alt="Comment nous aider?" />
+                                <img class="picto" src="{{ asset('images/Pictogramme_mauve_construction.png') }}" alt="handissimo-constructif" />
                                 <h3 id="building">Handissimo est en construction<br><br>
                                 Nous avons besoin de vous !</h3>
                             </a>
@@ -140,10 +140,10 @@
                         <div class="col-sm-4 col-xs-12"  id="video">
                             <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <video src="{{ asset('images/Cavernae_Terragen2.mp4') }}" controls="controls" typeof="video"></video>
+                                <video src="{{ asset('media/Handissimov2.mp4') }}" controls="controls" typeof="video"></video>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-xs-12">
+                        <div id="text-carousel" class="col-sm-4 col-xs-12">
                             <p>Les dernières solutions inscrites sur Handissimo</p>
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->

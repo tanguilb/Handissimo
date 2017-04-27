@@ -78,7 +78,7 @@
                                         </div>
                                     {% endif %}
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Principaux troubles des personnes accueillies :</h3>
+                                        <p class="second-title">Principaux troubles des personnes accueillies :</p>
                                     </div>
                                     <ul>
                                         {% if organization.disabilityTypes.count > 0 %}
@@ -92,16 +92,16 @@
 
                                     </ul>
                                     <div class="col-md-4">
-                                        <p><span class="age second-title">Âge : </span> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                        <p><p class="age second-title">Âge : </p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                     </div>
                                     {% if organization.freeplace %}
                                     <div class="col-md-8">
-                                        <p><span class="second-title">Nombre de personnes accompagnées :</span> {{ organization.freeplace }}</p>
+                                        <p><p class="second-title">Nombre de personnes accompagnées :</p> {{ organization.freeplace }}</p>
                                     </div>
                                     {% endif %}
                                     {% if organization.interventionZone %}
                                         <div class="col-md-12">
-                                            <span class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </span><p>{{ organization.interventionZone }}</p>
+                                            <p class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </p><p>{{ organization.interventionZone }}</p>
                                         </div>
                                     {% endif %}
                                     {% if organization.organizationDescription == null%}
@@ -133,7 +133,7 @@
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
                                     <div class="col-md-12">
-                                    <h3 class="second-title">Cette solution offre principalement les services suivants: </h3>
+                                    <p class="second-title">Cette solution offre principalement les services suivants: </p>
                                     <ul>
                                         {% if organization.needs is not empty %}
                                             {% for need in organization.needs %}
@@ -146,7 +146,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Et aussi : </h3>
+                                        <p class="second-title">Et aussi : </p>
                                         <ul>
                                             {% if organization.secondneeds is not empty %}
                                                 {% for secondneeds in organization.secondneeds %}
@@ -169,13 +169,13 @@
                                     </div>
                                     {% if organization.school == "oui" %}
                                     <div class="col-md-12">
-                                        <h3 class="second-title">La scolarisation</h3>
+                                        <p class="second-title">La scolarisation</p>
                                         <p>{{ organization.schoolDescription|raw }}</p>
                                     </div>
                                     {% endif %}
 
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Description d'une journée ou d'une intervention :</h3>
+                                        <p class="second-title">Description d'une journée/semaine/intervention type:</p>
                                         {% if organization.dayDescription %}
                                             <p>{{ organization.dayDescription|raw  }}</p>
                                         {% else %}
@@ -184,7 +184,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Ce qui est prévu pour les familles :</h3>
+                                        <p class="second-title">Ce qui est prévu pour les familles :</p>
                                         {% if organization.receptionDescription %}
                                             <p>{{ organization.receptionDescription|raw  }}</p>
                                         {% else %}
@@ -195,7 +195,7 @@
                                     <div class="col-md-12">
                                         {% if organization.needs is empty or organization.secondneeds is empty or organization.workingDescription == null or organization.dayDescription == null or organization.receptionDescription %}
                                             <div class="col-md-12">
-                                                <p>Si vous avez plus d'information n'hésitez pas
+                                                <p><br><br><br>Si vous avez plus d'information n'hésitez pas
                                                     {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
                                                         <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="link-about">à compléter la fiche</a>
                                                     {% else %}
@@ -222,17 +222,17 @@
                                 <div class="panel-body">
 
                                     <div class="col-md-12">
-                                        <h3 class="second-title">L'équipe comprend environ
+                                        <p class="second-title">L'équipe comprend environ
                                             {% if organization.teamMembersNumber is not empty %}
                                                 {{ organization.teamMembersNumber }}
                                             {% else %}
                                                 <i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i>
                                             {% endif %}
-                                            professionnels.</h3>
+                                            professionnels.</p>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Leurs métiers sont :</h3>
+                                        <p class="second-title">Leurs métiers sont :</p>
 
                                             <div class="col-md-4">
                                                 <h4>Personnel de soin :</h4>
@@ -300,7 +300,7 @@
                                 <div class="panel-body">
 
                                     <div class="col-md-12">
-                                    <h3 class="second-title">Jours d'ouverture : </h3>
+                                    <p class="second-title">Jours d'ouverture : </p>
                                         {% if organization.opendays is not empty %}
                                             <p>{% for days in organization.opendays %}{{ days }}&nbsp;{% endfor %}</p>
                                         {% else %}
@@ -314,7 +314,7 @@
                                     </div>
 
                                         <div class="col-md-12">
-                                            <p><span class="second-title">Heures d'ouverture : </span>
+                                            <p><p class="second-title">Heures d'ouverture : </p>
                                                 {% if organization.openhours is not empty %}
                                                     {{ organization.openhours }}
                                                 {% else %}
@@ -331,13 +331,13 @@
                                             Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
                                             médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes." %}
                                     <div class="col-md-12">
-                                        <p><span class="second-title">Sur orientation Mdph :</span> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
+                                        <p><p class="second-title">Sur orientation Mdph :</p> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
                                         </p>
                                     </div>
                                     {% endif %}
 
                                     <div class="col-md-12">
-                                      <h3 class="second-title">Comment s'inscrire ?</h3>
+                                      <p class="second-title">Comment s'inscrire ?</p>
                                         {% if organization.inscription %}
                                             {{ organization.inscription|raw }}
                                         {% else %}
@@ -346,7 +346,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Combien ça coûte ?</h3>
+                                        <p class="second-title">Combien ça coûte ?</p>
                                         {% if organization.cost %}
                                             {{ organization.cost|raw  }}
                                         {% else %}
@@ -354,7 +354,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="col-md-12">
-                                        <h3 class="second-title">Les transports :</h3>
+                                        <p class="second-title">Les transports :</p>
                                         {% if organization.transport %}
                                             {{ organization.transport|raw  }}
                                         {% else %}
@@ -471,6 +471,7 @@
                         {% endif %}
                         {% if organization.freeDescription %}
                             <div class="col-md-12">
+                                <p class="second-title">A noter :</p>
                                 {{ organization.freeDescription|raw  }}
                             </div>
                         {% endif %}
