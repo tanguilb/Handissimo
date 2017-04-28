@@ -17,12 +17,16 @@
                     {% if age %}<p>Pour une personne  : {{ age }} ans</p>{% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {% if need %}<p>Ce que vous cherchez : {{ need }}</p>{% endif %}
+                    {% if need %}
+                    <p data-toggle="tooltip" data-placement="bottom" title="{{ need.needName }}">
+                        Ce que vous cherchez : {{ need.needName|length > 15 ? need.needName|slice(0,15)~'....' : need.needName}}
+                    </p>
+                    {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if disability %}
                     <p data-toggle="tooltip" data-placement="bottom" title="{{ disability.disabilityName }}">
-                        Le type de handicap : {{ disability.disabilityName|length >15 ? disability.disabilityName|slice(0,15)~'...' : disability.disabilityName }}
+                        Le type de handicap : {{ disability.disabilityName|length > 15 ? disability.disabilityName|slice(0,15)~'...' : disability.disabilityName }}
                     </p>
                     {% endif %}
                 </div>

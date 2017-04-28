@@ -236,8 +236,25 @@ ivory_ck_editor:
     default_config: my_custom_config
     configs:
         my_custom_config:
-            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+           # extraPlugins: 'wordcount,notification'
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
+        admin_config:
+          #  extraPlugins: 'wordcount,notification'
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], ['Image'], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+            height: '200px'
+
+    #plugins:
+     #   wordcount:
+      #      path: '/bundles/ivoryckeditor/plugins/wordcount/'
+      #      filename: 'plugin.js'
+       #     showParagraphs: false
+        #    showCharCount: true
+        #notification:
+        #    path: '/bundles/ivoryckeditor/plugins/notification/'
+         #   filename: 'plugin.js'
 
 
 knp_paginator:
@@ -253,3 +270,23 @@ knp_paginator:
 
 fos_js_routing:
     routes_to_expose: [structure_page]
+
+fm_elfinder:
+    assets_path: /assets
+    instances:
+        default:
+            locale: %locale% # defaults to current request locale
+            editor: ckeditor # other options are tinymce, tinymce4, form, custom and simple
+            fullscreen: true # defaults true, applies to simple and ckeditor editors
+            theme: smoothness # jquery theme
+            include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+            connector:
+                debug: false # defaults to false
+                roots:       # at least one root must be defined
+                    uploads:
+                        show_hidden: false # defaults to false
+                        driver: LocalFileSystem
+                        path: uploads/img/filemanager
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M

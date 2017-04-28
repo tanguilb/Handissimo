@@ -66,6 +66,15 @@
 #workingDescription {
     margin-top: 10px;
 }
+
+.verification {
+    font-size: 18px;
+}
+
+#verification-link {
+    margin-left: 15px;
+}
+
 /******Bouton add picture****/
 #add_picture {
     border-radius: 50px;
@@ -83,16 +92,4 @@
     background-color: #61bdb9;
     text-transform: none;
     font-weight: 600;
-}
-
-/*********************/
-/*** Progress Bar ****/
-/*********************/
-
-#progressbar {
-    position: relative;
-}
-
-#percentage {
-    position: absolute;
 }

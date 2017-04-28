@@ -175,30 +175,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         ),
                     ))
                 ->end()
-                ->with('Proposez-vous de l\'accueil', array('class' => 'col-md-6'))
-                    ->add('accomodation', ChoiceFieldMaskType::class, array(
-                        'choices' => array(
-                            'oui' => 'oui',
-                            'non' => 'non'
-                        ),
-                        'map' => array(
-                            'oui' => array('accomodation_description'),
-                        ),
-                        'label' => false,
-                        'required' => false
-                    ))
-                    ->add('accomodation_description', CKEditorType::class, array(
-                        'label' => false,
-                        'required' => false,
-                        'help' => 'Description limitée à 3000 caractères',
-                        'config' => array(
-                            'extraPlugins' => 'confighelper',
-                            'placeholder' =>
-                                'Si oui : Quel type d’accueil ? Hébergement ? Accueil de jour ? ...'
-                        )
-                    ))
-                ->end()
-                ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-6'))
+                ->with('Proposez-vous de la scolarisation ?', array('class' => 'col-md-12'))
                     ->add('school', ChoiceFieldMaskType::class, array(
                         'choices' => array(
                             'oui' => 'oui',

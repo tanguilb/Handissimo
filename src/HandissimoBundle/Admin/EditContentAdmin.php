@@ -12,25 +12,15 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class EditContentAdmin extends AbstractAdmin
 {
     /**
-     * @param DatagridMapper $datagridMapper
-     */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-        $datagridMapper
-            ->add('id')
-            ->add('howToUse')
-            ->add('home')
-        ;
-    }
-
-    /**
      * @param ListMapper $listMapper
      */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->add('howToUse')
-            ->add('home')
+            ->add('whoAreWe')
+            ->add('howToHelpUs')
+            //->add('home')
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -48,7 +38,24 @@ class EditContentAdmin extends AbstractAdmin
             ->tab('Comment ça marche')
                 ->with('Comment ça marche')
                     ->add('howToUse', CKEditorType::class, array(
-                        'label' => 'Comment ça marche',
+                        'label' => false,
+                        'config_name' => 'admin_config'
+                    ))
+                ->end()
+            ->end()
+            ->tab('Qui sommes nous')
+                ->with('Qui sommes nous')
+                    ->add('whoAreWe', CKEditorType::class, array(
+                        'label' => false,
+                        'config_name' => 'admin_config'
+                    ))
+                ->end()
+            ->end()
+            ->tab('Comment nous aider')
+                ->with('Comment nous aider')
+                    ->add('howToHelpUs', CKEditorType::class, array(
+                        'label' => false,
+                        'config_name' => 'admin_config'
                     ))
                 ->end()
             ->end()

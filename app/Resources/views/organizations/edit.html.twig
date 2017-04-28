@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/organizations.css') }}">
     <link rel="stylesheet" href="{{ asset('css/organedit.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
 {% endblock %}
 
 {% block sonata_profile_content %}
@@ -17,15 +16,13 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
-                    <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public ciblé</a></li>
+                    <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
                     <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
                     <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
                     <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
                     <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                 </ul>
                 <br>
-                <div id="progressbar">
-                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
@@ -94,13 +91,10 @@
                         <div id="workingDescription">
                             {{ form_row(edit_form.workingDescription) }}
                         </div>
-                        {{ form_row(edit_form.accomodation) }}
-                        {{ form_row(edit_form.accomodationDescription) }}
                         {{ form_row(edit_form.school) }}
                         {{ form_row(edit_form.schoolDescription) }}
                         {{ form_row(edit_form.dayDescription) }}
                         {{ form_row(edit_form.receptionDescription) }}
-
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="team">
 
@@ -139,9 +133,9 @@
                                 {{ form_widget(edit_form.opendaysYear) }}
                             </div>
                         </div>
+                        {{ form_row(edit_form.orientationMdph) }}
                         {{ form_row(edit_form.inscription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
-                        {{ form_row(edit_form.orientationMdph) }}
                         {{ form_row(edit_form.cost) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(edit_form.transport) }}
