@@ -1,17 +1,17 @@
 #main-index {
-    background: url(../images/home-page-Handissimo2.jpg) no-repeat center fixed;
+    background: url(../images/home-page-Handissimo2.png) no-repeat center fixed;
     background-size: cover;
     -webkit-background-size:cover;
-    height: 100%;
+    height: 100vh;
 }
 
 @media screen and (max-width: 1920px){
     #main-index {
-        height: 997px;
-        background-size: cover;
+        height: 100vh;
+        /*background-size: cover;*/
     }
     #main-index #title-index {
-        margin-top: 250px;
+        margin-top: 10%;
     }
 
 }
@@ -19,12 +19,12 @@
 
 @media screen and (max-width: 1280px){
     #main-index {
-        height: 630px;
+        height: 100vh;
         background-size: cover;
         -webkit-background-size:cover;
     }
     #main-index #title-index {
-        margin-top: 130px;
+        margin-top: 10%;
         font-size: 2.5em;
     }
     #main-index div h2 {
@@ -63,16 +63,19 @@
     .stat-content {
         font-size: 0.9em;
     }
+    #block-call #btn-call {
+        font-size: 1.2em;
+    }
 }
 
 @media screen and (max-width: 780px)
 {
     #main-index {
-        height: auto;
+        height: 100vh;
         background-size: cover;
     }
     #main-index #title-index {
-        margin-top: 110px;
+        margin-top: 10%;
         font-size: 1.6em;
     }
     #main-index div h2 {
@@ -89,7 +92,8 @@
     .search-field .marker {
         font-size: 0.9em;
     }
-    #main-index #search-container #research_action_disability, #main-index #search-container #research_action_structure {
+    #main-index #search-container #research_action_disability,
+    #main-index #search-container #research_action_structure {
         font-size: 0.7em;
         margin-top: 10px;
     }
@@ -101,8 +105,21 @@
         margin-top: 20px;
     }
 
-    #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
+    #headband-solution .headband-title,
+    #headband-solution #interactive,
+    #headband-solution #building,
+    #headband-solution #collaborative {
         font-size: 1.2em;
+    }
+
+    .nb-stat {
+        font-size: 0.6em;
+    }
+    .stat-content {
+        font-size: 0.6em;
+    }
+    #block-call #btn-call {
+        font-size: 0.7em;
     }
 
 }
@@ -115,14 +132,14 @@
 
 #main-index h1 {
     font-weight: 700;
-    font-size: 50px;
+    font-size: 4em;
     color: #FFFFFF;
     text-align: center;
     margin-top:140px;
 }
 
 #main-index h2 {
-    font-size: 32px;
+    font-size: 3em;
     font-weight: 500;
     color: #FFFFFF;
     text-align: center;
@@ -196,11 +213,13 @@
 }
 
 #research_action_age,
-#research_action_postal {
+#research_action_postal,
+#research_action_need {
     margin-bottom: 10px;
 }
 
-#city {
+#city,
+#need {
     position: absolute;
     width: 100%;
     padding: 0;
@@ -210,7 +229,8 @@
     border-radius: 3px;
 }
 
-#city li {
+#city li,
+#need li {
     list-style: none;
     background-color: #FFFFFF;
     cursor: pointer;
@@ -225,7 +245,7 @@
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
-#city li:hover{
+#city li:hover, #need li:hover {
     background-color: #F4F3F2;
     font-size: 16px;
     font-weight: 600;
@@ -233,7 +253,7 @@
 
 #research_action_save {
     border: none;
-    font-size: 18px;
+    font-size: 1.5em;
     display: block;
     margin: 50px auto 90px auto;
 }
@@ -260,11 +280,6 @@
     padding: 5px;
 }
 
-#research_action_need {
-    border: none;
-    background-color: #FFFFFF;
-
-}
 /***************************/
 /***** Headband solution****/
 /***************************/
@@ -295,7 +310,7 @@
 }
 #btn-call {
     border: none;
-    font-size: 12px;
+    font-size: 1.5em;
     background-color: #f7af49;
 }
 
@@ -375,7 +390,7 @@
 
 #img-week {
     width: auto;
-    height: 208px;
+    height: 270px;
 }
 
 #block-img-week {
@@ -391,7 +406,7 @@
 }
 
 #img-carousel {
-    height: 208px;
+    height: 270px;
     width: auto;
 }
 .carousel-inner > .item > .block-img > img {
@@ -401,7 +416,9 @@
 #video {
     text-align: center;
 }
-
+#text-carousel {
+    text-align: center;
+}
 /****************************/
 /***** Headband social ******/
 /****************************/
