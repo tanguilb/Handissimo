@@ -322,7 +322,7 @@ class OrganizationsType extends AbstractType
                 'expanded' => true,
                 'empty_value' => false,
                 'choices_as_values' => true,
-                'label' => 'Orientation Mdph',
+                'label' => 'Notification Mdph',
                 'attr' => array(
                     'class' => 'stat',
                 ),

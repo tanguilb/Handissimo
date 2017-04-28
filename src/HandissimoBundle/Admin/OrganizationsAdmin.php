@@ -301,7 +301,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false
                     ))
                     ->add('orientationMdph', BooleanType::class, array(
-                        'label' => 'Orientation MDPH',
+                        'label' => 'Notification MDPH',
                         'required' => false
                     ))
                     ->add('cost' , CKEditorType::class, array(
