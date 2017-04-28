@@ -1,11 +1,11 @@
 organizations_new:
-    path:     /new
-    defaults: { _controller: "HandissimoBundle:Organizations:new" }
+    path:     /new/{name}
+    defaults: { _controller: "HandissimoBundle:Organizations:new", name: "new" }
     methods:  [GET, POST]
 
 organizations_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "HandissimoBundle:Organizations:edit" }
+    path:     /{id}/edit/{name}
+    defaults: { _controller: "HandissimoBundle:Organizations:edit", name: "edit" }
     methods:  [GET, POST]
 
 organizations_delete:

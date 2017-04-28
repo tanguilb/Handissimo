@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Form\Type;
 
 
+use Doctrine\ORM\EntityRepository;
 use HandissimoBundle\Form\MediaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -119,6 +120,10 @@ class OrganizationsType extends AbstractType
                 'choice_label' => 'name',
                 'expanded' => true,
                 'required' => false,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('sl')
+                        ->orderBy('sl.name', 'ASC');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -130,6 +135,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Handicap des personnes accompagnées',
                 'multiple' => true,
                 'expanded' => true,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('d')
+                        ->orderBy('d.disabilityName', 'ASC');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -176,6 +185,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Services/prestations principaux proposés par la structure :',
                 'multiple' => true,
                 'expanded' => true,
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('n')
+                        ->orderBy('n.needName', 'ASC');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -186,6 +199,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Services/prestations secondaires proposés par la structure :',
                 'multiple' => true,
                 'expanded' => true,
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('sn')
+                        ->orderBy('sn.needName');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -267,6 +284,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Personnel de soins :',
                 'multiple' => true,
                 'expanded' => true,
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.jobs', 'ASC');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -277,6 +298,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Personnel éducatif et social :',
                 'multiple' => true,
                 'expanded' =>true,
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('ss')
+                        ->orderBy('ss.socialJobs', 'ASC');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),
@@ -287,6 +312,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Autres métiers :',
                 'multiple' => true,
                 'expanded' =>true,
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('ot')
+                        ->orderBy('ot.name');
+                },
                 'attr' => array(
                     'class' => 'stat',
                 ),

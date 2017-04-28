@@ -76,7 +76,24 @@
 
                             </div>
                         </div>
-                        {{ form_row(form.organizationDescription) }}
+                        {{ form_label(form.organizationDescription) }}
+                        <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Exemple 1 : La MAS Robert Ramel
+                        accueille 50 adultes polyhandicapés et autistes lourdement handicapés, qui ont entre 20 et
+                        60 ans à leur arrivée. Certains résidents souffrent d’épilepsie. La moitié des résidents se
+                        déplace en fauteuil. La majorité d’entre eux ne parlent pas ou très peu.">Exemple 1</i>
+                        <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        Exemple 2 : L’association Une souris verte s’adresse à tous les enfants en situation de handicap
+                        et leurs familles, notamment les enfants dont le handicap pose difficulté pour être accueillis dans
+                        une structure ordinaire (crèche, garderie, …)">Exemple 2</i>
+                        <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        Exemple 3 : Les usagers du C.E.M. sont des pré-adolescents, adolescents et jeunes adultes pour la
+                        plupart atteint d’infirmité motrice d’origine cérébrale, ou paralysie cérébrale.  L’établissement
+                        accueille également des jeunes polyhandicapés.
+                        Certains se déplacent en fauteuil roulant manuel ou électrique, d’autres avec diverses aides de marche,
+                        d’autres en tricycles ou en marchant. La plupart des jeunes savent s’exprimer à l’oral. Environ 110 jeunes sont accueillis.">
+                        Exemple 3</i></p>
+                        {{ form_errors(form.organizationDescription) }}
+                        {{ form_widget(form.organizationDescription) }}
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="serve">

@@ -41,6 +41,7 @@
 /*-----------------------------*/
 .img-block{
     margin-left: 20px;
+    max-width: 60%;
 }
 
 .img-block, .like{
