@@ -18,8 +18,8 @@
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if need %}
-                    <p data-toggle="tooltip" data-placement="bottom" title="{{ need.needName }}">
-                        Ce que vous cherchez : {{ need.needName|length > 15 ? need.needName|slice(0,15)~'....' : need.needName}}
+                    <p data-toggle="tooltip" data-placement="bottom" title="{{ need }}">
+                        Ce que vous cherchez : {{ need|length > 15 ? need|slice(0,15)~'....' : need}}
                     </p>
                     {% endif %}
                 </div>
