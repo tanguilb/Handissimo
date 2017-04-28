@@ -17,42 +17,10 @@
         </div>
         <!-- Text block -->
         <div class="text-content description">
+            {% for use in whoAreWe %}
+                {{ use.whoAreWe|raw }}
+            {% endfor %}
 
-            <p>Pas facile de s’y retrouver dans le champ du handicap ! <br/><br />
-                Handissimo est né en janvier 2017 et se construit peu à peu. Handissimo devient plus riche, plus complet chaque jour, avec l’implication de nouveaux partenaires, avec l’aide de nouveaux Handissimiens. Revenez nous visiter souvent pour constater les progrès ! Si vous vous intéressez aux personnes en situation de handicap, vous pouvez aussi nous aider concrètement dès maintenant, qui que vous soyez...
-            </p>
-            <h2>Handissimo, c'est quoi ?</h2>
-            <p>=> Handissimo est le 1er site qui rassemble l’ensemble des informations concrètes, précises et à jour pour trouver une solution d’aide adaptée à toutes les situations de handicap, pour tous les âges.
-                Handissimo met en lien direct ses utilisateurs avec toutes les solutions d’aides en France : structures d’accueil, services d’accompagnement éducatif, pédagogique, thérapeutique, loisirs adaptés, des soins, du répit, un appui aux aidants, une association...<br /><br />
-                <a href="{{ path('research_action') }}" class="link-about">Recherchez une solution</a><br /><br />
-                => Handissimo permet aussi un partage d’expérience et un réseau d’entre-aide avec les familles proches de vous et concernées par les mêmes problématiques.
-                Grâce à la possibilité d’échanger des commentaires, et avec d’autres outils qui seront développés prochainement : forums, réseaux sociaux... ?
-            </p>
-            <h2>Handissimo c'est qui ?</h2>
-            <p>=> Handissimo, c’est une petite équipe près de Lyon, qui mène et anime le projet, développe le site internet, mobilise les associations et les professionnels, recherche des partenaires et des financements.
-                Cette équipe s’appuie sur la communauté des Handissimiens, sans laquelle rien ne serait possible.<br/><br/>
-                => Handissimo, c’est une communauté de personnes bénévoles concernées par le handicap (des parents, des personnes handicapées) qui construisent ce projet avec l’équipe : ce sont les Handissimiens.
-                Grâce à leur expérience et leur implication, nous sommes capables de trouver ensemble les meilleures idées pour Handissimo. Les Handissimiens animent également le site, et aident à mobiliser les partenaires.<br /><br />
-
-                Pour en savoir plus ou devenir un Handissimien, contactez-nous à cette adresse : <a class="address-line link-about" href="mailto:contact@handissimo.com" target="_blank">contact@handissimo.com</a>
-            </p>
-            <h2>Handissimo vous facilite le handicap !</h2>
-            <h2>Comment ça marche ?</h2>
-            <p>Avec Handissimo, vous pouvez :</p>
-            <ul>
-                <li>rechercher une solution d’aide à partir du <a href="{{ path('research_action') }}" class="link-about">moteur de recherche</a></li>
-                <li>consulter les fiches qui vous intéressent</li>
-                <li>modifier, compléter, et créer des fiches vous-mêmes <a href="{{ path('fos_user_security_login') }}" class="link-about">en créant un compte</a> </li>
-                <li>lire et poster des commentaires <a href="{{ path('fos_user_security_login') }}" class="link-about">en créant un compte</a></li>
-            </ul>
-            <h3>Vous représentez une association, une fondation, une entreprise qui propose une solution d’aide ?</h3>
-            <ul>
-                <li>Prenez la main sur votre fiche  <a href="{{ path('fos_user_security_login') }}" class="link-about">en créant un compte</a></li>
-            </ul>
-            <h2>Vous souhaitez nous aider et devenir un Handissimien ?</h2>
-            <ul>
-                <li>Contactez-nous à cette adresse : <a class="address-line link-about" href="mailto:contact@handissimo.com" target="_blank">contact@handissimo.com</a></li>
-            </ul>
             <!-- Contact block -->
             <div id="social-network">
                 <h2>Suivez nous sur les réseaux sociaux !</h2>

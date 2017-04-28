@@ -13,4 +13,4 @@ services:
         class: HandissimoBundle\Admin\EditContentAdmin
         arguments: [~, HandissimoBundle\Entity\EditContent, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Contenu éditable, label: Modiffication du contenu }
+            - { name: sonata.admin, manager_type: orm, group: Contenu éditable, label: Modification du contenu }
