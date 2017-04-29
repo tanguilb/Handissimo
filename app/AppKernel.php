@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Sonata\IntlBundle\SonataIntlBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

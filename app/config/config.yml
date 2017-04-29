@@ -290,3 +290,11 @@ fm_elfinder:
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
                         upload_deny: ['all']
                         upload_max_size: 2M
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        brochures_file:
+            uri_prefix: /brochures/
+            upload_destination: '%kernel.root_dir%/../web/uploads/brochures'
+            namer: vich_uploader.namer_origname
