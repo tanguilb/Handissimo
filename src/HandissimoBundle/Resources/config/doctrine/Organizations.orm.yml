@@ -170,10 +170,6 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
-        brochures:
-            type: string
-            length: 255
-            nullable: true
         society:
             type: string
             length: 255
@@ -192,6 +188,13 @@ HandissimoBundle\Entity\Organizations:
         freeDescription:
             type: text
             nullable: true
+        brochureName:
+            type: string
+            length: 255
+        updatedAt:
+            type: datetime
+        brochureSize:
+            type: integer
 
     oneToMany:
         comments:

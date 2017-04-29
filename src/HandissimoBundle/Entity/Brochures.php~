@@ -115,4 +115,13 @@ class Brochures
     {
         return $this->brochureSize;
     }
+
+    public function setBrochureFile(File $brochureFile = null)
+    {
+        $this->brochureFile = $brochureFile;
+        if ($brochureFile){
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
 }

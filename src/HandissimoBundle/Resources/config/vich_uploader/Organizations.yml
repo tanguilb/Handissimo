@@ -1,0 +1,5 @@
+HandissimoBundle\Entity\Organizations:
+    brochureFile:
+        mapping: organizations_brochures
+        filename_property: brochureName
+        size: brochureSize

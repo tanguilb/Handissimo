@@ -40,7 +40,10 @@
                             {{ form_row(edit_form.directorName) }}
                             {{ form_row(edit_form.website) }}
                             {{ form_row(edit_form.facebook) }}
-                            {{ form_row(edit_form.brochures) }}
+                            {{ form_row(edit_form.brochureFile) }}
+                            {% if organization.brochureName is not empty %}
+                                {{ organization.brochureName }}
+                            {% endif %}
                         </div>
                         <div class="col-md-7">
                             <h3>Choissisez votre type de structure</h3>

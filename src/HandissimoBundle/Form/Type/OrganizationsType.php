@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class OrganizationsType extends AbstractType
 {
@@ -109,10 +110,10 @@ class OrganizationsType extends AbstractType
                 'label' => 'Page Facebook :',
                 'required' => false,
             ))
-            ->add('brochures', FileType::class, array(
+            ->add('brochureFile', VichFileType::class, array(
                 'label' => 'Télécharger des documents :',
-                'data_class' => null,
                 'required' => false,
+                'download_link' => false
             ))
             ->add('orgaStructure', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\StructuresList',
