@@ -1925,12 +1925,6 @@ class Organizations
     private $updatedAt;
 
     /**
-     * @var integer
-     */
-    private $brochureSize;
-
-
-    /**
      * Set brochureName
      *
      * @param string $brochureName
@@ -1978,30 +1972,6 @@ class Organizations
         return $this->updatedAt;
     }
 
-    /**
-     * Set brochureSize
-     *
-     * @param integer $brochureSize
-     *
-     * @return Organizations
-     */
-    public function setBrochureSize($brochureSize)
-    {
-        $this->brochureSize = $brochureSize;
-
-        return $this;
-    }
-
-    /**
-     * Get brochureSize
-     *
-     * @return integer
-     */
-    public function getBrochureSize()
-    {
-        return $this->brochureSize;
-    }
-
     private $brochureFile;
 
     public function setBrochureFile(File $brochure=null)
@@ -2016,5 +1986,94 @@ class Organizations
     public function getBrochureFile()
     {
         return $this->brochureFile;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $societyLogoUpdatedAt;
+
+    /**
+     * Set societyLogoUpdatedAt
+     *
+     * @param \DateTime $societyLogoUpdatedAt
+     *
+     * @return Organizations
+     */
+    public function setSocietyLogoUpdatedAt($societyLogoUpdatedAt)
+    {
+        $this->societyLogoUpdatedAt = $societyLogoUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get societyLogoUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getSocietyLogoUpdatedAt()
+    {
+        return $this->societyLogoUpdatedAt;
+    }
+
+    private $societyLogoFile;
+
+    public function setSocietyLogoFile(File $societyLogoFile=null)
+    {
+        $this->societyLogoFile = $societyLogoFile;
+        if ($societyLogoFile){
+            $this->societyLogoUpdatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getSocietyLogoFile()
+    {
+        return $this->societyLogoFile;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $structureLogoUpdatedAt;
+
+
+    /**
+     * Set structureLogoUpdatedAt
+     *
+     * @param \DateTime $structureLogoUpdatedAt
+     *
+     * @return Organizations
+     */
+    public function setStructureLogoUpdatedAt($structureLogoUpdatedAt)
+    {
+        $this->structureLogoUpdatedAt = $structureLogoUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get structureLogoUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getStructureLogoUpdatedAt()
+    {
+        return $this->structureLogoUpdatedAt;
+    }
+
+    private $structureLogoFile;
+
+    public function setStructureLogoFile(File $structureLogoFile=null)
+    {
+        $this->structureLogoFile = $structureLogoFile;
+        if ($structureLogoFile){
+            $this->structureLogoUpdatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getStructureLogoFile()
+    {
+        return $this->structureLogoFile;
     }
 }

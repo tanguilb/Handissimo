@@ -193,8 +193,10 @@ HandissimoBundle\Entity\Organizations:
             length: 255
         updatedAt:
             type: datetime
-        brochureSize:
-            type: integer
+        societyLogoUpdatedAt:
+            type: datetime
+        structureLogoUpdatedAt:
+            type: datetime
 
     oneToMany:
         comments:

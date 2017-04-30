@@ -3,6 +3,7 @@ HandissimoBundle\Entity\Opinion:
         eMail:
             - Email:
                 checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
 
 HandissimoBundle\Entity\Organizations:
     properties:

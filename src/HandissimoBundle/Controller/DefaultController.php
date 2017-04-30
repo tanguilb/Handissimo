@@ -2,18 +2,13 @@
 
 namespace HandissimoBundle\Controller;
 
-use HandissimoBundle\Entity\City;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Entity\SecondaryNeeds;
 use HandissimoBundle\Entity\Solution;
-use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use HandissimoBundle\Entity\Comment;
 use HandissimoBundle\Form\Handler;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {

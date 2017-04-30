@@ -23,7 +23,7 @@
                 <div class="logos col-md-6 col-sm-12">
                     <div class="col-md-6 col-sm-12">
                         {% if organization.structureLogo %}
-                            <p>Cette solution est proposée par : <img src="{{ asset('uploads/logo/' ~ organization.structureLogo.filename) }}" alt="{{ 'logo de ' ~ organization.name }}" class="logo"></p>
+                            <p>Cette solution est proposée par : <img src="{{ vich_uploader_asset(organization, 'structureLogoFile') }}" alt="{{ organization.structureLogo }}" class="logo"/></p>
                         {% endif %}
                     </div>
                     <div class="col-md-6">
@@ -491,12 +491,12 @@
 
                     <!-- Resources -->
                     <div class="resources col-md-12">
-                        {% if organization.brochures %}
+                        {% if organization.brochureName %}
                         <!-- download button -->
-                        <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochures.filename) }}" target="_blank">
+                        <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochureName) }}" target="_blank">
                             <div class="line download-line">
                                 <i class="fa fa-download" aria-hidden="true"></i>
-                                <p>{{ organization.brochures.filename }}</p>
+                                <p>{{ organization.brochureName }}</p>
                             </div>
                         </a>
                         {% endif %}

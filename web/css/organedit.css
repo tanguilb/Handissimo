@@ -91,3 +91,8 @@
     text-transform: none;
     font-weight: 600;
 }
+
+.vich-image >  a > img{
+    height: 60px;
+    width: auto;
+}

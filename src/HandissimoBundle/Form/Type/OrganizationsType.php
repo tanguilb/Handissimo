@@ -18,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class OrganizationsType extends AbstractType
 {
@@ -36,13 +37,10 @@ class OrganizationsType extends AbstractType
                     'class' => 'stat',
                 ),
             ))
-            ->add('structureLogo', FileType::class, array(
+            ->add('structureLogoFile', VichImageType::class, array(
                 'label' => 'Vous pouvez télécharger ici votre logo :',
                 'required' => false,
-                'data_class' => null,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
+                'download_link' => false
             ))
             ->add('society', TextType::class, array(
                 'label' => "Nom de l'organisme gestionnaire :",
@@ -51,10 +49,10 @@ class OrganizationsType extends AbstractType
                     'class' => 'stat',
                 ),
             ))
-            ->add('societyLogo', FileType::class, array(
+            ->add('societyLogoFile', VichImageType::class, array(
                 'label' => 'Télécharger le logo de votre organisme gestionnaire :',
                 'required' => false,
-                'data_class' => null,
+                'download_link' => false
             ))
             ->add('address', TextType::class, array(
                 'label' => 'Adresse postal :',
@@ -120,6 +118,7 @@ class OrganizationsType extends AbstractType
                 'label' => false,
                 'choice_label' => 'name',
                 'expanded' => true,
+                'empty_value' => 'Je ne sais pas',
                 'required' => false,
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('sl')

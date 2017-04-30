@@ -306,3 +306,13 @@ vich_uploader:
             uri_prefix: /brochures
             upload_destination: '%kernel.root_dir%/../web/uploads/brochures'
             namer: vich_uploader.namer_origname
+
+        organizations_societyLogo:
+            uri_prefix: /uploads/societyLogo
+            upload_destination: '%kernel.root_dir%/../web/uploads/societyLogo'
+            namer: vich_uploader.namer_origname
+
+        organizations_structureLogo:
+            uri_prefix: /uploads/structureLogo
+            upload_destination: '%kernel.root_dir%/../web/uploads/structureLogo'
+            namer: vich_uploader.namer_origname

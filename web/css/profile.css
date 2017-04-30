@@ -458,3 +458,18 @@ input:-ms-input-placeholder {
 .result-block {
     margin-bottom: 50px;
 }
+
+#link-profile {
+    color:#C37095;
+    font-weight: 600;
+}
+
+#link-profile:focus {
+    color:#65bfba;
+    text-decoration: none;
+}
+
+#link-profile:hover {
+    text-decoration: none;
+    color: #61bdb9;
+}

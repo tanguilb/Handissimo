@@ -1,6 +1,6 @@
 <?php
 
-namespace HandissimoBundle\Form;
+namespace HandissimoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,6 +35,6 @@ class OpinionType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'handissimobundle_opinion';
+        return 'handissimo_opinion';
     }
 }

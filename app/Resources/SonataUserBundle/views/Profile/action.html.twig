@@ -17,7 +17,7 @@
     <div class="head-block">
         {% if app.request.get('name')%}
         <p class="home-msg-profile">Bonjour, merci de participer à Handissimo ! Remplir ou compléter une fiche ne vous prendra que quelques minutes.
-            Merci beaucoup par avance ! Pour toute difficulté, n’hésitez pas à nous contacter</p>
+            Merci beaucoup par avance ! Pour toute difficulté, n’hésitez pas à nous <a href="{{ path('handissimo_contact') }}" id="link-profile">contacter</a>.</p>
         {% endif %}
     </div>
     <div class="row">
