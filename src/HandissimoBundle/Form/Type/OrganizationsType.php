@@ -216,11 +216,6 @@ class OrganizationsType extends AbstractType
                 ),
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
-                    'placeholder' =>
-                        'Exemple 1: Les résidents habitent à la MAS, c’est leur lieu de vie. L’équipe s’occupe des soins nécessaires, de l’aide à la vie quotidienne, propose des activités dans les locaux ou à l’extérieur. Les activités ont pour objectif de faire progresser les résidents dans leur capacité de communication, leur ouverture sur le monde, le développement de leurs compétences. <br /> <br /> 
-                                 Exemple 2 : L’association Une souris verte a pour objectif de sensibiliser aux différences et d’inclure les jeunes enfants en situation de handicap dans la société. Pour cela, l’association développe 4 actions principales : <ul> <li> l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil. </li> <li> l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation </li> <li> la formation des acteurs et professionnels de santé. </li> <li> la sensibilisation à la différence </li> </ul>
-                                 Exemple 3 : L\'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure : l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée, pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.'
                 ),
             ))
             ->add('school', ChoiceType::class, array(
@@ -245,7 +240,6 @@ class OrganizationsType extends AbstractType
                 ),
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
                     'placeholder' => 'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? '
                         )
             ))
@@ -267,7 +261,6 @@ class OrganizationsType extends AbstractType
                 ),
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
                     'placeholder' =>
                         'Avant d’arriver dans la structure et une fois au sein de la structure ? Est-il possible de visiter ? Y a-t-il des réunions d’information ? Des rencontres entre parents ? A quelle fréquence ?'
                 )
@@ -425,10 +418,6 @@ class OrganizationsType extends AbstractType
                 'required' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'extraPlugins' => 'confighelper',
-                    'placeholder' => 'Ex : Exemple : la structure est complète à ce jour mais n’hésitez pas à prendre des renseignements, il existe une liste d’attente sur laquelle nous pouvons vous inscrire.<br>
-                                      Exemple : vous pouvez nous rencontrer au forum Handicap le dimanche 24 mars à partir de 14h […] // Journée porte ouverte le samedi 23 avril […]<br>
-                                      Exemple : vous trouverez plus d’information sur notre blog : www. …'
                 )
             ));
 

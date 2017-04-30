@@ -237,25 +237,32 @@ ivory_ck_editor:
     default_config: my_custom_config
     configs:
         my_custom_config:
-           # extraPlugins: 'wordcount,notification'
+            extraPlugins: 'wordcount,notification,confighelper'
             toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
+            wordcount:
+                showCharCount: true
+                countSpacesAsChars: true
         admin_config:
-          #  extraPlugins: 'wordcount,notification'
+            extraPlugins: 'wordcount,notification,confighelper'
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
             toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], ['Image'], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
+            wordcount:
+                showCharCount: true
+                countSpacesAsChars: true
 
-    #plugins:
-     #   wordcount:
-      #      path: '/bundles/ivoryckeditor/plugins/wordcount/'
-      #      filename: 'plugin.js'
-       #     showParagraphs: false
-        #    showCharCount: true
-        #notification:
-        #    path: '/bundles/ivoryckeditor/plugins/notification/'
-         #   filename: 'plugin.js'
+    plugins:
+        wordcount:
+            path: '/bundles/ivoryckeditor/plugins/wordcount/'
+            filename: 'plugin.js'
+        notification:
+            path: '/bundles/ivoryckeditor/plugins/notification/'
+            filename: 'plugin.js'
+        confighelper:
+            path: '/bundles/ivoryckeditor/plugins/confighelper/'
+            filename: 'plugin.js'
 
 
 knp_paginator:

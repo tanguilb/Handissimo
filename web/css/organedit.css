@@ -61,6 +61,10 @@
     margin-top: 10px;
 }
 
+#organizationDescription {
+    margin-bottom: 10px;
+}
+
 .verification {
     font-size: 18px;
 }

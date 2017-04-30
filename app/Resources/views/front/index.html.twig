@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="col-sm-4 col-xs-12">
-                            <a href="#" id="solution-three">
+                            <a href="{{ path('handissimo_help') }}" id="solution-three">
                                 <img class="picto" src="{{ asset('images/Pictogramme_mauve_construction.png') }}" alt="handissimo-constructif" />
                                 <h3 id="building">Handissimo est en construction<br><br>
                                 Nous avons besoin de vous !</h3>
@@ -91,7 +91,9 @@
                         </div>
                     </div>
                     <div class="container" id="block-call">
-                        <button class="btn" id="btn-call">Inscrire une solution(c’est gratuit)</button>
+                        <a href="{{ path('handissimo_structure') }}">
+                            <button class="btn" id="btn-call" href="">Inscrire une solution(c’est gratuit)</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -102,7 +104,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="row">
                     <div class="col-md-12 col-xs-2">
-                        <div class="nb-stat">9.6 millions</div>
+                        <div class="nb-stat">9.6 millions<span data-toggle="tooltip" title="chiffre de l'INSEE">*</span></div>
                     </div>
                     <div class="col-md-12 col-xs-10">
                         <p class="stat-content">de personnes en situation de handicap en France</p>
