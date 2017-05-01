@@ -460,16 +460,17 @@ input:-ms-input-placeholder {
 }
 
 #link-profile {
-    color:#C37095;
+
+    color:#65bfba;
     font-weight: 600;
 }
 
 #link-profile:focus {
-    color:#65bfba;
+    color:#C37095;
     text-decoration: none;
 }
 
 #link-profile:hover {
     text-decoration: none;
-    color: #61bdb9;
+    color: #DC7095;
 }
