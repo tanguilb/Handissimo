@@ -27,7 +27,7 @@ class MediaController extends Controller
             $em->persist($medium);
             $em->flush($medium);
 
-            return $this->redirectToRoute('media_show', array('id' => $medium->getId()));
+            return $this->redirectToRoute('media_edit', array('id' => $medium->getId()));
         }
 
         return $this->render('media/new.html.twig', array(

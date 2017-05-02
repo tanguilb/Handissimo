@@ -28,6 +28,8 @@ class OrganizationsController extends Controller
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $form->handleRequest($request);
+        $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
+        $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -35,7 +37,6 @@ class OrganizationsController extends Controller
             $em->flush($organization);
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
-
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
             'structureType' => $structuresType,
@@ -57,6 +58,8 @@ class OrganizationsController extends Controller
         $deleteForm = $this->createDeleteForm($organization);
         $editForm = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $editForm->handleRequest($request);
+        $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
+        $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();

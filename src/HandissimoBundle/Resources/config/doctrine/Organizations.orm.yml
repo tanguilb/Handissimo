@@ -202,6 +202,7 @@ HandissimoBundle\Entity\Organizations:
             type: datetime
             nullable: true
 
+
     oneToMany:
         comments:
             targetEntity: Comment

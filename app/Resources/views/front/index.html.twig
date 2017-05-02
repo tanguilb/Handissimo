@@ -7,7 +7,7 @@
 {% block body %}
     <section class="container-fluid" id="main-index">
         <div class="container">
-            <h1 id="title-index">Trouvez rapidement la solution adaptée</h1>
+            <h1 id="title-index">Trouvez rapidement la solution adaptée à votre handicap</h1>
             <div class="col-md-10 col-md-offset-1">
                 <h2 class="titre">Lancement sur la région lyonnaise en 2017</h2>
             </div>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="container" id="block-call">
                         <a href="{{ path('handissimo_structure') }}">
-                            <button class="btn" id="btn-call" href="">Inscrire une solution(c’est gratuit)</button>
+                            <button class="btn" id="btn-call" href="">Inscrire une solution (c’est gratuit)</button>
                         </a>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                         <div class="nb-stat">{{ statOrganizations }}</div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-10">
-                        <p class="stat-content">Solutions de répertoriées</p>
+                        <p class="stat-content">Solutions sur Handissimo</p>
                     </div>
                 </div>
             </div>
@@ -139,22 +139,22 @@
                 <h2 class="headband-title" id="title-news">Les actualités de Handissimo</h2>
                 <div class="news-content">
                     <div class="row">
-                        <div class="col-sm-4 col-xs-12"  id="video">
+                        <div class="col-sm-6 col-xs-12"  id="video">
                             <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <video src="{{ asset('media/Handissimov2.mp4') }}" controls="controls" typeof="video"></video>
+                                <video id="movie" src="{{ asset('media/Handissimov2.mp4') }}" controls="controls" typeof="video"></video>
                             </div>
                         </div>
-                        <div id="text-carousel" class="col-sm-4 col-xs-12">
+                        {#<div id="text-carousel" class="col-sm-4 col-xs-12">
                             <p>Les dernières solutions inscrites sur Handissimo</p>
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <div id="myCarousel" class="carousel slide embed-responsive embed-responsive-16by9" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for images in carousel %}
                                         <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
                                     {% endfor %}
                                 </ol>
-                                <div class="carousel-inner" role="listbox">
+                                <div class="carousel-inner embed-responsive embed-responsive-16by9" role="listbox">
                                     {% for images in carousel %}
                                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
                                             <a href="{{ path('structure_page', {'id': images.organizationsImg.id}) }}" class="block-img">
@@ -177,8 +177,8 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-12" id="block-img-week">
+                        </div>#}
+                        <div class="col-sm-6 col-xs-12" id="block-img-week">
                             <p>Quoi de neuf ?</p>
                             <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/Lancement_handissimo_ 2017.png') }}" alt=" Handissimo - L'image de la semaine"/>
                         </div>
