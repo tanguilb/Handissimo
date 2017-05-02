@@ -16,6 +16,7 @@
     text-align: center;
     min-height: 30vh;
     margin-top: 10px;
+    padding-top: 50px;
 }
 
 @media (max-width: 768px) {

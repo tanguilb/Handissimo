@@ -13,9 +13,11 @@
         <!-- Block Title-->
         <p class="verification"><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci n'existe pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}" id="verification-link"> >>CLIQUEZ-ICI<<< </a></span></p>
     </div>
+
     {% block organization_form %}
         <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data" id="orga-new">
             {{ form_start(form) }}
+            <div class="errors-message"></div>
             {{ form_errors(form) }}
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -27,6 +29,7 @@
                     <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                 </ul>
                 <br>
+
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
@@ -121,12 +124,11 @@
                             <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
                             L’association Une souris verte a pour objectif de sensibiliser aux différences et d’inclure
                             les jeunes enfants en situation de handicap dans la société. Pour cela, l’association développe 4 actions principales :
-                            <ul>
-                            <li>l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil. </li>
-                            <li>l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation </li>
-                            <li>la formation des acteurs et professionnels de santé.</li>
-                            <li>la sensibilisation à la différence</li>
-                            </ul>">Exemple 2</i>
+                            1-l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil.
+                            2-l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation
+                            3-la formation des acteurs et professionnels de santé.
+                            4-la sensibilisation à la différence
+                            ">Exemple 2</i>
                             <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
                             L'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure :
                             l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie

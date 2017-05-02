@@ -10,8 +10,9 @@
 
 {% block sonata_profile_content %}
     {% block organization_form %}
-        <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" enctype="multipart/form-data">
+        <form method="POST" action="{{path('organizations_edit', {'id': organization.id})}}" enctype="multipart/form-data" id="orga-edit">
             {{ form_start(edit_form) }}
+            <div class="errors-message"></div>
             {{ form_errors(edit_form) }}
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -223,14 +224,17 @@
             </div>
             {{ form_end(edit_form) }}
         </form>
-
-        <form method="POST" action="{{ path('organizations_delete', {'id': organization.id}) }}">
-            {{ form_start(delete_form) }}
-            <div class="col-md-6">
-                <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default"/>
-            </div>
-            {{ form_end(delete_form) }}
-        </form>
+        {% if app.user %}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <form method="POST" action="{{ path('organizations_delete', {'id': organization.id}) }}">
+                {{ form_start(delete_form) }}
+                <div class="col-md-6">
+                    <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default"/>
+                </div>
+                {{ form_end(delete_form) }}
+            </form>
+            {% endif %}
+        {% endif %}
     {% endblock organization_form %}
 {% endblock %}
 

@@ -96,3 +96,8 @@
     height: 60px;
     width: auto;
 }
+
+.error,
+.errors-message {
+    color: red;
+}
