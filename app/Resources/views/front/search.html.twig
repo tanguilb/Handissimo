@@ -91,21 +91,7 @@
                                     {{ results.postal }} {{ results.city }}</p>
                             </div>
                             <div class="col-xs-12" id="social-container">
-                                {% if results.website  %}
-                                <div class="col-xs-7">
-                                    <div class="row">
-                                        <p class="website-address"><a href="{{ results.website }}" target="_blank">Site internet</a></p>
-                                    </div>
-                                </div>
-                                {% endif %}
-                                <div class="col-xs-5">
-                                    {% if results.facebook %}
-                                        <a class="social-media" href="{{ results.facebook }}" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-                                    {% endif %}
-                                    {% if results.twitter %}
-                                        <a class="social-media" href="{{ results.twitter }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-                                    {% endif %}
-                                </div>
+
                             </div>
                         </div>
 

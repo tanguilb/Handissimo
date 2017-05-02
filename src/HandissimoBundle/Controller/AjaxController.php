@@ -53,7 +53,7 @@ class AjaxController extends Controller
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
+            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
             $this->get('session')->set('pagination', $pagination);
             $pagination->setUsedRoute('research_action');
 
@@ -83,7 +83,7 @@ class AjaxController extends Controller
 
         $result = $session->get('result');
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 10);
+        $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
