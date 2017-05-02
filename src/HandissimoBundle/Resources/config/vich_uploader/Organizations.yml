@@ -1,0 +1,12 @@
+HandissimoBundle\Entity\Organizations:
+    brochureFile:
+        mapping: organizations_brochures
+        filename_property: brochureName
+
+    societyLogoFile:
+        mapping: organizations_societyLogo
+        filename_property: societyLogo
+
+    structureLogoFile:
+        mapping: organizations_structureLogo
+        filename_property: structureLogo

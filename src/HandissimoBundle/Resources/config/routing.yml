@@ -1,6 +1,6 @@
-handissimo_opinion:
-    resource: "@HandissimoBundle/Resources/config/routing/opinion.yml"
-    prefix:   /opinion
+handissimo_contact:
+    path: /contact
+    defaults: { _controller: HandissimoBundle:Contact:newContact}
 
 handissimo_research:
     resource: "@HandissimoBundle/Resources/config/routing/research.yml"

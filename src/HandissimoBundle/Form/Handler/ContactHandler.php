@@ -2,20 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: david
- * Date: 08/03/17
- * Time: 15:47
+ * Date: 30/04/17
+ * Time: 15:32
  */
 
 namespace HandissimoBundle\Form\Handler;
 
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 
-class SolutionHandler
+class ContactHandler
 {
     protected $form;
     protected $em;
@@ -24,10 +23,10 @@ class SolutionHandler
 
     public function __construct(Form $form, Request $request, EntityManager $em, ContainerInterface $container)
     {
-        $this->form             = $form;
-        $this->request          = $request;
-        $this->em               = $em;
-        $this->container        = $container;
+        $this->form = $form;
+        $this->request = $request;
+        $this->em = $em;
+        $this->container = $container;
     }
 
     public function process()

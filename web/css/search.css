@@ -19,6 +19,17 @@ body {
     margin-bottom: 5px;
 }
 
+#result-null {
+    font-size: 18px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #result-null {
+        font-size: 16px;
+    }
+}
+
 /*Map and results*/
 #block-map {
     margin: 0;

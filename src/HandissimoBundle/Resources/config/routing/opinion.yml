@@ -1,5 +1,0 @@
-opinion_create:
-    path:     /newopinion
-    defaults: { _controller: "HandissimoBundle:NewOpinion:create" }
-    methods:  [GET, POST]
-

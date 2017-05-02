@@ -3,6 +3,7 @@ HandissimoBundle\Entity\Opinion:
         eMail:
             - Email:
                 checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
 
 HandissimoBundle\Entity\Organizations:
     properties:
@@ -46,7 +47,7 @@ HandissimoBundle\Entity\Organizations:
             - Length:
                 max: 100
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
-        brochures:
+        brochureFile:
             - File:
                 maxSize: 2M
                 maxSizeMessage: 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}'

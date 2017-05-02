@@ -2,6 +2,8 @@
 
 namespace HandissimoBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
  * Organizations
@@ -1598,36 +1600,6 @@ class Organizations
     {
         return $this->commentStaff;
     }
-    /**
-     * @var string
-     */
-    private $brochures;
-
-
-    /**
-     * Set brochures
-     *
-     * @param string $brochures
-     *
-     * @return Organizations
-     */
-    public function setBrochures($brochures)
-    {
-        $this->brochures = $brochures;
-
-        return $this;
-    }
-
-    /**
-     * Get brochures
-     *
-     * @return string
-     */
-    public function getBrochures()
-    {
-        return $this->brochures;
-    }
-
 
     /**
      * @var string
@@ -1942,5 +1914,166 @@ class Organizations
     {
         return $this->needs;
     }
+    /**
+     * @var string
+     */
+    private $brochureName;
 
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * Set brochureName
+     *
+     * @param string $brochureName
+     *
+     * @return Organizations
+     */
+    public function setBrochureName($brochureName)
+    {
+        $this->brochureName = $brochureName;
+
+        return $this;
+    }
+
+    /**
+     * Get brochureName
+     *
+     * @return string
+     */
+    public function getBrochureName()
+    {
+        return $this->brochureName;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Organizations
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    private $brochureFile;
+
+    public function setBrochureFile(File $brochure=null)
+    {
+        $this->brochureFile = $brochure;
+        if ($brochure){
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getBrochureFile()
+    {
+        return $this->brochureFile;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $societyLogoUpdatedAt;
+
+    /**
+     * Set societyLogoUpdatedAt
+     *
+     * @param \DateTime $societyLogoUpdatedAt
+     *
+     * @return Organizations
+     */
+    public function setSocietyLogoUpdatedAt($societyLogoUpdatedAt)
+    {
+        $this->societyLogoUpdatedAt = $societyLogoUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get societyLogoUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getSocietyLogoUpdatedAt()
+    {
+        return $this->societyLogoUpdatedAt;
+    }
+
+    private $societyLogoFile;
+
+    public function setSocietyLogoFile(File $societyLogoFile=null)
+    {
+        $this->societyLogoFile = $societyLogoFile;
+        if ($societyLogoFile){
+            $this->societyLogoUpdatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getSocietyLogoFile()
+    {
+        return $this->societyLogoFile;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $structureLogoUpdatedAt;
+
+
+    /**
+     * Set structureLogoUpdatedAt
+     *
+     * @param \DateTime $structureLogoUpdatedAt
+     *
+     * @return Organizations
+     */
+    public function setStructureLogoUpdatedAt($structureLogoUpdatedAt)
+    {
+        $this->structureLogoUpdatedAt = $structureLogoUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get structureLogoUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getStructureLogoUpdatedAt()
+    {
+        return $this->structureLogoUpdatedAt;
+    }
+
+    private $structureLogoFile;
+
+    public function setStructureLogoFile(File $structureLogoFile=null)
+    {
+        $this->structureLogoFile = $structureLogoFile;
+        if ($structureLogoFile){
+            $this->structureLogoUpdatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getStructureLogoFile()
+    {
+        return $this->structureLogoFile;
+    }
 }

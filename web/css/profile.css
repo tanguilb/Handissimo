@@ -2,6 +2,15 @@
 /********* Profil page ************/
 /**********************************/
 
+.home-msg-profile {
+    padding-top: 150px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    margin: auto;
+    text-align: center;
+}
+
 #greeting-message {
     font-size: 2em;
     text-align: center;
@@ -448,4 +457,19 @@ input:-ms-input-placeholder {
 
 .result-block {
     margin-bottom: 50px;
+}
+
+#link-profile {
+    color:#C37095;
+    font-weight: 600;
+}
+
+#link-profile:focus {
+    color:#65bfba;
+    text-decoration: none;
+}
+
+#link-profile:hover {
+    text-decoration: none;
+    color: #61bdb9;
 }

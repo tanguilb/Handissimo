@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-md-1">
                         {{ form_errors(form.compact) }}
-                        {{ form_widget(form.compact) }}
+                        {{ form_widget(form.compact, {'attr': {'disabled': 'disabled'}}) }}
                     </div>
                     <div class="col-md-11">
                         {% include ':front:charte.html.twig' %}
@@ -57,7 +57,7 @@
                 <p id="mandatory-field">
                 * champs obligatoires.</p>
                 <div class="text-center block-btn-register" title="valide la création du compte">
-                    <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn register-btn" />
+                    <input type="submit" disabled="disabled" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn register-btn" id="submit-register"/>
                 </div>
             </form>
 

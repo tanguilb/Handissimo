@@ -88,38 +88,38 @@ services:
         tags:
             - { name: form.type, alias: front_user_registration }
 
-    app.brochure_uploader:
-        class: HandissimoBundle\Services\Upload\FileUploader
-        arguments: ['%brochures_directory%']
+   # app.brochure_uploader:
+    #    class: HandissimoBundle\Services\Upload\FileUploader
+     #   arguments: ['%brochures_directory%']
 
-    app.logo_uploader:
-        class: HandissimoBundle\Services\Upload\FileUploader
-        arguments: ['%logo_directory%']
+#    app.logo_uploader:
+ #       class: HandissimoBundle\Services\Upload\FileUploader
+  #      arguments: ['%logo_directory%']
 
-    handissimo.doctrine_brochure_listener:
-        class: HandissimoBundle\EventListener\BrochureUploaderListener
-        arguments: ["@app.brochure_uploader"]
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: postLoad }
+   # handissimo.doctrine_brochure_listener:
+    #    class: HandissimoBundle\EventListener\BrochureUploaderListener
+     #   arguments: ["@app.brochure_uploader"]
+      #  tags:
+       #     - { name: doctrine.event_listener, event: prePersist }
+        #    - { name: doctrine.event_listener, event: preUpdate }
+         #   - { name: doctrine.event_listener, event: postLoad }
 
 
-    handissimo.doctrine_logo_listener:
-        class: HandissimoBundle\EventListener\LogoUploaderListener
-        arguments: ['@app.logo_uploader']
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: postLoad }
+ #   handissimo.doctrine_logo_listener:
+  #      class: HandissimoBundle\EventListener\LogoUploaderListener
+   #     arguments: ['@app.logo_uploader']
+    #    tags:
+     #       - { name: doctrine.event_listener, event: prePersist }
+      #      - { name: doctrine.event_listener, event: preUpdate }
+       #     - { name: doctrine.event_listener, event: postLoad }
 
-    handissimo.doctrine_society_logo_listener:
-        class: HandissimoBundle\EventListener\SocietyLogoUploaderListener
-        arguments: ['@app.logo_uploader']
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: postLoad }
+ #   handissimo.doctrine_society_logo_listener:
+  #      class: HandissimoBundle\EventListener\SocietyLogoUploaderListener
+   #     arguments: ['@app.logo_uploader']
+    #    tags:
+     #       - { name: doctrine.event_listener, event: prePersist }
+      #      - { name: doctrine.event_listener, event: preUpdate }
+       #     - { name: doctrine.event_listener, event: postLoad }
 
     admin.media:
         class: HandissimoBundle\Admin\MediaAdmin

@@ -14,7 +14,12 @@
 
 {% block sonata_user_content %}
     {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
-    <div class="head-block"></div>
+    <div class="head-block">
+        {% if app.request.get('name')%}
+        <p class="home-msg-profile">Bonjour, merci de participer à Handissimo ! Remplir ou compléter une fiche ne vous prendra que quelques minutes.
+            Merci beaucoup par avance ! Pour toute difficulté, n’hésitez pas à nous <a href="{{ path('handissimo_contact') }}" id="link-profile">contacter</a>.</p>
+        {% endif %}
+    </div>
     <div class="row">
         <div class="col-md-2 col-xs-12 menu-block">
             <div class="title-block">

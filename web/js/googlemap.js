@@ -49,10 +49,12 @@ function initMap() {
             });
             bounds.extend(localisation);
 
-            marker.addListener( 'click', function () {
+            // add function for close infowindow marker when another windows opens
+            google.maps.event.addListener(marker, 'click', function () {
+                if (typeof(window.infoopened) != 'undefined') infoopened.close();
                 infoWindow.open(map, marker);
+                infoopened = infoWindow;
             });
-
         })(i);
     }
     map.fitBounds(bounds);

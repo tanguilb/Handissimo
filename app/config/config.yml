@@ -42,6 +42,7 @@ twig:
     form_themes:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 sonata_formatter:
     formatters:
@@ -236,25 +237,32 @@ ivory_ck_editor:
     default_config: my_custom_config
     configs:
         my_custom_config:
-           # extraPlugins: 'wordcount,notification'
+            extraPlugins: 'wordcount,notification,confighelper'
             toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
+            wordcount:
+                showCharCount: true
+                countSpacesAsChars: true
         admin_config:
-          #  extraPlugins: 'wordcount,notification'
+            extraPlugins: 'wordcount,notification,confighelper'
             filebrowserBrowseRoute: elfinder
             filebrowserBrowseRouteParameters: []
             toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], ['Image'], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
             height: '200px'
+            wordcount:
+                showCharCount: true
+                countSpacesAsChars: true
 
-    #plugins:
-     #   wordcount:
-      #      path: '/bundles/ivoryckeditor/plugins/wordcount/'
-      #      filename: 'plugin.js'
-       #     showParagraphs: false
-        #    showCharCount: true
-        #notification:
-        #    path: '/bundles/ivoryckeditor/plugins/notification/'
-         #   filename: 'plugin.js'
+    plugins:
+        wordcount:
+            path: '/bundles/ivoryckeditor/plugins/wordcount/'
+            filename: 'plugin.js'
+        notification:
+            path: '/bundles/ivoryckeditor/plugins/notification/'
+            filename: 'plugin.js'
+        confighelper:
+            path: '/bundles/ivoryckeditor/plugins/confighelper/'
+            filename: 'plugin.js'
 
 
 knp_paginator:
@@ -290,3 +298,21 @@ fm_elfinder:
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
                         upload_deny: ['all']
                         upload_max_size: 2M
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        organizations_brochures:
+            uri_prefix: /brochures
+            upload_destination: '%kernel.root_dir%/../web/uploads/brochures'
+            namer: vich_uploader.namer_origname
+
+        organizations_societyLogo:
+            uri_prefix: /uploads/societyLogo
+            upload_destination: '%kernel.root_dir%/../web/uploads/societyLogo'
+            namer: vich_uploader.namer_origname
+
+        organizations_structureLogo:
+            uri_prefix: /uploads/structureLogo
+            upload_destination: '%kernel.root_dir%/../web/uploads/structureLogo'
+            namer: vich_uploader.namer_origname

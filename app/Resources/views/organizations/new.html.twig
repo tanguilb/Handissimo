@@ -32,9 +32,9 @@
                     <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
                         <div class="col-md-5">
                             {{ form_row(form.name) }}
-                            {{ form_row(form.structureLogo) }}
+                            {{ form_row(form.structureLogoFile) }}
                             {{ form_row(form.society) }}
-                            {{ form_row(form.societyLogo) }}
+                            {{ form_row(form.societyLogoFile) }}
                             {{ form_row(form.address) }}
                             {{ form_row(form.addressComplement) }}
                             {{ form_row(form.postal) }}
@@ -44,7 +44,7 @@
                             {{ form_row(form.directorName) }}
                             {{ form_row(form.website) }}
                             {{ form_row(form.facebook) }}
-                            {{ form_row(form.brochures) }}
+                            {{ form_row(form.brochureFile) }}
                         </div>
                         <div class="col-md-7">
                             <h3>Choissisez votre type de structure</h3>
@@ -76,8 +76,27 @@
 
                             </div>
                         </div>
-                        {{ form_row(form.organizationDescription) }}
-
+                        <div id="organizationDescription">
+                            {{ form_label(form.organizationDescription) }}
+                            <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="La MAS Robert Ramel
+                            accueille 50 adultes polyhandicapés et autistes lourdement handicapés, qui ont entre 20 et
+                            60 ans à leur arrivée. Certains résidents souffrent d’épilepsie. La moitié des résidents se
+                            déplace en fauteuil. La majorité d’entre eux ne parlent pas ou très peu.">Exemple 1</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            L’association Une souris verte s’adresse à tous les enfants en situation de handicap
+                            et leurs familles, notamment les enfants dont le handicap pose difficulté pour être accueillis dans
+                            une structure ordinaire (crèche, garderie, …)">Exemple 2</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            Les usagers du C.E.M. sont des pré-adolescents, adolescents et jeunes adultes pour la
+                            plupart atteint d’infirmité motrice d’origine cérébrale, ou paralysie cérébrale.  L’établissement
+                            accueille également des jeunes polyhandicapés.
+                            Certains se déplacent en fauteuil roulant manuel ou électrique, d’autres avec diverses aides de marche,
+                            d’autres en tricycles ou en marchant. La plupart des jeunes savent s’exprimer à l’oral. Environ 110 jeunes sont accueillis.">
+                            Exemple 3</i></p>
+                            {{ form_errors(form.organizationDescription) }}
+                            {{ form_widget(form.organizationDescription) }}
+                            <p class="update">Description limitée à 5000 caractères</p>
+                        </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="serve">
                         <div class="row">
@@ -93,12 +112,38 @@
                             </div>
                         </div>
                         <div id="workingDescription">
-                            {{ form_row(form.workingDescription) }}
+                            {{ form_label(form.workingDescription) }}
+                            <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html='true' title="
+                            Les résidents habitent à la MAS, c’est leur lieu de vie. L’équipe s’occupe des soins nécessaires,
+                            de l’aide à la vie quotidienne, propose des activités dans les locaux ou à l’extérieur. Les activités
+                            ont pour objectif de faire progresser les résidents dans leur capacité de communication, leur ouverture sur le monde,
+                            le développement de leurs compétences.">Exemple 1</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            L’association Une souris verte a pour objectif de sensibiliser aux différences et d’inclure
+                            les jeunes enfants en situation de handicap dans la société. Pour cela, l’association développe 4 actions principales :
+                            <ul>
+                            <li>l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil. </li>
+                            <li>l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation </li>
+                            <li>la formation des acteurs et professionnels de santé.</li>
+                            <li>la sensibilisation à la différence</li>
+                            </ul>">Exemple 2</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            L'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure :
+                            l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie
+                            dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée,
+                            pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.">
+                            Exemple 3</i></p>
+                            {{ form_errors(form.workingDescription) }}
+                            {{ form_widget(form.workingDescription) }}
+                            <p class="update">Description limitée à 5000 caractères</p>
                         </div>
                         {{ form_row(form.school) }}
                         {{ form_row(form.schoolDescription) }}
+                        <p class="update">Description limitée à 3000 caractères</p>
                         {{ form_row(form.dayDescription) }}
+                        <p class="update">Description limitée à 5000 caractères</p>
                         {{ form_row(form.receptionDescription) }}
+                        <p class="update">Description limitée à 5000 caractères</p>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="team">
 
@@ -121,7 +166,7 @@
                             </div>
                         </div>
                         {{ form_row(form.commentStaff) }}
-
+                        <p class="update">Description limitée à 1000 caractères</p>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="informations">
 
@@ -145,7 +190,18 @@
                         <p class="update">Description limitée à 2000 caractères</p>
                         {{ form_row(form.transport) }}
                         <p class="update">Description limitée à 2000 caractères</p>
-                        {{ form_row(form.freeDescription) }}
+                        {{ form_label(form.freeDescription) }}
+                        <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        La structure est complète à ce jour mais n’hésitez pas à prendre des renseignements, il existe une
+                        liste d’attente sur laquelle nous pouvons vous inscrire.">Exemple 1</i>
+                        <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        Vous pouvez nous rencontrer au forum Handicap le dimanche 24 mars à partir de 14h […] //
+                        Journée porte ouverte le samedi 23 avril […]">Exemple 2</i>
+                        <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        Vous trouverez plus d’information sur notre blog : www. …">Exemple 3</i>
+                        </p>
+                        {{ form_errors(form.freeDescription) }}
+                        {{ form_widget(form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="pictures">
