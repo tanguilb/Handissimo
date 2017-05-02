@@ -147,7 +147,7 @@
                         </div>
                         <div id="text-carousel" class="col-sm-4 col-xs-12">
                             <p>Les dernières solutions inscrites sur Handissimo</p>
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <div id="myCarousel" class="carousel slide embed-responsive embed-responsive-16by9" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for images in carousel %}
@@ -158,7 +158,7 @@
                                     {% for images in carousel %}
                                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
                                             <a href="{{ path('structure_page', {'id': images.organizationsImg.id}) }}" class="block-img">
-                                                <img id="img-carousel" class="" src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
+                                                <img id="img-carousel" src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
                                                 <div class="carousel-caption">
                                                     <h3>{{ images.organizationsImg.name }}</h3>
                                                     <p>{{ images.organizationsImg.postal }} {{ images.organizationsImg.city }}</p>
@@ -180,7 +180,7 @@
                         </div>
                         <div class="col-sm-4 col-xs-12" id="block-img-week">
                             <p>Quoi de neuf ?</p>
-                            <img class="img-thumbnail zoom embed-responsive" id="img-week" src="{{ asset('images/Lancement_handissimo_ 2017.png') }}" alt=" Handissimo - L'image de la semaine"/>
+                            <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/Lancement_handissimo_ 2017.png') }}" alt=" Handissimo - L'image de la semaine"/>
                         </div>
                     </div>
                 </div>
