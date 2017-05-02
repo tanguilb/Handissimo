@@ -56,6 +56,7 @@ class Media
             $this->getFile()->getClientOriginalName()
         );
 
+        if($this->getFile()->getClientOriginalExtension() == 'jpeg' or $this->getFile()->getClientOriginalExtension() == 'jpg' or $this->getFile()->getClientOriginalExtension() == 'JPG' or $this->getFile()->getClientOriginalExtension() == 'JPEG'){
         // resize image in thumbnials and for caroussel
         $origin = imagecreatefromjpeg(self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName());
         $widthOrigin = imagesx($origin);
@@ -88,6 +89,39 @@ class Media
         $this->fileName = $this->getFile()->getClientOriginalName();
 
         $this->setFile(null);
+        } elseif($this->getFile()->getClientOriginalExtension() == 'png' or $this->getFile()->getClientOriginalExtension() == 'PNG') {
+            $origin = imagecreatefrompng(self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName());
+            $widthOrigin = imagesx($origin);
+            $heightOrigin = imagesy($origin);
+
+            $proportion = $widthOrigin/$heightOrigin;
+
+            $x = 50*$proportion;
+            $x1 = 300*$proportion;
+
+            $targetDir = imagecreatetruecolor($x, 50);
+            $targetDir1 = imagecreatetruecolor($x1, 300);
+
+
+
+            $widthTargetDir1 = imagesx($targetDir1);
+            $widthTargetDir = imagesx($targetDir);
+            $heightTargetDir1 = imagesy($targetDir1);
+            $heightTargetDir = imagesy($targetDir);
+
+            imagecopyresampled($targetDir, $origin, 0, 0, 0, 0, $widthTargetDir, $heightTargetDir, $widthOrigin, $heightOrigin);
+            imagecopyresampled($targetDir1, $origin, 0, 0, 0, 0, $widthTargetDir1, $heightTargetDir1, $widthOrigin, $heightOrigin);
+
+            imagepng($targetDir, self::PATH_TO_UPLOAD_FILE."/mini-".$this->getFile()->getClientOriginalName());
+            imagepng($targetDir1, self::PATH_TO_UPLOAD_FILE."/".$this->getFile()->getClientOriginalName());
+
+            $this->thumbnails = self::PATH_TO_UPLOAD_FILE.'/mini-'.$this->getFile()->getClientOriginalName();
+            $this->webPath = self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName();
+
+            $this->fileName = $this->getFile()->getClientOriginalName();
+
+            $this->setFile(null);
+        }
 
     }
 

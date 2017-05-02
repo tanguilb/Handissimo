@@ -191,12 +191,17 @@ HandissimoBundle\Entity\Organizations:
         brochureName:
             type: string
             length: 255
+            nullable: true
         updatedAt:
             type: datetime
+            nullable: true
         societyLogoUpdatedAt:
             type: datetime
+            nullable: true
         structureLogoUpdatedAt:
             type: datetime
+            nullable: true
+
 
     oneToMany:
         comments:

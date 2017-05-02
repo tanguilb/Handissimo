@@ -14,8 +14,9 @@
         margin-top: 10%;
     }
 
-}
 
+
+}
 
 @media screen and (max-width: 1280px){
     #main-index {
@@ -66,6 +67,13 @@
     #block-call #btn-call {
         font-size: 1.2em;
     }
+
+    #text-carousel p,
+    #video p,
+    #block-img-week p{
+        font-size: 0.7em;
+    }
+
 }
 
 @media screen and (max-width: 780px)
@@ -406,7 +414,6 @@
 }
 
 #img-carousel {
-    height: 270px;
     width: auto;
 }
 .carousel-inner > .item > .block-img > img {
