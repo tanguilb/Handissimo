@@ -36,7 +36,7 @@
         {% endfor %}
 
         <div class="col-md-offset-2 col-md-7 col-xs-12">
-            <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form_body">
+            <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form-solution">
                 {{ form_start(form) }}
                 {{ form_errors(form.lastname) }}
                 {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
@@ -51,6 +51,7 @@
                 <p>
                 {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
                 {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
+                <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptchaTwo" id="hiddenRecaptchaTwo">
                 <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
                 {{ form_end(form) }}
             </form>

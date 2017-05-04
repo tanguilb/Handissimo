@@ -120,10 +120,11 @@ $(document).ready(function(){
                     :"Vous avez manqué" + errors + ", ils ont été mis en évidence";
                 $(".errors-message div.error span").html(message);
                 $(".errors-message div.error").show();
+                this.defaultShowErrors();
             } else {
                 $(".errors-message div.error").hide();
             }
-            this.defaultShowErrors();
+
         }*/
         showErrors: function(errorMap, errorList) {
             if (this.numberOfInvalids() > 1){
@@ -131,10 +132,13 @@ $(document).ready(function(){
                     + this.numberOfInvalids()
                     + " erreurs, elles ont été mis en évidence.");
                 this.defaultShowErrors();
-            }else {
+            }else if (this.numberOfInvalids() == 1){
                 $(".errors-message").html("Vous avez  "
                     + this.numberOfInvalids()
                     + " erreur, elle a été mis en évidence.");
+                this.defaultShowErrors();
+            }else{
+                $(".errors-message").hide();
                 this.defaultShowErrors();
             }
 
@@ -268,6 +272,84 @@ $(document).ready(function(){
 
         }
     });
+
+    $('#form_contact').validate({
+        ignore: ".ignore",
+        rules: {
+            "handissimo_opinion[lastName]": {
+                required: true,
+                minlength: 2,
+                maxlength: 50
+            },
+            "handissimo_opinion[firstName]": {
+                required: true,
+                minlength: 2,
+                maxlength: 50
+            },
+            "handissimo_opinion[eMail]": {
+                required: true,
+                email: true
+            },
+            "handissimo_opinion[message]": {
+                required: true,
+                maxlength: 2000
+            },
+            "hiddenRecaptcha": {
+                required: function () {
+                    if (grecaptcha.getResponse() == '') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    });
+
+    $('#form-register').validate({
+        rules: {
+            "front_user_registration_form[plainPassword][first]": {
+                required: true
+            },
+            "front_user_registration_form[plainPassword][second]": {
+                equalTo: "front_user_registration_form[plainPassword][first]"
+            }
+        }
+    });
+
+    $('#form-solution').validate({
+        ignore: ".ignore",
+        rules: {
+            "handissimo_solution[lastname]": {
+                required: true
+            },
+            "handissimo_solution[firstname]": {
+                required: true
+            },
+            "handissimo_solution[mail]": {
+                required: true,
+                email: true
+            },
+            "handissimo_solution[status]": {
+                required: true
+            },
+            "handissimo_solution[solutionName]": {
+                required: true
+            },
+            "handissimo_solution[societyName]": {
+                required: false
+            },
+            "hiddenRecaptchaTwo": {
+                required: function () {
+                    if (grecaptcha.getResponse() == '') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    })
 });
 
 jQuery.extend(jQuery.validator.messages, {
@@ -276,7 +358,8 @@ jQuery.extend(jQuery.validator.messages, {
     minlength: jQuery.validator.format("La longueur du texte doit être supérieur à {0} caractères"),
     number: "Le code postal doit être un nombre",
     email: "Le mail n'est pas valide",
-    url: "L'adresse du site n'est pas valide"
+    url: "L'adresse du site n'est pas valide",
+    equalTo: "Entrez à nouveau la même valeur s'il vous plait"
 
 });
 
@@ -309,3 +392,10 @@ $.validator.addMethod(
     }, "L'adresse du site n'est pas valide"
 );
 
+function recaptchaCallback() {
+    $('#hiddenRecaptcha').valid();
+}
+
+function recaptchaCallbackTwo() {
+    $('#hiddenRecaptchaTwo').valid();
+}

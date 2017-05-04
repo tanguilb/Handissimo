@@ -35,6 +35,7 @@ class OrganizationsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($organization);
             $em->flush($organization);
+            $this->addFlash('notice', 'La fiche a bien été créé');
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
         return $this->render('organizations/new.html.twig', array(
@@ -63,7 +64,7 @@ class OrganizationsController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('edit', 'La fiche a été édité');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
 

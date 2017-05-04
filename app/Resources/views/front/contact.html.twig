@@ -29,7 +29,7 @@
             {% endfor %}
         </div>
         <div class="col-md-offset-2 col-md-7 col-xs-12">
-            <form method="POST" class="contactForm" action="{{path('handissimo_contact')}}" id="form_body">
+            <form method="POST" class="contactForm" action="{{path('handissimo_contact')}}" id="form_contact">
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
                 {{ form_errors(form.lastName) }}
@@ -41,10 +41,12 @@
                 {{ form_errors(form.message) }}
                 {{ form_widget(form.message, {'attr': {'class': 'form-control form2', 'placeholder': 'message'|trans({}, 'messages'), 'rows': '7'}}) }}
                 {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
+                <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha">
                 <button id="btn-contact" type="submit" class="btn btn-primary ">Envoyer</button>
                 {{ form_end(form) }}
             </form>
         </div>
-
     </div>
 {% endblock %}
+
+{% block javascripts %}{% endblock %}

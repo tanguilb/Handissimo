@@ -1,9 +1,59 @@
+HandissimoBundle\Entity\Solution:
+    properties:
+        lastname:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        firstname:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        mail:
+            - NotBlank: ~
+            - Email:
+                checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
+        status:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        solutionName:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        societyName:
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        honor:
+            - NotBlank: ~
+
 HandissimoBundle\Entity\Opinion:
     properties:
         eMail:
             - Email:
                 checkMX: true
                 message: "Le mail {{ value }} n'est pas un mail valide"
+            - NotBlank: ~
+        firstName:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        lastName:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        message:
+            - NotBlank: ~
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
 
 HandissimoBundle\Entity\Organizations:
     properties:
