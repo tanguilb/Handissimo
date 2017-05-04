@@ -13,7 +13,6 @@
         <!-- Block Title-->
         <p class="verification"><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci n'existe pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}" id="verification-link"> >>CLIQUEZ-ICI<<< </a></span></p>
     </div>
-
     {% block organization_form %}
         <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data" id="orga-new">
             {{ form_start(form) }}

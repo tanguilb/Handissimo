@@ -26,6 +26,7 @@ HandissimoBundle\Entity\Solution:
         societyName:
             type: string
             length: 255
+            nullable: true
         honor:
             type: boolean
     lifecycleCallbacks: {  }
