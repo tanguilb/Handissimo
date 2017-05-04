@@ -270,4 +270,7 @@ input:-ms-input-placeholder {
     overflow-y: auto;
 }
 
-
+.error,
+.errors-message {
+    color: red;
+}

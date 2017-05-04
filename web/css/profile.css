@@ -475,3 +475,10 @@ input:-ms-input-placeholder {
     text-decoration: none;
     color: #DC7095;
 }
+
+.error-container {
+    position: fixed;
+    margin-top: 10px;
+    z-index: 997;
+    font-weight: 800;
+}

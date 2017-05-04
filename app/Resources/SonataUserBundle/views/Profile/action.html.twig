@@ -44,6 +44,22 @@
             </div>
         </div>
         <div class=" col-md-9 col-xs-12 main-block-profil">
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="error-container">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        {{ flash_message }}
+                    </div>
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('edit') %}
+                <div class="error-container">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        {{ flash_message }}
+                    </div>
+                </div>
+            {% endfor %}
             {% block sonata_profile_content %}
             {% endblock %}
         </div>
