@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Handissimo - Comment nous aider{% endblock %}
+{% block title %}{{ parent() }} Comment nous aider{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/help.css') }}">
 {% endblock %}
