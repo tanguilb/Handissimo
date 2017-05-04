@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}{{ parent() }} Trouvez une solution{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 {% endblock %}
@@ -103,30 +103,30 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 col-xs-2">
+                    <div class="col-md-12 col-xs-4">
                         <div class="nb-stat">9.6 millions<span data-toggle="tooltip" title="chiffre de l'INSEE">*</span></div>
                     </div>
-                    <div class="col-md-12 col-xs-10">
+                    <div class="col-md-12 col-xs-8">
                         <p class="stat-content">de personnes en situation de handicap en France</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-2">
+                    <div class="col-md-12 col-sm-12 col-xs-4">
                         <div class="nb-stat">{{ statOrganizations }}</div>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-10">
+                    <div class="col-md-12 col-sm-12 col-xs-8">
                         <p class="stat-content">Solutions sur Handissimo</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 col-xs-2">
+                    <div class="col-md-12 col-xs-4">
                         <span class="nb-stat">35000</span>
                     </div>
-                    <div class="col-md-12 col-xs-10">
+                    <div class="col-md-12 col-xs-8">
                         <p class="stat-content">Solutions estimées en France</p>
                     </div>
                 </div>
@@ -139,13 +139,13 @@
                 <h2 class="headband-title" id="title-news">Les actualités de Handissimo</h2>
                 <div class="news-content">
                     <div class="row">
-                        <div class="col-sm-6 col-xs-12"  id="video">
+                        <div class="col-sm-4 col-xs-12"  id="video">
                             <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <video id="movie" src="{{ asset('media/Handissimov2.mp4') }}" controls="controls" typeof="video"></video>
+                                <video id="movie" src="{{ asset('media/Handissimo-ss-titrage.mp4') }}" controls="controls" typeof="video"></video>
                             </div>
                         </div>
-                        {#<div id="text-carousel" class="col-sm-4 col-xs-12">
+                        <div id="text-carousel" class="col-sm-4 col-xs-12">
                             <p>Les dernières solutions inscrites sur Handissimo</p>
                             <div id="myCarousel" class="carousel slide embed-responsive embed-responsive-16by9" data-ride="carousel">
                                 <!-- Indicators -->
@@ -177,8 +177,8 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
-                        </div>#}
-                        <div class="col-sm-6 col-xs-12" id="block-img-week">
+                        </div>
+                        <div class="col-sm-4 col-xs-12" id="block-img-week">
                             <p>Quoi de neuf ?</p>
                             <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/Lancement_handissimo_ 2017.png') }}" alt=" Handissimo - L'image de la semaine"/>
                         </div>
@@ -188,14 +188,16 @@
         </div>
     </section>
     <section class="container-fluid" id="headband-social">
+        <div class="row">
         <div class="col-xs-12 col-md-4">
-            <a href="https://www.facebook.com/Handissimo-934218853377525/" target="_blank" id="facebook-link"><p class="content-social">Suivez-nous sur Facebook</p></a>
+            <a href="https://www.facebook.com/Handissimo-934218853377525/" target="_blank" id="facebook-link"><p class="content-social">Suivez-nous sur Facebook...</p></a>
         </div>
         <div class="col-xs-12 col-md-4">
-            <a href="https://twitter.com/Handissimo_2017" target="_blank" id="twitter-link"><p class="content-social">ou sur Twitter</p></a>
+            <a href="https://twitter.com/Handissimo_2017" target="_blank" id="twitter-link"><p class="content-social">ou sur Twitter...</p></a>
         </div>
         <div class="col-xs-12 col-md-4">
             <p class="content-social">pour avoir d’autres actualités !</p>
+        </div>
         </div>
     </section>
 {% endblock %}

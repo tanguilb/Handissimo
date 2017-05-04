@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Handissimo | Voici les résultats de votre recherche.{% endblock %}
+{% block title %}{{ parent() }} Voici les résultats de votre recherche.{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
 {% endblock %}

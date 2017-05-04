@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% import "Macros/form_elements.html.twig" as formElements %}
 
-{% block title %}Handissimo - Comment ça marche ?{% endblock %}
+{% block title %}{{ parent() }} Comment ça marche ?{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/structure.css') }}">

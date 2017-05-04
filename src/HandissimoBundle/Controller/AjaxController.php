@@ -93,6 +93,7 @@ class AjaxController extends Controller
             'disability' => $session->get('disability'),
             'structure' => $session->get('structure'),
             'pagination' => $pagination,
+            'result' => $result,
         ));
     }
 

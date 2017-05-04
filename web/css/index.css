@@ -58,11 +58,11 @@
     #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
         font-size: 1.6em;
     }
-    .nb-stat {
-        font-size: 0.8em;
+    #headband-stats .nb-stat {
+        font-size: 1em;
     }
-    .stat-content {
-        font-size: 0.9em;
+    #headband-stats .stat-content {
+        font-size: 0.5em;
     }
     #block-call #btn-call {
         font-size: 1.2em;
@@ -83,7 +83,7 @@
         background-size: cover;
     }
     #main-index #title-index {
-        margin-top: 10%;
+        margin-top: 20%;
         font-size: 1.6em;
     }
     #main-index div h2 {
@@ -120,14 +120,18 @@
         font-size: 1.2em;
     }
 
-    .nb-stat {
-        font-size: 0.6em;
+    #headband-stats .nb-stat {
+        font-size: 0.9em;
     }
-    .stat-content {
+    #headband-stats .stat-content {
         font-size: 0.6em;
     }
     #block-call #btn-call {
         font-size: 0.7em;
+    }
+    #headband-social .content-social {
+        font-size: 0.8em;
+        line-height: 25px;
     }
 
 }
@@ -135,6 +139,16 @@
 @media (max-width: 360px) {
     #main-index {
         background-position: 74%;
+    }
+    #main-index #title-index {
+        margin-top: 30%;
+        font-size: 1em;
+    }
+    #main-index .titre {
+        font-size: 0.8em;
+    }
+    #main-index #search-container {
+        margin-top: 5px;
     }
 }
 
@@ -351,6 +365,10 @@
     background-color: #61bdb9;
     height: 100px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
 .stat-content {

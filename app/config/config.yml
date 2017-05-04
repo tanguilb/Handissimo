@@ -184,8 +184,8 @@ swiftmailer:
     transport: "%mailer_transport%"
     host:      smtp.gmail.com
     username:  dev.wildcodeshool@gmail.com
-    password:  Handissimo
-    spool:     { type: memory }
+    password:  "Handissimo2"
+    spool:     ~
 
 # FosUserBundle Configuration
 fos_user:
@@ -316,3 +316,4 @@ vich_uploader:
             uri_prefix: /uploads/structureLogo
             upload_destination: '%kernel.root_dir%/../web/uploads/structureLogo'
             namer: vich_uploader.namer_origname
+
