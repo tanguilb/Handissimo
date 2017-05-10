@@ -17,9 +17,16 @@
         </div>
         <!-- Text block -->
         <div class="text-content description">
-            {% for use in whoAreWe %}
-                {{ use.whoAreWe|raw }}
-            {% endfor %}
+            <div class="col-xs-12">
+                {% for use in whoAreWe %}
+                    {{ use.whoAreWe|raw }}
+                {% endfor %}
+            </div>
+            <div class="block-btn-homepage">
+                <a href="{{ path('index_action') }}" class="btn btn-homepage" role="button">
+                    Retour à l'accueil
+                </a>
+            </div>
         </div>
     </div>
 {% endblock body %}
