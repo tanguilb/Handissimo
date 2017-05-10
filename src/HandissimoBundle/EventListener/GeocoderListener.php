@@ -55,8 +55,8 @@ class GeocoderListener
 
         if($json == null)
         {
-            $latitude = 0;
-            $longitude = 0;
+            $latitude = null;
+            $longitude = null;
 
         }else {
         $latitude = (float) $json->geometry->location->lat;

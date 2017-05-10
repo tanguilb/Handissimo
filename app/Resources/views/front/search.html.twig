@@ -95,22 +95,7 @@
                             </div>
                         </div>
 
-                        {% set array = {
-                            'id' : results.id,
-                            'name': results.name,
-                            'address': results.address,
-                            'postal': results.postal,
-                            'city': results.city,
-                            'number': results.phoneNumber,
-                            'mail': results.mail,
-                            'web': results.website,
-                            'latitude': results.latitude,
-                            'longitude': results.longitude,
-                            }
-                        %}
 
-                        {% set arrayjson = array|json_encode %}
-                        <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
                     </div>
                 {% else %}
                 <div class="col-xs-12">
@@ -119,6 +104,24 @@
                             Dans tous les cas, n’hésitez pas à revenir souvent pour voir les mises à jour.</p>
                     </div>
                 </div>
+                {% endfor %}
+                {% for markerMap in result %}
+                    {% set array = {
+                    'id' : markerMap.id,
+                    'name': markerMap.name,
+                    'address': markerMap.address,
+                    'postal': markerMap.postal,
+                    'city': markerMap.city,
+                    'number': markerMap.phoneNumber,
+                    'mail': markerMap.mail,
+                    'web': markerMap.website,
+                    'latitude': markerMap.latitude,
+                    'longitude': markerMap.longitude,
+                    }
+                    %}
+
+                    {% set arrayjson = array|json_encode %}
+                    <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
                 {% endfor %}
                 <div class="col-xs-12">
                     <div class="row navigation">
