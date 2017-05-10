@@ -24,8 +24,13 @@
 }
 .logo{
     width: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+logos{
 
+}
 .structure-title{
     margin-bottom: 10px;
 }

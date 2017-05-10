@@ -21,14 +21,14 @@
                     <h1 class="title structure-title"> {{ organization.name }} </h1>
                 </div>
                 <div class="logos col-md-6 col-sm-12">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-8 col-sm-12">
                         {% if organization.structureLogo %}
                             <p>Cette solution est proposée par : <img src="{{ vich_uploader_asset(organization, 'structureLogoFile') }}" alt="{{ organization.structureLogo }}" class="logo"/></p>
                         {% endif %}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-sm-12">
                         {% if organization.societyLogo %}
-                            <img src="{{ asset('uploads/logo/' ~ organization.societyLogo.filename) }}" alt="{{ 'logo de ' ~ organization.society }}" class="logo">
+                            <p>soutenu par : <img src="{{ vich_uploader_asset(organization, 'societyLogoFile') }}" alt="{{ 'logo de ' ~ organization.society }}" class="logo"></p>
                         {% endif %}
                     </div>
 
