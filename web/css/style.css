@@ -343,6 +343,11 @@ p {
     margin-right: 30px;
 }
 
+#modal-charte-homepage {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
 /**********************************/
 /*****COMMON ELEMENTS ON PAGES*****/
 /**********************************/
