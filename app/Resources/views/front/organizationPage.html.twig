@@ -91,12 +91,12 @@
 
 
                                     </ul>
-                                    <div class="col-md-4">
-                                        <p><p class="age second-title">Âge : </p> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                    <div class="col-xs-12">
+                                        <p><span class="age second-title">Âge : </span> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
                                     </div>
                                     {% if organization.freeplace %}
-                                    <div class="col-md-8">
-                                        <p><p class="second-title">Nombre de personnes accompagnées :</p> {{ organization.freeplace }}</p>
+                                    <div class="col-xs-12">
+                                        <p><span class="second-title">Nombre de personnes accompagnées :</span> {{ organization.freeplace }}</p>
                                     </div>
                                     {% endif %}
                                     {% if organization.interventionZone %}
@@ -314,7 +314,7 @@
                                     </div>
 
                                         <div class="col-md-12">
-                                            <p><p class="second-title">Heures d'ouverture : </p>
+                                            <p><span class="second-title">Heures d'ouverture : </span>
                                                 {% if organization.openhours is not empty %}
                                                     {{ organization.openhours }}
                                                 {% else %}
@@ -331,7 +331,7 @@
                                             Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
                                             médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes." %}
                                     <div class="col-md-12">
-                                        <p><p class="second-title">Sur orientation Mdph :</p> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
+                                        <p><span class="second-title">Sur orientation Mdph :</span> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
                                         </p>
                                     </div>
                                     {% endif %}

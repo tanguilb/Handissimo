@@ -165,6 +165,7 @@ class Organizations
      */
     public function __construct()
     {
+        $this->updateDatetime = new \DateTime();
         $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
         $this->media = new \Doctrine\Common\Collections\ArrayCollection();

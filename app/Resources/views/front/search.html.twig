@@ -115,8 +115,10 @@
                 {% else %}
                 <div class="col-xs-12">
                     <div class="row">
-                        <p id="result-null">Il n’y a pas de résultat pour le moment. Vous pouvez essayer d’élargir votre recherche.
+                        <p class="result-null">Il n’y a pas de résultat pour le moment. Vous pouvez essayer d’élargir votre recherche.
                             Dans tous les cas, n’hésitez pas à revenir souvent pour voir les mises à jour.</p>
+                        <p class="result-null">Si vous connaissez une solution répondant à vos critères, n’hésitez pas à
+                            <a href="{{ path('organizations_new') }}" class="link-about">créer une fiche</a>.</p>
                     </div>
                 </div>
                 {% endfor %}
