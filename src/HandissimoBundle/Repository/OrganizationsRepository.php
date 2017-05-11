@@ -18,9 +18,6 @@ class OrganizationsRepository extends EntityRepository
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
-        //$query->leftJoin('o.media', 'm');
-        //$query->addSelect('m.webPath', 'm.firstPicture');
-
 
         if($lat !== null and $long !== null)
         {
@@ -55,8 +52,7 @@ class OrganizationsRepository extends EntityRepository
             $query->andWhere($ormodule);
             $query->setParameter('structure', $structure->getName());
         }
-        //$query->distinct('o.id');
-        //echo $query->getQuery()->getSQL();;die();
+        $query->distinct();
         return $query->getQuery()->getResult();
     }
 

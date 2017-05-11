@@ -67,20 +67,7 @@
                     <div class="row" id="result-container">
                         <div class="col-sm-5">
                             <a href="{{ path('structure_page', {'id': results.id}) }}">
-                                {{ dump(results) }}
-                                {% for pictures in picture %}
-
-                                    {% if  results.id == pictures.organizationsImg.id and pictures.firstPicture == true %}
-                                        <img src="{{ asset(pictures.webPath) }}" class="img-responsive" alt="Photographie de l'établissement" id="img-search">
-
-                                {% else %}
-                                    {% if loop.first %}
-                                        <img src="{{ asset('images/Etablissement.jpeg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
-
-                                    {% endif %}
-                                {% endif %}
-
-                            {% endfor %}
+                            <img src="{{ asset('images/Etablissement.jpeg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
                             </a>
                         </div>
                         <div class="col-sm-7">
@@ -92,11 +79,8 @@
                             <div class="col-xs-12" id="address-container">
                                 <p>{{ results.address }}<br>
                                     {{ results.postal }} {{ results.city }}</p>
-
                             </div>
                             <div class="col-xs-12" id="social-container">
-
-
                             </div>
                         </div>
 
