@@ -181,11 +181,11 @@ sonata_user:
 swiftmailer:
     auth_mode: login
     encryption: ssl
-    transport: "%mailer_transport%"
-    host:      "%%mailer_host%%"
-    username:  "%%mailer_user%%"
-    password:  "%%mailer_password%%"
-    spool:     ~
+    transport: '%mailer_transport%'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
+    spool:     { type: memory }
 
 # FosUserBundle Configuration
 fos_user:
@@ -202,7 +202,7 @@ fos_user:
         user_manager: sonata.user.orm.user_manager
 
     from_email:
-        address: dev.wildcodeshool@gmail.com
+        address: handissimo@gmail.com
         sender_name: Handissimo
 
     registration:

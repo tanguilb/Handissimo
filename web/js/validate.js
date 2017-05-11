@@ -306,7 +306,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#form-register').validate({
+    /*$('#form-register').validate({
         rules: {
             "front_user_registration_form[plainPassword][first]": {
                 required: true
@@ -315,7 +315,7 @@ $(document).ready(function(){
                 equalTo: "front_user_registration_form[plainPassword][first]"
             }
         }
-    });
+    });*/
 
     $('#form-solution').validate({
         ignore: ".ignore",

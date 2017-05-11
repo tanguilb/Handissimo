@@ -12,19 +12,20 @@ class OrganizationsRepository extends EntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
-        $query->select('o.name');
-        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude');
+        $query->select('o');
+        //$query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
+
         if($lat !== null and $long !== null)
         {
-        $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
-        $query->having('distance <= 10');
-        $query->setParameter('lat', $lat);
-        $query->setParameter('long', $long);
-        $query->orderBy('distance');
+            $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
+            $query->having('distance <= 10');
+            $query->setParameter('lat', $lat);
+            $query->setParameter('long', $long);
+            $query->orderBy('distance');
         }
         if ($age !== null) {
             $andmodule = $query->expr()->andX();

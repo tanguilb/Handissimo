@@ -78,12 +78,18 @@ class AjaxController extends Controller
     {
         $session = $request->getSession();
 
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        $pictures = $repository->findByFirstPicture(1);
+
 
         $result = $session->get('result');
+
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
+
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findAll();
+
+
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
