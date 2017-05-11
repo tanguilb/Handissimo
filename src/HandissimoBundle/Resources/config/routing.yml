@@ -42,3 +42,7 @@ handissimo_media:
 handissimo_help:
     path: /help
     defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }
+
+handissimo_profile_solution:
+    path:  /profile/solution
+    defaults: { _controller: HandissimoBundle:Profile:solutionForm }

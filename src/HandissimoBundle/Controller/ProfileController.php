@@ -9,8 +9,10 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use HandissimoBundle\Form\Handler;
 
 class ProfileController extends Controller
 {
@@ -35,5 +37,10 @@ class ProfileController extends Controller
             'form' => $form->createView(),
             'result' => $result,
         ));
+    }
+
+    public function solutionFormAction()
+    {
+        return $this->render('front/profile/profile-solution.html.twig');
     }
 }

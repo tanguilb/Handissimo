@@ -10,7 +10,6 @@ namespace HandissimoBundle\Form\Handler;
 
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;

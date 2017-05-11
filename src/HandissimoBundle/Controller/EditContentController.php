@@ -25,6 +25,17 @@ class EditContentController extends Controller
         $formHandler = new Handler\SolutionHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'));
         if ($formHandler->process()) {
             $this->addFlash('notice', 'Votre message a bien été envoyé');
+            $mail = \Swift_Message::newInstance();
+            $mail
+                ->setFrom('handissimo@gmail.com')
+                ->setTo('handissimo@gmail.com')
+                ->setSubject('Un message vous a été envoyé')
+                ->setBody(
+                    $this->renderView('email/alertSolution.html.twig')
+                )
+                ->setContentType('text/html');
+
+            $this->get('mailer')->send($mail);
             return $this->redirectToRoute('handissimo_structure');
         }
         return $this->render(':front:structurePage.html.twig', array(

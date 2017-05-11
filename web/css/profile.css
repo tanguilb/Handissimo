@@ -270,14 +270,16 @@ input:-ms-input-placeholder {
 }
 
 #btn-profile,
-.btn-search {
+.btn-search,
+#btn-solution {
     color: #fff;
     background-color: #f7af49;
     border-color: #f7af49;
 }
 
 #btn-profile:hover,
-.btn-search:hover {
+.btn-search:hover,
+#btn-solution:hover {
     color: #fff;
     background-color: #FFBE49;
 }
@@ -481,4 +483,22 @@ input:-ms-input-placeholder {
     margin-top: 10px;
     z-index: 997;
     font-weight: 800;
+}
+
+/**********************************/
+/********** Solution page *********/
+/**********************************/
+
+.title-solution {
+    text-align: center;
+    border-bottom:3px solid #f7af49;
+    margin:auto;
+    padding-top: 30px;
+    padding-bottom:5px;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.text-solution {
+    margin-top: 20px;
 }

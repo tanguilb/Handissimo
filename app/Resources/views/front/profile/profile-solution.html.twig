@@ -1,0 +1,15 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="">
+        <div class="title-block">
+            <h3 class="title-solution">Demande de prise en main d'une fiche</h3>
+        </div>
+        <div class="col-xs-12">
+            <p class="text-solution">Si vous êtes responsable de la structure, il faut nous signaler que vous souhaitez prendre la main sur la
+            fiche en nous contactant via le formulaire présent <a href="{{ path('handissimo_structure') }}#form-solution" class="link-about">ici</a>.
+            L’équipe Handissimo vous contactera dans les meilleurs délais pour des vérifications, et vous donnera
+            les droits d’administrateur de votre fiche. Dans ce cas plus personne d’autre que vous ne pourra modifier la fiche.</p>
+        </div>
+    </div>
+{% endblock %}
