@@ -47,4 +47,14 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getImageByOrgazationsFirstPicture()
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->join('m.organizationsImg', 'o')
+            ->where('m.firstPicture = 1')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

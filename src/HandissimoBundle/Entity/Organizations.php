@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Entity;
 
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -165,10 +166,10 @@ class Organizations
      */
     public function __construct()
     {
-        $this->disabilityTypes = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->staff = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->media = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->needs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->disabilityTypes = new ArrayCollection();
+        $this->staff = new ArrayCollection();
+        $this->media = new ArrayCollection();
+        $this->needs = new ArrayCollection();
     }
 
     /**

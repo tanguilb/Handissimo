@@ -51,6 +51,7 @@ class AjaxController extends Controller
                 $rlong = $long[0]['longitude'];
             }
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
+
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
@@ -78,12 +79,23 @@ class AjaxController extends Controller
     {
         $session = $request->getSession();
 
-        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
-        $pictures = $repository->findByFirstPicture(1);
+
 
         $result = $session->get('result');
+
+
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
+       // $pictures = array();
+        //$pictures = array();
+        //foreach ($result as $resa){
+        $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
+        $pictures = $repository->findAll();
+
+       // $pictures = array_merge($pictures, $picture);
+       // }
+        //var_dump($pictures);
+
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
