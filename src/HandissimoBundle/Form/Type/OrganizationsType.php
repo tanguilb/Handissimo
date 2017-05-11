@@ -40,7 +40,7 @@ class OrganizationsType extends AbstractType
             ->add('structureLogoFile', VichImageType::class, array(
                 'label' => 'Vous pouvez télécharger ici votre logo :',
                 'required' => false,
-                'download_link' => false
+                'download_link' => false,
             ))
             ->add('society', TextType::class, array(
                 'label' => "Nom de l'organisme gestionnaire :",
@@ -403,7 +403,7 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                 )
             ))
-            /*->add('media', CollectionType::class, array(
+            ->add('media', CollectionType::class, array(
                 'entry_type' => MediaType::class,
                 'label' => 'Images',
                 'allow_add' => true,
@@ -411,7 +411,7 @@ class OrganizationsType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
                 'required' => false,
-            ))*/
+            ))
             ->add('freeDescription', CKEditorType::class, array(
                 'label' => 'Souhaitez-vous mettre en avant une information spécifique sur la fiche de votre structure ?',
                 'required' => false,
