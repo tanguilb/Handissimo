@@ -26,7 +26,7 @@
                     <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
                     <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
                     <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
-                    <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
+                    {#<li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>#}
                 </ul>
                 <br>
 
@@ -206,7 +206,7 @@
                         {{ form_widget(form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                    {#<div role="tabpanel" class="tab-pane fade" id="pictures">
                         <div class="pictureUpload">
                             {{ form_row(form.media) }}
                             <div class="pictureButton">
@@ -214,7 +214,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>#}
                 </div>
                 <div class="col-xs-12">
                     <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>
