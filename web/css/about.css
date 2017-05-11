@@ -41,9 +41,25 @@
     .head-block {
         display: none;
     }
-
-#social-network {
+    #social-network {
     padding: 50px 50px 50px 50px;
+    }
 }
+
+.btn-homepage {
+    background-color: #f7af49;
+    margin-bottom: 10px;
+}
+
+.btn-homepage:hover,
+.btn-homepage:focus {
+    background-color: #FFBE49;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.block-btn-homepage {
+    margin: 0 auto;
+    text-align: center;
 }
 

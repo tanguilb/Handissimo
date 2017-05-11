@@ -52,7 +52,18 @@
                 {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
                 {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
                 <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptchaTwo" id="hiddenRecaptchaTwo">
-                <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
+                <div class="block-btn-structure">
+                    <div class="col-md-6 col-xs-12">
+                        <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="block-btn-homepage">
+                            <a href="{{ path('index_action') }}" class="btn btn-homepage" role="button">
+                                Retour à l'accueil
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 {{ form_end(form) }}
             </form>
         </div>

@@ -11,8 +11,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ChoiceFieldMaskType;
 use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -29,23 +27,23 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Nom de la structure',
                         'required' => true
                     ))
-                    ->add('structureLogo', FileType::class, array(
+                    /*->add('structureLogo', FileType::class, array(
                         'label' => 'Si vous avez un logo vous pouvez le télécharger',
                         'required' => false,
                         'data_class' => null,
-                    ))
+                    ))*/
                     ->add('society', TextType::class, array(
                         'label' => 'Non de l\'organisme gestionnaire',
                         'required' => false,
                     ))
-                    ->add('societyLogo', FileType::class, array(
+                    /*->add('societyLogo', FileType::class, array(
                         'label' => 'Télécharger le logo de la société',
                         'required' => false,
                         'data_class' => null,
-                    ))
+                    ))*/
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
-                        'required' => true
+                        'required' => false
                     ))
                     ->add('addressComplement', TextType::class, array(
                         'label' => 'Complement d\'adresse',
@@ -53,15 +51,15 @@ class OrganizationsAdmin extends AbstractAdmin
                     ))
                     ->add('postal', TextType::class, array(
                         'label' => 'Code postal',
-                        'required' => true,
+                        'required' => false,
                     ))
                     ->add('city', TextType::class, array(
                         'label' => 'Ville',
-                        'required' => true
+                        'required' => false
                     ))
                     ->add('phone_number', TextType::class, array(
                         'label' => 'Téléphone',
-                        'required' => true
+                        'required' => false
                     ))
                     ->add('mail', TextType::class, array(
                         'label' => 'E-mail de contact',
@@ -79,16 +77,17 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Facebook',
                         'required' => false
                     ))
-                    ->add('brochures', FileType::class, array(
+                    /*->add('brochures', FileType::class, array(
                         'label' => 'Télécharger des documents',
                         'required' => false,
                         'data_class' => null,
-                    ))
+                    ))*/
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
                     ->add('orgaStructure', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresList',
                         'label' => false,
+                        'required' => false,
                         //'choice_label' => 'structureType',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('sl')
@@ -107,6 +106,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'choice_label' => 'disabilityName',
                         'label' => 'Handicap des personnes accompagnées',
                         'multiple' => true,
+                        'required' => false,
                         'expanded' => true,
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('dt')
@@ -145,6 +145,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Services/prestations principaux proposés par la structure',
                         'multiple' => true,
                         'expanded' => true,
+                        'required' => false,
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('n')
                                 ->orderBy('n.needName', 'ASC');
@@ -157,6 +158,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Services/prestations secondaires proposés par la structure',
                         'multiple' => true,
                         'expanded' => true,
+                        'required' => false,
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('sn')
                                 ->orderBy('sn.needName', 'ASC');
@@ -229,6 +231,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'choice_label' => 'jobs',
                         'label' => 'Personnel de soins',
                         'multiple' => true,
+                        'required' => false,
                         'expanded' => true,
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('s')
@@ -241,6 +244,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Personnel éducatif et social',
                         'multiple' => true,
                         'expanded' =>true,
+                        'required' => false,
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('ss')
                                 ->orderBy('ss.socialJobs', 'ASC');
@@ -251,6 +255,7 @@ class OrganizationsAdmin extends AbstractAdmin
                         'choice_label' => 'name',
                         'label' => 'Autres métiers',
                         'multiple' => true,
+                        'required' => false,
                         'expanded' =>true,
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('oj')
@@ -289,12 +294,12 @@ class OrganizationsAdmin extends AbstractAdmin
                         'multiple' => true,
                         'expanded' => true
                     ))
-                    ->add('update_datetime', DateTimeType::class, array(
+                    /*->add('update_datetime', DateTimeType::class, array(
                         'label' => false,
                         'pattern' => 'dd MMM y G',
                         'attr' => array('style' => 'display:none'),
                         'data' => new \DateTime(),
-                    ))
+                    ))*/
                     ->add('inscription', CKEditorType::class, array(
                         'label' => 'Comment s’inscrire ?',
                         'help' => 'Description limitée à 2000 caractères',
@@ -328,7 +333,7 @@ class OrganizationsAdmin extends AbstractAdmin
         $datagridMapper
             ->add('name')
             ->add('postal');
-}
+    }
 
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -337,8 +342,16 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add( 'address' , null, array ( 'label' => 'Adresse') )
             ->add( 'postal' , null, array ( 'label' => 'Code postale') )
             ->add( 'city' , null, array ( 'label' => 'Ville') )
-            ->add( 'phone_number' , null, array ( 'label' => 'Téléphone') )
-            ->add( 'mail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add('update_datetime', 'date', array('label' => 'date de modification'));
+            ->add('updateDatetime', null, array('label' => 'date de modification'))
+            ->add('user', null, array('label' => 'Fiche édité ou créé par'));
     }
+
+    protected $datagridValues = array(
+
+        '_sort_order' => 'DESC',
+
+        // name of the ordered field (default = the model's id field, if any)
+        '_sort_by' => 'update_datetime',
+    );
+
 }

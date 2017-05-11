@@ -170,6 +170,7 @@ class Organizations
         $this->staff = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->needs = new ArrayCollection();
+        $this->updateDatetime = new \DateTime();
     }
 
     /**
