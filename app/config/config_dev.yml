@@ -32,5 +32,5 @@ monolog:
 
 swiftmailer:
     transport: gmail
-    username:  dev.wildcodeshool@gmail.com
-    password:  Handissimo
+    username:  handissimo@gmail.com
+    password:  H@nd1ssimo
