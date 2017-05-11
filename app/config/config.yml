@@ -182,9 +182,9 @@ swiftmailer:
     auth_mode: login
     encryption: ssl
     transport: "%mailer_transport%"
-    host:      smtp.gmail.com
-    username:  dev.wildcodeshool@gmail.com
-    password:  "Handissimo2"
+    host:      "%%mailer_host%%"
+    username:  "%%mailer_user%%"
+    password:  "%%mailer_password%%"
     spool:     ~
 
 # FosUserBundle Configuration

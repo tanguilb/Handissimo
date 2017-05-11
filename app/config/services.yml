@@ -136,3 +136,7 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+
+    handissimo.alert_mailer:
+        class: HandissimoBundle\Services\Mailer\AlertMailer
+        arguments: ['@mailer', '@templating']

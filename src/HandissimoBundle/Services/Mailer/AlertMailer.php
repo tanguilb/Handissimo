@@ -3,7 +3,6 @@
 namespace HandissimoBundle\Services\Mailer;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Application\Sonata\UserBundle\Entity\User;
 
 class AlertMailer
 {
@@ -11,7 +10,7 @@ class AlertMailer
     protected $templating;
     private $from = "handissimo@gmail.com";
 
-    public function __construct($mailer, EngineInterface $templating)
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating)
     {
         $this->mailer = $mailer;
         $templating->templating = $templating;
@@ -30,12 +29,12 @@ class AlertMailer
        $this->mailer->send($mail);
     }
 
-    public function alertContactMessage(User $user)
+    public function alertContactMessage()
     {
         $subject = "Un message vous a été envoyé";
         $template = "app/Ressources/views/email/alertContact.html.twig";
         $to = "david.ducruet74@gmail.com";
-        $body = $this->templating->render($template, array('user' => $user));
+        $body = $this->templating->renderView('alertContact.html.twig');
         $this->sendMessage($to, $subject, $body);
     }
 }
