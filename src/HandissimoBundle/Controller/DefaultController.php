@@ -69,4 +69,5 @@ class DefaultController extends Controller
             'comments' => $comments,
         ));
     }
+
 }

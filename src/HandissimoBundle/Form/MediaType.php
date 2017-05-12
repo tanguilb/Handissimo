@@ -21,16 +21,7 @@ class MediaType extends AbstractType
                 'required' => false,
                 'allow_delete' => false,
                 'label' => 'Ajouter une image',
-            ))
-            ->add('caroussel', CheckboxType::class, array(
-                'label' => 'Ajouter au caroussel: ',
-                'required' => false,
-            ))
-            ->add('firstPicture', CheckboxType::class, array(
-                'label' => 'Définir comme image de présentation: ',
-                'required' => false,
-            ))
-        ;
+            ));
     }
     
     /**

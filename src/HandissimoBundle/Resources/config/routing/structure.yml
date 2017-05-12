@@ -3,3 +3,4 @@ structure_page:
     defaults: { _controller: "HandissimoBundle:Default:standardPage" }
     options:
         expose: true
+

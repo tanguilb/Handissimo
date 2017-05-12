@@ -403,11 +403,18 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                 )
             ))
+            ->add('firstPictureFile', VichImageType::class, array(
+                'required' => false,
+                'label' => 'Ajouter une image de présentation',
+                'download_link' => false,
+
+            ))
             ->add('media', CollectionType::class, array(
                 'entry_type' => MediaType::class,
-                'label' => 'Images',
+                'label' => 'Images de la structure',
                 'allow_add' => true,
                 'allow_delete' => true,
+                'delete_empty' => true,
                 'prototype' => true,
                 'by_reference' => false,
                 'required' => false,

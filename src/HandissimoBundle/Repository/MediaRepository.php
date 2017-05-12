@@ -15,13 +15,13 @@ use HandissimoBundle\Entity\Organizations;
  */
 class MediaRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getByUsers($userId, $caroussel = 1)
+    public function getByUsers($userId)
     {
         $query = $this->createQueryBuilder('m')
             ->where('m.user = ?1')
-            ->where('m.caroussel = ?2')
+           // ->where('m.caroussel = ?2')
             ->setParameter(1, $userId)
-            ->setParameter(2, $caroussel)
+            //->setParameter(2, $caroussel)
             ->getQuery();
         return $query->getResult();
     }
@@ -30,7 +30,7 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('m')
             ->orderBy('m.id', 'DESC')
-            ->where('m.firstPicture = 1')
+            //->where('m.firstPicture = 1')
            // ->groupBy('m.webPath')
             ->setMaxResults($limit)
             ->getQuery();
@@ -41,7 +41,7 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('m')
             ->join('m.organizationsImg', 'o')
-            ->where('m.caroussel = 1')
+           // ->where('m.caroussel = 1')
             ->andWhere('m.organizationsImg = ?1')
             ->setParameter(1, $organizationsId)
             ->getQuery();
