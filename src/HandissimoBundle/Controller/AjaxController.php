@@ -3,19 +3,12 @@
 namespace HandissimoBundle\Controller;
 
 
-use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Repository\DisabilityTypesRepository;
-use HandissimoBundle\Repository\NeedsRepository;
-use HandissimoBundle\Repository\OrganizationsRepository;
-use HandissimoBundle\Repository\StaffRepository;
-use HandissimoBundle\Repository\StructuresListRepository;
+use HandissimoBundle\Entity\UserSearch;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Doctrine\Common\Collections\Collection;
-use HandissimoBundle\Form\AdvancedSearchType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class AjaxController extends Controller
@@ -25,7 +18,6 @@ class AjaxController extends Controller
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
         $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
@@ -51,6 +43,7 @@ class AjaxController extends Controller
                 $rlat = $lat[0]['latitude'];
                 $rlong = $long[0]['longitude'];
             }
+
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
@@ -79,19 +72,67 @@ class AjaxController extends Controller
     {
         $session = $request->getSession();
 
-
-
         $result = $session->get('result');
-
-
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
-
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
         $pictures = $repository->findAll();
 
+        $em = $this->getDoctrine()->getManager();
+        $userSearch = new UserSearch();
 
+        $location = $session->get('location');
+        //var_dump($location);die();
+        $age = $session->get('age');
+        $disability = $session->get('disability');
+        $need = $session->get('need');
+        $structure = $session->get('structure');
+        $numberResult = $pagination->getTotalItemCount();
+        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->jeSaisPasCommentFaire($location, $age, $need, $disability, $structure, $numberResult);
+        //var_dump($test);
+        //var_dump($result);die();
+        //var_dump($session->get('location'));
+        //foreach ($test as $key => $tests) {
+        for ($key =0;$key<count($test);$key++){
+            if (
+                $session->get('location') == $test[$key]['location'] &&
+                $session->get('age') == $test[$key]['age'] &&
+                    $session->get('disability') == $test[$key]['disability'] &&
+                        $session->get('need') == $test[$key]['need'] &&
+                            $session->get('structure') == $test[$key]['structure'] &&
+                                $pagination->getTotalItemCount() == $test[$key]['numberResult']
+            ) {
+                $id = $test[$key]['id'];
+                $updateCount = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->find($id);
+                //var_dump($updateCount);
+                $count = $updateCount->getCountRepetition();
+                $updateCount->setCountRepetition($count + 1);
+                //var_dump($updateCount);die();
+                $em->persist($updateCount);
+                $em->flush();
+            }
 
+            if (
+                $session->get('location') !== $test[$key]['location'] &&
+                $session->get('age') !== $test[$key]['age'] &&
+                $session->get('disability') !== $test[$key]['disability'] &&
+                $session->get('need') !== $test[$key]['need'] &&
+                $session->get('structure') !== $test[$key]['structure'] &&
+                $pagination->getTotalItemCount() !== $test[$key]['numberResult']
+            ){
+                $userSearch->setLocation($session->get('location'));
+                $userSearch->setAge($session->get('age'));
+                $userSearch->setNeed($session->get('need'));
+                if ($session->get('disability') != null)
+                    $userSearch->setDisability($session->get('disability')->getDisabilityName());
+                if ($session->get('structure') != null) {
+                    $userSearch->setStructure($session->get('structure')->getName());
+                }
+                $userSearch->setNumberResult($pagination->getTotalItemCount());
+                $em->persist($userSearch);
+                $em->flush();
+
+            }}
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
             'location' => $session->get('location'),

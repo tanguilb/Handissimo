@@ -45,7 +45,7 @@ class UserSearch
     /**
      * @var int
      */
-    private $countRepetition;
+    private $countRepetition = 1;
 
 
     /**
