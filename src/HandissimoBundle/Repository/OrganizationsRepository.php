@@ -38,7 +38,7 @@ class OrganizationsRepository extends EntityRepository
             $ormodule = $query->expr()->andX();
             $ormodule->add($query->expr()->eq('n.needName', ':need'));
             $query->andWhere($ormodule);
-            $query->setParameter('need', $need);
+            $query->setParameter('need', $need->getNeedName());
         }
         if($disability !== null){
             $ormodule = $query->expr()->andX();

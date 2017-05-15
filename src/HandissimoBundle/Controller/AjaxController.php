@@ -147,19 +147,6 @@ class AjaxController extends Controller
         }
     }
 
-    public function searchByNeedsAction(Request $request, $need)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Needs');
-            $needs = $repository->getByNeed($need);
-
-            return new JsonResponse(array("data" => json_encode($needs)));
-        } else {
-            throw  new HttpException('500', 'Invalid call');
-        }
-    }
-
-
     public function searchProfileAction(Request $request, $profileSearch)
     {
         if ($request->isXmlHttpRequest())

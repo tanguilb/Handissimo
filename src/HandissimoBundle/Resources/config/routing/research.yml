@@ -17,8 +17,3 @@ mail_action:
     path:     /mail/{id}
     defaults: { _controller: "HandissimoBundle:Ajax:email" }
     methods:  POST
-
-need_ajax:
-    path:     /ajaxneed/{need}
-    defaults: {_controller: "HandissimoBundle:Ajax:searchByNeeds"}
-    methods:  POST
