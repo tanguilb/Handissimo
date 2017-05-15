@@ -46,7 +46,7 @@ class ResearchType extends AbstractType
                         ->orderBy('dt.disabilityName', 'ASC');
                 },
                 'choice_name' => 'disabilityName',
-                'empty_value' => 'Précisez le handicap'
+                'attr' => array('class' => 'js-example-basic-multiple-responsive', 'multiple' => 'multiple')
             ))
             ->add('structure', EntityType::class, array(
                 'label' => false,
@@ -58,7 +58,7 @@ class ResearchType extends AbstractType
                         ->orderBy('sl.name', 'ASC');
                 },
                 'choice_name' => 'name',
-                'empty_value' => 'Précisez le type de structure'
+                'attr' => array('class' => 'js-example-basic-multiple-responsive', 'multiple' => 'multiple')
             ))
             ->add('save', SubmitType::class,
                 array('label' => 'Trouvez votre solution'));

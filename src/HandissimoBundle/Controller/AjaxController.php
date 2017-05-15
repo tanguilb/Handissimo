@@ -159,6 +159,7 @@ class AjaxController extends Controller
             throw new \HttpException('500', 'Invalid call');
         }
     }
+
     public function emailAction(Request $request, $id)
     {
         if($request->isXmlHttpRequest())
