@@ -41,10 +41,34 @@
                     {% if organization.media is not empty %}
                     <!-- Carousel-->
                         {% include 'front/carousel.html.twig' %}
-                    {% else%}
-                        <div class="container">
-                            <img class="img-responsive img-block" src="{{ asset('images/Etablissement.jpeg') }}" alt="Handissimo - Image principal structure">
-                        </div>
+                    {% elseif organization.orgaStructure != null%}
+                            {% if organization.orgaStructure.type.id == 1 %}
+                                <img src="{{ asset('images/etablissement/Etablissemt_enfants_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 2 %}
+                                <img src="{{ asset('images/etablissement/Etablissemt_Adulte_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 3 %}
+                                <img src="{{ asset('images/etablissement/Reseau_entraide_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 4 %}
+                                <img src="{{ asset('images/etablissement/Administration_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 5 %}
+                                <img src="{{ asset('images/etablissement/Centre_ressources_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 6 %}
+                                <img src="{{ asset('images/etablissement/Etablissemt_Petiteenfance_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 7 %}
+                                <img src="{{ asset('images/etablissement/Ecole_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 8 %}
+                                <img src="{{ asset('images/etablissement/Equipe_mobile_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 9 %}
+                                <img src="{{ asset('images/etablissement/Service_enfants.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 10 %}
+                                <img src="{{ asset('images/etablissement/Service_adultes.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% elseif organization.orgaStructure.type.id == 11 %}
+                                <img src="{{ asset('images/etablissement/Hopitaux_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="max-width"/>
+                            {% else %}
+                                <img class="img-responsive" src="{{ asset('images/Etablissement.jpeg') }}" alt="Handissimo - Image principal structure" id="max-width">
+                            {% endif %}
+                    {% else %}
+                        <img class="img-responsive" src="{{ asset('images/Etablissement.jpeg') }}" alt="Handissimo - Image principal structure" id="max-width">
                     {% endif %}
                 </div>
                 <!-- Map -->

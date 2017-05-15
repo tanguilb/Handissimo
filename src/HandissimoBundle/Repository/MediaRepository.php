@@ -41,6 +41,7 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('m')
             ->join('m.organizationsImg', 'o')
+            //->addSelect('o.firstPicture')
            // ->where('m.caroussel = 1')
             ->andWhere('m.organizationsImg = ?1')
             ->setParameter(1, $organizationsId)

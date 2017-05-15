@@ -67,7 +67,35 @@
                     <div class="row" id="result-container">
                         <div class="col-sm-5">
                             <a href="{{ path('structure_page', {'id': results.id}) }}">
-                            <img src="{{ asset('images/Etablissement.jpeg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
+                            {% if results.firstPicture != null %}
+                                <img src="{{ asset('uploads/first_image/' ~ results.firstPicture) }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
+                            {% else %}
+                                {% if results.stid == null %}
+                                    <img src="{{ asset('images/etablissement/Etablissement.jpeg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 1 %}
+                                    <img src="{{ asset('images/etablissement/Etablissemt_enfants_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 2 %}
+                                    <img src="{{ asset('images/etablissement/Etablissemt_Adulte_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 3 %}
+                                    <img src="{{ asset('images/etablissement/Reseau_entraide_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 4 %}
+                                    <img src="{{ asset('images/etablissement/Administration_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 5 %}
+                                    <img src="{{ asset('images/etablissement/Centre_ressources_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 6 %}
+                                    <img src="{{ asset('images/etablissement/Etablissemt_Petiteenfance_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 7 %}
+                                    <img src="{{ asset('images/etablissement/Ecole_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 8 %}
+                                    <img src="{{ asset('images/etablissement/Equipe_mobile_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 9 %}
+                                    <img src="{{ asset('images/etablissement/Service_enfants.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 10 %}
+                                    <img src="{{ asset('images/etablissement/Service_adultes.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% elseif results.stid == 11 %}
+                                    <img src="{{ asset('images/etablissement/Hopitaux_OK.png') }}" class="img-responsive" alt="Photographie par défaut" id="img-search"/>
+                                {% endif %}
+                            {% endif %}
                             </a>
                         </div>
                         <div class="col-sm-7">

@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class StructureTypeAdmin extends AbstractAdmin
 {
@@ -19,6 +20,7 @@ class StructureTypeAdmin extends AbstractAdmin
         $datagridMapper
             ->add('id')
             ->add('name')
+
         ;
     }
 
@@ -49,6 +51,11 @@ class StructureTypeAdmin extends AbstractAdmin
             ->add('name', TextType::class, array(
                 'label' => 'Type de structure',
                 'required' => false,
+            ))
+            ->add('pictureFile', VichImageType::class, array(
+                'label' => 'Vous pouvez télécharger ici une image :',
+                'required' => false,
+                'download_link' => false,
             ))
         ;
     }

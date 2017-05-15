@@ -11,6 +11,13 @@ HandissimoBundle\Entity\StructureType:
         name:
             type: string
             length: 255
+        picture:
+            type: string
+            length: 255
+            nullable: true
+        pictureUpdatedAt:
+            type: datetime
+            nullable: true
 
     oneToMany:
         structure:

@@ -151,17 +151,48 @@
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for images in carousel %}
+
                                         <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
                                     {% endfor %}
                                 </ol>
                                 <div class="carousel-inner embed-responsive embed-responsive-16by9" role="listbox">
                                     {% for images in carousel %}
                                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                                            <a href="{{ path('structure_page', {'id': images.organizationsImg.id}) }}" class="block-img">
-                                                <img id="img-carousel" src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
+                                            <a href="{{ path('structure_page', {'id': images.id}) }}" class="block-img">
+                                                {% if images.firstPicture != null %}
+                                                <img id="img-carousel" src="{{ asset('uploads/first_image/' ~ images.firstPicture) }}" alt="Je connais une solution"/>
+                                                {% elseif images.orgaStructure == null %}
+                                                    <img id="img-carousel" src="{{ asset('images/etablissement/Etablissement.jpeg') }}" alt="image par défaut"/>
+                                                {% elseif images.orgaStructure != null %}
+                                                    {% if images.orgaStructure.type.id == "1" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Etablissemt_enfants_OK.png') }}" alt="image par défaut établissement enfants"/>
+                                                    {% elseif images.orgaStructure.type.id == "2"  %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Etablissemt_Adulte_OK.png') }}" alt="image par défaut établissement adulte"/>
+                                                    {% elseif images.orgaStructure.type.id == "3" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Reseau_entraide_OK.png') }}" alt="image par defaut réseau d'entraide"/>
+                                                    {% else images.orgaStructure.type.id == "4" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Administration_OK.png') }}" alt="image par defaut administration"/>
+                                                    {% elseif images.orgaStructure.type.id == "5" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Centre_ressources_OK.png') }}" alt="image par défaut centre de ressources" />
+                                                    {% elseif images.orgaStructure.type.id == "6" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Etablissemt_Petiteenfance_OK.png') }}" alt="image par défaut établissement petite enfance" />
+                                                    {% elseif images.orgaStructure.type.id == "7" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Ecole_OK.png') }}" alt="image par défaut école"/>
+                                                    {% elseif images.orgaStructure.type.id == "8" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Equipe_mobile_OK.png') }}" alt="image par défaut équipe mobile"/>
+                                                    {% elseif images.orgaStructure.type.id == "9" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Service_enfants.png') }}" alt="image par défaut service enfants"/>
+                                                    {% elseif images.orgaStructure.type.id == "10" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Service_adultes.png') }}" alt="image par défaut services adulte"/>
+                                                    {% elseif images.orgaStructure.type.id == "11" %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Hopitaux_OK.png') }}" alt="image par défaut administration"/>
+                                                    {% else %}
+                                                        <img id="img-carousel" src="{{ asset('images/etablissement/Etablissement.jpeg') }}" alt="image par défaut"/>
+                                                    {% endif %}
+                                                {% endif %}
                                                 <div class="carousel-caption">
-                                                    <h3>{{ images.organizationsImg.name }}</h3>
-                                                    <p>{{ images.organizationsImg.postal }} {{ images.organizationsImg.city }}</p>
+                                                    <h3>{{ images.name }}</h3>
+                                                    <p>{{ images.postal }} {{ images.city }}</p>
                                                 </div>
                                             </a>
                                         </div>
