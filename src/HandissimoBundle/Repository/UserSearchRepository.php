@@ -10,25 +10,10 @@ namespace HandissimoBundle\Repository;
  */
 class UserSearchRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function jeSaisPasCommentFaire($location, $age, $need, $disability, $structure, $numberResult)
+    public function findUserSearches($location, $age, $need, $disability, $structure, $numberResult)
     {
         $qb = $this->createQueryBuilder('u');
         $qb->select('u.id', 'u.location', 'u.age', 'u.need', 'u.disability', 'u.structure', 'u.numberResult');
-        /*$qb->Where('u.location = :location');
-        $qb->setParameter('location', $location);
-        $qb->andWhere('u.age = :age');
-        $qb->setParameter('age', $age);
-        $qb->andWhere('u.need = :need');
-        $qb->setParameter('need', $need);
-        $qb->andWhere('u.disability = :disability');
-        $qb->setParameter('disability', $disability);
-        $qb->andWhere('u.structure = :structure');
-        $qb->setParameter('structure', $structure);
-        $qb->andWhere('u.numberResult = :numberResult');
-        $qb->setParameter('numberResult', $numberResult);
-
-        return $qb->getQuery()->getResult();*/
-
 
         if ($location !== null){
             $andmodule = $qb->expr()->andX();

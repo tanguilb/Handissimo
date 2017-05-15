@@ -78,48 +78,38 @@ class AjaxController extends Controller
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
         $pictures = $repository->findAll();
 
+        /**
+         * Method for saving user searches in database
+         */
         $em = $this->getDoctrine()->getManager();
         $userSearch = new UserSearch();
 
         $location = $session->get('location');
-        //var_dump($location);die();
         $age = $session->get('age');
         $disability = $session->get('disability');
         $need = $session->get('need');
         $structure = $session->get('structure');
         $numberResult = $pagination->getTotalItemCount();
-        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->jeSaisPasCommentFaire($location, $age, $need, $disability, $structure, $numberResult);
-        //var_dump($test);
-        //var_dump($result);die();
-        //var_dump($session->get('location'));
-        //foreach ($test as $key => $tests) {
-        for ($key =0;$key<count($test);$key++){
+        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disability, $structure, $numberResult);
+
+        for ($key =0;$key<count($test);$key++) {
             if (
                 $session->get('location') == $test[$key]['location'] &&
                 $session->get('age') == $test[$key]['age'] &&
-                    $session->get('disability') == $test[$key]['disability'] &&
-                        $session->get('need') == $test[$key]['need'] &&
-                            $session->get('structure') == $test[$key]['structure'] &&
-                                $pagination->getTotalItemCount() == $test[$key]['numberResult']
+                $session->get('disability') == $test[$key]['disability'] &&
+                $session->get('need') == $test[$key]['need'] &&
+                $session->get('structure') == $test[$key]['structure'] &&
+                $pagination->getTotalItemCount() == $test[$key]['numberResult']
             ) {
                 $id = $test[$key]['id'];
                 $updateCount = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->find($id);
-                //var_dump($updateCount);
                 $count = $updateCount->getCountRepetition();
                 $updateCount->setCountRepetition($count + 1);
-                //var_dump($updateCount);die();
                 $em->persist($updateCount);
                 $em->flush();
             }
-
-            if (
-                $session->get('location') !== $test[$key]['location'] &&
-                $session->get('age') !== $test[$key]['age'] &&
-                $session->get('disability') !== $test[$key]['disability'] &&
-                $session->get('need') !== $test[$key]['need'] &&
-                $session->get('structure') !== $test[$key]['structure'] &&
-                $pagination->getTotalItemCount() !== $test[$key]['numberResult']
-            ){
+        }
+            if ($test == null ){
                 $userSearch->setLocation($session->get('location'));
                 $userSearch->setAge($session->get('age'));
                 $userSearch->setNeed($session->get('need'));
@@ -131,8 +121,8 @@ class AjaxController extends Controller
                 $userSearch->setNumberResult($pagination->getTotalItemCount());
                 $em->persist($userSearch);
                 $em->flush();
+            }
 
-            }}
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
             'location' => $session->get('location'),
