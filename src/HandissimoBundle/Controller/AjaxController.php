@@ -48,6 +48,7 @@ class AjaxController extends Controller
             }
 
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
+            //dump($result);die();
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
