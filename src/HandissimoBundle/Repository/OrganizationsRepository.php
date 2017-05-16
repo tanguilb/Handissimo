@@ -197,4 +197,14 @@ class OrganizationsRepository extends EntityRepository
         return $query->getSingleResult();
     }
 
+    public function getByName($name)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->where('o.name = ?1')
+            ->setParameter(1, $name)
+            ->getQuery();
+        //echo $query->getQuery()->getSQL();;die();
+        return $query->getSingleResult();
+    }
+
 }

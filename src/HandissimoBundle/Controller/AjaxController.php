@@ -17,7 +17,10 @@ class AjaxController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
+        $formQuick = $this->createForm('HandissimoBundle\Form\Type\OrganizationNameSearchType');
+
         $form->handleRequest($request);
+        $formQuick->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
@@ -52,6 +55,10 @@ class AjaxController extends Controller
             $pagination->setUsedRoute('research_action');
 
             return $this->redirectToRoute('research_action');
+        } elseif($formQuick->isSubmitted() && $formQuick->isValid()) {
+            $structure = $formQuick->getData()['organizationName'];
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByName($structure);
+            return $this->redirectToRoute('structure_page', array('id' => $result->getId()));
         }
         $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPictureByOrrganizations(6);
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
@@ -60,6 +67,7 @@ class AjaxController extends Controller
         $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
         $statOrganizations = $repository->getAllOrganizations();
         return $this->render('front/index.html.twig', array(
+            'formQuick' => $formQuick->createView(),
             'form' => $form->createView(),
             'carousel' => $carousel,
             'organizations' => $organizations,
@@ -159,6 +167,20 @@ class AjaxController extends Controller
             throw new \HttpException('500', 'Invalid call');
         }
     }
+
+    public function organizationNameSearchAction(Request $request, $organizationSearch)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $organization = $repository->getSearchProfile($organizationSearch);
+
+            return new JsonResponse(array("data" => json_encode($organization)));
+        }else{
+            throw new \HttpException('500', 'Invalid call');
+        }
+    }
+
     public function emailAction(Request $request, $id)
     {
         if($request->isXmlHttpRequest())
