@@ -56,7 +56,7 @@ class AjaxController extends Controller
 
             return $this->redirectToRoute('research_action');
         }
-        $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getLastOrganizations(6);
+        $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPictureByOrrganizations(6);
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
         $organizations = $repository->findAll();
 

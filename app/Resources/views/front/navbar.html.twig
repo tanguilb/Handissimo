@@ -35,7 +35,13 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <div class="btn-group">
                             <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ asset('images/avatar/businessman.png') }}" class="img-avatar">
+                                {% if app.user.userType == "Professionnel(le)" %}
+                                    <img src="{{ asset('images/avatar/businessman.png') }}" class="img-avatar">
+                                {% elseif app.user.userType == "Personne concerné par le handicap" %}
+                                    <img src="{{ asset('images/avatar/manager.png') }}" class="img-avatar">
+                                {% elseif app.user.userType == "Autre" %}
+                                    <img src="{{ asset('images/avatar/doctor-1.png') }}" class="img-avatar">
+                                {% endif %}
                                 Bonjour {{ app.user.username }}
                                 <span class="caret"></span>
                             </button>

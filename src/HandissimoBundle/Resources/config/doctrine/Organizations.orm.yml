@@ -201,6 +201,13 @@ HandissimoBundle\Entity\Organizations:
         structureLogoUpdatedAt:
             type: datetime
             nullable: true
+        firstPictureUpdateAt:
+            type: datetime
+            nullable: true
+        firstPicture:
+            type: string
+            length: 255
+            nullable: true
 
 
     oneToMany:

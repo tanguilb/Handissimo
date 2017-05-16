@@ -2,6 +2,8 @@
 
 namespace HandissimoBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * StructureType
  */
@@ -21,6 +23,12 @@ class StructureType
      * @var string
      */
     private $name;
+
+    private $picture;
+
+    private $pictureFile;
+
+    private $pictureUpdatedAt;
 
 
     /**
@@ -101,5 +109,54 @@ class StructureType
     public function getStructure()
     {
         return $this->structure;
+    }
+
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+    public function setPictureFile(File $pictureFile=null)
+    {
+        $this->pictureFile = $pictureFile;
+        if($pictureFile) {
+            $this->pictureUpdatedAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * Set pictureUpdatedAt
+     *
+     * @param \DateTime $pictureUpdatedAt
+     *
+     * @return StructureType
+     */
+    public function setPictureUpdatedAt($pictureUpdatedAt)
+    {
+        $this->pictureUpdatedAt = $pictureUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get firstPictureUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getPictureUpdatedAt()
+    {
+        return $this->pictureUpdatedAt;
     }
 }
