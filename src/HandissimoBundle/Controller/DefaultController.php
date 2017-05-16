@@ -46,8 +46,27 @@ class DefaultController extends Controller
 
     public function standardPageAction(Organizations $organization){
         $organizationsId = $organization->getId();
-        $pictures = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getImageByOrganizations($organizationsId);
+        $arraypicture = array();
+        $firstPicture = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPicture($organizationsId);
+        if($firstPicture->getFirstPicture() !== null)
+        {
+            array_push($arraypicture, 'uploads/first_image/' . $firstPicture->getFirstPicture());
+        } elseif ($organization->getOrgaStructure() !== null) {
+            if ($organization->getOrgaStructure()->getType()->getPicture() !== null){
+                array_push($arraypicture, 'uploads/etablissement/' . $organization->getOrgaStructure()->getType()->getPicture());
+            } else {
+                array_push($arraypicture, 'images/Etablissement.jpeg');
+            }
+        } else {
+            array_push($arraypicture, 'images/Etablissement.jpeg');
+        }
 
+        $picture = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getImageByOrganizations($organizationsId);
+
+        foreach ($picture as $pictures)
+        {
+            array_push($arraypicture, 'uploads/image/' . $pictures->getFileName());
+        }
         $user = $this->getUser();
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
@@ -63,10 +82,11 @@ class DefaultController extends Controller
         $comments = $organization->getComments();
         return $this->render(':front:organizationPage.html.twig', array(
             'form' => $form->createView(),
-            'pictures' => $pictures,
+            'pictures' => $arraypicture,
             'user' => $user,
             'organization' => $organization,
             'comments' => $comments,
         ));
     }
+
 }

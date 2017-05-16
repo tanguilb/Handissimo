@@ -12,20 +12,19 @@ HandissimoBundle\Entity\Media:
         fileName:
             type: string
             length: '100'
+            nullable: true
         updated:
             type: datetime
             nullable: true
         webPath:
             type: string
             length: 255
+            nullable: true
         thumbnails:
             type: string
             length: 255
             nullable: true
-        caroussel:
-            type: boolean
-        firstPicture:
-            type: boolean
+
 
     manyToOne:
         organizationsImg:

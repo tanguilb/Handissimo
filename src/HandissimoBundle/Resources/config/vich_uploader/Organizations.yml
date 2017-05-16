@@ -10,3 +10,7 @@ HandissimoBundle\Entity\Organizations:
     structureLogoFile:
         mapping: organizations_structureLogo
         filename_property: structureLogo
+
+    firstPictureFile:
+        mapping: organizations_firstPicture
+        filename_property: firstPicture

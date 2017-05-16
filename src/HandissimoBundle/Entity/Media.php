@@ -2,7 +2,7 @@
 
 namespace HandissimoBundle\Entity;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Media
@@ -30,35 +30,43 @@ class Media
 
     private $webPath;
 
-    private $file;
+    private $imageFile;
 
-
-
-    public function setFile(UploadedFile $file = null)
+    public function setImageFile(File $image=null)
     {
-        $this->file = $file;
+        $this->imageFile = $image;
+        if ($image){
+            $this->updated = new \DateTimeImmutable();
+        }
+        return $this;
     }
 
-    public function getFile()
+
+  /*  public function setFile(UploadedFile $file = null)
     {
-        return $this->file;
+        $this->file = $file;
+    }*/
+
+    public function getimageFile()
+    {
+        return $this->imageFile;
     }
 
     public function upload()
     {
-        if(null === $this->getFile())
+        if(null === $this->getImageFile())
         {
             return;
         }
 
-        $this->getFile()->move(
+        $this->getimageFile()->move(
             self::PATH_TO_UPLOAD_FILE,
-            $this->getFile()->getClientOriginalName()
+            $this->getimageFile()->getClientOriginalName()
         );
 
-        if($this->getFile()->getClientOriginalExtension() == 'jpeg' or $this->getFile()->getClientOriginalExtension() == 'jpg' or $this->getFile()->getClientOriginalExtension() == 'JPG' or $this->getFile()->getClientOriginalExtension() == 'JPEG'){
+        if($this->getimageFile()->getClientOriginalExtension() == 'jpeg' or $this->getimageFile()->getClientOriginalExtension() == 'jpg' or $this->getimageFile()->getClientOriginalExtension() == 'JPG' or $this->getimageFile()->getClientOriginalExtension() == 'JPEG'){
         // resize image in thumbnials and for caroussel
-        $origin = imagecreatefromjpeg(self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName());
+        $origin = imagecreatefromjpeg(self::PATH_TO_UPLOAD_FILE.'/'.$this->getimageFile()->getClientOriginalName());
         $widthOrigin = imagesx($origin);
         $heightOrigin = imagesy($origin);
 
@@ -80,17 +88,17 @@ class Media
         imagecopyresampled($targetDir, $origin, 0, 0, 0, 0, $widthTargetDir, $heightTargetDir, $widthOrigin, $heightOrigin);
         imagecopyresampled($targetDir1, $origin, 0, 0, 0, 0, $widthTargetDir1, $heightTargetDir1, $widthOrigin, $heightOrigin);
 
-        imagejpeg($targetDir, self::PATH_TO_UPLOAD_FILE."/mini-".$this->getFile()->getClientOriginalName());
-        imagejpeg($targetDir1, self::PATH_TO_UPLOAD_FILE."/".$this->getFile()->getClientOriginalName());
+        imagejpeg($targetDir, self::PATH_TO_UPLOAD_FILE."/mini-".$this->getimageFile()->getClientOriginalName());
+        imagejpeg($targetDir1, self::PATH_TO_UPLOAD_FILE."/".$this->getimageFile()->getClientOriginalName());
 
-        $this->thumbnails = self::PATH_TO_UPLOAD_FILE.'/mini-'.$this->getFile()->getClientOriginalName();
-        $this->webPath = self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName();
+        $this->thumbnails = self::PATH_TO_UPLOAD_FILE.'/mini-'.$this->getimageFile()->getClientOriginalName();
+        $this->webPath = self::PATH_TO_UPLOAD_FILE.'/'.$this->getimageFile()->getClientOriginalName();
 
-        $this->fileName = $this->getFile()->getClientOriginalName();
+        $this->fileName = $this->getimageFile()->getClientOriginalName();
 
-        $this->setFile(null);
-        } elseif($this->getFile()->getClientOriginalExtension() == 'png' or $this->getFile()->getClientOriginalExtension() == 'PNG') {
-            $origin = imagecreatefrompng(self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName());
+        $this->setImageFile(null);
+        } elseif($this->getimageFile()->getClientOriginalExtension() == 'png' or $this->getimageFile()->getClientOriginalExtension() == 'PNG') {
+            $origin = imagecreatefrompng(self::PATH_TO_UPLOAD_FILE.'/'.$this->getimageFile()->getClientOriginalName());
             $widthOrigin = imagesx($origin);
             $heightOrigin = imagesy($origin);
 
@@ -112,15 +120,15 @@ class Media
             imagecopyresampled($targetDir, $origin, 0, 0, 0, 0, $widthTargetDir, $heightTargetDir, $widthOrigin, $heightOrigin);
             imagecopyresampled($targetDir1, $origin, 0, 0, 0, 0, $widthTargetDir1, $heightTargetDir1, $widthOrigin, $heightOrigin);
 
-            imagepng($targetDir, self::PATH_TO_UPLOAD_FILE."/mini-".$this->getFile()->getClientOriginalName());
-            imagepng($targetDir1, self::PATH_TO_UPLOAD_FILE."/".$this->getFile()->getClientOriginalName());
+            imagepng($targetDir, self::PATH_TO_UPLOAD_FILE."/mini-".$this->getimageFile()->getClientOriginalName());
+            imagepng($targetDir1, self::PATH_TO_UPLOAD_FILE."/".$this->getimageFile()->getClientOriginalName());
 
-            $this->thumbnails = self::PATH_TO_UPLOAD_FILE.'/mini-'.$this->getFile()->getClientOriginalName();
-            $this->webPath = self::PATH_TO_UPLOAD_FILE.'/'.$this->getFile()->getClientOriginalName();
+            $this->thumbnails = self::PATH_TO_UPLOAD_FILE.'/mini-'.$this->getimageFile()->getClientOriginalName();
+            $this->webPath = self::PATH_TO_UPLOAD_FILE.'/'.$this->getimageFile()->getClientOriginalName();
 
-            $this->fileName = $this->getFile()->getClientOriginalName();
+            $this->fileName = $this->getimageFile()->getClientOriginalName();
 
-            $this->setFile(null);
+            $this->setImageFile(null);
         }
 
     }

@@ -1,0 +1,4 @@
+HandissimoBundle\Entity\StructureType:
+    pictureFile:
+        mapping: structure_type_picture
+        filename_property: picture

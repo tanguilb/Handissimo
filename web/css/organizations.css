@@ -67,6 +67,10 @@ logos{
 
 }
 
+#max-width {
+    max-width: 600px;
+}
+
 /* Essential block */
 .essential-block{
       margin:10px 0 0 0 ;
