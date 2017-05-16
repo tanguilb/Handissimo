@@ -14,3 +14,7 @@ services:
         arguments: [~, HandissimoBundle\Entity\EditContent, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Contenu éditable, label: Modification du contenu }
+
+    #search_recorder:
+    #    class:     HandissimoBundle\Services\Recorder\SearchRecorder
+     #   arguments: ["@request_stack"]

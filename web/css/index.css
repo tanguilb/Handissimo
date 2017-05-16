@@ -13,9 +13,6 @@
     #main-index #title-index {
         margin-top: 10%;
     }
-
-
-
 }
 
 @media screen and (max-width: 1280px){
@@ -54,7 +51,6 @@
     #headband-solution .headband-title{
         font-size: 1.5em;
     }
-
     #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
         font-size: 1.6em;
     }
@@ -67,13 +63,11 @@
     #block-call #btn-call {
         font-size: 1.2em;
     }
-
     #text-carousel p,
     #video p,
     #block-img-week p{
         font-size: 0.7em;
     }
-
 }
 
 @media screen and (max-width: 780px)
@@ -234,14 +228,24 @@
     border-bottom: solid 1px #777777;
 }
 
+#research_action_need {
+    background-color: #ffffff;
+}
+
+#research_action_need option {
+    color: #777777;
+}
+.empty-need {
+    color: #c0c0c0;
+}
+
 #research_action_age,
 #research_action_postal,
 #research_action_need {
     margin-bottom: 10px;
 }
 
-#city,
-#need {
+#city {
     position: absolute;
     width: 100%;
     padding: 0;
@@ -251,8 +255,7 @@
     border-radius: 3px;
 }
 
-#city li,
-#need li {
+#city li {
     list-style: none;
     background-color: #FFFFFF;
     cursor: pointer;
@@ -267,7 +270,7 @@
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
-#city li:hover, #need li:hover {
+#city li:hover {
     background-color: #F4F3F2;
     font-size: 16px;
     font-weight: 600;

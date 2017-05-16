@@ -23,7 +23,7 @@
             {{ use.howToUse|raw }}
         {% endfor %}
         {% for flash_message in app.session.flashBag.get('notice') %}
-            <div class="alert alert-info alert-dismissible" role="alert">
+            <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 {{ flash_message }}
             </div>
@@ -34,7 +34,6 @@
                 {{ flash_message }}
             </div>
         {% endfor %}
-
         <div class="col-md-offset-2 col-md-7 col-xs-12">
             <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form-solution">
                 {{ form_start(form) }}
@@ -49,22 +48,18 @@
                 {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2', 'placeholder': 'name of your solution'|trans({}, 'messages')}}) }}
                 {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
                 <p>
-                {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
+                    {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
                 {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
                 <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptchaTwo" id="hiddenRecaptchaTwo">
-                <div class="block-btn-structure">
-                    <div class="col-md-6 col-xs-12">
-                        <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
-                    </div>
-                    <div class="col-md-6 col-xs-12">
-                        <div class="block-btn-homepage">
-                            <a href="{{ path('index_action') }}" class="btn btn-homepage" role="button">
-                                Retour à l'accueil
-                            </a>
-                        </div>
-                    </div>
+                <div class="col-md-6 col-xs-12">
+                    <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
                 </div>
                 {{ form_end(form) }}
+                <div class="col-md-6 col-xs-12">
+                    <a href="{{ path('index_action') }}" class="btn btn-homepage" role="button">
+                        Retour à l'accueil
+                    </a>
+                </div>
             </form>
         </div>
     </div>

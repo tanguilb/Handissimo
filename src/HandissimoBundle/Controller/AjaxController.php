@@ -3,19 +3,12 @@
 namespace HandissimoBundle\Controller;
 
 
-use HandissimoBundle\Entity\DisabilityTypes;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Repository\DisabilityTypesRepository;
-use HandissimoBundle\Repository\NeedsRepository;
-use HandissimoBundle\Repository\OrganizationsRepository;
-use HandissimoBundle\Repository\StaffRepository;
-use HandissimoBundle\Repository\StructuresListRepository;
+use HandissimoBundle\Entity\UserSearch;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Doctrine\Common\Collections\Collection;
-use HandissimoBundle\Form\AdvancedSearchType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class AjaxController extends Controller
@@ -25,10 +18,10 @@ class AjaxController extends Controller
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
         $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
+
             $location = $form->getData()['postal'];
             $age = $form->getData()['age'];
             $need = $form->getData()['need'];
@@ -50,6 +43,7 @@ class AjaxController extends Controller
                 $rlat = $lat[0]['latitude'];
                 $rlong = $long[0]['longitude'];
             }
+
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
@@ -78,18 +72,56 @@ class AjaxController extends Controller
     {
         $session = $request->getSession();
 
-
-
         $result = $session->get('result');
-
-
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
-
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Media');
         $pictures = $repository->findAll();
 
+        /**
+         * Method for saving user searches in database
+         */
+        $em = $this->getDoctrine()->getManager();
+        $userSearch = new UserSearch();
 
+        $location = $session->get('location');
+        $age = $session->get('age');
+        $disability = $session->get('disability');
+        $need = $session->get('need');
+        $structure = $session->get('structure');
+        $numberResult = $pagination->getTotalItemCount();
+        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disability, $structure, $numberResult);
+
+        for ($key =0;$key<count($test);$key++) {
+            if (
+                $session->get('location') == $test[$key]['location'] &&
+                $session->get('age') == $test[$key]['age'] &&
+                $session->get('disability') == $test[$key]['disability'] &&
+                $session->get('need') == $test[$key]['need'] &&
+                $session->get('structure') == $test[$key]['structure'] &&
+                $pagination->getTotalItemCount() == $test[$key]['numberResult']
+            ) {
+                $id = $test[$key]['id'];
+                $updateCount = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->find($id);
+                $count = $updateCount->getCountRepetition();
+                $updateCount->setCountRepetition($count + 1);
+                $em->persist($updateCount);
+                $em->flush();
+            }
+        }
+            if ($test == null ){
+                $userSearch->setLocation($session->get('location'));
+                $userSearch->setAge($session->get('age'));
+                $userSearch->setNeed($session->get('need'));
+                if ($session->get('disability') != null)
+                    $userSearch->setDisability($session->get('disability')->getDisabilityName());
+                if ($session->get('structure') != null) {
+                    $userSearch->setStructure($session->get('structure')->getName());
+                }
+                $userSearch->setNumberResult($pagination->getTotalItemCount());
+                $em->persist($userSearch);
+                $em->flush();
+            }
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
@@ -114,19 +146,6 @@ class AjaxController extends Controller
             throw  new HttpException('500', 'Invalid call');
         }
     }
-
-    public function searchByNeedsAction(Request $request, $need)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Needs');
-            $needs = $repository->getByNeed($need);
-
-            return new JsonResponse(array("data" => json_encode($needs)));
-        } else {
-            throw  new HttpException('500', 'Invalid call');
-        }
-    }
-
 
     public function searchProfileAction(Request $request, $profileSearch)
     {

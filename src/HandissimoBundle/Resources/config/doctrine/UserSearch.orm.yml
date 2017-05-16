@@ -1,0 +1,35 @@
+HandissimoBundle\Entity\UserSearch:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\UserSearchRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        location:
+            type: string
+            length: 255
+            nullable: true
+        age:
+            type: integer
+            nullable: true
+        need:
+            type: string
+            length: 255
+            nullable: true
+        disability:
+            type: string
+            length: 255
+            nullable: true
+        structure:
+            type: string
+            length: 255
+            nullable: true
+        numberResult:
+            type: integer
+        countRepetition:
+            type: integer
+    lifecycleCallbacks: {  }
