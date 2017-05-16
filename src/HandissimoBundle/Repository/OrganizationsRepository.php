@@ -12,12 +12,14 @@ class OrganizationsRepository extends EntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
-        $query->select('o');
-        //$query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude');
+        $query->select('o.name');
+        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude', 'o.firstPicture');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
+        $query->leftJoin('sl.type', 'st');
+        $query->addSelect('st.picture as picture');
 
         if($lat !== null and $long !== null)
         {
@@ -176,5 +178,23 @@ class OrganizationsRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getFirstPictureByOrrganizations($limit)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->orderBy('o.id', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery();
+        return $query->getResult();
+
+    }
+
+    public function getFirstPicture($id)
+    {
+        $query = $this->createQueryBuilder('o')
+           // ->select('o.firstPicture')
+            ->where('o.id = ' .$id)
+            ->getQuery();
+        return $query->getSingleResult();
+    }
 
 }

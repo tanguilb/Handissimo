@@ -151,17 +151,30 @@
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for images in carousel %}
+
                                         <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
                                     {% endfor %}
                                 </ol>
                                 <div class="carousel-inner embed-responsive embed-responsive-16by9" role="listbox">
                                     {% for images in carousel %}
                                         <div {% if loop.index0 == 0 %} class="item active" {% else %} class="item" {% endif %}>
-                                            <a href="{{ path('structure_page', {'id': images.organizationsImg.id}) }}" class="block-img">
-                                                <img id="img-carousel" src="{{ asset(images.webPath) }}" alt="Je connais une solution"/>
+                                            <a href="{{ path('structure_page', {'id': images.id}) }}" class="block-img">
+                                                {% if images.firstPicture != null %}
+                                                <img id="img-carousel" src="{{ asset('uploads/first_image/' ~ images.firstPicture) }}" alt="Je connais une solution"/>
+                                                {% elseif images.orgaStructure == null %}
+                                                    <img id="img-carousel" src="{{ asset('images/Etablissement.jpeg') }}" alt="image par défaut"/>
+                                                {% elseif images.orgaStructure != null %}
+                                                    {% if images.orgaStructure.type != null %}
+                                                        {% if images.orgaStructure.type.picture != null %}
+                                                            <img id="img-carousel" src="{{ asset('uploads/etablissement/' ~ images.orgaStructure.type.picture) }}" alt="image par défaut {{ images.orgaStructure.type.name }}" />
+                                                        {% else %}
+                                                            <img id="img-carousel" src="{{ asset('images/Etablissement.jpeg') }}" alt="image par défaut"/>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
                                                 <div class="carousel-caption">
-                                                    <h3>{{ images.organizationsImg.name }}</h3>
-                                                    <p>{{ images.organizationsImg.postal }} {{ images.organizationsImg.city }}</p>
+                                                    <h3>{{ images.name }}</h3>
+                                                    <p>{{ images.postal }} {{ images.city }}</p>
                                                 </div>
                                             </a>
                                         </div>

@@ -2078,4 +2078,59 @@ class Organizations
     {
         return $this->structureLogoFile;
     }
+
+    private $firstPicture;
+
+    private $firstPictureFile;
+
+    private $firstPictureUpdateAt;
+
+    public function getFirstPicture()
+    {
+        return $this->firstPicture;
+    }
+
+    public function setFirstPicture($firstPicture)
+    {
+        $this->firstPicture = $firstPicture;
+
+        return $this;
+    }
+    public function setFirstPictureFile(File $firstPictureFile=null)
+    {
+        $this->firstPictureFile = $firstPictureFile;
+        if($firstPictureFile) {
+            $this->firstPictureUpdateAt = new \DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getFirstPictureFile()
+    {
+        return $this->firstPictureFile;
+    }
+
+    /**
+     * Set firstPictureUpdatedAt
+     *
+     * @param \DateTime $firstPictureUpdatedAt
+     *
+     * @return Organizations
+     */
+    public function setFirstPictureUpdatedAt($firstPictureUpdatedAt)
+    {
+        $this->firstPictureUpdateAt = $firstPictureUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get firstPictureUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getFirstPictureUpdatedAt()
+    {
+        return $this->firstPictureUpdateAt;
+    }
 }

@@ -67,7 +67,15 @@
                     <div class="row" id="result-container">
                         <div class="col-sm-5">
                             <a href="{{ path('structure_page', {'id': results.id}) }}">
-                            <img src="{{ asset('images/Etablissement.jpeg') }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
+                            {% if results.firstPicture != null %}
+                                <img src="{{ asset('uploads/first_image/' ~ results.firstPicture) }}" class="img-responsive" alt="Photographie par défaut" id="img-search">
+                            {% else %}
+                                {% if results.picture != null %}
+                                    <img src="{{ asset('uploads/etablissement/' ~ results.picture) }}" class="img-responsive" alt="Image par défaut {{ results.picture }}" id="img-search"/>
+                                {% else %}
+                                    <img src="{{ asset('images/Etablissement.jpeg') }}" class="img-responsive" alt="Image par défaut" id="img-search"/>
+                                {% endif %}
+                            {% endif %}
                             </a>
                         </div>
                         <div class="col-sm-7">

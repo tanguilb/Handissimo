@@ -13,6 +13,7 @@ use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
@@ -26,6 +27,11 @@ class OrganizationsAdmin extends AbstractAdmin
                     ->add('name', TextType::class, array(
                         'label' => 'Nom de la structure',
                         'required' => true
+                    ))
+                    ->add('structureLogoFile', VichImageType::class, array(
+                        'label' => 'Vous pouvez télécharger ici votre logo :',
+                        'required' => false,
+                        'download_link' => false,
                     ))
                     /*->add('structureLogo', FileType::class, array(
                         'label' => 'Si vous avez un logo vous pouvez le télécharger',

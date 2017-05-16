@@ -13,4 +13,3 @@ organizations_delete:
     defaults: { _controller: "HandissimoBundle:Organizations:delete" }
     methods:  DELETE
 
-

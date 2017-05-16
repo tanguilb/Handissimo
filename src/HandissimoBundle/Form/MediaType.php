@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class MediaType extends AbstractType
 {
@@ -16,19 +17,11 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', FileType::class, array(
+            ->add('imageFile', VichImageType::class, array(
                 'required' => false,
+                'allow_delete' => false,
                 'label' => 'Ajouter une image',
-            ))
-            ->add('caroussel', CheckboxType::class, array(
-                'label' => 'Ajouter au caroussel: ',
-                'required' => false,
-            ))
-            ->add('firstPicture', CheckboxType::class, array(
-                'label' => 'Définir comme image de présentation: ',
-                'required' => false,
-            ))
-        ;
+            ));
     }
     
     /**
