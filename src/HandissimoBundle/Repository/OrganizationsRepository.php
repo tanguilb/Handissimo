@@ -19,7 +19,7 @@ class OrganizationsRepository extends EntityRepository
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
         $query->leftJoin('sl.type', 'st');
-        $query->addSelect('st.id as stid');
+        $query->addSelect('st.picture as picture');
 
         if($lat !== null and $long !== null)
         {

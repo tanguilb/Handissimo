@@ -318,7 +318,7 @@ vich_uploader:
             namer: vich_uploader.namer_origname
 
         organizations_firstPicture:
-            uri_prefix: /uploads/image
+            uri_prefix: /uploads/first_image
             upload_destination: '%kernel.root_dir%/../web/uploads/first_image'
             namer: vich_uploader.namer_origname
 

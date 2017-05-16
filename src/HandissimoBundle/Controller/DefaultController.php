@@ -51,61 +51,22 @@ class DefaultController extends Controller
         if($firstPicture->getFirstPicture() !== null)
         {
             array_push($arraypicture, 'uploads/first_image/' . $firstPicture->getFirstPicture());
+        } elseif ($organization->getOrgaStructure() !== null) {
+            if ($organization->getOrgaStructure()->getType()->getPicture() !== null){
+                array_push($arraypicture, 'uploads/etablissement/' . $organization->getOrgaStructure()->getType()->getPicture());
+            } else {
+                array_push($arraypicture, 'images/Etablissement.jpeg');
+            }
         } else {
-            if($organization->getOrgaStructure()->getId() === 1)
-            {
-                array_push($arraypicture, 'images/etablissement/Etablissemt_enfants_OK.png');
-            }elseif($organization->getOrgaStructure()->getId() === 2)
-            {
-                array_push($arraypicture, 'images/etablissement/Etablissemt_Adulte_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 3)
-            {
-                array_push($arraypicture, 'images/etablissement/Reseau_entraide_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 4)
-            {
-                array_push($arraypicture, 'images/etablissement/Administration_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 5)
-            {
-                array_push($arraypicture, 'images/etablissement/Centre_ressources_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 6)
-            {
-                array_push($arraypicture, 'images/etablissement/Etablissemt_Petiteenfance_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 7)
-            {
-                array_push($arraypicture, 'images/etablissement/Ecole_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 8)
-            {
-                array_push($arraypicture, 'images/etablissement/Equipe_mobile_OK.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 9)
-            {
-                array_push($arraypicture, 'images/etablissement/Service_enfants.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 10)
-            {
-                array_push($arraypicture, 'images/etablissement/Service_adultes.png');
-            }
-            elseif($organization->getOrgaStructure()->getId() === 11)
-            {
-                array_push($arraypicture, 'images/etablissement/Hopitaux_OK.png');
-            }
-            else {
-            array_push($arraypicture, 'images/etablissement/Etablissement.jpeg');
-            }
+            array_push($arraypicture, 'images/Etablissement.jpeg');
         }
+
         $picture = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getImageByOrganizations($organizationsId);
 
         foreach ($picture as $pictures)
         {
             array_push($arraypicture, 'uploads/image/' . $pictures->getFileName());
         }
-
         $user = $this->getUser();
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
