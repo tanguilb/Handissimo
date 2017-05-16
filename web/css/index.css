@@ -310,7 +310,15 @@
 
 .select2-results__option {
     padding: 0 0 0 5px;
+    color: #777777;
 }
+
+/*
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    max-width: 200px;
+}*/
+
+
 
 /***************************/
 /***** Headband solution****/
@@ -334,7 +342,6 @@
         margin-bottom: 10px;
     }
 }
-
 
 #block-call {
     margin: 20px auto 20px auto;

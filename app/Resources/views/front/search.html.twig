@@ -23,19 +23,19 @@
                     </p>
                     {% endif %}
                 </div>
-                <div class="col-xs-12 col-md-2">
-                    {% if disability %}
+                <div class="col-xs-12 col-md-2">{{ dump(disability) }}
+                    {#% if disability %}
                     <p data-toggle="tooltip" data-placement="bottom" title="{{ disability.disabilityName }}">
                         Le type de handicap : {{ disability.disabilityName|length > 15 ? disability.disabilityName|slice(0,15)~'...' : disability.disabilityName }}
                     </p>
-                    {% endif %}
+                    {% endif %#}
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {% if structure %}
+                    {#% if structure %}
                     <p data-toggle="tooltip" data-placement="bottom" title="{{ structure.name }}">
                         Le type de structure : {{ structure.name|length > 15 ? structure.name|slice(0,15)~'...' : structure.name }}
                     </p>
-                    {% endif %}
+                    {% endif %#}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     <a href="{{ path('index_action') }}" >

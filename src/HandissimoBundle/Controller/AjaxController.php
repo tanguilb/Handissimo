@@ -21,12 +21,15 @@ class AjaxController extends Controller
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
-
+            //var_dump($form);die();
             $location = $form->getData()['postal'];
             $age = $form->getData()['age'];
             $need = $form->getData()['need'];
             $disability = $form->getData()['disability'];
+            //var_dump($disability);
             $structure = $form->getData()['structure'];
+            //var_dump($structure);die();
+            //var_dump(count($disability));
             $this->get('session')->set('location', $location);
             $this->get('session')->set('age', $age);
             $this->get('session')->set('need', $need);
@@ -81,7 +84,7 @@ class AjaxController extends Controller
         /**
          * Method for saving user searches in database
          */
-        $em = $this->getDoctrine()->getManager();
+        /*$em = $this->getDoctrine()->getManager();
         $userSearch = new UserSearch();
 
         $location = $session->get('location');
@@ -122,7 +125,7 @@ class AjaxController extends Controller
                 $em->persist($userSearch);
                 $em->flush();
             }
-
+*/
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
             'location' => $session->get('location'),

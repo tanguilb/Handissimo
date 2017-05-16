@@ -40,19 +40,39 @@ class OrganizationsRepository extends EntityRepository
             $query->andWhere($ormodule);
             $query->setParameter('need', $need->getNeedName());
         }
-        if($disability !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->andWhere($ormodule);
-            $query->setParameter('disability', $disability->getDisabilityName());
+        if ($disability !== null){
+            if (count($disability) <= 1) {
+                foreach ($disability as $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->andX();
+                        $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+                        $query->andWhere($ormodule);
+                        $query->setParameter('disability', $value->getDisabilityName());
+                    }
+                }
+            }else {
+                foreach ($disability as $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->orX();
+                        $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+                        $query->orWhere($ormodule);
+                        $query->setParameter('disability', $value->getDisabilityName());
+                    }
+                }
+            }
         }
         if($structure !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->andWhere($ormodule);
-            $query->setParameter('structure', $structure->getName());
+            foreach ($structure as $value){
+                if ($value !== null){
+                    $ormodule = $query->expr()->andX();
+                    $ormodule->add($query->expr()->eq('sl.name', ':structure'));
+                    $query->andWhere($ormodule);
+                    $query->setParameter('structure', $structure->getName());
+                }
+            }
         }
         $query->distinct();
+        //echo $query->getQuery()->getSQL();die();
         return $query->getQuery()->getResult();
     }
 

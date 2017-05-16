@@ -11,7 +11,10 @@ $("#research_action_need").change();
 $(".js-example-basic-multiple").select2();
 
 $('#research_action_disability').select2({
-    placeholder: 'Précisez le handicap'
+    placeholder: 'Précisez le handicap'//,
+    //formatResult: format,
+    //formatSelection: format,
+
 });
 
 $('#research_action_structure').select2({
@@ -21,3 +24,8 @@ $('#research_action_structure').select2({
 $(window).resize(function() {
     $('.select2').css('width', "100%");
 });
+/*
+function format(item) {
+    var originalText = item.text;
+    return "<div title ='" + originalText + "'>" + originalText + "</div>";
+}*/
