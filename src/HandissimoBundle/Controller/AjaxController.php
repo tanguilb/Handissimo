@@ -24,7 +24,6 @@ class AjaxController extends Controller
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
-
             $location = $form->getData()['postal'];
             $age = $form->getData()['age'];
             $need = $form->getData()['need'];
@@ -35,7 +34,6 @@ class AjaxController extends Controller
             $this->get('session')->set('need', $need);
             $this->get('session')->set('disability', $disability);
             $this->get('session')->set('structure', $structure);
-
             $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
             $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
 
@@ -46,14 +44,13 @@ class AjaxController extends Controller
                 $rlat = $lat[0]['latitude'];
                 $rlong = $long[0]['longitude'];
             }
-            $value = 0;
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
-            $matching = array("match" => $value);
+            var_dump($result);
 
             $finalResult = array();
             foreach ($result as $results)
             {
-
+                $value = 0;
                 $orga = $em->getRepository('HandissimoBundle:Organizations')->find($results['id']);
                 if ($need !== null)
                 {
@@ -63,15 +60,8 @@ class AjaxController extends Controller
                             if ($needs->getNeedName() === $need->getNeedName())
                             {
                                 $value ++;
-                               // var_dump($value);
-                                array_push($results, array('need' => true));
-
                             }
-
-                           // var_dump($needs->getNeedName());
                         }
-
-                  //  var_dump($orga->getNeeds()->getValues());
                     }
                 }
                 if ($disability !== null)
@@ -80,18 +70,19 @@ class AjaxController extends Controller
                     {
                         foreach ($orga->getDisabilityTypes()->getValues() as $disabilities)
                         {
-                            if($disabilities->getDisabilityName() === $disability->getDisabilityName())
+                            for ($i = 0 ; $i < count($disability); $i++ )
                             {
-                                array_push($results, array('disability' => true));
-
+                                if($disabilities->getDisabilityName() === $disability[$i]->getDisabilityName())
+                                {
+                                    $value ++;
+                                }
                             }
                         }
                     }
                 }
-                //if ($orga->getOrgaStructure()->getName() === $structure and $orga->getDisabilityTypes())
+                $results['correspondance']=$value;
                 var_dump($results);
                 array_push($finalResult, $results);
-
             }
             var_dump($finalResult);
 
@@ -102,9 +93,9 @@ class AjaxController extends Controller
             $pagination->setUsedRoute('research_action');
             if (count($result) === 1)
             {
-                return $this->redirectsToRoute('structure_page', array('id' => $result[0]['id']));
+                return $this->redirectToRoute('structure_page', array('id' => $result[0]['id']));
             }else {
-                return $this->redirectsToRoute('research_action');
+                return $this->redisrectToRoute('research_action');
             }
         } elseif($formQuick->isSubmitted() && $formQuick->isValid()) {
             $structure = $formQuick->getData()['organizationName'];
@@ -147,18 +138,39 @@ class AjaxController extends Controller
         $location = $session->get('location');
         $age = $session->get('age');
         $disability = $session->get('disability');
+        $disabilities="";
+        if ($disability != null){
+            for ($key = 0; $key < count($disability); $key++) {
+                if (count($disability) == 0) {
+                    $disabilities = $disability;
+                }else{
+                    $disabilities .= $disability[$key]." ";
+                }
+            }
+        }
+        var_dump($disabilities);
+
         $need = $session->get('need');
         $structure = $session->get('structure');
+        $structures="";
+        if ($structure != null){
+            for ($key = 0; $key < count($structure); $key++) {
+                if (count($structure) == 0) {
+                    $structures = $structure;
+                } else {
+                    $structures .= $structure[$key] . " ";
+                }
+            }
+        }
         $numberResult = $pagination->getTotalItemCount();
-        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disability, $structure, $numberResult);
-
+        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disabilities, $structures, $numberResult);
         for ($key =0;$key<count($test);$key++) {
             if (
-                $session->get('location') == $test[$key]['location'] &&
-                $session->get('age') == $test[$key]['age'] &&
-                $session->get('disability') == $test[$key]['disability'] &&
-                $session->get('need') == $test[$key]['need'] &&
-                $session->get('structure') == $test[$key]['structure'] &&
+                $location == $test[$key]['location'] &&
+                $age == $test[$key]['age'] &&
+                $disabilities == $test[$key]['disability'] &&
+                $need == $test[$key]['need'] &&
+                $structures == $test[$key]['structure'] &&
                 $pagination->getTotalItemCount() == $test[$key]['numberResult']
             ) {
                 $id = $test[$key]['id'];
@@ -169,19 +181,16 @@ class AjaxController extends Controller
                 $em->flush();
             }
         }
-            if ($test == null ){
-                $userSearch->setLocation($session->get('location'));
-                $userSearch->setAge($session->get('age'));
-                $userSearch->setNeed($session->get('need'));
-                if ($session->get('disability') != null)
-                    $userSearch->setDisability($session->get('disability')->getDisabilityName());
-                if ($session->get('structure') != null) {
-                    $userSearch->setStructure($session->get('structure')->getName());
-                }
-                $userSearch->setNumberResult($pagination->getTotalItemCount());
-                $em->persist($userSearch);
-                $em->flush();
-            }
+        if ($test == null ) {
+            $userSearch->setLocation($session->get('location'));
+            $userSearch->setAge($session->get('age'));
+            $userSearch->setNeed($session->get('need'));
+                $userSearch->setDisability($disabilities);
+                $userSearch->setStructure($structures);
+            $userSearch->setNumberResult($pagination->getTotalItemCount());
+            $em->persist($userSearch);
+            $em->flush();
+        }
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,

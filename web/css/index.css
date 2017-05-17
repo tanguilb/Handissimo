@@ -291,25 +291,40 @@
 
 #research_action_disability,
 #research_action_structure {
-    border: 2px solid #f7af49;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    margin-top: 20px;
     font-size: 1.1em;
     font-weight: 600;
-    font-style: italic;
-    color: #777777;
     width: 100%;
 }
 
-#research_action_disability option,
-#research_action_structure option {
-    width: 335px;
+.select2 {
+    border: 2px solid #f7af49;
+    width: 100%;
+    margin-top: 20px;
     background-color: #FFFFFF;
-    color: #777777;
-    font-weight: 500;
-    padding: 5px;
+    font-size: 1.1em;
+    border-radius: 3px;
+    font-style: italic;
 }
+
+.select2-container--default .select2-selection--multiple {
+    border: none;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: none;
+}
+
+.select2-results__option {
+    padding: 0 0 0 5px;
+    color: #777777;
+}
+
+/*
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    max-width: 200px;
+}*/
+
+
 
 #quickSearchField {
     margin: 50px auto 90px auto;
@@ -337,7 +352,6 @@
         margin-bottom: 10px;
     }
 }
-
 
 #block-call {
     margin: 20px auto 20px auto;

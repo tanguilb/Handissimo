@@ -42,19 +42,50 @@ class OrganizationsRepository extends EntityRepository
             $query->andWhere($ormodule);
             $query->setParameter('need', $need->getNeedName());
         }
-        if($disability !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->andWhere($ormodule);
-            $query->setParameter('disability', $disability->getDisabilityName());
+        if ($disability !== null){
+            if (count($disability) <= 1) {
+                foreach ($disability as $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->andX();
+                        $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+                        $query->andWhere($ormodule);
+                        $query->setParameter('disability', $value->getDisabilityName());
+                    }
+                }
+            } else {
+                foreach ($disability as $key => $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->orX();
+                        $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'.$key));
+                        $query->orWhere($ormodule);
+                        $query->setParameter('disability'.$key, $value->getDisabilityName());
+                    }
+                }
+            }
         }
         if($structure !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->andWhere($ormodule);
-            $query->setParameter('structure', $structure->getName());
+            if (count($structure) <= 1) {
+                foreach ($structure as $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->andX();
+                        $ormodule->add($query->expr()->eq('sl.name', ':structure'));
+                        $query->andWhere($ormodule);
+                        $query->setParameter('structure', $value->getName());
+                    }
+                }
+            } else {
+                foreach ($structure as $key => $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->orX();
+                        $ormodule->add($query->expr()->eq('sl.name', ':structure'.$key));
+                        $query->orWhere($ormodule);
+                        $query->setParameter('structure'.$key, $value->getName());
+                    }
+                }
+            }
         }
         $query->distinct();
+        //echo $query->getQuery()->getSQL();die();
         return $query->getQuery()->getResult();
     }
 
@@ -224,5 +255,6 @@ class OrganizationsRepository extends EntityRepository
             ->leftJoin('o.orgaStructure', 'sl')
             ->addSelect()
     }*/
+
 
 }

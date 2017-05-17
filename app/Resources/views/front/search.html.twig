@@ -11,10 +11,10 @@
                     <h3>Votre recherche:</h3>
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {% if location %}<p>Lieu : {{ location }}</p>{% endif %}
+                    {% if location %}<p>Lieu :</p><p>{{ location }}</p>{% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {% if age %}<p>Pour une personne  : {{ age }} ans</p>{% endif %}
+                    {% if age %}<p>Pour une personne  :</p><p>{{ age }} ans</p>{% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if need %}
@@ -25,16 +25,23 @@
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if disability %}
-                    <p data-toggle="tooltip" data-placement="bottom" title="{{ disability.disabilityName }}">
-                        Le type de handicap : {{ disability.disabilityName|length > 15 ? disability.disabilityName|slice(0,15)~'...' : disability.disabilityName }}
-                    </p>
+                        <p>Le type de handicap :</p>
+                        {% for disabilities in disability %}
+                            <p data-toggle="tooltip" data-placement="bottom" title="{{ disabilities.disabilityName }}" class="search-criteria">
+                                {{ disabilities.disabilityName|length > 15 ? disabilities.disabilityName|slice(0,15)~'...' : disabilities.disabilityName }}
+                            </p>
+                        {% endfor %}
+
                     {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if structure %}
-                    <p data-toggle="tooltip" data-placement="bottom" title="{{ structure.name }}">
-                        Le type de structure : {{ structure.name|length > 15 ? structure.name|slice(0,15)~'...' : structure.name }}
-                    </p>
+                        <p>Le type de structure :</p>
+                        {% for structures in structure %}
+                            <p data-toggle="tooltip" data-placement="bottom" title="{{ structures.name }}" class="search-criteria">
+                                {{ structures.name|length > 15 ? structures.name|slice(0,15)~'...' : structures.name }}
+                            </p>
+                        {% endfor %}
                     {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
@@ -46,7 +53,7 @@
         </div>
     </section>
 
-    <section class="container-fluid">
+    <section class="container-fluid">{#{ dump(pagination) }#}
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <div class="row" id="block-map">

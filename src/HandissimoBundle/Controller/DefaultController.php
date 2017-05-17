@@ -93,8 +93,4 @@ class DefaultController extends Controller
         ));
     }
 
-    public function quickSearchAction(Organizations $organizations)
-    {
-
-    }
 }
