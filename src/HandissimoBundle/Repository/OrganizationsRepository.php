@@ -216,4 +216,13 @@ class OrganizationsRepository extends EntityRepository
         return $query->getQuery()->getSingleResult();
     }
 
+   /* public function sortByResult($id, $distance, $needs, $disability, $structure)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->leftJoin('o.needs', 'n')
+            ->leftJoin('o.disabilityTypes', 'dt')
+            ->leftJoin('o.orgaStructure', 'sl')
+            ->addSelect()
+    }*/
+
 }

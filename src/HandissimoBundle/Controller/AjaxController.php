@@ -46,8 +46,55 @@ class AjaxController extends Controller
                 $rlat = $lat[0]['latitude'];
                 $rlong = $long[0]['longitude'];
             }
-
+            $value = 0;
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
+            $matching = array("match" => $value);
+
+            $finalResult = array();
+            foreach ($result as $results)
+            {
+
+                $orga = $em->getRepository('HandissimoBundle:Organizations')->find($results['id']);
+                if ($need !== null)
+                {
+                    if (!empty($orga->getNeeds()->getValues())){
+                        foreach ($orga->getNeeds()->getValues() as $needs)
+                        {
+                            if ($needs->getNeedName() === $need->getNeedName())
+                            {
+                                $value ++;
+                               // var_dump($value);
+                                array_push($results, array('need' => true));
+
+                            }
+
+                           // var_dump($needs->getNeedName());
+                        }
+
+                  //  var_dump($orga->getNeeds()->getValues());
+                    }
+                }
+                if ($disability !== null)
+                {
+                    if(!empty($orga->getDisabilityTypes()->getValues()))
+                    {
+                        foreach ($orga->getDisabilityTypes()->getValues() as $disabilities)
+                        {
+                            if($disabilities->getDisabilityName() === $disability->getDisabilityName())
+                            {
+                                array_push($results, array('disability' => true));
+
+                            }
+                        }
+                    }
+                }
+                //if ($orga->getOrgaStructure()->getName() === $structure and $orga->getDisabilityTypes())
+                var_dump($results);
+                array_push($finalResult, $results);
+
+            }
+            var_dump($finalResult);
+
             $this->get('session')->set('result', $result);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
@@ -55,10 +102,9 @@ class AjaxController extends Controller
             $pagination->setUsedRoute('research_action');
             if (count($result) === 1)
             {
-                return $this->redirectToRoute('structure_page', array('id' => $result[0]['id']));
+                return $this->redirectsToRoute('structure_page', array('id' => $result[0]['id']));
             }else {
-
-                return $this->redirectToRoute('research_action');
+                return $this->redirectsToRoute('research_action');
             }
         } elseif($formQuick->isSubmitted() && $formQuick->isValid()) {
             $structure = $formQuick->getData()['organizationName'];
