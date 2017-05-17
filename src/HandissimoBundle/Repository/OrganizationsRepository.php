@@ -131,7 +131,7 @@ class OrganizationsRepository extends EntityRepository
     public function getSearchProfile($profileSearch)
     {
         $qb = $this->createQueryBuilder('o')
-            ->select('o.name', 'o.postal')
+            ->select('o.name', 'o.city')
             ->where('o.name like :data')
             ->setParameter(':data', '%' . $profileSearch . '%')
             ->setMaxResults(10)
@@ -197,7 +197,7 @@ class OrganizationsRepository extends EntityRepository
         return $query->getSingleResult();
     }
 
-    public function getByName($name, $postal)
+    public function getByName($name, $city)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
@@ -205,12 +205,12 @@ class OrganizationsRepository extends EntityRepository
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->where('o.name = ?1');
         $query->setParameter(1, $name);
-        if ($postal !== "null")
+        if ($city !== "null")
         {
             $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('o.postal', ':postal'));
+            $ormodule->add($query->expr()->eq('o.city', ':city'));
             $query->andWhere($ormodule);
-            $query->setParameter('postal', $postal);
+            $query->setParameter('city', $city);
 
         }
         return $query->getQuery()->getSingleResult();

@@ -53,8 +53,13 @@ class AjaxController extends Controller
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
             $this->get('session')->set('pagination', $pagination);
             $pagination->setUsedRoute('research_action');
+            if (count($result) === 1)
+            {
+                return $this->redirectToRoute('structure_page', array('id' => $result[0]['id']));
+            }else {
 
-            return $this->redirectToRoute('research_action');
+                return $this->redirectToRoute('research_action');
+            }
         } elseif($formQuick->isSubmitted() && $formQuick->isValid()) {
             $structure = $formQuick->getData()['organizationName'];
             $test = preg_split('/[()]/', $structure);
