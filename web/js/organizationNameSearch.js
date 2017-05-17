@@ -14,7 +14,7 @@ $( document ).ready(function() {
                     var organizationSearchs = JSON.parse(response.data);
                     html = "";
                     for (var i = 0; i < organizationSearchs.length; i++) {
-                        html += "<li>" + organizationSearchs[i].name + "</li>";
+                        html += "<li>" + organizationSearchs[i].name + "(" + organizationSearchs[i].postal + ")</li>";
                     }
 
                     $('#organization-name').html(html);

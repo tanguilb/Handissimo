@@ -131,9 +131,10 @@ class OrganizationsRepository extends EntityRepository
     public function getSearchProfile($profileSearch)
     {
         $qb = $this->createQueryBuilder('o')
-            ->select('o.name')
+            ->select('o.name', 'o.postal')
             ->where('o.name like :data')
             ->setParameter(':data', '%' . $profileSearch . '%')
+            ->setMaxResults(10)
             ->getQuery();
         return $qb->getResult();
     }
@@ -191,20 +192,28 @@ class OrganizationsRepository extends EntityRepository
     public function getFirstPicture($id)
     {
         $query = $this->createQueryBuilder('o')
-           // ->select('o.firstPicture')
             ->where('o.id = ' .$id)
             ->getQuery();
         return $query->getSingleResult();
     }
 
-    public function getByName($name)
+    public function getByName($name, $postal)
     {
-        $query = $this->createQueryBuilder('o')
-            ->where('o.name = ?1')
-            ->setParameter(1, $name)
-            ->getQuery();
-        //echo $query->getQuery()->getSQL();;die();
-        return $query->getSingleResult();
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->where('o.name = ?1');
+        $query->setParameter(1, $name);
+        if ($postal !== "null")
+        {
+            $ormodule = $query->expr()->andX();
+            $ormodule->add($query->expr()->eq('o.postal', ':postal'));
+            $query->andWhere($ormodule);
+            $query->setParameter('postal', $postal);
+
+        }
+        return $query->getQuery()->getSingleResult();
     }
 
 }

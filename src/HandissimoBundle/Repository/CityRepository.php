@@ -33,15 +33,26 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
 
     public function getByCity($city)
     {
-        $qb = $this->createQueryBuilder('c')
-            ->select('c.name', 'c.postal')
-            ->where('c.name LIKE :namedata')
-            ->setParameter('namedata', '%'.$city.'%')
-            ->orWhere('c.postal LIKE :postaldata')
-            ->setParameter('postaldata', '%'.$city.'%')
-            ->groupBy('c.postal', 'c.name')
-            ->setMaxResults(10)
-            ->getQuery();
-        return $qb->getResult();
+        /*$em = $this->getEntityManager();
+      $query = $em->createQueryBuilder();
+      $query->select('c.name', 'c.postal');
+      $query->from('HandissimoBundle:City', 'c');
+      $query->where('c.name LIKE :namedata');
+      $query->setParameter('namedata', '%'.$city.'%');
+      $query->andWhere('c.postal LIKE :postaldata');
+      $query->setParameter('postaldata', '%'.$city.'%');
+      $query->groupBy('c.postal', 'c.name');
+      $query->setMaxResults()*/
+        $regex = '^'.$city;
+      $qb = $this->createQueryBuilder('c')
+          ->select('c.name', 'c.postal')
+          ->where('REGEXP(c.name, :regexp) = true')
+          ->setParameter('regexp', $regex)
+          ->orWhere('c.postal LIKE :postaldata')
+          ->setParameter('postaldata', '%'.$city.'%')
+          ->groupBy('c.postal', 'c.name')
+          ->setMaxResults(10)
+          ->getQuery();
+      return $qb->getResult();
     }
 }

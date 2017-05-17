@@ -57,7 +57,8 @@ class AjaxController extends Controller
             return $this->redirectToRoute('research_action');
         } elseif($formQuick->isSubmitted() && $formQuick->isValid()) {
             $structure = $formQuick->getData()['organizationName'];
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByName($structure);
+            $test = preg_split('/[()]/', $structure);
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getByName($test[0], $test[1]);
             return $this->redirectToRoute('structure_page', array('id' => $result->getId()));
         }
         $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPictureByOrrganizations(6);

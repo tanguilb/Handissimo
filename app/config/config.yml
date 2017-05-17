@@ -107,6 +107,8 @@ doctrine:
         entity_managers:
             default:
                 dql:
+                    string_functions:
+                        regexp: DoctrineExtensions\Query\Mysql\Regexp
                     numeric_functions:
                         geo: HandissimoBundle\Doctrine\Query\Geo
                 auto_mapping: true

@@ -52,8 +52,12 @@ class DefaultController extends Controller
         {
             array_push($arraypicture, 'uploads/first_image/' . $firstPicture->getFirstPicture());
         } elseif ($organization->getOrgaStructure() !== null) {
-            if ($organization->getOrgaStructure()->getType()->getPicture() !== null){
-                array_push($arraypicture, 'uploads/etablissement/' . $organization->getOrgaStructure()->getType()->getPicture());
+            if ($organization->getOrgaStructure()->getType() !==null ) {
+                if ($organization->getOrgaStructure()->getType()->getPicture() !== null) {
+                    array_push($arraypicture, 'uploads/etablissement/' . $organization->getOrgaStructure()->getType()->getPicture());
+                } else {
+                    array_push($arraypicture, 'images/Etablissement.jpeg');
+                }
             } else {
                 array_push($arraypicture, 'images/Etablissement.jpeg');
             }
