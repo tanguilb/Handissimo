@@ -10,7 +10,7 @@ namespace HandissimoBundle\Repository;
  */
 class UserSearchRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findUserSearches($location, $age, $need, $disabilities, $structures, $numberResult)
+    public function findUserSearches($location, $age, $needs, $disabilities, $structure, $numberResult)
     {
         $qb = $this->createQueryBuilder('u');
         $qb->select('u.id', 'u.location', 'u.age', 'u.need', 'u.disability', 'u.structure', 'u.numberResult');
@@ -29,11 +29,11 @@ class UserSearchRepository extends \Doctrine\ORM\EntityRepository
             $qb->setParameter('age', $age);
         }
 
-        if ($need !== null){
+        if ($needs !== null){
             $andmodule = $qb->expr()->andX();
             $andmodule->add($qb->expr()->eq('u.need', ':need'));
             $qb->andWhere($andmodule);
-            $qb->setParameter('need', $need);
+            $qb->setParameter('need', $needs);
         }
 
         if ($disabilities !== null){
@@ -43,11 +43,11 @@ class UserSearchRepository extends \Doctrine\ORM\EntityRepository
             $qb->setParameter('disability', $disabilities);
         }
 
-        if ($structures !== null){
+        if ($structure !== null){
             $andmodule = $qb->expr()->andX();
             $andmodule->add($qb->expr()->eq('u.structure', ':structure'));
             $qb->andWhere($andmodule);
-            $qb->setParameter('structure', $structures);
+            $qb->setParameter('structure', $structure);
         }
 
         if ($numberResult !== null){

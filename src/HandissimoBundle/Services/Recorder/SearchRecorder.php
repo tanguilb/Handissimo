@@ -31,24 +31,24 @@ class SearchRecorder
             }
         }
 
-        $structures="";
-        if ($structure != null){
-            for ($key = 0; $key < count($structure); $key++) {
-                if (count($structure) == 0) {
-                    $structures = $structure;
+        $needs="";
+        if ($need != null){
+            for ($key = 0; $key < count($need); $key++) {
+                if (count($need) == 0) {
+                    $needs = $need;
                 } else {
-                    $structures .= $structure[$key] . " ";
+                    $needs .= $need[$key] . " ";
                 }
             }
         }
-        $test = $this->em->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disabilities, $structures, $numberResult);
+        $test = $this->em->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $needs, $disabilities, $structure, $numberResult);
         for ($key =0;$key<count($test);$key++) {
             if (
                 $location == $test[$key]['location'] &&
                 $age == $test[$key]['age'] &&
                 $disabilities == $test[$key]['disability'] &&
-                $need == $test[$key]['need'] &&
-                $structures == $test[$key]['structure'] &&
+                $needs == $test[$key]['need'] &&
+                $structure == $test[$key]['structure'] &&
                 $numberResult == $test[$key]['numberResult']
             ) {
                 $id = $test[$key]['id'];
@@ -62,9 +62,9 @@ class SearchRecorder
         if ($test == null ) {
             $userSearch->setLocation($location);
             $userSearch->setAge($age);
-            $userSearch->setNeed($need);
+            $userSearch->setNeed($needs);
             $userSearch->setDisability($disabilities);
-            $userSearch->setStructure($structures);
+            $userSearch->setStructure($structure);
             $userSearch->setNumberResult($numberResult);
             $this->em->persist($userSearch);
             $this->em->flush();

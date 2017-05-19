@@ -27,6 +27,7 @@ class ResearchType extends AbstractType
             ->add('need', EntityType::class, array(
                 'label' => false,
                 'required' => false,
+                'multiple' => true,
                 'class' => 'HandissimoBundle\Entity\Needs',
                 'query_builder' => function(EntityRepository $er)
                 {
@@ -34,7 +35,7 @@ class ResearchType extends AbstractType
                         ->orderBy('n.needName', 'ASC');
                 },
                 'choice_name' => 'needName',
-                'empty_value' => 'Scolarité, soin, établissement…'
+
             ))
             ->add('disability', EntityType::class, array(
                 'label' => false,
@@ -47,7 +48,6 @@ class ResearchType extends AbstractType
                 },
                 'choice_name' => 'disabilityName',
                 'multiple' => true
-                //'attr' => array('class' => 'js-example-basic-multiple-responsive', 'multiple' => 'multiple')
             ))
             ->add('structure', EntityType::class, array(
                 'label' => false,
@@ -59,8 +59,8 @@ class ResearchType extends AbstractType
                         ->orderBy('sl.name', 'ASC');
                 },
                 'choice_name' => 'name',
-                'multiple' => true
-                //'attr' => array('class' => 'js-example-basic-multiple-responsive', 'multiple' => 'multiple')
+                'multiple' => false,
+                'empty_value' => 'Précisez le type de structure'
             ))
             ->add('save', SubmitType::class,
                 array('label' => 'Trouvez votre solution'));

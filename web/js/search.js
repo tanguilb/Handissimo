@@ -2,23 +2,24 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip({"html":true})
 });
 
-$("#research_action_need").change(function () {
-    if($(this).val() == "") $(this).addClass("empty-need");
-    else $(this).removeClass("empty-need")
+$("#research_action_structure").change(function () {
+    if($(this).val() == "") $(this).addClass("empty-structure");
+    else $(this).removeClass("empty-structure")
 });
-$("#research_action_need").change();
+//$("#research_action_stucture").change();
 
-$(".js-example-basic-multiple").select2();
+
 
 $('#research_action_disability').select2({
-    placeholder: 'Précisez le handicap'//,
-    //formatResult: format,
-    //formatSelection: format,
-
+    placeholder: 'Précisez le handicap'
 });
 
 $('#research_action_structure').select2({
-    placeholder: 'Précisez le type de structure'
+    multiple: false
+});
+
+$('#research_action_need').select2()({
+    placeholder: 'Scolarité, soin, établissement…'
 });
 
 $(window).resize(function() {
