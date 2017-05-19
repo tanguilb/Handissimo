@@ -33,17 +33,7 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
 
     public function getByCity($city)
     {
-        /*$em = $this->getEntityManager();
-      $query = $em->createQueryBuilder();
-      $query->select('c.name', 'c.postal');
-      $query->from('HandissimoBundle:City', 'c');
-      $query->where('c.name LIKE :namedata');
-      $query->setParameter('namedata', '%'.$city.'%');
-      $query->andWhere('c.postal LIKE :postaldata');
-      $query->setParameter('postaldata', '%'.$city.'%');
-      $query->groupBy('c.postal', 'c.name');
-      $query->setMaxResults()*/
-        $regex = '^'.$city;
+      $regex = '^'.$city;
       $qb = $this->createQueryBuilder('c')
           ->select('c.name', 'c.postal')
           ->where('REGEXP(c.name, :regexp) = true')
@@ -51,6 +41,7 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
           ->orWhere('c.postal LIKE :postaldata')
           ->setParameter('postaldata', '%'.$city.'%')
           ->groupBy('c.postal', 'c.name')
+          ->orderBy('c.name', 'ASC')
           ->setMaxResults(10)
           ->getQuery();
       return $qb->getResult();

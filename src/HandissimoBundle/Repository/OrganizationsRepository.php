@@ -89,30 +89,6 @@ class OrganizationsRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function getByCity($postalcode)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->select('o.city')
-            ->where('o.city LIKE :citydata')
-            ->groupBy('o.city')
-            ->setParameter('citydata',  '%' . $postalcode . '%')
-            ->orderBy('o.postal')
-            ->getQuery();
-        return $query->getResult();
-    }
-
-    public function getByPostal($postalcode)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->select('o.postal')
-            ->where('o.postal LIKE :postaldata')
-            ->groupBy('o.postal')
-            ->setParameter('postaldata',  '%' . $postalcode . '%')
-            ->orderBy('o.postal')
-            ->getQuery();
-        return $query->getResult();
-    }
-
     public function getByUser(User $user)
     {
         $query = $this->createQueryBuilder('o')
@@ -217,7 +193,6 @@ class OrganizationsRepository extends EntityRepository
             ->setMaxResults($limit)
             ->getQuery();
         return $query->getResult();
-
     }
 
     public function getFirstPicture($id)
@@ -246,15 +221,5 @@ class OrganizationsRepository extends EntityRepository
         }
         return $query->getQuery()->getSingleResult();
     }
-
-   /* public function sortByResult($id, $distance, $needs, $disability, $structure)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->leftJoin('o.needs', 'n')
-            ->leftJoin('o.disabilityTypes', 'dt')
-            ->leftJoin('o.orgaStructure', 'sl')
-            ->addSelect()
-    }*/
-
 
 }
