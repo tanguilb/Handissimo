@@ -85,7 +85,6 @@ class OrganizationsRepository extends EntityRepository
             }
         }
         $query->distinct();
-        //echo $query->getQuery()->getSQL();die();
         return $query->getQuery()->getResult();
     }
 

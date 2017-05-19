@@ -4,34 +4,72 @@ namespace HandissimoBundle\Services\Recorder;
 
 use Doctrine\ORM\EntityManager;
 use HandissimoBundle\Entity\UserSearch;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class SearchRecorder
 {
-    //protected $requestStack;
     protected $em;
-    protected $session;
 
-    public function __construct(/*RequestStack $requestStack,*/ EntityManager $em, Session $session)
+    public function __construct(EntityManager $em)
     {
-        //$this->requestStack = $requestStack;
-        $this->session = $session;
         $this->em = $em;
     }
 
-    public function recordSearchUser($session)
+    public function recordSearchUser($location, $age, $disability, $need, $structure, $numberResult)
     {
-        //$request = $this->requestStack->getCurrentRequest();
+        /**
+         * Method for saving user searches in database
+         */
         $userSearch = new UserSearch();
-        $userSearch->setLocation($session->get('location'));
-        $userSearch->setAge($session->get('age'));
-        $userSearch->setNeed($session->get('need'));
-        $userSearch->setDisability($session->get('disability')->getDisabilityName());
-        $userSearch->setStructure($session->get('structure')->getName());
-        $this->em->persist($userSearch);
-        $this->em->flush();
+        $disabilities="";
+        if ($disability != null){
+            for ($key = 0; $key < count($disability); $key++) {
+                if (count($disability) == 0) {
+                    $disabilities = $disability;
+                }else{
+                    $disabilities .= $disability[$key]." ";
+                }
+            }
+        }
+
+        $structures="";
+        if ($structure != null){
+            for ($key = 0; $key < count($structure); $key++) {
+                if (count($structure) == 0) {
+                    $structures = $structure;
+                } else {
+                    $structures .= $structure[$key] . " ";
+                }
+            }
+        }
+        $test = $this->em->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disabilities, $structures, $numberResult);
+        for ($key =0;$key<count($test);$key++) {
+            if (
+                $location == $test[$key]['location'] &&
+                $age == $test[$key]['age'] &&
+                $disabilities == $test[$key]['disability'] &&
+                $need == $test[$key]['need'] &&
+                $structures == $test[$key]['structure'] &&
+                $numberResult == $test[$key]['numberResult']
+            ) {
+                $id = $test[$key]['id'];
+                $updateCount = $this->em->getRepository('HandissimoBundle:UserSearch')->find($id);
+                $count = $updateCount->getCountRepetition();
+                $updateCount->setCountRepetition($count + 1);
+                $this->em->persist($updateCount);
+                $this->em->flush();
+            }
+        }
+        if ($test == null ) {
+            $userSearch->setLocation($location);
+            $userSearch->setAge($age);
+            $userSearch->setNeed($need);
+            $userSearch->setDisability($disabilities);
+            $userSearch->setStructure($structures);
+            $userSearch->setNumberResult($numberResult);
+            $this->em->persist($userSearch);
+            $this->em->flush();
+        }
     }
+
 
 }
