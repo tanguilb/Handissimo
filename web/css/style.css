@@ -9,6 +9,7 @@ p {
 }
 
 .btn,
+#search_profile_save,
 #research_action_save {
     color: #ffffff;
     text-transform: uppercase;
@@ -116,11 +117,13 @@ p {
 }
 
 .orange-btn,
+#search_profile_save,
 #research_action_save {
     background-color: #f7af49;
 }
 
 .orange-btn:hover,
+#search_profile_save:hover,
 #research_action_save:hover,
 .orange-btn:focus {
     background-color: #FFBE49;

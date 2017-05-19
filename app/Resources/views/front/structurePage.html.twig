@@ -3,7 +3,6 @@
 
 {% block title %}{{ parent() }} Comment ça marche ?{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/structure.css') }}">
 {% endblock %}
 
@@ -55,12 +54,13 @@
                     <button id="btn-solution" type="submit" class="btn btn-primary ">Envoyer</button>
                 </div>
                 {{ form_end(form) }}
-                <div class="col-md-6 col-xs-12">
-                    <a href="{{ path('index_action') }}" class="btn btn-homepage" role="button">
-                        Retour à l'accueil
-                    </a>
-                </div>
+
             </form>
+        </div>
+        <div class="col-md-12 col-xs-12 block-btn-homepage">
+            <a href="{{ path('index_action') }}" class="btn btn-homepage" role="button">
+                Retour à l'accueil
+            </a>
         </div>
     </div>
 {% endblock body %}

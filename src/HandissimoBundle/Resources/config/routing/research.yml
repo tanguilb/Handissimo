@@ -5,12 +5,12 @@ city_ajax:
 
 index_action:
     path:     /
-    defaults: { _controller: "HandissimoBundle:Ajax:index" }
+    defaults: { _controller: "HandissimoBundle:Search:index" }
     methods:  [GET, POST]
 
 research_action:
     path:     /list
-    defaults: { _controller: "HandissimoBundle:Ajax:research" }
+    defaults: { _controller: "HandissimoBundle:Search:research" }
     methods:  [GET, POST]
 
 mail_action:

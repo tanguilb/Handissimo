@@ -33,15 +33,17 @@ class CityRepository extends \Doctrine\ORM\EntityRepository
 
     public function getByCity($city)
     {
-        $qb = $this->createQueryBuilder('c')
-            ->select('c.name', 'c.postal')
-            ->where('c.name LIKE :namedata')
-            ->setParameter('namedata', '%'.$city.'%')
-            ->orWhere('c.postal LIKE :postaldata')
-            ->setParameter('postaldata', '%'.$city.'%')
-            ->groupBy('c.postal', 'c.name')
-            ->setMaxResults(10)
-            ->getQuery();
-        return $qb->getResult();
+      $regex = '^'.$city;
+      $qb = $this->createQueryBuilder('c')
+          ->select('c.name', 'c.postal')
+          ->where('REGEXP(c.name, :regexp) = true')
+          ->setParameter('regexp', $regex)
+          ->orWhere('c.postal LIKE :postaldata')
+          ->setParameter('postaldata', '%'.$city.'%')
+          ->groupBy('c.postal', 'c.name')
+          ->orderBy('c.name', 'ASC')
+          ->setMaxResults(10)
+          ->getQuery();
+      return $qb->getResult();
     }
 }

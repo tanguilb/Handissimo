@@ -103,3 +103,7 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+
+    handissimo.sort_research:
+        class: HandissimoBundle\Services\Search\SortSearch
+        arguments: ['@doctrine.orm.entity_manager']

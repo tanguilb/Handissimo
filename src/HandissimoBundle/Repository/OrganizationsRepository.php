@@ -89,30 +89,6 @@ class OrganizationsRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function getByCity($postalcode)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->select('o.city')
-            ->where('o.city LIKE :citydata')
-            ->groupBy('o.city')
-            ->setParameter('citydata',  '%' . $postalcode . '%')
-            ->orderBy('o.postal')
-            ->getQuery();
-        return $query->getResult();
-    }
-
-    public function getByPostal($postalcode)
-    {
-        $query = $this->createQueryBuilder('o')
-            ->select('o.postal')
-            ->where('o.postal LIKE :postaldata')
-            ->groupBy('o.postal')
-            ->setParameter('postaldata',  '%' . $postalcode . '%')
-            ->orderBy('o.postal')
-            ->getQuery();
-        return $query->getResult();
-    }
-
     public function getByUser(User $user)
     {
         $query = $this->createQueryBuilder('o')
@@ -162,9 +138,10 @@ class OrganizationsRepository extends EntityRepository
     public function getSearchProfile($profileSearch)
     {
         $qb = $this->createQueryBuilder('o')
-            ->select('o.name')
+            ->select('o.name', 'o.city')
             ->where('o.name like :data')
             ->setParameter(':data', '%' . $profileSearch . '%')
+            ->setMaxResults(10)
             ->getQuery();
         return $qb->getResult();
     }
@@ -216,16 +193,33 @@ class OrganizationsRepository extends EntityRepository
             ->setMaxResults($limit)
             ->getQuery();
         return $query->getResult();
-
     }
 
     public function getFirstPicture($id)
     {
         $query = $this->createQueryBuilder('o')
-           // ->select('o.firstPicture')
             ->where('o.id = ' .$id)
             ->getQuery();
         return $query->getSingleResult();
+    }
+
+    public function getByName($name, $city)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('o');
+        $query->from('HandissimoBundle:Organizations', 'o');
+        $query->where('o.name = ?1');
+        $query->setParameter(1, $name);
+        if ($city !== "null")
+        {
+            $ormodule = $query->expr()->andX();
+            $ormodule->add($query->expr()->eq('o.city', ':city'));
+            $query->andWhere($ormodule);
+            $query->setParameter('city', $city);
+
+        }
+        return $query->getQuery()->getSingleResult();
     }
 
 }
