@@ -99,75 +99,25 @@ class SearchController extends Controller
         /**
          * Method for saving user searches in database
          */
-        $em = $this->getDoctrine()->getManager();
-        $userSearch = new UserSearch();
 
         $location = $session->get('location');
         $age = $session->get('age');
         $disability = $session->get('disability');
-        $disabilities="";
-        if ($disability != null){
-            for ($key = 0; $key < count($disability); $key++) {
-                if (count($disability) == 0) {
-                    $disabilities = $disability;
-                }else{
-                    $disabilities .= $disability[$key]." ";
-                }
-            }
-        }
-
         $need = $session->get('need');
         $structure = $session->get('structure');
-        $structures="";
-        if ($structure != null){
-            for ($key = 0; $key < count($structure); $key++) {
-                if (count($structure) == 0) {
-                    $structures = $structure;
-                } else {
-                    $structures .= $structure[$key] . " ";
-                }
-            }
-        }
         $numberResult = $pagination->getTotalItemCount();
-        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disabilities, $structures, $numberResult);
-        for ($key =0;$key<count($test);$key++) {
-            if (
-                $location == $test[$key]['location'] &&
-                $age == $test[$key]['age'] &&
-                $disabilities == $test[$key]['disability'] &&
-                $need == $test[$key]['need'] &&
-                $structures == $test[$key]['structure'] &&
-                $pagination->getTotalItemCount() == $test[$key]['numberResult']
-            ) {
-                $id = $test[$key]['id'];
-                $updateCount = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->find($id);
-                $count = $updateCount->getCountRepetition();
-                $updateCount->setCountRepetition($count + 1);
-                $em->persist($updateCount);
-                $em->flush();
-            }
-        }
-        if ($test == null ) {
-            $userSearch->setLocation($session->get('location'));
-            $userSearch->setAge($session->get('age'));
-            $userSearch->setNeed($session->get('need'));
-            $userSearch->setDisability($disabilities);
-            $userSearch->setStructure($structures);
-            $userSearch->setNumberResult($pagination->getTotalItemCount());
-            $em->persist($userSearch);
-            $em->flush();
-        }
+        $savingSearch = $this->container->get('search_recorder')->recordSearchUser($location, $age, $disability, $need, $structure, $numberResult);
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
-            'location' => $session->get('location'),
-            'age' => $session->get('age'),
-            'need' => $session->get('need'),
-            'disability' => $session->get('disability'),
-            'structure' => $session->get('structure'),
+            'location' => $location,
+            'age' => $age,
+            'need' => $need,
+            'disability' => $disability,
+            'structure' => $structure,
             'pagination' => $pagination,
             'result' => $result,
+            'savingSearch' => $savingSearch
         ));
     }
-
 }

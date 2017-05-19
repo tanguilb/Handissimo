@@ -28,14 +28,19 @@ class SortSearch
             $orga = $this->em->getRepository('HandissimoBundle:Organizations')->find($results['id']);
             if ($need !== null)
             {
-                if (!empty($orga->getNeeds()->getValues())){
-                    foreach ($orga->getNeeds()->getValues() as $needs)
+                if(!empty($orga->getNeeds()->getValues()))
+                {
+                    foreach($orga->getNeeds()->getValues() as $needs)
                     {
-                        if ($needs->getNeedName() === $need->getNeedName())
+                        for($i = 0; $i < count($need); $i++)
                         {
-                            $value ++;
+                            if($needs->getNeedName() === $need[$i]->getNeedName())
+                            {
+                                $value ++;
+                            }
                         }
                     }
+
                 }
             }
             if ($disability !== null)
@@ -56,12 +61,9 @@ class SortSearch
             }
             if ($structure !== null)
             {
-                for ($i = 0; $i < count($structure); $i++)
+                if ($orga->getOrgaStructure()->getName() === $structure->getName())
                 {
-                    if ($orga->getOrgaStructure()->getName() === $structure[$i]->getName())
-                    {
-                        $value++;
-                    }
+                    $value++;
                 }
             }
             $results['correspondance']=$value;

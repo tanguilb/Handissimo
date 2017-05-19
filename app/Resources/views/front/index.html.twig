@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-4 col-md-4">
-                        <div class="col-xs-12 search-field">
+                        <div class="col-xs-12 search-field need-select">
                             <p class="search-text">Que cherchez-vous ?<i class="marker fa fa-search" aria-hidden="true"></i></p>
                             {{ form_row(form.need, { 'attr': { 'class' : 'homeField'} }) }}
                         </div>
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-6 col-md-6">
-                        <div class="col-xs-12">
+                        <div class="col-xs-12" id="structure-select">
                             {{ form_row(form.structure) }}
                         </div>
                     </div>

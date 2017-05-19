@@ -36,19 +36,35 @@ class OrganizationsRepository extends EntityRepository
             $query->andWhere($andmodule);
             $query->setParameter('age', $age);
         }
-        if($need !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->andWhere($ormodule);
-            $query->setParameter('need', $need->getNeedName());
+        if ($need !== null) {
+            if (count($need) <= 1) {
+                foreach ($need as $value) {
+                    if ($value !== null) {
+                        $andmodule = $query->expr()->andX();
+                        $andmodule->add($query->expr()->eq('n.needName', ':need'));
+                        $query->andWhere($andmodule);
+                        $query->setParameter('need', $value->getNeedName());
+                    }
+                }
+            } else {
+                foreach ($need as $key => $value){
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->orX();
+                        $ormodule->add($query->expr()->eq('n.needName', ':need'.$key));
+                        $query->orWhere($ormodule);
+                        $query->setParameter('need'.$key, $value->getNeedName());
+                    }
+                }
+            }
         }
+
         if ($disability !== null){
             if (count($disability) <= 1) {
                 foreach ($disability as $value) {
                     if ($value !== null) {
-                        $ormodule = $query->expr()->andX();
-                        $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-                        $query->andWhere($ormodule);
+                        $andmodule = $query->expr()->andX();
+                        $andmodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+                        $query->andWhere($andmodule);
                         $query->setParameter('disability', $value->getDisabilityName());
                     }
                 }
@@ -64,28 +80,12 @@ class OrganizationsRepository extends EntityRepository
             }
         }
         if($structure !== null){
-            if (count($structure) <= 1) {
-                foreach ($structure as $value) {
-                    if ($value !== null) {
-                        $ormodule = $query->expr()->andX();
-                        $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-                        $query->andWhere($ormodule);
-                        $query->setParameter('structure', $value->getName());
-                    }
-                }
-            } else {
-                foreach ($structure as $key => $value) {
-                    if ($value !== null) {
-                        $ormodule = $query->expr()->orX();
-                        $ormodule->add($query->expr()->eq('sl.name', ':structure'.$key));
-                        $query->orWhere($ormodule);
-                        $query->setParameter('structure'.$key, $value->getName());
-                    }
-                }
-            }
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->eq('sl.name', ':structure'));
+            $query->andWhere($andmodule);
+            $query->setParameter('structure', $structure->getName());
         }
         $query->distinct();
-        //echo $query->getQuery()->getSQL();die();
         return $query->getQuery()->getResult();
     }
 
