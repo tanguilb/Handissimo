@@ -36,22 +36,53 @@ class OrganizationsRepository extends EntityRepository
             $query->andWhere($andmodule);
             $query->setParameter('age', $age);
         }
-        if($need !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('n.needName', ':need'));
-            $query->andWhere($ormodule);
-            $query->setParameter('need', $need->getNeedName());
+        if ($need !== null) {
+            if (count($need) <= 1) {
+                foreach ($need as $value) {
+                    if ($value !== null) {
+                        $andmodule = $query->expr()->andX();
+                        $andmodule->add($query->expr()->eq('n.needName', ':need'));
+                        $query->andWhere($andmodule);
+                        $query->setParameter('need', $value->getNeedName());
+                    }
+                }
+            } else {
+                foreach ($need as $key => $value){
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->orX();
+                        $ormodule->add($query->expr()->eq('n.needName', ':need'.$key));
+                        $query->orWhere($ormodule);
+                        $query->setParameter('need'.$key, $value->getNeedName());
+                    }
+                }
+            }
         }
-        if($disability !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
-            $query->andWhere($ormodule);
-            $query->setParameter('disability', $disability->getDisabilityName());
+
+        if ($disability !== null){
+            if (count($disability) <= 1) {
+                foreach ($disability as $value) {
+                    if ($value !== null) {
+                        $andmodule = $query->expr()->andX();
+                        $andmodule->add($query->expr()->eq('dt.disabilityName', ':disability'));
+                        $query->andWhere($andmodule);
+                        $query->setParameter('disability', $value->getDisabilityName());
+                    }
+                }
+            } else {
+                foreach ($disability as $key => $value) {
+                    if ($value !== null) {
+                        $ormodule = $query->expr()->orX();
+                        $ormodule->add($query->expr()->eq('dt.disabilityName', ':disability'.$key));
+                        $query->orWhere($ormodule);
+                        $query->setParameter('disability'.$key, $value->getDisabilityName());
+                    }
+                }
+            }
         }
         if($structure !== null){
-            $ormodule = $query->expr()->andX();
-            $ormodule->add($query->expr()->eq('sl.name', ':structure'));
-            $query->andWhere($ormodule);
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->eq('sl.name', ':structure'));
+            $query->andWhere($andmodule);
             $query->setParameter('structure', $structure->getName());
         }
         $query->distinct();

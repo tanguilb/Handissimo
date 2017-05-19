@@ -15,7 +15,7 @@
     }
 }
 
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1366px){
     #main-index {
         height: 100vh;
         background-size: cover;
@@ -30,11 +30,11 @@
         font-size: 2em;
     }
     .search-field .search-text {
-        font-size: 0.8em;
+        font-size: 0.9em;
         margin-bottom: 5px;
     }
     .search-field .homeField {
-        font-size: 0.7em;
+        font-size: 0.8em;
     }
     .search-field .marker {
         font-size: 1.1em;
@@ -228,17 +228,6 @@
     border-bottom: solid 1px #777777;
 }
 
-#research_action_need {
-    background-color: #ffffff;
-}
-
-#research_action_need option {
-    color: #777777;
-}
-.empty-need {
-    color: #c0c0c0;
-}
-
 #research_action_age,
 #research_action_postal,
 #research_action_need {
@@ -285,24 +274,56 @@
 
 #research_action_disability,
 #research_action_structure {
-    border: 2px solid #f7af49;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    margin-top: 20px;
     font-size: 1.1em;
     font-weight: 600;
-    font-style: italic;
-    color: #777777;
     width: 100%;
 }
 
-#research_action_disability option,
-#research_action_structure option {
-    width: 335px;
+.select2 {
+    border: 2px solid #f7af49;
+    width: 100%;
+    margin-top: 20px;
     background-color: #FFFFFF;
+    font-size: 1.1em;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+.need-select .select2 {
+    border: none;
+    margin-top: 0;
+}
+
+.need-select .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    border-bottom: solid 1px #c9c9c9;
+}
+.need-select .select2-container .select2-search--inline .select2-search__field {
+    margin-top: 0;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: none;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: none;
+}
+
+.select2-results__option {
+    padding: 0 0 0 5px;
     color: #777777;
-    font-weight: 500;
-    padding: 5px;
+}
+
+.select2-container--default .select2-selection--single {
+    border: none;
+}
+
+#structure-select .select2 {
+    //color: #777777;
+}
+
+#structure-select .select2-container--default .select2-selection--single .select2-selection__rendered {
+   color: #777777;
 }
 
 /***************************/
@@ -327,7 +348,6 @@
         margin-bottom: 10px;
     }
 }
-
 
 #block-call {
     margin: 20px auto 20px auto;

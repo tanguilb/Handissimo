@@ -21,7 +21,6 @@ class AjaxController extends Controller
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
-
             $location = $form->getData()['postal'];
             $age = $form->getData()['age'];
             $need = $form->getData()['need'];
@@ -32,7 +31,6 @@ class AjaxController extends Controller
             $this->get('session')->set('need', $need);
             $this->get('session')->set('disability', $disability);
             $this->get('session')->set('structure', $structure);
-
             $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
             $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
 
@@ -81,8 +79,6 @@ class AjaxController extends Controller
         /**
          * Method for saving user searches in database
          */
-        $em = $this->getDoctrine()->getManager();
-        $userSearch = new UserSearch();
 
         $location = $session->get('location');
         $age = $session->get('age');
@@ -90,48 +86,18 @@ class AjaxController extends Controller
         $need = $session->get('need');
         $structure = $session->get('structure');
         $numberResult = $pagination->getTotalItemCount();
-        $test = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->findUserSearches($location, $age, $need, $disability, $structure, $numberResult);
-
-        for ($key =0;$key<count($test);$key++) {
-            if (
-                $session->get('location') == $test[$key]['location'] &&
-                $session->get('age') == $test[$key]['age'] &&
-                $session->get('disability') == $test[$key]['disability'] &&
-                $session->get('need') == $test[$key]['need'] &&
-                $session->get('structure') == $test[$key]['structure'] &&
-                $pagination->getTotalItemCount() == $test[$key]['numberResult']
-            ) {
-                $id = $test[$key]['id'];
-                $updateCount = $this->getDoctrine()->getRepository('HandissimoBundle:UserSearch')->find($id);
-                $count = $updateCount->getCountRepetition();
-                $updateCount->setCountRepetition($count + 1);
-                $em->persist($updateCount);
-                $em->flush();
-            }
-        }
-            if ($test == null ){
-                $userSearch->setLocation($session->get('location'));
-                $userSearch->setAge($session->get('age'));
-                $userSearch->setNeed($session->get('need'));
-                if ($session->get('disability') != null)
-                    $userSearch->setDisability($session->get('disability')->getDisabilityName());
-                if ($session->get('structure') != null) {
-                    $userSearch->setStructure($session->get('structure')->getName());
-                }
-                $userSearch->setNumberResult($pagination->getTotalItemCount());
-                $em->persist($userSearch);
-                $em->flush();
-            }
+        $savingSearch = $this->container->get('search_recorder')->recordSearchUser($location, $age, $disability, $need, $structure, $numberResult);
 
         return $this->render('front/search.html.twig', array(
             'picture' => $pictures,
-            'location' => $session->get('location'),
-            'age' => $session->get('age'),
-            'need' => $session->get('need'),
-            'disability' => $session->get('disability'),
-            'structure' => $session->get('structure'),
+            'location' => $location,
+            'age' => $age,
+            'need' => $need,
+            'disability' => $disability,
+            'structure' => $structure,
             'pagination' => $pagination,
             'result' => $result,
+            'savingSearch' => $savingSearch
         ));
     }
 
@@ -159,6 +125,7 @@ class AjaxController extends Controller
             throw new \HttpException('500', 'Invalid call');
         }
     }
+
     public function emailAction(Request $request, $id)
     {
         if($request->isXmlHttpRequest())

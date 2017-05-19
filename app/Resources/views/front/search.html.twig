@@ -11,30 +11,38 @@
                     <h3>Votre recherche:</h3>
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {% if location %}<p>Lieu : {{ location }}</p>{% endif %}
+                    {% if location %}<p>Lieu :</p><p>{{ location }}</p>{% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
-                    {% if age %}<p>Pour une personne  : {{ age }} ans</p>{% endif %}
+                    {% if age %}<p>Pour une personne  :</p><p>{{ age }} ans</p>{% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if need %}
-                    <p data-toggle="tooltip" data-placement="bottom" title="{{ need }}">
-                        Ce que vous cherchez : {{ need|length > 15 ? need|slice(0,15)~'....' : need}}
-                    </p>
+                        <p>Ce que vous cherchez :</p>
+                        {% for needs in need %}
+                            <p data-toggle="tooltip" data-placement="bottom" title="{{ needs.needName }}"  class="search-criteria">
+                                 {{ needs.needName|length > 15 ? needs.needName|slice(0,15)~'....' : needs.needName}}
+                            </p>
+                        {% endfor %}
                     {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if disability %}
-                    <p data-toggle="tooltip" data-placement="bottom" title="{{ disability.disabilityName }}">
-                        Le type de handicap : {{ disability.disabilityName|length > 15 ? disability.disabilityName|slice(0,15)~'...' : disability.disabilityName }}
-                    </p>
+                        <p>Le type de handicap :</p>
+                        {% for disabilities in disability %}
+                            <p data-toggle="tooltip" data-placement="bottom" title="{{ disabilities.disabilityName }}" class="search-criteria">
+                                {{ disabilities.disabilityName|length > 15 ? disabilities.disabilityName|slice(0,15)~'...' : disabilities.disabilityName }}
+                            </p>
+                        {% endfor %}
+
                     {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
                     {% if structure %}
-                    <p data-toggle="tooltip" data-placement="bottom" title="{{ structure.name }}">
-                        Le type de structure : {{ structure.name|length > 15 ? structure.name|slice(0,15)~'...' : structure.name }}
-                    </p>
+                        <p>Le type de structure :</p>
+                        <p data-toggle="tooltip" data-placement="bottom" title="{{ structure.name }}">
+                            {{ structure.name|length > 15 ? structure.name|slice(0,15)~'...' : structure.name }}
+                        </p>
                     {% endif %}
                 </div>
                 <div class="col-xs-12 col-md-2">
@@ -90,8 +98,6 @@
                             <div class="col-xs-12" id="social-container">
                             </div>
                         </div>
-
-
                     </div>
                 {% else %}
                 <div class="col-xs-12">

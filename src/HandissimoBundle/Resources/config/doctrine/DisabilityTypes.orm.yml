@@ -1,6 +1,10 @@
 HandissimoBundle\Entity\DisabilityTypes:
     type: entity
     table: disability_types
+    indexes:
+        name_idx:
+            columns: [ disability_name ]
+            flags: fulltext
     id:
         id:
             type: integer

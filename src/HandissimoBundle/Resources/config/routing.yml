@@ -42,3 +42,4 @@ handissimo_media:
 handissimo_help:
     path: /help
     defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }
+

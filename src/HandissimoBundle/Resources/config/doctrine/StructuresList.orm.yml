@@ -2,6 +2,10 @@ HandissimoBundle\Entity\StructuresList:
     type: entity
     table: null
     repositoryClass: HandissimoBundle\Repository\StructuresListRepository
+    indexes:
+        structure_name_idx:
+            columns: [ name ]
+            flags: fulltext
     id:
         id:
             type: integer
