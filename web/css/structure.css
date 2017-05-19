@@ -118,17 +118,6 @@ input:-ms-input-placeholder {
     color: red;
 }
 
-.btn-homepage {
-    background-color: #f7af49;
-    margin-bottom: 10px;
-}
-
-.btn-homepage:hover,
-.btn-homepage:focus {
-    background-color: #FFBE49;
-    color: #FFFFFF;
-    text-decoration: none;
-}
 
 .block-btn-structure {
     margin: 0 auto;

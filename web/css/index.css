@@ -68,6 +68,10 @@
     #block-img-week p{
         font-size: 0.7em;
     }
+
+    {
+        height: 90px;
+    }
 }
 
 @media screen and (max-width: 780px)
@@ -280,13 +284,28 @@
 }
 
 #search_profile_save,
-#research_action_save,
-#quick-search,
-#advanced-search{
+#research_action_save
+{
     border: none;
     font-size: 1.5em;
     display: block;
-    margin: 50px auto 90px auto;
+    margin: 20px auto 10px auto;
+}
+
+#advanced-search,
+#quick-search{
+    border: none;
+    font-size: 1.5em;
+    font-weight: 800;
+    display: block;
+    margin: 0 auto 0 auto;
+    color: #C37095;
+    background-color: transparent;
+}
+
+#advanced-search:hover,
+#quick-search:hover {
+    color: #C37095;
 }
 
 #research_action_disability,
@@ -327,7 +346,7 @@
 
 
 #quickSearchField {
-    margin: 50px auto 90px auto;
+    margin: 50px auto 40px auto;
     padding-bottom: 10px;
 }
 /***************************/
@@ -358,15 +377,14 @@
     text-align: center;
 }
 
-#quick-search,
-#advanced-search,
+
+
 #btn-call {
     border: none;
     font-size: 1.5em;
     background-color: #f7af49;
 }
-#quick-search,
-#advanced-search,
+
 #btn-call:hover,
 #btn-call:focus {
     background-color: #FFBE49;
@@ -525,4 +543,22 @@
 
 #building {
     color: #f7af49;
+}
+
+.btn-homepage {
+    background-color: #C37095;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.btn-homepage:hover,
+.btn-homepage:focus {
+    background-color: #C37095;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.block-btn-homepage {
+    margin: 0 auto;
+    text-align: right;
 }

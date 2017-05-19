@@ -405,13 +405,13 @@ class OrganizationsType extends AbstractType
             ))
             ->add('firstPictureFile', VichImageType::class, array(
                 'required' => false,
-                'label' => 'Ajouter une image de présentation',
+                'label' => 'Ajouter une image qui s\'affichera par défaut sur la page de résultat',
                 'download_link' => false,
 
             ))
             ->add('media', CollectionType::class, array(
                 'entry_type' => MediaType::class,
-                'label' => 'Images de la structure',
+                'label' => 'Ajouter d\'autres images qui apparaitrons sur la fiche de votre structure',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'delete_empty' => true,

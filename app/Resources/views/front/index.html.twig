@@ -54,12 +54,14 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-                {{ form_row(form.save, { 'label': 'Trouvez votre solution', 'class': 'btn' }) }}
-                {{ form_end(form) }}
-            </div>
-            <div class="container">
-                <button class="btn btn-default" id="quick-search" value="Recherche rapide">Recherche rapide</button>
+            <div class="col-xs-12">
+                <div class="col-xs-12 btn-save">
+                    {{ form_row(form.save, { 'label': 'Trouvez votre solution', 'class': 'btn' }) }}
+                    {{ form_end(form) }}
+                </div>
+                <div class="col-xs-12 btn-js">
+                    <button id="quick-search" value="Recherche rapide">Si vous connaissez le nom de la structure</button>
+                </div>
             </div>
         </div>
         <div id="quick-search-container">
@@ -74,12 +76,14 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container btn-save">
+                <div>
                 {{ form_row(formQuick.save, { 'label': 'Trouvez votre solution', 'class': 'btn' }) }}
                 {{ form_end(formQuick) }}
+                </div>
             </div>
-            <div class="container">
-                <button class="btn btn-default" id="advanced-search">Recherche avancer</button>
+            <div class="container btn-js">
+                <button id="advanced-search">Recherche avancer</button>
             </div>
         </div>
     </section>

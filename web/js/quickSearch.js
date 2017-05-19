@@ -7,7 +7,7 @@ $(document).ready(function(){
         $('#quick-search-container').show();
     });
     $('#advanced-search').click(function(){
-        $('#quick-search-container').slideDown();
+        $('#quick-search-container').slideUp();
         $('#advanced-search-container').show();
     })
 
