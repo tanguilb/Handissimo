@@ -34,8 +34,7 @@ class ResearchType extends AbstractType
                     return $er->createQueryBuilder('n')
                         ->orderBy('n.needName', 'ASC');
                 },
-                'choice_name' => 'needName',
-
+                'choice_name' => 'needName'
             ))
             ->add('disability', EntityType::class, array(
                 'label' => false,
