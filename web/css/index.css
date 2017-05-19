@@ -15,7 +15,7 @@
     }
 }
 
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1366px){
     #main-index {
         height: 100vh;
         background-size: cover;
@@ -30,11 +30,11 @@
         font-size: 2em;
     }
     .search-field .search-text {
-        font-size: 0.8em;
+        font-size: 0.9em;
         margin-bottom: 5px;
     }
     .search-field .homeField {
-        font-size: 0.7em;
+        font-size: 0.8em;
     }
     .search-field .marker {
         font-size: 1.1em;
@@ -232,17 +232,6 @@
     border-bottom: solid 1px #777777;
 }
 
-#research_action_need {
-    background-color: #ffffff;
-}
-
-#research_action_need option {
-    color: #777777;
-}
-.empty-structure {
-    color: #c0c0c0;
-}
-
 #research_action_age,
 #research_action_postal,
 #research_action_need {
@@ -328,7 +317,6 @@
 .need-select .select2 {
     border: none;
     margin-top: 0;
-
 }
 
 .need-select .select2-container--default .select2-selection--multiple .select2-selection__rendered {
@@ -336,7 +324,6 @@
 }
 .need-select .select2-container .select2-search--inline .select2-search__field {
     margin-top: 0;
-
 }
 
 .select2-container--default .select2-selection--multiple {
@@ -358,7 +345,10 @@
 
 #structure-select .select2 {
     //color: #777777;
+}
 
+#structure-select .select2-container--default .select2-selection--single .select2-selection__rendered {
+   color: #777777;
 }
 
 #quickSearchField {
