@@ -4,14 +4,14 @@ $(function () {
 
 
 $('#research_action_disability').select2({
-    placeholder: 'Précisez le handicap'
+    placeholder: 'Précisez le(s) handicap(s) (facultatif)'
 });
 
 $('#research_action_structure').select2({
     multiple: false
 });
 
-$('#research_action_need').select2()({
+$('#research_action_need').select2({
     placeholder: 'Scolarité, soin, établissement…'
 });
 

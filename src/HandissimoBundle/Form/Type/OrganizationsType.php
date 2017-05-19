@@ -411,7 +411,7 @@ class OrganizationsType extends AbstractType
             ))
             ->add('media', CollectionType::class, array(
                 'entry_type' => MediaType::class,
-                'label' => 'Ajouter d\'autres images qui apparaitrons sur la fiche de votre structure',
+                'label' => 'Ajouter d\'autres images qui apparaitront sur la fiche de votre structure',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'delete_empty' => true,
