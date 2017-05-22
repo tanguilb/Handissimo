@@ -31,8 +31,14 @@
                         <i class="fa fa-bullhorn" aria-hidden="true"></i>Comment nous aider
                     </button>
                 </a>
+
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <a href="{{ path('organizations_new') }}" class="link-nav">
+                            <button class="btn orange-btn">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>Créer une fiche
+                            </button>
+                        </a>
                         <div class="btn-group">
                             <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {% if app.user.userType == "Professionnel(le)" %}
@@ -56,6 +62,11 @@
                             </ul>
                         </div>
                 {% else %}
+                    <a href="{{ path('fos_user_security_login') }}" class="link-nav">
+                        <button class="btn orange-btn">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>Créer une fiche
+                        </button>
+                    </a>
                 <a href="{{ path('fos_user_security_login') }}">
                     <button class="btn pink-btn">
                         <i class="fa fa-user" aria-hidden="true"></i>Mon compte
