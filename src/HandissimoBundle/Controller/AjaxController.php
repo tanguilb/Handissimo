@@ -14,10 +14,15 @@ class AjaxController extends Controller
     public function searchByCityAction(Request $request, $city)
     {
         if ($request->isXmlHttpRequest()) {
+
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:City');
             $location = $repository->getByCity($city);
 
-            return new JsonResponse(array("data" => json_encode($location)));
+            $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
+            $profile = $repository->getSearchProfile($city);
+
+            $data = array_merge($location, $profile);
+            return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw  new HttpException('500', 'Invalid call');
         }

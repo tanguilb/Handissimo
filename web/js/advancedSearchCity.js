@@ -9,10 +9,19 @@ $( document ).ready(function() {
                 timeout: 3000,
                 success: function(response){
                     var cities = JSON.parse(response.data);
+
                     var html = "";
+
                     for (var i = 0; i < cities.length; i++) {
-                        html += "<li>" + cities[i].name + "</li>";
+                        if (cities[i].city == undefined)
+                        {
+                            html += "<li>" + cities[i].name + "</li>";
+
+                        } else {
+                            html += "<li>" + cities[i].name + " (" + cities[i].city +  ")</li>";
+                        }
                     }
+
 
                     $('#city').html(html);
                     $('#city').find('li').on('click', function() {

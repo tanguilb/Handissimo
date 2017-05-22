@@ -8,7 +8,7 @@ use HandissimoBundle\Entity\Organizations;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function getNearBy($lat, $long, $age, $need, $disability, $structure)
+    public function getNearBy($lat, $long, $name, $age, $need, $disability, $structure)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
@@ -21,15 +21,33 @@ class OrganizationsRepository extends EntityRepository
         $query->leftJoin('sl.type', 'st');
         $query->addSelect('st.picture as picture');
 
+
         if($lat !== null and $long !== null)
         {
+            $name = null;
             $query->addSelect('Geo(:lat, :long, o.latitude, o.longitude) as distance');
             $query->having('distance <= 10');
             $query->setParameter('lat', $lat);
             $query->setParameter('long', $long);
             $query->orderBy('distance');
         }
-        if ($age !== null) {
+        if($name !== null)
+        {
+            $test = preg_split('/[()]/', $name);
+            $andmodule = $query->expr()->andX();
+            $andmodule->add($query->expr()->eq('o.name', ':name'));
+            $query->andWhere($andmodule);
+            $query->setParameter('name', $test[0]);
+            if ($test[1] !== "null")
+            {
+                $ormodule = $query->expr()->andX();
+                $ormodule->add($query->expr()->eq('o.city', ':city'));
+                $query->andWhere($ormodule);
+                $query->setParameter('city', $test[1]);
+
+            }
+        }
+            if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
