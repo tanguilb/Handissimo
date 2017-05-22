@@ -107,3 +107,7 @@ services:
     handissimo.sort_research:
         class: HandissimoBundle\Services\Search\SortSearch
         arguments: ['@doctrine.orm.entity_manager']
+
+    handissimo.load_data:
+        class: HandissimoBundle\Services\Upload\DataLoader
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
