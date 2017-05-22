@@ -170,7 +170,8 @@
                         <div class="col-sm-4 col-xs-12"  id="video">
                             <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <video id="movie" src="{{ asset('media/Handissimo-ss-titrage.mp4') }}" controls="controls" typeof="video"></video>
+                                <iframe src="https://player.vimeo.com/video/216011812" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                <p><a href="https://vimeo.com/216011812">Handissimo - sous-titr&eacute;</a> from <a href="https://vimeo.com/user65616025">Marion Pineau</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
                             </div>
                         </div>
                         <div id="text-carousel" class="col-sm-4 col-xs-12">
@@ -179,7 +180,6 @@
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for images in carousel %}
-
                                         <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
                                     {% endfor %}
                                 </ol>
