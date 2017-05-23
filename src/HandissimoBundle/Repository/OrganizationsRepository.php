@@ -52,7 +52,7 @@ class OrganizationsRepository extends EntityRepository
 
             }
         }
-            if ($age !== null) {
+        if ($age !== null) {
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->lte('o.agemini', ':age'));
             $andmodule->add($query->expr()->gte('o.agemaxi', ':age'));
