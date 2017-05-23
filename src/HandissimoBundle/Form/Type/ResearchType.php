@@ -59,7 +59,7 @@ class ResearchType extends AbstractType
                 },
                 'choice_name' => 'name',
                 'multiple' => false,
-                'empty_value' => 'Précisez le type de structure'
+                'empty_value' => 'Précisez le type de structure (facultatif)'
             ))
             ->add('save', SubmitType::class,
                 array('label' => 'Trouvez votre solution'));

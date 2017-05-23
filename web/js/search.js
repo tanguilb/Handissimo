@@ -4,7 +4,7 @@ $(function () {
 
 
 $('#research_action_disability').select2({
-    placeholder: 'Précisez le handicap'
+    placeholder: 'Précisez le(s) handicap(s) (facultatif)'
 });
 
 $('#research_action_structure').select2({
