@@ -54,9 +54,6 @@ class OrganizationsController extends Controller
      */
     public function editAction(Request $request, Organizations $organization)
     {
-       // var_dump($organization->getUserorg());
-        var_dump($this->container->get('security.token_storage')->getToken()->getRoles()[0]);
-
         $em = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
         $pictures = $em->getMediaByOrganizations($organization->getId());
         $deleteForm = $this->createDeleteForm($organization);
@@ -64,7 +61,7 @@ class OrganizationsController extends Controller
         $editForm->handleRequest($request);
         $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
         $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
-
+        $user = $this->getUser();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('edit', 'La fiche a été édité');
@@ -77,6 +74,7 @@ class OrganizationsController extends Controller
             {
                 return $this->render('organizations/edit.html.twig', array(
                     'pictures' => $pictures,
+                    'user' => $user,
                     'organization' => $organization,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
@@ -89,6 +87,7 @@ class OrganizationsController extends Controller
         {
             return $this->render('organizations/edit.html.twig', array(
                 'pictures' => $pictures,
+                'user' => $user,
                 'organization' => $organization,
                 'edit_form' => $editForm->createView(),
                 'delete_form' => $deleteForm->createView(),
