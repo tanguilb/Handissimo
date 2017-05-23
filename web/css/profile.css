@@ -518,25 +518,6 @@ input:-ms-input-placeholder {
     text-align: center;
 }
 
-/*.help-block {
-    position: fixed;
-    z-index: 1;
-    background-color: #C37095;
-    color: #000;
-    margin:-100px 20px 0 5px;
-    box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
-    padding-top: 5px;
-    left:0;
-    bottom: 0;
-    width: 17%;
-}
-
-@media screen and (max-width: 992px){
-    .help-block {
-        display: none;
-    }
-}*/
-
 #btn-help {
     position: fixed;
     left:0;

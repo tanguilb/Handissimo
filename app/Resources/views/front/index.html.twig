@@ -59,31 +59,6 @@
                     {{ form_row(form.save, { 'label': 'Trouvez votre solution', 'class': 'btn' }) }}
                     {{ form_end(form) }}
                 </div>
-                <div class="col-xs-12 btn-js">
-                    <button id="quick-search" value="Recherche rapide">Si vous connaissez le nom de la structure</button>
-                </div>
-            </div>
-        </div>
-        <div id="quick-search-container">
-            {{ form_start(formQuick) }}
-            {{ form_errors(formQuick) }}
-            <div class="container">
-                <div class="col-xs-12 clear">
-                    <div class="col-xs-12 search-field" id="quickSearchField">
-                        <p class="search-text">Où cherchez-vous ?<i class="marker fa fa-map-marker" aria-hidden="true"></i></p>
-                        {{ form_row(formQuick.organizationName, { 'attr': {'placeholder': 'Entrer le non de la structure', 'class' : 'homeField'} }) }}
-                        <ul id="organization-name"></ul>
-                    </div>
-                </div>
-            </div>
-            <div class="container btn-save">
-                <div>
-                {{ form_row(formQuick.save, { 'label': 'Trouvez votre solution', 'class': 'btn' }) }}
-                {{ form_end(formQuick) }}
-                </div>
-            </div>
-            <div class="container btn-js">
-                <button id="advanced-search">Recherche avancer</button>
             </div>
         </div>
     </section>
@@ -179,7 +154,6 @@
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
                                     {% for images in carousel %}
-
                                         <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" {% endif %}></li>
                                     {% endfor %}
                                 </ol>

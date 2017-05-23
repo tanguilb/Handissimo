@@ -36,10 +36,10 @@ class LoadDataCommand extends ContainerAwareCommand
         $output->write('You are about to ');
         $output->write('load data in database.');
         $data = $this->getContainer()->get('handissimo.load_data');
-        $progress = new ProgressBar($output);
-        $progress->start();
+        //$progress = new ProgressBar($output);
+        //$progress->start();
         $data->loadAction($input->getArgument('name'));
-        $progress->finish();
+        //$progress->finish();
         $output->writeln('Data loaded');
     }
 }

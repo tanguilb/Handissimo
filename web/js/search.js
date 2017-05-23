@@ -8,10 +8,11 @@ $('#research_action_disability').select2({
 });
 
 $('#research_action_structure').select2({
+    placeholder: 'Precisez la structure',
     multiple: false
 });
 
-$('#research_action_need').select2()({
+$('#research_action_need').select2({
     placeholder: 'Scolarité, soin, établissement…'
 });
 
