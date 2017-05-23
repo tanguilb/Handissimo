@@ -59,7 +59,7 @@
                             <div class="organization-panel">
                                 <div class="panel-heading" role="tab" id="headingOne">
                                     <h2 class="panel-title primary-title">
-                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             C'est pour qui ?
                                         </a>
                                     </h2>
@@ -525,14 +525,13 @@
                 </div>
                 {% endif %}
                 <div class="col-md-3 col-xs-12">
-                    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN')%}
+                    {% if is_granted('ROLE_USER') %}
+
                         {% if organization.userorg == null %}
                             <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Modifier la fiche
                             </a>
-                        {% elseif  user.organizationsuser == null %}
-                            <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
-                        {% elseif  user.organizationsuser.id == organization.id %}
+                        {% elseif  user.id == organization.userorg.id or is_granted('ROLE_SUPER_ADMIN') %}
                             <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Modifier la fiche
                             </a>
@@ -555,11 +554,11 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/vote.js') }}"></script>
     <script src="{{ asset('js/carousel.js') }}"></script>
     <script src="{{ asset('js/generateadress.js') }}"></script>
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script src="{{ asset('js/popover.js') }}"></script>
+    <script src="{{ asset('js/activateTab.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>

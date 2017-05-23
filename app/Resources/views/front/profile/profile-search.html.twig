@@ -18,9 +18,11 @@
         </div>
         <div class="col-md-offset-3 col-md-6 col-xs-12 result-block">
             {% for result in result %}
-                <div>
-                    <a href="{{ path('organizations_edit', {'id': result.id}) }}" class="link-about">{{ result.name }}</a>
-                </div>
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN') %}
+                    <div>
+                        <a href="{{ path('organizations_edit', {'id': result.id}) }}" class="link-about">{{ result.name }}</a>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

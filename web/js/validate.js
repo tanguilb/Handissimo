@@ -403,3 +403,8 @@ function recaptchaCallbackTwo() {
 $("#btn-help").click(function(){
     $(".modal-fade").hide();
 });
+
+function goBack()
+{
+    window.history.back();
+}

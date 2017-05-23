@@ -61,19 +61,38 @@ class OrganizationsController extends Controller
         $editForm->handleRequest($request);
         $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
         $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
-
+        $user = $this->getUser();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('edit', 'La fiche a été édité');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
-
-        return $this->render('organizations/edit.html.twig', array(
-            'pictures' => $pictures,
-            'organization' => $organization,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        if ($organization->getUserorg() !== null){
+            foreach ($this->container->get('security.token_storage')->getToken()->getRoles() as $role)
+            {
+                if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $organization->getUserorg()->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
+                {
+                    return $this->render('organizations/edit.html.twig', array(
+                        'pictures' => $pictures,
+                        'user' => $user,
+                        'organization' => $organization,
+                        'edit_form' => $editForm->createView(),
+                        'delete_form' => $deleteForm->createView(),
+                    ));
+                } else {
+                    return $this->render(':front/profile:profile-dont-edit.html.twig');
+                }
+            }
+        } else
+        {
+            return $this->render('organizations/edit.html.twig', array(
+                'pictures' => $pictures,
+                'user' => $user,
+                'organization' => $organization,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }
     }
 
     /**

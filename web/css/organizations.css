@@ -28,9 +28,7 @@
     flex-direction: column;
     justify-content: center;
 }
-logos{
 
-}
 .structure-title{
     margin-bottom: 10px;
 }
@@ -249,6 +247,13 @@ logos{
 #logo-mdph {
     width: 150px;
     height: auto;
+}
+
+.panel-heading .link-about:after{
+    font-family: "Glyphicons Halflings";
+    content: "\e080";
+    float: right;
+    color: #61bdb9;
 }
 
 .panel-heading .collapsed:after {

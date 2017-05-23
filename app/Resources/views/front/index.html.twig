@@ -21,7 +21,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-4 clear">
                         <div class="col-xs-12 search-field">
                             <p class="search-text">Où cherchez-vous ?<i class="marker fa fa-map-marker" aria-hidden="true"></i></p>
-                            {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), Paris (75000)…', 'class' : 'homeField'} }) }}
+                            {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon (69000), ou le nom de la structure', 'class' : 'homeField'} }) }}
                             <ul id="city"></ul>
                         </div>
                     </div>
@@ -145,7 +145,8 @@
                         <div class="col-sm-4 col-xs-12"  id="video">
                             <p>Handissimo en 3 min ?</p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <video id="movie" src="{{ asset('media/Handissimo-ss-titrage.mp4') }}" controls="controls" typeof="video"></video>
+                                <iframe src="https://player.vimeo.com/video/216011812" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                <p><a href="https://vimeo.com/216011812">Handissimo - sous-titr&eacute;</a> from <a href="https://vimeo.com/user65616025">Marion Pineau</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
                             </div>
                         </div>
                         <div id="text-carousel" class="col-sm-4 col-xs-12">

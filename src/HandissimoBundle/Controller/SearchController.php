@@ -9,6 +9,7 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Entity\City;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -20,10 +21,10 @@ class SearchController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
-        $formQuick = $this->createForm('HandissimoBundle\Form\Type\OrganizationNameSearchType');
+        //$formQuick = $this->createForm('HandissimoBundle\Form\Type\OrganizationNameSearchType');
 
         $form->handleRequest($request);
-        $formQuick->handleRequest($request);
+        //$formQuick->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
@@ -37,6 +38,7 @@ class SearchController extends Controller
             $this->get('session')->set('need', $need);
             $this->get('session')->set('disability', $disability);
             $this->get('session')->set('structure', $structure);
+
             $lat = $em->getRepository('HandissimoBundle:City')->getLatitude($location);
             $long = $em->getRepository('HandissimoBundle:City')->getLongitude($location);
 
@@ -47,7 +49,8 @@ class SearchController extends Controller
                 $rlat = $lat[0]['latitude'];
                 $rlong = $long[0]['longitude'];
             }
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $age, $need, $disability, $structure);
+
+            $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $location, $age, $need, $disability, $structure);
 
             $sort = $this->container->get('handissimo.sort_research');
 
@@ -64,11 +67,6 @@ class SearchController extends Controller
             }else {
                 return $this->redirectToRoute('research_action');
             }
-        } elseif($formQuick->isSubmitted() && $formQuick->isValid()) {
-            $structure = $formQuick->getData()['organizationName'];
-            $test = preg_split('/[()]/', $structure);
-            $result = $em->getRepository('HandissimoBundle:Organizations')->getByName($test[0], $test[1]);
-            return $this->redirectToRoute('structure_page', array('id' => $result->getId()));
         }
         $carousel = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPictureByOrrganizations(6);
         $repository = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations');
@@ -77,7 +75,7 @@ class SearchController extends Controller
         $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
         $statOrganizations = $repository->getAllOrganizations();
         return $this->render('front/index.html.twig', array(
-            'formQuick' => $formQuick->createView(),
+            //'formQuick' => $formQuick->createView(),
             'form' => $form->createView(),
             'carousel' => $carousel,
             'organizations' => $organizations,
