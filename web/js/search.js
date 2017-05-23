@@ -8,6 +8,7 @@ $('#research_action_disability').select2({
 });
 
 $('#research_action_structure').select2({
+    placeholder: 'Precisez la structure',
     multiple: false
 });
 

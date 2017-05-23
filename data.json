@@ -1,0 +1,978 @@
+[
+  {
+    "name": "A. Courcelles",
+    "address": "RUE DES FRERES BERT",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 72 04 68 20",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique127"
+  },
+  {
+    "name": "A. France A",
+    "address": "12 AVENUE DE LA DIVISION",
+    "postal": 69631,
+    "city": "VENISSIEUX CEDEX",
+    "phoneNumber": "04 78 70 27 73",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique134"
+  },
+  {
+    "name": "A. France B",
+    "address": "12 AVENUE DE LA DIVISION",
+    "postal": 69631,
+    "city": "VENISSIEUX CEDEX",
+    "phoneNumber": "04 78 70 55 46",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique135"
+  },
+  {
+    "name": "Alain Fournier",
+    "address": "28 RUE BERTY ALBRECHT",
+    "postal": 69008,
+    "city": "LYON",
+    "phoneNumber": "04 78 76 27 68",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique84"
+  },
+  {
+    "name": "Albert Camus",
+    "address": "545 boulevard Albert Camu",
+    "postal": 69400,
+    "city": "VILLEFRANCHE SUR SAONE",
+    "phoneNumber": "04 74 68 48 07",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique144"
+  },
+  {
+    "name": "Albert Mouton",
+    "address": "24 RUE DES COLLONGES",
+    "postal": 69231,
+    "city": "ST GENIS LAVAL",
+    "phoneNumber": "04 78 56 17 56",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique110"
+  },
+  {
+    "name": "Ambroise Croizat",
+    "address": "79 AVENUE ROGER SAL",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 72 37 34 67",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique128"
+  },
+  {
+    "name": "André Lassagne",
+    "address": "PLACE PIERRE MARIE DUR",
+    "postal": 69210,
+    "city": "L ARBRESLE",
+    "phoneNumber": "04 74 01 08 86",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique69"
+  },
+  {
+    "name": "André Marie Ampère",
+    "address": "124 rue Pierre Brunier",
+    "postal": 69300,
+    "city": "CALUIRE ET CUIRE",
+    "phoneNumber": "04 72 27 00 11",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique46"
+  },
+  {
+    "name": "Antoine Charial",
+    "address": "31 RUE ANTOINE CHARIAL",
+    "postal": 69003,
+    "city": "LYON",
+    "phoneNumber": "04 78 54 15 79",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique74"
+  },
+  {
+    "name": "Aristide Briand",
+    "address": "293 AVENUE JEAN JAURES",
+    "postal": 69007,
+    "city": "LYON",
+    "phoneNumber": "04 72 80 18 90",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique82"
+  },
+  {
+    "name": "Avenue de la Gare",
+    "address": "avenue de la gare",
+    "postal": 69870,
+    "city": "LAMURE SUR AZERGUES",
+    "phoneNumber": "04 74 03 01 57",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique68"
+  },
+  {
+    "name": "Champvert Ouest",
+    "address": "231 AVENUE BARTHELEMY",
+    "postal": 69005,
+    "city": "LYON",
+    "phoneNumber": "04 78 36 52 71",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique78"
+  },
+  {
+    "name": "Charles Perrault",
+    "address": "1 RUE DE LA DEMOCRATIE",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 72 90 81 90",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique136"
+  },
+  {
+    "name": "Charpieu",
+    "address": "32 rue Carnot",
+    "postal": 69150,
+    "city": "DECINES CHARPIEU",
+    "phoneNumber": "04 78 49 00 87",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique52"
+  },
+  {
+    "name": "Château Gaillard",
+    "address": "9 RUE PIERRE JOSEPH P",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 72 65 39 90",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique151"
+  },
+  {
+    "name": "Condé",
+    "address": "44 rue de Condé",
+    "postal": 69002,
+    "city": "LYON",
+    "phoneNumber": "04 78 37 50 20",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique73"
+  },
+  {
+    "name": "Condorcet",
+    "address": "37 RUE JULES MASSENET",
+    "postal": 69003,
+    "city": "LYON",
+    "phoneNumber": "04 78 54 87 05",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique76"
+  },
+  {
+    "name": "Condorcet",
+    "address": "6 RUE ALFRED DE MUSSET",
+    "postal": 69003,
+    "city": "LYON",
+    "phoneNumber": "04 78 54 07 36",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique77"
+  },
+  {
+    "name": "Croix Luizet",
+    "address": "14 RUE LOUIS ARMAND",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 17 35 50",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique160"
+  },
+  {
+    "name": "De La Gare d'Eau",
+    "address": "22 RUE DE SAINT CYR",
+    "postal": 69009,
+    "city": "LYON",
+    "phoneNumber": "04 78 83 70 92",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique89"
+  },
+  {
+    "name": "Diderot",
+    "address": "25 AVENUE DE MENIVAL",
+    "postal": 69005,
+    "city": "LYON",
+    "phoneNumber": "04 78 25 37 79",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique79"
+  },
+  {
+    "name": "Du Parc",
+    "address": "9 RUE DU PARC",
+    "postal": 69360,
+    "city": "ST SYMPHORIEN D OZON",
+    "phoneNumber": "04 78 02 73 43",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique120"
+  },
+  {
+    "name": "Edouard Herriot",
+    "address": "157 RUE BATAILLE",
+    "postal": 69008,
+    "city": "LYON",
+    "phoneNumber": "04 72 78 04 20",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique88"
+  },
+  {
+    "name": "Edouard Herriot",
+    "address": "104 RUE HIPPOLYTE KA",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 68 72 35",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique152"
+  },
+  {
+    "name": "Edouard Herriot Le Praine",
+    "address": "51 avenue Léon Blum",
+    "postal": 69150,
+    "city": "DECINES CHARPIEU",
+    "phoneNumber": "04 78 49 21 73",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique53"
+  },
+  {
+    "name": "Emile Zola",
+    "address": "114 COURS EMILE ZOLA",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 68 71 00",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique153"
+  },
+  {
+    "name": "Ernest Renan",
+    "address": "80 RUE PROFESSEUR ROU",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 78 00 82 55",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique137"
+  },
+  {
+    "name": "Etoile d'Alaï",
+    "address": "CHEMIN DE LA POTERIE",
+    "postal": 69340,
+    "city": "FRANCHEVILLE",
+    "phoneNumber": "04 78 34 30 99",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique57"
+  },
+  {
+    "name": "F. Garcia Lorca",
+    "address": "1 RUE ROBERT DESNOS",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 78 80 14 74",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique129"
+  },
+  {
+    "name": "Ferdinand Buisson",
+    "address": "364 rue Justin Godard",
+    "postal": 69400,
+    "city": "VILLEFRANCHE SUR SAONE",
+    "phoneNumber": "04 74 60 60 86",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique145"
+  },
+  {
+    "name": "Fernand Gayot",
+    "address": "13 rue Pierre Ponot",
+    "postal": 69400,
+    "city": "LIMAS",
+    "phoneNumber": "04 74 65 58 85",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique71"
+  },
+  {
+    "name": "Georges Lévy",
+    "address": "64 AVENUE DR GEORGES L",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 78 74 13 89",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique138"
+  },
+  {
+    "name": "Gilbert Billon",
+    "address": "5 RUE DES HAUTS DE CELE",
+    "postal": 69540,
+    "city": "IRIGNY",
+    "phoneNumber": "04 78 46 25 05",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique66"
+  },
+  {
+    "name": "Guilloux",
+    "address": "16 RUE GUILLOUX",
+    "postal": 69230,
+    "city": "ST GENIS LAVAL",
+    "phoneNumber": "04 78 56 10 57",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique109"
+  },
+  {
+    "name": "Henri Wallon",
+    "address": "1 AVENUE JEAN MOULIN",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 78 80 67 46",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique130"
+  },
+  {
+    "name": "Henri Wallon",
+    "address": "39 RUE VLADIMIR KOMARO",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 72 51 45 69",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique139"
+  },
+  {
+    "name": "Honoré de Balzac",
+    "address": "RUE LOUIS BRAILLE",
+    "postal": 69800,
+    "city": "ST PRIEST",
+    "phoneNumber": "04 78 20 16 14",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique115"
+  },
+  {
+    "name": "J. Duclos",
+    "address": "5 RUE JACQUES DUCLOS",
+    "postal": 69700,
+    "city": "GIVORS",
+    "phoneNumber": "04 72 24 22 99",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique61"
+  },
+  {
+    "name": "J.Y. Cousteau",
+    "address": "220 rue des écoles",
+    "postal": 69730,
+    "city": "GENAY",
+    "phoneNumber": "04 78 91 35 24",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique59"
+  },
+  {
+    "name": "Jean Bonthoux",
+    "address": "279 rue Pierre Guillermet",
+    "postal": 69400,
+    "city": "VILLEFRANCHE SUR SAONE",
+    "phoneNumber": "04 74 68 25 42",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique146"
+  },
+  {
+    "name": "Jean Guehenno",
+    "address": "31 RUE DE LA JACHERE",
+    "postal": 69190,
+    "city": "ST FONS",
+    "phoneNumber": "04 72 51 09 27",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique107"
+  },
+  {
+    "name": "Jean Jaurès",
+    "address": "1 rue Marcellin Berthelot",
+    "postal": 69150,
+    "city": "DECINES CHARPIEU",
+    "phoneNumber": "04 78 49 28 03",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique54"
+  },
+  {
+    "name": "Jean Jaurès",
+    "address": "PLACE JEAN JAURES",
+    "postal": 69700,
+    "city": "GIVORS",
+    "phoneNumber": "04 72 24 17 79",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique62"
+  },
+  {
+    "name": "Jean Jaurès",
+    "address": "17 RUE RICHELIEU",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 72 65 72 55",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique154"
+  },
+  {
+    "name": "Jean Macé",
+    "address": "14 rue Francis Popy",
+    "postal": 69220,
+    "city": "BELLEVILLE",
+    "phoneNumber": "04 74 66 10 76",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique41"
+  },
+  {
+    "name": "Jean Macé",
+    "address": "5 RUE ELSA TRIOLET",
+    "postal": 69500,
+    "city": "BRON",
+    "phoneNumber": "04 78 00 65 43",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique43"
+  },
+  {
+    "name": "Jean Macé",
+    "address": "1 PLACE GENERAL ANDRE",
+    "postal": 69008,
+    "city": "LYON",
+    "phoneNumber": "04 78 76 14 10",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique85"
+  },
+  {
+    "name": "Jean Macé",
+    "address": "52 RUE FLEURY",
+    "postal": 69600,
+    "city": "OULLINS",
+    "phoneNumber": "04 78 50 47 10",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique100"
+  },
+  {
+    "name": "Jean Macé",
+    "address": "175 rue de la Fraternité",
+    "postal": 69400,
+    "city": "VILLEFRANCHE SUR SAONE",
+    "phoneNumber": "04 74 62 92 63",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique147"
+  },
+  {
+    "name": "Jean Moulin",
+    "address": "95 RUE DU 8 MAI 1945",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 68 72 45",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique155"
+  },
+  {
+    "name": "Jean Vilar",
+    "address": "AVENUE MAURICE THO",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 78 80 42 38",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique131"
+  },
+  {
+    "name": "Jean Zay",
+    "address": "13 RUE JEAN ZAY",
+    "postal": 69009,
+    "city": "LYON",
+    "phoneNumber": "04 78 83 93 73",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique90"
+  },
+  {
+    "name": "Jean-Pierre Veyet",
+    "address": "17 RUE BEGUIN",
+    "postal": 69007,
+    "city": "LYON",
+    "phoneNumber": "04 78 72 17 42",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique83"
+  },
+  {
+    "name": "John Kennedy",
+    "address": "15 RUE JEAN SARRAZIN",
+    "postal": 69008,
+    "city": "LYON",
+    "phoneNumber": "04 78 74 10 74",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique86"
+  },
+  {
+    "name": "Joliot Curie",
+    "address": "RUE PIERRE ET MARIE CU",
+    "postal": 69701,
+    "city": "GIVORS",
+    "phoneNumber": "04 72 24 20 33",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique63"
+  },
+  {
+    "name": "Joliot Curie",
+    "address": "27 RUE JOLIOT CURIE",
+    "postal": 69005,
+    "city": "LYON",
+    "phoneNumber": "04 78 25 29 04",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique80"
+  },
+  {
+    "name": "Joliot Curie",
+    "address": "18 RUE JOLIOT CURIE",
+    "postal": 69780,
+    "city": "MIONS",
+    "phoneNumber": "04 78 20 16 54",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique97"
+  },
+  {
+    "name": "Joseph Brenier",
+    "address": "9 AVENUE GEORGES POMP",
+    "postal": 69800,
+    "city": "ST PRIEST",
+    "phoneNumber": "04 72 20 11 70",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique116"
+  },
+  {
+    "name": "Joseph Sibuet",
+    "address": "16 RUE DU 11 NOVEMBRE",
+    "postal": 69780,
+    "city": "MIONS",
+    "phoneNumber": "04 72 23 26 65",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique98"
+  },
+  {
+    "name": "Jules Ferry",
+    "address": "PLACE CLAUDE JORDERY",
+    "postal": 69600,
+    "city": "OULLINS",
+    "phoneNumber": "04 78 51 33 06",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique101"
+  },
+  {
+    "name": "Jules Ferry",
+    "address": "RUE RHIN ET DANUBE",
+    "postal": 69800,
+    "city": "ST PRIEST",
+    "phoneNumber": "04 78 20 21 54",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique118"
+  },
+  {
+    "name": "Jules Guesde",
+    "address": "51 RUE JULES GUESDE",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 72 91 80 60",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique156"
+  },
+  {
+    "name": "La Berthaudière",
+    "address": "67 avenue Edouard Herriot",
+    "postal": 69150,
+    "city": "DECINES CHARPIEU",
+    "phoneNumber": "04 78 49 23 08",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique55"
+  },
+  {
+    "name": "La Chartonnière",
+    "address": "263 rue George Sand",
+    "postal": 69400,
+    "city": "GLEIZE",
+    "phoneNumber": "04 74 68 82 32",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique65"
+  },
+  {
+    "name": "La Garenne",
+    "address": "26 RUE JEANNE COLLAY",
+    "postal": 69500,
+    "city": "BRON",
+    "phoneNumber": "04 78 26 98 62",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique45"
+  },
+  {
+    "name": "La Gatolière",
+    "address": "41 RUE DE VERDUN",
+    "postal": 69290,
+    "city": "CRAPONNE",
+    "phoneNumber": "04 78 57 06 06",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique50"
+  },
+  {
+    "name": "La Plaine",
+    "address": "20 BOULEVARD ROBERT MI",
+    "postal": 69170,
+    "city": "TARARE",
+    "phoneNumber": "04 74 63 25 76",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique123"
+  },
+  {
+    "name": "La Velette",
+    "address": "30 avenue Général LECLE",
+    "postal": 69164,
+    "city": "RILLIEUX LA PAPE CEDEX",
+    "phoneNumber": "04 78 88 84 57",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique104"
+  },
+  {
+    "name": "Lamartine",
+    "address": "325 rue Lamartine",
+    "postal": 69400,
+    "city": "VILLEFRANCHE SUR SAONE",
+    "phoneNumber": "04 74 60 62 82",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique148"
+  },
+  {
+    "name": "Langevin-Jaurès",
+    "address": "8 PLACE JEAN JAURES",
+    "postal": 69310,
+    "city": "PIERRE BENITE",
+    "phoneNumber": "04 78 86 69 09",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique102"
+  },
+  {
+    "name": "Lazare Goujon",
+    "address": "50 RUE PIERRE VOYANT",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 68 75 78",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique157"
+  },
+  {
+    "name": "Le Carreau",
+    "address": "11 AVENUE BENOIT BAR",
+    "postal": 69330,
+    "city": "MEYZIEU",
+    "phoneNumber": "04 78 31 41 18",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique93"
+  },
+  {
+    "name": "Le Chater",
+    "address": "1 ALLEE DE L AUBIER",
+    "postal": 69340,
+    "city": "FRANCHEVILLE",
+    "phoneNumber": "04 78 59 54 91",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique58"
+  },
+  {
+    "name": "Le Grand Cèdre",
+    "address": "12 RUE DE VERDUN",
+    "postal": 69350,
+    "city": "LA MULATIERE",
+    "phoneNumber": "04 78 50 04 35",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique67"
+  },
+  {
+    "name": "Le Mont Blanc",
+    "address": "847 chemin du bois",
+    "postal": 69140,
+    "city": "RILLIEUX LA PAPE",
+    "phoneNumber": "04 78 88 80 60",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique105"
+  },
+  {
+    "name": "Le Pérollier",
+    "address": "15 RUE DU COLLOVRIER",
+    "postal": 69130,
+    "city": "ECULLY",
+    "phoneNumber": "04 78 33 20 72",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique56"
+  },
+  {
+    "name": "Le Petit Prince",
+    "address": "21 AVENUE DE VERDUN",
+    "postal": 69440,
+    "city": "MORNANT",
+    "phoneNumber": "04 78 44 01 93",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique99"
+  },
+  {
+    "name": "Léo Lagrange",
+    "address": "49 RUE LEO LAGRANGE",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 78 70 99 39",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique140"
+  },
+  {
+    "name": "Les Allagniers",
+    "address": "5 rue Nicolas Boileau",
+    "postal": 69140,
+    "city": "RILLIEUX LA PAPE",
+    "phoneNumber": "04 78 88 81 70",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique106"
+  },
+  {
+    "name": "Les Anémones",
+    "address": "238 AVENUE DU PLATEAU",
+    "postal": 69009,
+    "city": "LYON",
+    "phoneNumber": "04 78 35 65 30",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique91"
+  },
+  {
+    "name": "Les Géraniums",
+    "address": "570 RUE BEER SHEVA",
+    "postal": 69009,
+    "city": "LYON",
+    "phoneNumber": "04 37 46 04 24",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique92"
+  },
+  {
+    "name": "Les Marendiers",
+    "address": "55 RUE DU PUITS VIEUX",
+    "postal": 69800,
+    "city": "ST PRIEST",
+    "phoneNumber": "04 78 20 42 20",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique117"
+  },
+  {
+    "name": "Les Noyeraies",
+    "address": "7 CHEMIN DES ECOLIERS",
+    "postal": 69570,
+    "city": "DARDILLY",
+    "phoneNumber": "04 78 35 64 09",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique51"
+  },
+  {
+    "name": "Louis Armand",
+    "address": "3 ALLEE DU LYS ORANGE",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 17 35 20",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique158"
+  },
+  {
+    "name": "Louis Pasteur",
+    "address": "11 RUE DE NARVIK",
+    "postal": 69008,
+    "city": "LYON",
+    "phoneNumber": "04 78 74 49 34",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique87"
+  },
+  {
+    "name": "Louis Pasteur",
+    "address": "6 ROUTE DE CORBAS",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 72 50 08 64",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique141"
+  },
+  {
+    "name": "Louis Pergaud",
+    "address": "1 RUE COLETTE",
+    "postal": 69694,
+    "city": "VENISSIEUX CEDEX",
+    "phoneNumber": "04 78 70 90 24",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique142"
+  },
+  {
+    "name": "Louise Michel",
+    "address": "1 AVENUE LENINE",
+    "postal": 69700,
+    "city": "GIVORS",
+    "phoneNumber": "04 72 24 22 71",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique64"
+  },
+  {
+    "name": "Marcel Pagnol",
+    "address": "Rue du Docteur Gaudens",
+    "postal": 69480,
+    "city": "ANSE",
+    "phoneNumber": "04 74 67 02 78",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique39"
+  },
+  {
+    "name": "Marcel Pagnol",
+    "address": "83 chemin de Pommier",
+    "postal": 69330,
+    "city": "MEYZIEU",
+    "phoneNumber": "04 78 31 42 81",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique94"
+  },
+  {
+    "name": "Marcel Pagnol",
+    "address": "79 chemin de Pommier",
+    "postal": 69330,
+    "city": "MEYZIEU",
+    "phoneNumber": "04 78 31 75 74",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique95"
+  },
+  {
+    "name": "Mathieu Dumoulin",
+    "address": "8 square de la Liberté",
+    "postal": 69220,
+    "city": "SAINT JEAN D'ARDIERES",
+    "phoneNumber": "04 74 66 22 01",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique112"
+  },
+  {
+    "name": "Mathilde Ovize",
+    "address": "8 rue Roland de la Platière",
+    "postal": 69240,
+    "city": "THIZY LES BOURGS",
+    "phoneNumber": "04 74 64 05 84",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique126"
+  },
+  {
+    "name": "Nigritelle Noire (Tonkin)",
+    "address": "2 ALLEE NIGRITELLE NOIRE",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 37 47 20 94",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique159"
+  },
+  {
+    "name": "Pasteur Martin Luther Kin",
+    "address": "PROMENADE LENINE",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 72 04 68 13",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique133"
+  },
+  {
+    "name": "Paul Eluard",
+    "address": "21 AVENUE DE HAUTE ROC",
+    "postal": 69310,
+    "city": "PIERRE BENITE",
+    "phoneNumber": "04 78 51 56 94",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique103"
+  },
+  {
+    "name": "Paul Langevin",
+    "address": "24 AVENUE DIVISION LECLE",
+    "postal": 69200,
+    "city": "VENISSIEUX",
+    "phoneNumber": "04 78 70 71 83",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique143"
+  },
+  {
+    "name": "Paul Painlevé",
+    "address": "164 RUE PIERRE CORNEILL",
+    "postal": 69003,
+    "city": "LYON",
+    "phoneNumber": "04 78 62 38 18",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique75"
+  },
+  {
+    "name": "Pierre Cot",
+    "address": "7 RUE MARCEL BRAMET",
+    "postal": 69500,
+    "city": "BRON",
+    "phoneNumber": "04 72 37 04 52",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique44"
+  },
+  {
+    "name": "Plaine de Saythe",
+    "address": "40 RUE DE L'EGALITE",
+    "postal": 69800,
+    "city": "ST PRIEST",
+    "phoneNumber": "04 78 20 97 77",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique119"
+  },
+  {
+    "name": "Pré Berger",
+    "address": "20 RUE DE LA GARE",
+    "postal": 69210,
+    "city": "LENTILLY",
+    "phoneNumber": "04 74 01 77 12",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique70"
+  },
+  {
+    "name": "Privée catholique du centr",
+    "address": "33 bd Baron du Marais",
+    "postal": 69110,
+    "city": "STE FOY LES LYON",
+    "phoneNumber": "04 78 59 60 38",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique122"
+  },
+  {
+    "name": "Privée Jeanne D'Arc",
+    "address": "5 rue du Pensionnat - Azie",
+    "postal": 69740,
+    "city": "GENAS",
+    "phoneNumber": "04 78 90 10 29",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique60"
+  },
+  {
+    "name": "Privée Mère Teresa",
+    "address": "37 rue Gervais Bussière",
+    "postal": 69100,
+    "city": "VILLEURBANNE",
+    "phoneNumber": "04 78 93 43 82",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique150"
+  },
+  {
+    "name": "Privée ND de Mongré",
+    "address": "276 avenue Saint Exupéry",
+    "postal": 69400,
+    "city": "VILLEFRANCHE SUR SAONE",
+    "phoneNumber": "04 76 65 24 13",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique149"
+  },
+  {
+    "name": "Privée Notre Dame",
+    "address": "5 rue du docteur Duplant",
+    "postal": 69220,
+    "city": "BELLEVILLE",
+    "phoneNumber": "04 74 66 15 37",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique42"
+  },
+  {
+    "name": "Privée Saint Joseph",
+    "address": "3 rue de la Mairie",
+    "postal": 69410,
+    "city": "CHAMPAGNE AU MT D'OR",
+    "phoneNumber": "04 78 35 07 06",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique48"
+  },
+  {
+    "name": "Privée Saint Martin",
+    "address": "Grande Rue",
+    "postal": 69850,
+    "city": "ST MARTIN EN HAUT",
+    "phoneNumber": "04 78 48 52 90",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique114"
+  },
+  {
+    "name": "Privée ST Charles",
+    "address": "59 avenue de la République",
+    "postal": 69160,
+    "city": "TASSIN LA DEMI LUNE",
+    "phoneNumber": "04 78 34 13 43",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique125"
+  },
+  {
+    "name": "Privée ST Nom de Jésus",
+    "address": "95 rue Tête D'Or",
+    "postal": 69006,
+    "city": "LYON",
+    "phoneNumber": "04 78 52 94 18",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique81"
+  },
+  {
+    "name": "René Cassin",
+    "address": "22 rue de Marseille",
+    "postal": 69330,
+    "city": "MEYZIEU",
+    "phoneNumber": "04 78 31 46 05",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique96"
+  },
+  {
+    "name": "Robert Schuman",
+    "address": "26 RUE CHAVRIL",
+    "postal": 69110,
+    "city": "STE FOY LES LYON",
+    "phoneNumber": "04 78 25 46 88",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique121"
+  },
+  {
+    "name": "Route d’Avenas",
+    "address": "Route d'Avenas",
+    "postal": 69430,
+    "city": "BEAUJEU",
+    "phoneNumber": "04 74 04 82 33",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique40"
+  },
+  {
+    "name": "Rue Croix Bertrand",
+    "address": "RUE CROIX BERTRAND",
+    "postal": 69850,
+    "city": "ST MARTIN EN HAUT",
+    "phoneNumber": "04 78 19 12 31",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique113"
+  },
+  {
+    "name": "Rue de la Mairie",
+    "address": "12 rue de la Mairie",
+    "postal": 69660,
+    "city": "COLLONGES AU MONT D'OR",
+    "phoneNumber": "04 78 22 39 12",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique49"
+  },
+  {
+    "name": "Simone de Beauvoir",
+    "address": "17 RUE LOUIS BLANC",
+    "postal": 69190,
+    "city": "ST FONS",
+    "phoneNumber": "04 72 89 38 40",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique108"
+  },
+  {
+    "name": "V. Hugo application",
+    "address": "5 impasse Flesselles",
+    "postal": 69001,
+    "city": "LYON",
+    "phoneNumber": "04 72 98 36 36",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique72"
+  },
+  {
+    "name": "Victor Basch",
+    "address": "184 chemin Wette Fays",
+    "postal": 69300,
+    "city": "CALUIRE ET CUIRE",
+    "phoneNumber": "04 72 27 00 19",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique47"
+  },
+  {
+    "name": "Victor Hugo",
+    "address": "23 AVENUE DE LA LIBERATI",
+    "postal": 69290,
+    "city": "ST GENIS LES OLLIERES",
+    "phoneNumber": "06 26 96 07 69",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique111"
+  },
+  {
+    "name": "Voltaire",
+    "address": "26 BOULEVARD VOLTAIRE",
+    "postal": 69170,
+    "city": "TARARE",
+    "phoneNumber": "04 74 63 22 74",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique124"
+  },
+  {
+    "name": "Youri Gagarine",
+    "address": "43 RUE ERNEST RENAN",
+    "postal": 69120,
+    "city": "VAULX EN VELIN",
+    "phoneNumber": "04 72 04 68 19",
+    "email": "http://www2.ac-lyon.fr/services/rhone/ash/spip.php?rubrique132"
+  }
+]

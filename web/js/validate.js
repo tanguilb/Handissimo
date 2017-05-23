@@ -399,3 +399,7 @@ function recaptchaCallback() {
 function recaptchaCallbackTwo() {
     $('#hiddenRecaptchaTwo').valid();
 }
+
+$("#btn-help").click(function(){
+    $(".modal-fade").hide();
+});
