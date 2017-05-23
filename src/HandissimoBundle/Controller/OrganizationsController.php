@@ -70,18 +70,18 @@ class OrganizationsController extends Controller
         if ($organization->getUserorg() !== null){
             foreach ($this->container->get('security.token_storage')->getToken()->getRoles() as $role)
             {
-            if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $organization->getUserorg()->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
-            {
-                return $this->render('organizations/edit.html.twig', array(
-                    'pictures' => $pictures,
-                    'user' => $user,
-                    'organization' => $organization,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
-                ));
-            } else {
-                return $this->render(':front/profile:profile-dont-edit.html.twig');
-            }
+                if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $organization->getUserorg()->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
+                {
+                    return $this->render('organizations/edit.html.twig', array(
+                        'pictures' => $pictures,
+                        'user' => $user,
+                        'organization' => $organization,
+                        'edit_form' => $editForm->createView(),
+                        'delete_form' => $deleteForm->createView(),
+                    ));
+                } else {
+                    return $this->render(':front/profile:profile-dont-edit.html.twig');
+                }
             }
         } else
         {
