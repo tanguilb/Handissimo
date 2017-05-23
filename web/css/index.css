@@ -1,4 +1,6 @@
 #main-index {
+    margin: 0;
+    padding: 0;
     background: url(../images/home-page-Handissimo2.png) no-repeat center fixed;
     background-size: cover;
     -moz-background-size: cover;
@@ -9,6 +11,8 @@
 @media screen and (max-width: 1920px){
     #main-index {
         height: 100vh;
+        background-size: cover;
+        -webkit-background-size:cover;
         /*background-size: cover;*/
     }
     #main-index #title-index {
@@ -17,11 +21,11 @@
 }
 
 @media screen and (max-width: 1366px){
-    #main-index {
+    /*#main-index {
         height: 100vh;
         background-size: cover;
         -webkit-background-size:cover;
-    }
+    }*/
     #main-index #title-index {
         margin-top: 10%;
         font-size: 2.5em;
@@ -35,7 +39,7 @@
         margin-bottom: 5px;
     }
     .search-field .homeField {
-        font-size: 0.8em;
+        font-size: 1.1em;
     }
     .search-field .marker {
         font-size: 1.1em;
@@ -56,10 +60,10 @@
         font-size: 1.6em;
     }
     #headband-stats .nb-stat {
-        font-size: 1em;
+        font-size: 1.5em;
     }
     #headband-stats .stat-content {
-        font-size: 0.5em;
+        font-size: 1.1em;
     }
     #block-call #btn-call {
         font-size: 1.2em;
@@ -67,7 +71,7 @@
     #text-carousel p,
     #video p,
     #block-img-week p{
-        font-size: 0.7em;
+        font-size: 0.8em;
     }
 
     {
@@ -225,7 +229,7 @@
     width: 100%;
     font-size: 1.1em;
     font-style: italic;
-    color: #777777;
+    color: #444;
 }
 
 .homeField:focus,
@@ -315,6 +319,11 @@
     font-style: italic;
 }
 
+#structure-select .select2-container .select2-choice {
+    height: 50px;!important;
+    line-height: 50px;
+}
+
 .need-select .select2 {
     border: none;
     margin-top: 0;
@@ -337,25 +346,31 @@
 
 .select2-results__option {
     padding: 0 0 0 5px;
-    color: #777777;
 }
 
 .select2-container--default .select2-selection--single {
     border: none;
 }
 
-#structure-select .select2 {
-    //color: #777777;
-}
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 32px;
+    user-select: none;
+    -webkit-user-select: none; }
 
-#structure-select .select2-container--default .select2-selection--single .select2-selection__rendered {
-   color: #777777;
-}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 30px; }
 
-#quickSearchField {
-    margin: 50px auto 40px auto;
-    padding-bottom: 10px;
-}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 30px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px; }
+
 /***************************/
 /***** Headband solution****/
 /***************************/
@@ -380,11 +395,10 @@
 }
 
 #block-call {
+
     margin: 20px auto 20px auto;
     text-align: center;
 }
-
-
 
 #btn-call {
     border: none;
@@ -473,8 +487,7 @@
 }
 
 #img-week {
-    width: auto;
-    height: 270px;
+    max-height: 29vh;
 }
 
 #block-img-week {

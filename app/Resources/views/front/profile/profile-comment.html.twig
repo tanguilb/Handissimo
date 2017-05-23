@@ -1,0 +1,14 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="title-block">
+        <h3 class="title-search">Liste des commentaires</h3>
+    </div>
+    <div class="block-profile-comments">
+        {% for comment in comments %}
+            <a href="{{ path('structure_page', {'id':comment.organizationsComment.id}) }}" class="link-about"><h3>{{ comment.title }}</h3></a>
+            <small class="italic">{{ comment.parutionDate|localizeddate }}</small>
+            <p>{{ comment.content}}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

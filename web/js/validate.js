@@ -400,6 +400,10 @@ function recaptchaCallbackTwo() {
     $('#hiddenRecaptchaTwo').valid();
 }
 
+$("#btn-help").click(function(){
+    $(".modal-fade").hide();
+});
+
 function goBack()
 {
     window.history.back();
