@@ -43,4 +43,14 @@ class ProfileController extends Controller
     {
         return $this->render('front/profile/profile-solution.html.twig');
     }
+
+    public function profileCommentAction()
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser()->getUsernameCanonical();
+        $comments = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->getCommentsByUser($user);
+
+        return $this->render(':front/profile:profile-comment.html.twig', array(
+            'comments' => $comments
+        ));
+    }
 }

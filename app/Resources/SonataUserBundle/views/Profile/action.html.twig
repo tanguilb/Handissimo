@@ -23,57 +23,85 @@
     </div>
     <div class="row">
         <div class="col-md-2 col-xs-12 menu-block">
-            <div class="title-block">
-                <h2 class="title-menu">MENU</h2>
-            </div>
-            <div class="list-menu">
-                <div class="button-block">
-                    <a href="{{ path('sonata_user_profile_edit') }}">
-                        <button class="list-button">Profil</button>
-                    </a>
+            <div class="col-md-6 col-xs-12">
+                <div class="title-block">
+                    <h2 class="title-menu">MENU</h2>
                 </div>
-                <div class="button-block">
-                    <a href="{{ path('organizations_new') }}">
-                        <button class="list-button">Créer une fiche</button>
-                    </a>
-                </div>
-                <div class="button-block">
-                    <a href="{{ path('handissimo_profile_search') }}">
-                        <button  class="list-button">Rechercher une fiche</button>
-                    </a>
-                </div>
-                <div class="button-block">
-                    <a href="{{ path('handissimo_profile_solution') }}">
-                        <button  class="list-button">Je suis une solution</button>
-                    </a>
-                </div>
-                <div class="button-block">
-                    <a href="{{ path('index_action') }}">
-                        <button  class="list-button">Retour à l'accueil</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class=" col-md-9 col-xs-12 main-block-profil">
-            {% for flash_message in app.session.flashBag.get('notice') %}
-                <div class="error-container">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        {{ flash_message }}
+                <div class="list-menu">
+                    <div class="button-block">
+                        <a href="{{ path('sonata_user_profile_edit') }}">
+                            <button class="list-button">Profil</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('organizations_new') }}">
+                            <button class="list-button">Créer une fiche</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_search') }}">
+                            <button  class="list-button">Rechercher une fiche</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_solution') }}">
+                            <button class="list-button">Je suis une solution</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_comment') }}">
+                            <button class="list-button">Commentaires</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('index_action') }}">
+                            <button  class="list-button">Retour à l'accueil</button>
+                        </a>
                     </div>
                 </div>
-            {% endfor %}
-            {% for flash_message in app.session.flashBag.get('edit') %}
-                <div class="error-container">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        {{ flash_message }}
+            </div>
+            {% if app.request.get('name')%}
+                <div class="col-md-6 col-xs-12">
+                <button type="button" data-toggle="modal" data-target="#help-block" class="btn" id="btn-help">Besoin d'aide ?</button>
+                <div class="modal fade" id="help-block" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="hide" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title">Besoin d'aide</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>Si vous avez besoin d'aide n'hésitez pas à nous contacter par mail à l'adresse:
+                                    <a href="mailto:c%6f&#110;t&#97;%63&#116;&#64;h%61%6e&#100;i%73%73&#105;&#109;%6f%2ef%72" class="link-about"><span class="bold">contact&#64;handissimo.fr</span></a></p>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            {% endfor %}
-            {% block sonata_profile_content %}
-            {% endblock %}
+            {% endif %}
         </div>
+        <section class="container-fluid">
+            <div class=" col-md-9 col-xs-12 main-block-profil">
+                {% for flash_message in app.session.flashBag.get('notice') %}
+                    <div class="error-container">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            {{ flash_message }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashBag.get('edit') %}
+                    <div class="error-container">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            {{ flash_message }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% block sonata_profile_content %}
+                {% endblock %}
+            </div>
+        </section>
     </div>
 {% endblock %}
 

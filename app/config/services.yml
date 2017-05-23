@@ -111,3 +111,8 @@ services:
     handissimo.load_data:
         class: HandissimoBundle\Services\Upload\DataLoader
         arguments: ['@doctrine.orm.entity_manager', '@service_container']
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+          - { name: twig.extension }

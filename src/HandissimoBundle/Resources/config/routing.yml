@@ -44,8 +44,12 @@ handissimo_help:
     defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }
 
 handissimo_profile_solution:
-    path:  /profile/solution
+    path:   /profile/solution
     defaults: { _controller: HandissimoBundle:Profile:solutionForm }
+
+handissimo_profile_comment:
+    path:   /profile/comment
+    defaults: { _controller: HandissimoBundle:Profile:profileComment}
 
 search_organization_name:
     path:   /organization/search/ajax/{organizationSearch}
