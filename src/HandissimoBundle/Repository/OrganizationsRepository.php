@@ -18,6 +18,7 @@ class OrganizationsRepository extends EntityRepository
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
         $query->leftJoin('o.orgaStructure', 'sl');
+        $query->addSelect('sl.name as structureName');
         $query->leftJoin('sl.type', 'st');
         $query->addSelect('st.picture as picture');
 
@@ -33,6 +34,10 @@ class OrganizationsRepository extends EntityRepository
         }
         if($name !== null)
         {
+            $age = null;
+            $need = null;
+            $disability = null;
+            $structure = null;
             $test = preg_split('/[()]/', $name);
             $andmodule = $query->expr()->andX();
             $andmodule->add($query->expr()->eq('o.name', ':name'));

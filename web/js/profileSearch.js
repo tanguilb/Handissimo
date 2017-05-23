@@ -28,4 +28,5 @@ $( document ).ready(function() {
             $('#list-name').html('');
         }
     });
+
 });

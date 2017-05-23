@@ -399,3 +399,8 @@ function recaptchaCallback() {
 function recaptchaCallbackTwo() {
     $('#hiddenRecaptchaTwo').valid();
 }
+
+function goBack()
+{
+    window.history.back();
+}

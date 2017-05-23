@@ -49,6 +49,7 @@ class SearchController extends Controller
                 $rlat = $lat[0]['latitude'];
                 $rlong = $long[0]['longitude'];
             }
+
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $location, $age, $need, $disability, $structure);
 
             $sort = $this->container->get('handissimo.sort_research');
