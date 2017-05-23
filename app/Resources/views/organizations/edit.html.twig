@@ -211,29 +211,23 @@
                         {{ form_widget(edit_form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                     </div>
-                    {% if is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN') %}
-                        {% if user != null and organization.userorg != null %}
-                            {% if user.id == organization.userorg.id or is_granted('ROLE_SUPER_ADMIN')%}
-                                <div role="tabpanel" class="tab-pane fade" id="pictures">
-                                    <h3>N'oubliez pas de valider l'ensemble du formulaire lorsque vous avez ajouté une ou plusieurs image(s)</h3>
-                                    <div>
-                                        {% if pictures == null %}
-                                            <p>Vous n'avez pas encore d'images</p>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-md-6 col-xs-12">
-                                        {{ form_row(edit_form.firstPictureFile) }}
-                                    </div>
-                                    <div class="col-md-6 col-xs-12">
-                                    {{ form_row(edit_form.media) }}
-                                    <div id="addRemove" class="col-md-4 col-xs-12">
-                                        <a href="#" id="add_picture" class="btn btn-default">Sélectionner une autre image</a>
-                                    </div>
-                                    </div>
-                                </div>
-                                {% endif %}
+                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                        <h3>N'oubliez pas de valider l'ensemble du formulaire lorsque vous avez ajouté une ou plusieurs image(s)</h3>
+                        <div>
+                            {% if pictures == null %}
+                                <p>Vous n'avez pas encore d'images</p>
                             {% endif %}
-                    {% endif %}
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            {{ form_row(edit_form.firstPictureFile) }}
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                        {{ form_row(edit_form.media) }}
+                        <div id="addRemove" class="col-md-4 col-xs-12">
+                            <a href="#" id="add_picture" class="btn btn-default">Sélectionner une autre image</a>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             <div class="row">
                 <div class="col-md-6">

@@ -21,10 +21,7 @@ class SearchController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
-        //$formQuick = $this->createForm('HandissimoBundle\Form\Type\OrganizationNameSearchType');
-
         $form->handleRequest($request);
-        //$formQuick->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
@@ -51,11 +48,8 @@ class SearchController extends Controller
             }
 
             $result = $em->getRepository('HandissimoBundle:Organizations')->getNearBy($rlat, $rlong, $location, $age, $need, $disability, $structure);
-
             $sort = $this->container->get('handissimo.sort_research');
-
             $finalResult = $sort->sortSearchResult($result, $need, $disability, $structure);
-
             $this->get('session')->set('result', $finalResult);
             $paginator = $this->get('knp_paginator');
             $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
