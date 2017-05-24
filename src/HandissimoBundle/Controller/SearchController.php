@@ -21,10 +21,8 @@ class SearchController extends Controller
     public function indexAction(Request $request)
     {
         $form = $this->createForm('HandissimoBundle\Form\Type\ResearchType');
-        //$formQuick = $this->createForm('HandissimoBundle\Form\Type\OrganizationNameSearchType');
 
         $form->handleRequest($request);
-        //$formQuick->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         if($form->isSubmitted() && $form->isValid())
         {
