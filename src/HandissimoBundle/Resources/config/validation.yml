@@ -15,6 +15,20 @@ HandissimoBundle\Entity\Solution:
             - Email:
                 checkMX: true
                 message: "Le mail {{ value }} n'est pas un mail valide"
+        phoneNumber:
+            - Length:
+                max: 30
+                maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères'
+            - Regex:
+                pattern: '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/'
+                message: "Le numéro de téléphone n'est pas valide"
+        cellphoneNumber:
+            - Length:
+                max: 30
+                maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères'
+            - Regex:
+                pattern: '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/'
+                message: "Le numéro de téléphone n'est pas valide"
         status:
             - NotBlank: ~
             - Length:
@@ -28,6 +42,10 @@ HandissimoBundle\Entity\Solution:
         societyName:
             - Length:
                 max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        message:
+            - Length:
+                max: 3000
                 maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
         honor:
             - NotBlank: ~

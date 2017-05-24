@@ -312,38 +312,4 @@ class Solution
     {
         return $this->message;
     }
-    /**
-     * @var \DateTime
-     */
-    private $messageDate;
-
-
-    /**
-     * Set messageDate
-     *
-     * @param \DateTime $messageDate
-     *
-     * @return Solution
-     */
-    public function setMessageDate($messageDate)
-    {
-        $this->messageDate = $messageDate;
-
-        return $this;
-    }
-
-    /**
-     * Get messageDate
-     *
-     * @return \DateTime
-     */
-    public function getMessageDate()
-    {
-        return $this->messageDate;
-    }
-
-    public function __construct()
-    {
-        $this->messageDate = new \DateTime();
-    }
 }
