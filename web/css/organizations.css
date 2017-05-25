@@ -403,6 +403,7 @@ h4 {
 .question {
     font-size: 1.3em;
     margin-left: 45px;
+    color: black;
 }
 
 .mdphInfo {
@@ -417,4 +418,8 @@ h4 {
 .tooltip-inner {
     background-color: #61bdb9;
     color: #fff;
+}
+
+.popover {
+    max-width: 80%;
 }

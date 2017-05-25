@@ -320,15 +320,38 @@
                                             </p>
                                         </div>
                                     {% if organization.orientationMdph == 1 %}
-                                        {% set mdphText="Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite
-                                                \"loi pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées\",
-                                            entrée en vigueur le 1er janvier 2006...
-                                            La MDPH constitue un guichet unique destiné à accueillir les personnes handicapées et leur entourage pour les
-                                            informer et évaluer leurs besoins. Elles permettent de faciliter leurs démarches dans l'accès à leurs droits.
-                                            Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
-                                            médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes." %}
+                                        {% set mdphText=
+                                        "Il y a une MDPH ou une MDA par département ; le nom peut être différent selon les départements. La MDPH sert à :<br>
+                                            <ul>
+                                                <li>informer</li>
+                                                <li>évaluer les besoins des enfants et adultes handicapés</li>
+                                                <li>orienter les personnes (c’est-à-dire à valider le fait qu’une personne puisse être accompagnée par un établissement ou un service)</li>
+                                                <li>attribuer les différentes allocations existant : PCH prestation de compensation du handicap, AAH allocation pour adulte handicapé, AEH allocation d’éducation de l’enfant handicapé et son complément éventuel</li>
+                                                <li>attribuer la carte d’invalidité</li>
+                                                <li>reconnaitre la qualité de travailleur handicapé</li>
+                                            </ul>
+                                        <p>Pour être admis dans les établissements et services médico-sociaux, il est nécessaire de déposer
+                                        un dossier auprès de sa MDPH. Au sein de chaque MDPH, il y a une commission des droits et de l’autonomie
+                                        des personnes handicapées (CDAPH) composée de plusieurs personnes. C’est cette commission qui étudie les
+                                        dossiers et prend les décisions. En ce qui concerne l’orientation vers les établissements et services médico-sociaux,
+                                        c’est cette commission qui délivre le document nécessaire pour s’inscrire, qui s’appelle une notification d’orientation.</p>
+
+                                        <p>En conclusion :
+                                        <ul>
+                                            <li>pour être admis dans cette structure, il est nécessaire d’avoir une notification d’orientation vers cette structure</li>
+                                            <li>pour obtenir cette notification, il faut déposer un dossier auprès de votre MDPH. C’est une commission de la MDPH,
+                                            appelée CDAPH, qui analysera votre dossier et décidera si elle vous délivre la notification ou pas.</li>
+                                            <li>Pour savoir comment déposer un dossier ; vous pouvez regarder sur le site internet de votre MDPH. Si ce n’est pas clair,
+                                            vous pouvez vous faire aider par une assistante sociale, par une association, par un médecin.</li>
+                                            <li>Vous pouvez aussi chercher sur Handissimo quelle structure est capable de vous aider à effectuer ces démarches administratives, en cas de besoin.</li>
+                                        </ul></p>
+                                        <p>Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite \"loi pour l'égalité des droits et
+                                        des chances, la participation et la citoyenneté des personnes handicapées\", entrée en vigueur le 1er janvier 2006... La MDPH constitue un guichet
+                                        unique destiné à accueillir les personnes handicapées et leur entourage pour les informer et évaluer leurs besoins. Elles permettent de faciliter
+                                        leurs démarches dans l\'accès à leurs droits. Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
+                                        médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes.</p>" %}
                                     <div class="col-md-12">
-                                        <p><span class="second-title">Sur orientation Mdph :</span> oui <i class="mdphInfo fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personees Handicapées" data-content="{{ mdphText }}"></i>
+                                        <p class="second-title">Sur orientation Mdph :<span class="black-result"> oui</span> <i class="mdphInfo fa fa-info-circle" data-html="true" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personnes Handicapées ou Maison de l’autonomie" data-content="{{ mdphText }}"></i>
                                         </p>
                                     </div>
                                     {% endif %}
