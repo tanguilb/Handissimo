@@ -378,10 +378,11 @@
     font-weight: bold;
 }
 
-.second-title span {
-    font-size: 0.8em;
-    color: #000000;
+.black-result {
+    color: #333333;
+    font-weight: normal;
 }
+
 h4 {
     font-size: 1.2em;
 

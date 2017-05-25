@@ -89,11 +89,11 @@
 
                                     </ul>
                                     <div class="col-xs-12">
-                                        <p><span class="age second-title">Âge : </span> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</p>
+                                        <p class="second-title">Âge :<span class="black-result"> De {{ organization.agemini }} à {{ organization.agemaxi }} ans</span></p>
                                     </div>
                                     {% if organization.freeplace %}
                                     <div class="col-xs-12">
-                                        <p><span class="second-title">Nombre de personnes accompagnées :</span> {{ organization.freeplace }}</p>
+                                        <p class="second-title">Nombre de personnes accompagnées :<span class="black-result"> {{ organization.freeplace }}</span></p>
                                     </div>
                                     {% endif %}
                                     {% if organization.interventionZone %}
@@ -311,9 +311,9 @@
                                     </div>
 
                                         <div class="col-md-12">
-                                            <p><span class="second-title">Heures d'ouverture : </span>
+                                            <p class="second-title">Heures d'ouverture :
                                                 {% if organization.openhours is not empty %}
-                                                    {{ organization.openhours }}
+                                                <span class="black-result">{{ organization.openhours }}</span>
                                                 {% else %}
                                                     <i class="question fa fa-question" aria-hidden="true"></i>
                                                 {% endif %}

@@ -70,7 +70,7 @@
                             {{ knp_pagination_render(pagination) }}
                     </div>
                 </div>
-                {% for results in pagination %}
+                {% for results in pagination %}{#{ dump(results) }#}
                     <div class="row" id="result-container">
                         <div class="col-sm-5">
                             <a href="{{ path('structure_page', {'id': results.id}) }}">
@@ -92,8 +92,8 @@
                                 </div>
                             </div>
                             <div class="col-xs-12" id="address-container">
-                                <p><span class="structureName">{{ results.structureName }}</span><br>{{ results.address }}<br>
-                                    {{ results.postal }} {{ results.city }}</p>
+                                <p><span class="structureName">{{ results.structureName }}</span><br><span class="search-address">{{ results.address }}<br>
+                                    {{ results.postal }} {{ results.city }}</span></p>
                             </div>
                             <div class="col-xs-12" id="social-container">
                             </div>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% for markerMap in result %}
+                {% for markerMap in result %}{#{ dump(result) }#}
                     {% set array = {
                     'id' : markerMap.id,
                     'name': markerMap.name,
