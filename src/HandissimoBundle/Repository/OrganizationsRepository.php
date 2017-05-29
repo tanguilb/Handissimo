@@ -49,7 +49,6 @@ class OrganizationsRepository extends EntityRepository
                 $ormodule->add($query->expr()->eq('o.city', ':city'));
                 $query->andWhere($ormodule);
                 $query->setParameter('city', $test[1]);
-
             }
         }
         if ($age !== null) {

@@ -378,10 +378,11 @@
     font-weight: bold;
 }
 
-.second-title span {
-    font-size: 0.8em;
-    color: #000000;
+.black-result {
+    color: #333333;
+    font-weight: normal;
 }
+
 h4 {
     font-size: 1.2em;
 
@@ -402,6 +403,7 @@ h4 {
 .question {
     font-size: 1.3em;
     margin-left: 45px;
+    color: black;
 }
 
 .mdphInfo {
@@ -416,4 +418,8 @@ h4 {
 .tooltip-inner {
     background-color: #61bdb9;
     color: #fff;
+}
+
+.popover {
+    max-width: 80%;
 }

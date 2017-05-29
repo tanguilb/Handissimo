@@ -330,6 +330,12 @@ $(document).ready(function(){
                 required: true,
                 email: true
             },
+            "handissimo_solution[phoneNumber]": {
+                regex: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/
+            },
+            "handissimo_solution[cellphoneNumber]": {
+                regex: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/
+            },
             "handissimo_solution[status]": {
                 required: true
             },
@@ -338,6 +344,9 @@ $(document).ready(function(){
             },
             "handissimo_solution[societyName]": {
                 required: false
+            },
+            "handissimo_solution[message]": {
+                maxlength: 2000
             },
             "hiddenRecaptchaTwo": {
                 required: function () {

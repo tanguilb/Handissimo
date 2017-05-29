@@ -36,18 +36,38 @@
         <div class="col-md-offset-2 col-md-7 col-xs-12">
             <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form-solution">
                 {{ form_start(form) }}
+                <p class="label-solution">{{ form_label(form.lastname) }} :</p>
                 {{ form_errors(form.lastname) }}
-                {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.firstname) }} :</p>
                 {{ form_errors(form.firstname) }}
-                {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2', 'placeholder': 'firstname'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.mail) }} :</p>
                 {{ form_errors(form.mail) }}
-                {{ form_widget(form.mail, {'attr': {'class': 'form-control form2', 'placeholder': 'mail'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.mail, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.phoneNumber) }} :</p>
+                {{ form_errors(form.phoneNumber) }}
+                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.cellphoneNumber) }} :</p>
+                {{ form_errors(form.cellphoneNumber) }}
+                {{ form_widget(form.cellphoneNumber, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.status) }} :</p>
                 {{ form_errors(form.status) }}
-                {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'your status'|trans({}, 'messages')}}) }}
-                {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2', 'placeholder': 'name of your solution'|trans({}, 'messages')}}) }}
-                {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2', 'placeholder': 'Name of the managing organization is it exists'|trans({}, 'messages')}}) }}
+                {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'responsable de site, directeur adjoint,..'}}) }}
+                <p class="label-solution">{{ form_label(form.solutionName) }} :</p>
+                {{ form_errors(form.solutionName) }}
+                {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.societyName) }} :</p>
+                {{ form_errors(form.societyName) }}
+                {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.message) }} :</p>
+                {{ form_errors(form.message) }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control form2', 'rows': '7'}}) }}
+
                 <p>
-                    {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution et je demande à prendre la main sur ma fiche.</p><br>
+                    {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution au sens des
+                    conditions générales d’utilisation HANDISSIMO, à savoir le représentant légal ou statutaire ou une personne
+                    dûment habilitée par lui et je demande à prendre la main sur ma fiche.</p><br>
                 {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
                 <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptchaTwo" id="hiddenRecaptchaTwo">
                 <div class="col-md-6 col-xs-12">

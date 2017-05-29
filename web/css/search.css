@@ -93,7 +93,7 @@ body {
 
 .searchtitre {
     color: #61bdb9;
-    font-size: 1em;
+    font-size: 1.1em;
     text-transform: uppercase;
     font-weight: 800;
     margin-top:0;
@@ -199,5 +199,9 @@ body {
 
 .structureName {
     color: #C37095;
+    font-size: 0.8em;
+}
+
+.search-address {
     font-size: 0.8em;
 }

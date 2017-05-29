@@ -225,4 +225,125 @@ class Solution
     {
         return $this->honor;
     }
+    /**
+     * @var string
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     */
+    private $cellphoneNumber;
+
+    /**
+     * @var string
+     */
+    private $message;
+
+
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     *
+     * @return Solution
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * Set cellphoneNumber
+     *
+     * @param string $cellphoneNumber
+     *
+     * @return Solution
+     */
+    public function setCellphoneNumber($cellphoneNumber)
+    {
+        $this->cellphoneNumber = $cellphoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get cellphoneNumber
+     *
+     * @return string
+     */
+    public function getCellphoneNumber()
+    {
+        return $this->cellphoneNumber;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Solution
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+    /**
+     * @var \DateTime
+     */
+    private $messageDate;
+
+
+    /**
+     * Set messageDate
+     *
+     * @param \DateTime $messageDate
+     *
+     * @return Solution
+     */
+    public function setMessageDate($messageDate)
+    {
+        $this->messageDate = $messageDate;
+
+        return $this;
+    }
+
+    /**
+     * Get messageDate
+     *
+     * @return \DateTime
+     */
+    public function getMessageDate()
+    {
+        return $this->messageDate;
+    }
+
+    public function __construct()
+    {
+        $this->messageDate = new \DateTime();
+    }
 }

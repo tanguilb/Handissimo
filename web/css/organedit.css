@@ -47,13 +47,13 @@
 
 #delete-organization {
     margin-bottom: 10px;
-    background-color: #f7af49;
+    background-color: #C37095;
     border: none;
 }
 
 #delete-organization:hover,
 #delete-organization:focus {
-    background-color: #FFBE49;
+    background-color: #DC7095;
     color: #FFFFFF;
 }
 
@@ -107,5 +107,26 @@
 .error,
 .errors-message {
     color: red;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    background-color: #61bdb9;
+}
+
+.btnPrevious,
+.btnNext {
+    background-color: #f7af49;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.btnNext:hover,
+.btnPrevious:hover,
+.btnNext:focus,
+.btnPrevious:focus {
+    background-color: #FFBE49;
+    color: #ffffff;
 }
 

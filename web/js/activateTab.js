@@ -6,6 +6,4 @@ $(document).ready(function() {
     $('#collapseTwo').collapse('hide');
     $('#collapseThree').collapse('hide');
     $('#collapseFour').collapse('hide');
-
-
-})
+});

@@ -14,6 +14,14 @@ HandissimoBundle\Entity\Solution:
         firstname:
             type: string
             length: 255
+        phoneNumber:
+            type: string
+            length: 50
+            nullable: true
+        cellphoneNumber:
+            type: string
+            length: 50
+            nullable: true
         mail:
             type: string
             length: 255
@@ -27,6 +35,13 @@ HandissimoBundle\Entity\Solution:
             type: string
             length: 255
             nullable: true
+        messageDate:
+            type: datetime
+            nullable: true
+        message:
+            type: text
+            nullable: true
+            length: 3000
         honor:
             type: boolean
     lifecycleCallbacks: {  }
