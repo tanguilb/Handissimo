@@ -20,7 +20,7 @@
             <div class="errors-message"></div>
             {{ form_errors(form) }}
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-pills" role="tablist">
                     <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
                     <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
                     <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
@@ -56,6 +56,9 @@
                             {{ form_errors(form.orgaStructure) }}
                             {{ form_label(form.orgaStructure) }}
                             {{ form_widget(form.orgaStructure) }}
+                        </div>
+                        <div class="col-xs-12">
+                            <a class="btn btn-default btnNext" >Suivant</a>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="publictarget">
@@ -102,6 +105,8 @@
                             {{ form_widget(form.organizationDescription) }}
                             <p class="update">Description limitée à 5000 caractères</p>
                         </div>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        <a class="btn btn-default btnNext" >Suivant</a>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="serve">
                         <div class="row">
@@ -148,9 +153,10 @@
                         <p class="update">Description limitée à 5000 caractères</p>
                         {{ form_row(form.receptionDescription) }}
                         <p class="update">Description limitée à 5000 caractères</p>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        <a class="btn btn-default btnNext" >Suivant</a>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="team">
-
                         {{ form_row(form.teamMembersNumber) }}
                         <div class="row">
                             <div class="col-md-4">
@@ -171,6 +177,8 @@
                         </div>
                         {{ form_row(form.commentStaff) }}
                         <p class="update">Description limitée à 1000 caractères</p>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        <a class="btn btn-default btnNext" >Suivant</a>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="informations">
 
@@ -207,40 +215,33 @@
                         {{ form_errors(form.freeDescription) }}
                         {{ form_widget(form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
+                            <a class="btn btn-default btnNext" >Suivant</a>
+                        {% endif %}
                     </div>
                     {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
                     <div role="tabpanel" class="tab-pane fade" id="pictures">
                         <div class="row">
-                        <div class="pictureUpload">
-                            <div class="col-md-6 col-xs-12">
-                                {{ form_row(form.firstPictureFile) }}
-                            </div>
-                            <div class="col-md-6 col-xs-12">
-                            {{ form_row(form.media) }}
-                            <div class="pictureButton col-md-4 col-xs-12">
-                                <a href="#" id="add_picture" class="btn btn-default">Sélectionner une autre image</a>
-                            </div>
+                            <div class="pictureUpload">
+                                <div class="col-md-6 col-xs-12">
+                                    {{ form_row(form.firstPictureFile) }}
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    {{ form_row(form.media) }}
+                                    <div class="pictureButton col-md-4 col-xs-12">
+                                        <a href="#" id="add_picture" class="btn btn-default">Sélectionner une autre image</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
                     </div>
                     {% endif %}
                     <div class="row">
                         <div class="col-xs-12">
                             <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>
                         </div>
-                    </div>
-                    <div class="row">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
-                            <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
-                            <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
-                            <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
-                            <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
-                            {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
-                                <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
-                            {% endif %}
-                        </ul>
                     </div>
                 </div>
 

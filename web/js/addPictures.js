@@ -39,4 +39,13 @@ $(document).ready(function(){
        });
    }
 
+    $('.btnNext').click(function(){
+        $('.nav-pills > .active').next('li').find('a').trigger('click');
+        $(window).scrollTop(0);
+    });
+
+    $('.btnPrevious').click(function(){
+        $('.nav-pills > .active').prev('li').find('a').trigger('click');
+        $(window).scrollTop(0);
+    });
 });

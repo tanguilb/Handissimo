@@ -520,8 +520,8 @@ input:-ms-input-placeholder {
 
 #btn-help {
     position: fixed;
-    left:0;
-    bottom: 0;
+    left:20px;
+    bottom: 10px;
     color: #ffffff;
     background-color: #C37095;
     z-index: 1;
@@ -529,4 +529,10 @@ input:-ms-input-placeholder {
 
 #help-block {
     margin-top: 100px;
+}
+
+@media (max-width: 750px) {
+    #help-block {
+        bottom: 0;
+    }
 }

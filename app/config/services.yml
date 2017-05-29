@@ -108,11 +108,13 @@ services:
         class: HandissimoBundle\Services\Search\SortSearch
         arguments: ['@doctrine.orm.entity_manager']
 
-    handissimo.load_data:
-        class: HandissimoBundle\Services\Upload\DataLoader
-        arguments: ['@doctrine.orm.entity_manager', '@service_container']
-
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:
           - { name: twig.extension }
+
+    app.command.load_data_command:
+        class: HandissimoBundle\Command\LoadDataCommand
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+        tags:
+            - { name: console.command }

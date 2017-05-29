@@ -16,7 +16,7 @@
             <div class="errors-message"></div>
             {{ form_errors(edit_form) }}
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-pills" role="tablist">
                     <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
                     <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
                     <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
@@ -58,6 +58,9 @@
                             {{ form_errors(edit_form.orgaStructure) }}
                             {{ form_label(edit_form.orgaStructure) }}
                             {{ form_widget(edit_form.orgaStructure) }}
+                        </div>
+                        <div class="col-xs-12">
+                            <a class="btn btn-default btnNext" >Suivant</a>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="publictarget">
@@ -104,6 +107,8 @@
                             {{ form_widget(edit_form.organizationDescription) }}
                             <p class="update">Description limitée à 5000 caractères</p>
                         </div>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        <a class="btn btn-default btnNext" >Suivant</a>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="serve">
                         <div class="row">
@@ -151,6 +156,8 @@
                         <p class="update">Description limitée à 5000 caractères</p>
                         {{ form_row(edit_form.receptionDescription) }}
                         <p class="update">Description limitée à 5000 caractères</p>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        <a class="btn btn-default btnNext" >Suivant</a>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="team">
 
@@ -174,6 +181,8 @@
                         </div>
                         {{ form_row(edit_form.commentStaff) }}
                         <p class="update">Description limitée à 1000 caractères</p>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        <a class="btn btn-default btnNext" >Suivant</a>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="informations">
 
@@ -210,50 +219,33 @@
                         {{ form_errors(edit_form.freeDescription) }}
                         {{ form_widget(edit_form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
+                            <a class="btn btn-default btnNext" >Suivant</a>
+                        {% endif %}
                     </div>
-                    {% if is_granted('ROLE_SOC') or is_granted('ROLE_SUPER_ADMIN') %}
-                        {% if user != null and organization.userorg != null %}
-                            {% if user.id == organization.userorg.id or is_granted('ROLE_SUPER_ADMIN')%}
-                                <div role="tabpanel" class="tab-pane fade" id="pictures">
-                                    <h3>N'oubliez pas de valider l'ensemble du formulaire lorsque vous avez ajouté une ou plusieurs image(s)</h3>
-                                    <div>
-                                        {% if pictures == null %}
-                                            <p>Vous n'avez pas encore d'images</p>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-md-6 col-xs-12">
-                                        {{ form_row(edit_form.firstPictureFile) }}
-                                    </div>
-                                    <div class="col-md-6 col-xs-12">
-                                    {{ form_row(edit_form.media) }}
-                                    <div id="addRemove" class="col-md-4 col-xs-12">
-                                        <a href="#" id="add_picture" class="btn btn-default">Sélectionner une autre image</a>
-                                    </div>
-                                    </div>
-                                </div>
-                                {% endif %}
+                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                        <h3>N'oubliez pas de valider l'ensemble du formulaire lorsque vous avez ajouté une ou plusieurs image(s)</h3>
+                        <div>
+                            {% if pictures == null %}
+                                <p>Vous n'avez pas encore d'images</p>
                             {% endif %}
-                    {% endif %}
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            {{ form_row(edit_form.firstPictureFile) }}
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            {{ form_row(edit_form.media) }}
+                            <div id="addRemove" class="col-md-4 col-xs-12">
+                                <a href="#" id="add_picture" class="btn btn-default">Sélectionner une autre image</a>
+                            </div>
+                        </div>
+                        <a class="btn btn-default btnPrevious" >Précédent</a>
+                    </div>
                 </div>
             <div class="row">
                 <div class="col-md-6">
                     <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
-                </div>
-                <div class="row">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
-                        <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
-                        <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
-                        <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
-                        <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
-                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
-                            {% if user != null and organization.userorg != null %}
-                                {% if user.id == organization.userorg.id or is_granted('ROLE_SUPER_ADMIN')%}
-                                    <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
-                                {% endif %}
-                            {% endif %}
-                        {% endif %}
-                    </ul>
                 </div>
             </div>
             {{ form_end(edit_form) }}
@@ -262,9 +254,7 @@
             {% if is_granted('ROLE_SUPER_ADMIN') %}
             <form method="POST" action="{{ path('organizations_delete', {'id': organization.id}) }}">
                 {{ form_start(delete_form) }}
-                <div class="col-md-6">
                     <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default"/>
-                </div>
                 {{ form_end(delete_form) }}
             </form>
             {% endif %}
