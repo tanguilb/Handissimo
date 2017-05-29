@@ -52,7 +52,7 @@
                             {{ form_row(form.brochureFile) }}
                         </div>
                         <div class="col-md-7">
-                            <h3>Choissisez votre type de structure</h3>
+                            <h3>Choisissez votre type de structure</h3>
                             {{ form_errors(form.orgaStructure) }}
                             {{ form_label(form.orgaStructure) }}
                             {{ form_widget(form.orgaStructure) }}
@@ -208,7 +208,7 @@
                         {{ form_widget(form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                     </div>
-                    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
+
                     <div role="tabpanel" class="tab-pane fade" id="pictures">
                         <div class="row">
                         <div class="pictureUpload">
@@ -224,7 +224,6 @@
                         </div>
                         </div>
                     </div>
-                    {% endif %}
                     <div class="row">
                         <div class="col-xs-12">
                             <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>
