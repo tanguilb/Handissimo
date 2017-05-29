@@ -22,8 +22,10 @@
                     <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
                     <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
                     <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
-                    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC') %}
-                        {% if user != null and organization.userorg != null %}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
+                    {% elseif is_granted('ROLE_SOC')%}
+                        {% if user != null and organization.userorg != null%}
                             {% if user.id == organization.userorg.id or is_granted('ROLE_SUPER_ADMIN') %}
                                 <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                             {% endif %}
@@ -54,7 +56,7 @@
                             {% endif %}
                         </div>
                         <div class="col-md-7">
-                            <h3>Choissisez votre type de structure</h3>
+                            <h3>Choisissez votre type de structure</h3>
                             {{ form_errors(edit_form.orgaStructure) }}
                             {{ form_label(edit_form.orgaStructure) }}
                             {{ form_widget(edit_form.orgaStructure) }}
