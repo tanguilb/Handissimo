@@ -64,7 +64,7 @@ class OrganizationsController extends Controller
         $user = $this->getUser();
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('edit', 'La fiche a été édité');
+            $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
         if ($organization->getUserorg() !== null){

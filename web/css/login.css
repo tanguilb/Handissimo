@@ -274,3 +274,12 @@ input:-ms-input-placeholder {
 .errors-message {
     color: red;
 }
+
+.login-msg-profile {
+    padding-top: 150px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+    margin: auto;
+    text-align: center;
+}
