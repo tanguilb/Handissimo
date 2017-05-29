@@ -17,12 +17,10 @@ HandissimoBundle\Entity\UserSearch:
             type: integer
             nullable: true
         need:
-            type: string
-            length: 255
+            type: text
             nullable: true
         disability:
-            type: string
-            length: 255
+            type: text
             nullable: true
         structure:
             type: string
