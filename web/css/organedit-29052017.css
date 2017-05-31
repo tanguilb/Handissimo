@@ -115,11 +115,21 @@
     background-color: #61bdb9;
 }
 
+.block-btn-prev-next {
+    margin: 0 auto;
+    text-align: center;
+}
+
 .btnPrevious,
 .btnNext {
     background-color: #f7af49;
     border: none;
     margin-bottom: 10px;
+}
+
+.btn-submit{
+    margin: 0 auto;
+    text-align: right;
 }
 
 .btnNext:hover,
