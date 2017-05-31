@@ -1869,6 +1869,16 @@ class Organizations
     }
 
     /**
+     * Remove userorg
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userorg
+     */
+    public function removeUserorg(\Application\Sonata\UserBundle\Entity\User $userorg)
+    {
+        $this->userorg->removeElement($userorg);
+    }
+
+    /**
      * Get userorg
      *
      * @return \Application\Sonata\UserBundle\Entity\User

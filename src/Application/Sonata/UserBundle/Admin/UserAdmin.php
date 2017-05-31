@@ -52,7 +52,8 @@ class UserAdmin extends BaseUserAdmin
                             'choice_label' => 'name',
                             'label' => 'Structures',
                             'required' => false,
-                            'multiple' => true
+                            'multiple' => true,
+                            'placeholder' => 'choisissez la structure',
                     ))
                 ->end()
                 ->with('Status')

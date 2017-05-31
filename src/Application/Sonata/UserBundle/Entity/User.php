@@ -161,7 +161,8 @@ class User extends BaseUser
     {
         //$this->organizationsuser->removeElement($organizationsuser);
         foreach ($this->organizationsuser as $k => $v){
-            if ($v->getId() == $organizationsuser->getId()){
+            if ($v->getId() == $this->organizationsuser[$k]->getId()){
+                //$this->organizationsuser->removeElement($organizationsuser[$k]);
                 unset($this->organizationsuser[$k]);
             }
         }
@@ -183,6 +184,7 @@ class User extends BaseUser
 
         return $this;
     }
+
 
     /*public function __construct()
     {

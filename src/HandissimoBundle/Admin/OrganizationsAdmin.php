@@ -330,6 +330,13 @@ class OrganizationsAdmin extends AbstractAdmin
                         'help' => 'Description limitée à 2000 caractères',
                         'required' => false
                     ))
+                    ->add('userorg', EntityType::class, array(
+                        'class' => 'Application\Sonata\UserBundle\Entity\User',
+                        'choice_label' => 'username',
+                        'label' => 'name',
+                        'required' => false,
+
+                    ))
                 ->end()
             ->end();
     }

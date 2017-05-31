@@ -37,14 +37,42 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
                         <div class="col-md-5">
-                            {{ form_row(edit_form.name) }}
+                            <div class="col-md-11 label-alert">
+                                {{ form_label(edit_form.name) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(edit_form.name) }}
+                            {{ form_widget(edit_form.name) }}
                             {{ form_row(edit_form.structureLogoFile) }}
                             {{ form_row(edit_form.society) }}
                             {{ form_row(edit_form.societyLogoFile) }}
-                            {{ form_row(edit_form.address) }}
+                            <div class="col-md-11 label-alert">
+                                {{ form_label(edit_form.address) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(edit_form.address) }}
+                            {{ form_widget(edit_form.address) }}
                             {{ form_row(edit_form.addressComplement) }}
-                            {{ form_row(edit_form.postal) }}
-                            {{ form_row(edit_form.city) }}
+                            <div class="col-md-11 label-alert">
+                                {{ form_label(edit_form.postal) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(edit_form.postal) }}
+                            {{ form_widget(edit_form.postal) }}
+                            <div class="col-md-11 label-alert">
+                               {{ form_label(edit_form.city) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(edit_form.city) }}
+                            {{ form_widget(edit_form.city) }}
                             {{ form_row(edit_form.phone_number) }}
                             {{ form_row(edit_form.mail) }}
                             {{ form_row(edit_form.directorName) }}
@@ -56,9 +84,16 @@
                             {% endif %}
                         </div>
                         <div class="col-md-7">
-                            <h3>Choisissez votre type de structure</h3>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    {{ form_label(edit_form.orgaStructure) }}
+
+                                </div>
+                                <div class="col-md-1 block-alert">
+                                    <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                </div>
+                        </div>
                             {{ form_errors(edit_form.orgaStructure) }}
-                            {{ form_label(edit_form.orgaStructure) }}
                             {{ form_widget(edit_form.orgaStructure) }}
                         </div>
                         <div class="col-xs-12">
@@ -68,15 +103,28 @@
                     <div role="tabpanel" class="tab-pane fade" id="publictarget">
                         <div class="row">
                             <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ form_label(edit_form.disabilitytypes) }}
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
                                 {{ form_errors(edit_form.disabilitytypes) }}
-                                {{ form_label(edit_form.disabilitytypes) }}
                                 {{ form_widget(edit_form.disabilitytypes) }}
                             </div>
 
                             <div class="col-md-5">
-                                <h3>Âge des personnes accueillies</h3>
-
-                                <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-11 h3-alert">
+                                        <h3 class="age-label">Âge des personnes accueillies</h3>
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 age">
                                     {{ form_row(edit_form.agemini) }}
                                 </div>
 

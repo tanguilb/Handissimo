@@ -7,6 +7,10 @@ use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * Organization controller.
@@ -21,10 +25,6 @@ class OrganizationsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getRepository('HandissimoBundle:StructureType');
-        $structuresType = $em->findAll();
-        $em2 = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
-        $structuresList = $em2->findAll();
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $form->handleRequest($request);
@@ -36,12 +36,10 @@ class OrganizationsController extends Controller
             $em->persist($organization);
             $em->flush($organization);
             $this->addFlash('notice', 'La fiche a bien été créé');
-            return $this->redirectToRoute('sonata_user_profile_edit');
+            return $this->rediresctToRoute('sonata_user_profile_edit');
         }
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
-            'structureType' => $structuresType,
-            'structureList' => $structuresList,
             'form' => $form->createView(),
         ));
     }
