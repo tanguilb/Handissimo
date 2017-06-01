@@ -68,8 +68,4 @@ class AjaxController extends Controller
         }
     }
 
-    public function previewAction()
-    {
-       return $this->render('front/preview.html.twig');
-    }
 }
