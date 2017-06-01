@@ -157,17 +157,12 @@ class Organizations
     private $longitude;
 
     /**
-     * @
-     */
-    private $staff;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->disabilityTypes = new ArrayCollection();
-        $this->staff = new ArrayCollection();
+        $this->stafforganizations = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->needs = new ArrayCollection();
         $this->updateDatetime = new \DateTime();
@@ -786,41 +781,6 @@ class Organizations
     public function getDisabilityTypes()
     {
         return $this->disabilityTypes;
-    }
-
-
-    /**
-     * Add staff
-     *
-     * @param \HandissimoBundle\Entity\Staff $staff
-     *
-     * @return Organizations
-     */
-    public function addStaff(\HandissimoBundle\Entity\Staff $staff)
-    {
-        $this->staff[] = $staff;
-
-        return $this;
-    }
-
-    /**
-     * Remove staff
-     *
-     * @param \HandissimoBundle\Entity\Staff $staff
-     */
-    public function removeStaff(\HandissimoBundle\Entity\Staff $staff)
-    {
-        $this->staff->removeElement($staff);
-    }
-
-    /**
-     * Get staff
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStaff()
-    {
-        return $this->staff;
     }
 
 
@@ -2104,6 +2064,36 @@ class Organizations
     {
         return $this->firstPictureUpdateAt;
     }
+    /**
+     * @var array
+     */
+    private $disabilities;
+
+    /**
+     * @var array
+     */
+    private $primaryNeeds;
+
+    /**
+     * @var array
+     */
+    private $secondaryNeeds;
+
+    /**
+     * @var array
+     */
+    private $medicalJob;
+
+    /**
+     * @var array
+     */
+    private $socialJob;
+
+    /**
+     * @var array
+     */
+    private $communJob;
+
 
     /**
      * Set firstPictureUpdateAt
@@ -2129,6 +2119,149 @@ class Organizations
         return $this->firstPictureUpdateAt;
     }
 
+    /**
+     * Set disabilities
+     *
+     * @param array $disabilities
+     *
+     * @return Organizations
+     */
+    public function setDisabilities($disabilities)
+    {
+        $this->disabilities = $disabilities;
+
+        return $this;
+    }
+
+    /**
+     * Get disabilities
+     *
+     * @return array
+     */
+    public function getDisabilities()
+    {
+        return $this->disabilities;
+    }
+
+    /**
+     * Set primaryNeeds
+     *
+     * @param array $primaryNeeds
+     *
+     * @return Organizations
+     */
+    public function setPrimaryNeeds($primaryNeeds)
+    {
+        $this->primaryNeeds = $primaryNeeds;
+
+        return $this;
+    }
+
+    /**
+     * Get primaryNeeds
+     *
+     * @return array
+     */
+    public function getPrimaryNeeds()
+    {
+        return $this->primaryNeeds;
+    }
+
+    /**
+     * Set secondaryNeeds
+     *
+     * @param array $secondaryNeeds
+     *
+     * @return Organizations
+     */
+    public function setSecondaryNeeds($secondaryNeeds)
+    {
+        $this->secondaryNeeds = $secondaryNeeds;
+
+        return $this;
+    }
+
+    /**
+     * Get secondaryNeeds
+     *
+     * @return array
+     */
+    public function getSecondaryNeeds()
+    {
+        return $this->secondaryNeeds;
+    }
+
+    /**
+     * Set medicalJob
+     *
+     * @param array $medicalJob
+     *
+     * @return Organizations
+     */
+    public function setMedicalJob($medicalJob)
+    {
+        $this->medicalJob = $medicalJob;
+
+        return $this;
+    }
+
+    /**
+     * Get medicalJob
+     *
+     * @return array
+     */
+    public function getMedicalJob()
+    {
+        return $this->medicalJob;
+    }
+
+    /**
+     * Set socialJob
+     *
+     * @param array $socialJob
+     *
+     * @return Organizations
+     */
+    public function setSocialJob($socialJob)
+    {
+        $this->socialJob = $socialJob;
+
+        return $this;
+    }
+
+    /**
+     * Get socialJob
+     *
+     * @return array
+     */
+    public function getSocialJob()
+    {
+        return $this->socialJob;
+    }
+
+    /**
+     * Set communJob
+     *
+     * @param array $communJob
+     *
+     * @return Organizations
+     */
+    public function setCommunJob($communJob)
+    {
+        $this->communJob = $communJob;
+
+        return $this;
+    }
+
+    /**
+     * Get communJob
+     *
+     * @return array
+     */
+    public function getCommunJob()
+    {
+        return $this->communJob;
+    }
 
     /**
      * @var \Doctrine\Common\Collections\Collection

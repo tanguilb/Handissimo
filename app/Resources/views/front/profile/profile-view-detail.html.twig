@@ -1,0 +1,117 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="title-block">
+        <h3 class="title-search">Version actuel</h3>
+    </div>
+    <div class="">
+        <div class="col-xs-12">
+            {{ result.name }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.society }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.address }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.addressComplement }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.postal }} {{ result.city }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.phoneNumber }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.mail }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.directorName }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.website }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.facebook }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.orgaStructure }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.disabilityTypes }}
+        </div>
+        <div class="col-xs-12">
+            De {{ result.agemini }} ans à {{ result.agemini }} ans
+        </div>
+        <div class="col-xs-12">
+            {{ result.freeplace }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.interventionZone }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.organizationDescription }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.needs }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.secondneeds }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.workingDescription }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.school }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.schoolDescription }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.dayDescription }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.receptionDescription }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.teamMembersNumber }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.stafforganizations }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.socialstaffs }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.otherjobs }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.commentStaff }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.openhours }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.opendays }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.opendaysYear }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.orientationMdph }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.inscription }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.cost }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.transport }}
+        </div>
+        <div class="col-xs-12">
+            {{ result.freeDescription }}
+        </div>
+    </div>
+{% endblock %}
