@@ -2264,31 +2264,6 @@ class Organizations
     }
 
     /**
-     * Set firstPictureUpdateAt
-     *
-     * @param \DateTime $firstPictureUpdateAt
-     *
-     * @return Organizations
-     */
-    public function setFirstPictureUpdateAt($firstPictureUpdateAt)
-    {
-        $this->firstPictureUpdateAt = $firstPictureUpdateAt;
-
-        return $this;
-    }
-
-    /**
-     * Get firstPictureUpdateAt
-     *
-     * @return \DateTime
-     */
-    public function getFirstPictureUpdateAt()
-    {
-        return $this->firstPictureUpdateAt;
-    }
-
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $userOrg;
