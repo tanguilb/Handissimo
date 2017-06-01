@@ -39,7 +39,9 @@
             {{ result.orgaStructure }}
         </div>
         <div class="col-xs-12">
-            {{ result.disabilityTypes }}
+            {% for disability in result.disabilityTypes %}
+                <p>{{ disability.disabilityName }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
             De {{ result.agemini }} ans à {{ result.agemini }} ans
@@ -54,10 +56,14 @@
             {{ result.organizationDescription }}
         </div>
         <div class="col-xs-12">
-            {{ result.needs }}
+            {% for need in result.needs %}
+                <p>{{ need.needName }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
-            {{ result.secondneeds }}
+            {% for secondNeed in result.secondneeds %}
+                <p>{{ secondNeed.needName }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
             {{ result.workingDescription }}
@@ -78,13 +84,19 @@
             {{ result.teamMembersNumber }}
         </div>
         <div class="col-xs-12">
-            {{ result.stafforganizations }}
+            {% for medicalJob in result.stafforganizations %}
+                <p>{{ medicalJob.jobs }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
-            {{ result.socialstaffs }}
+            {% for socialJob in result.socialstaffs %}
+                <p>{{ socialJob.socialJobs }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
-            {{ result.otherjobs }}
+            {% for otherJob in result.otherjobs %}
+                <p>{{ otherJob.name }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
             {{ result.commentStaff }}
@@ -93,10 +105,14 @@
             {{ result.openhours }}
         </div>
         <div class="col-xs-12">
-            {{ result.opendays }}
+            {% for openDay in result.opendays %}
+                <p>{{ openDay }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
-            {{ result.opendaysYear }}
+            {% for openDayYear in result.opendaysYear %}
+                <p>{{ openDayYear }}</p>
+            {% endfor %}
         </div>
         <div class="col-xs-12">
             {{ result.orientationMdph }}

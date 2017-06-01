@@ -9,9 +9,7 @@
 namespace HandissimoBundle\Controller;
 
 
-use Doctrine\ORM\Query\Expr\Select;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use HandissimoBundle\Form\Handler;
