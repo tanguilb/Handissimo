@@ -542,7 +542,7 @@
                         Retour à l'accueil
                     </a>
                 </div>
-                {% if organization.userorg == null %}
+                {% if usero == null %}
                 <div class="col-md-3 col-xs-12">
                     <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
                         Je suis responsable<br /> de cette solution
@@ -550,25 +550,33 @@
                 </div>
                 {% endif %}
                 <div class="col-md-3 col-xs-12">
-                    {% if is_granted('ROLE_USER') %}
 
-                        {% if organization.userorg == null %}
-                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
-                                Modifier la fiche
-                            </a>
-                        {% elseif  user.id == organization.userorg.id or is_granted('ROLE_SUPER_ADMIN') %}
-                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
-                                Modifier la fiche
-                            </a>
-                        {% else %}
-                        <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
+                    {% if is_granted('ROLE_USER') %}
+                        {% if usero != null %}
+                            {% set usergood = null %}
+                            {% for userId in usero %}
+                                {% if user.id == userId.id %}
+                                    {% set usergood = userId.id %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if usergood == user.id %}
+                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                    Modifier la fiche
+                                </a>
+                            {% else %}
+                                <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
+                            {% endif %}
+
+
+                            {% else  %}
+                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                    Modifier la fiche
+                                </a>
                         {% endif %}
-                    {% elseif organization.userorg == null %}
+                    {% else %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
                             Modifier la fiche
                         </a>
-                    {% else %}
-                        <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                     {% endif %}
                 </div>
             </div>

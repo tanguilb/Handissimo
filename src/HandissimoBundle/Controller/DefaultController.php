@@ -75,6 +75,8 @@ class DefaultController extends Controller
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
         $form = $this->createForm('HandissimoBundle\Form\Type\CommentType', $comment);
+        $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
+        $usero = $emuser->getOrganizationsByUser($organization->getId());
 
         $formHandler = new Handler\CommentHandler($form, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'));
 
@@ -88,6 +90,7 @@ class DefaultController extends Controller
             'form' => $form->createView(),
             'pictures' => $arraypicture,
             'user' => $user,
+            'usero' => $usero,
             'organization' => $organization,
             'comments' => $comments,
         ));
