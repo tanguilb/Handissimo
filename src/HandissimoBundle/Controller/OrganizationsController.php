@@ -2,9 +2,7 @@
 
 namespace HandissimoBundle\Controller;
 
-use HandissimoBundle\Entity\Media;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,99 +19,17 @@ class OrganizationsController extends Controller
      */
     public function newAction(Request $request)
     {
-
-        $em = $this->getDoctrine();
-        $structuresType = $em->getRepository('HandissimoBundle:StructureType')->findAll();
-        $structuresList = $em->getRepository('HandissimoBundle:StructuresList')->findAll();
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-        $form->handleRequest($request);
-        $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-        $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /**
-             * Saving all disabilities for organizations_audit
-             */
-            $allDisabilities = $organization->getDisabilityTypes();
-            $disabilitiesId="";
-            foreach ($allDisabilities as $oneDisability){
-                $disabilitiesId .= $oneDisability->getId() . " ";
-            }
-            $disabilitiesArray = explode(" ", $disabilitiesId);
-            $disabilities = array_filter($disabilitiesArray);
-            $organization->setDisabilities($disabilities);
-
-            /**
-             * Saving all primary needs for organizations_audit
-             */
-            $allPrimaryNeeds = $organization->getNeeds();
-            $primaryNeedsId="";
-            foreach ($allPrimaryNeeds as $onePrimaryNeed){
-                $primaryNeedsId .= $onePrimaryNeed->getId() . " ";
-            }
-            $primaryNeedsArray = explode(" ", $primaryNeedsId);
-            $primaryNeeds = array_filter($primaryNeedsArray);
-            $organization->setPrimaryNeeds($primaryNeeds);
-
-            /**
-             * Saving all secondary needs for organizations_audit
-             */
-            $allSecondaryNeeds = $organization->getSecondneeds();
-            $secondaryNeedsId="";
-            foreach ($allSecondaryNeeds as $oneSecondaryNeed){
-                $secondaryNeedsId .= $oneSecondaryNeed->getId() . " ";
-            }
-            $secondaryNeedsArray = explode(" ", $secondaryNeedsId);
-            $secondaryNeeds = array_filter($secondaryNeedsArray);
-            $organization->setSecondaryNeeds($secondaryNeeds);
-
-            /**
-             * Saving all medical jobs for organizations_audit
-             */
-            $allMedicalJobs = $organization->getStafforganizations();
-            $medicalJobsId="";
-            foreach ($allMedicalJobs as $oneMedicalJob){
-                $medicalJobsId .= $oneMedicalJob->getId() . " ";
-            }
-            $medicalJobsArray = explode(" ", $medicalJobsId);
-            $medicalJobs = array_filter($medicalJobsArray);
-            $organization->setMedicalJob($medicalJobs);
-
-            /**
-             * Saving all social jobs for organization_audit
-             */
-            $allSocialJobs = $organization->getSocialstaffs();
-            $socialJobsId="";
-            foreach ($allSocialJobs as $oneSocialJob){
-                $socialJobsId .= $oneSocialJob->getId() . " ";
-            }
-            $socialJobsArray = explode(" ", $socialJobsId);
-            $socialJobs = array_filter($socialJobsArray);
-            $organization->setSocialJob($socialJobs);
-
-            /**
-             * Saving all other jobs for organization_audit
-             */
-            $allCommunJobs = $organization->getOtherjobs();
-            $communJobsId="";
-            foreach ($allCommunJobs as $oneCommunJob){
-                $communJobsId .= $oneCommunJob->getId() . " ";
-            }
-            $communJobsArray = explode(" ", $communJobsId);
-            $communJobs = array_filter($communJobsArray);
-            $organization->setCommunJob($communJobs);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($organization);
-            $em->flush();
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        if ($formHandler->process()){
             $this->addFlash('notice', 'La fiche a bien été créé');
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
+
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
-            'structureType' => $structuresType,
-            'structureList' => $structuresList,
             'form' => $form->createView(),
         ));
     }
@@ -130,12 +46,10 @@ class OrganizationsController extends Controller
         $pictures = $em->getMediaByOrganizations($organization->getId());
         $deleteForm = $this->createDeleteForm($organization);
         $editForm = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-        $editForm->handleRequest($request);
-        $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-        $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
         $user = $this->getUser();
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        if ($formHandler->process()){
+            //$this->getDoctrine()->getManager()->flush();
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
@@ -201,6 +115,4 @@ class OrganizationsController extends Controller
             ->getForm()
         ;
     }
-
-
 }
