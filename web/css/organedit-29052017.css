@@ -115,11 +115,21 @@
     background-color: #61bdb9;
 }
 
+.block-btn-prev-next {
+    margin: 0 auto;
+    text-align: center;
+}
+
 .btnPrevious,
 .btnNext {
     background-color: #f7af49;
     border: none;
     margin-bottom: 10px;
+}
+
+.btn-submit{
+    margin: 0 auto;
+    text-align: right;
 }
 
 .btnNext:hover,
@@ -130,3 +140,35 @@
     color: #ffffff;
 }
 
+.alert {
+    color: #C94242;
+    font-size: 1.3em;
+    padding: 0 0 0 0;
+    margin-bottom: 0;
+}
+
+.block-alert {
+    padding: 0 5px 0 0;
+}
+
+.h3-alert {
+    padding-left: 15px;
+}
+.label-alert {
+    padding: 0 0 0 0;
+}
+
+.age {
+    padding-left: 0;
+}
+#handissimobundle_organizations_name,
+#handissimobundle_organizations_address,
+#handissimobundle_organizations_postal,
+#handissimobundle_organizations_city {
+    margin-bottom: 15px;
+}
+
+.age-label {
+    font-size: 14px;
+    font-weight: 700;
+}

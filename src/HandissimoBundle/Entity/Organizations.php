@@ -1809,35 +1809,6 @@ class Organizations
     }
 
     /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $userorg;
-
-
-    /**
-     * Set userorg
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $userorg
-     *
-     * @return Organizations
-     */
-    public function setUserorg(\Application\Sonata\UserBundle\Entity\User $userorg = null)
-    {
-        $this->userorg = $userorg;
-
-        return $this;
-    }
-
-    /**
-     * Get userorg
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User
-     */
-    public function getUserorg()
-    {
-        return $this->userorg;
-    }
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $needs;
@@ -2290,5 +2261,70 @@ class Organizations
     public function getCommunJob()
     {
         return $this->communJob;
+    }
+
+    /**
+     * Set firstPictureUpdateAt
+     *
+     * @param \DateTime $firstPictureUpdateAt
+     *
+     * @return Organizations
+     */
+    public function setFirstPictureUpdateAt($firstPictureUpdateAt)
+    {
+        $this->firstPictureUpdateAt = $firstPictureUpdateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get firstPictureUpdateAt
+     *
+     * @return \DateTime
+     */
+    public function getFirstPictureUpdateAt()
+    {
+        return $this->firstPictureUpdateAt;
+    }
+
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $userOrg;
+
+
+    /**
+     * Add userOrg
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userOrg
+     *
+     * @return Organizations
+     */
+    public function addUserOrg(\Application\Sonata\UserBundle\Entity\User $userOrg)
+    {
+        $this->userOrg[] = $userOrg;
+
+        return $this;
+    }
+
+    /**
+     * Remove userOrg
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $userOrg
+     */
+    public function removeUserOrg(\Application\Sonata\UserBundle\Entity\User $userOrg)
+    {
+        $this->userOrg->removeElement($userOrg);
+    }
+
+    /**
+     * Get userOrg
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserOrg()
+    {
+        return $this->userOrg;
     }
 }

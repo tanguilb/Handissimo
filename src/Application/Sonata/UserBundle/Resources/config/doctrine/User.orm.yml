@@ -1,6 +1,7 @@
 Application\Sonata\UserBundle\Entity\User:
     type:  entity
     table: fos_user
+    repositoryClass: Application\Sonata\UserBundle\Repository\UserRepository
     id:
         id:
             type: integer
@@ -19,9 +20,16 @@ Application\Sonata\UserBundle\Entity\User:
             type: boolean
             nullable: true
 
-    oneToMany:
-        organizationsuser:
+    manyToMany:
+        organizationsUser:
             targetEntity: HandissimoBundle\Entity\Organizations
-            mappedBy: userorg
-            nullable: true
+            inversedBy: userOrg
+            joinTable:
+                name: user_has_organizations
+                joinColumns:
+                    users_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    organizations_id:
+                        referencedColumnName: id
 
