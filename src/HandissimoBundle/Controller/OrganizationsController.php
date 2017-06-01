@@ -49,7 +49,6 @@ class OrganizationsController extends Controller
         $user = $this->getUser();
         $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
         if ($formHandler->process()){
-            //$this->getDoctrine()->getManager()->flush();
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
@@ -69,8 +68,7 @@ class OrganizationsController extends Controller
                     return $this->render(':front/profile:profile-dont-edit.html.twig');
                 }
             }
-        } else
-        {
+        } else {
             return $this->render('organizations/edit.html.twig', array(
                 'pictures' => $pictures,
                 'user' => $user,

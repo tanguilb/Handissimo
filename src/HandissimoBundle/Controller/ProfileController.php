@@ -60,7 +60,7 @@ class ProfileController extends Controller
     {
         $organisationId = $organizations->getId();
         $em = $this->getDoctrine()->getManager();
-        $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.id = ' . $organisationId;
+        $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.id = ' . $organisationId . ' ORDER BY organizations_audit.update_datetime DESC';
         $statement = $em->getConnection()->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll();
