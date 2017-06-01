@@ -88,16 +88,15 @@ class OrganizationsController extends Controller
             }
             return $this->render(':front/profile:profile-dont-edit.html.twig');
 
-        } else
-        {
-            return $this->render('organizations/edit.html.twig', array(
-                'pictures' => $pictures,
-                'user' => $user,
-                'organization' => $organization,
-                'edit_form' => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
-            ));
         }
+        return $this->render('organizations/edit.html.twig', array(
+            'pictures' => $pictures,
+            'user' => $user,
+            'organization' => $organization,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+
     }
 
     /**
