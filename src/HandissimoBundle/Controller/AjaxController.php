@@ -4,6 +4,7 @@ namespace HandissimoBundle\Controller;
 
 
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\HandissimoBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,4 +68,8 @@ class AjaxController extends Controller
         }
     }
 
+    public function previewAction()
+    {
+       return $this->render('front/preview.html.twig');
+    }
 }

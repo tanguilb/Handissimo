@@ -7,6 +7,10 @@ use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\StructuresList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * Organization controller.
@@ -21,10 +25,6 @@ class OrganizationsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getRepository('HandissimoBundle:StructureType');
-        $structuresType = $em->findAll();
-        $em2 = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
-        $structuresList = $em2->findAll();
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $form->handleRequest($request);
@@ -40,8 +40,6 @@ class OrganizationsController extends Controller
         }
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
-            'structureType' => $structuresType,
-            'structureList' => $structuresList,
             'form' => $form->createView(),
         ));
     }
@@ -67,32 +65,38 @@ class OrganizationsController extends Controller
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
-        if ($organization->getUserorg() !== null){
-            foreach ($this->container->get('security.token_storage')->getToken()->getRoles() as $role)
+
+        $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
+        $usero = $emuser->getOrganizationsByUser($organization->getId());
+        if (!empty($usero)){
+            foreach ($usero as $userid)
             {
-                if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $organization->getUserorg()->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
+                foreach ($this->container->get('security.token_storage')->getToken()->getRoles() as $role)
                 {
-                    return $this->render('organizations/edit.html.twig', array(
-                        'pictures' => $pictures,
-                        'user' => $user,
-                        'organization' => $organization,
-                        'edit_form' => $editForm->createView(),
-                        'delete_form' => $deleteForm->createView(),
-                    ));
-                } else {
-                    return $this->render(':front/profile:profile-dont-edit.html.twig');
+                    if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $userid->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
+                    {
+                        return $this->render('organizations/edit.html.twig', array(
+                            'pictures' => $pictures,
+                            'user' => $user,
+                            'usero' => $usero,
+                            'organization' => $organization,
+                            'edit_form' => $editForm->createView(),
+                            'delete_form' => $deleteForm->createView(),
+                        ));
+                    }
                 }
             }
-        } else
-        {
-            return $this->render('organizations/edit.html.twig', array(
-                'pictures' => $pictures,
-                'user' => $user,
-                'organization' => $organization,
-                'edit_form' => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
-            ));
+            return $this->render(':front/profile:profile-dont-edit.html.twig');
+
         }
+        return $this->render('organizations/edit.html.twig', array(
+            'pictures' => $pictures,
+            'user' => $user,
+            'organization' => $organization,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+
     }
 
     /**

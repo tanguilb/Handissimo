@@ -47,7 +47,6 @@ class User extends BaseUser
      */
     private $userType;
 
-
     /**
      * Set userType
      *
@@ -131,62 +130,51 @@ class User extends BaseUser
     {
         return $this->compact;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $organizationsuser;
 
-
-    /**
-     * Add organizationsuser
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsuser
-     *
-     * @return User
-     */
-    public function addOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser)
-    {
-        $organizationsuser->setUserorg($this);
-        $this->organizationsuser[] = $organizationsuser;
-
-        return $this;
-    }
-
-    /**
-     * Remove organizationsuser
-     *
-     * @param \HandissimoBundle\Entity\Organizations $organizationsuser
-     */
-    public function removeOrganizationsuser(\HandissimoBundle\Entity\Organizations $organizationsuser)
-    {
-        //$this->organizationsuser->removeElement($organizationsuser);
-        foreach ($this->organizationsuser as $k => $v){
-            if ($v->getId() == $organizationsuser->getId()){
-                unset($this->organizationsuser[$k]);
-            }
-        }
-    }
-
-    /**
-     * Get organizationsuser
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOrganizationsuser()
-    {
-        return $this->organizationsuser;
-    }
-
-    public function setOrganizationuser($organizatiosuser)
-    {
-        $this->organizationsuser = $organizatiosuser;
-
-        return $this;
-    }
+    private $organizationsUser;
 
     /*public function __construct()
     {
         parent::__construct();
         $this->organizationsuser = new ArrayCollection();
     }*/
+
+    public function __construct()
+    {
+        $this->organizationsUser = new ArrayCollection();
+    }
+
+    /**
+     * Add organizationsUser
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsUser
+     *
+     * @return User
+     */
+    public function addOrganizationsUser(\HandissimoBundle\Entity\Organizations $organizationsUser)
+    {
+        $this->organizationsUser[] = $organizationsUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove organizationsUser
+     *
+     * @param \HandissimoBundle\Entity\Organizations $organizationsUser
+     */
+    public function removeOrganizationsUser(\HandissimoBundle\Entity\Organizations $organizationsUser)
+    {
+        $this->organizationsUser->removeElement($organizationsUser);
+    }
+
+    /**
+     * Get organizationsUser
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganizationsUser()
+    {
+        return $this->organizationsUser;
+    }
 }

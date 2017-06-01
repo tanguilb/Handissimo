@@ -55,3 +55,7 @@ search_organization_name:
     path:   /organization/search/ajax/{organizationSearch}
     defaults : { _controller: "HandissimoBundle:Ajax:organizationNameSearch" }
     methods: POST
+
+preview_action:
+    path:  /preview
+    defaults: { _controller: "HandissimoBundle:Ajax:preview" }

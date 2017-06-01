@@ -30,7 +30,7 @@ class OrganizationsType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label' => 'Nom de la structure :',
+                'label' => 'Nom de la structure * : ',
                 'required' => true,
                 'attr' => array(
                     'class' => 'stat',
@@ -114,7 +114,7 @@ class OrganizationsType extends AbstractType
             ))
             ->add('orgaStructure', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\StructuresList',
-                'label' => false,
+                'label' => 'Choisissez votre type de structure',
                 'choice_label' => 'name',
                 'expanded' => true,
                 'empty_value' => 'Je ne sais pas',

@@ -47,12 +47,13 @@ class UserAdmin extends BaseUserAdmin
                         'multiple' => false,
                         'expanded' => true
                     ))
-                    ->add('organizationsuser', EntityType::class, array(
+                    ->add('organizationsUser', EntityType::class, array(
                             'class' => 'HandissimoBundle\Entity\Organizations',
                             'choice_label' => 'name',
                             'label' => 'Structures',
                             'required' => false,
-                            'multiple' => true
+                            'multiple' => true,
+                            'placeholder' => 'choisissez la structure',
                     ))
                 ->end()
                 ->with('Status')
@@ -100,18 +101,6 @@ class UserAdmin extends BaseUserAdmin
         $collection->remove('');
     }
 
-    public function prePersist($organizationsuser)
-    {
-        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
-            $userorg->setUserorg($organizationsuser);
-        }
-    }
 
-    public function preUpdate($organizationsuser)
-    {
-        foreach ($organizationsuser->getOrganizationsuser() as $userorg) {
-            $userorg->setUserorg($organizationsuser);
-        }
-    }
 
 }
