@@ -27,7 +27,9 @@ class SearchController extends Controller
         {
             $location = $form->getData()['postal'];
             $age = $form->getData()['age'];
+            if($age !== null){
             $age = preg_replace('/[ a-zA-Z]/', '', $age);
+            }
             $need = $form->getData()['need'];
             $disability = $form->getData()['disability'];
             $structure = $form->getData()['structure'];

@@ -36,7 +36,7 @@ class OrganizationsController extends Controller
             $em->persist($organization);
             $em->flush($organization);
             $this->addFlash('notice', 'La fiche a bien été créé');
-            return $this->rediresctToRoute('sonata_user_profile_edit');
+            return $this->redirectToRoute('sonata_user_profile_edit');
         }
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
@@ -65,22 +65,29 @@ class OrganizationsController extends Controller
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
-        if ($organization->getUserorg() !== null){
-            foreach ($this->container->get('security.token_storage')->getToken()->getRoles() as $role)
+
+        $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
+        $usero = $emuser->getOrganizationsByUser($organization->getId());
+        if (!empty($usero)){
+            foreach ($usero as $userid)
             {
-                if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $organization->getUserorg()->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
+                foreach ($this->container->get('security.token_storage')->getToken()->getRoles() as $role)
                 {
-                    return $this->render('organizations/edit.html.twig', array(
-                        'pictures' => $pictures,
-                        'user' => $user,
-                        'organization' => $organization,
-                        'edit_form' => $editForm->createView(),
-                        'delete_form' => $deleteForm->createView(),
-                    ));
-                } else {
-                    return $this->render(':front/profile:profile-dont-edit.html.twig');
+                    if($this->container->get('security.token_storage')->getToken()->getUser()->getId() === $userid->getId() or $role->getRole() === "ROLE_SUPER_ADMIN")
+                    {
+                        return $this->render('organizations/edit.html.twig', array(
+                            'pictures' => $pictures,
+                            'user' => $user,
+                            'usero' => $usero,
+                            'organization' => $organization,
+                            'edit_form' => $editForm->createView(),
+                            'delete_form' => $deleteForm->createView(),
+                        ));
+                    }
                 }
             }
+            return $this->render(':front/profile:profile-dont-edit.html.twig');
+
         } else
         {
             return $this->render('organizations/edit.html.twig', array(
