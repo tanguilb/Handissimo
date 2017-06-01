@@ -244,4 +244,13 @@ class OrganizationsRepository extends EntityRepository
         return $query->getQuery()->getSingleResult();
     }
 
+    public function findAllOrganizations()
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o')
+            ->orderBy('o.updateDatetime', 'DESC')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }

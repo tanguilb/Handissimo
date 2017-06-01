@@ -49,9 +49,29 @@ handissimo_profile_solution:
 
 handissimo_profile_comment:
     path:   /profile/comment
-    defaults: { _controller: HandissimoBundle:Profile:profileComment}
+    defaults: { _controller: HandissimoBundle:Profile:profileComment }
 
 search_organization_name:
     path:   /organization/search/ajax/{organizationSearch}
     defaults : { _controller: "HandissimoBundle:Ajax:organizationNameSearch" }
     methods: POST
+
+handissimo_profile_version:
+    path:   /profile/version/{id}
+    defaults: { _controller: HandissimoBundle:Profile:organizationsVersion }
+
+handissimo_profile_list_organizations:
+    path:   /profile/list
+    defaults: { _controller: HandissimoBundle:Profile:listOrganizations }
+
+handissimo_profile_view_current_organization:
+    path:   /profile/view/{id}
+    defaults: { _controller: HandissimoBundle:Profile:viewCurrentOrganizations }
+
+handissimo_profile_compare_organizations:
+    path:   /profile/view/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Profile:viewDetail }
+
+simple_things_entity_audit:
+    resource: "@SimpleThingsEntityAuditBundle/Resources/config/routing.yml"
+    prefix: /audit

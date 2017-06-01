@@ -208,6 +208,24 @@ HandissimoBundle\Entity\Organizations:
             type: string
             length: 255
             nullable: true
+        disabilities:
+            type: array
+            nullable: true
+        primaryNeeds:
+            type: array
+            nullable: true
+        secondaryNeeds:
+            type: array
+            nullable: true
+        medicalJob:
+            type: array
+            nullable: true
+        socialJob:
+            type: array
+            nullable: true
+        communJob:
+            type: array
+            nullable: true
 
 
     oneToMany:

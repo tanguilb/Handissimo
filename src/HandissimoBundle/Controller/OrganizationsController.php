@@ -21,10 +21,10 @@ class OrganizationsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getRepository('HandissimoBundle:StructureType');
-        $structuresType = $em->findAll();
-        $em2 = $this->getDoctrine()->getRepository('HandissimoBundle:StructuresList');
-        $structuresList = $em2->findAll();
+
+        $em = $this->getDoctrine();
+        $structuresType = $em->getRepository('HandissimoBundle:StructureType')->findAll();
+        $structuresList = $em->getRepository('HandissimoBundle:StructuresList')->findAll();
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $form->handleRequest($request);
@@ -32,9 +32,81 @@ class OrganizationsController extends Controller
         $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * Saving all disabilities for organizations_audit
+             */
+            $allDisabilities = $organization->getDisabilityTypes();
+            $disabilitiesId="";
+            foreach ($allDisabilities as $oneDisability){
+                $disabilitiesId .= $oneDisability->getId() . " ";
+            }
+            $disabilitiesArray = explode(" ", $disabilitiesId);
+            $disabilities = array_filter($disabilitiesArray);
+            $organization->setDisabilities($disabilities);
+
+            /**
+             * Saving all primary needs for organizations_audit
+             */
+            $allPrimaryNeeds = $organization->getNeeds();
+            $primaryNeedsId="";
+            foreach ($allPrimaryNeeds as $onePrimaryNeed){
+                $primaryNeedsId .= $onePrimaryNeed->getId() . " ";
+            }
+            $primaryNeedsArray = explode(" ", $primaryNeedsId);
+            $primaryNeeds = array_filter($primaryNeedsArray);
+            $organization->setPrimaryNeeds($primaryNeeds);
+
+            /**
+             * Saving all secondary needs for organizations_audit
+             */
+            $allSecondaryNeeds = $organization->getSecondneeds();
+            $secondaryNeedsId="";
+            foreach ($allSecondaryNeeds as $oneSecondaryNeed){
+                $secondaryNeedsId .= $oneSecondaryNeed->getId() . " ";
+            }
+            $secondaryNeedsArray = explode(" ", $secondaryNeedsId);
+            $secondaryNeeds = array_filter($secondaryNeedsArray);
+            $organization->setSecondaryNeeds($secondaryNeeds);
+
+            /**
+             * Saving all medical jobs for organizations_audit
+             */
+            $allMedicalJobs = $organization->getStafforganizations();
+            $medicalJobsId="";
+            foreach ($allMedicalJobs as $oneMedicalJob){
+                $medicalJobsId .= $oneMedicalJob->getId() . " ";
+            }
+            $medicalJobsArray = explode(" ", $medicalJobsId);
+            $medicalJobs = array_filter($medicalJobsArray);
+            $organization->setMedicalJob($medicalJobs);
+
+            /**
+             * Saving all social jobs for organization_audit
+             */
+            $allSocialJobs = $organization->getSocialstaffs();
+            $socialJobsId="";
+            foreach ($allSocialJobs as $oneSocialJob){
+                $socialJobsId .= $oneSocialJob->getId() . " ";
+            }
+            $socialJobsArray = explode(" ", $socialJobsId);
+            $socialJobs = array_filter($socialJobsArray);
+            $organization->setSocialJob($socialJobs);
+
+            /**
+             * Saving all other jobs for organization_audit
+             */
+            $allCommunJobs = $organization->getOtherjobs();
+            $communJobsId="";
+            foreach ($allCommunJobs as $oneCommunJob){
+                $communJobsId .= $oneCommunJob->getId() . " ";
+            }
+            $communJobsArray = explode(" ", $communJobsId);
+            $communJobs = array_filter($communJobsArray);
+            $organization->setCommunJob($communJobs);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($organization);
-            $em->flush($organization);
+            $em->flush();
             $this->addFlash('notice', 'La fiche a bien été créé');
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
@@ -109,7 +181,7 @@ class OrganizationsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($organization);
-            $em->flush($organization);
+            $em->flush();
         }
         return $this->redirectToRoute('research_action');
     }

@@ -1,0 +1,45 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="title-block">
+        <h3 class="title-search">Historique des modifications</h3>
+    </div>
+    <div class="">
+        {% for results in result %}
+            {% if loop.index == 1 %}
+                <div class="col-md-3">
+                    <a href="{{ path('handissimo_profile_view_current_organization', {'id': results.id}) }}" class="link-about">{{ results.name }}</a>
+                </div>
+                <div class="col-md-3">
+                    {{ results.update_datetime|localizeddate }}
+                </div>
+                <div class="col-md-3">
+                    {{ results.user }}
+                </div>
+                <div class="col-md-1">
+                    {{ results.rev }}
+                </div>
+                <div class="col-md-2">
+                    {{ results.revtype }}
+                </div>
+            {% else %}
+            <div class="col-md-3">
+                <a href="{{ path('handissimo_profile_compare_organizations', {'id':results.id, 'rev':results.rev}) }}" class="link-about">{{ results.name }}</a>
+            </div>
+            <div class="col-md-3">
+                {{ results.update_datetime|localizeddate }}
+            </div>
+            <div class="col-md-3">
+                {{ results.user }}
+            </div>
+            <div class="col-md-1">
+                {{ results.rev }}
+            </div>
+            <div class="col-md-2">
+                {{ results.revtype }}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
