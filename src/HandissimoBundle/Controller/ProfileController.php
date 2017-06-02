@@ -119,7 +119,7 @@ class ProfileController extends Controller
             foreach ($disabilityNew as $disabilitiesN)
             {
                 $disabN = $emDisability->getDisability($disabilitiesN);
-                array_push($disabilityO, $disabN);
+                array_push($disabilityN, $disabN);
             }
 
         }
@@ -132,6 +132,7 @@ class ProfileController extends Controller
                 array_push($disabilityS, $disabS);
             }
         }
+        var_dump($disabilityO);
 
         /* traitement des données sur les besoins primaires */
         var_dump($diff);
@@ -147,6 +148,7 @@ class ProfileController extends Controller
             {
                 $oldNeed = $emNeeds->getNeedsById($needO);
                 array_push($needsO, $oldNeed);
+
             }
         }
         if(!empty($needsNew))
