@@ -536,3 +536,20 @@ input:-ms-input-placeholder {
         bottom: 0;
     }
 }
+
+/**********************************/
+/********** Version page **********/
+/**********************************/
+
+.label-profile-version {
+    margin: 0;
+    font-weight: 800;
+}
+
+.list-profile {
+    margin:0;
+}
+
+.block-current-version {
+    margin-top: 20px;
+}
