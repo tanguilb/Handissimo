@@ -163,8 +163,15 @@
                     <div role="tabpanel" class="tab-pane fade" id="serve">
                         <div class="row">
                             <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ form_label(form.needs) }}
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
                                 {{ form_errors(form.needs) }}
-                                {{ form_label(form.needs) }}
                                 {{ form_widget(form.needs) }}
                             </div>
                             <div class="col-md-6">
@@ -306,7 +313,6 @@
 
             {{ form_end(form) }}
         </form>
-        <a href="{{ path('preview_action') }}" id="preview" class="btn btn-default">Preview</a>
     {% endblock organization_form %}
 
 {% endblock %}
