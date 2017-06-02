@@ -24,21 +24,21 @@
                     {{ results.revtype }}
                 </div>
             {% else %}
-            <div class="col-md-3">
-                <a href="{{ path('handissimo_profile_compare_organizations', {'id':results.id, 'rev':results.rev}) }}" class="link-about">{{ results.name }} history</a>
-            </div>
-            <div class="col-md-3">
-                {{ results.update_datetime|localizeddate }}
-            </div>
-            <div class="col-md-3">
-                {{ results.user }}
-            </div>
-            <div class="col-md-1">
-                {{ results.rev }}
-            </div>
-            <div class="col-md-2">
-                {{ results.revtype }}
-            </div>
+                <div class="col-md-3">
+                    <a href="{{ path('handissimo_profile_compare_organizations', {'id':results.id, 'rev':results.rev}) }}" class="link-about">{{ results.name }} history</a>
+                </div>
+                <div class="col-md-3">
+                    {{ results.update_datetime|localizeddate }}
+                </div>
+                <div class="col-md-3">
+                    {{ results.user }}
+                </div>
+                <div class="col-md-1">
+                    {{ results.rev }}
+                </div>
+                <div class="col-md-2">
+                    {{ results.revtype }}
+                </div>
             {% endif %}
         {% endfor %}
     </div>

@@ -1,5 +1,327 @@
 {% extends '@SonataUser/Profile/action.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}"/>
+{% endblock %}
 
-{% block sonata_profile_content %}
-    {{ dump(result) }}
+
+    {% block sonata_profile_content %}
+    <h1>Différences entre la fiche affiché et la version</h1>
+    <h2>Name</h2>
+    {% if diff.name.old != null and diff.name.new != null %}
+        <p class="old">{{ diff.name.old }}</p>
+        <p class="new">{{ diff.name.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.name.same }}</p>
+    {% endif %}
+    <h2>adresse</h2>
+    {% if diff.address.old != null and diff.address.new != null %}
+        <p class="old">{{ diff.address.old }}</p>
+        <p class="new">{{ diff.address.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.address.same }}</p>
+    {% endif %}
+    <h2>Complément d'adresse</h2>
+    {% if diff.addressComplement.old != null and diff.addressComplement.new != null %}
+        <p class="old">{{ diff.addressComplement.old }}</p>
+        <p class="new">{{ diff.addressComplement.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.addressComplement.same }}</p>
+    {% endif %}
+    <h2>postal</h2>
+    {% if diff.postal.old != null and diff.postal.new != null %}
+        <p class="old">{{ diff.postal.old }}</p>
+        <p class="new">{{ diff.postal.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.postal.same }}</p>
+    {% endif %}
+    <h2>city</h2>
+    {% if diff.city.old != null and diff.city.new != null %}
+        <p class="old">{{ diff.city.old }}</p>
+        <p class="new">{{ diff.city.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.city.same }}</p>
+    {% endif %}
+    <h2>Numéro de téléphone</h2>
+    {% if diff.phoneNumber.old != null and diff.phoneNumber.new != null %}
+        <p class="old">{{ diff.phoneNumber.old }}</p>
+        <p class="new">{{ diff.phoneNumber.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.phoneNumber.same }}</p>
+    {% endif %}
+    <h2>Email</h2>
+    {% if diff.mail.old != null and diff.mail.new != null %}
+        <p class="old">{{ diff.mail.old }}</p>
+        <p class="new">{{ diff.mail.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.mail.same }}</p>
+    {% endif %}
+    <h2>Site internet</h2>
+    {% if diff.website.old != null and diff.website.new != null %}
+        <p class="old">{{ diff.website.old }}</p>
+        <p class="new">{{ diff.website.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.website.same }}</p>
+    {% endif %}
+    <h2>facebook</h2>
+    {% if diff.facebook.old != null and diff.facebook.new != null %}
+        <p class="old">{{ diff.facebook.old }}</p>
+        <p class="new">{{ diff.facebook.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.facebook.same }}</p>
+    {% endif %}
+    <h2>Age</h2>
+    <p> de :
+    {% if diff.agemini.old != null and diff.agemini.new != null %}
+        <p class="old">{{ diff.agemini.old }}</p>
+        <p class="new">{{ diff.agemini.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.agemini.same }}</p>
+    {% endif %}
+    a :
+    {% if diff.agemaxi.old != null and diff.agemaxi.new != null %}
+        <p class="old">{{ diff.agemaxi.old }}</p>
+        <p class="new">{{ diff.agemaxi.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.agemaxi.same }}</p>
+    {% endif %}
+    </p>
+    <h2>Nombre de place</h2>
+    {% if diff.freeplace.old != null and diff.freeplace.new != null %}
+        <p class="old">{{ diff.freeplace.old }}</p>
+        <p class="new">{{ diff.freeplace.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.freeplace.same }}</p>
+    {% endif %}
+    <h2>Description de l'organization</h2>
+    {% if diff.organizationDescription.old != null and diff.organizationDescription.new != null %}
+        <p class="old">{{ diff.organizationDescription.old }}</p>
+        <p class="new">{{ diff.organizationDescription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.organizationDescription.same }}</p>
+    {% endif %}
+    <h2>Heure d'ouverture</h2>
+    {% if diff.openhours.old != null and diff.openhours.new != null %}
+        <p class="old">{{ diff.openhours.old }}</p>
+        <p class="new">{{ diff.openhours.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.openhours.same }}</p>
+    {% endif %}
+    {#<h2>Jour d'ouverture</h2>
+    {% if diff.opendays.old != null and diff.opendays.new != null %}
+        <p class="old">{{ diff.opendays.old }}</p>
+        <p class="new">{{ diff.opendays.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.opendays.same }}</p>
+    {% endif %}
+    <h2>Nombres de jours d'ouverture dans l'année</h2>
+    {% if diff.opendaysYear.old != null and diff.opendaysYear.new != null %}
+        <p class="old">{{ diff.opendaysYear.old }}</p>
+        <p class="new">{{ diff.opendaysYear.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.opendaysYear.same }}</p>
+    {% endif %}#}
+    <h2>Nombre de personnes dans l'équipe</h2>
+    {% if diff.teamMembersNumber.old != null and diff.teamMembersNumber.new != null %}
+        <p class="old">{{ diff.teamMembersNumber.old }}</p>
+        <p class="new">{{ diff.teamMembersNumber.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.teamMembersNumber.same }}</p>
+    {% endif %}
+    <h2>Description du travail</h2>
+    {% if diff.workingDescription.old != null and diff.workingDescription.new != null %}
+        <p class="old">{{ diff.workingDescription.old }}</p>
+        <p class="new">{{ diff.workingDescription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.workingDescription.same }}</p>
+    {% endif %}
+    <h2>Ecole</h2>
+    {% if diff.school.old != null and diff.school.new != null %}
+        <p class="old">{{ diff.school.old }}</p>
+        <p class="new">{{ diff.school.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.school.same }}</p>
+    {% endif %}
+    <h2>Description de l'école</h2>
+    {% if diff.schoolDescription.old != null and diff.schoolDescription.new != null %}
+        <p class="old">{{ diff.schoolDescription.old }}</p>
+        <p class="new">{{ diff.schoolDescription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.schoolDescription.same }}</p>
+    {% endif %}
+    <h2>Nom du directeur</h2>
+    {% if diff.directorName.old != null and diff.directorName.new != null %}
+        <p class="old">{{ diff.directorName.old }}</p>
+        <p class="new">{{ diff.directorName.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.directorName.same }}</p>
+    {% endif %}
+    <h2>Description d'une journée type</h2>
+    {% if diff.dayDescription.old != null and diff.dayDescription.new != null %}
+        <p class="old">{{ diff.dayDescription.old }}</p>
+        <p class="new">{{ diff.dayDescription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.dayDescription.same }}</p>
+    {% endif %}
+    <h2>Comment accéder à la structure</h2>
+    {% if diff.transport.old != null and diff.transport.new != null %}
+        <p class="old">{{ diff.transport.old }}</p>
+        <p class="new">{{ diff.transport.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.transport.same }}</p>
+    {% endif %}
+    <h2>Qu'est-il prévu pour les familles</h2>
+    {% if diff.receptionDescription.old != null and diff.receptionDescription.new != null %}
+        <p class="old">{{ diff.receptionDescription.old }}</p>
+        <p class="new">{{ diff.receptionDescription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.receptionDescription.same }}</p>
+    {% endif %}
+    <h2>Combien ça coûte pour l'usager</h2>
+    {% if diff.cost.old != null and diff.cost.new != null %}
+        <p class="old">{{ diff.cost.old }}</p>
+        <p class="new">{{ diff.cost.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.cost.same }}</p>
+    {% endif %}
+    <h2>Précisez la procèdure d'admission</h2>
+    {% if diff.inscription.old != null and diff.inscription.new != null %}
+        <p class="old">{{ diff.inscription.old }}</p>
+        <p class="new">{{ diff.inscription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.inscription.same }}</p>
+    {% endif %}
+    <h2>Celui qui a updaté la fiche</h2>
+    {% if diff.user.old != null and diff.user.new != null %}
+        <p class="old">{{ diff.user.old }}</p>
+        <p class="new">{{ diff.user.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.user.same }}</p>
+    {% endif %}
+    <h2>Commentaire éventuel sur l'équipe</h2>
+    {% if diff.commentStaff.old != null and diff.commentStaff.new != null %}
+        <p class="old">{{ diff.commentStaff.old }}</p>
+        <p class="new">{{ diff.commentStaff.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.commentStaff.same }}</p>
+    {% endif %}
+    <h2>Le type d'utilisateur</h2>
+    {% if diff.userType.old != null and diff.userType.new != null %}
+        <p class="old">{{ diff.userType.old }}</p>
+        <p class="new">{{ diff.userType.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.userType.same }}</p>
+    {% endif %}
+    <h2>Quelle est votre zone d'intervention</h2>
+    {% if diff.interventionZone.old != null and diff.interventionZone.new != null %}
+        <p class="old">{{ diff.interventionZone.old }}</p>
+        <p class="new">{{ diff.interventionZone.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.interventionZone.same }}</p>
+    {% endif %}
+    <h2>Organisme gestionnaire</h2>
+    {% if diff.society.old != null and diff.society.new != null %}
+        <p class="old">{{ diff.society.old }}</p>
+        <p class="new">{{ diff.society.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.society.same }}</p>
+    {% endif %}
+    <h2>Logo de la structure</h2>
+    {% if diff.structureLogo.old != null and diff.structureLogo != null %}
+        <p class="old">{{ diff.structureLogo.old }}</p>
+        <p class="new">{{ diff.structureLogo.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.structureLogo.same }}</p>
+    {% endif %}
+    <h2>Logo de l'organisme gestionnaire</h2>
+    {% if diff.societyLogo.old != null and diff.societyLogo.new != null %}
+        <p class="old">{{ diff.societyLogo.old }}</p>
+        <p class="new">{{ diff.societyLogo.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.societyLogo.same }}</p>
+    {% endif %}
+    <h2>Orientation MDPH</h2>
+    {% if diff.orientationMdph.old != null and diff.orientationMdph.new != null %}
+        <p class="old">{{ diff.orientationMdph.old }}</p>
+        <p class="new">{{ diff.orientationMdph.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.orientationMdph.same }}</p>
+    {% endif %}
+    <h2>Souhaitez-vous mettre en avant une information spécifique sur la fiche de votre structure ?</h2>
+    {% if diff.freeDescription.old != null and diff.freeDescription.new != null %}
+        <p class="old">{{ diff.freeDescription.old }}</p>
+        <p class="new">{{ diff.freeDescription.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.freeDescription.same }}</p>
+    {% endif %}
+    <h2>Brochure</h2>
+    {% if diff.brochureName.old != null and diff.brochureName.new != null %}
+        <p class="old">{{ diff.brochureName.old }}</p>
+        <p class="new">{{ diff.brochureName.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.brochureName.same }}</p>
+    {% endif %}
+    <h2>Image de présentation</h2>
+    {% if diff.firstPicture.old != null and diff.firstPicture.new != null %}
+        <p class="old">{{ diff.firstPicture.old }}</p>
+        <p class="new">{{ diff.firstPicture.new }}</p>
+    {% else %}
+        <p class="same">{{ diff.firstPicture.same }}</p>
+    {% endif %}
+    <h2>Types de handicap</h2>
+        {{ dump(disabilityO) }}
+    {% if disabilityO != null or disabilityN != null %}
+        {% for disabO in disabilityO %}
+            <p class="old">{{ disabO }}</p>
+        {% endfor %}
+        {% for disabN in disabilityN %}
+             <p class="new">{{ disabN }}</p>
+        {% endfor %}
+    {% else %}
+        {% for disabS in disabilityS %}
+            <p class="same">{{ disabS }}</p>
+        {% endfor %}
+    {% endif %}
+    <h2>Besoin primaires</h2>
+    {% if needsO != null or needsN != null %}
+        {% for oldNeeds in needsN %}
+            <p class="old">{{ oldNeeds }}</p>
+        {% endfor %}
+        {% for newNeeds in needsO %}
+            <p class="new">{{ newNeeds }}</p>
+        {% endfor %}
+    {% else %}
+        {% for sameNeeds in needsS %}
+            <p class="same">{{ sameNeeds }}</p>
+        {% endfor %}
+    {% endif %}
+        {#<h2>Besoin secondaires</h2>
+        {% if diff.address.old != null and dif.address.new != null %}
+        <p class="old">diff..old</p>
+        <p class="new">diff..new</p>
+        {% else %}
+        <p class="same">diff..same</p>
+        {% endif %}
+        <h2>travail médical</h2>
+        {% if diff.address.old != null and dif.address.new != null %}
+        <p class="old">diff..old</p>
+        <p class="new">diff..new</p>
+        {% else %}
+        <p class="same">diff..same</p>
+        {% endif %}
+        <h2>travail social</h2>
+        {% if diff.address.old != null and dif.address.new != null %}
+        <p class="old">diff..old</p>
+        <p class="new">diff..new</p>
+        {% else %}
+        <p class="same">diff..same</p>
+        {% endif %}
+        <h2>autre travail</h2>
+        {% if diff.address.old != null and dif.address.new != null %}
+        <p class="old">diff..old</p>
+        <p class="new">diff..new</p>
+        {% else %}
+        <p class="same">diff..same</p>
+        {% endif %}#}
+
+
 {% endblock sonata_profile_content %}
