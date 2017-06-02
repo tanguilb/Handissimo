@@ -80,20 +80,28 @@ class ProfileController extends Controller
         ));
     }
 
-    public function viewDetailAction(Organizations $organizations)
+    public function viewDetailOldAction(Organizations $organizations)
     {
         $organisationId = $organizations->getId();
         $auditReader = $this->container->get('simplethings_entityaudit.reader');
         //$test = $auditReader->findEntitiesChangedAtRevision(10);
-        //$test = $auditReader->getCurrentRevision(Organizations::class, $organisationId);
+        $test = $auditReader->getCurrentRevision(Organizations::class, $organisationId);
+        $test = $auditReader->get;
+        $em = $this->getDoctrine()->getManager();
+        $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.rev = ' . $test;
+        $statement = $em->getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
         //$test = $auditReader->getEntityValues("name",Organizations::class);
+        //$test = $auditReader->getEntityValues(Organizations::class, $organizations);
         //$test = $auditReader->isLoadAuditedCollections();
-        //var_dump($test);die();
         //$test = $auditReader->findRevisions(Organizations::class,$organisationId);
-        //$result = $auditReader->getEntityHistory(Organizations::class, $organisationId);
-        $result = $auditReader->diff(Organizations::class, $organisationId, 3,6);
+        //var_dump($test);die();
 
-        return $this->render(':front/profile:profile-view-detail.html.twig', array(
+        //$result = $auditReader->getEntityHistory(Organizations::class, $organisationId);
+        //$result = $auditReader->diff(Organizations::class, $organisationId, 3,6);
+
+        return $this->render(':front/profile:profile-view-old-detail.html.twig', array(
             'result' => $result
         ));
     }
