@@ -550,6 +550,24 @@ input:-ms-input-placeholder {
     margin:0;
 }
 
-.block-current-version {
+.block-current-version,
+.block-profil-list {
     margin-top: 20px;
+}
+
+.title-column {
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.no {
+    color: red;
+    font-weight: 800;
+    margin: 0;
+}
+
+.yes {
+    color: green;
+    font-weight: 800;
+    margin: 0;
 }

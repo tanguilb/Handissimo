@@ -107,4 +107,19 @@ class ProfileController extends Controller
             'result' => $result
         ));
     }
+
+    public function deletionListOrganizationsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.revtype = "DEL" ORDER BY organizations_audit.update_datetime DESC';
+        $statement = $em->getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
+
+        return $this->render(':front/profile:profile-list-deletion.html.twig', array(
+            'pagination' => $pagination,
+        ));
+    }
 }

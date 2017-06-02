@@ -1,0 +1,28 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="title-block">
+        <h3 class="title-search">Fiches supprimées</h3>
+    </div>
+    <div class="block-profil-list">
+        <div class="col-md-4 title-column">Nom de la structure</div>
+        <div class="col-md-4 title-column">Dernière mise à jour</div>
+        <div class="col-md-4 title-column">Utilisateur</div>
+        {% for results in pagination %}
+            <div class="col-md-4">
+                <a href="" class="link-about">{{ results.name }}</a>
+            </div>
+            <div class="col-md-4">
+                {{ results.update_datetime|localizeddate }}
+            </div>
+            <div class="col-md-4">
+                {{ results.user }}
+            </div>
+        {% endfor %}
+        <div class="col-xs-12">
+            <div class="row navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
