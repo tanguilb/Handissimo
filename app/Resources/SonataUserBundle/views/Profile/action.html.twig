@@ -1,7 +1,7 @@
 {% extends 'SonataUserBundle::layout.html.twig' %}
 {% block title %}{{ parent() }}mon compte{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/profile-29052017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile-06062017.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-29052017.css') }}">
 {% endblock %}
 {% block sonata_page_breadcrumb %}
@@ -49,8 +49,13 @@
                         </a>
                     </div>
                     <div class="button-block">
+                        <a href="{{ path('handissimo_profile_list_user_card') }}">
+                            <button class="list-button">Mes fiches</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
                         <a href="{{ path('handissimo_profile_comment') }}">
-                            <button class="list-button">Commentaires</button>
+                            <button class="list-button">Mes commentaires</button>
                         </a>
                     </div>
                     <div class="button-block">
@@ -58,6 +63,19 @@
                             <button  class="list-button">Retour à l'accueil</button>
                         </a>
                     </div>
+                    {% if is_granted('ROLE_SUPER_ADMIN')%}
+                    <div class="button-block">
+                        <div class="button-group">
+                            <button class="list-button dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administration
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('handissimo_profile_list_organizations') }}">Historique des modifications</a></li>
+                                <li><a href="{{ path('handissimo_profile_list_contributor') }}">Liste des contributeurs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% if app.request.get('name')%}

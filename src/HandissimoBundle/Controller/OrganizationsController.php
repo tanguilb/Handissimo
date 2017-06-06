@@ -6,7 +6,6 @@ use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
  * Organization controller.
  *
@@ -22,17 +21,13 @@ class OrganizationsController extends Controller
     {
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-        $form->handleRequest($request);
-        $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-        $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($organization);
-            $em->flush($organization);
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        if ($formHandler->process()){
             $this->addFlash('notice', 'La fiche a bien été créé');
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
+
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
             'form' => $form->createView(),
@@ -51,12 +46,9 @@ class OrganizationsController extends Controller
         $pictures = $em->getMediaByOrganizations($organization->getId());
         $deleteForm = $this->createDeleteForm($organization);
         $editForm = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-        $editForm->handleRequest($request);
-        $organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-        $organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
         $user = $this->getUser();
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        if ($formHandler->process()){
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
@@ -108,7 +100,7 @@ class OrganizationsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($organization);
-            $em->flush($organization);
+            $em->flush();
         }
         return $this->redirectToRoute('research_action');
     }
@@ -128,6 +120,4 @@ class OrganizationsController extends Controller
             ->getForm()
         ;
     }
-
-
 }

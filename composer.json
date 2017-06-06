@@ -35,7 +35,8 @@
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "helios-ag/fm-elfinder-bundle": "^6.2",
         "vich/uploader-bundle": "^1.5",
-        "beberlei/DoctrineExtensions": "^1.0"
+        "beberlei/DoctrineExtensions": "^1.0",
+        "simplethings/entity-audit-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

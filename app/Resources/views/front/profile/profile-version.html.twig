@@ -1,0 +1,55 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="title-block">
+        <h3 class="title-search">Historique des modifications</h3>
+    </div>
+    <div class="block-profil-list">
+        <div class="col-md-3 title-column">Nom de la structure</div>
+        <div class="col-md-3 title-column">Dernière mise à jour</div>
+        <div class="col-md-3 title-column">Utilisateur</div>
+        <div class="col-md-1 title-column">Version</div>
+        <div class="col-md-2 title-column">Action</div>
+        {% for results in result %}
+            {% if loop.index == 1 %}
+                <div class="col-md-3">
+                    <a href="{{ path('handissimo_profile_view_current_organization', {'id': results.id}) }}" class="link-about"
+                       data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
+                        {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
+                    </a>
+                </div>
+            {% else %}
+                <div class="col-md-3">
+                    <a href="{{ path('handissimo_profile_compare_organizations', {'id':results.id, 'rev':results.rev}) }}" class="link-about"
+                       data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
+                        {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
+                    </a>
+                </div>
+            {% endif %}
+                <div class="col-md-3">
+                    {{ results.update_datetime|localizeddate }}
+                </div>
+                <div class="col-md-3">
+                    {{ results.user }}
+                </div>
+                <div class="col-md-1">
+                    {{ loop.revindex }}
+                </div>
+                <div class="col-md-2">
+                    {% if results.revtype == "INS" %}
+                        Création
+                    {% elseif results.revtype == "UPD" %}
+                        Modification
+                    {% endif %}
+                </div>
+        {% endfor %}
+    </div>
+    <div class="block-btn-profile">
+        <a href="{{ path('handissimo_profile_list_organizations') }}" class="btn btn-default" id="btn-list-home">Retour</a>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/popover.js') }}"></script>
+{% endblock %}

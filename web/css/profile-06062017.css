@@ -536,3 +536,64 @@ input:-ms-input-placeholder {
         bottom: 0;
     }
 }
+
+/**********************************/
+/********** Version page **********/
+/**********************************/
+
+.label-profile-version {
+    margin: 0;
+    font-weight: 800;
+}
+
+.list-profile {
+    margin:0;
+}
+
+.block-current-version,
+.block-profil-list {
+    margin-top: 20px;
+}
+
+.title-column {
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.no {
+    color: red;
+    font-weight: 800;
+    margin: 0;
+}
+
+.yes {
+    color: green;
+    font-weight: 800;
+    margin: 0;
+}
+
+#btn-edit-orga,
+#btn-detail,
+#btn-dele,
+#btn-list-home,
+#btn-list-version {
+    background-color: #f7af49;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#btn-edit-orga:focus,
+#btn-edit-orga:hover,
+#btn-detail:hover,
+#btn-detail:focus,
+#btn-dele:focus,
+#btn-dele:hover,
+#btn-list-home:hover,
+#btn-list-home:focus,
+#btn-list-version:hover,
+#btn-list-version:focus {
+    background-color: #FFBE49;
+    color: #ffffff;
+}
