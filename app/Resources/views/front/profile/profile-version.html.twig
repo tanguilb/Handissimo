@@ -4,12 +4,28 @@
     <div class="title-block">
         <h3 class="title-search">Historique des modifications</h3>
     </div>
-    <div class="">
+    <div class="block-profil-list">
+        <div class="col-md-3 title-column">Nom de la structure</div>
+        <div class="col-md-3 title-column">Dernière mise à jour</div>
+        <div class="col-md-3 title-column">Utilisateur</div>
+        <div class="col-md-1 title-column">Version</div>
+        <div class="col-md-2 title-column">Action</div>
         {% for results in result %}
             {% if loop.index == 1 %}
                 <div class="col-md-3">
-                    <a href="{{ path('handissimo_profile_view_current_organization', {'id': results.id}) }}" class="link-about">{{ results.name }}</a>
+                    <a href="{{ path('handissimo_profile_view_current_organization', {'id': results.id}) }}" class="link-about"
+                       data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
+                        {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
+                    </a>
                 </div>
+            {% else %}
+                <div class="col-md-3">
+                    <a href="{{ path('handissimo_profile_compare_organizations', {'id':results.id, 'rev':results.rev}) }}" class="link-about"
+                       data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
+                        {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
+                    </a>
+                </div>
+            {% endif %}
                 <div class="col-md-3">
                     {{ results.update_datetime|localizeddate }}
                 </div>
@@ -17,29 +33,20 @@
                     {{ results.user }}
                 </div>
                 <div class="col-md-1">
-                    {{ results.rev }}
+                    {{ loop.revindex }}
                 </div>
                 <div class="col-md-2">
-                    {{ results.revtype }}
+                    {% if results.revtype == "INS" %}
+                        Création
+                    {% elseif results.revtype == "UPD" %}
+                        Modification
+                    {% endif %}
                 </div>
-            {% else %}
-            <div class="col-md-3">
-                <a href="{{ path('handissimo_profile_compare_organizations', {'id':results.id, 'rev':results.rev}) }}" class="link-about">{{ results.name }}</a>
-            </div>
-            <div class="col-md-3">
-                {{ results.update_datetime|localizeddate }}
-            </div>
-            <div class="col-md-3">
-                {{ results.user }}
-            </div>
-            <div class="col-md-1">
-                {{ results.rev }}
-            </div>
-            <div class="col-md-2">
-                {{ results.revtype }}
-            </div>
-            {% endif %}
         {% endfor %}
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/popover.js') }}"></script>
 {% endblock %}

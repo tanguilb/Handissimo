@@ -571,3 +571,16 @@ input:-ms-input-placeholder {
     font-weight: 800;
     margin: 0;
 }
+
+#btn-edit-orga {
+    background-color: #f7af49;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+}
+
+#btn-edit-orga:focus,
+#btn-edit-orga:hover {
+    background-color: #FFBE49;
+    color: #ffffff;
+}

@@ -2,7 +2,7 @@
 
 {% block sonata_profile_content %}
     <div class="title-block">
-        <h3 class="title-search">Version actuel</h3>
+        <h3 class="title-search">Version supprimée</h3>
     </div>
     <div class="block-current-version">
         {% if result.name %}
@@ -85,7 +85,7 @@
                 {{ result.facebook }}
             </div>
         {% endif %}
-        {% if result.orgaStructure %}
+        {#% if result.orgaStructure %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Type de structure:</p>
             </div>
@@ -102,7 +102,7 @@
                     <p class="list-profile">{{ disability.disabilityName }}</p>
                 {% endfor %}
             </div>
-        {% endif %}
+        {% endif %#}
         {% if result.agemini and result.agemaxi %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Âge des personnes accueillies:</p>
@@ -135,7 +135,7 @@
                 {{ result.organizationDescription|raw }}
             </div>
         {% endif %}
-        {% if result.needs %}
+        {#}% if result.needs %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Services principaux:</p>
             </div>
@@ -154,7 +154,7 @@
                     <p class="list-profile">{{ secondNeed.needName }}</p>
                 {% endfor %}
             </div>
-        {% endif %}
+        {% endif %#}
         {% if result.workingDescription %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Description des services:</p>
@@ -212,7 +212,7 @@
                 {{ result.teamMembersNumber }}
             </div>
         {% endif %}
-        {% if result.stafforganizations %}
+        {#% if result.stafforganizations %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Personnel de soins:</p>
             </div>
@@ -241,7 +241,7 @@
                     <p class="list-profile">{{ otherJob.name }}</p>
                 {% endfor %}
             </div>
-        {% endif %}
+        {% endif %#}
         {% if result.commentStaff %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Commentaires sur l'équipe:</p>
@@ -264,6 +264,7 @@
             </div>
             <div class="col-xs-12">
                 {% for openDay in result.opendays %}
+
                     <p class="list-profile">{{ openDay }}</p>
                 {% endfor %}
             </div>
@@ -327,8 +328,5 @@
                 {{ result.freeDescription|raw }}
             </div>
         {% endif %}
-    </div>
-    <div class="block-btn-profile">
-        <a href="{{ path('organizations_edit', {'id': result.id}) }}" class="btn btn-default" id="btn-edit-orga">Edition</a>
     </div>
 {% endblock %}

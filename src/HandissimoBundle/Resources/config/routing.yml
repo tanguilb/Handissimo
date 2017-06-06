@@ -74,4 +74,12 @@ handissimo_profile_compare_organizations:
 
 handissimo_profile_list_deletion:
     path:   /profile/list-deletion
-    defaults: { _controller: HandissimoBundle:Profile:deletionListOrganizations}
+    defaults: { _controller: HandissimoBundle:Profile:deletionListOrganizations }
+
+handissimo_profile_detail_deletion:
+    path:   /profile/list-deletion/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Profile:deletionDetail }
+
+handissimo_profile_list_user_card:
+    path:   /profile/card
+    defaults: { _controller: HandissimoBundle:Profile:listUserCard }

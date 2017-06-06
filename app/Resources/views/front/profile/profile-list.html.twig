@@ -11,7 +11,10 @@
         <div class="col-md-2 title-column">Validation</div>
         {% for results in pagination %}
             <div class="col-md-4">
-                <a href="{{ path('handissimo_profile_version', {'id': results.id}) }}" class="link-about">{{ results.name }}</a>
+                <a href="{{ path('handissimo_profile_version', {'id': results.id}) }}" class="link-about"
+                   data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
+                    {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
+                </a>
             </div>
             <div class="col-md-4">
                 {{ results.updateDatetime|localizeddate }}
@@ -41,4 +44,8 @@
         <h4>Archivage des fiches supprimées</h4>
         <a href="{{ path('handissimo_profile_list_deletion') }}" class="link-about">ICI</a>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/popover.js') }}"></script>
 {% endblock %}

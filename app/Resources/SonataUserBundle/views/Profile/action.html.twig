@@ -49,8 +49,13 @@
                         </a>
                     </div>
                     <div class="button-block">
+                        <a href="{{ path('handissimo_profile_list_user_card') }}">
+                            <button class="list-button">Mes fiches</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
                         <a href="{{ path('handissimo_profile_comment') }}">
-                            <button class="list-button">Commentaires</button>
+                            <button class="list-button">Mes commentaires</button>
                         </a>
                     </div>
                     {% if is_granted('ROLE_SUPER_ADMIN')%}
