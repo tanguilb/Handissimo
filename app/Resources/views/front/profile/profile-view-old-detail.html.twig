@@ -94,10 +94,10 @@
     {% endif %}
     <h2>Description de l'organization</h2>
     {% if diff.organizationDescription.old != null and diff.organizationDescription.new != null %}
-        <p class="old">{{ diff.organizationDescription.old }}</p>
-        <p class="new">{{ diff.organizationDescription.new }}</p>
+        <div class="old">{{ diff.organizationDescription.old|raw }}</div>
+        <div class="new">{{ diff.organizationDescription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.organizationDescription.same }}</p>
+        <div class="same">{{ diff.organizationDescription.same|raw }}</div>
     {% endif %}
     <h2>Heure d'ouverture</h2>
     {% if diff.openhours.old != null and diff.openhours.new != null %}
@@ -106,20 +106,34 @@
     {% else %}
         <p class="same">{{ diff.openhours.same }}</p>
     {% endif %}
-    {#<h2>Jour d'ouverture</h2>
-    {% if diff.opendays.old != null and diff.opendays.new != null %}
-        <p class="old">{{ diff.opendays.old }}</p>
-        <p class="new">{{ diff.opendays.new }}</p>
+    <h2>Jour d'ouverture</h2>
+
+    {% if diff.opendays.old != null or diff.opendays.new != null %}
+        {% for opendaysOld in diff.opendays.old %}
+            <p class="old">{{ opendaysOld }}</p>
+        {% endfor %}
+        {% for opendaysNew in diff.opendays.new %}
+            <p class="new">{{ opendaysNew }}</p>
+        {% endfor %}
     {% else %}
-        <p class="same">{{ diff.opendays.same }}</p>
+        {% for opendaysSame in diff.opendays.same %}
+            <p class="same">{{ opendaysSame }}</p>
+        {% endfor %}
     {% endif %}
+
     <h2>Nombres de jours d'ouverture dans l'année</h2>
-    {% if diff.opendaysYear.old != null and diff.opendaysYear.new != null %}
-        <p class="old">{{ diff.opendaysYear.old }}</p>
-        <p class="new">{{ diff.opendaysYear.new }}</p>
+    {% if diff.opendaysYear.old != null or diff.opendaysYear.new != null %}
+        {% for opendaysYearOld in diff.opendaysYear.old %}
+            <p class="old">{{ opendaysYearOld }}</p>
+        {% endfor %}
+        {% for opendaysYearNew in diff.opendaysYear.new %}
+            <p class="new">{{ opendaysYearNew }}</p>
+        {% endfor %}
     {% else %}
-        <p class="same">{{ diff.opendaysYear.same }}</p>
-    {% endif %}#}
+        {% for opendaysYearSame in diff.opendaysYear.same %}
+            <p class="same">{{ opendaysYearSame }}</p>
+        {% endfor %}
+    {% endif %}
     <h2>Nombre de personnes dans l'équipe</h2>
     {% if diff.teamMembersNumber.old != null and diff.teamMembersNumber.new != null %}
         <p class="old">{{ diff.teamMembersNumber.old }}</p>
@@ -129,10 +143,10 @@
     {% endif %}
     <h2>Description du travail</h2>
     {% if diff.workingDescription.old != null and diff.workingDescription.new != null %}
-        <p class="old">{{ diff.workingDescription.old }}</p>
-        <p class="new">{{ diff.workingDescription.new }}</p>
+        <div class="old">{{ diff.workingDescription.old|raw }}</div>
+        <div class="new">{{ diff.workingDescription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.workingDescription.same }}</p>
+        <div class="same">{{ diff.workingDescription.same|raw }}</div>
     {% endif %}
     <h2>Ecole</h2>
     {% if diff.school.old != null and diff.school.new != null %}
@@ -143,10 +157,10 @@
     {% endif %}
     <h2>Description de l'école</h2>
     {% if diff.schoolDescription.old != null and diff.schoolDescription.new != null %}
-        <p class="old">{{ diff.schoolDescription.old }}</p>
-        <p class="new">{{ diff.schoolDescription.new }}</p>
+        <div class="old">{{ diff.schoolDescription.old|raw }}</div>
+        <div class="new">{{ diff.schoolDescription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.schoolDescription.same }}</p>
+        <div class="same">{{ diff.schoolDescription.same|raw }}</div>
     {% endif %}
     <h2>Nom du directeur</h2>
     {% if diff.directorName.old != null and diff.directorName.new != null %}
@@ -157,38 +171,38 @@
     {% endif %}
     <h2>Description d'une journée type</h2>
     {% if diff.dayDescription.old != null and diff.dayDescription.new != null %}
-        <p class="old">{{ diff.dayDescription.old }}</p>
-        <p class="new">{{ diff.dayDescription.new }}</p>
+        <div class="old">{{ diff.dayDescription.old|raw }}</div>
+        <div class="new">{{ diff.dayDescription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.dayDescription.same }}</p>
+        <div class="same">{{ diff.dayDescription.same|raw }}</div>
     {% endif %}
     <h2>Comment accéder à la structure</h2>
     {% if diff.transport.old != null and diff.transport.new != null %}
-        <p class="old">{{ diff.transport.old }}</p>
-        <p class="new">{{ diff.transport.new }}</p>
+        <div class="old">{{ diff.transport.old|raw }}</div>
+        <div class="new">{{ diff.transport.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.transport.same }}</p>
+        <div class="same">{{ diff.transport.same|raw }}</div>
     {% endif %}
     <h2>Qu'est-il prévu pour les familles</h2>
     {% if diff.receptionDescription.old != null and diff.receptionDescription.new != null %}
-        <p class="old">{{ diff.receptionDescription.old }}</p>
-        <p class="new">{{ diff.receptionDescription.new }}</p>
+        <div class="old">{{ diff.receptionDescription.old|raw }}</div>
+        <div class="new">{{ diff.receptionDescription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.receptionDescription.same }}</p>
+        <div class="same">{{ diff.receptionDescription.same|raw }}</div>
     {% endif %}
     <h2>Combien ça coûte pour l'usager</h2>
     {% if diff.cost.old != null and diff.cost.new != null %}
-        <p class="old">{{ diff.cost.old }}</p>
-        <p class="new">{{ diff.cost.new }}</p>
+        <div class="old">{{ diff.cost.old|raw }}</div>
+        <div class="new">{{ diff.cost.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.cost.same }}</p>
+        <div class="same">{{ diff.cost.same|raw }}</div>
     {% endif %}
     <h2>Précisez la procèdure d'admission</h2>
     {% if diff.inscription.old != null and diff.inscription.new != null %}
-        <p class="old">{{ diff.inscription.old }}</p>
-        <p class="new">{{ diff.inscription.new }}</p>
+        <div class="old">{{ diff.inscription.old|raw }}</div>
+        <div class="new">{{ diff.inscription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.inscription.same }}</p>
+        <div class="same">{{ diff.inscription.same|raw }}</div>
     {% endif %}
     <h2>Celui qui a updaté la fiche</h2>
     {% if diff.user.old != null and diff.user.new != null %}
@@ -199,10 +213,10 @@
     {% endif %}
     <h2>Commentaire éventuel sur l'équipe</h2>
     {% if diff.commentStaff.old != null and diff.commentStaff.new != null %}
-        <p class="old">{{ diff.commentStaff.old }}</p>
-        <p class="new">{{ diff.commentStaff.new }}</p>
+        <div class="old">{{ diff.commentStaff.old|raw }}</div>
+        <div class="new">{{ diff.commentStaff.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.commentStaff.same }}</p>
+        <div class="same">{{ diff.commentStaff.same|raw }}</div>
     {% endif %}
     <h2>Le type d'utilisateur</h2>
     {% if diff.userType.old != null and diff.userType.new != null %}
@@ -227,10 +241,9 @@
     {% endif %}
     <h2>Logo de la structure</h2>
     {% if diff.structureLogo.old != null and diff.structureLogo != null %}
-        <p class="old">{{ diff.structureLogo.old }}</p>
-        <p class="new">{{ diff.structureLogo.new }}</p>
+        <p class="new"> L'ancien logo à été remplacer par :</p><img src="{{ asset('uploads/structureLogo/' ~ diff.structureLogo.new ~'') }}" ></p>
     {% else %}
-        <p class="same">{{ diff.structureLogo.same }}</p>
+        <p class="same"> same logo</p><img src="{{ asset('uploads/structureLogo/' ~ diff.structureLogo.same ~'') }}" ></p>
     {% endif %}
     <h2>Logo de l'organisme gestionnaire</h2>
     {% if diff.societyLogo.old != null and diff.societyLogo.new != null %}
@@ -248,10 +261,10 @@
     {% endif %}
     <h2>Souhaitez-vous mettre en avant une information spécifique sur la fiche de votre structure ?</h2>
     {% if diff.freeDescription.old != null and diff.freeDescription.new != null %}
-        <p class="old">{{ diff.freeDescription.old }}</p>
-        <p class="new">{{ diff.freeDescription.new }}</p>
+        <div class="old">{{ diff.freeDescription.old|raw }}</div>
+        <div class="new">{{ diff.freeDescription.new|raw }}</div>
     {% else %}
-        <p class="same">{{ diff.freeDescription.same }}</p>
+        <div class="same">{{ diff.freeDescription.same|raw }}</div>
     {% endif %}
     <h2>Brochure</h2>
     {% if diff.brochureName.old != null and diff.brochureName.new != null %}
@@ -268,60 +281,102 @@
         <p class="same">{{ diff.firstPicture.same }}</p>
     {% endif %}
     <h2>Types de handicap</h2>
-        {{ dump(disabilityO) }}
-    {% if disabilityO != null or disabilityN != null %}
-        {% for disabO in disabilityO %}
-            <p class="old">{{ disabO }}</p>
-        {% endfor %}
-        {% for disabN in disabilityN %}
-             <p class="new">{{ disabN }}</p>
-        {% endfor %}
-    {% else %}
-        {% for disabS in disabilityS %}
-            <p class="same">{{ disabS }}</p>
-        {% endfor %}
-    {% endif %}
+        {% if disabilities.old != null %}
+            {% for disabilityOld in disabilities.old %}
+                <p class="old">{{ disabilityOld.disabilityName }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if disabilities.new != null %}
+            {% for disabilityNew in disabilities.new %}
+                <p class="new">{{ disabilityNew.disabilityName }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if disabilities.same != null %}
+            {% for disabilitySame in disabilities.same %}
+                <p class="same">{{ disabilitySame.disabilityName }}</p>
+            {% endfor %}
+        {% endif %}
     <h2>Besoin primaires</h2>
-    {% if needsO != null or needsN != null %}
-        {% for oldNeeds in needsN %}
-            <p class="old">{{ oldNeeds }}</p>
-        {% endfor %}
-        {% for newNeeds in needsO %}
-            <p class="new">{{ newNeeds }}</p>
-        {% endfor %}
-    {% else %}
-        {% for sameNeeds in needsS %}
-            <p class="same">{{ sameNeeds }}</p>
-        {% endfor %}
-    {% endif %}
-        {#<h2>Besoin secondaires</h2>
-        {% if diff.address.old != null and dif.address.new != null %}
-        <p class="old">diff..old</p>
-        <p class="new">diff..new</p>
-        {% else %}
-        <p class="same">diff..same</p>
+        {% if needs.old != null %}
+            {% for needsOld in needs.old %}
+                <p class="old">{{ needsOld.needName }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if needs.new != null %}
+            {% for needNew in needs.new %}
+                <p class="new">{{ needNew.needName }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if needs.same != null %}
+            {% for needSame in needs.same %}
+                <p class="same">{{ needSame.needName }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <h2>Besoin secondaires</h2>
+        {% if secondNeeds.old != null %}
+            {% for secondNeedsOld in secondNeeds.old %}
+                <p class="old">{{ secondNeedsOld.needName }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if secondNeeds.new != null %}
+            {% for needNew in secondNeeds.new %}
+                <p class="new">{{ needNew.needName }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if secondNeeds.same != null %}
+            {% for secondNeedsame in secondNeeds.same %}
+                <p class="same">{{ secondNeedsame.needName }}</p>
+            {% endfor %}
         {% endif %}
         <h2>travail médical</h2>
-        {% if diff.address.old != null and dif.address.new != null %}
-        <p class="old">diff..old</p>
-        <p class="new">diff..new</p>
-        {% else %}
-        <p class="same">diff..same</p>
+        {% if medicalJob.old != null %}
+            {% for medicalJobOld in medicalJob.old %}
+                <p class="old">{{ medicalJobOld.jobs }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if medicalJob.new != null %}
+            {% for medicalJobNew in medicalJob.new %}
+                <p class="new">{{ medicalJobNew.jobs }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if medicalJob.same != null %}
+            {% for medicalJobSame in medicalJob.same %}
+                <p class="same">{{ medicalJobSame.jobs }}</p>
+            {% endfor %}
         {% endif %}
         <h2>travail social</h2>
-        {% if diff.address.old != null and dif.address.new != null %}
-        <p class="old">diff..old</p>
-        <p class="new">diff..new</p>
-        {% else %}
-        <p class="same">diff..same</p>
+        {% if socialJob.old != null %}
+            {% for socialJobOld in socialJob.old %}
+                <p class="old">{{ socialJobOld.socialJobs }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if socialJob.new != null %}
+            {% for socialJobNew in socialJob.new %}
+                <p class="new">{{ socialJobNew.socialJobs }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if socialJob.same != null %}
+            {% for socialJobSame in socialJob.same %}
+                <p class="same">{{ socialJobSame.socialJobs }}</p>
+            {% endfor %}
         {% endif %}
         <h2>autre travail</h2>
-        {% if diff.address.old != null and dif.address.new != null %}
-        <p class="old">diff..old</p>
-        <p class="new">diff..new</p>
-        {% else %}
-        <p class="same">diff..same</p>
-        {% endif %}#}
+        {% if communJob.old != null %}
+            {% for communJobOld in communJob.old %}
+                <p class="old">{{ communJobOld.name }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if communJob.new != null %}
+            {% for communJobNew in communJob.new %}
+                <p class="new">{{ communJobNew.name }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if communJob.same != null %}
+            {% for communJobSame in communJob.same %}
+                <p class="same">{{ communJobSame.name }}</p>
+            {% endfor %}
+        {% endif %}
 
 
 {% endblock sonata_profile_content %}

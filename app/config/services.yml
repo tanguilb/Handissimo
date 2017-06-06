@@ -118,3 +118,7 @@ services:
         arguments: ['@doctrine.orm.entity_manager', '@service_container']
         tags:
             - { name: console.command }
+
+    handissimo.audit_difference:
+        class: HandissimoBundle\Services\Audit\AuditDifference
+        arguments: ['@doctrine.orm.entity_manager']
