@@ -22,15 +22,6 @@ handissimo_notice:
     path: /mentions-légales
     defaults: { _controller: "HandissimoBundle:Default:notice" }
 
-handissimo_profile_search:
-    path:  /profile/search
-    defaults: { _controller: "HandissimoBundle:Profile:profileSearch" }
-
-search_profile:
-    path:   /profile/search/ajax/{profileSearch}
-    defaults: { _controller: "HandissimoBundle:Ajax:searchProfile"}
-    methods: POST
-
 handissimo_organizations:
     resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
     prefix:   /organizations
@@ -39,17 +30,13 @@ handissimo_media:
     resource: "@HandissimoBundle/Resources/config/routing/media.yml"
     prefix:   /media
 
+handissimo_profile:
+    resource: "@HandissimoBundle/Resources/config/routing/audit.yml"
+    prefix:   /profile
+
 handissimo_help:
     path: /help
     defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }
-
-handissimo_profile_solution:
-    path:   /profile/solution
-    defaults: { _controller: HandissimoBundle:Profile:solutionForm }
-
-handissimo_profile_comment:
-    path:   /profile/comment
-    defaults: { _controller: HandissimoBundle:Profile:profileComment }
 
 search_organization_name:
     path:   /organization/search/ajax/{organizationSearch}
@@ -57,10 +44,7 @@ search_organization_name:
     methods: POST
 
 
-simple_things_entity_audit:
-    resource: "@SimpleThingsEntityAuditBundle/Resources/config/routing.yml"
-    prefix: /audit
 
-handissimo_audit_profile:
-    resource: "@HandissimoBundle/Resources/config/routing/audit.yml"
-    prefix:       /profile
+
+
+

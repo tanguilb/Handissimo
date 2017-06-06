@@ -252,5 +252,4 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
-
 }

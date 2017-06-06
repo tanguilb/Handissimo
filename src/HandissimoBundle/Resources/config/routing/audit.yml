@@ -1,15 +1,57 @@
-handissimo_profile_version:
-    path:   /version/{id}
-    defaults: { _controller: "HandissimoBundle:Profile:organizationsVersion" }
+## FOR USER ####
 
-handissimo_profile_list_organizations:
-    path:   /list
-    defaults: { _controller: "HandissimoBundle:Profile:listOrganizations" }
+handissimo_profile_comment:
+    path:   /comment
+    defaults: { _controller: HandissimoBundle:Profile:profileComment }
+
+handissimo_profile_solution:
+    path:   /solution
+    defaults: { _controller: HandissimoBundle:Profile:solutionForm }
+
+handissimo_profile_search:
+    path:  /search
+    defaults: { _controller: "HandissimoBundle:Profile:profileSearch" }
+
+search_profile:
+    path:   /search/ajax/{profileSearch}
+    defaults: { _controller: "HandissimoBundle:Ajax:searchProfile"}
+    methods: POST
+
+handissimo_profile_list_user_card:
+    path:   /card
+    defaults: { _controller: HandissimoBundle:Profile:listUserCard }
+
+##FOR ROLE ADMIN
+
+handissimo_profile_list_contributor:
+    path:   /contributor
+    defaults: { _controller: HandissimoBundle:Profile:listOrganizationsByContributor }
+
+handissimo_profile_detail_contributor:
+    path:   /contributor/{id}
+    defaults: { _controller: HandissimoBundle:Profile:viewDetailByContributor }
+
+handissimo_profile_detail_deletion:
+    path:   /list-deletion/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Profile:deletionDetail }
 
 handissimo_profile_view_current_organization:
     path:   /view/{id}
-    defaults: { _controller: "HandissimoBundle:Profile:viewCurrentOrganizations" }
+    defaults: { _controller: HandissimoBundle:Profile:viewCurrentOrganizations }
 
 handissimo_profile_compare_organizations:
     path:   /view/{id}/{rev}
-    defaults: { _controller: "HandissimoBundle:Profile:viewDetailOld" }
+    defaults: { _controller: HandissimoBundle:Profile:viewDetailOld }
+
+handissimo_profile_list_deletion:
+    path:   /list-deletion
+    defaults: { _controller: HandissimoBundle:Profile:deletionListOrganizations }
+
+handissimo_profile_version:
+    path:   /version/{id}
+    defaults: { _controller: HandissimoBundle:Profile:organizationsVersion }
+
+handissimo_profile_list_organizations:
+    path:   /list
+    defaults: { _controller: HandissimoBundle:Profile:listOrganizations }
+
