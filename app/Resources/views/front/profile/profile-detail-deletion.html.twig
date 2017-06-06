@@ -85,15 +85,15 @@
                 {{ result.facebook }}
             </div>
         {% endif %}
-        {#% if result.orgaStructure %}
+        {% if result.orgaStructure %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Type de structure:</p>
             </div>
             <div class="col-xs-12">
-                {{ result.orgaStructure }}
+                {{ result.orgaStructure.name }}
             </div>
         {% endif %}
-        {% if result.disabilityTypes %}
+        {#% if result.disabilityTypes %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Handicap des personnes accompagnées:</p>
             </div>

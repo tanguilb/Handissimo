@@ -22,15 +22,6 @@ handissimo_notice:
     path: /mentions-légales
     defaults: { _controller: "HandissimoBundle:Default:notice" }
 
-handissimo_profile_search:
-    path:  /profile/search
-    defaults: { _controller: "HandissimoBundle:Profile:profileSearch" }
-
-search_profile:
-    path:   /profile/search/ajax/{profileSearch}
-    defaults: { _controller: "HandissimoBundle:Ajax:searchProfile"}
-    methods: POST
-
 handissimo_organizations:
     resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
     prefix:   /organizations
@@ -39,55 +30,22 @@ handissimo_media:
     resource: "@HandissimoBundle/Resources/config/routing/media.yml"
     prefix:   /media
 
+handissimo_profile:
+    resource: "@HandissimoBundle/Resources/config/routing/audit.yml"
+    prefix:   /profile
+
 handissimo_help:
     path: /help
     defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }
-
-handissimo_profile_solution:
-    path:   /profile/solution
-    defaults: { _controller: HandissimoBundle:Profile:solutionForm }
-
-handissimo_profile_comment:
-    path:   /profile/comment
-    defaults: { _controller: HandissimoBundle:Profile:profileComment }
 
 search_organization_name:
     path:   /organization/search/ajax/{organizationSearch}
     defaults : { _controller: "HandissimoBundle:Ajax:organizationNameSearch" }
     methods: POST
 
-handissimo_profile_version:
-    path:   /profile/version/{id}
-    defaults: { _controller: HandissimoBundle:Profile:organizationsVersion }
 
-handissimo_profile_list_organizations:
-    path:   /profile/list
-    defaults: { _controller: HandissimoBundle:Profile:listOrganizations }
 
-handissimo_profile_view_current_organization:
-    path:   /profile/view/{id}
-    defaults: { _controller: HandissimoBundle:Profile:viewCurrentOrganizations }
 
-handissimo_profile_compare_organizations:
-    path:   /profile/view/{id}/{rev}
-    defaults: { _controller: HandissimoBundle:Profile:viewDetail }
 
-handissimo_profile_list_deletion:
-    path:   /profile/list-deletion
-    defaults: { _controller: HandissimoBundle:Profile:deletionListOrganizations }
 
-handissimo_profile_detail_deletion:
-    path:   /profile/list-deletion/{id}/{rev}
-    defaults: { _controller: HandissimoBundle:Profile:deletionDetail }
 
-handissimo_profile_list_user_card:
-    path:   /profile/card
-    defaults: { _controller: HandissimoBundle:Profile:listUserCard }
-
-handissimo_profile_list_contributor:
-    path:   /profile/contributor
-    defaults: { _controller: HandissimoBundle:Profile:listOrganizationsByContributor }
-
-handissimo_profile_detail_contributor:
-    path:   /profile/contributor/{id}
-    defaults: { _controller: HandissimoBundle:Profile:viewDetailByContributor }
