@@ -572,15 +572,28 @@ input:-ms-input-placeholder {
     margin: 0;
 }
 
-#btn-edit-orga {
+#btn-edit-orga,
+#btn-detail,
+#btn-dele,
+#btn-list-home,
+#btn-list-version {
     background-color: #f7af49;
     color: #ffffff;
     border: none;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #btn-edit-orga:focus,
-#btn-edit-orga:hover {
+#btn-edit-orga:hover,
+#btn-detail:hover,
+#btn-detail:focus,
+#btn-dele:focus,
+#btn-dele:hover,
+#btn-list-home:hover,
+#btn-list-home:focus,
+#btn-list-version:hover,
+#btn-list-version:focus {
     background-color: #FFBE49;
     color: #ffffff;
 }

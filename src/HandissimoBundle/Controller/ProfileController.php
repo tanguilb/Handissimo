@@ -175,4 +175,29 @@ class ProfileController extends Controller
             'result' => $result,
         ));
     }
+
+    public function listOrganizationsByContributorAction(Request $request)
+    {
+        $organizationsHistory = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->findAllOrganizations();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($organizationsHistory, $request->query->getInt('page', 1), 50);
+
+        return $this->render(':front/profile:profile-list-contributor.html.twig', array(
+            'pagination' => $pagination
+
+        ));
+    }
+
+    public function viewDetailByContributorAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = 'SELECT organizations_audit.user, organizations_audit.update_datetime, COUNT(organizations_audit.user) AS contribution FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' GROUP BY organizations_audit.user';
+        $statement = $em->getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        return $this->render('front/profile/profile-detail-contributor.html.twig', array(
+            'result' => $result
+        ));
+    }
 }

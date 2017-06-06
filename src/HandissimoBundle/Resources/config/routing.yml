@@ -83,3 +83,11 @@ handissimo_profile_detail_deletion:
 handissimo_profile_list_user_card:
     path:   /profile/card
     defaults: { _controller: HandissimoBundle:Profile:listUserCard }
+
+handissimo_profile_list_contributor:
+    path:   /profile/contributor
+    defaults: { _controller: HandissimoBundle:Profile:listOrganizationsByContributor }
+
+handissimo_profile_detail_contributor:
+    path:   /profile/contributor/{id}
+    defaults: { _controller: HandissimoBundle:Profile:viewDetailByContributor }
