@@ -67,7 +67,18 @@ class SortSearch
                 }
             }
             $results['correspondance']=$value;
-            array_push($finalResult, $results);
+
+            if ($orga->getStatut() == 'NEW' and $orga->getReplay() == 1)
+            {
+                array_push($finalResult, $results);
+            }
+
+            if($orga->getStatut() == 'UPD')
+            {
+                array_push($finalResult, $results);
+            }
+
+
         }
         foreach ($finalResult as $key => $item) {
             if(isset($item['correspondance']))
