@@ -21,9 +21,11 @@ class OrganizationsController extends Controller
     {
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        $version = 0;
+        $statut = "NEW";
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut);
         if ($formHandler->process()){
+            $organization->setStatut('NEW');
             $this->addFlash('notice', 'La fiche a bien été créé');
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
@@ -47,7 +49,9 @@ class OrganizationsController extends Controller
         $deleteForm = $this->createDeleteForm($organization);
         $editForm = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $user = $this->getUser();
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        $version = $organization->getVersion();
+        $statut = "UPD";
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut);
         if ($formHandler->process()){
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));

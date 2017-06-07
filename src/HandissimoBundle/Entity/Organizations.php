@@ -2302,4 +2302,33 @@ class Organizations
     {
         return $this->userOrg;
     }
+    /**
+     * @var integer
+     */
+    private $version;
+
+
+    /**
+     * Set version
+     *
+     * @param integer $version
+     *
+     * @return Organizations
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return integer
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 }

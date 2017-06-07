@@ -54,10 +54,7 @@ class SearchController extends Controller
             $sort = $this->container->get('handissimo.sort_research');
             $finalResult = $sort->sortSearchResult($result, $need, $disability, $structure);
             $this->get('session')->set('result', $finalResult);
-            $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
-            $this->get('session')->set('pagination', $pagination);
-            $pagination->setUsedRoute('research_action');
+
             if (count($result) === 1)
             {
                 return $this->redirectToRoute('structure_page', array('id' => $result[0]['id']));
@@ -72,7 +69,6 @@ class SearchController extends Controller
         $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
         $statOrganizations = $repository->getAllOrganizations();
         return $this->render('front/index.html.twig', array(
-            //'formQuick' => $formQuick->createView(),
             'form' => $form->createView(),
             'carousel' => $carousel,
             'organizations' => $organizations,

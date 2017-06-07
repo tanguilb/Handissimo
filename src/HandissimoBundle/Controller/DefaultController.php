@@ -47,6 +47,9 @@ class DefaultController extends Controller
     public function standardPageAction(Organizations $organization){
         $organizationsId = $organization->getId();
         $arraypicture = array();
+        $organizationReplay = $organization->getReplay();
+        $organizationVersion = $organization->getVersion();
+        $organizationVersion -= 1;
         $firstPicture = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPicture($organizationsId);
         if($firstPicture->getFirstPicture() !== null)
         {
@@ -86,6 +89,21 @@ class DefaultController extends Controller
         }
 
         $comments = $organization->getComments();
+        if ($organizationReplay == 0) {
+            $organizationVersion;
+            $em = $this->getDoctrine()->getManager();
+            $query = 'SELECT organizations_audit.rev FROM organizations_audit WHERE organizations_audit.id = ' . $organizationsId . ' AND organizations_audit.version = ' . $organizationVersion;
+            $statement = $em->getConnection()->prepare($query);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            var_dump($result);
+            if(!empty($result)){
+            $auditReader = $this->container->get('simplethings_entityaudit.reader');
+
+            $organization = $auditReader->find(Organizations::class, $organizationsId, $result[0]['rev']);
+            }
+           // var_dump($organization);
+        }
         return $this->render(':front:organizationPage.html.twig', array(
             'form' => $form->createView(),
             'pictures' => $arraypicture,
@@ -94,6 +112,7 @@ class DefaultController extends Controller
             'organization' => $organization,
             'comments' => $comments,
         ));
+
     }
 
 }

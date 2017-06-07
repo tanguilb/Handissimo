@@ -118,7 +118,8 @@ HandissimoBundle\Entity\Organizations:
             length: 65535
             nullable: true
         statut:
-            type: boolean
+            type: string
+            length: 4
             nullable: true
         replay:
             type: boolean
@@ -194,6 +195,9 @@ HandissimoBundle\Entity\Organizations:
         communJob:
             type: array
             nullable: true
+        version:
+            type: integer
+            nullable: false
 
 
     oneToMany:
