@@ -241,13 +241,13 @@ class ProfileController extends Controller
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-            $query = 'SELECT organizations_audit.user, organizations_audit.update_datetime, COUNT(organizations_audit.user) AS contribution FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' GROUP BY organizations_audit.user';
+            $query = 'SELECT organizations_audit.user, MAX(organizations_audit.update_datetime) AS updatedate, COUNT(organizations_audit.user) AS contribution FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' GROUP BY organizations_audit.user';
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
 
             return $this->render('front/profile/profile-detail-contributor.html.twig', array(
-                'result' => $result
+                'result' => $result,
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');
