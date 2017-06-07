@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }} Trouvez une solution{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/index-29052017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index-07062017.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -21,7 +21,7 @@
                     <div class="col-xs-12 col-sm-4 col-md-4 clear">
                         <div class="col-xs-12 search-field">
                             <p class="search-text">Lieu ou nom de l'établissement<i class="marker fa fa-map-marker" aria-hidden="true"></i></p>
-                            {{ form_row(form.postal, { 'attr': {'placeholder': '"Lyon, Centre les Fontaines, ...', 'class' : 'homeField'} }) }}
+                            {{ form_row(form.postal, { 'attr': {'placeholder': 'Lyon, Centre les Fontaines, ...', 'class' : 'homeField'} }) }}
                             <ul id="city"></ul>
                         </div>
                     </div>

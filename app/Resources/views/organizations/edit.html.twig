@@ -4,8 +4,8 @@
 {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/organizations-29052017.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/organedit-29052017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organizations-07062017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organedit-07062017.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 {% endblock %}
 
@@ -168,8 +168,15 @@
                     <div role="tabpanel" class="tab-pane fade" id="serve">
                         <div class="row">
                             <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ form_label(edit_form.needs) }}
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
                                 {{ form_errors(edit_form.needs) }}
-                                {{ form_label(edit_form.needs) }}
                                 {{ form_widget(edit_form.needs) }}
                             </div>
                             <div class="col-md-6">

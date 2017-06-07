@@ -2,7 +2,7 @@
 {% import "Macros/form_elements.html.twig" as formElements %}
 {% block title %}{{ parent() }} {{ organization.name }}{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/organizations-29052017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organizations-07062017.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -559,7 +559,7 @@
                                     {% set usergood = userId.id %}
                                 {% endif %}
                             {% endfor %}
-                            {% if usergood == user.id %}
+                            {% if usergood == user.id or is_granted('ROLE_SUPER_ADMIN')%}
                                 <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                     Modifier la fiche
                                 </a>

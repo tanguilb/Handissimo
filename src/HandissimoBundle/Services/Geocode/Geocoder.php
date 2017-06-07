@@ -23,8 +23,5 @@ class Geocoder
             $json = $result->results[0];
 
             return $json;
-
-
-
     }
 }

@@ -25,4 +25,13 @@ class NeedsRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getNeedsById($id)
+    {
+        $query = $this->createQueryBuilder('n')
+            ->select('n.needName')
+            ->where('n.id = '.$id)
+            ->getQuery();
+        return $query->getSingleScalarResult();
+    }
 }

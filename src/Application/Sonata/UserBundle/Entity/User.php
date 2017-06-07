@@ -139,6 +139,8 @@ class User extends BaseUser
         $this->organizationsUser = new ArrayCollection();
     }
 
+
+
     /**
      * Add organizationsUser
      *

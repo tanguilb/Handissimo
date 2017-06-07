@@ -41,7 +41,7 @@ handissimo_profile_view_current_organization:
 
 handissimo_profile_compare_organizations:
     path:   /view/{id}/{rev}
-    defaults: { _controller: HandissimoBundle:Profile:viewDetail }
+    defaults: { _controller: HandissimoBundle:Profile:viewDetailOld }
 
 handissimo_profile_list_deletion:
     path:   /list-deletion

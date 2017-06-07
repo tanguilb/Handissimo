@@ -32,10 +32,12 @@ class SolutionType extends AbstractType
                 'label' => 'Email'
             ))
             ->add('phoneNumber', TextType::class, array(
-                'label' => 'Téléphone fixe'
+                'label' => 'Téléphone fixe',
+                'required' => false,
             ))
             ->add('cellphoneNumber', TextType::class, array(
-                'label' => 'Téléphone portable'
+                'label' => 'Téléphone portable',
+                'required' => false,
             ))
             ->add('status', TextType::class, array(
                 'label' => 'Votre Fonction'
