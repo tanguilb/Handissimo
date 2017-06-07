@@ -72,4 +72,19 @@ class AjaxController extends Controller
     {
        return $this->render('front/preview.html.twig');
     }
+
+    public function replayAction(Request $request, $id, $data)
+    {
+        if ($request->isXmlHttpRequest()){
+            $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $em = $this->getDoctrine()->getManager();
+            if ($organizations->getReplay() == 0 && $data == 1){
+                $organizations->setReplay(1);
+                $em->persist($organizations);
+                $em->flush();
+                return $this->redirectToRoute('handissimo_profile_list_organizations');
+            }
+        }
+        return false;
+    }
 }

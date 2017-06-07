@@ -136,20 +136,20 @@ class ProfileController extends Controller
         return $this->redirectToRoute('sonata_user_profile_show');
     }
 
-    public function viewDetailAction(Organizations $organizations)
+    /*public function viewDetailAction(Organizations $organizations)
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $organisationId = $organizations->getId();
             $auditReader = $this->container->get('simplethings_entityaudit.reader');
 
-            $result = $auditReader->diff(Organizations::class, $organisationId, 3, 6);
+            //$result = $auditReader->diff(Organizations::class, $organisationId, 3, 6);
 
             return $this->render(':front/profile:profile-view-detail.html.twig', array(
                 'result' => $result
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');
-    }
+    }*/
 
     public function viewCurrentOrganizationsAction($id)
     {
