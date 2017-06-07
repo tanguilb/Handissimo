@@ -9,7 +9,13 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Entity\DisabilityTypes;
+use HandissimoBundle\Entity\Needs;
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\OtherJob;
+use HandissimoBundle\Entity\SecondaryNeeds;
+use HandissimoBundle\Entity\SocialStaff;
+use HandissimoBundle\Entity\Staff;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use HandissimoBundle\Form\Handler;
@@ -136,17 +142,33 @@ class ProfileController extends Controller
         return $this->redirectToRoute('sonata_user_profile_show');
     }
 
-    public function viewDetailAction(Organizations $organizations)
+    public function viewDetailOldAction(Organizations $organizations, $rev)
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $organisationId = $organizations->getId();
             $auditReader = $this->container->get('simplethings_entityaudit.reader');
+            $current = $auditReader->getCurrentRevision(Organizations::class, $organisationId);
 
-            $result = $auditReader->diff(Organizations::class, $organisationId, 3, 6);
+        $diff = $auditReader->diff(Organizations::class, $organisationId, $rev, $current);
+        $difference = $this->container->get('handissimo.audit_difference');
 
-            return $this->render(':front/profile:profile-view-detail.html.twig', array(
-                'result' => $result
-            ));
+        $disabilities = $difference->differenceBetweenOrganizations($diff['disabilities'], DisabilityTypes::class);
+        $needs = $difference->differenceBetweenOrganizations($diff['primaryNeeds'], Needs::class);
+        $secondNeeds = $difference->differenceBetweenOrganizations($diff['secondaryNeeds'], SecondaryNeeds::class);
+        $medicalJob = $difference->differenceBetweenOrganizations($diff['medicalJob'], Staff::class);
+        $socialJob = $difference->differenceBetweenOrganizations($diff['socialJob'], SocialStaff::class);
+        $communJob = $difference->differenceBetweenOrganizations($diff['communJob'], OtherJob::class);
+
+        return $this->render(':front/profile:profile-view-old-detail.html.twig', array(
+            'diff' => $diff,
+            'disabilities' => $disabilities,
+            'needs' => $needs,
+            'secondNeeds' =>  $secondNeeds,
+            'medicalJob' =>  $medicalJob,
+            'socialJob' => $socialJob,
+            'communJob' => $communJob,
+        ));
+
         }
         return $this->redirectToRoute('sonata_user_profile_show');
     }
@@ -219,13 +241,13 @@ class ProfileController extends Controller
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-            $query = 'SELECT organizations_audit.user, organizations_audit.update_datetime, COUNT(organizations_audit.user) AS contribution FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' GROUP BY organizations_audit.user';
+            $query = 'SELECT organizations_audit.user, MAX(organizations_audit.update_datetime) AS updatedate, COUNT(organizations_audit.user) AS contribution FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' GROUP BY organizations_audit.user';
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
 
             return $this->render('front/profile/profile-detail-contributor.html.twig', array(
-                'result' => $result
+                'result' => $result,
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');

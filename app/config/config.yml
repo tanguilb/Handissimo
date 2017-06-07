@@ -142,6 +142,8 @@ sonata_doctrine_orm_admin:
         types:
             list:
                 boolean: SonataAdminBundle:CRUD:list_boolean.html.twig
+    audit:
+        force: false
 
 sonata_user:
     security_acl: false
@@ -339,9 +341,4 @@ vich_uploader:
 simple_things_entity_audit:
     audited_entities:
         - HandissimoBundle\Entity\Organizations
-    table_prefix: ''
-    table_suffix: _audit
-    revision_field_name: rev
-    revision_type_field_name: revtype
-    revision_table_name: revisions
-    revision_id_field_type: integer
+        - HandissimoBundle\Entity\Media

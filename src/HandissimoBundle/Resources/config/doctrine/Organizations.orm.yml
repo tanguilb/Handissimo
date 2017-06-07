@@ -47,15 +47,7 @@ HandissimoBundle\Entity\Organizations:
             type: string
             nullable: true
             length: 255
-        blog:
-            type: string
-            nullable: true
-            length: 255
         facebook:
-            type: string
-            nullable: true
-            length: 255
-        twitter:
             type: string
             nullable: true
             length: 255
@@ -86,10 +78,6 @@ HandissimoBundle\Entity\Organizations:
         teamMembersNumber:
             type: integer
             nullable: true
-        teamDescription:
-            type: text
-            nullable: true
-            length: 65535
         updateDatetime:
             type: datetime
             nullable: true
@@ -105,29 +93,9 @@ HandissimoBundle\Entity\Organizations:
             type: text
             nullable: true
             length: 65535
-        activities:
-            type: text
-            nullable: true
-            length: 65535
-        placeDescription:
-            type: text
-            nullable: true
-            length: 65535
-        profilPicture:
-            type: string
-            nullable: true
-            length: 255
         directorName:
             type: string
             length: 50
-            nullable: true
-        accomodation:
-            type: string
-            length: 4
-            nullable: true
-        accomodationDescription:
-            type: text
-            length: 65535
             nullable: true
         dayDescription:
             type: text

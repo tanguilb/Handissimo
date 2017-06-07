@@ -544,6 +544,8 @@ input:-ms-input-placeholder {
 .label-profile-version {
     margin: 0;
     font-weight: 800;
+    border-bottom: 1px solid black;
+
 }
 
 .list-profile {
@@ -596,4 +598,12 @@ input:-ms-input-placeholder {
 #btn-list-version:focus {
     background-color: #FFBE49;
     color: #ffffff;
+}
+
+.old {
+    color: red;
+}
+
+.new {
+    color: green;
 }
