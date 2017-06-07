@@ -512,6 +512,10 @@
 #video {
     text-align: center;
 }
+#text-carousel p,
+#video p{
+    margin-bottom: 60px;
+}
 #text-carousel {
     text-align: center;
 }
