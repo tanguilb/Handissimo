@@ -20,14 +20,14 @@
                 {{ results.updateDatetime|localizeddate }}
             </div>
             <div class="col-md-2">
-                {% if results.replay %}
+                {% if results.replay == 1 %}
                     <p class="yes">Oui</p>
                 {% else %}
                     <p class="no">Non</p>
                 {% endif %}
             </div>
             <div class="col-md-2">
-                {% if results.statut %}
+                {% if results.validate == 1 %}
                     <p class="yes">Oui</p>
                 {% else %}
                     <p class="no">Non</p>

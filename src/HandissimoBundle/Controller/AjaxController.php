@@ -8,6 +8,7 @@ use HandissimoBundle\HandissimoBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
@@ -82,7 +83,26 @@ class AjaxController extends Controller
                 $organizations->setReplay(1);
                 $em->persist($organizations);
                 $em->flush();
-                return $this->redirectToRoute('handissimo_profile_list_organizations');
+                return new JsonResponse($this->generateUrl('handissimo_profile_view_current_organization', array(
+                    'id' => $id
+                )));
+            }
+        }
+        return false;
+    }
+
+    public function validateAction(Request $request, $id, $data)
+    {
+        if ($request->isXmlHttpRequest()){
+            $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $em = $this->getDoctrine()->getManager();
+            if ($organizations->getValidate() == 0 && $data == 1){
+                $organizations->setValidate(1);
+                $em->persist($organizations);
+                $em->flush();
+                return new JsonResponse($this->generateUrl('handissimo_profile_view_current_organization', array(
+                    'id' => $id
+                )));
             }
         }
         return false;

@@ -198,7 +198,9 @@ HandissimoBundle\Entity\Organizations:
         version:
             type: integer
             nullable: false
-
+        validate:
+            type: boolean
+            nullable: false
 
     oneToMany:
         comments:

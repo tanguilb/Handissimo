@@ -332,9 +332,14 @@
         <a href="{{ path('organizations_edit', {'id': result.id}) }}" class="btn btn-default" id="btn-edit-orga">Edition</a>
         <a href="{{ path('handissimo_profile_version', {'id': result.id}) }}" class="btn btn-default" id="btn-list-version">Retour</a>
 
-        {% if result.replay == 0 or result.replay == null %}
+        {% if result.replay == 0 %}
             {% if is_granted('ROLE_HANDISSIMIEN') or is_granted('ROLE_SUPER_ADMIN') %}
                 <button onclick="replayFunction('{{ result.id }}')" value="1" id="replayButton" class="btn btn-default">Relecture</button>
+            {% endif %}
+        {% endif %}
+        {% if result.validate == 0 %}
+            {% if is_granted('ROLE_HANDISSIMIEN') or is_granted('ROLE_SUPER_ADMIN') %}
+            <button onclick="validateFunction('{{ result.id }}')" value="1" id="validateButton" class="btn btn-default">Valider</button>
             {% endif %}
         {% endif %}
     </div>

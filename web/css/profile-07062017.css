@@ -601,7 +601,8 @@ input:-ms-input-placeholder {
     color: #ffffff;
 }
 
-#replayButton {
+#replayButton,
+#validateButton {
     background-color: #C37095;
     color: #ffffff;
     border: none;
@@ -610,7 +611,9 @@ input:-ms-input-placeholder {
 }
 
 #replayButton:hover,
-#replayButton:focus {
+#replayButton:focus,
+#validateButton:hover,
+#validateButton:focus {
     background-color: #DC7095;
     color: #ffffff;
 }

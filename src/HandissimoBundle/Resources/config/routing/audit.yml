@@ -60,3 +60,8 @@ handissimo_profile_ajax_replay:
     defaults: { _controller: HandissimoBundle:Ajax:replay }
     methods: POST
 
+handissimo_profile_ajax_validate:
+    path:   /view/validate/ajax/{id}/{data}
+    defaults: { _controller: HandissimoBundle:Ajax:validate }
+    methods: POST
+
