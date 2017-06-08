@@ -30,7 +30,7 @@ class AuditDifference
         $diffNew = array();
         $resultArray = array();
         $result = $this->em->getRepository($entity);
-        //$emNeeds = $this->em->getRepository('HandissimoBundle:Needs');
+
         if (!empty($differenceOld))
         {
             foreach ($differenceOld as $diffO)
@@ -51,7 +51,6 @@ class AuditDifference
         {
             foreach ($differenceSame as $diffS)
             {
-
                 $differenceS = $result->find($diffS);
                 array_push($diffSame, $differenceS);
             }

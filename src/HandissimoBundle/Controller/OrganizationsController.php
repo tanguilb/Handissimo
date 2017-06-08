@@ -102,7 +102,7 @@ class OrganizationsController extends Controller
             $em->remove($organization);
             $em->flush();
         }
-        return $this->redirectToRoute('research_action');
+        return $this->redirectToRoute('sonata_user_profile_show');
     }
 
     /**

@@ -294,4 +294,3 @@ HandissimoBundle\Entity\Organizations:
                     other_job_id:
                         referencedColumnName: id
 
-    lifecycleCallbacks:

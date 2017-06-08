@@ -29,6 +29,7 @@
                     {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC') %}
                     <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
                     {% endif %}
+                    <li role="presentation"><a href="#validation-new" aria-controls="serve" role="tab" data-toggle="tab" class="link-about" id="new-validation">Validation</a></li>
                 </ul>
                 <br>
 
@@ -304,13 +305,16 @@
                             <a class="btn btn-default btnPrevious" >Précédent</a>
                         </div>
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="validation-new">
+                        {{ form_row(form.replay) }}
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 btn-submit">
                             <input type="submit" value="Valider" id="new-organization" class="btn btn-default"/>
                         </div>
                     </div>
                 </div>
-
+            {{ form_rest(form) }}
             {{ form_end(form) }}
         </form>
     {% endblock organization_form %}
