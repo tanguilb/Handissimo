@@ -50,10 +50,12 @@
                             {{ form_errors(edit_form.name) }}
                             {{ form_widget(edit_form.name) }}
                             {{ form_row(edit_form.structureLogoFile) }}
+                            <a href="#" id="empty-field-stucture" class="link-about">Effacer le fichier</a>
                             {{ form_row(edit_form.society) }}
                             {{ form_label(edit_form.societyLogoFile) }}
                             {{ form_errors(edit_form.societyLogoFile) }}
                             {{ form_widget(edit_form.societyLogoFile) }}
+                            <a href="#" id="empty-field-societie" class="link-about">Effacer le fichier</a>
                             <div class="col-md-11 label-alert">
                                 {{ form_label(edit_form.address) }}
                             </div>
@@ -85,6 +87,7 @@
                             {{ form_row(edit_form.website) }}
                             {{ form_row(edit_form.facebook) }}
                             {{ form_row(edit_form.brochureFile) }}
+                            <a href="#" id="empty-field-brochure" class="link-about">Effacer le fichier</a>
                             {% if organization.brochureName is not empty %}
                                 {{ organization.brochureName }}
                             {% endif %}
@@ -304,6 +307,7 @@
                         </div>
                         <div class="col-md-6 col-xs-12">
                             {{ form_row(edit_form.firstPictureFile) }}
+                            <a href="" id="empty-field-picture" class="link-about">Effacer l'image</a>
                         </div>
                         <div class="col-md-6 col-xs-12">
                             {{ form_row(edit_form.media) }}

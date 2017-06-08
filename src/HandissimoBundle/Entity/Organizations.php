@@ -2334,7 +2334,7 @@ class Organizations
     /**
      * @var boolean
      */
-    private $validate;
+    private $validate=0;
 
 
     /**

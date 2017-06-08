@@ -46,8 +46,10 @@
                             {{ form_errors(form.name) }}
                             {{ form_widget(form.name) }}
                             {{ form_row(form.structureLogoFile) }}
+                            <a href="#" id="empty-field-stucture" class="link-about">Effacer le fichier</a>
                             {{ form_row(form.society) }}
                             {{ form_row(form.societyLogoFile) }}
+                            <a href="#" id="empty-field-societie" class="link-about">Effacer le fichier</a>
                             <div class="col-md-11 label-alert">
                                 {{ form_label(form.address) }}
                             </div>
@@ -80,6 +82,7 @@
                             {{ form_row(form.website) }}
                             {{ form_row(form.facebook) }}
                             {{ form_row(form.brochureFile) }}
+                            <a href="#" id="empty-field-brochure" class="link-about">Effacer le fichier</a>
                         </div>
                         <div class="col-md-7">
                             <div class="row">
@@ -292,6 +295,7 @@
                             <div class="pictureUpload">
                                 <div class="col-md-6 col-xs-12">
                                     {{ form_row(form.firstPictureFile) }}
+                                    <a href="" id="empty-field-picture" class="link-about">Effacer l'image</a>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
                                     {{ form_row(form.media) }}
