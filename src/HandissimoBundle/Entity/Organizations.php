@@ -2331,4 +2331,33 @@ class Organizations
     {
         return $this->version;
     }
+    /**
+     * @var boolean
+     */
+    private $validate;
+
+
+    /**
+     * Set validate
+     *
+     * @param boolean $validate
+     *
+     * @return Organizations
+     */
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    /**
+     * Get validate
+     *
+     * @return boolean
+     */
+    public function getValidate()
+    {
+        return $this->validate;
+    }
 }

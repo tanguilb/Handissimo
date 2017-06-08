@@ -24,7 +24,8 @@ class OrganizationsController extends Controller
         $version = 0;
         $statut = "NEW";
         $replay = null;
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut, $replay);
+        $validate = null;
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut, $replay, $validate);
         if ($formHandler->process()){
             $organization->setStatut('NEW');
             $this->addFlash('notice', 'La fiche a bien été créé');
@@ -53,7 +54,8 @@ class OrganizationsController extends Controller
         $version = $organization->getVersion();
         $statut = "UPD";
         $replay = null;
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut, $replay);
+        $validate = null;
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut, $replay, $validate);
         if ($formHandler->process()){
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));

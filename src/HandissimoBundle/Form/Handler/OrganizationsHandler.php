@@ -24,7 +24,7 @@ class OrganizationsHandler
     protected $organization;
     protected $version;
 
-    public function __construct(Form $form, Request $request, EntityManager $em, ContainerInterface $container, Organizations $organization, $version, $statut, $replay)
+    public function __construct(Form $form, Request $request, EntityManager $em, ContainerInterface $container, Organizations $organization, $version, $statut, $replay, $validate)
     {
         $this->form             = $form;
         $this->request          = $request;
@@ -34,6 +34,7 @@ class OrganizationsHandler
         $this->version          = $version;
         $this->statut           = $statut;
         $this->replay           = $replay;
+        $this->validate         = $validate;
     }
 
     public function process()
@@ -61,6 +62,7 @@ class OrganizationsHandler
         $this->organization->setVersion($this->version);
         $this->organization->setStatut($this->statut);
         $this->organization->setReplay($this->replay);
+        $this->organization->setValidate($this->validate);
         /**
          * Saving all disabilities for organizations_audit
          */
