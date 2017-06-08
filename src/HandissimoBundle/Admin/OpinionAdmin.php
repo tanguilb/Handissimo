@@ -11,6 +11,7 @@ namespace HandissimoBundle\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 
 class OpinionAdmin extends AbstractAdmin
@@ -21,8 +22,18 @@ class OpinionAdmin extends AbstractAdmin
             ->add( 'firstName' , null, array ( 'label' => 'Prénom') )
             ->add( 'lastName' , null, array ( 'label' => 'Nom') )
             ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add( 'message' , null, array ( 'label' => 'Votre avis') )
-        ;
+            ->add( 'creationDate' , null, array ( 'label' => 'Date du message') )
+            ->add('_action', null, array('actions' => array('show' => array())));
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add( 'creationDate' , null, array ( 'label' => 'Date du message') )
+            ->add( 'firstName' , null, array ( 'label' => 'Prénom') )
+            ->add( 'lastName' , null, array ( 'label' => 'Nom') )
+            ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
+            ->add( 'message', null, array('label' => 'Message'));
     }
 
     protected function configureRoutes(RouteCollection $collection)
