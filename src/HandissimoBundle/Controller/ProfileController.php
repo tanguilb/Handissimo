@@ -215,8 +215,22 @@ class ProfileController extends Controller
             $auditReader = $this->container->get('simplethings_entityaudit.reader');
             $result = $auditReader->find(Organizations::class, $resultSql['id'], $resultSql['rev']);
 
+            $relation = $this->container->get('handissimo.audit_relation');
+            $disabilities = $relation->extractionOfRelation($result->getDisabilities(), DisabilityTypes::class);
+            $needs = $relation->extractionOfRelation($result->getPrimaryNeeds(), Needs::class);
+            $secondaryNeeds = $relation->extractionOfRelation($result->getSecondaryNeeds(), SecondaryNeeds::class);
+            $medicalJobs = $relation->extractionOfRelation($result->getMedicalJob(), Staff::class);
+            $socialJobs = $relation->extractionOfRelation($result->getSocialJob(), SocialStaff::class);
+            $communJobs = $relation->extractionOfRelation($result->getCommunJob(), OtherJob::class);
+
             return $this->render(':front/profile:profile-detail-deletion.html.twig', array(
                 'result' => $result,
+                'disabilities' => $disabilities,
+                'needs' => $needs,
+                'secondaryNeeds' => $secondaryNeeds,
+                'medicalJobs' => $medicalJobs,
+                'socialJobs' => $socialJobs,
+                'communJobs' => $communJobs
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');

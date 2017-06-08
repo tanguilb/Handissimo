@@ -1,7 +1,7 @@
 {% extends '@SonataUser/Profile/action.html.twig' %}
 
 {% block sonata_profile_content %}
-    <div class="container">
+    <div class="row block-comparate">
         <div class="title-block">
             <h3>Différences entre la fiche affiché et la version</h3>
         </div>
@@ -116,14 +116,14 @@
             {% endif %}
         {% endif %}
         {% if diff.facebook.old != null or diff.facebook.new != null or diff.facebook.same != null %}
-            <p class="label-profile-version">facebook</p>
+            <p class="label-profile-version">Facebook</p>
             {% if diff.facebook.old != null and diff.facebook.new != null %}
                 <div class="row">
                     <p class="old col-md-6 col-xs-12">{{ diff.facebook.old }}</p>
                     <p class="new col-md-6 col-xs-12">{{ diff.facebook.new }}</p>
                 </div>
             {% else %}
-                <p class="same col-md-6 col-xs-12">{{ diff.facebook.same }}</p>
+                <p class="same col-md-12 col-xs-12">{{ diff.facebook.same }}</p>
             {% endif %}
         {% endif %}
         {% if disabilities.old != null or disabilities.new != null  or disabilities.same != null%}
@@ -258,14 +258,26 @@
             {% endif %}
         {% endif %}
         {% if diff.school.old != null or diff.school.new != null or diff.school.same != null %}
-            <p class="label-profile-version">Scolaisation :</p>
+            <p class="label-profile-version">Scolarisation :</p>
             {% if diff.school.old != null and diff.school.new != null %}
                 <div class="row">
-                    <p class="old col-md-6 col-xs-12">{{ diff.school.old }}</p>
-                    <p class="new col-md-6 col-xs-12">{{ diff.school.new }}</p>
+                    {% if diff.school.old == 1 %}
+                    <p class="old col-md-6 col-xs-12">Oui</p>
+                    {% else %}
+                    <p class="old col-md-6 col-xs-12">Non</p>
+                    {% endif %}
+                    {% if diff.school.new == 1 %}
+                    <p class="new col-md-6 col-xs-12">Oui</p>
+                    {% else %}
+                    <p class="new col-md-6 col-xs-12">Non</p>
+                    {% endif %}
                 </div>
             {% else %}
-                <p class="same col-xs-12">{{ diff.school.same }}</p>
+                {% if diff.school.same == 1 %}
+                <p class="same col-xs-12">Oui</p>
+                {% else %}
+                <p class="same col-xs-12">Non</p>
+                {% endif %}
             {% endif %}
         {% endif %}
         {% if diff.schoolDescription.old != null or diff.schoolDescription.new != null or diff.schoolDescription.same != null %}
@@ -454,11 +466,23 @@
             <p class="label-profile-version">Orientation MDPH</p>
             {% if diff.orientationMdph.old != null or diff.orientationMdph.new != null %}
                 <div class="row">
-                    <p class="old col-md-6 col-xs-12">{{ diff.orientationMdph.old }}</p>
-                    <p class="new col-md-6 col-xs-12">{{ diff.orientationMdph.new }}</p>
+                    {% if diff.orientationMdph.old == 1 %}
+                    <p class="old col-md-6 col-xs-12">Oui</p>
+                    {% else %}
+                    <p class="old col-md-6 col-xs-12">Non</p>
+                    {% endif %}
+                    {% if diff.orientationMdph.new == 1 %}
+                    <p class="new col-md-6 col-xs-12">Oui</p>
+                    {% else %}
+                    <p class="new col-md-6 col-xs-12">Non</p>
+                    {% endif %}
                 </div>
             {% else %}
-                <p class="same col-xs-12">{{ diff.orientationMdph.same }}</p>
+                {% if diff.orientationMdph.same == 1 %}
+                <p class="same col-xs-12">Oui</p>
+                {% else %}
+                <p class="same col-xs-12">Non</p>
+                {% endif %}
             {% endif %}
         {% endif %}
         {% if diff.inscription.old != null or diff.inscription.new != null or diff.inscription.same != null %}
@@ -506,7 +530,7 @@
             {% endif %}
         {% endif %}
         {% if diff.user.old != null and diff.user.new != null or diff.user.same != null %}
-            <p class="label-profile-view">Celui qui a updaté la fiche</p>
+            <p class="label-profile-version">Dernier contributeur</p>
             {% if diff.user.old != null and diff.user.new != null %}
                 <div class="row">
                     <p class="old col-md-6 col-xs-12">{{ diff.user.old }}</p>
@@ -517,7 +541,7 @@
             {% endif %}
         {% endif %}
         {% if diff.userType.old != null or diff.userType.new != null or diff.userType.same != null %}
-            <p class="label-profile-view">Le type d'utilisateur</p>
+            <p class="label-profile-version">Le type d'utilisateur</p>
             {% if diff.userType.old != null and diff.userType.new != null %}
                 <div class="row">
                     <p class="old col-md-6 col-xs-12">{{ diff.userType.old }}</p>
@@ -527,6 +551,8 @@
                 <p class="same col-xs-12">{{ diff.userType.same }}</p>
             {% endif %}
         {% endif %}
+        <div class="block-btn-profile">
+            <a href="{{ path('handissimo_profile_version', {'id': diff.id.same}) }}" class="btn btn-default" id="btn-list-version">Retour</a>
+        </div>
     </div>
-
 {% endblock sonata_profile_content %}

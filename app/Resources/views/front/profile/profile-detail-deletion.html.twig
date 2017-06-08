@@ -93,16 +93,16 @@
                 {{ result.orgaStructure.name }}
             </div>
         {% endif %}
-        {#% if result.disabilityTypes %}
+        {% if result.disabilities %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Handicap des personnes accompagnées:</p>
             </div>
             <div class="col-xs-12">
-                {% for disability in result.disabilityTypes %}
+                {% for disability in disabilities %}
                     <p class="list-profile">{{ disability.disabilityName }}</p>
                 {% endfor %}
             </div>
-        {% endif %#}
+        {% endif %}
         {% if result.agemini and result.agemaxi %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Âge des personnes accueillies:</p>
@@ -135,26 +135,26 @@
                 {{ result.organizationDescription|raw }}
             </div>
         {% endif %}
-        {#}% if result.needs %}
+        {% if result.primaryNeeds %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Services principaux:</p>
             </div>
             <div class="col-xs-12">
-                {% for need in result.needs %}
+                {% for need in needs %}
                     <p class="list-profile">{{ need.needName }}</p>
                 {% endfor %}
             </div>
         {% endif %}
-        {% if result.secondneeds %}
+        {% if result.secondaryNeeds %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Services secondaires:</p>
             </div>
             <div class="col-xs-12">
-                {% for secondNeed in result.secondneeds %}
+                {% for secondNeed in secondaryNeeds %}
                     <p class="list-profile">{{ secondNeed.needName }}</p>
                 {% endfor %}
             </div>
-        {% endif %#}
+        {% endif %}
         {% if result.workingDescription %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Description des services:</p>
@@ -212,36 +212,36 @@
                 {{ result.teamMembersNumber }}
             </div>
         {% endif %}
-        {#% if result.stafforganizations %}
+        {% if result.medicalJob %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Personnel de soins:</p>
             </div>
             <div class="col-xs-12">
-                {% for medicalJob in result.stafforganizations %}
+                {% for medicalJob in medicalJobs %}
                     <p class="list-profile">{{ medicalJob.jobs }}</p>
                 {% endfor %}
             </div>
         {% endif %}
-        {% if result.socialstaffs %}
+        {% if result.socialJob %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Personnel éducatif et social:</p>
             </div>
             <div class="col-xs-12">
-                {% for socialJob in result.socialstaffs %}
+                {% for socialJob in socialJobs %}
                     <p class="list-profile">{{ socialJob.socialJobs }}</p>
                 {% endfor %}
             </div>
         {% endif %}
-        {% if result.otherjobs %}
+        {% if result.communJob %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Autres métiers:</p>
             </div>
             <div class="col-xs-12">
-                {% for otherJob in result.otherjobs %}
+                {% for otherJob in communJobs %}
                     <p class="list-profile">{{ otherJob.name }}</p>
                 {% endfor %}
             </div>
-        {% endif %#}
+        {% endif %}
         {% if result.commentStaff %}
             <div class="col-xs-12">
                 <p class="label-profile-version">Commentaires sur l'équipe:</p>

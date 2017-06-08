@@ -1109,7 +1109,7 @@ class Organizations
     /**
      * @var boolean
      */
-    private $replay;
+    private $replay=0;
 
 
     /**

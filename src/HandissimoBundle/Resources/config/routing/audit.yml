@@ -55,3 +55,8 @@ handissimo_profile_list_organizations:
     path:   /list
     defaults: { _controller: HandissimoBundle:Profile:listOrganizations }
 
+handissimo_profile_ajax_replay:
+    path:   /view/ajax/{id}/{data}
+    defaults: { _controller: HandissimoBundle:Ajax:replay }
+    methods: POST
+

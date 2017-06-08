@@ -122,3 +122,7 @@ services:
     handissimo.audit_difference:
         class: HandissimoBundle\Services\Audit\AuditDifference
         arguments: ['@doctrine.orm.entity_manager']
+
+    handissimo.audit_relation:
+        class: HandissimoBundle\Services\Audit\AuditRelation
+        arguments: ['@doctrine.orm.entity_manager']

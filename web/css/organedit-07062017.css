@@ -172,3 +172,8 @@
     font-size: 14px;
     font-weight: 700;
 }
+
+#validation-new,
+#new-validation {
+    visibility: hidden;
+}

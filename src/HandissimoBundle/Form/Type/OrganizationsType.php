@@ -19,6 +19,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
+
 class OrganizationsType extends AbstractType
 {
 
@@ -424,6 +425,16 @@ class OrganizationsType extends AbstractType
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
+            ))
+            ->add('replay', ChoiceType::class, array(
+                'choices' => array(
+                    'Oui' => 1,
+                    'Non' => 0
+                ),
+                'expanded' => true,
+                'empty_value' => false,
+                'choices_as_values' => true,
+                'label' => 'Relecture',
             ));
 
         $builder->get('school')
