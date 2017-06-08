@@ -15,7 +15,7 @@
                 <div class="col-md-3">
                     <a href="{{ path('handissimo_profile_view_current_organization', {'id': results.id}) }}" class="link-about"
                        data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
-                        {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
+                        {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name ~ ': en ligne' }}
                     </a>
                 </div>
             {% else %}

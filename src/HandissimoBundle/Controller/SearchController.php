@@ -54,14 +54,28 @@ class SearchController extends Controller
             $sort = $this->container->get('handissimo.sort_research');
             $finalResult = $sort->sortSearchResult($result, $need, $disability, $structure);
             $this->get('session')->set('result', $finalResult);
-            $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate($result, $request->query->getInt('page', 1), 50);
-            $this->get('session')->set('pagination', $pagination);
-            $pagination->setUsedRoute('research_action');
+
             if (count($result) === 1)
             {
-                return $this->redirectToRoute('structure_page', array('id' => $result[0]['id']));
-            }else {
+                if ($finalResult[0]['replay'] === null) {
+                    $organizationVersion = $finalResult[0]['version'] - 1;
+                    $organizationsId = $finalResult[0]['id'];
+                    $em = $this->getDoctrine()->getManager();
+                    $query = 'SELECT organizations_audit.rev FROM organizations_audit WHERE organizations_audit.id = ' . $organizationsId . ' AND organizations_audit.version = ' . $organizationVersion;
+                    $statement = $em->getConnection()->prepare($query);
+                    $statement->execute();
+                    $result = $statement->fetchAll();
+                    $organization = null;
+                    if (!empty($result)) {
+                        $auditReader = $this->container->get('simplethings_entityaudit.reader');
+
+                        $organization = $auditReader->find(Organizations::class, $organizationsId, $result[0]['rev']);
+                    }
+                    return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
+                } else {
+                    return $this->redirectToRoute('structure_page', array('id' => $result[0]['id']));
+                }
+            } else {
                 return $this->redirectToRoute('research_action');
             }
         }

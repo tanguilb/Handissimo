@@ -481,14 +481,7 @@
                             </div>
                         {% endif %}
 
-                        {% if organization.twitter %}
-                            <div class="line">
-                                <div class="icon-block">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                </div>
-                                <a class="address-line link-about" title="Liens vers la page Twitter" href="http://{{ organization.twitter }}" target="_blank">Twitter</a>
-                            </div>
-                        {% endif %}
+
                         {% if organization.freeDescription %}
                             <div class="col-md-12">
                                 <p class="second-title">A noter :</p>
@@ -550,15 +543,14 @@
                 </div>
                 {% endif %}
                 <div class="col-md-3 col-xs-12">
-
+                    {% set usergood = null %}
+                    {% for userId in usero %}
+                        {% if user.id == userId.id %}
+                            {% set usergood = userId.id %}
+                        {% endif %}
+                    {% endfor %}
                     {% if is_granted('ROLE_USER') %}
                         {% if usero != null %}
-                            {% set usergood = null %}
-                            {% for userId in usero %}
-                                {% if user.id == userId.id %}
-                                    {% set usergood = userId.id %}
-                                {% endif %}
-                            {% endfor %}
                             {% if usergood == user.id or is_granted('ROLE_SUPER_ADMIN')%}
                                 <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                     Modifier la fiche
@@ -566,13 +558,14 @@
                             {% else %}
                                 <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                             {% endif %}
-
-
-                            {% else  %}
-                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
-                                    Modifier la fiche
-                                </a>
+                        {% elseif organization.replay == null %}
+                            <p class="notModify">Cette fiche est en cours de modification veuillez revenir plus tard si vous avez des modifications à apporter</p>
+                        {% else  %}
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                Modifier la fiche
+                            </a>
                         {% endif %}
+
                     {% else %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
                             Modifier la fiche

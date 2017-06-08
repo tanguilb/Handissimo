@@ -1,0 +1,13 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="">
+        <div class="title-block">
+            <h3 class="title-solution">Vous ne pouvez pas éditer cette fiche pour le moment</h3>
+        </div>
+        <div class="col-xs-12">
+            <p class="text-solution">La fiche que voous voulez éditer a déjà été modifier par un autre contributeur. Elle doit être validée par une personne avant de pouvoir être éditée à nouveau. <br />
+            Veuillez revenir plus tard pour faire vos modifications.</p>
+        </div>
+    </div>
+{% endblock %}

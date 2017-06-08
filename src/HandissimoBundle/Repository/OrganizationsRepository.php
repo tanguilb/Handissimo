@@ -13,7 +13,7 @@ class OrganizationsRepository extends EntityRepository
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
         $query->select('o.name');
-        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.twitter', 'o.latitude', 'o.longitude', 'o.firstPicture');
+        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.latitude', 'o.longitude', 'o.firstPicture', 'o.statut', 'o.replay', 'o.version');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
@@ -43,7 +43,7 @@ class OrganizationsRepository extends EntityRepository
             $andmodule->add($query->expr()->eq('o.name', ':name'));
             $query->andWhere($andmodule);
             $query->setParameter('name', $test[0]);
-            if ($test[1] !== "null")
+            if (isset($test[1]))
             {
                 $ormodule = $query->expr()->andX();
                 $ormodule->add($query->expr()->eq('o.city', ':city'));
@@ -108,6 +108,7 @@ class OrganizationsRepository extends EntityRepository
             $query->setParameter('structure', $structure->getName());
         }
         $query->distinct();
+        //echo $query->getQuery()->getSQL();;die();
         return $query->getQuery()->getResult();
     }
 

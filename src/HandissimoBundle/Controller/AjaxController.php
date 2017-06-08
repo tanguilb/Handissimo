@@ -14,8 +14,8 @@ class AjaxController extends Controller
 {
     public function searchByCityAction(Request $request, $city)
     {
-        if ($request->isXmlHttpRequest()) {
 
+        if ($request->isXmlHttpRequest()) {
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:City');
             $location = $repository->getByCity($city);
 

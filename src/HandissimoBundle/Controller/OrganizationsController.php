@@ -21,9 +21,12 @@ class OrganizationsController extends Controller
     {
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        $version = 0;
+        $statut = "NEW";
+        $replay = null;
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut, $replay);
         if ($formHandler->process()){
+            $organization->setStatut('NEW');
             $this->addFlash('notice', 'La fiche a bien été créé');
             return $this->redirectToRoute('sonata_user_profile_edit');
         }
@@ -47,7 +50,10 @@ class OrganizationsController extends Controller
         $deleteForm = $this->createDeleteForm($organization);
         $editForm = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
         $user = $this->getUser();
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+        $version = $organization->getVersion();
+        $statut = "UPD";
+        $replay = null;
+        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $version, $statut, $replay);
         if ($formHandler->process()){
             $this->addFlash('edit', 'La fiche a été éditée');
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
@@ -55,6 +61,10 @@ class OrganizationsController extends Controller
 
         $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
         $usero = $emuser->getOrganizationsByUser($organization->getId());
+        if ($organization->getReplay() === null and $this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN') === false)
+        {
+            return $this->render(':front/profile:profile-replay-edit.html.twig');
+        }
         if (!empty($usero)){
             foreach ($usero as $userid)
             {
@@ -74,8 +84,8 @@ class OrganizationsController extends Controller
                 }
             }
             return $this->render(':front/profile:profile-dont-edit.html.twig');
-
         }
+
         return $this->render('organizations/edit.html.twig', array(
             'pictures' => $pictures,
             'user' => $user,
@@ -83,7 +93,6 @@ class OrganizationsController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
-
     }
 
     /**
