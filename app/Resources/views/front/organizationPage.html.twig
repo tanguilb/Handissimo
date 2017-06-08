@@ -543,15 +543,14 @@
                 </div>
                 {% endif %}
                 <div class="col-md-3 col-xs-12">
-
+                    {% set usergood = null %}
+                    {% for userId in usero %}
+                        {% if user.id == userId.id %}
+                            {% set usergood = userId.id %}
+                        {% endif %}
+                    {% endfor %}
                     {% if is_granted('ROLE_USER') %}
                         {% if usero != null %}
-                            {% set usergood = null %}
-                            {% for userId in usero %}
-                                {% if user.id == userId.id %}
-                                    {% set usergood = userId.id %}
-                                {% endif %}
-                            {% endfor %}
                             {% if usergood == user.id or is_granted('ROLE_SUPER_ADMIN')%}
                                 <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                     Modifier la fiche
@@ -566,6 +565,7 @@
                                 Modifier la fiche
                             </a>
                         {% endif %}
+
                     {% else %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
                             Modifier la fiche
