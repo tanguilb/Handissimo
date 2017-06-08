@@ -72,7 +72,6 @@ class SearchController extends Controller
         $statUser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->findAll();
         $statOrganizations = $repository->getAllOrganizations();
         return $this->render('front/index.html.twig', array(
-            //'formQuick' => $formQuick->createView(),
             'form' => $form->createView(),
             'carousel' => $carousel,
             'organizations' => $organizations,

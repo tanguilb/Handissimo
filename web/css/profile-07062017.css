@@ -601,6 +601,20 @@ input:-ms-input-placeholder {
     color: #ffffff;
 }
 
+#replayButton {
+    background-color: #C37095;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#replayButton:hover,
+#replayButton:focus {
+    background-color: #DC7095;
+    color: #ffffff;
+}
+
 .old {
     color: red;
 }

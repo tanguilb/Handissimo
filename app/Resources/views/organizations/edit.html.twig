@@ -28,8 +28,11 @@
                         {% for userID in usero %}
                             {% if user.id == userID.id %}
                             <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
-                         {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if is_granted('ROLE_HANDISSIMIEN') or is_granted('ROLE_SUPER_ADMIN') %}
+                        <li role="presentation"><a href="#validation" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Validation</a></li>
                     {% endif %}
                 </ul>
 
@@ -311,6 +314,9 @@
                         <div class="col-xs-12 block-btn-prev-next">
                             <a class="btn btn-default btnPrevious" >Précédent</a>
                         </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="validation">
+                        {{ form_row(edit_form.replay) }}
                     </div>
                 </div>
             <div class="row">
