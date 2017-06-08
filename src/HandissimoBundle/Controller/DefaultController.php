@@ -96,13 +96,11 @@ class DefaultController extends Controller
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
-            var_dump($result);
             if(!empty($result)){
             $auditReader = $this->container->get('simplethings_entityaudit.reader');
 
             $organization = $auditReader->find(Organizations::class, $organizationsId, $result[0]['rev']);
             }
-           // var_dump($organization);
         }
         return $this->render(':front:organizationPage.html.twig', array(
             'form' => $form->createView(),
