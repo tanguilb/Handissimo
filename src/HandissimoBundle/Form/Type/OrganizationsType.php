@@ -425,17 +425,8 @@ class OrganizationsType extends AbstractType
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
-            ))
-            ->add('replay', ChoiceType::class, array(
-                'choices' => array(
-                    'Oui' => 1,
-                    'Non' => 0
-                ),
-                'expanded' => true,
-                'empty_value' => false,
-                'choices_as_values' => true,
-                'label' => 'Relecture',
             ));
+
 
         $builder->get('school')
             ->addModelTransformer(new CallbackTransformer(
