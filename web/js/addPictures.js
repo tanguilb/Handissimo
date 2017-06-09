@@ -50,19 +50,23 @@ $(document).ready(function(){
     });
 
     var structureLogo = $("#handissimobundle_organizations_structureLogoFile_file");
-    $("#empty-field-stucture").on("click", function() {
+    $("#empty-field-stucture").on("click", function(e) {
+        e.preventDefault();
         structureLogo.val("");
     });
     var societyLogo = $("#handissimobundle_organizations_societyLogoFile_file");
-    $("#empty-field-societie").on("click", function() {
+    $("#empty-field-societie").on("click", function(e) {
+        e.preventDefault();
         societyLogo.val("");
     });
     var brochure = $("#handissimobundle_organizations_brochureFile_file");
-    $("#empty-field-brochure").on("click", function() {
+    $("#empty-field-brochure").on("click", function(e) {
+        e.preventDefault();
         brochure.val("");
     });
     var firstPicture = $("#handissimobundle_organizations_firstPictureFile_file");
-    $("#empty-field-picture").on("click", function() {
+    $("#empty-field-picture").on("click", function(e) {
+        e.preventDefault();
         firstPicture.val("");
     });
 });
