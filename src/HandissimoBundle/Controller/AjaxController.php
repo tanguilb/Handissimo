@@ -74,37 +74,4 @@ class AjaxController extends Controller
        return $this->render('front/preview.html.twig');
     }
 
-    public function replayAction(Request $request, $id, $data)
-    {
-        if ($request->isXmlHttpRequest()){
-            $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
-            $em = $this->getDoctrine()->getManager();
-            if ($organizations->getReplay() == 0 && $data == 1){
-                $organizations->setReplay(1);
-                $em->persist($organizations);
-                $em->flush();
-                return new JsonResponse($this->generateUrl('handissimo_profile_view_current_organization', array(
-                    'id' => $id
-                )));
-            }
-        }
-        return false;
-    }
-
-    public function validateAction(Request $request, $id, $data)
-    {
-        if ($request->isXmlHttpRequest()){
-            $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
-            $em = $this->getDoctrine()->getManager();
-            if ($organizations->getValidate() == 0 && $data == 1){
-                $organizations->setValidate(1);
-                $em->persist($organizations);
-                $em->flush();
-                return new JsonResponse($this->generateUrl('handissimo_profile_view_current_organization', array(
-                    'id' => $id
-                )));
-            }
-        }
-        return false;
-    }
 }

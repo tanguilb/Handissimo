@@ -1078,64 +1078,6 @@ class Organizations
     }
 
     /**
-     * @var boolean
-     */
-    private $statut;
-
-
-    /**
-     * Set statut
-     *
-     * @param boolean $statut
-     *
-     * @return Organizations
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return boolean
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-    /**
-     * @var boolean
-     */
-    private $replay=0;
-
-
-    /**
-     * Set replay
-     *
-     * @param boolean $replay
-     *
-     * @return Organizations
-     */
-    public function setReplay($replay)
-    {
-        $this->replay = $replay;
-
-        return $this;
-    }
-
-    /**
-     * Get replay
-     *
-     * @return boolean
-     */
-    public function getReplay()
-    {
-        return $this->replay;
-    }
-    /**
      * @var string
      */
     private $addressComplement;
@@ -2302,62 +2244,5 @@ class Organizations
     {
         return $this->userOrg;
     }
-    /**
-     * @var integer
-     */
-    private $version;
 
-
-    /**
-     * Set version
-     *
-     * @param integer $version
-     *
-     * @return Organizations
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return integer
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-    /**
-     * @var boolean
-     */
-    private $validate=0;
-
-
-    /**
-     * Set validate
-     *
-     * @param boolean $validate
-     *
-     * @return Organizations
-     */
-    public function setValidate($validate)
-    {
-        $this->validate = $validate;
-
-        return $this;
-    }
-
-    /**
-     * Get validate
-     *
-     * @return boolean
-     */
-    public function getValidate()
-    {
-        return $this->validate;
-    }
 }
