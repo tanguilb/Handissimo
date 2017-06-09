@@ -24,17 +24,13 @@ class OrganizationsHandler
     protected $organization;
     protected $version;
 
-    public function __construct(Form $form, Request $request, EntityManager $em, ContainerInterface $container, Organizations $organization, $version, $statut, $replay, $validate)
+    public function __construct(Form $form, Request $request, EntityManager $em, ContainerInterface $container, Organizations $organization)
     {
         $this->form             = $form;
         $this->request          = $request;
         $this->em               = $em;
         $this->container        = $container;
         $this->organization     = $organization;
-        $this->version          = $version;
-        $this->statut           = $statut;
-        $this->replay           = $replay;
-        $this->validate         = $validate;
     }
 
     public function process()
@@ -52,17 +48,11 @@ class OrganizationsHandler
 
     public function onSuccess()
     {
-        $this->version += 1;
-        //$roles = $this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN');
         if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))
         {
             $this->organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
             $this->organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
         }
-        $this->organization->setVersion($this->version);
-        $this->organization->setStatut($this->statut);
-        $this->organization->setReplay($this->replay);
-        $this->organization->setValidate($this->validate);
         /**
          * Saving all disabilities for organizations_audit
          */
