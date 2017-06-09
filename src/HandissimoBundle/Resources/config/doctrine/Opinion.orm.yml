@@ -20,4 +20,7 @@ HandissimoBundle\Entity\Opinion:
             unique: false
         message:
             type: text
+        dateCreation:
+            type: datetime
+
     lifecycleCallbacks: {  }

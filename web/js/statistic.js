@@ -1,6 +1,6 @@
-//$(document).ready(function () {
-  //  $(function () {
-    /*$("#progressbar").progressbar({
+$(document).ready(function () {
+    $(function () {
+    $("#progressbar").progressbar({
             value: 0,
             max: 100,
             //textFormat: 'fraction',
@@ -35,13 +35,13 @@
             $( "#progressbar" ).progressbar( "option", "value", pbVal );
             return false;
         });
-    });*/
-        /*$("#handissimobundle_organizations_disabilitytypes").on('click');
+    });
+       /* $("#handissimobundle_organizations_disabilitytypes").on('click');
         if ($("#handissimobundle_organizations_disabilitytypes:checked").length > 0) {
             pbVal += 5;
         }else{
             pbVal -= 5;
-        }*/
+        }
 
 
             //if (CKEDITOR.instances.cke_handissimobundle_organizations_organizationDescription.getData() !== "") pbVal += 5;
@@ -72,12 +72,12 @@
         })*/
 
 
-  /*  function editorEmpty(instanceName){
+    function editorEmpty(instanceName){
 
         //var ele = (new Element('div')).update(CKEDITOR.instances[instanceName].getData());
         var ele = (new Element('div')).update(CKEDITOR.instances[instanceName].document.getBody().getChild(0).getText());
 
         return (ele.getInnerText() == '' || innerText.search(/^(&nbsp;)+$/i) == 0);
     }
-});*/
+});
 

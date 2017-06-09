@@ -140,7 +140,7 @@
     color: #ffffff;
 }
 
-.alert {
+.alert-form {
     color: #C94242;
     font-size: 1.3em;
     padding: 0 0 0 0;
@@ -171,9 +171,4 @@
 .age-label {
     font-size: 14px;
     font-weight: 700;
-}
-
-#validation-new,
-#new-validation {
-    visibility: hidden;
 }

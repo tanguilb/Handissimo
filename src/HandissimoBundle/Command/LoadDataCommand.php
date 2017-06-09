@@ -57,22 +57,23 @@ class LoadDataCommand extends ContainerAwareCommand
 
         foreach ($contents as $content){
             $organizationsEntity = new Organizations();
-            $organizationsEntity->setName("ULIS " . $content['name']);
+            $organizationsEntity->setName($content['name']);
             $organizationsEntity->setAddress($content['address']);
             //$organizationsEntity->setAddressComplement($content['addressComplement']);
             $organizationsEntity->setPostal($content['postal']);
             $organizationsEntity->setCity($content['city']);
             $organizationsEntity->setPhoneNumber($content['phoneNumber']);
-            //$organizationsEntity->setMail($content['email']);
+            $organizationsEntity->setMail($content['mail']);
+            $organizationsEntity->setDirectorName($content['directorName']);
             $organizationsEntity->setWebsite($content['website']);
-            $organizationsEntity->setAgemini(6);
-            $organizationsEntity->setAgemaxi(12);
-            $organizationsEntity->setWorkingDescription($content['workingDescription']);
-            $organizationsEntity->setInterventionZone($content['interventionZone']);
-            $organizationsEntity->addNeed($this->em->getReference('HandissimoBundle:Needs', 26));
-            $organizationsEntity->setOrgaStructure($this->em->getReference('HandissimoBundle:StructuresList', 114));
+            //$organizationsEntity->setAgemini(6);
+            //$organizationsEntity->setAgemaxi(12);
+            //$organizationsEntity->setWorkingDescription($content['workingDescription']);
+            //$organizationsEntity->setInterventionZone($content['interventionZone']);
+            //$organizationsEntity->addNeed($this->em->getReference('HandissimoBundle:Needs', 26));
+            //$organizationsEntity->setOrgaStructure($this->em->getReference('HandissimoBundle:StructuresList', 114));
             //$organizationsEntity->setFreeplace($test['freeplace']);
-            //$organizationsEntity->setDirectorName($test['directorName']);
+
             $this->em->persist($organizationsEntity);
             $progress->advance();
         }
