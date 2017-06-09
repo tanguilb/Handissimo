@@ -137,4 +137,38 @@ class Opinion
     {
         return $this->message;
     }
+    /**
+     * @var \DateTime
+     */
+    private $dateCreation;
+
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Opinion
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    public  function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+    }
 }
