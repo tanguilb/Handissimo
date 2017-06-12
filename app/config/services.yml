@@ -126,3 +126,10 @@ services:
     handissimo.audit_relation:
         class: HandissimoBundle\Services\Audit\AuditRelation
         arguments: ['@doctrine.orm.entity_manager']
+
+
+    handissimo.statistics.listener:
+        class: HandissimoBundle\EventListener\StatisticsListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event preUpdate }

@@ -13,7 +13,7 @@ class OrganizationsRepository extends EntityRepository
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();
         $query->select('o.name');
-        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.latitude', 'o.longitude', 'o.firstPicture');
+        $query->addSelect('o.id', 'o.postal', 'o.address', 'o.phoneNumber', 'o.website', 'o.mail', 'o.city', 'o.facebook', 'o.latitude', 'o.longitude', 'o.firstPicture', 'o.statistic');
         $query->from('HandissimoBundle:Organizations', 'o');
         $query->leftJoin('o.needs', 'n');
         $query->leftJoin('o.disabilityTypes', 'dt');
@@ -253,4 +253,5 @@ class OrganizationsRepository extends EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
 }

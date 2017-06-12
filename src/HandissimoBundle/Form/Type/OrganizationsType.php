@@ -302,6 +302,7 @@ class OrganizationsType extends AbstractType
             ->add('otherjobs', EntityType::class, array(
                 'class' => 'HandissimoBundle:OtherJob',
                 'choice_label' => 'name',
+                'choice_value' => 'id',
                 'label' => 'Autres métiers :',
                 'multiple' => true,
                 'expanded' =>true,

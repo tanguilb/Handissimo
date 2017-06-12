@@ -53,6 +53,7 @@ class OrganizationsHandler
             $this->organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
             $this->organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
         }
+
         /**
          * Saving all disabilities for organizations_audit
          */

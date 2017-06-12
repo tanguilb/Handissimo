@@ -60,17 +60,7 @@ class Organizations
     /**
      * @var string
      */
-    private $blog;
-
-    /**
-     * @var string
-     */
     private $facebook;
-
-    /**
-     * @var string
-     */
-    private $twitter;
 
     /**
      * @var string
@@ -96,11 +86,6 @@ class Organizations
      * @var integer
      */
     private $teamMembersNumber;
-
-    /**
-     * @var string
-     */
-    private $teamDescription;
 
     /**
      * @var \DateTime
@@ -165,6 +150,9 @@ class Organizations
         $this->stafforganizations = new ArrayCollection();
         $this->media = new ArrayCollection();
         $this->needs = new ArrayCollection();
+        $this->otherjobs = new ArrayCollection();
+        $this->secondneeds = new ArrayCollection();
+        $this->socialstaffs = new ArrayCollection();
         $this->updateDatetime = new \DateTime();
     }
 
@@ -2245,4 +2233,34 @@ class Organizations
         return $this->userOrg;
     }
 
+
+    /**
+     * @var integer
+     */
+    private $statistic;
+
+
+    /**
+     * Set statistic
+     *
+     * @param integer $statistic
+     *
+     * @return Organizations
+     */
+    public function setStatistic($statistic)
+    {
+        $this->statistic = $statistic;
+
+        return $this;
+    }
+
+    /**
+     * Get statistic
+     *
+     * @return integer
+     */
+    public function getStatistic()
+    {
+        return $this->statistic;
+    }
 }

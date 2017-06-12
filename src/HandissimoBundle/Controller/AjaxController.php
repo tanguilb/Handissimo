@@ -69,9 +69,14 @@ class AjaxController extends Controller
         }
     }
 
-    public function previewAction()
+    public function previewAction(Request $request, $data)
     {
-       return $this->render('front/preview.html.twig');
+       if($request->isXmlHttpRequest())
+       {
+           return $this->render('front/preview.html.twig', array(
+               'data' => $data,
+           ));
+       }
     }
 
 }

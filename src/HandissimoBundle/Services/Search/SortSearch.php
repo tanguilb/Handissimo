@@ -24,6 +24,7 @@ class SortSearch
         $finalResult = array();
         foreach ($result as $results)
         {
+            //var_dump($results);
             $value = 0;
             $orga = $this->em->getRepository('HandissimoBundle:Organizations')->find($results['id']);
             if ($need !== null)
@@ -72,7 +73,6 @@ class SortSearch
 
         }
 
-
         foreach ($finalResult as $key => $item) {
             if(isset($item['correspondance']))
             {
@@ -81,14 +81,19 @@ class SortSearch
             if(isset($item['distance'])){
                 $dist[$key] = $item['distance'];
             }
+            if(isset($item['statistic'])){
+                $stat[$key] = $item['statistic'];
+            }
         }
 
-        if(isset($corr) and isset($dist)){
-            array_multisort($corr, SORT_DESC, $dist, SORT_ASC, $finalResult);
-        } elseif(isset($corr) and !isset($dist))
+
+        if(isset($corr) and isset($dist) and isset($stat)){
+            array_multisort($corr, SORT_DESC, $stat, SORT_DESC, $dist, SORT_ASC,  $finalResult);
+        } elseif(isset($corr) and isset($stat) and !isset($dist))
         {
-            array_multisort($corr, SORT_DESC, $finalResult);
+            array_multisort($corr, SORT_DESC, $stat, SORT_DESC, $finalResult);
         }
+
         return $finalResult;
     }
 

@@ -98,4 +98,12 @@ class DefaultController extends Controller
 
     }
 
+    public function viewPreviewAction($data)
+    {
+        var_dump($data);
+        return $this->render('front/preview.html.twig', array(
+            'data' => $data,
+        ));
+    }
+
 }

@@ -463,15 +463,6 @@
                             </div>
                         {% endif %}
 
-                        {% if organization.blog %}
-                            <div class="line">
-                                <div class="icon-block">
-                                    <i class="fa fa-commenting" aria-hidden="true"></i>
-                                </div>
-                                <a class="address-line link-about" title="Liens vers le Blog" href="http://{{ organization.blog }}" target="_blank">Blog</a>
-                            </div>
-                        {% endif %}
-
                         {% if organization.facebook %}
                             <div class="line">
                                 <div class="icon-block">
@@ -558,12 +549,6 @@
                             {% else %}
                                 <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                             {% endif %}
-                        {% elseif organization.replay == null %}
-                            <p class="notModify">Cette fiche est en cours de modification veuillez revenir plus tard si vous avez des modifications à apporter</p>
-                        {% else  %}
-                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
-                                Modifier la fiche
-                            </a>
                         {% endif %}
 
                     {% else %}

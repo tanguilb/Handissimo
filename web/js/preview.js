@@ -1,8 +1,7 @@
 /**
  * Created by tangui on 09/06/17.
  */
-$(document).ready(function(){
-    $('#preview').click(function(){
+    function previewFunction() {
 
         var data = {};
         data['name'] = $('#handissimobundle_organizations_name').val();
@@ -12,13 +11,14 @@ $(document).ready(function(){
         console.log(data);
         $.ajax({
             type: "POST",
-            url: "ajax_preview",
-            data: "data",
+            url: "ajax/preview",
+            data: data,
+            dataType: "json",
             timeout: 3000,
-            success: function(response){
-
+            success: function(urlFromController) {
+                window.location.href = urlFromController;
             }
-        });
-    })
+            });
+        }
 
-});
+
