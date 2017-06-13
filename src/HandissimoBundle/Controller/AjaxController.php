@@ -74,4 +74,21 @@ class AjaxController extends Controller
        return $this->render('front/preview.html.twig');
     }
 
+    public function revertVersionAction(Request $request, $id, $rev)
+    {
+        if ($request->isXmlHttpRequest()){
+            $var = json_decode($request->request->get('data'), true);
+            $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $result = $this->container->get('handissimo.revert_version')->revertOldVersion($organizations, $var);
+
+            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations', array(
+                'id' => $id,
+                'rev' => $rev,
+                'result' => $result
+            )));
+        }
+        return false;
+
+    }
+
 }

@@ -579,7 +579,8 @@ input:-ms-input-placeholder {
 #btn-detail,
 #btn-dele,
 #btn-list-home,
-#btn-list-version {
+#btn-list-version,
+#btn-old-version {
     background-color: #f7af49;
     color: #ffffff;
     border: none;
@@ -596,7 +597,9 @@ input:-ms-input-placeholder {
 #btn-list-home:hover,
 #btn-list-home:focus,
 #btn-list-version:hover,
-#btn-list-version:focus {
+#btn-list-version:focus,
+#btn-old-version:hover,
+#btn-old-version:focus {
     background-color: #FFBE49;
     color: #ffffff;
 }

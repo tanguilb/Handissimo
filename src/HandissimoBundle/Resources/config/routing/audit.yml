@@ -54,3 +54,8 @@ handissimo_profile_version:
 handissimo_profile_list_organizations:
     path:   /list
     defaults: { _controller: HandissimoBundle:Profile:listOrganizations }
+
+handissimo_profile_revert_version:
+    path:   /view/revert/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Ajax:revertVersion }
+    methods: POST

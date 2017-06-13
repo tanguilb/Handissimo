@@ -126,3 +126,7 @@ services:
     handissimo.audit_relation:
         class: HandissimoBundle\Services\Audit\AuditRelation
         arguments: ['@doctrine.orm.entity_manager']
+
+    handissimo.revert_version:
+        class: HandissimoBundle\Services\Recorder\RevertVersion
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']

@@ -342,6 +342,5 @@ simple_things_entity_audit:
     audited_entities:
         - HandissimoBundle\Entity\Organizations
         - HandissimoBundle\Entity\Media
-    global_ignore_columns:
 
 

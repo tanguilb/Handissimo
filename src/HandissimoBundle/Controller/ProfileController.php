@@ -115,7 +115,7 @@ class ProfileController extends Controller
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-            $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' ORDER BY organizations_audit.update_datetime DESC';
+            $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' ORDER BY organizations_audit.rev DESC';
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
@@ -167,6 +167,7 @@ class ProfileController extends Controller
             'medicalJob' =>  $medicalJob,
             'socialJob' => $socialJob,
             'communJob' => $communJob,
+            'rev' => $rev
         ));
 
         }
