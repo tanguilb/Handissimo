@@ -67,8 +67,19 @@ class AjaxController extends Controller
         }
     }
 
+    public function previewAction(Request $request, $data)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            return $this->render('front/preview.html.twig', array(
+                'data' => $data,
+            ));
+        }
+    }
+
     public function revertVersionAction(Request $request, $id, $rev)
     {
+
         if ($request->isXmlHttpRequest()){
             $var = json_decode($request->request->get('data'), true);
             $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);

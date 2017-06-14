@@ -2,6 +2,8 @@
 
 namespace HandissimoBundle\Controller;
 
+use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class OrganizationsController extends Controller
 {
+
+
     /**
      * Creates a new organization entity.
      * @param Request $request
@@ -21,10 +25,31 @@ class OrganizationsController extends Controller
     {
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
+        $user = $this->container->get('security.token_storage')->getToken()->getUser()->getUsernameCanonical();
+        $userId = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $lastDate = $this->container->get('security.token_storage')->getToken()->getUser()->getLastDate();
+        $participation = $this->container->get('security.token_storage')->getToken()->getUser()->getParticipation();
+        $date = date('Y-m-d H:i:s');
+        $lastDateSec = strtotime($lastDate);
+        $dateSec = strtotime($date);
+        $diff = $dateSec - $lastDateSec;
+        if ($diff < 48600 and $participation <= 10){
+
         $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
-        if ($formHandler->process()){
-            $this->addFlash('notice', 'La fiche a bien été créé');
-            return $this->redirectToRoute('sonata_user_profile_edit');
+            if ($formHandler->process()){
+                $this->addFlash('notice', 'La fiche a bien été créé');
+                return $this->redirectToRoute('sonata_user_profile_edit');
+            }
+        } elseif($diff > 48600)
+        {
+            $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+            if ($formHandler->process()){
+                $this->addFlash('notice', 'La fiche a bien été créé');
+                return $this->redirectToRoute('sonata_user_profile_edit');
+            }
+        }else{
+            return $this->render('front/profile/profile-dont-edit.html.twig');
         }
 
         return $this->render('organizations/new.html.twig', array(

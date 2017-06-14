@@ -174,4 +174,63 @@ class User extends BaseUser
     {
         return $this->organizationsUser;
     }
+    /**
+     * @var integer
+     */
+    private $participation;
+
+    /**
+     * @var \DateTime
+     */
+    private $lastDate;
+
+
+    /**
+     * Set participation
+     *
+     * @param integer $participation
+     *
+     * @return User
+     */
+    public function setParticipation($participation)
+    {
+        $this->participation = $participation;
+
+        return $this;
+    }
+
+    /**
+     * Get participation
+     *
+     * @return integer
+     */
+    public function getParticipation()
+    {
+        return $this->participation;
+    }
+
+
+    /**
+     * Set lastDate
+     *
+     * @param string $lastDate
+     *
+     * @return User
+     */
+    public function setLastDate($lastDate)
+    {
+        $this->lastDate = $lastDate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastDate
+     *
+     * @return string
+     */
+    public function getLastDate()
+    {
+        return $this->lastDate;
+    }
 }

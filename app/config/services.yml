@@ -127,6 +127,17 @@ services:
         class: HandissimoBundle\Services\Audit\AuditRelation
         arguments: ['@doctrine.orm.entity_manager']
 
+
+    handissimo.statistics.listener:
+        class: HandissimoBundle\EventListener\StatisticsListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    handissimo.participation:
+        class: HandissimoBundle\Services\Revisions\ParticipationDate
+
+
     handissimo.revert_version:
         class: HandissimoBundle\Services\Recorder\RevertVersion
         arguments: ['@doctrine.orm.entity_manager', '@service_container']

@@ -9,8 +9,10 @@
 namespace HandissimoBundle\Form\Handler;
 
 
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use HandissimoBundle\Entity\Organizations;
+use HandissimoBundle\Entity\Participation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +55,18 @@ class OrganizationsHandler
             $this->organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
             $this->organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
         }
+        $lastDate = $this->container->get('security.token_storage')->getToken()->getUser()->getLastDate();
+        $participation = $this->container->get('security.token_storage')->getToken()->getUser()->getParticipation();
+
+        $participate = $this->container->get('Handissimo.participation');
+        $participationByDay = $participate->searchUserParticipation($lastDate, $participation);
+
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $user->setLastDate($participationByDay[0]);
+        $user->setParticipation($participationByDay[1]);
+
+
+
         /**
          * Saving all disabilities for organizations_audit
          */
@@ -136,6 +150,7 @@ class OrganizationsHandler
             $communJobs = array_filter($communJobsArray);
             $this->organization->setCommunJob($communJobs);
         }
+        $this->em->persist($user);
 
         $this->em->persist($this->form->getData());
         $this->em->flush();
