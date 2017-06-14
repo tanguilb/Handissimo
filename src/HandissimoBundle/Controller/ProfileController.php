@@ -274,7 +274,7 @@ class ProfileController extends Controller
         $em->getConnection()->beginTransaction();
 
         try {
-            $query = 'DELETE FROM organizations_audit WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.pins = 0';
+            $query = 'DELETE FROM organizations_audit WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.pins = "NULL"';
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             $em->getConnection()->commit();
