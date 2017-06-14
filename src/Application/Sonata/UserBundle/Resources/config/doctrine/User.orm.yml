@@ -19,6 +19,13 @@ Application\Sonata\UserBundle\Entity\User:
         compact:
             type: boolean
             nullable: true
+        participation:
+            type: integer
+            nullable: true
+        lastDate:
+            type: string
+            length: 50
+            nullable: true
 
     manyToMany:
         organizationsUser:

@@ -42,8 +42,6 @@ class StatisticsListener
         $staff = $entity->getStafforganizations()->getValues();
         $socialStaff = $entity->getSocialstaffs()->getValues();
         $otherJob = $entity->getOtherjobs()->getValues();
-        $es = $entity->getOpendaysYear();
-        $es2 = $entity->getOpendays();
         $stat = 0;
 
         if ($entity->getAddress() !== null)
@@ -174,7 +172,6 @@ class StatisticsListener
         {
             $stat += 5;
         }
-
         $entity->setStatistic($stat);
     }
 
