@@ -191,6 +191,9 @@ HandissimoBundle\Entity\Organizations:
         statistic:
             type: integer
             nullable: true
+        pins:
+            type: boolean
+            nullable: true
 
     oneToMany:
         comments:

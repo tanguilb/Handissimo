@@ -2263,4 +2263,33 @@ class Organizations
     {
         return $this->statistic;
     }
+    /**
+     * @var boolean
+     */
+    private $pins;
+
+
+    /**
+     * Set pins
+     *
+     * @param boolean $pins
+     *
+     * @return Organizations
+     */
+    public function setPins($pins)
+    {
+        $this->pins = $pins;
+
+        return $this;
+    }
+
+    /**
+     * Get pins
+     *
+     * @return boolean
+     */
+    public function getPins()
+    {
+        return $this->pins;
+    }
 }

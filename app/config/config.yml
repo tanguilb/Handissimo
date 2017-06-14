@@ -343,5 +343,6 @@ simple_things_entity_audit:
         - HandissimoBundle\Entity\Organizations
         - HandissimoBundle\Entity\Media
     global_ignore_columns:
+        - pins
 
 

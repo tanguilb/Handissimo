@@ -549,6 +549,10 @@
                             {% else %}
                                 <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                             {% endif %}
+                        {% else  %}
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                Modifier la fiche
+                            </a>
                         {% endif %}
 
                     {% else %}
