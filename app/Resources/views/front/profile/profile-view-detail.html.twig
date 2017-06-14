@@ -1,5 +1,9 @@
 {% extends '@SonataUser/Profile/action.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block sonata_profile_content %}
     <div class="title-block">
         <h3 class="title-search">Version actuel</h3>
@@ -335,4 +339,5 @@
 {% endblock %}
 
 {% block javascripts %}
+
 {% endblock %}

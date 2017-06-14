@@ -579,7 +579,8 @@ input:-ms-input-placeholder {
 #btn-detail,
 #btn-dele,
 #btn-list-home,
-#btn-list-version {
+#btn-list-version,
+#btn-old-version {
     background-color: #f7af49;
     color: #ffffff;
     border: none;
@@ -596,8 +597,24 @@ input:-ms-input-placeholder {
 #btn-list-home:hover,
 #btn-list-home:focus,
 #btn-list-version:hover,
-#btn-list-version:focus {
+#btn-list-version:focus,
+#btn-old-version:hover,
+#btn-old-version:focus {
     background-color: #FFBE49;
+    color: #ffffff;
+}
+
+#btn-star-version {
+    background-color: #C37095;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#btn-star-version:hover,
+#btn-star-version:focus {
+    background-color: #DC7095;
     color: #ffffff;
 }
 
@@ -611,4 +628,19 @@ input:-ms-input-placeholder {
 
 .block-comparate {
     margin: 0 10px 0 10px;
+}
+
+#dialog-confirm {
+    display: none;
+}
+
+#alert-delete {
+    float: left;
+    margin:0 7px 20px 0;
+}
+
+#fav{
+    display: block;
+    width: 20px;
+    height: 20px;
 }

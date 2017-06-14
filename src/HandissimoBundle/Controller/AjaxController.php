@@ -4,11 +4,9 @@ namespace HandissimoBundle\Controller;
 
 
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\HandissimoBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
@@ -69,9 +67,46 @@ class AjaxController extends Controller
         }
     }
 
-    public function previewAction()
+    public function revertVersionAction(Request $request, $id, $rev)
     {
-       return $this->render('front/preview.html.twig');
+        if ($request->isXmlHttpRequest()){
+            $var = json_decode($request->request->get('data'), true);
+            $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $result = $this->container->get('handissimo.revert_version')->revertOldVersion($organizations, $var);
+
+            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations', array(
+                'id' => $id,
+                'rev' => $rev,
+                'result' => $result
+            )));
+        }
+        return false;
+    }
+
+    public function addPinsAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $rev = $request->request->get('rev');
+            $em = $this->getDoctrine()->getManager();
+            $query = 'UPDATE organizations_audit SET pins = 1 WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.rev = ' .$rev;
+            $statement = $em->getConnection()->prepare($query);
+            $statement->execute();
+            return new JsonResponse();
+        }
+        return false;
+    }
+
+    public function removePinsAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $rev = $request->request->get('rev');
+            $em = $this->getDoctrine()->getManager();
+            $query = 'UPDATE organizations_audit SET pins = 0 WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.rev = ' .$rev;
+            $statement = $em->getConnection()->prepare($query);
+            $statement->execute();
+            return new JsonResponse();
+        }
+        return false;
     }
 
 }

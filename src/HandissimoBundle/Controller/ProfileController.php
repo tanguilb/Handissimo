@@ -18,7 +18,7 @@ use HandissimoBundle\Entity\SocialStaff;
 use HandissimoBundle\Entity\Staff;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use HandissimoBundle\Form\Handler;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController extends Controller
 {
@@ -115,7 +115,7 @@ class ProfileController extends Controller
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-            $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' ORDER BY organizations_audit.update_datetime DESC';
+            $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' ORDER BY organizations_audit.rev DESC';
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
@@ -149,25 +149,26 @@ class ProfileController extends Controller
             $auditReader = $this->container->get('simplethings_entityaudit.reader');
             $current = $auditReader->getCurrentRevision(Organizations::class, $organisationId);
 
-        $diff = $auditReader->diff(Organizations::class, $organisationId, $rev, $current);
-        $difference = $this->container->get('handissimo.audit_difference');
+            $diff = $auditReader->diff(Organizations::class, $organisationId, $rev, $current);
+            $difference = $this->container->get('handissimo.audit_difference');
 
-        $disabilities = $difference->differenceBetweenOrganizations($diff['disabilities'], DisabilityTypes::class);
-        $needs = $difference->differenceBetweenOrganizations($diff['primaryNeeds'], Needs::class);
-        $secondNeeds = $difference->differenceBetweenOrganizations($diff['secondaryNeeds'], SecondaryNeeds::class);
-        $medicalJob = $difference->differenceBetweenOrganizations($diff['medicalJob'], Staff::class);
-        $socialJob = $difference->differenceBetweenOrganizations($diff['socialJob'], SocialStaff::class);
-        $communJob = $difference->differenceBetweenOrganizations($diff['communJob'], OtherJob::class);
+            $disabilities = $difference->differenceBetweenOrganizations($diff['disabilities'], DisabilityTypes::class);
+            $needs = $difference->differenceBetweenOrganizations($diff['primaryNeeds'], Needs::class);
+            $secondNeeds = $difference->differenceBetweenOrganizations($diff['secondaryNeeds'], SecondaryNeeds::class);
+            $medicalJob = $difference->differenceBetweenOrganizations($diff['medicalJob'], Staff::class);
+            $socialJob = $difference->differenceBetweenOrganizations($diff['socialJob'], SocialStaff::class);
+            $communJob = $difference->differenceBetweenOrganizations($diff['communJob'], OtherJob::class);
 
-        return $this->render(':front/profile:profile-view-old-detail.html.twig', array(
-            'diff' => $diff,
-            'disabilities' => $disabilities,
-            'needs' => $needs,
-            'secondNeeds' =>  $secondNeeds,
-            'medicalJob' =>  $medicalJob,
-            'socialJob' => $socialJob,
-            'communJob' => $communJob,
-        ));
+            return $this->render(':front/profile:profile-view-old-detail.html.twig', array(
+                'diff' => $diff,
+                'disabilities' => $disabilities,
+                'needs' => $needs,
+                'secondNeeds' =>  $secondNeeds,
+                'medicalJob' =>  $medicalJob,
+                'socialJob' => $socialJob,
+                'communJob' => $communJob,
+                'rev' => $rev
+            ));
 
         }
         return $this->redirectToRoute('sonata_user_profile_show');
@@ -265,5 +266,23 @@ class ProfileController extends Controller
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');
+    }
+
+    public function deleteHistoryAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->getConnection()->beginTransaction();
+
+        try {
+            $query = 'DELETE FROM organizations_audit WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.pins = 0';
+            $statement = $em->getConnection()->prepare($query);
+            $statement->execute();
+            $em->getConnection()->commit();
+            return true;
+        } catch (\Exception $exception) {
+            $em->getConnection()->rollback();
+            throw $exception;
+        }
+
     }
 }

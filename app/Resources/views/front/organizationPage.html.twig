@@ -558,8 +558,6 @@
                             {% else %}
                                 <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
                             {% endif %}
-                        {% elseif organization.replay == null %}
-                            <p class="notModify">Cette fiche est en cours de modification veuillez revenir plus tard si vous avez des modifications à apporter</p>
                         {% else  %}
                             <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
                                 Modifier la fiche

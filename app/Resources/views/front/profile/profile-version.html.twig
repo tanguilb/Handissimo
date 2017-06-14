@@ -1,5 +1,10 @@
 {% extends '@SonataUser/Profile/action.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block sonata_profile_content %}
     <div class="title-block">
         <h3 class="title-search">Historique des modifications</h3>
@@ -7,9 +12,10 @@
     <div class="block-profil-list">
         <div class="col-md-3 title-column">Nom de la structure</div>
         <div class="col-md-3 title-column">Dernière mise à jour</div>
-        <div class="col-md-3 title-column">Utilisateur</div>
+        <div class="col-md-2 title-column">Utilisateur</div>
         <div class="col-md-1 title-column">Version</div>
         <div class="col-md-2 title-column">Action</div>
+        <div class="col-md-1 title-column">Favori</div>
         {% for results in result %}
             {% if loop.index == 1 %}
                 <div class="col-md-3">
@@ -29,7 +35,7 @@
                 <div class="col-md-3">
                     {{ results.update_datetime|localizeddate }}
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     {{ results.user }}
                 </div>
                 <div class="col-md-1">
@@ -42,14 +48,33 @@
                         Modification
                     {% endif %}
                 </div>
+                {% if results.pins == 1 %}
+                <div class="col-md-1">
+                    <input type="checkbox" checked="checked" id="{{ results.id }}" title="[-] Enlever comme favori" value="{{ results.rev }}">
+                </div>
+                {% else %}
+                <div class="col-md-1">
+                    <input type="checkbox" id="{{ results.id }}" title="[+] Ajouter comme favori" value="{{ results.rev }}">
+                </div>
+                {% endif %}
         {% endfor %}
     </div>
     <div class="block-btn-profile">
         <a href="{{ path('handissimo_profile_list_organizations') }}" class="btn btn-default" id="btn-list-home">Retour</a>
+        <a href="{{ path('handissimo_profile_delete_history', {'id': result[0].id}) }}" class="btn btn-default" id="btn-star-version">Gardezmoi</a>
+    </div>
+    <div id="dialog-confirm" title="Confirmation de la suppression">
+        <p>
+            <span class="ui-icon ui-icon-alert" id="alert-delete"></span>
+            Etes-vous sûr de vouloir supprimer l'historique ?
+        </p>
     </div>
 
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ asset('js/deleteVersion.js') }}"></script>
     <script src="{{ asset('js/popover.js') }}"></script>
+    <script src="{{ asset('js/favori.js') }}"></script>
 {% endblock %}
