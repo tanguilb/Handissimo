@@ -188,6 +188,9 @@ HandissimoBundle\Entity\Organizations:
         communJob:
             type: array
             nullable: true
+        pins:
+            type: boolean
+            nullable: true
 
     oneToMany:
         comments:

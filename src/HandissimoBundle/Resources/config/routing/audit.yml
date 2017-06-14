@@ -59,3 +59,15 @@ handissimo_profile_revert_version:
     path:   /view/revert/{id}/{rev}
     defaults: { _controller: HandissimoBundle:Ajax:revertVersion }
     methods: POST
+
+handissimo_profile_delete_history:
+    path:   /version/delete/{id}
+    defaults: { _controller: HandissimoBundle:Profile:deleteHistory }
+
+handissimo_profile_add_pins:
+    path:   /version/{id}/add
+    defaults: { _controller: HandissimoBundle:Ajax:addPins }
+
+handissimo_profile_remove_pins:
+    path:   /version/{id}/remove
+    defaults: { _controller: HandissimoBundle:Ajax:removePins }

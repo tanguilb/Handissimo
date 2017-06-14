@@ -4,11 +4,9 @@ namespace HandissimoBundle\Controller;
 
 
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\HandissimoBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
@@ -69,11 +67,6 @@ class AjaxController extends Controller
         }
     }
 
-    public function previewAction()
-    {
-       return $this->render('front/preview.html.twig');
-    }
-
     public function revertVersionAction(Request $request, $id, $rev)
     {
         if ($request->isXmlHttpRequest()){
@@ -88,7 +81,32 @@ class AjaxController extends Controller
             )));
         }
         return false;
+    }
 
+    public function addPinsAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $rev = $request->request->get('rev');
+            $em = $this->getDoctrine()->getManager();
+            $query = 'UPDATE organizations_audit SET pins = 1 WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.rev = ' .$rev;
+            $statement = $em->getConnection()->prepare($query);
+            $statement->execute();
+            return new JsonResponse();
+        }
+        return false;
+    }
+
+    public function removePinsAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $rev = $request->request->get('rev');
+            $em = $this->getDoctrine()->getManager();
+            $query = 'UPDATE organizations_audit SET pins = 0 WHERE organizations_audit.id = ' .$id. ' AND organizations_audit.rev = ' .$rev;
+            $statement = $em->getConnection()->prepare($query);
+            $statement->execute();
+            return new JsonResponse();
+        }
+        return false;
     }
 
 }
