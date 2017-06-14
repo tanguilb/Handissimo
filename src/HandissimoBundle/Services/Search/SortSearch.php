@@ -24,7 +24,6 @@ class SortSearch
         $finalResult = array();
         foreach ($result as $results)
         {
-            //var_dump($results);
             $value = 0;
             $orga = $this->em->getRepository('HandissimoBundle:Organizations')->find($results['id']);
             if ($need !== null)
