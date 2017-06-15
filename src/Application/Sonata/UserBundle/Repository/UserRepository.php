@@ -21,4 +21,14 @@ class UserRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getUserByOrganization()
+    {
+        $qb = $this->createQueryBuilder('u');
+            $qb->select('u.username','u.contribution');
+            $qb->where($qb->expr()->andX(
+                $qb->expr()->isNotNull('u.contribution')
+            ));
+        return $qb->getQuery()->getResult();
+    }
+
 }

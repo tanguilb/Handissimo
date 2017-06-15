@@ -60,7 +60,6 @@ class OrganizationsHandler
 
         $participate = $this->container->get('Handissimo.participation');
         $participationByDay = $participate->searchUserParticipation($lastDate, $participation);
-
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $user->setLastDate($participationByDay[0]);
         $user->setParticipation($participationByDay[1]);
@@ -74,8 +73,14 @@ class OrganizationsHandler
         $arrayContribution = [];
         if ($this->container->get('security.token_storage')->getToken()->getUser()->getContribution() != null) {
             $arrayContribution = $this->container->get('security.token_storage')->getToken()->getUser()->getContribution();
+            if (array_key_exists($organizationName, $arrayContribution) == true) {
+                $arrayContribution[$organizationName] += 1;
+            } else {
+                $arrayContribution[$organizationName] = 1;
+            }
+        } else {
+            $arrayContribution[$organizationName] = 1;
         }
-        array_push($arrayContribution, $organizationName);
         $user->setContribution($arrayContribution);
 
         /**
