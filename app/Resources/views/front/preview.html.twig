@@ -1,3 +1,528 @@
 {% extends 'base.html.twig' %}
+{% import "Macros/form_elements.html.twig" as formElements %}
+{% block title %}{{ parent() }} preview{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/organizations-07062017.css') }}">
+{% endblock %}
+
 {% block body %}
+
+    <!-- Block container -->
+    <div class="head-img"></div>
+    <div class="container main-block">
+        <div class="container-info row">
+            <!-- Block Title-->
+            <div class="head-block">
+                <div class="container">
+                    <p class="update">Cette fiche a été remplie par quelqu'un qui connait la structure</p>
+                    <p class="update">Dernière mise à jour le "date de la dernière mise à jour par : utilisateur</p>
+                </div>
+                <div class="head-title col-md-6 col-sm-12">
+                    <h1 class="title structure-title"> {{ values.name }} </h1>
+                </div>
+                <div class="logos col-md-6 col-sm-12">
+                    <div class="col-md-8 col-sm-12">
+                        <p>Cette solution est proposée par : <img src="{{ asset('images/handissimo-logo.png') }}" alt="logo par défaut" class="logo"/></p>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <p>soutenu par : <img src="{{ asset('images/handissimo-logo.png') }}" alt="logo par défaut" class="logo"></p>
+                    </div>
+
+                </div>
+                <!-- this is the line to display like button
+                <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
+            </div>
+            <div class="row">
+                <div class="col-md-8" id="block-carousel">
+                    <!-- Carousel-->
+                    {#{% include 'front/carousel.html.twig' %}#}
+
+                </div>
+                <!-- Map -->
+                <div class="col-md-4 map-block">
+                    <div class="map col-md-12" id="map">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Essential Block -->
+                <div class="essential-block col-md-8">
+                    {#{% if  organization.statut == 1 %}#}
+                    <!-- Descriptions Block -->
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            C'est pour qui ?
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div  class="panel-body">
+                                    {% if  values.organizationDescription %}
+                                        <div class="col-md-12 description">
+                                            <p>{{ values.organizationDescription|raw }}</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-md-12">
+                                        <p class="second-title">Principaux troubles des personnes accueillies :</p>
+                                    </div>
+                                    <ul>
+                                        {% if checkboxResult.disability %}
+                                            {% for disability in checkboxResult.disability %}
+                                                <li>{{ disability }} </li>
+                                            {% endfor %}
+                                        {% else %}
+                                            <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                        {% endif %}
+
+
+                                    </ul>
+                                    <div class="col-xs-12">
+                                        <p class="second-title">Âge :<span class="black-result"> De {{ values.ageMini    }} à {{ values.ageMaxi }} ans</span></p>
+                                    </div>
+                                    {% if values.freeplace %}
+                                        <div class="col-xs-12">
+                                            <p class="second-title">Nombre de personnes accompagnées :<span class="black-result"> {{ values.freeplace }}</span></p>
+                                        </div>
+                                    {% endif %}
+                                    {% if values.interventionZone %}
+                                        <div class="col-md-12">
+                                            <p class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </p><p>{{ values.interventionZone }}</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if values.organizationDescription == null%}
+                                        <div class="col-md-12">
+                                            <p>Si vous avez plus d'information n'hésitez pas
+                                                <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Qu'est-ce qui est proposé ?
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <p class="second-title">Cette solution offre principalement les services suivants: </p>
+                                        <ul>
+                                            {% if checkboxResult.needs is not empty %}
+                                                {% for need in checkboxResult.needs %}
+                                                    <li>{{ need }}</li>
+                                                {% endfor %}
+                                            {% else %}
+                                                <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Et aussi : </p>
+                                        <ul>
+                                            {% if checkboxResult.secondNeeds is not empty %}
+                                                {% for secondneeds in checkboxResult.secondNeeds %}
+                                                    <li>{{ secondneeds }}</li>
+                                                {% endfor %}
+                                            {% else %}
+                                                <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="second-title">Pour en savoir plus :</h3>
+                                        {% if values.workingDescription %}
+                                            {{ values.workingDescription|raw }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+
+                                    </div>
+                                    {% if values.schoolYN == "1" %}
+                                        <div class="col-md-12">
+                                            <p class="second-title">La scolarisation</p>
+                                            <p>{{ values.schoolDescription|raw }}</p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Description d'une journée/semaine/intervention type:</p>
+                                        {% if values.dayDescription %}
+                                            <p>{{ values.dayDescription|raw  }}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Ce qui est prévu pour les familles :</p>
+                                        {% if values.receptionDescription %}
+                                            <p>{{ values.receptionDescription|raw  }}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        {% if checkboxResult.needs is empty or checkboxResult.secondNeeds is empty or values.workingDescription == "" or values.dayDescription == "" or values.receptionDescription == "" %}
+                                            <div class="col-md-12">
+                                                <p><br><br><br>Si vous avez plus d'information n'hésitez pas
+                                                    <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            L'équipe
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">L'équipe comprend environ
+                                            {% if values.teamMembersNumber is not empty %}
+                                                <span class="bold">{{ values.teamMembersNumber }}</span>
+                                            {% else %}
+                                                <i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i>
+                                            {% endif %}
+                                            professionnels.</p>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Leurs métiers sont :</p>
+
+                                        <div class="col-md-4">
+                                            <h4>Personnel de soin :</h4>
+                                            <ul>
+                                                {% if checkboxResult.medicalStaff is not empty %}
+                                                    {% for jobs in checkboxResult.medicalStaff %}
+                                                        <li>{{ jobs }}</li>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h4>Personnel éducatif et social :</h4>
+                                            <ul>
+                                                {% if checkboxResult.socialStaff is not empty %}
+                                                    {% for socialJobs in checkboxResult.socialStaff %}
+                                                        <li>{{ socialJobs }}</li>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <h4>Autres :</h4>
+                                            <ul>
+                                                {% if checkboxResult.otherStaff is not empty %}
+                                                    {% for otherJobs in checkboxResult.otherStaff %}
+                                                        <li>{{ otherJobs }}</li>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <li><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                        {% if checkboxResult.medicalStaff is empty or checkboxResult.socialStaff is empty or checkboxResult.otherStaff is empty or values.teamMembersNumber == null %}
+                                            <div class="col-md-12">
+                                                <p>Si vous avez plus d'information n'hésitez pas
+                                                    <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                </p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="organization-panel">
+                                <div class="panel-heading" role="tab" id="headinFour">
+                                    <h2 class="panel-title primary-title">
+                                        <a class="collapsed link-about" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                            Informations pratiques
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body">
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Jours d'ouverture : </p>
+                                        {% if values.opendays is not empty %}
+                                            <p>{{ values.opendays }}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                        {% if values.opendaysYear is not empty %}
+                                            <p>{{ values.opendaysYear }}</p>
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Heures d'ouverture :
+                                            {% if values.openhours is not empty %}
+                                                <span class="black-result">{{ values.openhours }}</span>
+                                            {% else %}
+                                                <i class="question fa fa-question" aria-hidden="true"></i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    {% if values.orientationMdph == '1' %}
+                                        {% set mdphText=
+                                        "Il y a une MDPH ou une MDA par département ; le nom peut être différent selon les départements. La MDPH sert à :<br>
+                                            <ul>
+                                                <li>informer</li>
+                                                <li>évaluer les besoins des enfants et adultes handicapés</li>
+                                                <li>orienter les personnes (c’est-à-dire à valider le fait qu’une personne puisse être accompagnée par un établissement ou un service)</li>
+                                                <li>attribuer les différentes allocations existant : PCH prestation de compensation du handicap, AAH allocation pour adulte handicapé, AEH allocation d’éducation de l’enfant handicapé et son complément éventuel</li>
+                                                <li>attribuer la carte d’invalidité</li>
+                                                <li>reconnaitre la qualité de travailleur handicapé</li>
+                                            </ul>
+                                        <p>Pour être admis dans les établissements et services médico-sociaux, il est nécessaire de déposer
+                                        un dossier auprès de sa MDPH. Au sein de chaque MDPH, il y a une commission des droits et de l’autonomie
+                                        des personnes handicapées (CDAPH) composée de plusieurs personnes. C’est cette commission qui étudie les
+                                        dossiers et prend les décisions. En ce qui concerne l’orientation vers les établissements et services médico-sociaux,
+                                        c’est cette commission qui délivre le document nécessaire pour s’inscrire, qui s’appelle une notification d’orientation.</p>
+
+                                        <p>En conclusion :
+                                        <ul>
+                                            <li>pour être admis dans cette structure, il est nécessaire d’avoir une notification d’orientation vers cette structure</li>
+                                            <li>pour obtenir cette notification, il faut déposer un dossier auprès de votre MDPH. C’est une commission de la MDPH,
+                                            appelée CDAPH, qui analysera votre dossier et décidera si elle vous délivre la notification ou pas.</li>
+                                            <li>Pour savoir comment déposer un dossier ; vous pouvez regarder sur le site internet de votre MDPH. Si ce n’est pas clair,
+                                            vous pouvez vous faire aider par une assistante sociale, par une association, par un médecin.</li>
+                                            <li>Vous pouvez aussi chercher sur Handissimo quelle structure est capable de vous aider à effectuer ces démarches administratives, en cas de besoin.</li>
+                                        </ul></p>
+                                        <p>Les maisons départementales des personnes handicapées (MDPH) ont été créées par la loi du 11 février 2005 dite \"loi pour l'égalité des droits et
+                                        des chances, la participation et la citoyenneté des personnes handicapées\", entrée en vigueur le 1er janvier 2006... La MDPH constitue un guichet
+                                        unique destiné à accueillir les personnes handicapées et leur entourage pour les informer et évaluer leurs besoins. Elles permettent de faciliter
+                                        leurs démarches dans l\'accès à leurs droits. Elle assure la coordination des différentes équipes, composées de gestionnaires administratifs,
+                                        médecins (généralistes ou spécialisées), assistantes sociales, psychologues, référente insertion professionnelle, ergothérapeutes.</p>" %}
+                                        <div class="col-md-12">
+                                            <p class="second-title">Sur orientation Mdph :<span class="black-result"> oui</span> <i class="mdphInfo fa fa-info-circle" data-html="true" aria-hidden="true" data-toggle="popover" data-placement="bottom" title="La Maison Départementale des Personnes Handicapées ou Maison de l’autonomie" data-content="{{ mdphText }}"></i>
+                                            </p>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Comment s'inscrire ?</p>
+                                        {% if values.inscription %}
+                                            {{ values.inscription|raw }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p class="second-title">Combien ça coûte ?</p>
+                                        {% if values.cost %}
+                                            {{ values.cost|raw  }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="second-title">Les transports :</p>
+                                        {% if values.transport %}
+                                            {{ values.transport|raw  }}
+                                        {% else %}
+                                            <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
+                                        {% endif %}
+                                    </div>
+                                    {% if values.opendays is empty or values.opendaysYear is empty or values.openhours is empty or values.inscription == null or values.cost == null or values.transport == null %}
+                                        <div class="col-md-12">
+                                                <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                            </p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <!-- Contact block -->
+                    <div class="contact-info    col-md-12">
+                        {% if checkboxResult.structure %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-tag" aria-hidden="true"></i>
+                                </div>
+                                {% for structure in checkboxResult.structure %}
+                                    <p class="address-line">{{ structure }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if values.society %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-tag" aria-hidden="true"></i>
+                                </div>
+                                <p class="address-line">Structure gérée par : {{ values.society }}</p>
+                            </div>
+                        {% endif %}
+                        <div class="line">
+                            <div class="icon-block">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                            </div>
+                            {% if values.adressComplement == null %}
+                                <p class="address-line">{{ values.adress }} <br/>{{ values.postal }} {{ values.city }}</p>
+                            {% else %}
+                                <p class="address-line">{{ values.adress }}<br/>{{ values.adressComplement }}<br/>{{ values.postal }} {{ values.city }}</p>
+                            {% endif %}
+                        </div>
+                        {% if values.phoneNumber %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <p class="address-line">{{ values.phoneNumber }}</p>
+                            </div>
+                        {% endif %}
+                        {% if values.mail %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <p class="address-line">{{ values.mail }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if values.directorName %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </div>
+                                <p class="address-line" >Responsable : {{ values.directorName }}</p>
+                            </div>
+                        {% endif %}
+                        {% if values.website %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                                </div>
+                                <a class="address-line link-about" title="Liens vers le site internet {{ values.website }}" href="{{ values.website }}" target="_blank">Site web</a>
+                            </div>
+                        {% endif %}
+
+                        {% if values.facebook %}
+                            <div class="line">
+                                <div class="icon-block">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </div>
+                                <a class="address-line link-about" title="Liens vers la page facebook" href="http://{{ values.facebook }}" target="_blank">Facebook</a>
+                            </div>
+                        {% endif %}
+
+
+                        {% if values.freeDescription %}
+                            <div class="col-md-12">
+                                <p class="second-title">A noter :</p>
+                                {{ values.freeDescription|raw  }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% set array = {
+                    'latitude': 45.750000,
+                    'longitude': 4.850000,
+                    } %}
+
+                    {% set arrayjson = array|json_encode %}
+
+                    <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
+
+
+                    <!-- Resources -->
+                    <div class="resources col-md-12">
+                            <!-- download button -->
+                            <a class="download" href="#" target="_blank">
+                                <div class="line download-line">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    <p>brochure par défaut</p>
+                                </div>
+                            </a>
+                        <!-- print button -->
+                        <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
+                            <div class="line print-line">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                                <p>Imprimer</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- return button -->
+            <div class="row" id="return-button">
+                <div class="col-md-3 col-xs-12">
+                    <button onclick="goBack()" class="btn btn-return" role="button" >
+                        Retour à la page de résultat
+                    </button>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
+                        Retour à l'accueil
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
+                        Je suis responsable<br /> de cette solution
+                    </a>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
+                        Modifier la fiche
+                    </a>
+                </div>
+            </div>
+            <div class ="line-block"></div>
+            {#{% include ':front/comment:comment.html.twig' %}#}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/carousel.js') }}"></script>
+    <script src="{{ asset('js/generateadress.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
+    <script src="{{ asset('js/popover.js') }}"></script>
+    <script src="{{ asset('js/activateTab.js') }}"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
+    </script>#}
 {% endblock %}

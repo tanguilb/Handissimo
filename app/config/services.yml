@@ -141,3 +141,7 @@ services:
     handissimo.revert_version:
         class: HandissimoBundle\Services\Recorder\RevertVersion
         arguments: ['@doctrine.orm.entity_manager', '@service_container']
+
+    handissimo.preview:
+        class: HandissimoBundle\Services\Preview\Preview
+        arguments: ['@doctrine.orm.entity_manager']

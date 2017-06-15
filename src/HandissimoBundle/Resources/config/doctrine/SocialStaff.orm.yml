@@ -1,6 +1,7 @@
 HandissimoBundle\Entity\SocialStaff:
     type: entity
     table: social_staff
+    repositoryClass: HandissimoBundle\Repository\SocialStaffRepository
     id:
         id:
             type: integer

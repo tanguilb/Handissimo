@@ -210,7 +210,9 @@
                             <p class="update">Description limitée à 5000 caractères</p>
                         </div>
                         {{ form_row(form.school) }}
-                        {{ form_row(form.schoolDescription) }}
+                        <div id="schoolDescription">
+                            {{ form_row(form.schoolDescription) }}
+                        </div>
                         <p class="update">Description limitée à 3000 caractères</p>
                         {{ form_row(form.dayDescription) }}
                         <p class="update">Description limitée à 5000 caractères</p>
@@ -316,7 +318,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 btn-submit">
-                            <button onclick="previewFunction()" href="#" id="preview" class="btn btn-default">preview</button>
+                            <a onclick="previewFunction()" href="#" id="preview" class="btn btn-default" target="_blank">preview</a>
                         </div>
                     </div>
                 </div>
