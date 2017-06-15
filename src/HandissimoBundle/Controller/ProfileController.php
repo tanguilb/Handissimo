@@ -59,36 +59,23 @@ class ProfileController extends Controller
     public function listUserCardAction()
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            $user = $this->container->get('security.token_storage')->getToken()->getUser()->getUsernameCanonical();
-            $em = $this->getDoctrine()->getManager();
 
             /**
              * Action for recovery all contributions for organizations by user
              */
-            $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.user = "' . $user . '" GROUP BY organizations_audit.id ORDER BY organizations_audit.update_datetime DESC';
-            $statement = $em->getConnection()->prepare($query);
-            $statement->execute();
-            $result = $statement->fetchAll();
-            $arrayId = [];
-            for ($key = 0; $key < count($result); $key++) {
-                array_push($arrayId, $result[$key]['id']);
-            }
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $contributions = $user->getContribution();
             $organizations = [];
-            for ($k = 0; $k < count($arrayId); $k++) {
-                array_push($organizations, $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($arrayId[$k]));
+            $existedOrganizations = [];
+            foreach ($contributions as $contribution) {
+                array_push($organizations, $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->findBy(['name'=>$contribution]));
             }
-
-            /**
-             * Method for recovery all contributions deleted by user
-             */
-            $queryTwo = 'SELECT * FROM organizations_audit WHERE organizations_audit.user = "' . $user . '" AND organizations_audit.revtype = "DEL" GROUP BY organizations_audit.id ORDER BY organizations_audit.update_datetime DESC';
-            $statementTwo = $em->getConnection()->prepare($queryTwo);
-            $statementTwo->execute();
-            $deletedOrganizations = $statementTwo->fetchAll();
-            $deletedResult = [];
-            for ($key = 0; $key < count($deletedOrganizations); $key++) {
-                array_push($deletedResult, $deletedOrganizations[$key]['name']);
+            foreach ($organizations as $organization) {
+                foreach ($organization as $entity){
+                    array_push($existedOrganizations, $entity->getName());
+                }
             }
+            $deletedResult = array_diff_assoc($contributions, $existedOrganizations);
 
             return $this->render('front/profile/profile-list-user-card.html.twig', array(
                 'organizations' => $organizations,

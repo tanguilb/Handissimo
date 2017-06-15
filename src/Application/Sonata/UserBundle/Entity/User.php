@@ -233,4 +233,33 @@ class User extends BaseUser
     {
         return $this->lastDate;
     }
+    /**
+     * @var array
+     */
+    private $contribution;
+
+
+    /**
+     * Set contribution
+     *
+     * @param array $contribution
+     *
+     * @return User
+     */
+    public function setContribution($contribution)
+    {
+        $this->contribution = $contribution;
+
+        return $this;
+    }
+
+    /**
+     * Get contribution
+     *
+     * @return array
+     */
+    public function getContribution()
+    {
+        return $this->contribution;
+    }
 }

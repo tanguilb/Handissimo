@@ -65,7 +65,18 @@ class OrganizationsHandler
         $user->setLastDate($participationByDay[0]);
         $user->setParticipation($participationByDay[1]);
 
+        /**
+         * Set All contribution for the user in a array
+         * Saving the organizations name
+         */
+        $organizationName = $this->organization->getName();
 
+        $arrayContribution = [];
+        if ($this->container->get('security.token_storage')->getToken()->getUser()->getContribution() != null) {
+            $arrayContribution = $this->container->get('security.token_storage')->getToken()->getUser()->getContribution();
+        }
+        array_push($arrayContribution, $organizationName);
+        $user->setContribution($arrayContribution);
 
         /**
          * Saving all disabilities for organizations_audit
