@@ -1,0 +1,21 @@
+HandissimoBundle\Entity\AlertContent:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\AlertContentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        choice:
+            type: array
+        description:
+            type: text
+        user:
+            type: string
+            length: 255
+        sendingDate:
+            type: datetime
+    lifecycleCallbacks: {  }
