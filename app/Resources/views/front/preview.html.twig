@@ -95,10 +95,10 @@
                                             <p class="second-title">Pour bénéficier du service, il faut habiter sur le territoire suivant : </p><p>{{ values.interventionZone }}</p>
                                         </div>
                                     {% endif %}
-                                    {% if values.organizationDescription == null%}
+                                    {% if values.organizationDescription == null  or checkboxResult.disability == null or values.freeplace == null or values.interventionZone == null %}
                                         <div class="col-md-12">
                                             <p>Si vous avez plus d'information n'hésitez pas
-                                                <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                <span class="link-about">à compléter la fiche</span>
                                             </p>
                                         </div>
                                     {% endif %}
@@ -181,7 +181,7 @@
                                         {% if checkboxResult.needs is empty or checkboxResult.secondNeeds is empty or values.workingDescription == "" or values.dayDescription == "" or values.receptionDescription == "" %}
                                             <div class="col-md-12">
                                                 <p><br><br><br>Si vous avez plus d'information n'hésitez pas
-                                                    <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                    <span class="link-about">à compléter la fiche</span>
                                                 </p>
                                             </div>
                                         {% endif %}
@@ -255,7 +255,7 @@
                                         {% if checkboxResult.medicalStaff is empty or checkboxResult.socialStaff is empty or checkboxResult.otherStaff is empty or values.teamMembersNumber == null %}
                                             <div class="col-md-12">
                                                 <p>Si vous avez plus d'information n'hésitez pas
-                                                    <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                                    <span class="link-about">à compléter la fiche</span>
                                                 </p>
                                             </div>
                                         {% endif %}
@@ -363,7 +363,8 @@
                                     </div>
                                     {% if values.opendays is empty or values.opendaysYear is empty or values.openhours is empty or values.inscription == null or values.cost == null or values.transport == null %}
                                         <div class="col-md-12">
-                                                <a href="{{ path('fos_user_security_login') }}" class="link-about">à compléter la fiche</a>
+                                            <p>Si vous avez plus d'information n'hésitez pas
+                                                <span class="link-about">à compléter la fiche</span>
                                             </p>
                                         </div>
                                     {% endif %}
@@ -470,44 +471,44 @@
                     <!-- Resources -->
                     <div class="resources col-md-12">
                             <!-- download button -->
-                            <a class="download" href="#" target="_blank">
+                            <p class="download" href="#" >
                                 <div class="line download-line">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                     <p>brochure par défaut</p>
                                 </div>
-                            </a>
+                            </p>
                         <!-- print button -->
-                        <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
+                        <p class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
                             <div class="line print-line">
                                 <i class="fa fa-print" aria-hidden="true"></i>
                                 <p>Imprimer</p>
                             </div>
-                        </a>
+                        </p>
                     </div>
                 </div>
             </div>
             <!-- return button -->
             <div class="row" id="return-button">
                 <div class="col-md-3 col-xs-12">
-                    <button onclick="goBack()" class="btn btn-return" role="button" >
+                    <p class="btn btn-return" role="button" >
                         Retour à la page de résultat
-                    </button>
+                    </p>
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
+                    <p class="btn btn-edit" role="button">
                         Retour à l'accueil
-                    </a>
+                    </p>
                 </div>
 
                 <div class="col-md-3 col-xs-12">
-                    <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
+                    <p class="btn btn-edit" id="btn-sol" role="button">
                         Je suis responsable<br /> de cette solution
-                    </a>
+                    </p>
                 </div>
                 <div class="col-md-3 col-xs-12">
-                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
+                    <p class="btn btn-edit" role="button">
                         Modifier la fiche
-                    </a>
+                    </p>
                 </div>
             </div>
             <div class ="line-block"></div>

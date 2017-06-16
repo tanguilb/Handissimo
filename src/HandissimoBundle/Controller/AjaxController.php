@@ -75,9 +75,9 @@ class AjaxController extends Controller
             $values = $request->request->get('value');
             $this->get('session')->set('values', $values);
 
-            $response = new JsonResponse($this->generateUrl('handissimo_preview'));
-
-            return $response;
+            //$response = new JsonResponse($this->generateUrl('handissimo_preview'));
+            return true;
+            //return $response;
         } else {
         return false;
         }
@@ -119,7 +119,6 @@ class AjaxController extends Controller
             $statement->execute();
             return new JsonResponse();
         }
-        return false;
     }
 
 }
