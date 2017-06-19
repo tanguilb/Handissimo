@@ -7,6 +7,7 @@ use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AjaxController extends Controller
@@ -67,13 +68,18 @@ class AjaxController extends Controller
         }
     }
 
-    public function previewAction(Request $request, $data)
+    public function previewAction(Request $request)
     {
         if($request->isXmlHttpRequest())
         {
-            return $this->render('front/preview.html.twig', array(
-                'data' => $data,
-            ));
+            $values = $request->request->get('value');
+            $this->get('session')->set('values', $values);
+
+            //$response = new JsonResponse($this->generateUrl('handissimo_preview'));
+            return true;
+            //return $response;
+        } else {
+        return false;
         }
     }
 
@@ -85,11 +91,7 @@ class AjaxController extends Controller
             $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
             $result = $this->container->get('handissimo.revert_version')->revertOldVersion($organizations, $var);
 
-            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations', array(
-                'id' => $id,
-                'rev' => $rev,
-                'result' => $result
-            )));
+            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations'));
         }
         return false;
     }
@@ -117,7 +119,6 @@ class AjaxController extends Controller
             $statement->execute();
             return new JsonResponse();
         }
-        return false;
     }
 
 }

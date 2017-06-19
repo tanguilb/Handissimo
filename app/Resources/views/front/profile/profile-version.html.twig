@@ -61,7 +61,9 @@
     </div>
     <div class="block-btn-profile">
         <a href="{{ path('handissimo_profile_list_organizations') }}" class="btn btn-default" id="btn-list-home">Retour</a>
+        {% if result != null %}
         <a href="{{ path('handissimo_profile_delete_history', {'id': result[0].id}) }}" class="btn btn-default" id="btn-star-version">Gardezmoi</a>
+        {% endif %}
     </div>
     <div id="dialog-confirm" title="Confirmation de la suppression">
         <p>
