@@ -172,3 +172,8 @@
     font-size: 14px;
     font-weight: 700;
 }
+
+.btnPreview {
+    background-color: #C37095;
+    border-radius: 50px;
+}
