@@ -398,7 +398,7 @@ $.validator.addMethod(
         else if (regexp.global)
             regexp.lastIndex = 0;
         return this.optional(element) || regexp.test(value);
-    }, "L'adresse du site n'est pas valide"
+    }, "L'adresse du site n'est pas valide(Elle doit commencer par http:// ou https://)"
 );
 
 function recaptchaCallback() {
