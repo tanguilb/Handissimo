@@ -113,7 +113,6 @@
                                         </div>
                                     {% endif %}
 
-
                                 </div>
                             </div>
                         </div>
@@ -496,13 +495,17 @@
                     <!-- Resources -->
                     <div class="resources col-md-12">
                         {% if organization.brochureName %}
+
                         <!-- download button -->
                         <a class="download" href="{{ asset('uploads/brochures/' ~ organization.brochureName) }}" target="_blank">
                             <div class="line download-line">
                                 <i class="fa fa-download" aria-hidden="true"></i>
-                                <p>{{ organization.brochureName }}</p>
+                                <p data-toggle="tooltip" data-placement="bottom" title="{{ organization.brochureName }}">
+                                    {{ organization.brochureName|length > 15 ? organization.brochureName|slice(0,30)~'...' : organization.brochureName }}
+                                </p>
                             </div>
                         </a>
+
                         {% endif %}
                         <!-- print button -->
                         <a class="print" href="javascript:window.print()" title="Accède aux paramètres d'impression">
@@ -514,6 +517,10 @@
                     </div>
                 </div>
             </div>
+
+            {#% include 'front/alertContent.html.twig' %#}
+            {{ render(controller("HandissimoBundle:AlertContent:new", {'id': organization.id})) }}
+
             <!-- return button -->
             <div class="row" id="return-button">
                 <div class="col-md-3 col-xs-12">
@@ -554,7 +561,6 @@
                                 Modifier la fiche
                             </a>
                         {% endif %}
-
                     {% else %}
                         <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
                             Modifier la fiche
@@ -577,5 +583,6 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
+    <script src="{{ asset('js/initAjaxForm.js') }}"></script>
 {% endblock %}
 

@@ -138,5 +138,9 @@ class AlertContent
     {
         return $this->sendingDate;
     }
-}
 
+    public function __construct()
+    {
+        $this->sendingDate = new \DateTime();
+    }
+}

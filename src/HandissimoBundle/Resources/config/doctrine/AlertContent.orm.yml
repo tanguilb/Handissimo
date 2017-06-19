@@ -18,4 +18,8 @@ HandissimoBundle\Entity\AlertContent:
             length: 255
         sendingDate:
             type: datetime
+        organization:
+            type: string
+            length: 255
+
     lifecycleCallbacks: {  }

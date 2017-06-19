@@ -58,6 +58,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions, show_mosaic_button: false }
 
+    admin.alert_content:
+        class: HandissimoBundle\Admin\AlertContentAdmin
+        arguments: [~, HandissimoBundle\Entity\AlertContent, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Signalements, show_mosaic_button: false }
+
     admin.solution:
         class: HandissimoBundle\Admin\SolutionAdmin
         arguments: [~, HandissimoBundle\Entity\Solution, ~]

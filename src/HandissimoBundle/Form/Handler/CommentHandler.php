@@ -47,6 +47,4 @@ class CommentHandler
         $this->em->persist($this->form->getData());
         $this->em->flush();
     }
-
-
 }

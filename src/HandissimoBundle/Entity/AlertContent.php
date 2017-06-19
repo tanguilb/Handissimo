@@ -138,4 +138,38 @@ class AlertContent
     {
         return $this->sendingDate;
     }
+
+    public function __construct()
+    {
+        $this->sendingDate = new \DateTime();
+    }
+    /**
+     * @var string
+     */
+    private $organization;
+
+
+    /**
+     * Set organization
+     *
+     * @param string $organization
+     *
+     * @return AlertContent
+     */
+    public function setOrganization($organization)
+    {
+        $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Get organization
+     *
+     * @return string
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
 }
