@@ -282,25 +282,25 @@ p {
     }
 }
 
-#footer-menu ul{
+#footer-menu-ul{
     list-style: none;
     margin-top: 13px;
     font-size: 1.1em;
     font-weight: 600;
 }
 @media (max-width: 992px) {
-    #footer-menu ul {
+    #footer-menu-ul {
         text-align: center;
         padding-left: 0;
     }
 }
 
-#footer-menu ul li a {
+#footer-menu-ul li a {
     text-decoration: none;
     color: #333;
 }
 
-#footer-menu ul li a:hover {
+#footer-menu-ul li a:hover {
     color: #61bdb9;
 }
 
