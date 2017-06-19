@@ -4,8 +4,8 @@
 {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/organizations-07062017.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/organedit-07062017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organizations-19062017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organedit-19062017.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 {% endblock %}
 
@@ -345,7 +345,7 @@
                 </div>
             <div class="row">
                 <div class="col-xs-12 btn-submit">
-                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview" target="_blank">prévisualiser</a>
+                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" cla ss="btn btn-default btnPreview" target="_blank">prévisualiser</a>
                 </div>
             </div>
             {{ form_end(edit_form) }}
