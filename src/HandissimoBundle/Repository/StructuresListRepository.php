@@ -21,4 +21,13 @@ class StructuresListRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function getStrucureById($id)
+    {
+        $query = $this->createQueryBuilder('sl')
+            ->select('sl.name')
+            ->where('sl.id = ' .$id)
+            ->getQuery();
+        return $query->getSingleResult();
+    }
 }

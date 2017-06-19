@@ -43,10 +43,6 @@ search_organization_name:
     defaults : { _controller: "HandissimoBundle:Ajax:organizationNameSearch" }
     methods: POST
 
-handissimo_preview:
-    path:   /view/preview/
-    defaults: { _controller: HandissimoBundle:Default:viewPreview }
-
 handissimo_alert_content:
     resource: "@HandissimoBundle/Resources/config/routing/alertContent.yml"
     prefix: /structure/{id}

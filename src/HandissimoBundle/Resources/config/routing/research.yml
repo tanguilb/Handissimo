@@ -19,6 +19,6 @@ mail_action:
     methods:  POST
 
 ajax_preview:
-    path:     /ajax/preview/
+    path:     /ajax/preview
     defaults: { _controller: "HandissimoBundle:Ajax:preview" }
-    methods:  POST
+    methods:  [GET, POST]

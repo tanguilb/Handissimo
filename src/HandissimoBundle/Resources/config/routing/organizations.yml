@@ -13,3 +13,7 @@ organizations_delete:
     defaults: { _controller: "HandissimoBundle:Organizations:delete" }
     methods:  DELETE
 
+handissimo_preview:
+    path:   /view/preview
+    defaults: { _controller: HandissimoBundle:Default:viewPreview }
+    methods: [GET, POST]

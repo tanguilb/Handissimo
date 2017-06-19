@@ -112,11 +112,15 @@ class DefaultController extends Controller
         ));
     }
 
-    public function viewPreviewAction($data)
+    public function viewPreviewAction(Request $request)
     {
-        var_dump($data);
+        $session = $request->getSession();
+        $values = $session->get('values');
+        $preview = $this->container->get('handissimo.preview');
+        $checkboxResult = $preview->findCheckboxValues($values);
         return $this->render('front/preview.html.twig', array(
-            'data' => $data,
-        ));
+            'values' => $values,
+            'checkboxResult' => $checkboxResult,
+    ));
     }
 }
