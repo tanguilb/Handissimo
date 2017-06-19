@@ -36,7 +36,12 @@ class AlertContentController extends Controller
     {
         $alertContent = new AlertContent();
         $alertForm = $this->createForm('HandissimoBundle\Form\Type\AlertContentType', $alertContent);
+        /*$alertForm = $this->get('form.factory')->createNamedBuilder('alert_content', AlertContentType::class, $alertContent)
+            ->setAction($this->generateUrl('alert_content_create', array('id' => $id)))
+            ->setMethod('POST')
+            ->getForm();*/
         $alertForm->handleRequest($request);
+
         $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
         $user = $this->container->get('security.token_storage')->getToken()->getUsername();
 

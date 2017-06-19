@@ -519,6 +519,7 @@
             </div>
 
             {#% include 'front/alertContent.html.twig' %#}
+            {#{ render(url("alert_content_create",  {'id': organization.id})) }#}
             {{ render(controller("HandissimoBundle:AlertContent:new", {'id': organization.id})) }}
 
             <!-- return button -->
@@ -570,6 +571,7 @@
             </div>
             <div class ="line-block"></div>
             {% include ':front/comment:comment.html.twig' %}
+
         </div>
     </div>
 {% endblock %}
