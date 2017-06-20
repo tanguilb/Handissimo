@@ -31,45 +31,4 @@ class AlertContentController extends Controller
             'organization' => $organization
         ));
     }
-
-    public function createAction(Request $request, $id)
-    {
-        $alertContent = new AlertContent();
-        $alertForm = $this->createForm('HandissimoBundle\Form\Type\AlertContentType', $alertContent);
-        /*$alertForm = $this->get('form.factory')->createNamedBuilder('alert_content', AlertContentType::class, $alertContent)
-            ->setAction($this->generateUrl('alert_content_create', array('id' => $id)))
-            ->setMethod('POST')
-            ->getForm();*/
-        $alertForm->handleRequest($request);
-
-        $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
-        $user = $this->container->get('security.token_storage')->getToken()->getUsername();
-
-
-        if ($alertForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            if ($user != null) {
-                $alertContent->setUser($user);
-            } else {
-                $alertContent->setUser("Anonyme");
-            }
-            $alertContent->setOrganization($organization->getName());
-            $em->persist($alertContent);
-            $em->flush();
-
-            return new JsonResponse(array('message' => 'Votre message a bien été envoyé. Merci !'), 200);
-        }
-
-        $response = new JsonResponse(
-            array(
-                'message' => 'Error',
-                'alertForm' => $this->renderView('front/alertContent.html.twig',
-                    array(
-                        'alertContent' => $alertContent,
-                        'alertForm' => $alertForm->createView(),
-                        'organization' => $organization
-                    ))), 400);
-
-        return $response;
-    }
 }

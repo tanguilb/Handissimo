@@ -518,8 +518,6 @@
                 </div>
             </div>
 
-            {#% include 'front/alertContent.html.twig' %#}
-            {#{ render(url("alert_content_create",  {'id': organization.id})) }#}
             {{ render(controller("HandissimoBundle:AlertContent:new", {'id': organization.id})) }}
 
             <!-- return button -->
@@ -587,6 +585,6 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
-    <script src="{{ asset('js/initAjaxForm.js') }}"></script>
+    <script src="{{ asset('js/alertContent.js') }}"></script>
 {% endblock %}
 

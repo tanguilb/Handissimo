@@ -1,7 +1,0 @@
-alert_content_new:
-    path:   /
-    defaults: { _controller: HandissimoBundle:AlertContent:new }
-
-alert_content_create:
-    path:  /
-    defaults: { _controller: HandissimoBundle:AlertContent:create}

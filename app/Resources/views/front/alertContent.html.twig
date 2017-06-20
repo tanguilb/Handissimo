@@ -1,14 +1,14 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alert_content">Small modal</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alert_content">Signaler un problème</button>
 
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="alert_content">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Ahhh</h4>
+                <h4 class="modal-title" id="myModalLabel">Signaler un problème</h4>
             </div>
             <div class="modal-body">
-                <form method="post" class="ajaxForm" action="{{ path('alert_content_create', {'id': organization.id }) }}" id="form_body">
+                <form method="post" class="ajaxForm" id="form_body">
                         {{ form_start(alertForm) }}
                         {{ form_errors(alertForm) }}
                         <div class="col-xs-12">
@@ -18,14 +18,16 @@
                             {{ form_widget(alertForm.choice) }}
                         </div>
                         <div class="col-xs-12">
-                            {{ form_row(alertForm.description) }}
+                            {{ form_row(alertForm.description, {'attr': {'maxlength': 300, 'rows': 6}}) }}
                         </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn modal-button" value="Envoyer">
-                        <button type="button" class="btn modal-button" data-dismiss="modal">Fermer</button>
-                    </div>
+
                     {{ form_end(alertForm) }}
                 </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn modal-button" id="alert_content-btn" value="{{ organization.id }}">Envoyer</button>
+                <button type="button" class="btn modal-button" data-dismiss="modal" id="close-modal">Fermer</button>
             </div>
         </div>
     </div>
