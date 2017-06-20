@@ -75,9 +75,7 @@ class AjaxController extends Controller
             $values = $request->request->get('value');
             $this->get('session')->set('values', $values);
 
-            //$response = new JsonResponse($this->generateUrl('handissimo_preview'));
-            return true;
-            //return $response;
+            return new Response();
         } else {
         return false;
         }

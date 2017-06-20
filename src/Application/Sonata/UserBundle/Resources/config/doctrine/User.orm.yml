@@ -26,6 +26,10 @@ Application\Sonata\UserBundle\Entity\User:
             type: string
             length: 50
             nullable: true
+        grade:
+            type: string
+            length: 50
+            nullable: true
 
     manyToMany:
         organizationsUser:
