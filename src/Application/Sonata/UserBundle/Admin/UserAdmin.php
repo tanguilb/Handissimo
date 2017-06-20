@@ -37,8 +37,22 @@ class UserAdmin extends BaseUserAdmin
         ;
         $formMapper
             ->tab('User')
+                ->with('Profile')
+            ->add('grade', ChoiceType::class, array(
+                'label' => "grade",
+                'choices' => array(
+                    'Novice' => 'Novice(plus de 10 contributions)',
+                    'Confirmé' => 'Confirmé(plus de 20 contribution)',
+                    'Expert' => 'Expert(plus de 50 contributions)',
+                ),
+                'multiple' => false,
+                'expanded' => true,
+                'required' => false,
+            ))
+                ->end()
                 ->with('General')
                     ->add('userType', ChoiceType::class, array(
+                        'label' => 'Type d\'utilisateur',
                         'choices' => array(
                             'Personne concerné par le handicap' => "je suis un particulier, concerné par le handicap",
                             'Professionnel(le)' => "Je suis un professionnel",
@@ -55,6 +69,7 @@ class UserAdmin extends BaseUserAdmin
                             'multiple' => true,
                             'placeholder' => 'choisissez la structure',
                     ))
+
                 ->end()
                 ->with('Status')
                     ->add('locked', null, array('required' => false))
