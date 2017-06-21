@@ -18,7 +18,6 @@ use HandissimoBundle\Entity\SocialStaff;
 use HandissimoBundle\Entity\Staff;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController extends Controller
 {
@@ -59,36 +58,25 @@ class ProfileController extends Controller
     public function listUserCardAction()
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            $user = $this->container->get('security.token_storage')->getToken()->getUser()->getUsernameCanonical();
-            $em = $this->getDoctrine()->getManager();
 
             /**
              * Action for recovery all contributions for organizations by user
              */
-            $query = 'SELECT * FROM organizations_audit WHERE organizations_audit.user = "' . $user . '" GROUP BY organizations_audit.id ORDER BY organizations_audit.update_datetime DESC';
-            $statement = $em->getConnection()->prepare($query);
-            $statement->execute();
-            $result = $statement->fetchAll();
-            $arrayId = [];
-            for ($key = 0; $key < count($result); $key++) {
-                array_push($arrayId, $result[$key]['id']);
-            }
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $contributions = $user->getContribution();
+            $contributionsKey = array_keys($contributions);
             $organizations = [];
-            for ($k = 0; $k < count($arrayId); $k++) {
-                array_push($organizations, $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($arrayId[$k]));
-            }
+            $existedOrganizations = [];
 
-            /**
-             * Method for recovery all contributions deleted by user
-             */
-            $queryTwo = 'SELECT * FROM organizations_audit WHERE organizations_audit.user = "' . $user . '" AND organizations_audit.revtype = "DEL" GROUP BY organizations_audit.id ORDER BY organizations_audit.update_datetime DESC';
-            $statementTwo = $em->getConnection()->prepare($queryTwo);
-            $statementTwo->execute();
-            $deletedOrganizations = $statementTwo->fetchAll();
-            $deletedResult = [];
-            for ($key = 0; $key < count($deletedOrganizations); $key++) {
-                array_push($deletedResult, $deletedOrganizations[$key]['name']);
+            foreach ($contributionsKey as $contribution) {
+                array_push($organizations, $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->findBy(['name'=>$contribution]));
             }
+            foreach ($organizations as $organization) {
+                foreach ($organization as $entity){
+                    array_push($existedOrganizations, $entity->getName());
+                }
+            }
+            $deletedResult = array_diff($contributionsKey, $existedOrganizations);
 
             return $this->render('front/profile/profile-list-user-card.html.twig', array(
                 'organizations' => $organizations,
@@ -255,12 +243,16 @@ class ProfileController extends Controller
     public function viewDetailByContributorAction($id)
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            $em = $this->getDoctrine()->getManager();
-            $query = 'SELECT organizations_audit.user, MAX(organizations_audit.update_datetime) AS updatedate, COUNT(organizations_audit.user) AS contribution FROM organizations_audit WHERE organizations_audit.id = ' . $id . ' GROUP BY organizations_audit.user';
-            $statement = $em->getConnection()->prepare($query);
-            $statement->execute();
-            $result = $statement->fetchAll();
-
+            $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $name = $organization->getName();
+            $contributions = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->getUserByOrganization();
+            $result = [];
+            foreach ($contributions as $contribution) {
+                $user = $contribution['username'];
+                if (array_key_exists($name, $contribution['contribution']) == true) {
+                    $result[$user] = $contribution['contribution'][$name];
+                }
+            }
             return $this->render('front/profile/profile-detail-contributor.html.twig', array(
                 'result' => $result,
             ));

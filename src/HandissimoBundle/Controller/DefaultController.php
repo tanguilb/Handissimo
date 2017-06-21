@@ -2,9 +2,11 @@
 
 namespace HandissimoBundle\Controller;
 
+use HandissimoBundle\Entity\AlertContent;
 use HandissimoBundle\Entity\Organizations;
 use HandissimoBundle\Entity\Solution;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use HandissimoBundle\Entity\Comment;
@@ -44,10 +46,10 @@ class DefaultController extends Controller
         ));
     }
 
-    public function standardPageAction(Organizations $organization){
-        $organizationsId = $organization->getId();
+    public function standardPageAction(Organizations $organization, $id)
+    {
         $arraypicture = array();
-        $firstPicture = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPicture($organizationsId);
+        $firstPicture = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->getFirstPicture($id);
         if($firstPicture->getFirstPicture() !== null)
         {
             array_push($arraypicture, 'uploads/first_image/' . $firstPicture->getFirstPicture());
@@ -65,18 +67,20 @@ class DefaultController extends Controller
             array_push($arraypicture, 'images/Etablissement.jpeg');
         }
 
-        $picture = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getImageByOrganizations($organizationsId);
+        $picture = $this->getDoctrine()->getRepository('HandissimoBundle:Media')->getImageByOrganizations($id);
 
         foreach ($picture as $pictures)
         {
             array_push($arraypicture, 'uploads/image/' . $pictures->getFileName());
         }
+
         $user = $this->getUser();
+        $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
+        $usero = $emuser->getOrganizationsByUser($id);
+
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
         $form = $this->createForm('HandissimoBundle\Form\Type\CommentType', $comment);
-        $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');
-        $usero = $emuser->getOrganizationsByUser($organization->getId());
 
         $formHandler = new Handler\CommentHandler($form, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'));
 
@@ -106,7 +110,6 @@ class DefaultController extends Controller
         return $this->render('front/preview.html.twig', array(
             'values' => $values,
             'checkboxResult' => $checkboxResult,
-    ));
+        ));
     }
-
 }
