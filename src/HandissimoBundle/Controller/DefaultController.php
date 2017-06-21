@@ -81,23 +81,13 @@ class DefaultController extends Controller
         $comment = new Comment();
         $comment->setOrganizationsComment($organization);
         $form = $this->createForm('HandissimoBundle\Form\Type\CommentType', $comment);
-        /*$form = $this->get('form.factory')->createNamedBuilder('add-comment', Comment::class, $comment)
-            ->setAction($this->generateUrl('structure_page', array('id' => $id)))
-            ->setMethod('POST')
-            ->getForm();*/
-
-        //$alertContent = new AlertContent();
-       // $alertForm = $this->createForm('HandissimoBundle\Form\Type\AlertContentType', $alertContent);
 
         $formHandler = new Handler\CommentHandler($form, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'));
-        //$alertFormHandler = new Handler\AlertContentHandler($alertForm, $this->get('request'), $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $alertContent, $organization);
 
         if ($formHandler->process()) {
 
             return $this->redirectToRoute('structure_page', array('id' => $organization->getId()));
-        }/* else if ($alertFormHandler->process()) {
-            return new JsonResponse(array('message' => 'Votre message a bien été envoyé. Merci !'), 200);
-        }*/
+        }
 
         $comments = $organization->getComments();
 
@@ -108,7 +98,6 @@ class DefaultController extends Controller
             'usero' => $usero,
             'organization' => $organization,
             'comments' => $comments,
-            //'alertForm' => $alertForm
         ));
     }
 
@@ -121,6 +110,6 @@ class DefaultController extends Controller
         return $this->render('front/preview.html.twig', array(
             'values' => $values,
             'checkboxResult' => $checkboxResult,
-    ));
+        ));
     }
 }

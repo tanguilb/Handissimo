@@ -3,6 +3,7 @@
 namespace HandissimoBundle\Controller;
 
 
+use HandissimoBundle\Entity\AlertContent;
 use HandissimoBundle\Entity\Organizations;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -77,7 +78,7 @@ class AjaxController extends Controller
 
             return new Response();
         } else {
-        return false;
+            return false;
         }
     }
 
@@ -118,6 +119,40 @@ class AjaxController extends Controller
             return new JsonResponse();
         }
         return false;
+    }
+
+    public function addAlertAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $form = $request->request->get('form');
+            $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($form['id']);
+            $user = $this->container->get('security.token_storage')->getToken()->getUsername();
+            $organizationName = $organization->getName();
+            $alertContent = new AlertContent();
+            $em = $this->getDoctrine()->getManager();
+            $alertContent->setOrganization($organizationName);
+            $alertContent->setDescription($form['description']);
+            $alertContent->setChoice($form['choice']);
+            $alertContent->setUser($user);
+            $em->persist($alertContent);
+            $em->flush();
+
+            $mail = \Swift_Message::newInstance();
+            $mail
+                ->setFrom('handissimo@gmail.com')
+                ->setTo('handissimo@gmail.com')
+                ->setSubject('Un message vous a été envoyé')
+                ->setBody(
+                    $this->renderView('email/alertContentMail.html.twig', array(
+                        'organizationName' => $organizationName
+                    ))
+                )
+                ->setContentType('text/html');
+
+            $this->get('mailer')->send($mail);
+            return new JsonResponse();
+        }
+        return null;
     }
 
 }

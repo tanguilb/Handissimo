@@ -428,3 +428,12 @@ h4 {
 .popover {
     max-width: 80%;
 }
+
+#alert_content-btn,
+#close-modal {
+    margin-top: 10px;
+}
+
+#text-captcha {
+    font-weight: 600;
+}

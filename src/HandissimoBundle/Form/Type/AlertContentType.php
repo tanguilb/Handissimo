@@ -27,7 +27,7 @@ class AlertContentType extends AbstractType
                     'Information erronée' => 'Information erronée',
                     'Faute d\'orthographe' => 'Faute d\'orthographe',
                     'Contenu dégradé' => 'Contenu dégradé',
-                    'Contenu explicite' => 'Contenu explicite',
+                    'Contenu inapproprié' => 'Contenu inapproprié',
                     'Autre' => 'Autre'
                 ),
             ))
