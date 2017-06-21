@@ -33,9 +33,6 @@ class OrganizationsType extends AbstractType
             ->add('name', TextType::class, array(
                 'label' => 'Nom de la structure * : ',
                 'required' => true,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('structureLogoFile', VichImageType::class, array(
                 'label' => 'Vous pouvez télécharger ici votre logo :',
@@ -45,9 +42,6 @@ class OrganizationsType extends AbstractType
             ->add('society', TextType::class, array(
                 'label' => "Nom de l'organisme gestionnaire :",
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('societyLogoFile', VichImageType::class, array(
                 'label' => 'Télécharger le logo de votre organisme gestionnaire :',
@@ -57,9 +51,6 @@ class OrganizationsType extends AbstractType
             ->add('address', TextType::class, array(
                 'label' => 'Adresse postal :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('addressComplement', TextType::class, array(
                 'label' => 'Complément d\'adresse :',
@@ -68,37 +59,22 @@ class OrganizationsType extends AbstractType
             ->add('postal', TextType::class, array(
                 'label' => 'Code postal :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('city', TextType::class, array(
                 'label' => 'Ville :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('phone_number', TextType::class, array(
                 'label' => 'Telephone :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('mail', TextType::class, array(
                 'label' => 'Email de contact :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('directorName', TextType::class, array(
                 'label' => 'Nom du responsable :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('website', TextType::class, array(
                 'label' => 'Site web :',
@@ -124,9 +100,6 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('sl')
                         ->orderBy('sl.name', 'ASC');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('disabilitytypes', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\DisabilityTypes',
@@ -139,45 +112,27 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('d')
                         ->orderBy('d.disabilityName', 'ASC');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('agemini', IntegerType::class, array(
                 'label' => 'De :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('agemaxi', IntegerType::class, array(
                 'label' => 'à :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('freeplace', IntegerType::class, array(
                 'label' => 'Nombre de personnes accompagnées :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('organizationDescription', CKEditorType::class, array(
                 'label' => "En utilisant des mots simples et des phrases courtes et en reprenant vos réponses précédentes, merci de décrire à qui s'adresse la structure, combien de personnes sont accompagnées, quel est leur handicap, quel degré d'autonomie est nécessaire pour être accompagné :",
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                 'uiColor' => '#ffffff')))
             ->add('interventionZone', TextType::class, array(
                 'label' => "Quelle est votre zone d’intervention ? Quelles sont les conditions de résidence pour accéder à la structure ?",
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('needs', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\Needs',
@@ -189,9 +144,6 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('n')
                         ->orderBy('n.needName', 'ASC');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('secondneeds', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\SecondaryNeeds',
@@ -203,16 +155,10 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('sn')
                         ->orderBy('sn.needName');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('workingDescription', CKEditorType::class, array(
                 'label' => 'En utilisant des mots simples et des phrases courtes, merci de décrire ce que propose votre structure :',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                     'uiColor' => '#ffffff',
                 ),
@@ -226,17 +172,12 @@ class OrganizationsType extends AbstractType
                 'empty_data' => false,
                 'choices_as_values' => true,
                 'required' => true,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'label' => 'Proposez-vous de la scolarisation ?'
             ))
             ->add('schoolDescription', CKEditorType::class, array(
                 'label' => false,
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
+
                 'config' => array(
                     'uiColor' => '#ffffff',
                     'placeholder' => 'Si oui, précisez : Nombre d’heure de « classe » ? Dans les murs ou à l’extérieur ? Combien de groupes/unités ? Combien de jeunes par groupe ? '
@@ -245,9 +186,6 @@ class OrganizationsType extends AbstractType
             ->add('dayDescription', CKEditorType::class, array(
                 'label' => "Description d’une journée/semaine/intervention type, le cas échéant",
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
@@ -255,9 +193,6 @@ class OrganizationsType extends AbstractType
             ->add('receptionDescription', CKEditorType::class, array(
                 'label' => "Qu'est-il prévu pour les familles ?",
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                     'uiColor' => '#ffffff',
                     'placeholder' =>
@@ -267,9 +202,6 @@ class OrganizationsType extends AbstractType
             ->add('teamMembersNumber', IntegerType::class, array(
                 'label' => 'Combien y a-t-il de personnes dans l\'équipe ?',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('stafforganizations', EntityType::class, array(
                 'class' => 'HandissimoBundle:Staff',
@@ -281,9 +213,6 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('s')
                         ->orderBy('s.jobs', 'ASC');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('socialstaffs', EntityType::class, array(
                 'class' => 'HandissimoBundle:SocialStaff',
@@ -295,9 +224,6 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('ss')
                         ->orderBy('ss.socialJobs', 'ASC');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('otherjobs', EntityType::class, array(
                 'class' => 'HandissimoBundle:OtherJob',
@@ -310,9 +236,6 @@ class OrganizationsType extends AbstractType
                     return $er->createQueryBuilder('ot')
                         ->orderBy('ot.name');
                 },
-                'attr' => array(
-                    'class' => 'stat',
-                ),
             ))
             ->add('commentStaff', CKEditorType::class, array(
                 'label' => 'Commentaire éventuel sur l’équipe :',
@@ -330,9 +253,6 @@ class OrganizationsType extends AbstractType
             ->add('inscription', CKEditorType::class, array(
                 'label' => 'Si oui, précisez la procèdure d\'admission, si non, précisez les modalités d\'inscription',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
@@ -346,17 +266,11 @@ class OrganizationsType extends AbstractType
                 'empty_value' => false,
                 'choices_as_values' => true,
                 'label' => 'Notification Mdph',
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'required' => true
 
             ))
             ->add('openhours', TextType::class, array(
                 'label' => 'Heures d\'ouverture :',
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'required' => false
             ))
             ->add('opendays', ChoiceType::class, array(
@@ -364,9 +278,6 @@ class OrganizationsType extends AbstractType
                 'required' => false,
                 'choices' => array('Lundi' => 'Lundi', 'Mardi' => 'Mardi', 'Mercredi' => 'Mercredi', 'Jeudi' => 'Jeudi', 'Vendredi' => 'Vendredi', 'Samedi' => 'Samedi', 'Dimanche' => 'Dimanche'),
                 'multiple' => true,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'expanded' => true
             ))
             ->add('opendaysYear', ChoiceType::class, array(
@@ -379,17 +290,11 @@ class OrganizationsType extends AbstractType
                     'Pendant les vacances scolaires uniquement' => 'Pendant les vacances scolaires uniquement',
                     'Les week-ends' => 'Les week-ends'),
                 'multiple' => true,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'expanded' => true
             ))
             ->add('cost' , CKEditorType::class, array(
                 'label' => 'Combien ça coûte pour l\'usager ?',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
@@ -397,9 +302,6 @@ class OrganizationsType extends AbstractType
             ->add('transport' , CKEditorType::class, array(
                 'label' => 'Transports : Comment accéder à la structure ? Les transports sont-ils organisés ? Financés ?',
                 'required' => false,
-                'attr' => array(
-                    'class' => 'stat',
-                ),
                 'config' => array(
                     'uiColor' => '#ffffff',
                 )
@@ -427,7 +329,6 @@ class OrganizationsType extends AbstractType
                     'uiColor' => '#ffffff',
                 )
             ));
-
 
         $builder->get('school')
             ->addModelTransformer(new CallbackTransformer(

@@ -10,42 +10,58 @@ namespace HandissimoBundle\Services\Revisions;
 
 
 use Doctrine\ORM\EntityManager;
-use HandissimoBundle\Entity\Participation;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ParticipationDate
 {
+    protected $em;
+    protected $container;
 
-    public function searchUserParticipation($lastDate, $participation)
+    public function __construct(EntityManager $em, ContainerInterface $container)
     {
-        $array = array();
+        $this->em = $em;
+        $this->container = $container;
+    }
+
+    public function searchUserParticipation()
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $userGrade = $user->getGrade();
+        $lastDate = $user->getLastDate();
+        $participation = $user->getParticipation();
         $date = date('Y-m-d H:i:s');
+        $lastDateSec = strtotime($lastDate);
+        $dateSec = strtotime($date);
+        $diff = $dateSec - $lastDateSec;
+        $array = array();
 
-
+        if($userGrade === 'Novice'){
+            $nbParticipation = 20;
+        } elseif ($userGrade === 'Confirmé'){
+            $nbParticipation = 50;
+        } elseif ($userGrade === 'Expert'){
+            $nbParticipation = 500;
+        } else {
+            $nbParticipation = 10;
+        }
         if($lastDate === null and $participation === null)
         {
             $participation = 1;
 
             array_push($array, $date, $participation);
-        } elseif ($lastDate !== null )
-        {
-            $lastDateSec = strtotime($lastDate);
-            $dateSec = strtotime($date);
-            $diff = $dateSec - $lastDateSec;
-            if ($diff < 48600 and $participation < 10)
-            {
-                $participation = $participation + 1;
-                array_push($array, $lastDate, $participation);
-            }
-            if ($diff > 48600)
+        } elseif ($lastDate !== null ) {
+            if ($diff < 48600){
+                if($participation < $nbParticipation){
+                    $participation = $participation + 1;
+                    array_push($array, $lastDate, $participation);
+                }
+            } elseif($diff > 48600)
             {
                 $participation = 1;
                 array_push($array, $date, $participation);
             }
-
-
         }
         return $array;
-
     }
 
 }

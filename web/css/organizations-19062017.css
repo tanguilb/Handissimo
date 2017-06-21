@@ -420,6 +420,11 @@ h4 {
     color: #fff;
 }
 
+.download-line .tooltip-inner {
+    background-color: #0a0a0a;
+    max-width: none;
+}
+
 .popover {
     max-width: 80%;
 }

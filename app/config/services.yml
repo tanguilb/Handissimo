@@ -58,6 +58,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions, show_mosaic_button: false }
 
+    admin.alert_content:
+        class: HandissimoBundle\Admin\AlertContentAdmin
+        arguments: [~, HandissimoBundle\Entity\AlertContent, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Signalements, show_mosaic_button: false }
+
     admin.solution:
         class: HandissimoBundle\Admin\SolutionAdmin
         arguments: [~, HandissimoBundle\Entity\Solution, ~]
@@ -136,6 +142,7 @@ services:
 
     handissimo.participation:
         class: HandissimoBundle\Services\Revisions\ParticipationDate
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
 
 
     handissimo.revert_version:
@@ -145,3 +152,7 @@ services:
     handissimo.preview:
         class: HandissimoBundle\Services\Preview\Preview
         arguments: ['@doctrine.orm.entity_manager']
+
+    handissimo.mailer.participation:
+        class: HandissimoBundle\Services\Revisions\MailerParticipation
+        arguments: ['@doctrine.orm.entity_manager', '@mailer']

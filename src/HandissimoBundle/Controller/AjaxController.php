@@ -117,6 +117,7 @@ class AjaxController extends Controller
             $statement->execute();
             return new JsonResponse();
         }
+        return false;
     }
 
 }

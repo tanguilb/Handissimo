@@ -25,21 +25,34 @@ class OrganizationsController extends Controller
     {
         $organization = new Organizations();
         $form = $this->createForm('HandissimoBundle\Form\Type\OrganizationsType', $organization);
-        $user = $this->container->get('security.token_storage')->getToken()->getUser()->getUsernameCanonical();
-        $userId = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $userGrade = $user->getGrade();
 
-        $lastDate = $this->container->get('security.token_storage')->getToken()->getUser()->getLastDate();
-        $participation = $this->container->get('security.token_storage')->getToken()->getUser()->getParticipation();
+        $lastDate = $user->getLastDate();
+        $participation = $user->getParticipation();
         $date = date('Y-m-d H:i:s');
         $lastDateSec = strtotime($lastDate);
         $dateSec = strtotime($date);
         $diff = $dateSec - $lastDateSec;
-        if ($diff < 48600 and $participation <= 10){
 
-        $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
-            if ($formHandler->process()){
-                $this->addFlash('notice', 'La fiche a bien été créé');
-                return $this->redirectToRoute('sonata_user_profile_edit');
+        if($userGrade === 'Novice'){
+            $nbParticipation = 20;
+        } elseif ($userGrade === 'Confirmé'){
+            $nbParticipation = 50;
+        } elseif ($userGrade === 'Expert'){
+            $nbParticipation = 500;
+        } else {
+            $nbParticipation = 10;
+        }
+        if ($diff < 48600){
+            if($participation < $nbParticipation){
+                $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $nbParticipation);
+                if ($formHandler->process()){
+                    $this->addFlash('notice', 'La fiche a bien été créé');
+                    return $this->redirectToRoute('sonata_user_profile_edit');
+                }
+            } else {
+                return $this->render('front/profile/profile-dont-edit.html.twig');
             }
         } elseif($diff > 48600)
         {
@@ -48,10 +61,7 @@ class OrganizationsController extends Controller
                 $this->addFlash('notice', 'La fiche a bien été créé');
                 return $this->redirectToRoute('sonata_user_profile_edit');
             }
-        }else{
-            return $this->render('front/profile/profile-dont-edit.html.twig');
         }
-
         return $this->render('organizations/new.html.twig', array(
             'organization' => $organization,
             'form' => $form->createView(),
@@ -99,6 +109,43 @@ class OrganizationsController extends Controller
                 }
             }
             return $this->render(':front/profile:profile-dont-edit.html.twig');
+        }
+
+        $userGrade = $user->getGrade();
+
+        $lastDate = $user->getLastDate();
+        $participation = $user->getParticipation();
+        $date = date('Y-m-d H:i:s');
+        $lastDateSec = strtotime($lastDate);
+        $dateSec = strtotime($date);
+        $diff = $dateSec - $lastDateSec;
+
+        if($userGrade === 'Novice'){
+            $nbParticipation = 20;
+        } elseif ($userGrade === 'Confirmé'){
+            $nbParticipation = 50;
+        } elseif ($userGrade === 'Expert'){
+            $nbParticipation = 500;
+        } else {
+            $nbParticipation = 10;
+        }
+        if ($diff < 4860){
+            if($participation < $nbParticipation){
+                $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+                if ($formHandler->process()){
+                    $this->addFlash('notice', 'La fiche a bien été créé');
+                    return $this->redirectToRoute('sonata_user_profile_edit');
+                }
+            } else {
+                return $this->render('front/profile/profile-dont-edit.html.twig');
+            }
+        } elseif($diff > 48600)
+        {
+            $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
+            if ($formHandler->process()){
+                $this->addFlash('notice', 'La fiche a bien été créé');
+                return $this->redirectToRoute('sonata_user_profile_edit');
+            }
         }
 
         return $this->render('organizations/edit.html.twig', array(

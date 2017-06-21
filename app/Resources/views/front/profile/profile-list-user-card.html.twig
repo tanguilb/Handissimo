@@ -9,10 +9,11 @@
         {% for organization in organizations %}
             {% if organization != null %}
                 <div class="col-xs-12">
-                    <a href="{{ path('structure_page', {'id': organization.id}) }}" class="link-about">{{ organization.name }}</a>
+                    <a href="{{ path('structure_page', {'id': organization[0].id}) }}" class="link-about">{{ organization[0].name }}</a>
                 </div>
             {% endif %}
         {% endfor %}
+
         {% if deletedResult != null %}
             <h4>Fiches supprimées auxquelles j'ai contribué</h4>
             {% for organization in deletedResult %}

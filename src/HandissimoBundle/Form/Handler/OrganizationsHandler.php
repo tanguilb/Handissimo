@@ -9,10 +9,8 @@
 namespace HandissimoBundle\Form\Handler;
 
 
-use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Entity\Participation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,6 +31,7 @@ class OrganizationsHandler
         $this->em               = $em;
         $this->container        = $container;
         $this->organization     = $organization;
+        //$this->nbParticipations = $nbParticipations;
     }
 
     public function process()
@@ -50,22 +49,37 @@ class OrganizationsHandler
 
     public function onSuccess()
     {
-        if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))
-        {
-            $this->organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-            $this->organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
-        }
-        $lastDate = $this->container->get('security.token_storage')->getToken()->getUser()->getLastDate();
-        $participation = $this->container->get('security.token_storage')->getToken()->getUser()->getParticipation();
-
-        $participate = $this->container->get('Handissimo.participation');
-        $participationByDay = $participate->searchUserParticipation($lastDate, $participation);
 
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $this->organization->setUser($user);
+            $this->organization->setUserType($user->getUserType());
+        }
+       // $part = $this->nbParticipations;
+        $participate = $this->container->get('Handissimo.participation');
+        $participationByDay = $participate->searchUserParticipation();
         $user->setLastDate($participationByDay[0]);
         $user->setParticipation($participationByDay[1]);
 
+        /**
+         * Set All contribution for the user in a array
+         * Saving the organizations name
+         */
+        $organizationName = $this->organization->getName();
 
+        $arrayContribution = [];
+        if ($user->getContribution() != null) {
+            $arrayContribution = $user->getContribution();
+            if (array_key_exists($organizationName, $arrayContribution) == true) {
+                $arrayContribution[$organizationName] += 1;
+            } else {
+                $arrayContribution[$organizationName] = 1;
+            }
+        } else {
+            $arrayContribution[$organizationName] = 1;
+        }
+        $user->setContribution($arrayContribution);
 
         /**
          * Saving all disabilities for organizations_audit
@@ -151,7 +165,6 @@ class OrganizationsHandler
             $this->organization->setCommunJob($communJobs);
         }
         $this->em->persist($user);
-
         $this->em->persist($this->form->getData());
         $this->em->flush();
     }
