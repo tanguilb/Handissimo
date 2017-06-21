@@ -1,7 +1,6 @@
 HandissimoBundle\Entity\AlertContent:
     type: entity
     table: null
-    repositoryClass: HandissimoBundle\Repository\AlertContentRepository
     id:
         id:
             type: integer
