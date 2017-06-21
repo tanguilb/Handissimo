@@ -11,6 +11,7 @@ namespace HandissimoBundle\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
@@ -21,7 +22,7 @@ class AlertContentAdmin extends AbstractAdmin
         $listMapper
             ->add('user', null, array('label' => 'Utilisateur'))
             ->add('sendingDate', null, array('label' => 'Date d\'envoi'))
-            ->add('choice', null, array('label' => 'Motif'))
+            ->add('choice', ChoiceType::class, array('label' => 'Motif'))
             ->add('_action', null, array('actions' => array('show' => array())));
     }
 
@@ -31,7 +32,7 @@ class AlertContentAdmin extends AbstractAdmin
             ->add('user', null, array('label' => 'Utilisateur'))
             ->add('sendingDate', null, array('label' => 'Date d\'envoi'))
             ->add('organization', null, array('label' => 'Nom de la structure'))
-            ->add('choice', null, array('label' => 'Motif'))
+            ->add('choice', ChoiceType::class, array('label' => 'Motif'))
             ->add('description', null, array('label' => 'Description'));
     }
 

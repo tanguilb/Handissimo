@@ -433,3 +433,7 @@ h4 {
 #close-modal {
     margin-top: 10px;
 }
+
+#text-captcha {
+    font-weight: 600;
+}

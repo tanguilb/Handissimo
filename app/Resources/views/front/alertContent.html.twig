@@ -23,6 +23,21 @@
 
                     {{ form_end(alertForm) }}
                 </form>
+                {% set randomText = [] %}
+                {% for i in 1..5 %}
+                    {% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
+                    {% set alphaUpper = alpha|upper %}
+                    {% set randomCharacter = random(alpha ~ alphaUpper) %}
+                    {% set randomText = randomText|merge([randomCharacter]) %}
+                {% endfor %}
+                {% set randomText = randomText|join %}
+                <div class="col-xs-12">
+                    <p>Je ne suis pas un robot</p>
+                    <div id="text-captcha">{{ randomText }}</div>
+                </div>
+                <div class="col-xs-12">
+                    <input type="text" id="captcha-repeat">
+                </div>
 
             </div>
             <div class="modal-footer">

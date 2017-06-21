@@ -127,14 +127,29 @@ class AjaxController extends Controller
             $form = $request->request->get('form');
             $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($form['id']);
             $user = $this->container->get('security.token_storage')->getToken()->getUsername();
+            $organizationName = $organization->getName();
             $alertContent = new AlertContent();
             $em = $this->getDoctrine()->getManager();
-            $alertContent->setOrganization($organization->getName());
+            $alertContent->setOrganization($organizationName);
             $alertContent->setDescription($form['description']);
             $alertContent->setChoice($form['choice']);
             $alertContent->setUser($user);
             $em->persist($alertContent);
             $em->flush();
+
+            $mail = \Swift_Message::newInstance();
+            $mail
+                ->setFrom('handissimo@gmail.com')
+                ->setTo('handissimo@gmail.com')
+                ->setSubject('Un message vous a été envoyé')
+                ->setBody(
+                    $this->renderView('email/alertContentMail.html.twig', array(
+                        'organizationName' => $organizationName
+                    ))
+                )
+                ->setContentType('text/html');
+
+            $this->get('mailer')->send($mail);
             return new JsonResponse();
         }
         return null;
