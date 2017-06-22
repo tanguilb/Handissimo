@@ -9,7 +9,6 @@
 namespace Application\Sonata\UserBundle\Admin;
 
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
@@ -37,17 +36,16 @@ class UserAdmin extends BaseUserAdmin
         ;
         $formMapper
             ->tab('User')
-                ->with('Profile')
-            ->add('grade', ChoiceType::class, array(
-                'label' => "grade",
-                'choices' => array(
-                    'Novice' => 'Novice(plus de 10 contributions)',
-                    'Confirmé' => 'Confirmé(plus de 20 contribution)',
-                    'Expert' => 'Expert(plus de 50 contributions)',
-                ),
-                'multiple' => false,
-                'expanded' => true,
-                'required' => false,
+            ->with('Profile')
+                ->add('grade', ChoiceType::class, array(
+                    'label' => "grade",
+                    'choices' => array(
+                        'Novice' => 'Novice(plus de 10 contributions)',
+                        'Confirmé' => 'Confirmé(plus de 20 contribution)',
+                        'Expert' => 'Expert(plus de 50 contributions)',
+                    ),
+                    'multiple' => false,
+                    'required' => false,
             ))
                 ->end()
                 ->with('General')
@@ -79,6 +77,7 @@ class UserAdmin extends BaseUserAdmin
                     ->end()
                     ->with('Groups')
                     ->add('groups', 'sonata_type_model', array(
+                        'choices_as_values' => true,
                         'required' => false,
                         'expanded' => true,
                         'multiple' => true,
@@ -99,7 +98,6 @@ class UserAdmin extends BaseUserAdmin
                 ->remove('gplusUid')
                 ->remove('gplusName')
         ->end();
-
     }
 
     protected function configureShowFields(ShowMapper $showMapper)

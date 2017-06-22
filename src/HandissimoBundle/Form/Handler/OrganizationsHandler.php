@@ -31,7 +31,6 @@ class OrganizationsHandler
         $this->em               = $em;
         $this->container        = $container;
         $this->organization     = $organization;
-        //$this->nbParticipations = $nbParticipations;
     }
 
     public function process()
@@ -56,7 +55,6 @@ class OrganizationsHandler
             $this->organization->setUser($user);
             $this->organization->setUserType($user->getUserType());
         }
-       // $part = $this->nbParticipations;
         $participate = $this->container->get('Handissimo.participation');
         $participationByDay = $participate->searchUserParticipation();
         $user->setLastDate($participationByDay[0]);

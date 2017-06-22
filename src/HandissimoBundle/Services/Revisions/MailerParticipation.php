@@ -9,48 +9,64 @@
 namespace HandissimoBundle\Services\Revisions;
 
 
-use Doctrine\ORM\EntityManager;
 use Swift_Mailer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 class MailerParticipation
 {
-    protected $em;
     protected $mailer;
     protected $container;
-    protected $message;
+    protected $templating;
 
-    public function __construct(EntityManager $em, Swift_Mailer $mailer, ContainerInterface $container, \Swift_Message $message)
+    public function __construct(Swift_Mailer $mailer, ContainerInterface $container, TwigEngine $templating)
     {
-        $this->em        = $em;
-        $this->mailer    = $mailer;
-        $this->container = $container;
-        $this->message   = $message;
+        $this->mailer     = $mailer;
+        $this->container  = $container;
+        $this->templating = $templating;
     }
 
-    public function sendEmailParticipation($organizationName)
+    public function sendEmailParticipation()
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        $participation = $user->getParticipation();
-        $message = \Swift_Message::newInstance();
+        $contributions = $user->getContribution();
+        $participation = 0;
+        foreach($contributions as $organizationName => $contribution)
+        {
+            $participation += $contribution;
+        }
+        $template ="";
+
         if ($participation == 1)
         {
-
-            $message
-                ->setFrom('handissimo@gmail.com')
-                ->setTo('handissimo@gmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'Emails/newParticipation.html.twig',
-                        array(
-                            'user' => $user,
-                            'organizationName' => $organizationName,
-                            )
-                    ),
-                    'text/html'
-                );
+            $template = 'email/newParticipation.html.twig';
+        } elseif($participation == 10 or $participation == 20 or $participation == 50)
+        {
+            $template = 'email/graduateParticipation.html.twig';
         }
-        $this->mailer->send($message);
+        if($participation == 1 or $participation == 10 or $participation == 20 or $participation == 50)
+        {
+        $message = \Swift_Message::newInstance();
+        $message
+            ->setFrom('handissimo@gmail.com')
+            ->setTo('handissimo@gmail.com')
+            ->setBody(
+                $this->templating->render(
+                    $template,
+                    array(
+                        'user' => $user,
+                        'participation' => $participation,
+                        'contributions' => $contributions,
+                    )
+                ),
+                'text/html'
+            );
+
+            return $this->mailer->send($message);
+        } else {
+            return null;
+        }
+
 
     }
 }

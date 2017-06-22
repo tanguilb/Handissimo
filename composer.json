@@ -34,7 +34,7 @@
         "twig/twig": "1.28.2",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "helios-ag/fm-elfinder-bundle": "^6.2",
-        "vich/uploader-bundle": "^1.5",
+        "vich/uploader-bundle": "1.5.3",
         "beberlei/DoctrineExtensions": "^1.0",
         "simplethings/entity-audit-bundle": "^1.0"
     },

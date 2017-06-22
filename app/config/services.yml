@@ -4,77 +4,94 @@ parameters:
 #    parameter_name: value
 
 services:
+    admin.edit:
+        class: HandissimoBundle\Admin\EditContentAdmin
+        arguments: [~, HandissimoBundle\Entity\EditContent, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Pages éditables }
+    admin.users:
+        class: Application\Sonata\UserBundle\Admin\UserAdmin
+        arguments: [~, Application\Sonata\UserBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des utilisateurs }
+
     admin.organizations:
         class: HandissimoBundle\Admin\OrganizationsAdmin
         arguments: [~, HandissimoBundle\Entity\Organizations, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Créer ou modifier une fiche }
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des fiches créées }
 
     admin.disabilitytypes:
         class: HandissimoBundle\Admin\DisabilityTypesAdmin
         arguments: [~, HandissimoBundle\Entity\DisabilityTypes, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Types de handicaps }
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Types de handicaps }
 
     admin.structureslist:
         class: HandissimoBundle\Admin\StructuresListAdmin
         arguments: [~, HandissimoBundle\Entity\StructuresList, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Liste des structures }
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Liste des structures }
+
+    admin.structuretype:
+        class: HandissimoBundle\Admin\StructureTypeAdmin
+        arguments: [~, HandissimoBundle\Entity\StructureType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Types de structures }
 
     admin.staff:
         class: HandissimoBundle\Admin\StaffAdmin
         arguments: [~, HandissimoBundle\Entity\Staff, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Personnel de soins }
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Personnel de soins }
 
     admin.socialstaff:
         class: HandissimoBundle\Admin\SocialStaffAdmin
         arguments: [~, HandissimoBundle\Entity\SocialStaff, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Personnel, label: Personnel éducatif et social }
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Personnel éducatif et social }
 
     admin.otherjob:
             class: HandissimoBundle\Admin\OtherJobAdmin
             arguments: [~, HandissimoBundle\Entity\OtherJob, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: Personnel, label: Autres métiers }
+                - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Autres métiers }
 
     admin.needs:
         class: HandissimoBundle\Admin\NeedsAdmin
         arguments: [~, HandissimoBundle\Entity\Needs, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Services primaires }
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Services primaires }
 
     admin.secondaryneeds:
         class: HandissimoBundle\Admin\SecondaryNeedsAdmin
         arguments: [~, HandissimoBundle\Entity\SecondaryNeeds, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Dossier, label: Services secondaires }
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Services secondaires }
 
     admin.opinion:
         class: HandissimoBundle\Admin\OpinionAdmin
         arguments: [~, HandissimoBundle\Entity\Opinion, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Opinions, show_mosaic_button: false }
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des messages reçus (opinion), show_mosaic_button: false }
 
     admin.alert_content:
         class: HandissimoBundle\Admin\AlertContentAdmin
         arguments: [~, HandissimoBundle\Entity\AlertContent, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Opinions sur le site, label: Signalements, show_mosaic_button: false }
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des signalements, show_mosaic_button: false }
 
     admin.solution:
         class: HandissimoBundle\Admin\SolutionAdmin
         arguments: [~, HandissimoBundle\Entity\Solution, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Gestion des demandes de solution, label: Je suis une solution, show_mosaic_button: false }
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des demandes de prise en main sur sa fiche, show_mosaic_button: false }
 
     admin.comment:
         class: HandissimoBundle\Admin\CommentAdmin
         arguments: [~, HandissimoBundle\Entity\Comment, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Gestion des commentaires, label: Commentaires, show_mosaic_button: false}
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des commentaires, show_mosaic_button: false}
 
     sonata_user.profile.form.type:
         class: Application\Sonata\UserBundle\Form\Type\ProfileType
@@ -155,4 +172,4 @@ services:
 
     handissimo.mailer.participation:
         class: HandissimoBundle\Services\Revisions\MailerParticipation
-        arguments: ['@doctrine.orm.entity_manager', '@mailer']
+        arguments: ['@mailer', '@service_container', '@templating']

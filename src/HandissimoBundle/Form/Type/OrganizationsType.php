@@ -46,7 +46,9 @@ class OrganizationsType extends AbstractType
             ->add('societyLogoFile', VichImageType::class, array(
                 'label' => 'Télécharger le logo de votre organisme gestionnaire :',
                 'required' => false,
-                'download_link' => false
+                'download_link' => false,
+
+
             ))
             ->add('address', TextType::class, array(
                 'label' => 'Adresse postal :',
@@ -87,7 +89,8 @@ class OrganizationsType extends AbstractType
             ->add('brochureFile', VichFileType::class, array(
                 'label' => 'Télécharger des documents :',
                 'required' => false,
-                'download_link' => false
+                'download_link' => false,
+
             ))
             ->add('orgaStructure', EntityType::class, array(
                 'class' => 'HandissimoBundle\Entity\StructuresList',

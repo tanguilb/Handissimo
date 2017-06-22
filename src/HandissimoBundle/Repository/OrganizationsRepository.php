@@ -8,7 +8,7 @@ use HandissimoBundle\Entity\Organizations;
 
 class OrganizationsRepository extends EntityRepository
 {
-    public function getjNearBy($lat, $long, $name, $age, $need, $disability, $structure)
+    public function getNearBy($lat, $long, $name, $age, $need, $disability, $structure)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();

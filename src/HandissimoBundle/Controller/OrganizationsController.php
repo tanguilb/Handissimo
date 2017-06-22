@@ -49,6 +49,8 @@ class OrganizationsController extends Controller
                 $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $nbParticipation);
                 if ($formHandler->process()){
                     $this->addFlash('notice', 'La fiche a bien été créé');
+                    $mailer = $this->container->get('handissimo.mailer.participation');
+                    $sendMail = $mailer->sendEmailParticipation();
                     return $this->redirectToRoute('sonata_user_profile_edit');
                 }
             } else {
@@ -59,6 +61,8 @@ class OrganizationsController extends Controller
             $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
             if ($formHandler->process()){
                 $this->addFlash('notice', 'La fiche a bien été créé');
+                $mailer = $this->container->get('handissimo.mailer.participation');
+                $sendMail = $mailer->sendEmailParticipation();
                 return $this->redirectToRoute('sonata_user_profile_edit');
             }
         }
@@ -84,6 +88,8 @@ class OrganizationsController extends Controller
         $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
         if ($formHandler->process()){
             $this->addFlash('edit', 'La fiche a été éditée');
+            $mailer = $this->container->get('handissimo.mailer.participation');
+            $sendMail = $mailer->sendEmailParticipation();
             return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
         }
 
@@ -134,6 +140,8 @@ class OrganizationsController extends Controller
                 $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
                 if ($formHandler->process()){
                     $this->addFlash('notice', 'La fiche a bien été créé');
+                    $mailer = $this->container->get('handissimo.mailer.participation');
+                    $sendMail = $mailer->sendEmailParticipation();
                     return $this->redirectToRoute('sonata_user_profile_edit');
                 }
             } else {
@@ -144,6 +152,8 @@ class OrganizationsController extends Controller
             $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
             if ($formHandler->process()){
                 $this->addFlash('notice', 'La fiche a bien été créé');
+                $mailer = $this->container->get('handissimo.mailer.participation');
+                $sendMail = $mailer->sendEmailParticipation();
                 return $this->redirectToRoute('sonata_user_profile_edit');
             }
         }

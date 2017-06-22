@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9a17342d32996bcd697b48e1c587f4d1",
-    "content-hash": "53cc199f536677423d8bd05d1afef051",
+    "hash": "ad0212526447596c3313df161ff13d70",
+    "content-hash": "951733f8da83b823f4550701dfbac92c",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -68,50 +68,6 @@
                 "orm"
             ],
             "time": "2017-06-16 07:29:39"
-        },
-        {
-            "name": "behat/transliterator",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "chuyskywalker/rolling-curl": "^3.1",
-                "php-yaoi/php-yaoi": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Behat\\Transliterator": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Artistic-1.0"
-            ],
-            "description": "String transliterator",
-            "keywords": [
-                "i18n",
-                "slug",
-                "transliterator"
-            ],
-            "time": "2017-04-04 11:38:05"
         },
         {
             "name": "cocur/slugify",
@@ -4734,21 +4690,19 @@
         },
         {
             "name": "vich/uploader-bundle",
-            "version": "1.6.0",
+            "version": "1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
-                "reference": "56c0d3ad6fc7c92bae7b05e46b3b9b5be0ec5ecc"
+                "reference": "b6afe1d4615480575bc70013a83c67f4b9423ed8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/56c0d3ad6fc7c92bae7b05e46b3b9b5be0ec5ecc",
-                "reference": "56c0d3ad6fc7c92bae7b05e46b3b9b5be0ec5ecc",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/b6afe1d4615480575bc70013a83c67f4b9423ed8",
+                "reference": "b6afe1d4615480575bc70013a83c67f4b9423ed8",
                 "shasum": ""
             },
             "require": {
-                "behat/transliterator": "^1.2",
-                "doctrine/annotations": "^1.3",
                 "jms/metadata": "^1.6",
                 "php": "^7.0",
                 "symfony/asset": "^2.8|^3.1",
@@ -4773,6 +4727,7 @@
                 "symfony/css-selector": "^2.8|^3.1",
                 "symfony/dom-crawler": "^2.8|^3.1",
                 "symfony/form": "^2.8|^3.1",
+                "symfony/proxy-manager-bridge": "^2.8|^3.1",
                 "symfony/twig-bridge": "^2.8.10|^3.1",
                 "symfony/twig-bundle": "^2.8|^3.1",
                 "symfony/validator": "^2.8|^3.1",
@@ -4784,14 +4739,13 @@
                 "doctrine/orm": "^2.5",
                 "doctrine/phpcr-odm": "^1.0",
                 "knplabs/knp-gaufrette-bundle": "^0.4",
-                "liip/imagine-bundle": "^1.7",
                 "symfony/yaml": "^2.8|^3.1",
                 "willdurand/propel-eventdispatcher-bundle": "^1.2"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -4815,7 +4769,7 @@
                 "file uploads",
                 "upload"
             ],
-            "time": "2017-06-06 13:42:13"
+            "time": "2017-04-07 07:19:32"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -4859,6 +4813,50 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "behat/transliterator",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Transliterator.git",
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "chuyskywalker/rolling-curl": "^3.1",
+                "php-yaoi/php-yaoi": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Transliterator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Artistic-1.0"
+            ],
+            "description": "String transliterator",
+            "keywords": [
+                "i18n",
+                "slug",
+                "transliterator"
+            ],
+            "time": "2017-04-04 11:38:05"
+        },
         {
             "name": "doctrine/data-fixtures",
             "version": "v1.2.2",

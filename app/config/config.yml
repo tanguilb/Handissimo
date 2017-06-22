@@ -137,6 +137,42 @@ sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
 
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [Modération]
+            -
+                position: right
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [Contenus éditables]
+
+        groups:
+            Modération:
+                items:
+                    - admin.users
+                    - admin.organizations
+                    - admin.opinion
+                    - admin.comment
+                    - admin.solution
+                    - admin.alert_content
+            Contenus éditables:
+                items:
+                    - admin.disabilitytypes
+                    - admin.structureslist
+                    - admin.structuretype
+                    - admin.needs
+                    - admin.secondaryneeds
+                    - admin.staff
+                    - admin.socialstaff
+                    - admin.otherjob
+                    - admin.edit
+
+
+
 sonata_doctrine_orm_admin:
     templates:
         types:
@@ -307,14 +343,13 @@ vich_uploader:
     db_driver: orm
     mappings:
         organizations_brochures:
-            uri_prefix: /brochures
+            uri_prefix: /uploads/brochures
             upload_destination: '%kernel.root_dir%/../web/uploads/brochures'
             namer: vich_uploader.namer_origname
 
         organizations_societyLogo:
             uri_prefix: /uploads/societyLogo
             upload_destination: '%kernel.root_dir%/../web/uploads/societyLogo'
-            inject_on_load:     true
             namer: vich_uploader.namer_origname
 
         organizations_structureLogo:

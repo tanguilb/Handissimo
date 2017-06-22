@@ -19,10 +19,13 @@ class OpinionAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add( 'firstName' , null, array ( 'label' => 'Prénom') )
-            ->add( 'lastName' , null, array ( 'label' => 'Nom') )
+            //->add( 'firstName' , null, array ( 'label' => 'Prénom') )
+            //->add( 'lastName' , null, array ( 'label' => 'Nom') )
+            ->add('rereading', 'boolean', array('editable' => true, 'label' => 'Relu'))
+
             ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
             ->add( 'creationDate' , null, array ( 'label' => 'Date du message') )
+            ->add( 'message', null, array( 'label' => 'Message'))
             ->add('_action', null, array('actions' => array('show' => array())));
     }
 

@@ -22,5 +22,7 @@ HandissimoBundle\Entity\Opinion:
             type: text
         dateCreation:
             type: datetime
+        rereading:
+            type: boolean
 
     lifecycleCallbacks: {  }
