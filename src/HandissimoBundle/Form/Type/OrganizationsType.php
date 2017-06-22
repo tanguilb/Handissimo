@@ -49,7 +49,7 @@ class OrganizationsType extends AbstractType
                 'download_link' => false
             ))
             ->add('address', TextType::class, array(
-                'label' => 'Adresse postal :',
+                'label' => 'Adresse postale :',
                 'required' => false,
             ))
             ->add('addressComplement', TextType::class, array(

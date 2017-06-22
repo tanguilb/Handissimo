@@ -164,6 +164,7 @@
 .btn-return,
 .btn-edit,
 .btn-comment {
+    display: block;
     border-radius: 50px;
     padding:20px;
     border:2px solid #61bdb9;
@@ -172,11 +173,23 @@
     background-color: white;
     text-transform: none;
     font-weight: 600;
+    font-size: 12px;
+    width: 100%;
 }
 
-#btn-sol {
+.btn-comment {
+    width: 40%;
+    font-size: 18px;
+}
+
+#btn-sol,
+#btn-return-search {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+#btn-alert-content {
+    padding: 20px 15px 20px 15px;
 }
 
 .btn-return:hover,
@@ -221,13 +234,23 @@
     }
     .btn-return,
     .btn-edit {
-        margin-bottom: 0;
-        margin-top: 5px;
+        margin: 5px auto 0 auto;
+        width: 80%;
+        font-size: 15px;
     }
 }
 @media screen and (max-width: 360px) {
     .map {
         height:300px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .btn-return,
+    .btn-edit {
+        font-size: 15px;
+        margin: 5px auto 0 auto;
+        width: 80%;
     }
 }
 
@@ -436,4 +459,9 @@ h4 {
 
 #text-captcha {
     font-weight: 600;
+    font-size: 18px;
+}
+
+#handissimo_alert_content_description {
+    width: 80%;
 }

@@ -25,7 +25,7 @@ class AlertContentType extends AbstractType
                 'label' => 'Choix',
                 'choices' => array(
                     'Information erronée' => 'Information erronée',
-                    'Faute d\'orthographe' => 'Faute d\'orthographe',
+                    'Fautes d\'orthographe' => 'Fautes d\'orthographe',
                     'Contenu dégradé' => 'Contenu dégradé',
                     'Contenu inapproprié' => 'Contenu inapproprié',
                     'Autre' => 'Autre'

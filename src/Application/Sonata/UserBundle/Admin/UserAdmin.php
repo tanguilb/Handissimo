@@ -45,6 +45,7 @@ class UserAdmin extends BaseUserAdmin
                             'Autre' => "Autre"
                         ),
                         'multiple' => false,
+                        'choices_as_values' => true,
                         'expanded' => true
                     ))
                     ->add('organizationsUser', EntityType::class, array(

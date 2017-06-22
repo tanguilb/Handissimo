@@ -33,20 +33,10 @@ class OrganizationsAdmin extends AbstractAdmin
                         'required' => false,
                         'download_link' => false,
                     ))
-                    /*->add('structureLogo', FileType::class, array(
-                        'label' => 'Si vous avez un logo vous pouvez le télécharger',
-                        'required' => false,
-                        'data_class' => null,
-                    ))*/
                     ->add('society', TextType::class, array(
                         'label' => 'Non de l\'organisme gestionnaire',
                         'required' => false,
                     ))
-                    /*->add('societyLogo', FileType::class, array(
-                        'label' => 'Télécharger le logo de la société',
-                        'required' => false,
-                        'data_class' => null,
-                    ))*/
                     ->add('address', TextType::class, array(
                         'label' => 'Adresse postale',
                         'required' => false
@@ -83,25 +73,17 @@ class OrganizationsAdmin extends AbstractAdmin
                         'label' => 'Facebook',
                         'required' => false
                     ))
-                    /*->add('brochures', FileType::class, array(
-                        'label' => 'Télécharger des documents',
-                        'required' => false,
-                        'data_class' => null,
-                    ))*/
                 ->end()
                 ->with('Choississez votre type de structure', array('class' => 'col-md-6'))
                     ->add('orgaStructure', EntityType::class, array(
                         'class' => 'HandissimoBundle:StructuresList',
                         'label' => false,
                         'required' => false,
-                        //'choice_label' => 'structureType',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('sl')
                                 ->orderBy('sl.name', 'ASC');
                         },
                         'expanded' => true,
-                        //'group_by' => 'structureType'
-
                     ))
                 ->end()
             ->end()
@@ -300,12 +282,6 @@ class OrganizationsAdmin extends AbstractAdmin
                         'multiple' => true,
                         'expanded' => true
                     ))
-                    /*->add('update_datetime', DateTimeType::class, array(
-                        'label' => false,
-                        'pattern' => 'dd MMM y G',
-                        'attr' => array('style' => 'display:none'),
-                        'data' => new \DateTime(),
-                    ))*/
                     ->add('inscription', CKEditorType::class, array(
                         'label' => 'Comment s’inscrire ?',
                         'help' => 'Description limitée à 2000 caractères',
@@ -353,10 +329,7 @@ class OrganizationsAdmin extends AbstractAdmin
     }
 
     protected $datagridValues = array(
-
         '_sort_order' => 'DESC',
-
-        // name of the ordered field (default = the model's id field, if any)
         '_sort_by' => 'update_datetime',
     );
 
