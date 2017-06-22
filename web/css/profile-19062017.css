@@ -644,3 +644,15 @@ input:-ms-input-placeholder {
     width: 20px;
     height: 20px;
 }
+
+.checkVisibility {
+
+}
+
+.yes {
+    color: green;
+}
+
+.no {
+    color: red;
+}

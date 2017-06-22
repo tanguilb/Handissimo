@@ -28,6 +28,7 @@ class AlertContentType extends AbstractType
                     'Fautes d\'orthographe' => 'Fautes d\'orthographe',
                     'Contenu dégradé' => 'Contenu dégradé',
                     'Contenu inapproprié' => 'Contenu inapproprié',
+                    'Commentaire inapproprié' => 'Commentaire inapproprié',
                     'Autre' => 'Autre'
                 ),
             ))

@@ -29,7 +29,7 @@ class CommentAdmin extends AbstractAdmin
             ->add('title', null, array(
                 'label' => 'Sujet'
             ))
-            ->add('status', 'boolean', array(
+            ->add('statusComment', 'boolean', array(
                 'label' => 'Publication',
                 'editable' => true
             ))
@@ -43,7 +43,7 @@ class CommentAdmin extends AbstractAdmin
             ->add('author', null, array('label' => 'Auteur'))
             ->add('title', null, array('label' => 'Sujet'))
             ->add('content', null, array('label' => 'Message'))
-            ->add('status', null, array('label' => 'Statut'));
+            ->add('statusComment', null, array('label' => 'Statut'));
     }
 
     protected function configureRoutes(RouteCollection $collection)

@@ -5,17 +5,27 @@
         <h3 class="title-search">Dernières fiches créées</h3>
     </div>
     <div class="block-profil-list">
-        <div class="col-md-6 title-column">Nom de la structure</div>
-        <div class="col-md-6 title-column">Dernière mise à jour</div>
+        <div class="col-md-5 title-column">Nom de la structure</div>
+        <div class="col-md-5 title-column">Dernière mise à jour</div>
+        <div class="col-md-2 title-column">Vérifié</div>
         {% for results in pagination %}
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <a href="{{ path('handissimo_profile_version', {'id': results.id}) }}" class="link-about"
                    data-toggle="tooltip" data-placement="bottom" title="{{ results.name }}">
                     {{ results.name|length > 30 ? results.name|slice(0,30)~'...' : results.name }}
                 </a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 {{ results.updateDatetime|localizeddate }}
+            </div>
+            <div class="col-md-2">
+                {% if results.checked == 1 %}
+                    <input type="checkbox" checked="checked" class="checkVisibility" name="checkbox" id="{{ results.id }}" value="value">
+                    <label class="yes" for="{{ results.id }}">Oui</label>
+                {% else %}
+                    <input type="checkbox" class="checkVisibility" name="checkbox" id="{{ results.id }}" value="value">
+                    <label class="no" for="{{ results.id }}"></label>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
@@ -32,4 +42,5 @@
 
 {% block javascripts %}
     <script src="{{ asset('js/popover.js') }}"></script>
+    <script src="{{ asset('js/organizationsChecked.js') }}"></script>
 {% endblock %}

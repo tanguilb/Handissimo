@@ -255,6 +255,7 @@ class ProfileController extends Controller
             }
             return $this->render('front/profile/profile-detail-contributor.html.twig', array(
                 'result' => $result,
+                'organization' => $organization
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');

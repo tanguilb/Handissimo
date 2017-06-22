@@ -34,13 +34,13 @@
                 {% endfor %}
                 {% set randomText = randomText|join %}
                 <div class="col-xs-12">
+                    Merci de recopier les lettres ci-dessous pour envoyer le message.
+                </div>
+                <div class="col-xs-12">
                     <div id="text-captcha">{{ randomText }}</div>
                 </div>
                 <div class="col-xs-12">
                     <input type="text" id="captcha-repeat">
-                </div>
-                <div class="col-xs-12">
-                    Veuillez répéter les lettres ci-dessus pour faire apparaître le bouton "Envoyer".
                 </div>
             </div>
             <div class="modal-footer">

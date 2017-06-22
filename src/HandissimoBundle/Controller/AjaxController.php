@@ -155,4 +155,30 @@ class AjaxController extends Controller
         return null;
     }
 
+    public function addCheckedAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $organization->setChecked(1);
+            $em->persist($organization);
+            $em->flush();
+            return new JsonResponse();
+        }
+        return false;
+    }
+
+    public function removeCheckedAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $organization->setChecked(0);
+            $em->persist($organization);
+            $em->flush();
+            return new JsonResponse();
+        }
+        return false;
+    }
+
 }

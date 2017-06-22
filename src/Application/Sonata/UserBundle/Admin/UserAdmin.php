@@ -68,6 +68,7 @@ class UserAdmin extends BaseUserAdmin
                         'required' => false,
                         'expanded' => true,
                         'multiple' => true,
+                        'choices_as_values' => true
                     ))
                     ->end()
                 ->remove('dateOfBirth')
