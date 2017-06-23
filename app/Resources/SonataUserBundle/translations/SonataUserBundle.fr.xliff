@@ -524,7 +524,7 @@
             </trans-unit>
             <trans-unit id="security.login.username">
                 <source>security.login.username</source>
-                <target>Pseudo ou Email</target>
+                <target>Identifiant ou Email</target>
             </trans-unit>
             <trans-unit id="security.login.password">
                 <source>security.login.password</source>

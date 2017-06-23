@@ -29,7 +29,7 @@
                 {% for i in 1..5 %}
                     {% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
                     {% set alphaUpper = alpha|upper %}
-                    {% set randomCharacter = random(alpha ~ alphaUpper) ~ " " %}
+                    {% set randomCharacter = random(alpha ~ alphaUpper)%}
                     {% set randomText = randomText|merge([randomCharacter]) %}
                 {% endfor %}
                 {% set randomText = randomText|join %}
