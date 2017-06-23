@@ -16,16 +16,20 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class OpinionAdmin extends AbstractAdmin
 {
+
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'dateCreation',
+    );
+
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            //->add( 'firstName' , null, array ( 'label' => 'Prénom') )
-            //->add( 'lastName' , null, array ( 'label' => 'Nom') )
-            ->add('rereading', 'boolean', array('editable' => true, 'label' => 'Relu'))
-
             ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
             ->add( 'creationDate' , null, array ( 'label' => 'Date du message') )
             ->add( 'message', null, array( 'label' => 'Message'))
+            ->add('rereading', 'boolean', array('editable' => true, 'label' => 'Relu'))
             ->add('_action', null, array('actions' => array('show' => array())));
     }
 
@@ -36,7 +40,8 @@ class OpinionAdmin extends AbstractAdmin
             ->add( 'firstName' , null, array ( 'label' => 'Prénom') )
             ->add( 'lastName' , null, array ( 'label' => 'Nom') )
             ->add( 'eMail' , null, array ( 'label' => 'Adresse e-mail') )
-            ->add( 'message', null, array('label' => 'Message'));
+            ->add( 'message', null, array('label' => 'Message'))
+            ->add( 'rereading', 'boolean', array('label' => 'Relu'));
     }
 
     protected function configureRoutes(RouteCollection $collection)

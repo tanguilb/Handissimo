@@ -8,6 +8,7 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -17,6 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserAdmin extends BaseUserAdmin
 {
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'lastLogin',
+    );
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);
@@ -98,6 +105,17 @@ class UserAdmin extends BaseUserAdmin
                 ->remove('gplusUid')
                 ->remove('gplusName')
         ->end();
+    }
+
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('username', null, array('label' => 'Nom de l\'utilisateur'))
+            ->add('lastLogin', null, array('label' => 'Dernière connexion'))
+            ->add('createdAt', null, array('label' => 'Date de création du compte'))
+            ->add('enabled', 'boolean', array('editable' => true, 'label' => 'Activé'))
+            ->add('locked', 'boolean', array('editable' => true, 'label' => 'Vérouillé'))
+            ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)

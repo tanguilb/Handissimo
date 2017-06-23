@@ -644,3 +644,8 @@ input:-ms-input-placeholder {
     width: 20px;
     height: 20px;
 }
+
+.grade {
+    font-weight: 900;
+    color: #65bfba;
+}

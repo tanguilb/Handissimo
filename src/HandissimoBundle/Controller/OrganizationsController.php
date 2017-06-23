@@ -54,7 +54,7 @@ class OrganizationsController extends Controller
                     return $this->redirectToRoute('sonata_user_profile_edit');
                 }
             } else {
-                return $this->render('front/profile/profile-dont-edit.html.twig');
+                return $this->render('front/profile/profile-participation-edit.html.twig', array('nbParticipation' => $nbParticipation, 'userGrade' => $userGrade));
             }
         } elseif($diff > 48600)
         {

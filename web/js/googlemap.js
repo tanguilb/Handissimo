@@ -21,40 +21,46 @@ function initMap() {
     for(var i = 0; i < coordinate.length; i++) {
         (function(index){
             var elements = JSON.parse( coordinate[i].value );
-            var locId = elements.id;
-            var url = Routing.generate('structure_page', { id: locId });
-            var contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<a href= "'+url+'" class="link-about"><h3 id="firstHeading" class="firstHeading">' + elements.name + '</h3></a>' +
-                '<div id="bodyContent">' +
-                '<p>' + elements.address + '<br>' +
-                elements.postal + '<br>' +
-                elements.city + '<br>' +
-                elements.number + '<br>' +
-                elements.mail + '<br>' +
-                '</p>' +
-                '</div>' +
-                '</div>';
-            var infoWindow = new google.maps.InfoWindow({
-                content: contentString,
-                maxWidth: 200
-            });
-            var localisation = {lat: elements.latitude, lng: elements.longitude};
-            var marker = new google.maps.Marker({
+            if(elements.latitude !== null && elements.longitude !== null)
+            {
+                var locId = elements.id;
+                var url = Routing.generate('structure_page', { id: locId });
+                console.log(elements.latitude);
 
-                position: localisation,
-                map: map,
-                title: elements.name
-            });
-            bounds.extend(localisation);
+                var contentString = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<a href= "'+url+'" class="link-about"><h3 id="firstHeading" class="firstHeading">' + elements.name + '</h3></a>' +
+                    '<div id="bodyContent">' +
+                    '<p>' + elements.address + '<br>' +
+                    elements.postal + '<br>' +
+                    elements.city + '<br>' +
+                    elements.number + '<br>' +
+                    elements.mail + '<br>' +
+                    '</p>' +
+                    '</div>' +
+                    '</div>';
+                var infoWindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    maxWidth: 200
+                });
 
-            // add function for close infowindow marker when another windows opens
-            google.maps.event.addListener(marker, 'click', function () {
-                if (typeof(window.infoopened) != 'undefined') infoopened.close();
-                infoWindow.open(map, marker);
-                infoopened = infoWindow;
-            });
+                var localisation = {lat: elements.latitude, lng: elements.longitude};
+                var marker = new google.maps.Marker({
+
+                    position: localisation,
+                    map: map,
+                    title: elements.name
+                });
+                bounds.extend(localisation);
+
+                // add function for close infowindow marker when another windows opens
+                google.maps.event.addListener(marker, 'click', function () {
+                    if (typeof(window.infoopened) != 'undefined') infoopened.close();
+                    infoWindow.open(map, marker);
+                    infoopened = infoWindow;
+                });
+            }
         })(i);
     }
     map.fitBounds(bounds);

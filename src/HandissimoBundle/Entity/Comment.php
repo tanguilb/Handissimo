@@ -261,4 +261,35 @@ class Comment
     {
         return $this->dislikeComment;
     }
+
+    /**
+     * @var boolean
+     */
+    private $rereading;
+
+
+    /**
+     * Set rereading
+     *
+     * @param boolean $rereading
+     *
+     * @return Comment
+     */
+    public function setRereading($rereading)
+    {
+        $this->rereading = $rereading;
+
+        return $this;
+    }
+
+    /**
+     * Get rereading
+     *
+     * @return boolean
+     */
+    public function getRereading()
+    {
+        return $this->rereading;
+    }
+
 }

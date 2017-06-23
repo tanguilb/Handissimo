@@ -111,7 +111,7 @@
                 </div>
                 {% endfor %}
                 {% for markerMap in result %}
-                    {% set array = {
+                    {% set arrayMarker = {
                     'id' : markerMap.id,
                     'name': markerMap.name,
                     'address': markerMap.address,
@@ -125,9 +125,11 @@
                     }
                     %}
 
-                    {% set arrayjson = array|json_encode %}
+                    {% set arrayjson = arrayMarker|json_encode %}
                     <input type="hidden" class="arrayjson" value="{{ arrayjson }}" />
                 {% endfor %}
+
+
                 <div class="col-xs-12">
                     <div class="row navigation">
                         {{ knp_pagination_render(pagination) }}

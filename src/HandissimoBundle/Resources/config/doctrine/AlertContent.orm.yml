@@ -1,7 +1,6 @@
 HandissimoBundle\Entity\AlertContent:
     type: entity
     table: null
-    repositoryClass: HandissimoBundle\Repository\AlertContentRepository
     id:
         id:
             type: integer
@@ -22,5 +21,8 @@ HandissimoBundle\Entity\AlertContent:
         organization:
             type: string
             length: 255
+        rereading:
+            type: boolean
+            nullable: true
 
     lifecycleCallbacks: {  }
