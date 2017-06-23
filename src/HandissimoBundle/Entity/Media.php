@@ -73,10 +73,10 @@ class Media
         $proportion = $widthOrigin/$heightOrigin;
 
         $x = 50*$proportion;
-        $x1 = 300*$proportion;
+        $x1 = 500*$proportion;
 
         $targetDir = imagecreatetruecolor($x, 50);
-        $targetDir1 = imagecreatetruecolor($x1, 300);
+        $targetDir1 = imagecreatetruecolor($x1, 500);
 
 
 
@@ -105,10 +105,10 @@ class Media
             $proportion = $widthOrigin/$heightOrigin;
 
             $x = 50*$proportion;
-            $x1 = 300*$proportion;
+            $x1 = 500*$proportion;
 
             $targetDir = imagecreatetruecolor($x, 50);
-            $targetDir1 = imagecreatetruecolor($x1, 300);
+            $targetDir1 = imagecreatetruecolor($x1, 500);
 
 
 

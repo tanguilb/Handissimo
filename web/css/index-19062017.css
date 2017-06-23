@@ -477,11 +477,11 @@
 .zoom:focus {
     /**adjust scale to desired size,
     add browser prefixes**/
-    -ms-transform: scale(2.5);
-    -moz-transform: scale(2.5);
-    -webkit-transform: scale(2.5);
-    -o-transform: scale(2.5);
-    transform: scale(2.5);
+    -ms-transform: scale(4.5);
+    -moz-transform: scale(4.5);
+    -webkit-transform: scale(4.5);
+    -o-transform: scale(4.5);
+    transform: scale(4.5);
     position:relative;
     z-index:100;
 }
@@ -508,7 +508,9 @@
 .carousel-inner > .item > .block-img > img {
     margin: 0 auto;
 }
-
+.modal.and.carousel {
+    position: fixed;
+}
 #video {
     text-align: center;
 }
