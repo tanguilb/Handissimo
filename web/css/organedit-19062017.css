@@ -73,32 +73,6 @@
     margin-left: 15px;
 }
 
-/******Bouton add picture****//*
-#add_picture {
-    border-radius: 50px;
-    color: white;
-    margin: 20px 0 10px auto;
-    padding: 2px 4px 2px 4px;
-    background-color: #C37095;
-    text-transform: none;
-    font-weight: 300;
-}*/
-
-/*#picture_remove {
-    background-color: #C37095;
-    padding: 2px 4px 2px 4px;
-    font-weight: 300;
-    text-transform: none;
-}*/
-#remove_img{
-    border-radius: 50px;
-    color: white;
-    margin: 0 auto 10px auto;
-    background-color: #61bdb9;
-    text-transform: none;
-    font-weight: 600;
-}
-
 .vich-image >  a > img{
     height: 60px;
     width: auto;

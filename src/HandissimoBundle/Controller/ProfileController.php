@@ -91,7 +91,6 @@ class ProfileController extends Controller
         if($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser()->getUsernameCanonical();
             $comments = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->getCommentsByUser($user);
-
             return $this->render(':front/profile:profile-comment.html.twig', array(
                 'comments' => $comments
             ));

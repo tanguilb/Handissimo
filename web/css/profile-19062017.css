@@ -491,11 +491,12 @@ input:-ms-input-placeholder {
     color: #DC7095;
 }
 
-.error-container {
+.message-container {
     position: fixed;
     margin-top: 10px;
     z-index: 997;
     font-weight: 800;
+    font-size: 18px;
 }
 
 /**********************************/
@@ -643,10 +644,6 @@ input:-ms-input-placeholder {
     display: block;
     width: 20px;
     height: 20px;
-}
-
-.checkVisibility {
-
 }
 
 .yes {

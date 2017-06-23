@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} {{ organization.name }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/organizations-19062017.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
@@ -15,7 +16,11 @@
             <div class="head-block">
                 {% if organization.user %}
                     <div class="container">
+                        {% if usero %}
+                        <p class="update">Cette fiche a été remplie par le responsable de la structure</p>
+                        {% else %}
                         <p class="update">Cette fiche a été remplie par quelqu'un qui connait la structure</p>
+                        {% endif %}
                         <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                     </div>
                 {% endif %}
@@ -549,7 +554,12 @@
                                     Modifier la fiche
                                 </a>
                             {% else %}
-                                <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
+                                <a class="btn btn-edit" id="alert-modification" role="button">Modifier la fiche</a>
+                                <div id="dialog-message" title="Attention">
+                                    <p>
+                                        Vous ne pouvez pas modifier la fiche car le responsable de cette structure a pris la main dessus.
+                                    </p>
+                                </div>
                             {% endif %}
                         {% else  %}
                             <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
@@ -576,9 +586,11 @@
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script src="{{ asset('js/popover.js') }}"></script>
     <script src="{{ asset('js/activateTab.js') }}"></script>
+    <script src="{{ asset('js/alertModification.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('js/alertContent.js') }}"></script>
 {% endblock %}
 

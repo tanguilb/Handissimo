@@ -1,5 +1,5 @@
 firstname: Prénom
-input.age: '8 ans, 60 ans... (facultatif)'
+input.age: '8 ans, 60 ans...'
 lastname: Nom
 mail: Email
 'your status': 'Votre statut'

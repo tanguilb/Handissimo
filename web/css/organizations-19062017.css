@@ -23,10 +23,11 @@
     font-size: 1.1em;
 }
 .logo{
-    width: 55px;
+    width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: auto;
 }
 
 .structure-title{
@@ -464,4 +465,8 @@ h4 {
 
 #handissimo_alert_content_description {
     width: 80%;
+}
+
+#dialog-message {
+    display: none;
 }
