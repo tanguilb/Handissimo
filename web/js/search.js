@@ -8,12 +8,12 @@ $('#research_action_disability').select2({
 });
 
 $('#research_action_structure').select2({
-    placeholder: 'Precisez le type de structure (facultatif)',
+    placeholder: 'Précisez le type de structure (facultatif)',
     multiple: false
 });
 
 $('#research_action_need').select2({
-    placeholder: 'Scolarité, soin, établissement… (facultatif)'
+    placeholder: 'Plusieurs choix possibles (facultatif)'
 });
 
 $(window).resize(function() {

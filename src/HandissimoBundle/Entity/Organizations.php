@@ -2266,7 +2266,7 @@ class Organizations
     /**
      * @var boolean
      */
-    private $pins;
+    private $pins=0;
 
 
     /**
@@ -2291,5 +2291,34 @@ class Organizations
     public function getPins()
     {
         return $this->pins;
+    }
+    /**
+     * @var boolean
+     */
+    private $checked;
+
+
+    /**
+     * Set checked
+     *
+     * @param boolean $checked
+     *
+     * @return Organizations
+     */
+    public function setChecked($checked)
+    {
+        $this->checked = $checked;
+
+        return $this;
+    }
+
+    /**
+     * Get checked
+     *
+     * @return boolean
+     */
+    public function getChecked()
+    {
+        return $this->checked;
     }
 }

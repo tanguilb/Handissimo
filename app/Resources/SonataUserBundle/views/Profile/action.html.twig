@@ -58,11 +58,6 @@
                             <button class="list-button">Mes commentaires</button>
                         </a>
                     </div>
-                    <div class="button-block">
-                        <a href="{{ path('index_action') }}">
-                            <button  class="list-button">Retour à l'accueil</button>
-                        </a>
-                    </div>
                     {% if is_granted('ROLE_SUPER_ADMIN')%}
                     <div class="button-block">
                         <div class="button-group">
@@ -101,7 +96,7 @@
         <section class="container-fluid">
             <div class=" col-md-9 col-xs-12 main-block-profil">
                 {% for flash_message in app.session.flashBag.get('notice') %}
-                    <div class="error-container">
+                    <div class="message-container">
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             {{ flash_message }}
@@ -109,7 +104,7 @@
                     </div>
                 {% endfor %}
                 {% for flash_message in app.session.flashBag.get('edit') %}
-                    <div class="error-container">
+                    <div class="message-container">
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             {{ flash_message }}

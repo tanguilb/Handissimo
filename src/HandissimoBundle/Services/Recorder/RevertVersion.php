@@ -200,6 +200,7 @@ class RevertVersion
         }
 
         $entity->setUpdateDatetime(new \DateTime());
+        $entity->setChecked(1);
         $this->em->persist($entity);
         $this->em->flush();
     }

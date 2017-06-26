@@ -95,13 +95,13 @@ services:
 
     sonata_user.profile.form.type:
         class: Application\Sonata\UserBundle\Form\Type\ProfileType
-        arguments: [%fos_user.model.user.class%]
+        arguments: ["%fos_user.model.user.class%"]
         tags:
             - { name: form.type, alias: application_sonata_user_profile }
 
     sonata_user.form.handler.profile:
         class: Application\Sonata\UserBundle\Form\Handler\ProfileFormHandler
-        arguments: ["@sonata.user.profile.form", "@request", "@fos_user.user_manager"]
+        arguments: ["@sonata.user.profile.form", "@request", "@sonata.user.user_manager"]
         scope: request
         public: false
 

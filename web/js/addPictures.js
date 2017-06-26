@@ -30,7 +30,7 @@ $(document).ready(function(){
    }
 
    function addDeleteLink($prototype) {
-       var $deleteLink = $('<a href="#" id="picture_remove" class="btn btn-default">Supprimer</a>');
+       var $deleteLink = $('<a href="#" class="link-about">Supprimer</a>');
        $prototype.append($deleteLink);
        $deleteLink.click(function(e) {
            $prototype.remove();

@@ -71,3 +71,15 @@ handissimo_profile_add_pins:
 handissimo_profile_remove_pins:
     path:   /version/{id}/remove
     defaults: { _controller: HandissimoBundle:Ajax:removePins }
+
+handissimo_profile_add_checked:
+    path:   /list/{id}/add
+    defaults: { _controller: HandissimoBundle:Ajax:addChecked }
+
+handissimo_profile_remove_checked:
+    path:   /list/{id}/remove
+    defaults: { _controller: HandissimoBundle:Ajax:removeChecked }
+
+handissimo_profile_version_checked:
+    path:   /view/{id}/{rev}/checked
+    defaults: { _controller: HandissimoBundle:Ajax:addCheckedVersion }

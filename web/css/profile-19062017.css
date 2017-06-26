@@ -74,8 +74,7 @@
     }
 }
 
-.connect-block,
-.password-block {
+.connect-block {
     border-left: 1px solid lightgrey;
 }
 
@@ -135,13 +134,8 @@ input:-ms-input-placeholder {
     }
 }
 
-#sonata_user_profile_form_firstname,
-#sonata_user_profile_form_lastname,
-#sonata_user_profile_form_website,
-#sonata_user_profile_form_phone,
-#fos_user_profile_form_username,
-#fos_user_profile_form_email,
-#fos_user_profile_form_current_password,
+#sonata_user_profile_form_username,
+#sonata_user_profile_form_email,
 #fos_user_change_password_current_password,
 #fos_user_change_password_new_first,
 #fos_user_change_password_new_second,
@@ -174,20 +168,14 @@ input:-ms-input-placeholder {
     margin-bottom:20px;
 }
 
-#sonata_user_profile_form_firstname:focus,
-#sonata_user_profile_form_lastname:focus,
-#sonata_user_profile_form_phone:focus,
-#sonata_user_profile_form_website:focus,
-#sonata_user_profile_form_gender:focus {
+#sonata_user_profile_form_username:focus,
+#sonata_user_profile_form_email:focus {
     border-color: #f7af49;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 175, 73, 0.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(247, 175, 73, 0.6);
 }
 
-#fos_user_profile_form_username:focus,
-#fos_user_profile_form_email:focus,
-#fos_user_profile_form_current_password:focus,
 #fos_user_change_password_current_password:focus,
 #fos_user_change_password_new_first:focus,
 #fos_user_change_password_new_second:focus {
@@ -232,8 +220,7 @@ input:-ms-input-placeholder {
     font-size: 30px;
 }
 
-.connect-title,
-.password-title {
+.connect-title {
     text-align: center;
     border-bottom:3px solid #65bfba;
     margin:auto;
@@ -241,13 +228,6 @@ input:-ms-input-placeholder {
     font-weight: 800;
     font-size: 30px;
 }
-/*
-.panel-info > .panel-heading,
-.panel-danger > .panel-heading,
-.panel-warning > .panel-heading {
-    background-color: #ffffff;
-    color: #0f0f0f;
-}*/
 
 /* Button */
 
@@ -491,11 +471,12 @@ input:-ms-input-placeholder {
     color: #DC7095;
 }
 
-.error-container {
+.message-container {
     position: fixed;
     margin-top: 10px;
     z-index: 997;
     font-weight: 800;
+    font-size: 18px;
 }
 
 /**********************************/
@@ -579,8 +560,7 @@ input:-ms-input-placeholder {
 #btn-detail,
 #btn-dele,
 #btn-list-home,
-#btn-list-version,
-#btn-old-version {
+#btn-return-version {
     background-color: #f7af49;
     color: #ffffff;
     border: none;
@@ -596,11 +576,37 @@ input:-ms-input-placeholder {
 #btn-dele:hover,
 #btn-list-home:hover,
 #btn-list-home:focus,
-#btn-list-version:hover,
-#btn-list-version:focus,
+#btn-return-version:hover,
+#btn-return-version:focus {
+    background-color: #FFBE49;
+    color: #ffffff;
+}
+
+#btn-old-version {
+    background-color: red;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 #btn-old-version:hover,
 #btn-old-version:focus {
-    background-color: #FFBE49;
+    background-color: #dc4735;
+    color: #ffffff;
+}
+
+#btn-list-version {
+    background-color: green;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#btn-list-version:hover,
+#btn-list-version:focus {
+    background-color: #2ca02c;
     color: #ffffff;
 }
 
@@ -643,6 +649,22 @@ input:-ms-input-placeholder {
     display: block;
     width: 20px;
     height: 20px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+#status-choice {
+    margin-bottom: 10px;
+}
+
+#title-compare {
+    text-align: center;
 }
 
 .grade {

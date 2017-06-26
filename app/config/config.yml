@@ -379,5 +379,6 @@ simple_things_entity_audit:
         - HandissimoBundle\Entity\Media
     global_ignore_columns:
         - pins
+        - checked
 
 

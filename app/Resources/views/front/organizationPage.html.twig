@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} {{ organization.name }}{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/organizations-19062017.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block body %}
@@ -15,7 +16,11 @@
             <div class="head-block">
                 {% if organization.user %}
                     <div class="container">
+                        {% if usero %}
+                        <p class="update">Cette fiche a été remplie par le responsable de la structure</p>
+                        {% else %}
                         <p class="update">Cette fiche a été remplie par quelqu'un qui connait la structure</p>
+                        {% endif %}
                         <p class="update">Dernière mise à jour le {{ organization.updateDatetime |date('d-m-Y')}} par : {{ organization.user }}, en tant que : {{ organization.userType }}</p>
                     </div>
                 {% endif %}
@@ -35,15 +40,23 @@
                     </div>
 
                 </div>
-                <!-- this is the line to display like button
-                <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
             </div>
+            <div class="row">
+                <div class="col-md-8" id="block-carousel">
+                    <!-- Carousel-->
+                        {% include 'front/carousel.html.twig' %}
 
+                </div>
+                <!-- Map -->
+                <div class="col-md-4 map-block">
+                    <div class="map col-md-12" id="map">
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
             <!-- Essential Block -->
                 <div class="essential-block col-md-8">
-                    {#{% if  organization.statut == 1 %}#}
                         <!-- Descriptions Block -->
                     <div class="block-caroussel">
                         {% include 'front/carousel.html.twig' %}
@@ -104,7 +117,6 @@
                                                 </p>
                                         </div>
                                     {% endif %}
-
                                 </div>
                             </div>
                         </div>
@@ -178,7 +190,6 @@
                                         {% else %}
                                             <p><i class="question fa fa-question" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Nous n'avons pas encore cette information"></i></p>
                                         {% endif %}
-
                                     </div>
                                     <div class="col-md-12">
                                         {% if organization.needs is empty or organization.secondneeds is empty or organization.workingDescription == null or organization.dayDescription == null or organization.receptionDescription %}
@@ -389,7 +400,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-4">
                     <div class="map col-md-12" id="map">
                     </div>
@@ -465,7 +475,6 @@
                             </div>
                         {% endif %}
 
-
                         {% if organization.freeDescription %}
                             <div class="col-md-12">
                                 <p class="second-title">A noter :</p>
@@ -512,28 +521,30 @@
                 </div>
             </div>
 
-            {{ render(controller("HandissimoBundle:AlertContent:new", {'id': organization.id})) }}
 
             <!-- return button -->
             <div class="row" id="return-button">
-                <div class="col-md-3 col-xs-12">
-                    <button onclick="goBack()" class="btn btn-return" role="button" >
-                        Retour à la page de résultat
+                <div class="col-md-offset-1 col-md-2 col-xs-12">
+                    <button onclick="goBack()" class="btn btn-return" role="button" id="btn-return-search">
+                        Retour à la page<br /> de résultat
                     </button>
                 </div>
-                <div class="col-md-3 col-xs-12">
+                <div class="col-md-2 col-xs-12">
                     <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
                         Retour à l'accueil
                     </a>
                 </div>
                 {% if usero == null %}
-                <div class="col-md-3 col-xs-12">
-                    <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
-                        Je suis responsable<br /> de cette solution
-                    </a>
-                </div>
+                    <div class="col-md-2 col-xs-12">
+                        <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
+                            Je suis responsable<br /> de cette solution
+                        </a>
+                    </div>
                 {% endif %}
-                <div class="col-md-3 col-xs-12">
+                <div class="col-md-2 col-xs-12">
+                    {{ render(controller("HandissimoBundle:AlertContent:new", {'id': organization.id})) }}
+                </div>
+                <div class="col-md-2 col-xs-12">
                     {% set usergood = null %}
                     {% if is_granted('ROLE_USER')%}
                         {% for userId in usero %}
@@ -549,7 +560,12 @@
                                     Modifier la fiche
                                 </a>
                             {% else %}
-                                <p class="notModify">Vous ne pouvez pas modifier cette fiche</p>
+                                <a class="btn btn-edit" id="alert-modification" role="button">Modifier la fiche</a>
+                                <div id="dialog-message" title="Attention">
+                                    <p>
+                                        Vous ne pouvez pas modifier la fiche car le responsable de cette structure a pris la main dessus.
+                                    </p>
+                                </div>
                             {% endif %}
                         {% else  %}
                             <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
@@ -576,9 +592,11 @@
     <script type="text/javascript" src="{{ asset ('js/organizationMap.js')}}"></script>
     <script src="{{ asset('js/popover.js') }}"></script>
     <script src="{{ asset('js/activateTab.js') }}"></script>
+    <script src="{{ asset('js/alertModification.js') }}"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT1ybqTsqE0Nzit6xL7PfZWcgnLmThfXc&callback=initMap">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('js/alertContent.js') }}"></script>
 {% endblock %}
 

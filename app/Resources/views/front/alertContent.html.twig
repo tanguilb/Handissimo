@@ -1,7 +1,7 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alert_content">Signaler un problème</button>
+<button type="button" class="btn btn-edit" data-toggle="modal" data-target="#alert_content" id="btn-alert-content">Signaler un problème</button>
 
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="alert_content">
-    <div class="modal-dialog modal-sm" role="document">
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="alert_content">
+    <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -18,27 +18,30 @@
                             {{ form_widget(alertForm.choice) }}
                         </div>
                         <div class="col-xs-12">
-                            {{ form_row(alertForm.description, {'attr': {'maxlength': 300, 'rows': 6}}) }}
+                            {{ form_label(alertForm.description) }}
                         </div>
-
+                        <div class="col-xs-12">
+                            {{ form_widget(alertForm.description, {'attr': {'maxlength': 300, 'rows': 6}}) }}
+                        </div>
                     {{ form_end(alertForm) }}
                 </form>
                 {% set randomText = [] %}
                 {% for i in 1..5 %}
                     {% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
                     {% set alphaUpper = alpha|upper %}
-                    {% set randomCharacter = random(alpha ~ alphaUpper) %}
+                    {% set randomCharacter = random(alpha ~ alphaUpper)%}
                     {% set randomText = randomText|merge([randomCharacter]) %}
                 {% endfor %}
                 {% set randomText = randomText|join %}
                 <div class="col-xs-12">
-                    <p>Je ne suis pas un robot</p>
+                    Merci de recopier les lettres ci-dessous pour envoyer le message.
+                </div>
+                <div class="col-xs-12">
                     <div id="text-captcha">{{ randomText }}</div>
                 </div>
                 <div class="col-xs-12">
                     <input type="text" id="captcha-repeat">
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button class="btn modal-button" id="alert_content-btn" value="{{ organization.id }}">Envoyer</button>

@@ -51,7 +51,7 @@ class OrganizationsType extends AbstractType
 
             ))
             ->add('address', TextType::class, array(
-                'label' => 'Adresse postal :',
+                'label' => 'Adresse postale :',
                 'required' => false,
             ))
             ->add('addressComplement', TextType::class, array(

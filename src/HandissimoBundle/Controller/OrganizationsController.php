@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 class OrganizationsController extends Controller
 {
 
-
     /**
      * Creates a new organization entity.
      * @param Request $request
@@ -48,7 +47,7 @@ class OrganizationsController extends Controller
             if($participation < $nbParticipation){
                 $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization, $nbParticipation);
                 if ($formHandler->process()){
-                    $this->addFlash('notice', 'La fiche a bien été créé');
+                    $this->addFlash('notice', 'Bravo, La fiche a été mise en ligne.');
                     $mailer = $this->container->get('handissimo.mailer.participation');
                     $sendMail = $mailer->sendEmailParticipation();
                     return $this->redirectToRoute('sonata_user_profile_edit');
@@ -60,7 +59,7 @@ class OrganizationsController extends Controller
         {
             $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($form, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
             if ($formHandler->process()){
-                $this->addFlash('notice', 'La fiche a bien été créé');
+                $this->addFlash('notice', 'Bravo, la fiche a été mise en ligne.');
                 $mailer = $this->container->get('handissimo.mailer.participation');
                 $sendMail = $mailer->sendEmailParticipation();
                 return $this->redirectToRoute('sonata_user_profile_edit');
@@ -87,10 +86,10 @@ class OrganizationsController extends Controller
         $user = $this->getUser();
         $formHandler = new \HandissimoBundle\Form\Handler\OrganizationsHandler($editForm, $request, $this->get('doctrine.orm.default_entity_manager'), $this->get('service_container'), $organization);
         if ($formHandler->process()){
-            $this->addFlash('edit', 'La fiche a été éditée');
+            $this->addFlash('edit', 'Vos modifications ont bien été prises en compte. Merci pour votre participation.');
             $mailer = $this->container->get('handissimo.mailer.participation');
             $sendMail = $mailer->sendEmailParticipation();
-            return $this->redirectToRoute('organizations_edit', array('id' => $organization->getId()));
+            return $this->redirectToRoute('sonata_user_profile_edit');
         }
 
         $emuser = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User');

@@ -8,10 +8,8 @@
  */
 namespace Application\Sonata\UserBundle\Form\Type;
 
-use Sonata\UserBundle\Model\UserInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -36,31 +34,17 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', 'sonata_user_gender', array(
-                'label' => 'form.label_gender',
-                'required' => true,
-                'translation_domain' => 'SonataUserBundle',
+            ->add('usertype', ChoiceType::class, array(
                 'choices' => array(
-                    UserInterface::GENDER_FEMALE => 'gender_female',
-                    UserInterface::GENDER_MALE => 'gender_male',
+                    'Particulier' => "je suis un particulier",
+                    'Professionnel(le)' => "Je suis un professionnel",
+                    'Autre' => "Autre"
                 ),
+                'multiple' => false,
+                'expanded' => true
             ))
-            ->add('firstname', null, array(
-                'label' => 'form.label_firstname',
-                'required' => false,
-            ))
-            ->add('lastname', null, array(
-                'label' => 'form.label_lastname',
-                'required' => false,
-            ))
-            ->add('website', 'url', array(
-                'label' => 'form.label_website',
-                'required' => false,
-            ))
-            ->add('phone', null, array(
-                'label' => 'form.label_phone',
-                'required' => false,
-            ))
+            ->add('username', null, array())
+            ->add('email', null, array())
         ;
     }
 
