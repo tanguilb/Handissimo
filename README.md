@@ -3,7 +3,7 @@ handissimo
 
 A Symfony project created on November 16, 2016, 10:57 am.
 
-###1-Installation of project
+### 1-Installation of project
 
 - Copy the source code to the server.
 - Create the database.
