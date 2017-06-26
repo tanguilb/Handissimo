@@ -73,7 +73,7 @@ services:
         class: HandissimoBundle\Admin\OpinionAdmin
         arguments: [~, HandissimoBundle\Entity\Opinion, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des messages reçus (opinion), show_mosaic_button: false }
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des messages reçus, show_mosaic_button: false }
 
     admin.alert_content:
         class: HandissimoBundle\Admin\AlertContentAdmin
@@ -85,7 +85,7 @@ services:
         class: HandissimoBundle\Admin\SolutionAdmin
         arguments: [~, HandissimoBundle\Entity\Solution, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des demandes de prise en main sur sa fiche, show_mosaic_button: false }
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des demandes de prise en main, show_mosaic_button: false }
 
     admin.comment:
         class: HandissimoBundle\Admin\CommentAdmin

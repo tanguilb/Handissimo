@@ -509,6 +509,7 @@
     margin: 0 auto;
 }
 .modal.and.carousel {
+    margin-top: 12%;
     position: fixed;
 }
 #video {

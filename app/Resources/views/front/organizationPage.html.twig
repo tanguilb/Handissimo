@@ -38,25 +38,16 @@
                 <!-- this is the line to display like button
                 <div class="like col-md-1 col-sm-1"><i class="fa fa-heart-o " aria-hidden="true"></i></div> --->
             </div>
-            {#<div class="row">
-                <div class="col-md-8" id="block-carousel">
-                    <!-- Carousel-->
-                        {% include 'front/carousel.html.twig' %}
 
-                </div>
-                <!-- Map -->
-                <div class="col-md-4 map-block">
-                    <div class="map col-md-12" id="map">
-                    </div>
-                </div>
-            </div>#}
 
             <div class="row">
             <!-- Essential Block -->
                 <div class="essential-block col-md-8">
                     {#{% if  organization.statut == 1 %}#}
                         <!-- Descriptions Block -->
-                    {% include 'front/carousel.html.twig' %}
+                    <div class="block-caroussel">
+                        {% include 'front/carousel.html.twig' %}
+                    </div>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="organization-panel">
