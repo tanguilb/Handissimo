@@ -41,22 +41,15 @@
 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8" id="block-carousel">
-                    <!-- Carousel-->
-                        {% include 'front/carousel.html.twig' %}
-                </div>
-                <!-- Map -->
-                <div class="col-md-4 map-block">
-                    <div class="map col-md-12" id="map">
-                    </div>
-                </div>
-            </div>
+
 
             <div class="row">
             <!-- Essential Block -->
                 <div class="essential-block col-md-8">
                         <!-- Descriptions Block -->
+                    <div class="block-caroussel">
+                        {% include 'front/carousel.html.twig' %}
+                    </div>
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="organization-panel">
@@ -397,6 +390,8 @@
                 </div>
 
                 <div class="col-md-4">
+                    <div class="map col-md-12" id="map">
+                    </div>
                     <!-- Contact block -->
                     <div class="contact-info    col-md-12">
                         {% if organization.orgaStructure %}

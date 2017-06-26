@@ -296,15 +296,34 @@
                         <p class="update">Description limitée à 2000 caractères</p>
                         <div class="col-xs-12 block-btn-prev-next">
                             <a class="btn btn-default btnPrevious" >Précédent</a>
-                            {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC')%}
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
                                 <a class="btn btn-default btnNext" >Suivant</a>
+                            {% elseif is_granted('ROLE_SOC') and usero is defined %}
+                                {% for userID in usero %}
+                                    {% if user.id == userID.id %}
+                                        <a class="btn btn-default btnNext" >Suivant</a>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
                         </div>
                         {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_SOC') %}
                             <div class="row">
 
                             </div>
+                        {% elseif is_granted('ROLE_SOC') and usero is defined %}
+                            {% for userID in usero %}
+                                {% if user.id == userID.id %}
+                                    <div class="row">
+
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         {% else %}
+                            <div class="row">
+                                <div class="col-xs-12 btn-submit">
+                                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview" target="_blank">prévisualiser</a>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-xs-12 btn-submit">
                                     <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
@@ -332,20 +351,19 @@
                         <div class="col-xs-12 block-btn-prev-next">
                             <a class="btn btn-default btnPrevious" >Précédent</a>
                         </div>
-                        {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_soc') %}
-                            <div class="row">
-                                <div class="col-xs-12 btn-submit">
-                                    <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
-                                </div>
+                        <div class="row">
+                            <div class="col-xs-12 btn-submit">
+                                <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview" target="_blank">prévisualiser</a>
                             </div>
-                        {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 btn-submit">
+                                <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            <div class="row">
-                <div class="col-xs-12 btn-submit">
-                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview" target="_blank">prévisualiser</a>
-                </div>
-            </div>
+
             {{ form_end(edit_form) }}
         </form>
         {% if app.user %}

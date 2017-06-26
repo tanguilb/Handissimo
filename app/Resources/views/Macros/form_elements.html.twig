@@ -1,9 +1,9 @@
 {% macro recaptcha(siteKey)%}
     <script src='https://www.google.com/recaptcha/api.js?hl=fr'></script>
-    <div class="g-recaptcha" data-sitekey="{{siteKey}}" data-callback="recaptchaCallback"></div>
+    <div class="g-recaptcha" data-sitekey="{{ siteKey }}" data-callback="recaptchaCallback"></div>
 {% endmacro %}
 
 {% macro recaptchaTwo(siteKey)%}
     <script src='https://www.google.com/recaptcha/api.js?hl=fr'></script>
-    <div class="g-recaptcha" data-sitekey="{{siteKey}}" data-callback="recaptchaCallbackTwo"></div>
+    <div class="g-recaptcha" data-sitekey="{{ siteKey }}" data-callback="recaptchaCallbackTwo"></div>
 {% endmacro %}

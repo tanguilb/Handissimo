@@ -9,10 +9,8 @@
 namespace HandissimoBundle\Form\Handler;
 
 
-use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use HandissimoBundle\Entity\Organizations;
-use HandissimoBundle\Entity\Participation;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,17 +48,15 @@ class OrganizationsHandler
 
     public function onSuccess()
     {
+
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
         if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN'))
         {
-            $this->organization->setUser($this->container->get('security.token_storage')->getToken()->getUser());
-            $this->organization->setUserType($this->container->get('security.token_storage')->getToken()->getUser()->getUserType());
+            $this->organization->setUser($user);
+            $this->organization->setUserType($user->getUserType());
         }
-        $lastDate = $this->container->get('security.token_storage')->getToken()->getUser()->getLastDate();
-        $participation = $this->container->get('security.token_storage')->getToken()->getUser()->getParticipation();
-
         $participate = $this->container->get('Handissimo.participation');
-        $participationByDay = $participate->searchUserParticipation($lastDate, $participation);
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $participationByDay = $participate->searchUserParticipation();
         $user->setLastDate($participationByDay[0]);
         $user->setParticipation($participationByDay[1]);
 
@@ -71,8 +67,8 @@ class OrganizationsHandler
         $organizationName = $this->organization->getName();
 
         $arrayContribution = [];
-        if ($this->container->get('security.token_storage')->getToken()->getUser()->getContribution() != null) {
-            $arrayContribution = $this->container->get('security.token_storage')->getToken()->getUser()->getContribution();
+        if ($user->getContribution() != null) {
+            $arrayContribution = $user->getContribution();
             if (array_key_exists($organizationName, $arrayContribution) == true) {
                 $arrayContribution[$organizationName] += 1;
             } else {

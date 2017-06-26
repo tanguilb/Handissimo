@@ -17,6 +17,13 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class OrganizationsAdmin extends AbstractAdmin
 {
+
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'updateDatetime',
+    );
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -328,9 +335,7 @@ class OrganizationsAdmin extends AbstractAdmin
             ->add('user', null, array('label' => 'Fiche édité ou créé par'));
     }
 
-    protected $datagridValues = array(
-        '_sort_order' => 'DESC',
-        '_sort_by' => 'update_datetime',
-    );
+
+
 
 }

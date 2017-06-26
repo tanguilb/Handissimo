@@ -28,6 +28,9 @@ HandissimoBundle\Entity\Comment:
         dislikeComment:
             type: integer
             nullable: true
+        rereading:
+            type: boolean
+            nullable: true
 
     manyToOne:
         organizationsComment:

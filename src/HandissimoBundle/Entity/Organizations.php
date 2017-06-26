@@ -2247,7 +2247,7 @@ class Organizations
      *
      * @return Organizations
      */
-    public function setStatistic($statistic)
+    public function setStatistic($statistic = 0)
     {
         $this->statistic = $statistic;
 

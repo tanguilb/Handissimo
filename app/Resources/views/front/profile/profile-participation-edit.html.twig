@@ -1,0 +1,16 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="" xmlns="http://www.w3.org/1999/html">
+        <div class="title-block">
+            <h3 class="title-solution">Vous ne pouvez plus éditer de fiche</h3>
+        </div>
+        <div class="col-xs-12">
+            {% if userGrade == null %}
+                <p class="text-solution">Vous êtes <span class="grade">limité à dix contributions</span> sur les fiches par jours. Si vous voulez contribuer à nouveau sur une fiche n'hésitez pas à vous reconnecter d'ici 24h. Merci de votre participation.</p>
+            {% else %}
+                <p class="text-solution">Vous avez <span class="grade">le grade de {{ userGrade }}</span>. Vous ne pouvez pas faire plus de <span class="grade">{{ nbParticipation }} contributions</span> par jours. N'hésitez pas à vous reconnecter d'ici 24h pour contribuer à nouveau sur le site. Merci de votre participation</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

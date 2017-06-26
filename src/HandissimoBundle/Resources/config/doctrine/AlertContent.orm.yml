@@ -21,5 +21,8 @@ HandissimoBundle\Entity\AlertContent:
         organization:
             type: string
             length: 255
+        rereading:
+            type: boolean
+            nullable: true
 
     lifecycleCallbacks: {  }

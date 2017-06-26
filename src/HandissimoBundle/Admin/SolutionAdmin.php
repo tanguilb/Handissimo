@@ -17,9 +17,18 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class SolutionAdmin extends AbstractAdmin
 {
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'messageDate',
+    );
+
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('messageDate', null, array(
+                'label' => 'Date du message'
+            ))
             ->add('lastname', null, array(
                 'label' => 'lastname'
             ))
@@ -29,12 +38,8 @@ class SolutionAdmin extends AbstractAdmin
             ->add('solutionName', null, array(
                 'label' => 'Name of the structure'
             ))
-            ->add('societyName', null, array(
-                'label' => 'Nom de l\'organisme gestionnaire'
-            ))
-            ->add('messageDate', null, array(
-                'label' => 'Date du message'
-            ))
+            ->add('rereading', 'boolean', array('editable' => true, 'label' => 'traité/non traité'))
+
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array()
@@ -74,7 +79,8 @@ class SolutionAdmin extends AbstractAdmin
             ))
             ->add('message', null, array(
                 'label' => 'Message'
-            ));
+            ))
+            ->add('rereading', 'boolean', array('label' => 'traité/non traité'));
     }
 
     protected function configureRoutes(RouteCollection $collection)

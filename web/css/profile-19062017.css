@@ -666,3 +666,8 @@ input:-ms-input-placeholder {
 #title-compare {
     text-align: center;
 }
+
+.grade {
+    font-weight: 900;
+    color: #65bfba;
+}

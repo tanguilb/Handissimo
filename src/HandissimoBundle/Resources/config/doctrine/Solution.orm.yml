@@ -44,4 +44,7 @@ HandissimoBundle\Entity\Solution:
             length: 3000
         honor:
             type: boolean
+        rereading:
+            type: boolean
+            nullable: true
     lifecycleCallbacks: {  }

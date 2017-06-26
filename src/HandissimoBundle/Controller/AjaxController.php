@@ -76,7 +76,7 @@ class AjaxController extends Controller
             $values = $request->request->get('value');
             $this->get('session')->set('values', $values);
 
-            return true;
+            return new Response();
         } else {
             return false;
         }

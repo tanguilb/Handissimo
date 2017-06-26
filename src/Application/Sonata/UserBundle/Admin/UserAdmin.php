@@ -8,8 +8,8 @@
 
 namespace Application\Sonata\UserBundle\Admin;
 
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
@@ -18,6 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserAdmin extends BaseUserAdmin
 {
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'lastLogin',
+    );
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);
@@ -37,8 +43,21 @@ class UserAdmin extends BaseUserAdmin
         ;
         $formMapper
             ->tab('User')
+            ->with('Profile')
+                ->add('grade', ChoiceType::class, array(
+                    'label' => "grade",
+                    'choices' => array(
+                        'Novice' => 'Novice(plus de 10 contributions)',
+                        'Confirmé' => 'Confirmé(plus de 20 contribution)',
+                        'Expert' => 'Expert(plus de 50 contributions)',
+                    ),
+                    'multiple' => false,
+                    'required' => false,
+            ))
+                ->end()
                 ->with('General')
                     ->add('userType', ChoiceType::class, array(
+                        'label' => 'Type d\'utilisateur',
                         'choices' => array(
                             'Particulier' => "je suis un particulier",
                             'Professionnel(le)' => "Je suis un professionnel",
@@ -55,6 +74,7 @@ class UserAdmin extends BaseUserAdmin
                             'multiple' => true,
                             'placeholder' => 'choisissez la structure',
                     ))
+
                 ->end()
                 ->with('Status')
                     ->add('locked', null, array('required' => false))
@@ -64,6 +84,7 @@ class UserAdmin extends BaseUserAdmin
                     ->end()
                     ->with('Groups')
                     ->add('groups', 'sonata_type_model', array(
+                        'choices_as_values' => true,
                         'required' => false,
                         'expanded' => true,
                         'multiple' => true,
@@ -85,7 +106,17 @@ class UserAdmin extends BaseUserAdmin
                 ->remove('gplusUid')
                 ->remove('gplusName')
         ->end();
+    }
 
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('username', null, array('label' => 'Nom de l\'utilisateur'))
+            ->add('lastLogin', null, array('label' => 'Dernière connexion'))
+            ->add('createdAt', null, array('label' => 'Date de création du compte'))
+            ->add('enabled', 'boolean', array('editable' => true, 'label' => 'Activé'))
+            ->add('locked', 'boolean', array('editable' => true, 'label' => 'Vérouillé'))
+            ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper)

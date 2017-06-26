@@ -540,7 +540,7 @@
             </trans-unit>
             <trans-unit id="form.password">
                 <source>form.password</source>
-                <target>Mot de passe</target>
+                <target>Choisissez votre mot de passe</target>
             </trans-unit>
             <trans-unit id="form.password_confirmation">
                 <source>form.password_confirmation</source>

@@ -21,6 +21,7 @@ class MediaType extends AbstractType
                 'required' => false,
                 'allow_delete' => false,
                 'label' => 'Ajouter une image',
+                'download_link' => false,
             ));
     }
     

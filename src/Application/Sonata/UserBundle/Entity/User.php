@@ -234,6 +234,35 @@ class User extends BaseUser
         return $this->lastDate;
     }
     /**
+     * @var string
+     */
+    private $grade;
+
+
+    /**
+     * Set grade
+     *
+     * @param string $grade
+     *
+     * @return User
+     */
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get grade
+     *
+     * @return string
+     */
+    public function getGrade()
+    {
+        return $this->grade;
+    }
+    /**
      * @var array
      */
     private $contribution;
