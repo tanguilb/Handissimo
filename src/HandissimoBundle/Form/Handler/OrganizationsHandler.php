@@ -166,8 +166,9 @@ class OrganizationsHandler
             $communJobs = array_filter($communJobsArray);
             $this->organization->setCommunJob($communJobs);
         }
-        $this->em->persist($user);
 
+        $this->organization->setChecked(0);
+        $this->em->persist($user);
         $this->em->persist($this->form->getData());
         $this->em->flush();
     }

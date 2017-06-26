@@ -2,8 +2,8 @@
 
 {% block sonata_profile_content %}
     <div class="row block-comparate">
-        <div class="title-block">
-            <h3>Différences entre la fiche affiché et la version</h3>
+        <div class="title-block" id="title-compare">
+            <h3>Comparatif entre la version actuellement en ligne (<span class="green">en vert</span>) et la version précédente (<span class="red">en rouge</span>)</h3>
         </div>
         {% if diff.name.old != null or diff.name.new != null or diff.name.same %}
             <p class="label-profile-version">Nom de la structure</p>
@@ -679,8 +679,9 @@
 
         {% set versionJson = version|json_encode %}
         <div class="block-btn-profile">
-            <a href="{{ path('handissimo_profile_version', {'id': diff.id.same}) }}" class="btn btn-default" id="btn-list-version">Retour</a>
-            <button class="btn btn-default" id="btn-old-version" onclick="revertOldVersionFunction('{{ diff.id.same }}', {{ rev }})" value="{{ versionJson }}">Revenir à cette version</button>
+            <a href="{{ path('handissimo_profile_version', {'id': diff.id.same}) }}" class="btn btn-default" id="btn-return-version">Retour</a>
+            <button class="btn btn-default"  id="btn-list-version" onclick="checkedVersionFunction({{ rev }})" value="{{ diff.id.same }}">La version actuelle convient</button>
+            <button class="btn btn-default" id="btn-old-version" onclick="revertOldVersionFunction('{{ diff.id.same }}', {{ rev }})" value="{{ versionJson }}">Rétablir la version précédente</button>
         </div>
     </div>
 {% endblock sonata_profile_content %}

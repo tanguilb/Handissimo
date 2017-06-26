@@ -5,7 +5,7 @@
         <h3 class="title-search">Liste des fiches</h3>
     </div>
     <div class="block-profile">
-        <h4>Fiches auxquelles j'ai contribué</h4>
+        <h4>Fiches auxquelles j'ai contribuées</h4>
         {% for organization in organizations %}
             {% if organization != null %}
                 <div class="col-xs-12">
@@ -15,7 +15,7 @@
         {% endfor %}
 
         {% if deletedResult != null %}
-            <h4>Fiches supprimées auxquelles j'ai contribué</h4>
+            <h4>Fiches supprimées auxquelles j'ai contribuées</h4>
             {% for organization in deletedResult %}
                 <div class="col-xs-12">
                     {{ organization }}

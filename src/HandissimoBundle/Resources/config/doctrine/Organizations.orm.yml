@@ -194,6 +194,9 @@ HandissimoBundle\Entity\Organizations:
         pins:
             type: boolean
             nullable: true
+        checked:
+            type: boolean
+            nullable: true
 
     oneToMany:
         comments:

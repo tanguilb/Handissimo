@@ -40,7 +40,7 @@ class UserAdmin extends BaseUserAdmin
                 ->with('General')
                     ->add('userType', ChoiceType::class, array(
                         'choices' => array(
-                            'Personne concerné par le handicap' => "je suis un particulier, concerné par le handicap",
+                            'Particulier' => "je suis un particulier",
                             'Professionnel(le)' => "Je suis un professionnel",
                             'Autre' => "Autre"
                         ),
@@ -67,6 +67,7 @@ class UserAdmin extends BaseUserAdmin
                         'required' => false,
                         'expanded' => true,
                         'multiple' => true,
+                        'choices_as_values' => true
                     ))
                     ->end()
                 ->remove('dateOfBirth')
