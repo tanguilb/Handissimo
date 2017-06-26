@@ -3,7 +3,20 @@ handissimo
 
 A Symfony project created on November 16, 2016, 10:57 am.
 
-### 1-Installation of project
+### 1-Build process
+
+- Database mysql:
+  - version: 14.04
+  - distribution: 5.7.18
+  - engine: InnoDB
+  - table collation: utf8_unicode_ci
+- Php v7.0.15
+- Framework Symfony version 2.8
+- Develop on ubuntu 16.04
+- Production server : ubuntu 16.04
+- Apache2 : v2.4.18
+
+### 2-Installation of project
 
 - Copy the source code to the server.
 - Create the database.
@@ -33,7 +46,7 @@ A Symfony project created on November 16, 2016, 10:57 am.
     apt install php7.0-intl
 </pre>
 
-### 2-List of used bundles
+### 3-List of used bundles
 
 - SonataAdmin: 3.13
 - SonataUserBundle: ^1.3
