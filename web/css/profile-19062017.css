@@ -560,8 +560,7 @@ input:-ms-input-placeholder {
 #btn-detail,
 #btn-dele,
 #btn-list-home,
-#btn-list-version,
-#btn-old-version {
+#btn-return-version {
     background-color: #f7af49;
     color: #ffffff;
     border: none;
@@ -577,11 +576,37 @@ input:-ms-input-placeholder {
 #btn-dele:hover,
 #btn-list-home:hover,
 #btn-list-home:focus,
-#btn-list-version:hover,
-#btn-list-version:focus,
+#btn-return-version:hover,
+#btn-return-version:focus {
+    background-color: #FFBE49;
+    color: #ffffff;
+}
+
+#btn-old-version {
+    background-color: red;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 #btn-old-version:hover,
 #btn-old-version:focus {
-    background-color: #FFBE49;
+    background-color: #dc4735;
+    color: #ffffff;
+}
+
+#btn-list-version {
+    background-color: green;
+    color: #ffffff;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#btn-list-version:hover,
+#btn-list-version:focus {
+    background-color: #2ca02c;
     color: #ffffff;
 }
 
@@ -626,14 +651,18 @@ input:-ms-input-placeholder {
     height: 20px;
 }
 
-.yes {
+.green {
     color: green;
 }
 
-.no {
+.red {
     color: red;
 }
 
 #status-choice {
     margin-bottom: 10px;
+}
+
+#title-compare {
+    text-align: center;
 }

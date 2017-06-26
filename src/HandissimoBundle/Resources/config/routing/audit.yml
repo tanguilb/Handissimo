@@ -79,3 +79,7 @@ handissimo_profile_add_checked:
 handissimo_profile_remove_checked:
     path:   /list/{id}/remove
     defaults: { _controller: HandissimoBundle:Ajax:removeChecked }
+
+handissimo_profile_version_checked:
+    path:   /view/{id}/{rev}/checked
+    defaults: { _controller: HandissimoBundle:Ajax:addCheckedVersion }

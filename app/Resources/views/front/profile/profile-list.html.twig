@@ -21,10 +21,10 @@
             <div class="col-md-2">
                 {% if results.checked == 1 %}
                     <input type="checkbox" checked="checked" class="checkVisibility" name="checkbox" id="{{ results.id }}" value="value">
-                    <label class="yes" for="{{ results.id }}">Oui</label>
+                    <label class="green" for="{{ results.id }}">Oui</label>
                 {% else %}
                     <input type="checkbox" class="checkVisibility" name="checkbox" id="{{ results.id }}" value="value">
-                    <label class="no" for="{{ results.id }}"></label>
+                    <label for="{{ results.id }}"></label>
                 {% endif %}
             </div>
         {% endfor %}

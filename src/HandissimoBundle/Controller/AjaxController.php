@@ -181,4 +181,17 @@ class AjaxController extends Controller
         return false;
     }
 
+    public function addCheckedVersionAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $organization = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
+            $organization->setChecked(1);
+            $em->persist($organization);
+            $em->flush();
+            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations'));
+        }
+        return null;
+    }
+
 }
