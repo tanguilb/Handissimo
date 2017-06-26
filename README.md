@@ -1,4 +1,4 @@
-handissimo
+Handissimo
 ==========
 
 A Symfony project created on November 16, 2016, 10:57 am.
@@ -49,13 +49,18 @@ A Symfony project created on November 16, 2016, 10:57 am.
 ### 3-List of used bundles
 
 - SonataAdmin: 3.13
-- SonataUserBundle: ^1.3
-- friendsofsymfony/user-bundle: ^1.3
-- SonataEasyExtendBundle: ^2.1
-- knppaginator: ^2.5
-- google/recaptcha: ^1.1
-- jsroutingBundle: ^1.6
+- SonataUserBundle: ^ 1.3
+- friendsofsymfony/user-bundle: ^ 1.3
+- SonataEasyExtendBundle: ^ 2.1
+- knppaginator: ^ 2.5
+- google/recaptcha: ^ 1.1
+- jsroutingBundle: ^ 1.6
 - vich/uploaderBundle: 1.5.3
-- berbelei/DoctrineExtensionBundle: ^1.0
-- simplethings/entity-audit-bundle: ^1.0
-- helios-ag/fm-elfinder-bundle: ^6.2
+- berbelei/DoctrineExtensionBundle: ^ 1.0
+- simplethings/entity-audit-bundle: ^ 1.0
+- helios-ag/fm-elfinder-bundle: ^ 6.2
+
+
+### 4-List of known bugs
+
+- Can not modify entries of library tables when they are linked to an organization in sonata.
