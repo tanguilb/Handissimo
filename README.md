@@ -56,8 +56,8 @@ The server is hosting by Ressourcial. You can acces by ssh. To have the rights y
 
 ### 5-People in the project
 
-- Project manager Ségolène Frandon
-- Assistant Marion Pineau
+- Project manager: Ségolène Frandon
+- Assistant: Marion Pineau
 - Developer: David Ducruet and Tangui Le Bourdonnec
 - Consultant: Pierre Alexandre Koffron
 

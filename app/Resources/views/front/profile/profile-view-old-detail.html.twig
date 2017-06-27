@@ -679,9 +679,9 @@
 
         {% set versionJson = version|json_encode %}
         <div class="block-btn-profile">
-            <a href="{{ path('handissimo_profile_version', {'id': diff.id.same}) }}" class="btn btn-default" id="btn-return-version">Retour</a>
-            <button class="btn btn-default"  id="btn-list-version" onclick="checkedVersionFunction({{ rev }})" value="{{ diff.id.same }}">La version actuelle convient</button>
-            <button class="btn btn-default" id="btn-old-version" onclick="revertOldVersionFunction('{{ diff.id.same }}', {{ rev }})" value="{{ versionJson }}">Rétablir la version précédente</button>
+            <a href="{{ path('handissimo_profile_version', {'id': diff.id.same}) }}" class="btn btn-default handissimo-button" id="btn-return-version">Retour</a>
+            <button class="btn btn-default handissimo-button"  id="btn-list-version" onclick="checkedVersionFunction({{ rev }})" value="{{ diff.id.same }}">La version actuelle convient</button>
+            <button class="btn btn-default handissimo-button" id="btn-old-version" onclick="revertOldVersionFunction('{{ diff.id.same }}', {{ rev }})" value="{{ versionJson }}">Rétablir la version précédente</button>
         </div>
     </div>
 {% endblock sonata_profile_content %}

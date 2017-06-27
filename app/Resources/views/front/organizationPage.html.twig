@@ -514,18 +514,18 @@
             <!-- return button -->
             <div class="row" id="return-button">
                 <div class="col-md-offset-1 col-md-2 col-xs-12">
-                    <button onclick="goBack()" class="btn btn-return" role="button" id="btn-return-search">
+                    <button onclick="goBack()" class="btn btn-return handissimo-button" role="button" id="btn-return-search">
                         Retour à la page<br /> de résultat
                     </button>
                 </div>
                 <div class="col-md-2 col-xs-12">
-                    <a href="{{ path('index_action') }}" class="btn btn-edit" role="button">
+                    <a href="{{ path('index_action') }}" class="btn btn-edit handissimo-button" role="button">
                         Retour à l'accueil
                     </a>
                 </div>
                 {% if usero == null %}
                     <div class="col-md-2 col-xs-12">
-                        <a href="{{ path('handissimo_structure') }}" class="btn btn-edit" id="btn-sol" role="button">
+                        <a href="{{ path('handissimo_structure') }}" class="btn btn-edit handissimo-button" id="btn-sol" role="button">
                             Je suis responsable<br /> de cette solution
                         </a>
                     </div>
@@ -545,11 +545,11 @@
                     {% if is_granted('ROLE_USER') %}
                         {% if usero != null %}
                             {% if usergood == user.id or is_granted('ROLE_SUPER_ADMIN')%}
-                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                                <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit handissimo-button" role="button">
                                     Modifier la fiche
                                 </a>
                             {% else %}
-                                <a class="btn btn-edit" id="alert-modification" role="button">Modifier la fiche</a>
+                                <a class="btn btn-edit handissimo-button" id="alert-modification" role="button">Modifier la fiche</a>
                                 <div id="dialog-message" title="Attention">
                                     <p>
                                         Vous ne pouvez pas modifier la fiche car le responsable de cette structure a pris la main dessus.
@@ -557,12 +557,12 @@
                                 </div>
                             {% endif %}
                         {% else  %}
-                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit" role="button">
+                            <a href="{{ path('organizations_edit',  {'id': organization.id }) }}" class="btn btn-edit handissimo-button" role="button">
                                 Modifier la fiche
                             </a>
                         {% endif %}
                     {% else %}
-                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit" role="button">
+                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-edit handissimo-button" role="button">
                             Modifier la fiche
                         </a>
                     {% endif %}

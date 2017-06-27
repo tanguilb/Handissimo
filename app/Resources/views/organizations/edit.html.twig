@@ -109,7 +109,7 @@
                             {{ form_widget(edit_form.orgaStructure) }}
                         </div>
                         <div class="col-xs-12 block-btn-prev-next">
-                            <a class="btn btn-default btnNext" >Suivant</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="publictarget">
@@ -170,8 +170,8 @@
                             <p class="update">Description limitée à 5000 caractères</p>
                         </div>
                         <div class="col-xs-12 block-btn-prev-next">
-                            <a class="btn btn-default btnPrevious" >Précédent</a>
-                            <a class="btn btn-default btnNext" >Suivant</a>
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="serve">
@@ -228,8 +228,8 @@
                         {{ form_row(edit_form.receptionDescription) }}
                         <p class="update">Description limitée à 5000 caractères</p>
                         <div class="col-xs-12 block-btn-prev-next">
-                            <a class="btn btn-default btnPrevious" >Précédent</a>
-                            <a class="btn btn-default btnNext" >Suivant</a>
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="team">
@@ -255,8 +255,8 @@
                         {{ form_row(edit_form.commentStaff) }}
                         <p class="update">Description limitée à 1000 caractères</p>
                         <div class="col-xs-12 block-btn-prev-next">
-                            <a class="btn btn-default btnPrevious" >Précédent</a>
-                            <a class="btn btn-default btnNext" >Suivant</a>
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="informations">
@@ -295,13 +295,13 @@
                         {{ form_widget(edit_form.freeDescription) }}
                         <p class="update">Description limitée à 2000 caractères</p>
                         <div class="col-xs-12 block-btn-prev-next">
-                            <a class="btn btn-default btnPrevious" >Précédent</a>
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
                             {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                <a class="btn btn-default btnNext" >Suivant</a>
+                                <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
                             {% elseif is_granted('ROLE_SOC') and usero is defined %}
                                 {% for userID in usero %}
                                     {% if user.id == userID.id %}
-                                        <a class="btn btn-default btnNext" >Suivant</a>
+                                        <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
@@ -321,12 +321,12 @@
                         {% else %}
                             <div class="row">
                                 <div class="col-xs-12 btn-submit">
-                                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview" target="_blank">prévisualiser</a>
+                                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview handissimo-button" target="_blank">prévisualiser</a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 btn-submit">
-                                    <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
+                                    <input type="submit" value="Valider" id="edit-organization" class="btn btn-default handissimo-button"/>
                                 </div>
                             </div>
                         {% endif %}
@@ -349,16 +349,16 @@
                             <a href="" id="add_picture" class="link-about">Ajouter une image</a>
                         </div>
                         <div class="col-xs-12 block-btn-prev-next">
-                            <a class="btn btn-default btnPrevious" >Précédent</a>
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 btn-submit">
-                                <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview" target="_blank">prévisualiser</a>
+                                <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview handissimo-button" target="_blank">prévisualiser</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 btn-submit">
-                                <input type="submit" value="Valider" id="edit-organization" class="btn btn-default"/>
+                                <input type="submit" value="Valider" id="edit-organization" class="btn btn-default handissimo-button"/>
                             </div>
                         </div>
                     </div>
@@ -370,7 +370,7 @@
             {% if is_granted('ROLE_SUPER_ADMIN') %}
             <form method="POST" action="{{ path('organizations_delete', {'id': organization.id}) }}">
                 {{ form_start(delete_form) }}
-                    <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default"/>
+                    <input type="submit" value="Supprimer" id="delete-organization" class="btn btn-default handissimo-button"/>
                 {{ form_end(delete_form) }}
             </form>
             {% endif %}
