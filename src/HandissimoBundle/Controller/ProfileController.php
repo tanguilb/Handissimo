@@ -275,6 +275,17 @@ class ProfileController extends Controller
             $em->getConnection()->rollback();
             throw $exception;
         }
+    }
 
+    public function showCommentsAction()
+    {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            $comments = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->findAll();
+
+            return $this->render('front/profile/profile-admin-comment.html.twig', array(
+                'comments' => $comments
+            ));
+        }
+        return $this->redirectToRoute('sonata_user_profile_show');
     }
 }
