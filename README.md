@@ -64,9 +64,8 @@ A Symfony project created on November 16, 2016, 10:57 am.
 
 The project is write in object-oriented programming with the model MVC. They are two bundle:
 - ApplicationSonataUserBundle to manage all the users
-- HandissimoBundle to manage all the rest of the project.<br /><br />
+- HandissimoBundle to manage all the rest of the project.
 - We have added SonataAdminBundle to manage the superAdmin BackOffice with all rights.
-
 - All the views are in the folder 'app/Resources'
 
 ### 5-List of known bugs
