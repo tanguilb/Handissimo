@@ -17,17 +17,17 @@
         <div class="collapse navbar-collapse" id="handissimo-nav">
             <div class="nav navbar-nav navbar-right">
                 <a href="{{ path('handissimo_structure') }}" class="link-nav">
-                    <button class="btn blue-btn">
+                    <button class="btn blue-btn handissimo-button">
                         <i class="fa fa-lightbulb-o" aria-hidden="true"></i>Comment ça marche ?
                     </button>
                 </a>
                 <a href="{{ path('handissimo_aboutpage') }}"  class="link-nav">
-                    <button class="btn orange-btn">
+                    <button class="btn orange-btn handissimo-button">
                         <i class="fa fa-info-circle" aria-hidden="true"></i>Qui sommes-nous ?
                     </button>
                 </a>
                 <a href="{{ path('handissimo_help') }}"  class="link-nav">
-                    <button class="btn blue-btn">
+                    <button class="btn blue-btn handissimo-button">
                         <i class="fa fa-bullhorn" aria-hidden="true"></i>Comment nous aider
                     </button>
                 </a>
@@ -35,12 +35,12 @@
                 {% if app.user %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <a href="{{ path('organizations_new') }}" class="link-nav">
-                            <button class="btn orange-btn">
+                            <button class="btn orange-btn handissimo-button">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>Créer une fiche
                             </button>
                         </a>
                         <div class="btn-group">
-                            <button type="button" class="btn pink-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn pink-btn dropdown-toggle handissimo-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {% if app.user.userType == "Professionnel(le)" %}
                                     <img src="{{ asset('images/avatar/businessman.png') }}" class="img-avatar">
                                 {% elseif app.user.userType == "Personne concerné par le handicap" %}
@@ -63,12 +63,12 @@
                         </div>
                 {% else %}
                     <a href="{{ path('fos_user_security_login') }}" class="link-nav">
-                        <button class="btn orange-btn">
+                        <button class="btn orange-btn handissimo-button">
                             <i class="fa fa-pencil" aria-hidden="true"></i>Créer une fiche
                         </button>
                     </a>
                 <a href="{{ path('fos_user_security_login') }}">
-                    <button class="btn pink-btn">
+                    <button class="btn pink-btn handissimo-button">
                         <i class="fa fa-user" aria-hidden="true"></i>Mon compte
                     </button>
                 </a>

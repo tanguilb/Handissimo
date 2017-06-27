@@ -3,7 +3,11 @@ Handissimo
 
 A Symfony project created on November 16, 2016, 10:57 am.
 
-### 1-Build process
+### 1-Source Code
+
+The source code is on gitlab account. The owner is david.ducruet74. david.ducruet74 and tangui can manage the right to invite a guess and recovers the source code.
+
+### 2-Build process
 
 - Database mysql:
   - version: 14.04
@@ -16,7 +20,7 @@ A Symfony project created on November 16, 2016, 10:57 am.
 - Production server : ubuntu 16.04
 - Apache2 : v2.4.18
 
-### 2-Installation of project
+### 3-Installation of project
 
 - Copy the source code to the server.
 - Create the database.
@@ -46,7 +50,18 @@ A Symfony project created on November 16, 2016, 10:57 am.
     apt install php7.0-intl
 </pre>
 
-### 3-List of used bundles
+### 4-Server
+
+The server is hosting by Ressourcial. You can acces by ssh. To have the rights you need to contact antoine.prisset@fondation-ove.fr.
+
+### 5-People in the project
+
+- Project manager: Ségolène Frandon
+- Assistant: Marion Pineau
+- Developer: David Ducruet and Tangui Le Bourdonnec
+- Consultant: Pierre Alexandre Koffron
+
+### 6-List of used bundles
 
 - SonataAdmin: 3.13
 - SonataUserBundle: ^ 1.3
@@ -60,7 +75,19 @@ A Symfony project created on November 16, 2016, 10:57 am.
 - simplethings/entity-audit-bundle: ^ 1.0
 - helios-ag/fm-elfinder-bundle: ^ 6.2
 
+### 7-Project architecture
 
-### 4-List of known bugs
+The project is write in object-oriented programming with the model MVC. They are two bundle:
+- ApplicationSonataUserBundle to manage all the users
+- HandissimoBundle to manage all the rest of the project.
+- We have added SonataAdminBundle to manage the superAdmin BackOffice with all rights.
+- All the views are in the folder 'app/Resources'
+
+### 8-List of known bugs
 
 - Can not modify entries of library tables when they are linked to an organization in sonata.
+
+### 9-List of weakness
+
+- The services SortSearch with path "src/HandissimoBundle/Services/Search/SortSearch.php" allows to sort the result by distance, filling rate and by search item's correspondence. It is write in php and it will be better to write it in SQL. 
+- The services RevertVersion with path "src/HandissimoBundle/Services/Recorder/RevertVersion.php" test all of array key. it will be better to refactor to simplify it. 
