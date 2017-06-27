@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/error-07062017.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="head-block"></div>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+    <div class=" container main-block">
+        <h2>Le serveur a eu un problème et il ne peut renvoyer la page demandée</h2>
+        <div class="col-md-offset-1 col-xs-12">
+            <img src="{{ asset('images/erreur/erreur500-handissimo.jpg') }}" class="img-responsive" id="error">
+        </div>
+    </div>
+{% endblock %}

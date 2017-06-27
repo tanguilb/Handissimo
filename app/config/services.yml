@@ -4,6 +4,172 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    admin.edit:
+        class: HandissimoBundle\Admin\EditContentAdmin
+        arguments: [~, HandissimoBundle\Entity\EditContent, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Pages éditables }
+    admin.users:
+        class: Application\Sonata\UserBundle\Admin\UserAdmin
+        arguments: [~, Application\Sonata\UserBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des utilisateurs }
+
+    admin.organizations:
+        class: HandissimoBundle\Admin\OrganizationsAdmin
+        arguments: [~, HandissimoBundle\Entity\Organizations, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des fiches créées }
+
+    admin.disabilitytypes:
+        class: HandissimoBundle\Admin\DisabilityTypesAdmin
+        arguments: [~, HandissimoBundle\Entity\DisabilityTypes, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Types de handicaps }
+
+    admin.structureslist:
+        class: HandissimoBundle\Admin\StructuresListAdmin
+        arguments: [~, HandissimoBundle\Entity\StructuresList, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Liste des structures }
+
+    admin.structuretype:
+        class: HandissimoBundle\Admin\StructureTypeAdmin
+        arguments: [~, HandissimoBundle\Entity\StructureType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Types de structures }
+
+    admin.staff:
+        class: HandissimoBundle\Admin\StaffAdmin
+        arguments: [~, HandissimoBundle\Entity\Staff, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Personnel de soins }
+
+    admin.socialstaff:
+        class: HandissimoBundle\Admin\SocialStaffAdmin
+        arguments: [~, HandissimoBundle\Entity\SocialStaff, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Personnel éducatif et social }
+
+    admin.otherjob:
+            class: HandissimoBundle\Admin\OtherJobAdmin
+            arguments: [~, HandissimoBundle\Entity\OtherJob, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Autres métiers }
+
+    admin.needs:
+        class: HandissimoBundle\Admin\NeedsAdmin
+        arguments: [~, HandissimoBundle\Entity\Needs, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Services primaires }
+
+    admin.secondaryneeds:
+        class: HandissimoBundle\Admin\SecondaryNeedsAdmin
+        arguments: [~, HandissimoBundle\Entity\SecondaryNeeds, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenus éditables, label: Services secondaires }
+
+    admin.opinion:
+        class: HandissimoBundle\Admin\OpinionAdmin
+        arguments: [~, HandissimoBundle\Entity\Opinion, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des messages reçus, show_mosaic_button: false }
+
+    admin.alert_content:
+        class: HandissimoBundle\Admin\AlertContentAdmin
+        arguments: [~, HandissimoBundle\Entity\AlertContent, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des signalements, show_mosaic_button: false }
+
+    admin.solution:
+        class: HandissimoBundle\Admin\SolutionAdmin
+        arguments: [~, HandissimoBundle\Entity\Solution, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des demandes de prise en main, show_mosaic_button: false }
+
+    admin.comment:
+        class: HandissimoBundle\Admin\CommentAdmin
+        arguments: [~, HandissimoBundle\Entity\Comment, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Modération, label: Liste des commentaires, show_mosaic_button: false}
+
+    sonata_user.profile.form.type:
+        class: Application\Sonata\UserBundle\Form\Type\ProfileType
+        arguments: ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type, alias: application_sonata_user_profile }
+
+    sonata_user.form.handler.profile:
+        class: Application\Sonata\UserBundle\Form\Handler\ProfileFormHandler
+        arguments: ["@sonata.user.profile.form", "@request", "@sonata.user.user_manager"]
+        scope: request
+        public: false
+
+    user.form.register.type:
+        class: Application\Sonata\UserBundle\Form\Type\RegisterType
+        parent: fos_user.registration.form.type
+        tags:
+            - { name: form.type, alias: front_user_registration }
+
+    admin.media:
+        class: HandissimoBundle\Admin\MediaAdmin
+        arguments: [~, HandissimoBundle\Entity\Media, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Organismes, label: Media }
+
+    handissimo.geocoder:
+        class: HandissimoBundle\Services\Geocode\Geocoder
+
+    handissimo.geocoder.listener:
+        class: HandissimoBundle\EventListener\GeocoderListener
+        arguments: ['@handissimo.geocoder']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    handissimo.sort_research:
+        class: HandissimoBundle\Services\Search\SortSearch
+        arguments: ['@doctrine.orm.entity_manager']
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+          - { name: twig.extension }
+
+    app.command.load_data_command:
+        class: HandissimoBundle\Command\LoadDataCommand
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+        tags:
+            - { name: console.command }
+
+    handissimo.audit_difference:
+        class: HandissimoBundle\Services\Audit\AuditDifference
+        arguments: ['@doctrine.orm.entity_manager']
+
+    handissimo.audit_relation:
+        class: HandissimoBundle\Services\Audit\AuditRelation
+        arguments: ['@doctrine.orm.entity_manager']
+
+
+    handissimo.statistics.listener:
+        class: HandissimoBundle\EventListener\StatisticsListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    handissimo.participation:
+        class: HandissimoBundle\Services\Revisions\ParticipationDate
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+
+
+    handissimo.revert_version:
+        class: HandissimoBundle\Services\Recorder\RevertVersion
+        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+
+    handissimo.preview:
+        class: HandissimoBundle\Services\Preview\Preview
+        arguments: ['@doctrine.orm.entity_manager']
+
+    handissimo.mailer.participation:
+        class: HandissimoBundle\Services\Revisions\MailerParticipation
+        arguments: ['@mailer', '@service_container', '@templating']

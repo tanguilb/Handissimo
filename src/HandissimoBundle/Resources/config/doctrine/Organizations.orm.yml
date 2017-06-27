@@ -1,0 +1,298 @@
+HandissimoBundle\Entity\Organizations:
+    type: entity
+    table: organizations
+    repositoryClass: HandissimoBundle\Repository\OrganizationsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+        address:
+            type: string
+            nullable: true
+            length: 255
+        addressComplement:
+            type: string
+            nullable: true
+            length: 255
+        postal:
+            type: string
+            nullable: true
+            length: 255
+        city:
+            type: string
+            nullable: true
+            length: 255
+        latitude:
+            type: float
+            nullable: true
+        longitude:
+            type: float
+            nullable: true
+        phoneNumber:
+            type: string
+            nullable: true
+            length: 255
+        mail:
+            type: string
+            nullable: true
+            length: 255
+        website:
+            type: string
+            nullable: true
+            length: 255
+        facebook:
+            type: string
+            nullable: true
+            length: 255
+        agemini:
+            type: integer
+            nullable: true
+        agemaxi:
+            type: integer
+            nullable: true
+        freeplace:
+            type: integer
+            nullable: true
+        organizationDescription:
+            type: text
+            nullable: true
+            length: 65535
+        openhours:
+            type: string
+            nullable: true
+            length: 255
+        opendays:
+            type: array
+            nullable: true
+            length: 255
+        opendaysYear:
+            type: array
+            nullable: true
+        teamMembersNumber:
+            type: integer
+            nullable: true
+        updateDatetime:
+            type: datetime
+            nullable: true
+        workingDescription:
+            type: text
+            nullable: true
+            length: 65535
+        school:
+            type: string
+            length: 4
+            nullable: true
+        schoolDescription:
+            type: text
+            nullable: true
+            length: 65535
+        directorName:
+            type: string
+            length: 50
+            nullable: true
+        dayDescription:
+            type: text
+            length: 65535
+            nullable: true
+        transport:
+            type: text
+            length: 65535
+            nullable: true
+        receptionDescription:
+            type: text
+            length: 65535
+            nullable: true
+        cost:
+            type: text
+            length: 65535
+            nullable: true
+        inscription:
+            type: text
+            length: 65535
+            nullable: true
+        user:
+            type: string
+            length: 50
+            nullable: true
+        commentStaff:
+            type: text
+            nullable: true
+        userType:
+            type: string
+            length: 50
+            nullable: true
+        interventionZone:
+            type: string
+            length: 255
+            nullable: true
+        society:
+            type: string
+            length: 255
+            nullable: true
+        structureLogo:
+            type: string
+            length: 255
+            nullable: true
+        societyLogo:
+            type: string
+            length: 255
+            nullable: true
+        orientationMdph:
+            type: boolean
+            nullable: true
+        freeDescription:
+            type: text
+            nullable: true
+        brochureName:
+            type: string
+            length: 255
+            nullable: true
+        updatedAt:
+            type: datetime
+            nullable: true
+        societyLogoUpdatedAt:
+            type: datetime
+            nullable: true
+        structureLogoUpdatedAt:
+            type: datetime
+            nullable: true
+        firstPictureUpdateAt:
+            type: datetime
+            nullable: true
+        firstPicture:
+            type: string
+            length: 255
+            nullable: true
+        disabilities:
+            type: array
+            nullable: true
+        primaryNeeds:
+            type: array
+            nullable: true
+        secondaryNeeds:
+            type: array
+            nullable: true
+        medicalJob:
+            type: array
+            nullable: true
+        socialJob:
+            type: array
+            nullable: true
+        communJob:
+            type: array
+            nullable: true
+        statistic:
+            type: integer
+            nullable: true
+        pins:
+            type: boolean
+            nullable: true
+        checked:
+            type: boolean
+            nullable: true
+
+    oneToMany:
+        comments:
+            targetEntity: Comment
+            mappedBy: organizationsComment
+
+        media:
+            targetEntity: HandissimoBundle\Entity\Media
+            mappedBy: organizationsImg
+            cascade: ["persist", "merge"]
+            orphanRemoval: true
+
+    manyToOne:
+        orgaStructure:
+            targetEntity: HandissimoBundle\Entity\StructuresList
+            inversedBy: organizationsStructure
+            joinColumn:
+                name: structure_list_id
+                referencedColumnName: id
+
+
+
+    manyToMany:
+        userOrg:
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            mappedBy: organizationsUser
+
+
+        disabilityTypes:
+            targetEntity: DisabilityTypes
+            inversedBy: organizations
+            joinTable:
+                name: disability_types_has_organizations
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    disability_types_id:
+                        referencedColumnName: id
+        needs:
+            targetEntity: Needs
+            inversedBy: organizations
+            joinTable:
+                name: needs_has_organizations
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    needs_id:
+                        referencedColumnName: id
+
+        secondneeds:
+            targetEntity: HandissimoBundle\Entity\SecondaryNeeds
+            inversedBy: organizationsneeds
+            joinTable:
+                name: secondaryneeds_has_organizations
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    secondary_needs_id:
+                        referencedColumnName: id
+
+        stafforganizations:
+            targetEntity: Staff
+            inversedBy: organizations
+            joinTable:
+                name: organizations_has_staff
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    staff_id:
+                        referencedColumnName: id
+
+        socialstaffs:
+            targetEntity: HandissimoBundle\Entity\SocialStaff
+            inversedBy: socialstafforga
+            joinTable:
+                name: organizations_has_socialstaff
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    social_staff_id:
+                        referencedColumnName: id
+
+        otherjobs:
+            targetEntity: HandissimoBundle\Entity\OtherJob
+            inversedBy: otherjoborga
+            joinTable:
+                name: organizations_has_otherjob
+                joinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    other_job_id:
+                        referencedColumnName: id
+

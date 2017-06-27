@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% import "Macros/form_elements.html.twig" as formElements %}
+
+{% block title %}{{ parent() }} Comment ça marche ?{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/structure-19062017.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Head block -->
+    <div class="head-block"></div>
+    <div class="container main-block">
+
+        <div class="row">
+            <h1 class="title main-title">Comment ça marche ?</h1>
+            <div class="img-block">
+                <img src="{{ asset('images/about3.jpeg') }}" alt="" class="img-responsive">
+            </div>
+        </div>
+
+        {% for use in howToUse %}
+            {{ use.howToUse|raw }}
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('error') %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        <div class="col-md-offset-2 col-md-7 col-xs-12">
+            <form method="POST" class="solutionForm" action="{{path('handissimo_structure')}}" id="form-solution">
+                {{ form_start(form) }}
+                <p class="label-solution">{{ form_label(form.lastname) }} :</p>
+                {{ form_errors(form.lastname) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.firstname) }} :</p>
+                {{ form_errors(form.firstname) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.mail) }} :</p>
+                {{ form_errors(form.mail) }}
+                {{ form_widget(form.mail, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.phoneNumber) }} :</p>
+                {{ form_errors(form.phoneNumber) }}
+                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.cellphoneNumber) }} :</p>
+                {{ form_errors(form.cellphoneNumber) }}
+                {{ form_widget(form.cellphoneNumber, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.status) }} :</p>
+                {{ form_errors(form.status) }}
+                {{ form_widget(form.status, {'attr': {'class': 'form-control form2', 'placeholder': 'responsable de site, directeur adjoint,..'}}) }}
+                <p class="label-solution">{{ form_label(form.solutionName) }} :</p>
+                {{ form_errors(form.solutionName) }}
+                {{ form_widget(form.solutionName, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.societyName) }} :</p>
+                {{ form_errors(form.societyName) }}
+                {{ form_widget(form.societyName, {'attr': {'class': 'form-control form2'}}) }}
+                <p class="label-solution">{{ form_label(form.message) }} :</p>
+                {{ form_errors(form.message) }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control form2', 'rows': '7'}}) }}
+
+                <p>
+                    {{ form_widget(form.honor) }} J’atteste sur l’honneur être responsable de cette solution au sens des
+                    conditions générales d’utilisation HANDISSIMO, à savoir le représentant légal ou statutaire ou une personne
+                    dûment habilitée par lui et je demande à prendre la main sur ma fiche.</p><br>
+                {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
+                <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptchaTwo" id="hiddenRecaptchaTwo">
+                <div class="col-md-6 col-xs-12">
+                    <button id="btn-solution" type="submit" class="btn btn-primary handissimo-button">Envoyer</button>
+                </div>
+                {{ form_end(form) }}
+
+            </form>
+        </div>
+        <div class="col-md-12 col-xs-12 block-btn-homepage">
+            <a href="{{ path('index_action') }}" class="btn btn-homepage handissimo-button" role="button">
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,22 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+
+{% block sonata_profile_content %}
+    <div class="title-block">
+        <h3 class="title-search">{{ organization.name }}</h3>
+    </div>
+    <div class="block-profil-list">
+        <div class="col-md-6 title-column">Utilisateur</div>
+        <div class="col-md-6 title-column">Nombre de contribution</div>
+        {% for user, contribution in result %}
+            <div class="col-md-6">
+                {{ user }}
+            </div>
+            <div class="col-md-6">
+                {{ contribution }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="block-btn-profile">
+        <a href="{{ path('handissimo_profile_list_contributor') }}" class="btn btn-default handissimo-button" id="btn-detail">Retour</a>
+    </div>
+{% endblock %}

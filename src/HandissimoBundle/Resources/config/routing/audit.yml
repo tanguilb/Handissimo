@@ -1,0 +1,85 @@
+  ## FOR USER ####
+
+handissimo_profile_comment:
+    path:   /comment
+    defaults: { _controller: HandissimoBundle:Profile:profileComment }
+
+handissimo_profile_solution:
+    path:   /solution
+    defaults: { _controller: HandissimoBundle:Profile:solutionForm }
+
+handissimo_profile_search:
+    path:  /search
+    defaults: { _controller: "HandissimoBundle:Profile:profileSearch" }
+
+search_profile:
+    path:   /search/ajax/{profileSearch}
+    defaults: { _controller: "HandissimoBundle:Ajax:searchProfile"}
+    methods: POST
+
+handissimo_profile_list_user_card:
+    path:   /card
+    defaults: { _controller: HandissimoBundle:Profile:listUserCard }
+
+##FOR ROLE ADMIN
+
+handissimo_profile_list_contributor:
+    path:   /contributor
+    defaults: { _controller: HandissimoBundle:Profile:listOrganizationsByContributor }
+
+handissimo_profile_detail_contributor:
+    path:   /contributor/{id}
+    defaults: { _controller: HandissimoBundle:Profile:viewDetailByContributor }
+
+handissimo_profile_detail_deletion:
+    path:   /list-deletion/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Profile:deletionDetail }
+
+handissimo_profile_view_current_organization:
+    path:   /view/{id}
+    defaults: { _controller: HandissimoBundle:Profile:viewCurrentOrganizations }
+
+handissimo_profile_compare_organizations:
+    path:   /view/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Profile:viewDetailOld }
+
+handissimo_profile_list_deletion:
+    path:   /list-deletion
+    defaults: { _controller: HandissimoBundle:Profile:deletionListOrganizations }
+
+handissimo_profile_version:
+    path:   /version/{id}
+    defaults: { _controller: HandissimoBundle:Profile:organizationsVersion }
+
+handissimo_profile_list_organizations:
+    path:   /list
+    defaults: { _controller: HandissimoBundle:Profile:listOrganizations }
+
+handissimo_profile_revert_version:
+    path:   /view/revert/{id}/{rev}
+    defaults: { _controller: HandissimoBundle:Ajax:revertVersion }
+    methods: POST
+
+handissimo_profile_delete_history:
+    path:   /version/delete/{id}
+    defaults: { _controller: HandissimoBundle:Profile:deleteHistory }
+
+handissimo_profile_add_pins:
+    path:   /version/{id}/add
+    defaults: { _controller: HandissimoBundle:Ajax:addPins }
+
+handissimo_profile_remove_pins:
+    path:   /version/{id}/remove
+    defaults: { _controller: HandissimoBundle:Ajax:removePins }
+
+handissimo_profile_add_checked:
+    path:   /list/{id}/add
+    defaults: { _controller: HandissimoBundle:Ajax:addChecked }
+
+handissimo_profile_remove_checked:
+    path:   /list/{id}/remove
+    defaults: { _controller: HandissimoBundle:Ajax:removeChecked }
+
+handissimo_profile_version_checked:
+    path:   /view/{id}/{rev}/checked
+    defaults: { _controller: HandissimoBundle:Ajax:addCheckedVersion }

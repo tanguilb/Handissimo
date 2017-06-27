@@ -1,0 +1,181 @@
+HandissimoBundle\Entity\Solution:
+    properties:
+        lastname:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        firstname:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        mail:
+            - NotBlank: ~
+            - Email:
+                checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
+        phoneNumber:
+            - Length:
+                max: 30
+                maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères'
+            - Regex:
+                pattern: '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/'
+                message: "Le numéro de téléphone n'est pas valide"
+        cellphoneNumber:
+            - Length:
+                max: 30
+                maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères'
+            - Regex:
+                pattern: '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/'
+                message: "Le numéro de téléphone n'est pas valide"
+        status:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        solutionName:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        societyName:
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        message:
+            - Length:
+                max: 3000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        honor:
+            - NotBlank: ~
+
+HandissimoBundle\Entity\Opinion:
+    properties:
+        eMail:
+            - Email:
+                checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
+            - NotBlank: ~
+        firstName:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        lastName:
+            - NotBlank: ~
+            - Length:
+                max: 50
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        message:
+            - NotBlank: ~
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+
+HandissimoBundle\Entity\Organizations:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        address:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        addressComplement:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        postal:
+            - Length:
+                max: 10
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+            - Range:
+                min: 0
+                max: 99999
+                invalidMessage: "Le code postal n'est pas un nombre"
+        city:
+            - Length:
+                max: 200
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        phoneNumber:
+            - Length:
+                max: 30
+                maxMessage: 'Le numéro de téléphone ne peut dépasser {{ limit }} caractères'
+            - Regex:
+                pattern: '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/'
+                message: "Le numéro de téléphone n'est pas valide"
+        mail:
+            - Email:
+                checkMX: true
+                message: "Le mail {{ value }} n'est pas un mail valide"
+        directorName:
+            - Length:
+                max: 100
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        brochureFile:
+            - File:
+                maxSize: 2M
+                maxSizeMessage: 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}'
+        freeplace:
+            - Range:
+                max: 999
+                maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
+        organizationDescription:
+            - Length:
+                max: 5000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        needs:
+            - Count:
+                max: 5
+                maxMessage: 'Vous devez sélectionner au maximum {{ limit }} choix'
+        secondneeds:
+            - Count:
+                max: 5
+                maxMessage: 'Vous devez sélectionner au maximum {{ limit }} choix'
+        workingDescription:
+            - Length:
+                max: 5000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        accomodationDescription:
+            - Length:
+                max: 3000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        schoolDescription:
+            - Length:
+                max: 3000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        dayDescription:
+            - Length:
+                max: 5000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        receptionDescription:
+            - Length:
+                max: 5000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        teamMembersNumber:
+            - Range:
+                max: 999
+                maxMessage: 'Cette valeur doit être inférieur à {{ limit }}'
+        commentStaff:
+            - Length:
+                max: 1000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        inscription:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        cost:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        transport:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'
+        freeDescription:
+            - Length:
+                max: 2000
+                maxMessage: 'La longueur du texte ne peut dépasser {{ limit }} caractères'

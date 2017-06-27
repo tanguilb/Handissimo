@@ -1,0 +1,14 @@
+media_new:
+    path:     /new
+    defaults: { _controller: "HandissimoBundle:Media:new" }
+    methods:  [GET, POST]
+
+media_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HandissimoBundle:Media:edit" }
+    methods:  [GET, POST]
+
+media_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HandissimoBundle:Media:delete" }
+    methods:  DELETE

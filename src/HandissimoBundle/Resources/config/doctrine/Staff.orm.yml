@@ -1,0 +1,24 @@
+HandissimoBundle\Entity\Staff:
+    type: entity
+    table: staff
+    repositoryClass: HandissimoBundle\Repository\StaffRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        jobs:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+
+    manyToMany:
+        organizations:
+            targetEntity: Organizations
+            mappedBy: stafforganizations
+
+    lifecycleCallbacks: {  }

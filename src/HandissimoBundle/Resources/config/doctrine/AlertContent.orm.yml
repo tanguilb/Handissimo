@@ -1,0 +1,28 @@
+HandissimoBundle\Entity\AlertContent:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        choice:
+            type: array
+        description:
+            type: text
+            length: 300
+        user:
+            type: string
+            length: 255
+        sendingDate:
+            type: datetime
+        organization:
+            type: string
+            length: 255
+        rereading:
+            type: boolean
+            nullable: true
+
+    lifecycleCallbacks: {  }

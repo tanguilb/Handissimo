@@ -1,0 +1,49 @@
+Application\Sonata\UserBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    repositoryClass: Application\Sonata\UserBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        userType:
+            type: string
+            nullable: false
+            length: 50
+        avatar:
+            type: text
+            nullable: true
+        compact:
+            type: boolean
+            nullable: true
+        participation:
+            type: integer
+            nullable: true
+        lastDate:
+            type: string
+            length: 50
+            nullable: true
+        contribution:
+            type: array
+            nullable: true
+        grade:
+            type: string
+            length: 50
+            nullable: true
+
+    manyToMany:
+        organizationsUser:
+            targetEntity: HandissimoBundle\Entity\Organizations
+            inversedBy: userOrg
+            joinTable:
+                name: user_has_organizations
+                joinColumns:
+                    users_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    organizations_id:
+                        referencedColumnName: id
+

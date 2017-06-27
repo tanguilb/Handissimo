@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Formulaire de contact{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/contact-19062017.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="head-block"></div>
+    <div class="container main-block">
+        <div class="row">
+            <h1 class="title main-title">Formulaire de contact</h1>
+            <div class="img-block">
+                <img src="{{ asset('images/about3.jpeg') }}" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="alert-block">
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('error') %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-offset-2 col-md-7 col-xs-12">
+            <form method="POST" class="contactForm" action="{{path('handissimo_contact')}}" id="form_contact">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_errors(form.lastName) }}
+                {{ form_widget(form.lastName, {'attr': {'class': 'form-control form2', 'placeholder': 'lastname'|trans({}, 'messages')}}) }}
+                {{ form_errors(form.firstName) }}
+                {{ form_widget(form.firstName, {'attr': {'class': 'form-control form2', 'placeholder': 'firstname'|trans({}, 'messages')}}) }}
+                {{ form_errors(form.eMail) }}
+                {{ form_widget(form.eMail, {'attr': {'class': 'form-control form2', 'placeholder': 'mail'|trans({}, 'messages')}}) }}
+                {{ form_errors(form.message) }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control form2', 'placeholder': 'message'|trans({}, 'messages'), 'rows': '7'}}) }}
+                {{formElements.recaptcha("6Lc8vBYUAAAAAB8DSXyHoqJF40zsbd14Wd_NBnpC")}}
+                <input type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" id="hiddenRecaptcha">
+                <button id="btn-contact" type="submit" class="btn btn-primary handissimo-button">Envoyer</button>
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

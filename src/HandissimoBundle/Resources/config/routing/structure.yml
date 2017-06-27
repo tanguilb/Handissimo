@@ -1,0 +1,13 @@
+structure_page:
+    path: /
+    defaults: { _controller: "HandissimoBundle:Default:standardPage" }
+    options:
+        expose: true
+
+alert_content_new:
+    path:   /
+    defaults: { _controller: HandissimoBundle:AlertContent:new }
+
+alert_content_create:
+    path:   /alert_content
+    defaults: { _controller: HandissimoBundle:Ajax:addAlert }

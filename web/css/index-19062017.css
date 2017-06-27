@@ -1,0 +1,591 @@
+#main-index {
+    margin: 0;
+    padding: 0;
+    background: url(../images/home-page-Handissimo2.png) no-repeat center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size:cover;
+}
+
+@media screen and (max-width: 1920px){
+    #main-index {
+        height: 100vh;
+        background-size: cover;
+        -webkit-background-size:cover;
+        /*background-size: cover;*/
+    }
+    #main-index #title-index {
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-width: 1366px){
+    /*#main-index {
+        height: 100vh;
+        background-size: cover;
+        -webkit-background-size:cover;
+    }*/
+    #main-index #title-index {
+        margin-top: 10%;
+        font-size: 2.5em;
+    }
+    #main-index div h2 {
+        margin-top: 20px;
+        font-size: 2em;
+    }
+    .search-field .search-text {
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+    .search-field .homeField {
+        font-size: 1.1em;
+    }
+    .search-field .marker {
+        font-size: 1.1em;
+    }
+    #main-index #search-container #research_action_disability, #main-index #search-container #research_action_structure {
+        font-size: 0.9em;
+    }
+    #main-index #search-container {
+        margin-top: 20px;
+    }
+    #main-index #research_action_save {
+        font-size: 1.2em;
+    }
+    #headband-solution .headband-title{
+        font-size: 1.5em;
+    }
+    #headband-solution .headband-title, #headband-solution #interactive, #headband-solution #building, #headband-solution #collaborative {
+        font-size: 1.6em;
+    }
+    #headband-stats .nb-stat {
+        font-size: 1.5em;
+    }
+    #headband-stats .stat-content {
+        font-size: 1.1em;
+    }
+    #block-call #btn-call {
+        font-size: 1.2em;
+    }
+    #text-carousel p,
+    #video p,
+    #block-img-week p{
+        font-size: 0.8em;
+    }
+
+    {
+        height: 90px;
+    }
+}
+
+@media screen and (max-width: 780px)
+{
+    #main-index {
+        height: 100vh;
+        background-size: cover;
+    }
+    #main-index #title-index {
+        margin-top: 20%;
+        font-size: 1.6em;
+    }
+    #main-index div h2 {
+        margin-top: 10px;
+        font-size: 1.1em;
+    }
+    .search-field .search-text {
+        font-size: 0.7em;
+        margin-bottom: 5px;
+    }
+    .search-field .homeField {
+        font-size: 0.5em;
+    }
+    .search-field .marker {
+        font-size: 0.9em;
+    }
+    #main-index #search-container #research_action_disability,
+    #main-index #search-container #research_action_structure {
+        font-size: 0.7em;
+        margin-top: 10px;
+    }
+    #main-index #search-container {
+        margin-top: 10px;
+    }
+    #main-index #research_action_save {
+        font-size: 0.7em;
+        margin-top: 20px;
+    }
+
+    #headband-solution .headband-title,
+    #headband-solution #interactive,
+    #headband-solution #building,
+    #headband-solution #collaborative {
+        font-size: 1.2em;
+    }
+
+    #headband-stats .nb-stat {
+        font-size: 0.9em;
+    }
+    #headband-stats .stat-content {
+        font-size: 0.6em;
+    }
+    #block-call #btn-call {
+        font-size: 0.7em;
+    }
+    #headband-social .content-social {
+        font-size: 0.8em;
+        line-height: 25px;
+    }
+
+}
+
+@media (max-width: 360px) {
+    #main-index {
+        background-position: 74%;
+    }
+    #main-index #title-index {
+        margin-top: 30%;
+        font-size: 1em;
+    }
+    #main-index .titre {
+        font-size: 0.8em;
+    }
+    #main-index #search-container {
+        margin-top: 5px;
+    }
+}
+
+#main-index h1 {
+    font-weight: 700;
+    font-size: 4em;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top:140px;
+}
+
+#main-index h2 {
+    font-size: 3em;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 42px;
+}
+@media (max-width: 360px) {
+    #main-index h1 {
+        font-size: 35px;
+    }
+    #main-index h2 {
+        font-size: 20px;
+    }
+}
+
+/*Search area*/
+#search-container{
+    margin-top: 50px;
+}
+
+.search-field {
+    background-color: #FFFFFF;
+    border: 2px solid #f7af49;
+    border-radius: 3px;
+}
+@media (max-width: 992px) {
+    .search-field {
+        margin: 10px 0;
+    }
+}
+
+.search-field p {
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    padding-top: 8px;
+    color: #777777;
+}
+@media (max-width: 360px) {
+    .search-field p {
+        font-size: 20px;
+    }
+}
+
+.search-field i {
+    display: inline-block;
+    color: #f7af49;
+    float: right;
+    margin-top: 5px;
+}
+
+#marker {
+    font-size: 26px;
+}
+
+.homeField {
+    padding: 0 0 0 10px;
+    border: none;
+    border-bottom: solid 1px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+    font-style: italic;
+    color: #444;
+}
+
+.homeField:focus,
+.homeField.focus {
+    border-bottom: solid 1px #777777;
+}
+
+#research_action_age,
+#research_action_postal,
+#research_action_need {
+    margin-bottom: 10px;
+}
+
+#organization-name,
+#city {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    margin: 0 0 0 -15px;
+    z-index: 997;
+    border-radius: 3px;
+}
+
+#organization-name li,
+#city li {
+    list-style: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    color: #777777;
+    font-style: italic;
+    display: block;
+    padding: 10px 15px;
+    border-bottom: 1px solid #c9c9c9;
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+#organization-name li:hover,
+#city li:hover {
+    background-color: #F4F3F2;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#search_profile_save,
+#research_action_save
+{
+    border: none;
+    font-size: 1.5em;
+    display: block;
+    margin: 20px auto 10px auto;
+}
+
+#advanced-search,
+#quick-search{
+    border: none;
+    font-size: 1.5em;
+    font-weight: 800;
+    display: block;
+    margin: 0 auto 0 auto;
+    color: #C37095;
+    background-color: transparent;
+}
+
+#advanced-search:hover,
+#quick-search:hover {
+    color: #C37095;
+}
+
+#research_action_disability,
+#research_action_structure {
+    font-size: 1.1em;
+    font-weight: 600;
+    width: 100%;
+}
+
+.select2 {
+    border: 2px solid #f7af49;
+    width: 100%;
+    margin-top: 20px;
+    background-color: #FFFFFF;
+    font-size: 1.1em;
+    border-radius: 3px;
+    font-style: italic;
+}
+
+#structure-select .select2-container .select2-choice {
+    height: 50px;!important;
+    line-height: 50px;
+}
+
+.need-select .select2 {
+    border: none;
+    margin-top: 0;
+}
+
+.need-select .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    border-bottom: solid 1px #c9c9c9;
+}
+.need-select .select2-container .select2-search--inline .select2-search__field {
+    margin-top: 0;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: none;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: none;
+}
+
+.select2-results__option {
+    padding: 0 0 0 5px;
+}
+
+.select2-container--default .select2-selection--single {
+    border: none;
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 32px;
+    user-select: none;
+    -webkit-user-select: none; }
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 30px; }
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 30px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px; }
+
+/***************************/
+/***** Headband solution****/
+/***************************/
+
+#headband-solution {
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.headband-title {
+    color: #61bdb9;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+@media (max-width: 360px) {
+    .headband-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+#block-call {
+
+    margin: 20px auto 20px auto;
+    text-align: center;
+}
+
+#btn-call {
+    border: none;
+    font-size: 1.5em;
+    background-color: #f7af49;
+}
+
+#btn-call:hover,
+#btn-call:focus {
+    background-color: #FFBE49;
+    color: #FFFFFF;
+}
+#quick-search-container{
+    display: none;
+}
+#solution-one:hover,
+#solution-two:hover,
+#solution-three:hover,
+#solution-one:focus,
+#solution-two:focus,
+#solution-three:focus {
+    text-decoration: none;
+    color: #f7af49;
+}
+
+#solution-one,
+#solution-two,
+#solution-three {
+    color: black;
+}
+
+/****************************/
+/**** Headband stats ***/
+/****************************/
+#headband-stats {
+    background-color: #61bdb9;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.stat-content {
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+.nb-stat {
+    font-size: 3em;
+    color: #FFFFFF;
+}
+
+@media (max-width: 360px) {
+    .nb-stat {
+        font-size: 1.2em;
+    }
+}
+
+/****************************/
+/****** Headband news *******/
+/****************************/
+
+.zoom {
+    -webkit-transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+}
+
+.zoom:hover,
+.zoom:active,
+.zoom:focus {
+    /**adjust scale to desired size,
+    add browser prefixes**/
+    -ms-transform: scale(4.5);
+    -moz-transform: scale(4.5);
+    -webkit-transform: scale(4.5);
+    -o-transform: scale(4.5);
+    transform: scale(4.5);
+    position:relative;
+    z-index:100;
+}
+
+#img-week {
+    max-height: 29vh;
+}
+
+#block-img-week {
+    text-align: center;
+}
+
+#title-news {
+    margin-bottom: 50px;
+}
+
+.news-content {
+    margin-bottom: 50px;
+}
+
+#img-carousel {
+    width: auto;
+}
+.carousel-inner > .item > .block-img > img {
+    margin: 0 auto;
+}
+.modal.and.carousel {
+    margin-top: 12%;
+    position: fixed;
+}
+#video {
+    text-align: center;
+}
+#text-carousel p,
+#video p{
+    margin-bottom: 60px;
+}
+#text-carousel {
+    text-align: center;
+}
+/****************************/
+/***** Headband social ******/
+/****************************/
+
+#headband-social {
+    background-color: #61bdb9;
+    height: 100px;
+    text-align: center;
+
+}
+
+.content-social {
+    line-height: 100px;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 24px;
+}
+
+@media (max-width: 360px) {
+    .content-social {
+        line-height: 25px;
+        font-size: 16px;
+    }
+}
+
+.content-social:hover,
+.content-social:focus {
+    color: #f7af49;
+}
+
+#facebook-link,
+#twitter-link {
+    text-decoration: none;
+}
+
+.picto {
+    height: 150px;
+}
+#collaborative {
+    color: #61bdb9;
+}
+
+#interactive {
+    color: #C37095;
+}
+
+#building {
+    color: #f7af49;
+}
+
+.btn-homepage {
+    background-color: #C37095;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.btn-homepage:hover,
+.btn-homepage:focus {
+    background-color: #C37095;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.block-btn-homepage {
+    margin: 0 auto;
+    text-align: right;
+}

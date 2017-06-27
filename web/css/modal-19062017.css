@@ -1,0 +1,133 @@
+/****************/
+/*OPINION BUTTON*/
+/****************/
+
+/*Button*/
+.modal-backdrop.in {
+    z-index: 1;
+}
+
+.modal-button {
+    background-color: #61bdb9;
+}
+
+.modal-button:hover {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+.modal-button:focus {
+    color: #FFFFFF;
+}
+
+.modal-button i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+/*Modal window*/
+
+.modal-content {
+    border: none;
+    border-radius: 0px;
+}
+
+.modal-header {
+    background-color: #61bdb9;
+    padding: 20px;
+}
+
+.modal-title {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.modal-header .close {
+    margin-right: 5px;
+    font-size: 35px;
+    margin-top: -6px;
+}
+
+.modal-body {
+    padding: 15px 20px;
+}
+
+.modal-body p {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+.modal-body #form_body label {
+    margin-right: 15px;
+}
+
+#form_body label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 2px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+#handissimobundle_opinion_firstName,
+#handissimobundle_opinion_lastName,
+#handissimobundle_opinion_eMail {
+    padding: 5px 0 0 0;
+    border: none;
+    border-bottom: solid 1px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+    color: #777777;
+}
+
+#handissimobundle_opinion_firstName:focus,
+#handissimobundle_opinion_lastName:focus,
+#handissimobundle_opinion_eMail:focus {
+    border-bottom: solid 1px #777777;
+}
+
+#handissimobundle_opinion_message {
+    width: 100%;
+    min-height: 100px;
+    margin-top: 5px;
+    border: solid 1px #c9c9c9;
+}
+
+#handissimobundle_opinion_message:focus {
+    border: solid 1px #777777;
+}
+
+.modal-footer {
+    border: none;
+}
+
+#send-message{
+    width: 120px;
+    background-color: #61bdb9;
+    border: none;
+    float: left;
+}
+
+#send-message:hover,
+#send-message:focus {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+#send-cancel {
+    width: 120px;
+    border: none;
+    margin: 0 0 0 10px;
+    float: left;
+    font-size: 15px;
+}
+
+#border-text-charte {
+    border: 3px solid black;
+    padding: 0 10px 0 10px;
+}

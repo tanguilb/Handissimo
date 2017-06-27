@@ -1,0 +1,40 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/adminnavbar-19062017.css') }}"/>
+{% endblock %}
+    {% block sonata_header %}
+        {% include 'front/navbar.html.twig' %}
+    {% endblock sonata_header %}
+{#{% block sonata_left_side %}
+
+{% endblock %}#}
+{% block side_bar_after_nav %}
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
+        <img src="{{ asset("images/handissimo-logo.png") }}" alt="Logo handissimo">
+        Retournez au menu
+    </a>
+{% endblock side_bar_after_nav %}

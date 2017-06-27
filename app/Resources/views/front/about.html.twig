@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} Qui sommes nous ?{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/about-19062017.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Head block -->
+    <div class="head-block"></div>
+    <div class="container main-block">
+        <div class="row">
+            <h1 class="title main-title">Qui sommes-nous ?</h1>
+
+            <div class="img-block">
+                <img src="{{ asset('images/whoarewe.jpeg') }}" alt="" class="img-responsive">
+            </div>
+        </div>
+        <!-- Text block -->
+        <div class="text-content description">
+            <div class="col-xs-12">
+                {% for use in whoAreWe %}
+                    {{ use.whoAreWe|raw }}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="block-btn-homepage col-xs-12">
+            <a href="{{ path('index_action') }}" class="btn btn-homepage handissimo-button" role="button">
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+{% endblock body %}

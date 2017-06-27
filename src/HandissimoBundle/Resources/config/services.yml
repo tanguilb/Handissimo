@@ -1,0 +1,20 @@
+services:
+
+    handissimo.captchaverify:
+        class: HandissimoBundle\Services\Captcha\CaptchaVerify
+
+    handissimo.admin.structure_type:
+        class: HandissimoBundle\Admin\StructureTypeAdmin
+        arguments: [~, HandissimoBundle\Entity\StructureType, ~ ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: StructureType }
+
+    handissimo.admin.edit_content:
+        class: HandissimoBundle\Admin\EditContentAdmin
+        arguments: [~, HandissimoBundle\Entity\EditContent, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Contenu éditable, label: Modification du contenu }
+
+    search_recorder:
+        class:     HandissimoBundle\Services\Recorder\SearchRecorder
+        arguments: ["@doctrine.orm.entity_manager"]

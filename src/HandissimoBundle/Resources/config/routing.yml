@@ -1,0 +1,44 @@
+handissimo_contact:
+    path: /contact
+    defaults: { _controller: HandissimoBundle:Contact:newContact}
+
+handissimo_research:
+    resource: "@HandissimoBundle/Resources/config/routing/research.yml"
+    prefix:   /
+
+handissimo_aboutpage:
+    path:     /about
+    defaults: { _controller: HandissimoBundle:EditContent:whoAreWe }
+
+handissimo_organizations_standard_page:
+    resource: "@HandissimoBundle/Resources/config/routing/structure.yml"
+    prefix: /structure/{id}
+
+handissimo_structure:
+    path: /solution
+    defaults: { _controller: "HandissimoBundle:EditContent:howToUse" }
+
+handissimo_notice:
+    path: /mentions-légales
+    defaults: { _controller: "HandissimoBundle:Default:notice" }
+
+handissimo_organizations:
+    resource: "@HandissimoBundle/Resources/config/routing/organizations.yml"
+    prefix:   /organizations
+
+handissimo_media:
+    resource: "@HandissimoBundle/Resources/config/routing/media.yml"
+    prefix:   /media
+
+handissimo_profile:
+    resource: "@HandissimoBundle/Resources/config/routing/audit.yml"
+    prefix:   /profile
+
+handissimo_help:
+    path: /help
+    defaults: { _controller: HandissimoBundle:EditContent:howToHelpUs }
+
+search_organization_name:
+    path:   /organization/search/ajax/{organizationSearch}
+    defaults: { _controller: "HandissimoBundle:Ajax:organizationNameSearch" }
+    methods: POST

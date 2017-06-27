@@ -1,0 +1,155 @@
+#handissimobundle_organizations_name,
+#handissimobundle_organizations_society,
+#handissimobundle_organizations_address,
+#handissimobundle_organizations_addressComplement,
+#handissimobundle_organizations_postal,
+#handissimobundle_organizations_city,
+#handissimobundle_organizations_phone_number,
+#handissimobundle_organizations_mail,
+#handissimobundle_organizations_directorName,
+#handissimobundle_organizations_website,
+#handissimobundle_organizations_facebook,
+#handissimobundle_organizations_agemini,
+#handissimobundle_organizations_agemaxi,
+#handissimobundle_organizations_freeplace,
+#handissimobundle_organizations_interventionZone,
+#handissimobundle_organizations_teamMembersNumber,
+#handissimobundle_organizations_openhours
+{
+    padding: 5px 0 0 5px;
+    border: none;
+    border-bottom: solid 1px #c9c9c9;
+    transition: border 0.3s;
+    width: 100%;
+    font-size: 1.1em;
+    color: #777777;
+}
+
+.advert {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#new-organization,
+#edit-organization {
+    margin-bottom: 10px;
+    background-color: #61bdb9;
+    border: none;
+}
+
+#new-organization:hover,
+#new-organization:focus,
+#edit-organization:focus,
+#edit-organization:hover {
+    background-color: #71DBD7;
+    color: #FFFFFF;
+}
+
+#delete-organization {
+    margin-bottom: 10px;
+    background-color: #C37095;
+    border: none;
+}
+
+#delete-organization:hover,
+#delete-organization:focus {
+    background-color: #DC7095;
+    color: #FFFFFF;
+}
+
+#workingDescription {
+    margin-top: 10px;
+}
+
+#organizationDescription {
+    margin-bottom: 10px;
+}
+
+.verification {
+    font-size: 18px;
+    color: #C37095;
+}
+
+#verification-link {
+    margin-left: 15px;
+}
+
+.vich-image >  a > img{
+    height: 60px;
+    width: auto;
+}
+
+.error,
+.errors-message {
+    color: red;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    background-color: #61bdb9;
+}
+
+.block-btn-prev-next {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btnPrevious,
+.btnNext {
+    background-color: #f7af49;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.btn-submit{
+    margin: 0 auto;
+    text-align: right;
+}
+
+.btnNext:hover,
+.btnPrevious:hover,
+.btnNext:focus,
+.btnPrevious:focus {
+    background-color: #FFBE49;
+    color: #ffffff;
+}
+
+.alert-form {
+    color: #C94242;
+    font-size: 1.3em;
+    padding: 0 0 0 0;
+    margin-bottom: 0;
+}
+
+.block-alert {
+    padding: 0 5px 0 0;
+}
+
+.h3-alert {
+    padding-left: 15px;
+}
+.label-alert {
+    padding: 0 0 0 0;
+}
+
+.age {
+    padding-left: 0;
+}
+#handissimobundle_organizations_name,
+#handissimobundle_organizations_address,
+#handissimobundle_organizations_postal,
+#handissimobundle_organizations_city {
+    margin-bottom: 15px;
+}
+
+.age-label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btnPreview {
+    background-color: #C37095;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}

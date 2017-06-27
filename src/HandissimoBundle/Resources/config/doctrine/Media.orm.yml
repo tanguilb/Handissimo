@@ -1,0 +1,42 @@
+HandissimoBundle\Entity\Media:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\MediaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fileName:
+            type: string
+            length: '100'
+            nullable: true
+        updated:
+            type: datetime
+            nullable: true
+        webPath:
+            type: string
+            length: 255
+            nullable: true
+        thumbnails:
+            type: string
+            length: 255
+            nullable: true
+
+
+    manyToOne:
+        organizationsImg:
+            targetEntity: HandissimoBundle\Entity\Organizations
+            inversedBy: media
+            joinColumn:
+                name: organizations_id
+                referencedColumnName: id
+
+
+    lifecycleCallbacks:
+        prePersist:   [lifecycleFileUpload]
+        preUpdate:    [refreshUpdated]
+        postRemove:   [lifecycleFileRemove, lifecycleThumbnailsRemove]
+

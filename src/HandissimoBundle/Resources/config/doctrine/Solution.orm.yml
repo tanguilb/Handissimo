@@ -1,0 +1,50 @@
+HandissimoBundle\Entity\Solution:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        lastname:
+            type: string
+            length: 255
+        firstname:
+            type: string
+            length: 255
+        phoneNumber:
+            type: string
+            length: 50
+            nullable: true
+        cellphoneNumber:
+            type: string
+            length: 50
+            nullable: true
+        mail:
+            type: string
+            length: 255
+        status:
+            type: string
+            length: 255
+        solutionName:
+            type: string
+            length: 255
+        societyName:
+            type: string
+            length: 255
+            nullable: true
+        messageDate:
+            type: datetime
+            nullable: true
+        message:
+            type: text
+            nullable: true
+            length: 3000
+        honor:
+            type: boolean
+        rereading:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

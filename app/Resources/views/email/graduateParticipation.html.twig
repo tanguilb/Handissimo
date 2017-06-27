@@ -1,0 +1,9 @@
+<h3>Un message vous a été envoyé</h3>
+<p>Bonjour, <br>
+L'utilisateur "{{ user }}" à fait {{ participation }} modifications/créations, sur les fiches ayant comme nom:
+    <ul>
+    {% for organization, contribution in contributions %}
+        <li>{{ organization }} : {{ contribution }} fois.</li>
+    {% endfor %}
+    </ul>
+Veuillez vérifier le contenu et lui changer de grade en fonction du nombre de participation et de la qualité</p>

@@ -1,0 +1,25 @@
+HandissimoBundle\Entity\DisabilityTypes:
+    type: entity
+    table: disability_types
+    repositoryClass: HandissimoBundle\Repository\DisabilityRepository
+    indexes:
+        name_idx:
+            columns: [ disability_name ]
+            flags: fulltext
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        disabilityName:
+            type: string
+            nullable: true
+            length: 255
+    manyToMany:
+        organizations:
+            targetEntity: Organizations
+            mappedBy: disabilityTypes
+
+    lifecycleCallbacks: {  }

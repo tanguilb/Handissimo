@@ -2,15 +2,19 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@HandissimoBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
+    media_directory:     '%kernel.root_dir%/../web/uploads/image'
+    logo_directory:      '%kernel.root_dir%/../web/uploads/logo'
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -35,6 +39,47 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+    form_themes:
+        - 'SonataFormatterBundle:Form:formatter.html.twig'
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'VichUploaderBundle:Form:fields.html.twig'
+
+sonata_formatter:
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
+
+
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -45,6 +90,11 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+
+
+
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -54,13 +104,281 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                dql:
+                    string_functions:
+                        regexp: DoctrineExtensions\Query\Mysql\Regexp
+                    numeric_functions:
+                        geo: HandissimoBundle\Doctrine\Query\Geo
+                auto_mapping: true
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+
+
+# Sonata Configuration
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
+        sonata.block.service.text: # used to if you plan to use Sonata user routes
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+sonata_admin:
+    templates:
+        edit: HandissimoBundle:CRUD:edit.html.twig
+        layout:    "::standard_layout.html.twig"
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+
+    security:
+        handler: sonata.admin.security.handler.role
+
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [Modération]
+            -
+                position: right
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [Contenus éditables]
+
+        groups:
+            Modération:
+                items:
+                    - admin.users
+                    - admin.organizations
+                    - admin.opinion
+                    - admin.comment
+                    - admin.solution
+                    - admin.alert_content
+            Contenus éditables:
+                items:
+                    - admin.disabilitytypes
+                    - admin.structureslist
+                    - admin.structuretype
+                    - admin.needs
+                    - admin.secondaryneeds
+                    - admin.staff
+                    - admin.socialstaff
+                    - admin.otherjob
+                    - admin.edit
+
+
+
+sonata_doctrine_orm_admin:
+    templates:
+        types:
+            list:
+                boolean: SonataAdminBundle:CRUD:list_boolean.html.twig
+    audit:
+        force: false
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    profile:
+        register:
+            # You may customize the registration forms over here
+            form:
+                type:                 front_user_registration
+                handler:              sonata.user.registration.form.handler.default
+                name:                 front_user_registration_form
+                validation_groups:
+                    # Defaults:
+                    - Registration
+                    - Default
+            confirm:
+                redirect:
+                    # Set it to false to disable redirection
+                    route: 'sonata_user_profile_show'
+                    route_parameters: ~
+        menu:
+            -
+                route: 'sonata_user_profile_edit'
+                label: 'link_edit_profile'
+                domain: 'SonataUserBundle'
+
+        form:
+            type:               application_sonata_user_profile
+            handler:            sonata_user.form.handler.profile
+            name:               sonata_user_profile_form
+            validation_groups:  [Profile]
+
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\UserAdmin # there define your extended admin class
+
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
+    auth_mode: login
+    encryption: ssl
+    transport: '%mailer_transport%'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
     spool:     { type: memory }
+
+# FosUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class:    Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+        user_manager: sonata.user.orm.user_manager
+
+    from_email:
+        address: handissimo@gmail.com
+        sender_name: Handissimo
+
+    registration:
+        form:
+            type: front_user_registration
+
+        confirmation:
+            enabled: true
+            template: FOSUserBundle:Registration:email.txt.twig
+    profile:
+        form:
+            type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            validation_groups:  [Authentication]
+
+sonata_user:
+    security_acl: false
+    manager_type: orm
+    profile:
+        register:
+            # You may customize the registration forms over here
+            form:
+                type:                 front_user_registration
+                handler:              sonata.user.registration.form.handler.default
+                name:                 front_user_registration_form
+    admin:                  # Admin Classes
+        user:
+            class:          Application\Sonata\UserBundle\Admin\UserAdmin # there define your extended admin class
+
+ivory_ck_editor:
+    default_config: my_custom_config
+    configs:
+        my_custom_config:
+            extraPlugins: 'wordcount,notification,confighelper'
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+            height: '200px'
+            wordcount:
+                showCharCount: true
+                countSpacesAsChars: true
+        admin_config:
+            extraPlugins: 'wordcount,notification,confighelper'
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
+            toolbar: [ [ 'Source','-','Save','DocProps','Preview','-','Templates' ], [ 'Cut','Copy','Paste','-','Undo','Redo' ], [ 'Find','-','SelectAll','-','SpellChecker', 'Scayt' ], [ 'Bold','Italic','Underline','Strike','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink' ], [ 'Table','HorizontalRule' ], [ 'Format','FontSize', 'Styles' ], ['Image'], [ 'TextColor','BGColor' ], [ 'Maximize' ]]
+            height: '200px'
+            wordcount:
+                showCharCount: true
+                countSpacesAsChars: true
+
+    plugins:
+        wordcount:
+            path: '/bundles/ivoryckeditor/plugins/wordcount/'
+            filename: 'plugin.js'
+        notification:
+            path: '/bundles/ivoryckeditor/plugins/notification/'
+            filename: 'plugin.js'
+        confighelper:
+            path: '/bundles/ivoryckeditor/plugins/confighelper/'
+            filename: 'plugin.js'
+
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig      # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig # sort link template
+
+fos_js_routing:
+    routes_to_expose: [structure_page]
+
+fm_elfinder:
+    assets_path: /assets
+    instances:
+        default:
+            locale: %locale% # defaults to current request locale
+            editor: ckeditor # other options are tinymce, tinymce4, form, custom and simple
+            fullscreen: true # defaults true, applies to simple and ckeditor editors
+            theme: smoothness # jquery theme
+            include_assets: true # disable if you want to handle loading of the javascript and css assets yourself
+            connector:
+                debug: false # defaults to false
+                roots:       # at least one root must be defined
+                    uploads:
+                        show_hidden: false # defaults to false
+                        driver: LocalFileSystem
+                        path: uploads/img/filemanager
+                        upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
+                        upload_deny: ['all']
+                        upload_max_size: 2M
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        organizations_brochures:
+            uri_prefix: /uploads/brochures
+            upload_destination: '%kernel.root_dir%/../web/uploads/brochures'
+            namer: vich_uploader.namer_origname
+
+        organizations_societyLogo:
+            uri_prefix: /uploads/societyLogo
+            upload_destination: '%kernel.root_dir%/../web/uploads/societyLogo'
+            namer: vich_uploader.namer_origname
+
+        organizations_structureLogo:
+            uri_prefix: /uploads/structureLogo
+            upload_destination: '%kernel.root_dir%/../web/uploads/structureLogo'
+            namer: vich_uploader.namer_origname
+
+        organizations_firstPicture:
+            uri_prefix: /uploads/first_image
+            upload_destination: '%kernel.root_dir%/../web/uploads/first_image'
+            namer: vich_uploader.namer_origname
+
+        organizations_images:
+            uri_prefix: /uploads/image
+            upload_destination: '%kernel.root_dir%/../web/uploads/image'
+            namer: vich_uploader.namer_origname
+
+        structure_type_picture:
+            uri_prefix: /uploads/etablissement
+            upload_destination: '%kernel.root_dir%/../web/uploads/etablissement'
+            namer: vich_uploader.namer_origname
+
+
+simple_things_entity_audit:
+    audited_entities:
+        - HandissimoBundle\Entity\Organizations
+        - HandissimoBundle\Entity\Media
+    global_ignore_columns:
+        - pins
+        - checked
+
+

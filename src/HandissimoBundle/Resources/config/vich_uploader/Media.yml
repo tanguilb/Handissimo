@@ -1,0 +1,4 @@
+HandissimoBundle\Entity\Media:
+    imageFile:
+        mapping: organizations_images
+        filename_property: fileName

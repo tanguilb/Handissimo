@@ -1,0 +1,24 @@
+city_ajax:
+    path:     /ajaxcity/{city}
+    defaults: {_controller: "HandissimoBundle:Ajax:searchByCity"}
+    methods:  POST
+
+index_action:
+    path:     /
+    defaults: { _controller: "HandissimoBundle:Search:index" }
+    methods:  [GET, POST]
+
+research_action:
+    path:     /list
+    defaults: { _controller: "HandissimoBundle:Search:research" }
+    methods:  [GET, POST]
+
+mail_action:
+    path:     /mail/{id}
+    defaults: { _controller: "HandissimoBundle:Ajax:email" }
+    methods:  POST
+
+ajax_preview:
+    path:     /ajax/preview
+    defaults: { _controller: "HandissimoBundle:Ajax:preview" }
+    methods:  [GET, POST]

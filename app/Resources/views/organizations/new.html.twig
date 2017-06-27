@@ -1,0 +1,368 @@
+{% extends '@SonataUser/Profile/action.html.twig' %}
+{% block title %}{{ parent() }} - création de fiche{% endblock %}
+{% form_theme form ':Form:fields.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/organizations-19062017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/organedit-19062017.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block sonata_profile_content %}
+    <div class="advert">
+        <!-- Block Title-->
+        <p class="verification"><span class="bold">Avant de créer une fiche veuillez vérifier que celle-ci n'existe pas! <a class="link-about" href="{{ path('handissimo_profile_search') }}" id="verification-link"> >>CLIQUEZ-ICI<<< </a></span></p>
+    </div>
+    {% block organization_form %}
+        <form method="POST" action="{{path('organizations_new')}}" enctype="multipart/form-data" id="orga-new">
+            {{ form_start(form) }}
+            <div class="errors-message"></div>
+            {{ form_errors(form) }}
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills" role="tablist">
+                    <li role="presentation" class="active"><a href="#identity" aria-controls="identity" role="tab" data-toggle="tab" class="link-about">Identité</a></li>
+                    <li role="presentation"><a href="#publictarget" aria-controls="publictarget" role="tab" data-toggle="tab" class="link-about">Public cible</a></li>
+                    <li role="presentation"><a href="#serve" aria-controls="serve" role="tab" data-toggle="tab" class="link-about">Les services proposés</a></li>
+                    <li role="presentation"><a href="#team" aria-controls="team" role="tab" data-toggle="tab" class="link-about">L'équipe</a></li>
+                    <li role="presentation"><a href="#informations" aria-controls="informations" role="tab" data-toggle="tab" class="link-about">Informations pratiques</a></li>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
+                    {% elseif is_granted('ROLE_SOC') and usero is defined %}
+                        {% for userID in usero %}
+                            {% if user.id == userID.id %}
+                                <li role="presentation"><a href="#pictures" aria-controls="pictures" role="tab" data-toggle="tab" class="link-about">Images</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+                <br>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active row" id="identity" >
+                        <div class="col-md-5">
+                            <div class="col-md-11 label-alert">
+                                {{ form_label(form.name) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ obligatoire"></i></p>
+                            </div>
+                            {{ form_errors(form.name) }}
+                            {{ form_widget(form.name) }}
+                            {{ form_row(form.structureLogoFile) }}
+                            <a href="" id="empty-field-stucture" class="link-about">Effacer le fichier</a>
+                            {{ form_row(form.society) }}
+                            {{ form_row(form.societyLogoFile) }}
+                            <a href="" id="empty-field-societie" class="link-about">Effacer le fichier</a>
+                            <div class="col-md-11 label-alert">
+                                {{ form_label(form.address) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(form.address) }}
+                            {{ form_widget(form.address) }}
+                            {{ form_row(form.addressComplement) }}
+
+                            <div class="col-md-11 label-alert">
+                                 {{ form_label(form.postal) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(form.postal) }}
+                            {{ form_widget(form.postal) }}
+                            <div class="col-md-11 label-alert">
+                                {{ form_label(form.city) }}
+                            </div>
+                            <div class="col-md-1 block-alert">
+                                <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                            </div>
+                            {{ form_errors(form.city) }}
+                            {{ form_widget(form.city) }}
+                            {{ form_row(form.phone_number) }}
+                            {{ form_row(form.mail) }}
+                            {{ form_row(form.directorName) }}
+                            {{ form_row(form.website) }}
+                            {{ form_row(form.facebook) }}
+                            {{ form_row(form.brochureFile) }}
+
+                            <a href="" id="empty-field-brochure" class="link-about">Effacer le fichier</a>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    {{ form_label(form.orgaStructure) }}
+
+                                </div>
+                                <div class="col-md-1 block-alert">
+                                    <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                </div>
+                            </div>
+
+                            {{ form_errors(form.orgaStructure) }}
+                            {{ form_widget(form.orgaStructure) }}
+                        </div>
+                        <div class="col-xs-12 block-btn-prev-next">
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="publictarget">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ form_label(form.disabilitytypes) }}
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
+                                {{ form_errors(form.disabilitytypes) }}
+                                {{ form_widget(form.disabilitytypes) }}
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-11 h3-alert">
+                                        <h3 class="age-label">Âge des personnes accueillies</h3>
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 age">
+                                    {{ form_row(form.agemini) }}
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ form_row(form.agemaxi) }}
+                                </div>
+                                {{ form_row(form.freeplace) }}
+                                {{ form_row(form.interventionZone) }}
+
+                            </div>
+                        </div>
+                        <div id="organizationDescription">
+                            {{ form_label(form.organizationDescription) }}
+                            <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="La MAS Robert Ramel
+                            accueille 50 adultes polyhandicapés et autistes lourdement handicapés, qui ont entre 20 et
+                            60 ans à leur arrivée. Certains résidents souffrent d’épilepsie. La moitié des résidents se
+                            déplace en fauteuil. La majorité d’entre eux ne parlent pas ou très peu.">Exemple 1</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            L’association Une souris verte s’adresse à tous les enfants en situation de handicap
+                            et leurs familles, notamment les enfants dont le handicap pose difficulté pour être accueillis dans
+                            une structure ordinaire (crèche, garderie, …)">Exemple 2</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            Les usagers du C.E.M. sont des pré-adolescents, adolescents et jeunes adultes pour la
+                            plupart atteint d’infirmité motrice d’origine cérébrale, ou paralysie cérébrale.  L’établissement
+                            accueille également des jeunes polyhandicapés.
+                            Certains se déplacent en fauteuil roulant manuel ou électrique, d’autres avec diverses aides de marche,
+                            d’autres en tricycles ou en marchant. La plupart des jeunes savent s’exprimer à l’oral. Environ 110 jeunes sont accueillis.">
+                            Exemple 3</i></p>
+                            {{ form_errors(form.organizationDescription) }}
+                            {{ form_widget(form.organizationDescription) }}
+                            <p class="update">Description limitée à 5000 caractères</p>
+                        </div>
+                        <div class="col-xs-12 block-btn-prev-next">
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="serve">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ form_label(form.needs) }}
+                                    </div>
+                                    <div class="col-md-1 block-alert">
+                                        <p class="alert-form"><i class="fa fa-exclamation-triangle" aria-hidden="true"  data-toggle="tooltip" data-placement="left" data-html="true" title="Champ indispensable pour que la fiche ressorte dans les résultats"></i></p>
+                                    </div>
+                                </div>
+                                {{ form_errors(form.needs) }}
+                                {{ form_widget(form.needs) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_errors(form.secondneeds) }}
+                                {{ form_label(form.secondneeds) }}
+                                {{ form_widget(form.secondneeds) }}
+                            </div>
+                        </div>
+                        <div id="workingDescription">
+                            {{ form_label(form.workingDescription) }}
+                            <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html='true' title="
+                            Les résidents habitent à la MAS, c’est leur lieu de vie. L’équipe s’occupe des soins nécessaires,
+                            de l’aide à la vie quotidienne, propose des activités dans les locaux ou à l’extérieur. Les activités
+                            ont pour objectif de faire progresser les résidents dans leur capacité de communication, leur ouverture sur le monde,
+                            le développement de leurs compétences.">Exemple 1</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            L’association Une souris verte a pour objectif de sensibiliser aux différences et d’inclure
+                            les jeunes enfants en situation de handicap dans la société. Pour cela, l’association développe 4 actions principales :
+                            1-l’accueil des enfants en situation de handicap parmi les autres dans trois structures d’accueil.
+                            2-l’accompagnement des familles d’enfants en situation de handicap, grâce à des rencontres et des espaces d’informations documentation
+                            3-la formation des acteurs et professionnels de santé.
+                            4-la sensibilisation à la différence
+                            ">Exemple 2</i>
+                            <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                            L'établissement comprend un internat et des lieux d’accueil de jour. L’établissement assure :
+                            l’hébergement, la scolarité et une formation, les soins, les apprentissages liés à l’autonomie
+                            dans la vie quotidienne, des activités et les transports associés. Les jeunes y passent la journée,
+                            pour certains ils restent dormir. Exceptionnellement les jeunes peuvent être accueillis aussi le week-end.">
+                            Exemple 3</i></p>
+                            {{ form_errors(form.workingDescription) }}
+                            {{ form_widget(form.workingDescription) }}
+                            <p class="update">Description limitée à 5000 caractères</p>
+                        </div>
+                        {{ form_row(form.school) }}
+                        <div id="schoolDescription">
+                            {{ form_row(form.schoolDescription) }}
+                        </div>
+                        <p class="update">Description limitée à 3000 caractères</p>
+                        {{ form_row(form.dayDescription) }}
+                        <p class="update">Description limitée à 5000 caractères</p>
+                        {{ form_row(form.receptionDescription) }}
+                        <p class="update">Description limitée à 5000 caractères</p>
+                        <div class="col-xs-12 block-btn-prev-next">
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="team">
+                        {{ form_row(form.teamMembersNumber) }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ form_errors(form.stafforganizations) }}
+                                {{ form_label(form.stafforganizations) }}
+                                {{ form_widget(form.stafforganizations) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_errors(form.socialstaffs) }}
+                                {{ form_label(form.socialstaffs) }}
+                                {{ form_widget(form.socialstaffs) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_errors(form.otherjobs) }}
+                                {{ form_label(form.otherjobs) }}
+                                {{ form_widget(form.otherjobs) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.commentStaff) }}
+                        <p class="update">Description limitée à 1000 caractères</p>
+                        <div class="col-xs-12 block-btn-prev-next">
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="informations">
+
+                        {{ form_row(form.openhours) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_errors(form.opendays) }}
+                                {{ form_label(form.opendays) }}
+                                {{ form_widget(form.opendays) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_errors(form.opendaysYear) }}
+                                {{ form_label(form.opendaysYear) }}
+                                {{ form_widget(form.opendaysYear) }}
+                            </div>
+                        </div>
+                        {{ form_row(form.orientationMdph) }}
+                        {{ form_row(form.inscription) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(form.cost) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_row(form.transport) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        {{ form_label(form.freeDescription) }}
+                        <p><i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        La structure est complète à ce jour mais n’hésitez pas à prendre des renseignements, il existe une
+                        liste d’attente sur laquelle nous pouvons vous inscrire.">Exemple 1</i>
+                        <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        Vous pouvez nous rencontrer au forum Handicap le dimanche 24 mars à partir de 14h […] //
+                        Journée porte ouverte le samedi 23 avril […]">Exemple 2</i>
+                        <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-html="true" title="
+                        Vous trouverez plus d’information sur notre blog : www. …">Exemple 3</i>
+                        </p>
+                        {{ form_errors(form.freeDescription) }}
+                        {{ form_widget(form.freeDescription) }}
+                        <p class="update">Description limitée à 2000 caractères</p>
+                        <div class="col-xs-12 block-btn-prev-next">
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
+                            {% elseif is_granted('ROLE_SOC') and usero is defined %}
+                                {% for userID in usero %}
+                                    {% if user.id == userID.id %}
+                                        <a class="btn btn-default btnNext handissimo-button" >Suivant</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <div class="row">
+
+                            </div>
+                        {% elseif is_granted('ROLE_SOC') and usero is defined %}
+                            {% for userID in usero %}
+                                {% if user.id == userID.id %}
+                                    <div class="row">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="row">
+                                <div class="col-xs-12 btn-submit">
+                                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview handissimo-button" target="_blank">prévisualiser</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 btn-submit">
+                                    <input type="submit" value="Valider" id="edit-organization" class="btn btn-default handissimo-button"/>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane fade" id="pictures">
+                        <div class="row">
+                            <div class="pictureUpload">
+                                <div class="col-md-6 col-xs-12">
+                                    {{ form_row(form.firstPictureFile) }}
+                                    <a href="" id="empty-field-picture" class="link-about">Effacer l'image</a>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    {{ form_row(form.media) }}
+                                        <a href="" id="add_picture" class="link-about">Ajouter une image</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 block-btn-prev-next">
+                            <a class="btn btn-default btnPrevious handissimo-button" >Précédent</a>
+                        </div>
+                            <div class="row">
+                                <div class="col-xs-12 btn-submit">
+                                    <a onclick="previewFunction()" href="{{ path('handissimo_preview') }}" id="preview" class="btn btn-default btnPreview handissimo-button" target="_blank">prévisualiser</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 btn-submit">
+                                    <input type="submit" value="Valider" id="edit-organization" class="btn btn-default handissimo-button"/>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </form>
+    {% endblock organization_form %}
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}

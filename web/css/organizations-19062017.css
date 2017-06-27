@@ -1,0 +1,472 @@
+/*img head*/
+.head-title {
+    align-items: center;
+    display: flex;
+}
+
+.head-img {
+    width: 100%;
+    height: 400px;
+    background-image: url(../images/scott-webb-167099.jpeg);
+    background-size: cover;
+    background-position: top center;
+}
+/*container info block*/
+.container-info{
+    padding-top:10px;
+}
+
+/*head title*/
+.update{
+    color:#777777;
+    margin-top:10px;
+    font-size: 1.1em;
+}
+.logo{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+}
+
+.structure-title{
+    margin-bottom: 10px;
+}
+/*------------------- this is for the favorite/like button --------------*/
+.fa-heart-o{
+    font-size: 30px;
+    height:30px;
+}
+.like{
+    float: right;
+    margin:0;
+}
+/*-----------------------------*/
+.img-block{
+    margin-left: 20px;
+    max-width: 60%;
+}
+
+.img-block, .like{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.list-inline img {
+    width: 80px;
+    height: 60px;
+}
+
+#slider {
+    text-align: center;
+}
+
+#block-carousel {
+
+}
+
+#max-width {
+    max-width: 600px;
+}
+
+/* Essential block */
+.essential-block{
+      margin:10px 0 0 0 ;
+}
+
+.contact-info {
+    border-top:solid #dadada 1px;
+}
+
+.contact-info,
+.resources {
+    padding:20px 10px 10px 10px;
+    margin-top: 10px;
+}
+
+.fa-twitter,
+.a-facebook,
+.fa-commenting,
+.fa-desktop,
+.fa-envelope,
+.fa-user,
+.fa-phone,
+.fa-home {
+    font-size: 20px;
+}
+
+.icon-block {
+    width: 8%;
+    display: flex;
+    justify-content: center;
+}
+
+.line {
+    display: flex;
+    color: #333333;
+}
+
+
+.address-line {
+    margin: 0 0 5px 0;
+    font-weight: 600;
+}
+
+/* Map & Ressources */
+.map {
+    height:400px;
+    margin-top: 20px;
+}
+
+.print-line,
+.download-line {
+    border-top: solid 1px #dadada;
+    margin-top: 5px;
+    padding-top: 10px;
+}
+
+.print p,
+.download p {
+    font-weight: 600;
+}
+
+.print-line p,
+.download-line p {
+    margin-left: 10px;
+}
+
+.print-line i,
+.download-line i {
+    color: #61bdb9;
+    font-size: 20px;
+}
+
+.download:hover,
+.download-line p:hover,
+.print:hover,
+.print-line p:hover {
+    text-decoration: none;
+    color: #61bdb9;
+}
+
+.print:focus,
+.download:focus{
+    color: #61bdb9;
+    text-decoration: none;
+}
+
+.fa-print,
+.fa-download {
+    padding: 3px 0 10px 5px;
+ }
+
+/* Search return button */
+.btn-return,
+.btn-edit,
+.btn-comment {
+    display: block;
+    border-radius: 50px;
+    padding:20px;
+    border:2px solid #61bdb9;
+    color: #61bdb9;
+    margin: 0 auto 10px auto;
+    background-color: white;
+    text-transform: none;
+    font-weight: 600;
+    font-size: 12px;
+    width: 100%;
+}
+
+.btn-comment {
+    width: 40%;
+    font-size: 18px;
+}
+
+#btn-sol,
+#btn-return-search {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#btn-alert-content {
+    padding: 20px 15px 20px 15px;
+}
+
+.btn-return:hover,
+.btn-edit:hover,
+.btn-comment:hover{
+    text-decoration: none;
+    color: #f7af49;
+    box-shadow: 0 0 5px 1px #cfcfcf;
+    border:2px solid  #f7af49;
+}
+
+.line-block {
+    border-top: solid 1px #dadada;
+    padding-top: 10px;
+    margin: 5px 50px 0 50px;
+}
+.btn-edit,
+.btn-return{
+    margin: 50px 0;
+}
+/*media queries*/
+@media screen and (max-width: 768px) {
+    .head-img {
+        display: none;
+    }
+
+    .icon-block {
+        width: 6%;
+        padding-left: 20px;
+    }
+
+    .address-line {
+        padding-left: 30px;
+    }
+
+    .head-title {
+        align-items: flex-start;
+    }
+
+    .img-block {
+        padding-right: 0;
+    }
+    .btn-return,
+    .btn-edit {
+        margin: 5px auto 0 auto;
+        width: 80%;
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 360px) {
+    .map {
+        height:300px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .btn-return,
+    .btn-edit {
+        font-size: 15px;
+        margin: 5px auto 0 auto;
+        width: 80%;
+    }
+}
+
+.notModify {
+    margin-top: 50px;
+    background-color: #C37095;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+#return-button {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#logo-mdph {
+    width: 150px;
+    height: auto;
+}
+
+.panel-heading .link-about:after{
+    font-family: "Glyphicons Halflings";
+    content: "\e080";
+    float: right;
+    color: #61bdb9;
+}
+
+.panel-heading .collapsed:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: #61bdb9;         /* adjust as needed */
+}
+
+
+/*******************/
+/***Block comment***/
+/*******************/
+
+#handissimo_comment_author,
+#handissimo_comment_content,
+#handissimo_comment_title {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.form2{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+#avatar-comment {
+    width: 50px;
+    height: auto;
+}
+
+.comment-block {
+    clear: both;
+}
+
+#comment-title {
+    font-weight: 600;
+    color: #61bdb9;
+}
+
+#comment-organizations {
+    background-color: #ffffff;
+    margin:10px auto 5px auto ;
+    box-shadow: 0 10px 30px 4px rgba(0,0,0,0.15);
+    padding: 10px 10px 10px 10px;
+}
+
+.response-btn {
+    color: #61bdb9;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.response-btn:hover {
+    color: #f7af49;
+}
+
+.g-recaptcha {
+    margin-bottom: 10px;
+}
+
+#alert-login-comment {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/**********************/
+/*****Vote button******/
+/**********************/
+
+.vote-btn {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    border: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.vote-like:hover {
+    color: #63a563;
+}
+
+.vote-dislike:hover {
+    color: #f2504b;
+}
+
+.vote-btns {
+    float: right;
+}
+
+.primary-title{
+    font-size: 1.7em;
+    color: #61bdb9;
+}
+.second-title{
+    font-size: 1.1em;
+    color: #C37095;
+    font-weight: bold;
+}
+
+.black-result {
+    color: #333333;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 1.2em;
+
+}
+
+.organization-panel{
+    padding: 20px;
+}
+
+.panel-body {
+    padding-top: 0;
+}
+
+.age {
+    display: inline-block;
+}
+
+.question {
+    font-size: 1.3em;
+    margin-left: 45px;
+    color: black;
+}
+
+.mdphInfo {
+    font-size: 1.8em;
+    margin-left: 30px;
+    color: #C37095;
+}
+.mdphInfo:hover {
+    color: #f7af49;
+}
+
+.tooltip-inner {
+    background-color: #61bdb9;
+    color: #fff;
+}
+
+.download-line .tooltip-inner {
+    background-color: #0a0a0a;
+    max-width: none;
+}
+
+.popover {
+    max-width: 80%;
+}
+
+#alert_content-btn,
+#close-modal {
+    margin-top: 10px;
+}
+
+#text-captcha {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+#handissimo_alert_content_description {
+    width: 80%;
+}
+
+#dialog-message {
+    display: none;
+}

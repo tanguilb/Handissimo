@@ -1,0 +1,34 @@
+HandissimoBundle\Entity\StructuresList:
+    type: entity
+    table: null
+    repositoryClass: HandissimoBundle\Repository\StructuresListRepository
+    indexes:
+        structure_name_idx:
+            columns: [ name ]
+            flags: fulltext
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+
+
+    oneToMany:
+        organizationsStructure:
+            targetEntity: HandissimoBundle\Entity\Organizations
+            mappedBy: orgaStructure
+
+    manyToOne:
+        type:
+            targetEntity: HandissimoBundle\Entity\StructureType
+            inversedBy: structure
+            joinColumn:
+                name: type_id
+                referencedColunName: id
+
+    lifecycleCallbacks: {  }

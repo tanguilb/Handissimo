@@ -1,0 +1,41 @@
+<div class="container">
+
+        <ul class="list-inline">
+            {% for picture in pictures %}
+            <li> <a href="#lightbox" class="selected" data-toggle="modal" data-slide-to="{{ loop.index0 }}">
+                    <img src="{{ asset(picture) }}" class="img-responsive">
+                </a></li>
+            {% endfor %}
+        </ul>
+
+    <!-- main slider carousel -->
+    <div class="modal fade and carousel slide" id="lightbox">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="carousel-inner">
+                        {% for picture in pictures %}
+                            {% if loop.index0 == 0 %}
+                                <div class="item active">
+                                    <img src="{{ asset(picture) }}">
+                                </div>
+                            {% else %}
+                                <div class="item">
+                                    <img src="{{ asset(picture) }}">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div> <!--carousel-inner-->
+                    <a class="left carousel-control" href="#lightbox" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#lightbox" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div> <!-- modal.body -->
+            </div> <!--modal.content -->
+        </div> <!-- modal.dialog -->
+    </div>  <!-- modal -->
+
+    <!--/main slider carousel-->
+</div> <!-- container -->

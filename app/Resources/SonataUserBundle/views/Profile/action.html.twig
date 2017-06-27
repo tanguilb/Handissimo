@@ -1,0 +1,126 @@
+{% extends 'SonataUserBundle::layout.html.twig' %}
+{% block title %}{{ parent() }}mon compte{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/profile-19062017.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style-19062017.css') }}">
+{% endblock %}
+{% block sonata_page_breadcrumb %}
+    {% if breadcrumb_context is not defined %}
+        {% set breadcrumb_context = 'user_index' %}
+    {% endif %}
+    <div class="row-fluid clearfix">
+        {{ sonata_block_render_event('breadcrumb', { 'context': breadcrumb_context, 'current_uri': app.request.requestUri }) }}
+    </div>
+{% endblock %}
+
+{% block sonata_user_content %}
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    <div class="head-block">
+        {% if app.request.get('name')%}
+        <p class="home-msg-profile">Bonjour, merci de participer à Handissimo ! Remplir ou compléter une fiche ne vous prendra que quelques minutes.
+            Merci beaucoup par avance ! Pour toute difficulté, n’hésitez pas à nous <a href="{{ path('handissimo_contact') }}" id="link-profile">contacter</a>.</p>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-xs-12 menu-block">
+            <div class="col-md-6 col-xs-12">
+                <div class="title-block">
+                    <h2 class="title-menu">MENU</h2>
+                </div>
+                <div class="list-menu">
+                    <div class="button-block">
+                        <a href="{{ path('sonata_user_profile_edit') }}">
+                            <button class="list-button">Profil</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('organizations_new') }}">
+                            <button class="list-button">Créer une fiche</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_search') }}">
+                            <button  class="list-button">Rechercher une fiche</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_solution') }}">
+                            <button class="list-button">Je suis une solution</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_list_user_card') }}">
+                            <button class="list-button">Mes fiches</button>
+                        </a>
+                    </div>
+                    <div class="button-block">
+                        <a href="{{ path('handissimo_profile_comment') }}">
+                            <button class="list-button">Mes commentaires</button>
+                        </a>
+                    </div>
+                    {% if is_granted('ROLE_SUPER_ADMIN')%}
+                    <div class="button-block">
+                        <div class="button-group">
+                            <button class="list-button dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administration
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('handissimo_profile_list_organizations') }}">Historique des modifications</a></li>
+                                <li><a href="{{ path('handissimo_profile_list_contributor') }}">Liste des contributeurs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if app.request.get('name')%}
+                <div class="col-md-6 col-xs-12">
+                    <button type="button" data-toggle="modal" data-target="#help-block" class="btn handissimo-button" id="btn-help">Besoin d'aide ?</button>
+                    <div class="modal fade" id="help-block" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" id="hide" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title">Besoin d'aide</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Si vous avez besoin d'aide n'hésitez pas à nous contacter par mail à l'adresse:
+                                        <a href="mailto:c%6f&#110;t&#97;%63&#116;&#64;h%61%6e&#100;i%73%73&#105;&#109;%6f%2ef%72" class="link-about"><span class="bold">contact&#64;handissimo.fr</span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <section class="container-fluid">
+            <div class=" col-md-9 col-xs-12 main-block-profil">
+                {% for flash_message in app.session.flashBag.get('notice') %}
+                    <div class="message-container">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            {{ flash_message }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashBag.get('edit') %}
+                    <div class="message-container">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            {{ flash_message }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% block sonata_profile_content %}
+                {% endblock %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('js/profileSearch.js') }}"></script>
+    <script src="{{ asset('js/validate.js') }}"></script>
+{% endblock %}

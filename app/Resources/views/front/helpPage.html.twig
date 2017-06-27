@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Comment nous aider{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/help-19062017.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="head-block"></div>
+    <div class="container main-block">
+        <div class="row">
+            <h1 class="title main-title">Comment nous aider ?</h1>
+            <div class="img-block">
+                <img src="{{ asset('images/helpus.jpeg') }}" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-xs-12">
+            {% for use in howToHelpUs %}
+                {{ use.howToHelpUs|raw }}
+            {% endfor %}
+        </div>
+        <div class="block-btn-homepage col-xs-12">
+            <a href="{{ path('index_action') }}" class="btn btn-homepage handissimo-button" role="button">
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+{% endblock %}
