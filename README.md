@@ -60,7 +60,21 @@ A Symfony project created on November 16, 2016, 10:57 am.
 - simplethings/entity-audit-bundle: ^ 1.0
 - helios-ag/fm-elfinder-bundle: ^ 6.2
 
+### 4-Project architecture
 
-### 4-List of known bugs
+The project is write in object-oriented programming with the model MVC. They are two bundle:
+- ApplicationSonataUserBundle to manage all the users
+- HandissimoBundle to manage all the rest of the project.<br /><br />
+- We have added SonataAdminBundle to manage the superAdmin BackOffice with all rights.
+
+- All the views are in the folder 'app/Resources'
+
+### 5-List of known bugs
 
 - Can not modify entries of library tables when they are linked to an organization in sonata.
+
+
+### 6-List of weakness
+
+- The services SortSearch with path "src/HandissimoBundle/Services/Search/SortSearch.php" allows to sort the result by distance, filling rate and by search item's correspondence. It is write in php and it will be better to write it in SQL. 
+- The services RevertVersion with path "src/HandissimoBundle/Services/Recorder/RevertVersion.php" test all of array key. it will be better to refactor to simplify it. 
