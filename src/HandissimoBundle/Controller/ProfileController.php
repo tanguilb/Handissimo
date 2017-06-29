@@ -28,20 +28,30 @@ class ProfileController extends Controller
             $form->handleRequest($request);
 
             $em = $this->getDoctrine()->getManager();
-            $result = "";
+            $results = "";
+            $message="";
             if ($form->isSubmitted() && $form->isValid()) {
                 $data = $form->getData()['profileSearch'];
+                $results = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsProfile($data);
 
-                $result = $em->getRepository('HandissimoBundle:Organizations')->getByOrganizationsProfile($data);
+                if (count($results) === 1) {
+                    return $this->redirectToRoute('structure_page', array('id' => $results[0]->getId()));
+                }
+
+                if (count($results) === 0) {
+                    $message = "Il n’y a pas de résultat. Vous pouvez créer votre fiche.";
+                }
                 return $this->render(':front/profile:profile-search.html.twig', array(
                     'form' => $form->createView(),
-                    'result' => $result,
+                    'results' => $results,
                     'profileSearch' => $data,
+                    'message' => $message
                 ));
             }
             return $this->render(':front/profile:profile-search.html.twig', array(
                 'form' => $form->createView(),
-                'result' => $result,
+                'results' => $results,
+                'message' => $message
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');
@@ -291,5 +301,14 @@ class ProfileController extends Controller
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');
+    }
+
+    public function desactivateAccountAction($user_id)
+    {
+        $useManager = $this->container->get('fos_user.user_manager');
+        $user = $this->getDoctrine()->getRepository('ApplicationSonataUserBundle:User')->find($user_id);
+        $user->setEnabled(0);
+        $useManager->updateUser($user);
+        return $this->redirectToRoute('index_action');
     }
 }

@@ -103,3 +103,7 @@ handissimo_profile_admin_comment_remove_publication:
 handissimo_profile_admin_comment_add_publication:
     path:  /comments/show/addPublication/{id}
     defaults: { _controller: HandissimoBundle:Ajax:addPublicationComment }
+
+handissimo_profile_desactivate_account:
+    path:  /edit-profile/desactivate/{user_id}
+    defaults: { _controller: HandissimoBundle:Profile:desactivateAccount }
