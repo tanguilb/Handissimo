@@ -58,7 +58,7 @@
                             <button class="list-button">Mes commentaires</button>
                         </a>
                     </div>
-                    {% if is_granted('ROLE_SUPER_ADMIN')%}
+                    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_HANDI') %}
                     <div class="button-block">
                         <div class="button-group">
                             <button class="list-button dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

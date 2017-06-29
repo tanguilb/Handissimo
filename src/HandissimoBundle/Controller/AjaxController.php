@@ -11,11 +11,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * Class AjaxController
+ * @package HandissimoBundle\Controller
+ */
 class AjaxController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param $city
+     * @return JsonResponse
+     */
     public function searchByCityAction(Request $request, $city)
     {
-
         if ($request->isXmlHttpRequest()) {
             $repository = $this->getDoctrine()->getRepository('HandissimoBundle:City');
             $location = $repository->getByCity($city);
@@ -30,6 +38,12 @@ class AjaxController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $profileSearch
+     * @return JsonResponse
+     * @throws \HttpException
+     */
     public function searchProfileAction(Request $request, $profileSearch)
     {
         if ($request->isXmlHttpRequest())
@@ -43,6 +57,12 @@ class AjaxController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $organizationSearch
+     * @return JsonResponse
+     * @throws \HttpException
+     */
     public function organizationNameSearchAction(Request $request, $organizationSearch)
     {
         if ($request->isXmlHttpRequest())
@@ -51,11 +71,17 @@ class AjaxController extends Controller
             $organization = $repository->getSearchProfile($organizationSearch);
 
             return new JsonResponse(array("data" => json_encode($organization)));
-        }else{
+        } else {
             throw new \HttpException('500', 'Invalid call');
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     * @throws \HttpException
+     */
     public function emailAction(Request $request, $id)
     {
         if($request->isXmlHttpRequest())
@@ -64,11 +90,15 @@ class AjaxController extends Controller
             $email = $repository->getEmailByOrganization($id);
 
             return new JsonResponse(array("data" => json_encode($email)));
-        }else {
+        } else {
             throw new \HttpException('500', 'Invalid call');
         }
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function previewAction(Request $request)
     {
         if($request->isXmlHttpRequest())
@@ -78,23 +108,34 @@ class AjaxController extends Controller
 
             return new Response();
         } else {
-            return false;
+            throw  new HttpException('500', 'Invalid call');
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $rev
+     * @return JsonResponse
+     */
     public function revertVersionAction(Request $request, $id, $rev)
     {
-
         if ($request->isXmlHttpRequest()){
             $var = json_decode($request->request->get('data'), true);
             $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
             $result = $this->container->get('handissimo.revert_version')->revertOldVersion($organizations, $var);
 
             return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations'));
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return false;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function addPinsAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -104,10 +145,16 @@ class AjaxController extends Controller
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return false;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function removePinsAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -117,10 +164,15 @@ class AjaxController extends Controller
             $statement = $em->getConnection()->prepare($query);
             $statement->execute();
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return false;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function addAlertAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
@@ -151,10 +203,16 @@ class AjaxController extends Controller
 
             $this->get('mailer')->send($mail);
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return null;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function addCheckedAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -164,10 +222,16 @@ class AjaxController extends Controller
             $em->persist($organization);
             $em->flush();
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return false;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function removeCheckedAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -177,10 +241,16 @@ class AjaxController extends Controller
             $em->persist($organization);
             $em->flush();
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return false;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function addCheckedVersionAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -190,10 +260,16 @@ class AjaxController extends Controller
             $em->persist($organization);
             $em->flush();
             return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations'));
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return null;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function addCheckedCommentAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -203,10 +279,16 @@ class AjaxController extends Controller
             $em->persist($comment);
             $em->flush();
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return null;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function removeCheckedCommentAction(Request $request, $id)
     {
         if ($request->isXmlHttpRequest()) {
@@ -216,7 +298,46 @@ class AjaxController extends Controller
             $em->persist($comment);
             $em->flush();
             return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
         }
-        return null;
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function removePublicationCommentAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $comment = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->find($id);
+            $comment->setStatusComment(0);
+            $em->persist($comment);
+            $em->flush();
+            return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function addPublicationCommentAction(Request $request, $id)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $comment = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->find($id);
+            $comment->setStatusComment(1);
+            $em->persist($comment);
+            $em->flush();
+            return new JsonResponse();
+        } else {
+            throw  new HttpException('500', 'Invalid call');
+        }
     }
 }

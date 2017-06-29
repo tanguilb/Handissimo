@@ -95,3 +95,11 @@ handissimo_profile_admin_comment_add_checked:
 handissimo_profile_admin_comment_remove_checked:
     path:  /comments/show/remove/{id}
     defaults: { _controller: HandissimoBundle:Ajax:removeCheckedComment}
+
+handissimo_profile_admin_comment_remove_publication:
+    path:  /comments/show/removePublication/{id}
+    defaults: { _controller: HandissimoBundle:Ajax:removePublicationComment }
+
+handissimo_profile_admin_comment_add_publication:
+    path:  /comments/show/addPublication/{id}
+    defaults: { _controller: HandissimoBundle:Ajax:addPublicationComment }

@@ -169,7 +169,6 @@ class OrganizationsRepository extends EntityRepository
         return $qb->getResult();
     }
 
-
     public function getByOrganizationsProfile($data)
     {
         $qb = $this->createQueryBuilder('o')

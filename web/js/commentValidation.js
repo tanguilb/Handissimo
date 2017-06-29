@@ -35,8 +35,37 @@ $(document).ready(function() {
 
     $(document).on("change", 'input[type=radio]', function (e) {
         e.preventDefault();
-        var comment_id = $(this).attr('value');
-        alert(comment_id);
-    })
+        var comment_id = $(this).attr('id');
+        var value = $("input[name='radio']:checked").val();
+        if (value == 1){
+            $.ajax({
+                url: "/profile/comments/show/addPublication/" + comment_id,
+                type: "POST",
+                timeout: 3000
+            })
+        } else {
+            $.ajax({
+                url: "/profile/comments/show/removePublication/" + comment_id,
+                type: "POST",
+                timeout: 3000
+            })
+        }
+    });
 
+    $(".link-more").on("click", function (e) {
+        var idComment= $(this).attr('name');
+        e.preventDefault();
+        $("#" + idComment).toggle();
+        if ($(this).text() == "Lire la suite...") {
+            $(this).text("Replier");
+        } else {
+            $(this).text("Lire la suite...")
+        }
+    });
+
+    $(function () {
+        $(".more span").hide();
+    })
 });
+
+

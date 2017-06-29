@@ -23,4 +23,13 @@ class CommentRepository extends EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getCommentsOrderByDate()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c')
+            ->orderBy('c.parutionDate', 'DESC')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

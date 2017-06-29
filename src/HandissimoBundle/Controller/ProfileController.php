@@ -63,25 +63,27 @@ class ProfileController extends Controller
              * Action for recovery all contributions for organizations by user
              */
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
-            $contributions = $user->getContribution();
-            $contributionsKey = array_keys($contributions);
-            $organizations = [];
-            $existedOrganizations = [];
+            if ($user->getContribution() != null) {
+                $contributions = $user->getContribution();
+                $contributionsKey = array_keys($contributions);
+                $organizations = [];
+                $existedOrganizations = [];
 
-            foreach ($contributionsKey as $contribution) {
-                array_push($organizations, $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->findBy(['name'=>$contribution]));
-            }
-            foreach ($organizations as $organization) {
-                foreach ($organization as $entity){
-                    array_push($existedOrganizations, $entity->getName());
+                foreach ($contributionsKey as $contribution) {
+                    array_push($organizations, $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->findBy(['name' => $contribution]));
                 }
-            }
-            $deletedResult = array_diff($contributionsKey, $existedOrganizations);
+                foreach ($organizations as $organization) {
+                    foreach ($organization as $entity) {
+                        array_push($existedOrganizations, $entity->getName());
+                    }
+                }
+                $deletedResult = array_diff($contributionsKey, $existedOrganizations);
 
-            return $this->render('front/profile/profile-list-user-card.html.twig', array(
-                'organizations' => $organizations,
-                'deletedResult' => $deletedResult
-            ));
+                return $this->render('front/profile/profile-list-user-card.html.twig', array(
+                    'organizations' => $organizations,
+                    'deletedResult' => $deletedResult
+                ));
+            }
         }
         return $this->redirectToRoute('sonata_user_profile_show');
     }
@@ -277,13 +279,15 @@ class ProfileController extends Controller
         }
     }
 
-    public function showCommentsAction()
+    public function showCommentsAction(Request $request)
     {
         if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            $comments = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->findAll();
+            $comments = $this->getDoctrine()->getRepository('HandissimoBundle:Comment')->getCommentsOrderByDate();
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate($comments, $request->query->getInt('page', 1), 10);
 
             return $this->render('front/profile/profile-admin-comment.html.twig', array(
-                'comments' => $comments
+                'pagination' => $pagination
             ));
         }
         return $this->redirectToRoute('sonata_user_profile_show');

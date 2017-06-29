@@ -62,7 +62,9 @@
     <div class="block-btn-profile">
         <a href="{{ path('handissimo_profile_list_organizations') }}" class="btn btn-default handissimo-button" id="btn-list-home">Retour</a>
         {% if result != null %}
-        <a href="{{ path('handissimo_profile_delete_history', {'id': result[0].id}) }}" class="btn btn-default handissimo-button" id="btn-star-version">Gardezmoi</a>
+            {% if is_granted(('ROLE_SUPER_ADMIN')) %}
+            <a href="{{ path('handissimo_profile_delete_history', {'id': result[0].id}) }}" class="btn btn-default handissimo-button" id="btn-star-version">Gardezmoi</a>
+            {% endif %}
         {% endif %}
     </div>
     <div id="dialog-confirm" title="Confirmation de la suppression">

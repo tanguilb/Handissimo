@@ -1,61 +1,72 @@
 {% extends '@SonataUser/Profile/action.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
-{% endblock %}
-
 {% block sonata_profile_content %}
     <div class="title-block">
         <h3 class="title-search">Gestion des commentaires</h3>
     </div>
-    <div class="block-profil-list">
-        <div class="col-md-2 title-column">Date de parution</div>
-        <div class="col-md-2 title-column">Auteur</div>
-        <div class="col-md-2 title-column">Titre</div>
-        <div class="col-md-4 title-column">Contenu</div>
-        <div class="col-md-1 title-column">Publication</div>
-        <div class="col-md-1 title-column">Relu/Non relu</div>
-    </div>
-    {% for comment in comments %}
-        <div class="col-md-2">{{ comment.parutionDate|localizeddate('none', 'none', null, null, "dd/MM/Y HH:mm") }}</div>
-        <div class="col-md-2">{{ comment.author }}</div>
-        <div class="col-md-2">{{ comment.title }}</div>
-        <div class="col-md-4">{{ comment.content }}</div>
-        <div class="col-md-1">
-            {% if comment.statusComment == 1 %}
-                <div class="row">
-                    <div class="btn-group" id="status" data-toggle="buttons">
-                        <label class="btn btn-default btn-on btn-xs active">
-                            <input type="radio" value="{{ comment.id }}" name="multifeatured_module[module_id][status]" checked="checked">Oui</label>
-                        <label class="btn btn-default btn-off btn-xs ">
-                            <input type="radio" value="{{ comment.id }}" name="multifeatured_module[module_id][status]">Non</label>
-                    </div>
-                </div>
-            {% else %}
-                <div class="row">
-                    <div class="btn-group" id="status" data-toggle="buttons">
-                        <label class="btn btn-default btn-on btn-xs">
-                            <input type="radio" value="{{ comment.id }}" name="multifeatured_module[module_id][status]">Oui</label>
-                        <label class="btn btn-default btn-off btn-xs active">
-                            <input type="radio" value="{{ comment.id }}" name="multifeatured_module[module_id][status]">Non</label>
-                    </div>
-                </div>
-            {% endif %}
+    <div class="block-profil-list" id="profil-comment">
+        <div class="row">
+            <div class="col-md-2 title-column">Date de parution</div>
+            <div class="col-md-1 title-column">Auteur</div>
+            <div class="col-md-1 title-column">Titre</div>
+            <div class="col-md-6 title-column">Contenu</div>
+            <div class="col-md-1 title-column" id="title-publication">Publication</div>
+            <div class="col-md-1 title-column">Relu/Non relu</div>
         </div>
-        <div class="col-md-1">
-            {% if comment.rereading == 1 %}
-                <input type="checkbox" checked="checked" class="checkVisibility" name="checkbox" id="{{ comment.id }}" value="value">
-                <label class="green" for="{{ comment.id }}">Oui</label>
-            {% else %}
-                <input type="checkbox" class="checkVisibility" name="checkbox" id="{{ comment.id }}" value="value">
-                <label for="comment.id"></label>
-            {% endif %}
+    </div>
+    {% for comment in pagination %}
+        <div class="row comment-line">
+            <div class="col-md-2 commentadmin">{{ comment.parutionDate|localizeddate('none', 'none', null, null, "dd/MM/Y HH:mm") }}</div>
+            <div class="col-md-1 commentadmin" data-toggle="tooltip" data-placement="bottom" title={{ comment.author }}>
+                {{ comment.author|length > 10 ? comment.author|slice(0,10)~'..' : comment.author }}
+            </div>
+            <div class="col-md-1 commentadmin" data-toggle="tooltip" data-placement="bottom" title={{ comment.title }}>
+                {{ comment.title|length > 10 ? comment.title|slice(0,10)~'..' : comment.title }}
+            </div>
+            <div class="col-md-6 commentadmin more">
+                {% if comment.content|length >100 %}
+                    <p>{{ comment.content|slice(0,100) }}
+                    <span id="{{ comment.id }}" class="hideText">{{ comment.content|slice(100,comment.content|length) }}</span></p>
+                    <a name="{{ comment.id }}" class="link-more link-about" href="#" >Lire la suite...</a>
+                {% else %}
+                    {{ comment.content }}
+                {% endif %}
+            </div>
+            <div class="col-md-1 commentadmin">
+                {% if comment.statusComment == 1 %}
+                    <div class="row">
+                        <div class="btn-group" id="status" data-toggle="buttons">
+                            <label class="btn btn-default btn-on btn-xs active">
+                                <input type="radio" value="1" id="{{ comment.id }}" name="radio" checked="checked">Oui</label>
+                            <label class="btn btn-default btn-off btn-xs ">
+                                <input type="radio" value="0" id="{{ comment.id }}" name="radio">Non</label>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="btn-group" id="status" data-toggle="buttons">
+                            <label class="btn btn-default btn-on btn-xs">
+                                <input type="radio" value="1" id="{{ comment.id }}" name="radio">Oui</label>
+                            <label class="btn btn-default btn-off btn-xs active">
+                                <input type="radio" value="0" id="{{ comment.id }}" name="radio">Non</label>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-1">
+                {% if comment.rereading == 1 %}
+                    <input type="checkbox" checked="checked" class="checkVisibility" name="checkbox" id="{{ comment.id }}" value="value">
+                    <label class="green" for="{{ comment.id }}">Oui</label>
+                {% else %}
+                    <input type="checkbox" class="checkVisibility" name="checkbox" id="{{ comment.id }}" value="value">
+                    <label for="comment.id"></label>
+                {% endif %}
+            </div>
         </div>
     {% endfor %}
+    {{ knp_pagination_render(pagination) }}
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
     <script src="{{ asset('js/commentValidation.js') }}"></script>
 {% endblock %}
