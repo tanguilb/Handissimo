@@ -137,8 +137,8 @@ services:
           - { name: twig.extension }
 
     app.command.load_data_command:
-        class: HandissimoBundle\Command\LoadDataCommand
-        arguments: ['@doctrine.orm.entity_manager', '@service_container']
+        class: HandissimoBundle\Command\UpdateDatabaseCommand
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: console.command }
 

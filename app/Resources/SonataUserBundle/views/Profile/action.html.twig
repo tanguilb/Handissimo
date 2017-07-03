@@ -1,6 +1,7 @@
 {% extends 'SonataUserBundle::layout.html.twig' %}
 {% block title %}{{ parent() }}mon compte{% endblock %}
 {% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/profile-19062017.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-19062017.css') }}">
 {% endblock %}
@@ -58,7 +59,7 @@
                             <button class="list-button">Mes commentaires</button>
                         </a>
                     </div>
-                    {% if is_granted('ROLE_SUPER_ADMIN')%}
+                    {% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_HANDI') %}
                     <div class="button-block">
                         <div class="button-group">
                             <button class="list-button dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,6 +68,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ path('handissimo_profile_list_organizations') }}">Historique des modifications</a></li>
                                 <li><a href="{{ path('handissimo_profile_list_contributor') }}">Liste des contributeurs</a></li>
+                                <li><a href="{{ path('handissimo_profile_admin_comment') }}">Gestion des commentaires</a></li>
                             </ul>
                         </div>
                     </div>

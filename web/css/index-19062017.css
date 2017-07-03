@@ -79,14 +79,23 @@
     }
 }
 
-@media screen and (max-width: 780px)
+@media screen and (max-width: 1024px)
+{
+    #text-carousel #registration,
+    #video #treemin,
+    #block-img-week #news{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 800px)
 {
     #main-index {
         height: 100vh;
         background-size: cover;
     }
     #main-index #title-index {
-        margin-top: 20%;
+        margin-top: 25%;
         font-size: 1.6em;
     }
     #main-index div h2 {
@@ -98,7 +107,7 @@
         margin-bottom: 5px;
     }
     .search-field .homeField {
-        font-size: 0.5em;
+        font-size: 0.9em;
     }
     .search-field .marker {
         font-size: 0.9em;
@@ -136,7 +145,25 @@
         font-size: 0.8em;
         line-height: 25px;
     }
+    #text-carousel #registration,
+    #video #treemin,
+    #block-img-week #news{
+        font-size: 14px;
+    }
 
+    #haWidget {
+        left: -40px;
+    }
+}
+
+@media (max-width: 480px) {
+    #haWidget {
+        margin-left: -30px;
+    }
+    .select2-selection__placeholder,
+    .select2-container .select2-search--inline .select2-search__field {
+        font-size: 0.8em;
+    }
 }
 
 @media (max-width: 360px) {
@@ -152,6 +179,12 @@
     }
     #main-index #search-container {
         margin-top: 5px;
+    }
+    #main-index h1 {
+        font-size: 35px;
+    }
+    #main-index h2 {
+        font-size: 20px;
     }
 }
 
@@ -170,14 +203,6 @@
     text-align: center;
     margin-top: 30px;
     line-height: 42px;
-}
-@media (max-width: 360px) {
-    #main-index h1 {
-        font-size: 35px;
-    }
-    #main-index h2 {
-        font-size: 20px;
-    }
 }
 
 /*Search area*/
@@ -521,6 +546,7 @@
 }
 #text-carousel {
     text-align: center;
+    z-index: 4;
 }
 /****************************/
 /***** Headband social ******/
@@ -530,6 +556,8 @@
     background-color: #61bdb9;
     height: 100px;
     text-align: center;
+    z-index: 3;
+    position: relative;
 
 }
 
@@ -560,15 +588,18 @@
 .picto {
     height: 150px;
 }
-#collaborative {
+#collaborative,
+#treemin {
     color: #61bdb9;
 }
 
-#interactive {
+#interactive,
+#registration {
     color: #C37095;
 }
 
-#building {
+#building,
+#news {
     color: #f7af49;
 }
 
@@ -588,4 +619,24 @@
 .block-btn-homepage {
     margin: 0 auto;
     text-align: right;
+}
+
+#haWidget {
+    margin-top: -60px;
+    margin-bottom: -90px;
+    z-index: 2;
+    position: relative;
+}
+
+#news {
+    font-size: 18px;
+    z-index: 700;
+    position: relative;
+    margin: 10px auto;
+}
+
+#registration,
+#treemin {
+    font-size: 18px;
+    margin: 10px auto;
 }

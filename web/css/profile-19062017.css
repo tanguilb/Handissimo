@@ -451,6 +451,10 @@ input:-ms-input-placeholder {
     margin-top: 20px;
 }
 
+#btn-profile-search {
+    margin-top: 50px;
+}
+
 .result-block {
     margin-bottom: 50px;
 }
@@ -670,4 +674,39 @@ input:-ms-input-placeholder {
 .grade {
     font-weight: 900;
     color: #65bfba;
+}
+
+.btn-default.btn-on.active{background-color: #5BB75B;color: white;}
+.btn-default.btn-off.active{background-color: #DA4F49;color: white;}
+
+@media (max-width: 1366px) {
+    #profil-comment,
+    .commentadmin {
+        font-size: 12px;
+    }
+}
+
+.more {
+    position: relative;
+}
+
+.more a.link-more {
+    position: relative;
+}
+
+.more .hideText {
+    display: none;
+}
+
+#title-publication {
+    padding-left: 0;
+}
+
+.separation-comment {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-line {
+    margin-bottom: 10px;
 }

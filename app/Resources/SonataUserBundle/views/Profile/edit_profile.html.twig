@@ -8,18 +8,43 @@
     </div>
     <div class="panel-body">
         <form action="{{ path('sonata_user_profile_edit') }}" method="POST" {{ form_enctype(form) }} class="form-horizontal">
-            <div id="status-choice">
+            <div class="col-xs-12" id="status-choice">
                 {{ form_errors(form.usertype) }}
                 {{ form_widget(form.usertype) }}
             </div>
-            {{ form_errors(form.username) }}
-            {{ form_widget(form.username, {'attr': {'class': 'form-control form2', 'placeholder': 'form.username'|trans({}, 'SonataUserBundle')}}) }}
-            {{ form_errors(form.email) }}
-            {{ form_widget(form.email, {'attr': {'class': 'form-control form2', 'placeholder': 'form.email'|trans({}, 'SonataUserBundle')}}) }}
+            <div class="col-xs-12">
+                {{ form_errors(form.username) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control form2', 'placeholder': 'form.username'|trans({}, 'SonataUserBundle')}}) }}
+            </div>
+            <div class="col-xs-12">
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control form2', 'placeholder': 'form.email'|trans({}, 'SonataUserBundle')}}) }}
+            </div>
             {{ form_rest(form) }}
-            <button type="submit" name="submit"  class="btn btn-primary pull-right handissimo-button" id="btn-profile">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
-            {% render url("sonata_user_profile_edit_authentication") %}
+
+            <div class="col-xs-6 row">
+                <div class="col-xs-12">
+                    {% render url("sonata_user_profile_edit_authentication") %}
+                </div>
+                <div class="col-xs-12">
+                    <a href="{{ path('handissimo_profile_desactivate_account', {'user_id': app.user.id}) }}" role="button" id="desactivate-account" class="link-about">DESACTIVER LE COMPTE</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <button type="submit" name="submit"  class="btn btn-primary pull-right handissimo-button" id="btn-profile">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+            </div>
         </form>
+        <div id="dialog-confirm" title="Confirmation de la suppression">
+            <p>
+                <span class="ui-icon ui-icon-alert" id="alert-delete"></span>
+                Etes-vous sûr de vouloir désactiver votre compte ?
+            </p>
+        </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/desactivateAccount.js') }}"></script>
 {% endblock %}

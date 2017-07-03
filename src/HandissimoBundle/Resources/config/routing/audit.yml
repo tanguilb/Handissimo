@@ -83,3 +83,27 @@ handissimo_profile_remove_checked:
 handissimo_profile_version_checked:
     path:   /view/{id}/{rev}/checked
     defaults: { _controller: HandissimoBundle:Ajax:addCheckedVersion }
+
+handissimo_profile_admin_comment:
+    path:   /comments/show
+    defaults: { _controller: HandissimoBundle:Profile:showComments }
+
+handissimo_profile_admin_comment_add_checked:
+    path:  /comments/show/add/{id}
+    defaults: { _controller: HandissimoBundle:Ajax:addCheckedComment}
+
+handissimo_profile_admin_comment_remove_checked:
+    path:  /comments/show/remove/{id}
+    defaults: { _controller: HandissimoBundle:Ajax:removeCheckedComment}
+
+handissimo_profile_admin_comment_remove_publication:
+    path:  /comments/show/removePublication/{id}
+    defaults: { _controller: HandissimoBundle:Ajax:removePublicationComment }
+
+handissimo_profile_admin_comment_add_publication:
+    path:  /comments/show/addPublication/{id}
+    defaults: { _controller: HandissimoBundle:Ajax:addPublicationComment }
+
+handissimo_profile_desactivate_account:
+    path:  /edit-profile/desactivate/{user_id}
+    defaults: { _controller: HandissimoBundle:Profile:desactivateAccount }
