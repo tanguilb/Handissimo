@@ -28,6 +28,7 @@
 .advert {
     text-align: center;
     margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 #new-organization,
@@ -66,7 +67,7 @@
 }
 
 .verification {
-    font-size: 18px;
+    font-size: 28px;
     color: #C37095;
 }
 

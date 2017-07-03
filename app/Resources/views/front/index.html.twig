@@ -93,7 +93,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="container" id="block-call">
+                    <div class="col-xs-12" id="block-call">
                         <a href="{{ path('handissimo_structure') }}">
                             <button class="btn handissimo-button" id="btn-call" href="">Inscrire une solution (c’est gratuit)</button>
                         </a>
@@ -143,14 +143,14 @@
                 <div class="news-content">
                     <div class="row">
                         <div class="col-sm-4 col-xs-12"  id="video">
-                            <h3 id="treemin">Handissimo en 3 min ?</h3>
+                            <div id="treemin">Handissimo en 3 min ?</div>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe src="https://player.vimeo.com/video/216011812" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                 <p><a href="https://vimeo.com/216011812">Handissimo - sous-titr&eacute;</a> from <a href="https://vimeo.com/user65616025">Marion Pineau</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
                             </div>
                         </div>
                         <div id="text-carousel" class="col-sm-4 col-xs-12">
-                            <h3 id="registration">Les dernières solutions inscrites</h3>
+                            <div id="registration">Les dernières solutions inscrites</div>
                             <div id="myCarousel" class="carousel slide embed-responsive embed-responsive-16by9" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
@@ -177,7 +177,6 @@
                                                 {% endif %}
                                                 <div class="carousel-caption">
                                                     <h3>{{ images.name }}</h3>
-                                                    <p>{{ images.postal }} {{ images.city }}</p>
                                                 </div>
                                             </a>
                                         </div>
@@ -195,7 +194,7 @@
                             </div>
                         </div>
                         <div class="col-sm-4 col-xs-12" id="block-img-week">
-                            <h3 id="news">Quoi de neuf ?</h3>
+                            <div id="news">Quoi de neuf ?</div>
                             <iframe id="haWidget" src="https://www.helloasso.com/associations/fondation-ove/collectes/handissimo/widget-vignette" style="width:350px;height:450px;border:none;"></iframe>
                            {# <img class="img-thumbnail zoom" id="img-week" src="{{ asset('images/Lancement_handissimo_ 2017.png') }}" alt=" Handissimo - L'image de la semaine"/>#}
                         </div>
@@ -206,15 +205,15 @@
     </section>
     <section class="container-fluid" id="headband-social">
         <div class="row">
-        <div class="col-xs-12 col-md-4">
-            <a href="https://www.facebook.com/Handissimo-934218853377525/" target="_blank" id="facebook-link"><p class="content-social">Suivez-nous sur Facebook...</p></a>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <a href="https://twitter.com/Handissimo_2017" target="_blank" id="twitter-link"><p class="content-social">ou sur Twitter...</p></a>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <p class="content-social">pour avoir d’autres actualités !</p>
-        </div>
+            <div class="col-xs-12 col-md-4">
+                <a href="https://www.facebook.com/Handissimo-934218853377525/" target="_blank" id="facebook-link"><p class="content-social">Suivez-nous sur Facebook...</p></a>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <a href="https://twitter.com/Handissimo_2017" target="_blank" id="twitter-link"><p class="content-social">ou sur Twitter...</p></a>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <p class="content-social">pour avoir d’autres actualités !</p>
+            </div>
         </div>
     </section>
 {% endblock %}
