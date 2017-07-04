@@ -125,7 +125,7 @@ class AjaxController extends Controller
             $organizations = $this->getDoctrine()->getRepository('HandissimoBundle:Organizations')->find($id);
             $result = $this->container->get('handissimo.revert_version')->revertOldVersion($organizations, $var);
 
-            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations'));
+            return new JsonResponse($this->generateUrl('handissimo_profile_list_organizations', array('result' => $result)));
         } else {
             throw  new HttpException('500', 'Invalid call');
         }

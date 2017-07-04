@@ -19,7 +19,11 @@
                 {{ results.update_datetime|localizeddate }}
             </div>
             <div class="col-md-4">
-                {{ results.user }}
+                {% if results.user %}
+                    {{ results.user }}
+                {% else %}
+                    <span class="italic">null</span>
+                {% endif %}
             </div>
         {% endfor %}
         <div class="col-xs-12">
