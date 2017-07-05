@@ -710,3 +710,9 @@ input:-ms-input-placeholder {
 .comment-line {
     margin-bottom: 10px;
 }
+
+@media screen and (max-width: 1366px){
+    .block-profil-list .version-line{
+        font-size: 12px;
+    }
+}

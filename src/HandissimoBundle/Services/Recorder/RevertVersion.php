@@ -129,72 +129,84 @@ class RevertVersion
         if (array_key_exists('oldDisabilities', $var) == true) {
             $diff = array_diff_assoc($var['oldDisabilities'], $var['newDisabilities']);
             foreach ($diff as $value) {
+                $entity->setDisabilities($var['oldDisabilities']);
                 $entity->addDisabilityType($this->em->getReference('HandissimoBundle:Disabilitytypes', $value));
             }
         }
         if (array_key_exists('newDisabilities', $var) == true) {
-            $diff = array_diff_assoc($var['oldDisabilities'], $var['newDisabilities']);
+            $diff = array_diff_assoc($var['newDisabilities'], $var['oldDisabilities']);
             foreach ($diff as $value) {
+                $entity->setDisabilities($var['oldDisabilities']);
                 $entity->removeDisabilityType($this->em->getReference('HandissimoBundle:Disabilitytypes', $value));
             }
         }
         if (array_key_exists('oldPrimaryNeeds', $var) == true) {
             $diff = array_diff_assoc($var['oldPrimaryNeeds'], $var['newPrimaryNeeds']);
             foreach ($diff as $value) {
+                $entity->setPrimaryNeeds($var['oldPrimaryNeeds']);
                 $entity->addNeed($this->em->getReference('HandissimoBundle:Needs', $value));
             }
         }
         if (array_key_exists('newPrimaryNeeds', $var) == true) {
-            $diff = array_diff_assoc($var['oldPrimaryNeeds'], $var['newPrimaryNeeds']);
+            $diff = array_diff_assoc($var['newPrimaryNeeds'], $var['oldPrimaryNeeds']);
             foreach ($diff as $value) {
+                $entity->setPrimaryNeeds($var['oldPrimaryNeeds']);
                 $entity->removeNeed($this->em->getReference('HandissimoBundle:Needs', $value));
             }
         }
         if (array_key_exists('oldSecondaryNeeds', $var) == true) {
             $diff = array_diff_assoc($var['oldSecondaryNeeds'], $var['newSecondaryNeeds']);
             foreach ($diff as $value) {
+                $entity->setSecondaryNeeds($var['oldSecondaryNeeds']);
                 $entity->addSecondneed($this->em->getReference('HandissimoBundle:SecondaryNeeds', $value));
             }
         }
         if (array_key_exists('newSecondaryNeeds', $var) == true) {
-            $diff = array_diff_assoc($var['oldSecondaryNeeds'], $var['newSecondaryNeeds']);
+            $diff = array_diff_assoc($var['newSecondaryNeeds'], $var['oldSecondaryNeeds']);
             foreach ($diff as $value) {
+                $entity->setSecondaryNeeds($var['oldSecondaryNeeds']);
                 $entity->removeSecondneed($this->em->getReference('HandissimoBundle:SecondaryNeeds', $value));
             }
         }
         if (array_key_exists('oldMedicalJob', $var) == true) {
             $diff = array_diff_assoc($var['oldMedicalJob'], $var['newMedicalJob']);
             foreach ($diff as $value) {
+                $entity->setMedicalJob($var['oldMedicalJob']);
                 $entity->addStafforganization($this->em->getReference('HandissimoBundle:Staff', $value));
             }
         }
         if (array_key_exists('newMedicalJob', $var) == true) {
-            $diff = array_diff_assoc($var['oldMedicalJob'], $var['newMedicalJob']);
+            $diff = array_diff_assoc($var['newMedicalJob'], $var['oldMedicalJob']);
             foreach ($diff as $value) {
+                $entity->setMedicalJob($var['oldMedicalJob']);
                 $entity->removeStafforganization($this->em->getReference('HandissimoBundle:Staff', $value));
             }
         }
         if (array_key_exists('oldSocialJob', $var) == true) {
             $diff = array_diff_assoc($var['oldSocialJob'], $var['newSocialJob']);
             foreach ($diff as $value) {
+                $entity->setSocialJob($var['oldSocialJob']);
                 $entity->addSocialstaff($this->em->getReference('HandissimoBundle:SocialStaff', $value));
             }
         }
         if (array_key_exists('newSocialJob', $var) == true) {
-            $diff = array_diff_assoc($var['oldSocialJob'], $var['newSocialJob']);
+            $diff = array_diff_assoc($var['newSocialJob'], $var['oldSocialJob']);
             foreach ($diff as $value) {
+                $entity->setSocialJob($var['oldSocialJob']);
                 $entity->removeSocialstaff($this->em->getReference('HandissimoBundle:SocialStaff', $value));
             }
         }
         if (array_key_exists('oldCommunJob', $var) == true) {
             $diff = array_diff_assoc($var['oldCommunJob'], $var['newCommunJob']);
             foreach ($diff as $value) {
+                $entity->setCommunJob($var['oldCommunJob']);
                 $entity->addOtherjob($this->em->getReference('HandissimoBundle:OtherJob', $value));
             }
         }
         if (array_key_exists('newCommunJob', $var) == true) {
-            $diff = array_diff_assoc($var['oldCommunJob'], $var['newCommunJob']);
+            $diff = array_diff_assoc($var['newCommunJob'], $var['oldCommunJob']);
             foreach ($diff as $value) {
+                $entity->setCommunJob($var['oldCommunJob']);
                 $entity->removeOtherjob($this->em->getReference('HandissimoBundle:OtherJob', $value));
             }
         }

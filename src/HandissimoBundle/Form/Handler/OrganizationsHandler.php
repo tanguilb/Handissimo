@@ -164,6 +164,7 @@ class OrganizationsHandler
         }
 
         $this->organization->setChecked(0);
+        $this->organization->setPins(0);
         $this->em->persist($user);
         $this->em->persist($this->form->getData());
         $this->em->flush();
