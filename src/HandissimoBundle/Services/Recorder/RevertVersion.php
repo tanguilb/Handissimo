@@ -136,6 +136,7 @@ class RevertVersion
         if (array_key_exists('newDisabilities', $var) == true) {
             $diff = array_diff_assoc($var['newDisabilities'], $var['oldDisabilities']);
             foreach ($diff as $value) {
+                $entity->setDisabilities($var['oldDisabilities']);
                 $entity->removeDisabilityType($this->em->getReference('HandissimoBundle:Disabilitytypes', $value));
             }
         }
@@ -149,6 +150,7 @@ class RevertVersion
         if (array_key_exists('newPrimaryNeeds', $var) == true) {
             $diff = array_diff_assoc($var['newPrimaryNeeds'], $var['oldPrimaryNeeds']);
             foreach ($diff as $value) {
+                $entity->setPrimaryNeeds($var['oldPrimaryNeeds']);
                 $entity->removeNeed($this->em->getReference('HandissimoBundle:Needs', $value));
             }
         }
@@ -162,6 +164,7 @@ class RevertVersion
         if (array_key_exists('newSecondaryNeeds', $var) == true) {
             $diff = array_diff_assoc($var['newSecondaryNeeds'], $var['oldSecondaryNeeds']);
             foreach ($diff as $value) {
+                $entity->setSecondaryNeeds($var['oldSecondaryNeeds']);
                 $entity->removeSecondneed($this->em->getReference('HandissimoBundle:SecondaryNeeds', $value));
             }
         }
@@ -175,6 +178,7 @@ class RevertVersion
         if (array_key_exists('newMedicalJob', $var) == true) {
             $diff = array_diff_assoc($var['newMedicalJob'], $var['oldMedicalJob']);
             foreach ($diff as $value) {
+                $entity->setMedicalJob($var['oldMedicalJob']);
                 $entity->removeStafforganization($this->em->getReference('HandissimoBundle:Staff', $value));
             }
         }
@@ -188,6 +192,7 @@ class RevertVersion
         if (array_key_exists('newSocialJob', $var) == true) {
             $diff = array_diff_assoc($var['newSocialJob'], $var['oldSocialJob']);
             foreach ($diff as $value) {
+                $entity->setSocialJob($var['oldSocialJob']);
                 $entity->removeSocialstaff($this->em->getReference('HandissimoBundle:SocialStaff', $value));
             }
         }
@@ -201,6 +206,7 @@ class RevertVersion
         if (array_key_exists('newCommunJob', $var) == true) {
             $diff = array_diff_assoc($var['newCommunJob'], $var['oldCommunJob']);
             foreach ($diff as $value) {
+                $entity->setCommunJob($var['oldCommunJob']);
                 $entity->removeOtherjob($this->em->getReference('HandissimoBundle:OtherJob', $value));
             }
         }
